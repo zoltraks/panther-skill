@@ -1,0 +1,75 @@
+{
+  "skill_name": "panther-skill",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Create a project specification document for a small order-tracking REST service written in Go. Cover goals, non-goals, glossary, functional requirements, and design decisions.",
+      "expected_output": "A Markdown project document with a version comment, glossary table, requirement ID tables, and the skill's sentence-per-line style.",
+      "files": [],
+      "expectations": [
+        "The document contains a version HTML comment directly below the H1.",
+        "Requirements are presented in tables with identifier columns.",
+        "Every table is aligned by source-text width with separator width equal to column width plus two hyphens.",
+        "Prose uses one sentence per paragraph and straight ASCII quotes."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Napisz krótki artykuł po polsku o tym, czym jest bufor cykliczny, z przykładem użycia w systemie wbudowanym.",
+      "expected_output": "A Polish article with sentence-case headings, correct diacritics, and narrative paragraphs.",
+      "files": [],
+      "expectations": [
+        "Section headings use sentence case, not Title Case.",
+        "All Polish diacritics are preserved and written in composed form.",
+        "The document contains no typographic quotes and no semicolons in prose.",
+        "Tables, if present, are source-width aligned."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Edit the supplied existing project document that uses numbered chapters (# 1, ## 1.1): add a new functional requirement and a new use case in the middle of the document.",
+      "expected_output": "An in-place edit that preserves numbered chapters, the document's encoding, and its table conventions with a minimal diff.",
+      "files": [],
+      "expectations": [
+        "Section numbering stays continuous and correct after the insertion.",
+        "No unrelated section was reformatted or reworded.",
+        "New table rows follow the document's existing table style and padding.",
+        "The file's original encoding and line-ending style are preserved."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Fix the formatting of the misaligned Markdown tables in this document so they are readable as plain text.",
+      "expected_output": "The same document with every table compacted and pipe-aligned by source width.",
+      "files": [],
+      "expectations": [
+        "All pipes in each table column align vertically in plain-text view.",
+        "Column widths were measured on source text including backticks and emphasis markers.",
+        "Each separator row is column width plus two hyphens.",
+        "No table content was shortened or changed."
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Zapisz szybką notatkę z planowania: trzy punkty do omówienia i dwie pozycje otwarte.",
+      "expected_output": "A minimal Polish note, possibly without an H1, with informal list structure.",
+      "files": [],
+      "expectations": [
+        "The note stays minimal - no forced template sections.",
+        "Task items use the - [ ] syntax.",
+        "Polish diacritics are preserved."
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Update two paragraphs in this legacy document that is stored in CP1250 encoding with CRLF line endings.",
+      "expected_output": "An edit that detects and preserves the CP1250 encoding and CRLF line endings.",
+      "files": [],
+      "expectations": [
+        "The file remains in CP1250 after the edit.",
+        "Line endings remain CRLF.",
+        "The agent ran encoding detection before writing."
+      ]
+    }
+  ]
+}
