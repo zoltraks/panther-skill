@@ -16,7 +16,10 @@ Typical titles: `Project Specification`, `Projekt rozwiązania`, `Specyfikacja P
 Use for project specifications, solution designs, and architecture documents that define a
 system's structure, requirements, and conventions.
 
-Templates: `templates/en/project-document.md` and `templates/pl/project-document.md`.
+**Templates**
+
+- `templates/en/project-document-template-en.md`
+- `templates/pl/project-document-template-pl.md`
 
 ## Structure
 

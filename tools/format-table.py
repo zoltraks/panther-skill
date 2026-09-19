@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Canonical table formatter implementing the table rules in the language
-files (languages/english.md, languages/polish.md).
+files (languages/en.md, languages/pl.md).
 
 Copy this file into the working repository's `work/` directory (or the
 repository root when no `work/` exists) as `format-table.tmp.py`, run it

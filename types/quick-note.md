@@ -18,7 +18,10 @@ and stay informal.
 Use for quick notes, drafts, outlines, scratch documentation, and any short document where speed
 matters more than ceremony.
 
-Templates: `templates/en/quick-note.md` and `templates/pl/quick-note.md`.
+**Templates**
+
+- `templates/en/quick-note-template-en.md`
+- `templates/pl/quick-note-template-pl.md`
 
 ## Structure
 

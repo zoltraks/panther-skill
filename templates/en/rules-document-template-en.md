@@ -29,3 +29,7 @@ Incorrect example.
 ## Exceptions
 
 Where the rules do not apply, if anywhere.
+
+## Exceptions
+
+Where the rules do not apply, if anywhere.

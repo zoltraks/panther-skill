@@ -171,7 +171,7 @@ Load the file matching the document type, it adds deltas on top of the language 
   sources of truth, Correct/Incorrect examples.
 - **`types/format-specification.md`** - File format and protocol specifications: document
   information, version history, field tables, value enumerations.
-- **`types/article.md`** - Prose documents, tutorials, course material: narrative paragraphs,
+- **`types/article-text.md`** - Prose documents, tutorials, course material: narrative paragraphs,
   dialect tolerance, media references.
 - **`types/quick-note.md`** - Quick notes and drafts: minimal structure, optional H1, informal
   lists.
@@ -185,8 +185,8 @@ Load the file matching the document type, it adds deltas on top of the language 
 Load exactly one file, matching the document language. These files are self-contained style
 baselines covering structure, headings, lists, tables, characters, vocabulary, and file naming:
 
-- **`languages/english.md`** - English documents: Title Case headings, vocabulary preferences.
-- **`languages/polish.md`** - Polish documents: sentence case headings, diacritics, calque
+- **`languages/en.md`** - English documents: Title Case headings, vocabulary preferences.
+- **`languages/pl.md`** - Polish documents: sentence case headings, diacritics, calque
   avoidance, terminology tables.
 
 ## `conventions/` - Encoding And Dialects
@@ -198,11 +198,11 @@ baselines covering structure, headings, lists, tables, characters, vocabulary, a
 
 ## `templates/` - Skeletons
 
-Starting skeletons for new typed documents, organized by language:
+Starting skeletons for new typed documents, organized by language directory. Template
+filenames carry the language code: `<type>-template-<code>.md`.
 
-- `templates/en/` and `templates/pl/` each contain `technical-document.md`,
-  `project-document.md`, `rules-document.md`, `format-specification.md`, `article.md`,
-  `quick-note.md`, `readme-file.md`, and `changelog-file.md`.
+- `templates/en/` - English skeletons, one per document type, named `<type>-template-en.md`.
+- `templates/pl/` - Polish skeletons, one per document type, named `<type>-template-pl.md`.
 
 A template is a starting point - adjust sections to the request and the content.
 

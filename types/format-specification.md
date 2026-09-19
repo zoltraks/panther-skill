@@ -17,8 +17,10 @@ description, and per-variant field or register tables.
 
 Use for file format specifications, protocol descriptions, and structured data layout documents.
 
-Templates: `templates/en/format-specification.md` and
-`templates/pl/format-specification.md`.
+**Templates**
+
+- `templates/en/format-specification-template-en.md`
+- `templates/pl/format-specification-template-pl.md`
 
 ## Structure
 

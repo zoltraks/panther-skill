@@ -1,3 +1,9 @@
+---
+code: en
+name: English
+native-name: English
+---
+
 # Document Style and Markdown Formatting
 
 ## Purpose
@@ -14,23 +20,23 @@ The rules described below apply to this document itself as well.
 
 | Section                  | Line | What it covers                      |
 |--------------------------|------|-------------------------------------|
-| Document Structure       | 35   | Titles, purpose blocks, and layout  |
-| Headings                 | 53   | Capitalization and qualifiers       |
-| Section Numbering        | 85   | Numbered section policy             |
-| Table of Contents        | 97   | When to add a contents section      |
-| Paragraphs and Sentences | 111  | Sentence structure                  |
-| Line Wrapping            | 125  | Logical lines and hard breaks       |
-| Lists                    | 135  | Bullets, numbering, and spacing     |
-| Blank Lines and Spacing  | 157  | Whitespace rules                    |
-| Code Blocks              | 171  | Fences, tags, and inline code       |
-| Inline Formatting        | 181  | Quotes, bold, and italics           |
-| Semicolons               | 197  | Semicolon prohibition in prose      |
-| Special Characters       | 223  | Box-drawing and emoji               |
-| English Vocabulary       | 231  | Preferred terms and calques         |
-| Tables                   | 254  | Source-width alignment rules        |
-| File Names               | 358  | Naming new documentation files      |
-| Example                  | 368  | Correct and incorrect sample        |
-| File Maintenance         | 402  | Encoding and line-ending preserving |
+| Document Structure       | 41   | Titles, purpose blocks, and layout  |
+| Headings                 | 59   | Capitalization and qualifiers       |
+| Section Numbering        | 91   | Numbered section policy             |
+| Table of Contents        | 103  | When to add a contents section      |
+| Paragraphs and Sentences | 117  | Sentence structure                  |
+| Line Wrapping            | 131  | Logical lines and hard breaks       |
+| Lists                    | 141  | Bullets, numbering, and spacing     |
+| Blank Lines and Spacing  | 163  | Whitespace rules                    |
+| Code Blocks              | 177  | Fences, tags, and inline code       |
+| Inline Formatting        | 187  | Quotes, bold, and italics           |
+| Semicolons               | 203  | Semicolon prohibition in prose      |
+| Special Characters       | 229  | Box-drawing and emoji               |
+| English Vocabulary       | 237  | Preferred terms and calques         |
+| Tables                   | 260  | Source-width alignment rules        |
+| File Names               | 364  | Naming new documentation files      |
+| Example                  | 374  | Correct and incorrect sample        |
+| File Maintenance         | 408  | Encoding and line-ending preserving |
 
 ## Document Structure
 

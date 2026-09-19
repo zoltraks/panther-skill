@@ -15,8 +15,10 @@ This is the default type for documentation that does not match a more specific t
 Use for developer guides, architecture overviews, setup instructions, API documentation, and
 reference material.
 
-Templates: `templates/en/technical-document.md` and
-`templates/pl/technical-document.md`.
+**Templates**
+
+- `templates/en/technical-document-template-en.md`
+- `templates/pl/technical-document-template-pl.md`
 
 ## Structure
 

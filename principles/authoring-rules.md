@@ -78,6 +78,9 @@ or the request requires it.
 
 The matching `languages/` file is the authoritative style source for the document's language.
 
+Language files are named by ISO 639-1 code (`languages/en.md`, `languages/pl.md`) and identified
+by the `code` field in their frontmatter.
+
 Load exactly one language file per document, matching the document language.
 
 The language file governs headings, lists, spacing, inline formatting, tables, file naming, and the

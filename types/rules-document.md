@@ -18,7 +18,10 @@ correct/incorrect examples - like this skill's own `STYLE.md`.
 Use for coding standards, documentation guidelines, workflow rules, review checklists, and agent
 instruction documents.
 
-Templates: `templates/en/rules-document.md` and `templates/pl/rules-document.md`.
+**Templates**
+
+- `templates/en/rules-document-template-en.md`
+- `templates/pl/rules-document-template-pl.md`
 
 ## Structure
 

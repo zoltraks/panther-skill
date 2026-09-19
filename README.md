@@ -10,11 +10,11 @@
 
 | Section             | Line | What it covers                            |
 |---------------------|------|-------------------------------------------|
-| What The Skill Does | 30   | Authoring purpose and workflow            |
-| Core Principles     | 60   | Convention preservation and minimal diffs |
-| When To Use         | 71   | Supported requests and exclusions         |
-| Example Prompts     | 86   | Phrases the skill activates on            |
-| What's Inside       | 104  | Rule files, templates, tools, and evals   |
+| What The Skill Does | 33   | Authoring purpose and workflow            |
+| Core Principles     | 63   | Convention preservation and minimal diffs |
+| When To Use         | 74   | Supported requests and exclusions         |
+| Example Prompts     | 89   | Phrases the skill activates on            |
+| What's Inside       | 107  | Rule files, templates, tools, and evals   |
 | Verification        | 153  | Skill-maintenance checks                  |
 | License             | 160  | License for the skill itself              |
 | Credits             | 166  | Methodology and example sources           |
@@ -121,19 +121,19 @@ panther-skill/
 │   ├── project-document.md       # Specifications: version comment, glossary, requirement IDs
 │   ├── rules-document.md         # Guidelines and standards: imperative rules, examples
 │   ├── format-specification.md   # Format specs: version history, field tables
-│   ├── article.md                # Prose documents: narrative, dialect tolerance
+│   ├── article-text.md           # Prose documents: narrative, dialect tolerance
 │   ├── quick-note.md             # Quick notes: minimal structure
 │   ├── readme-file.md            # Repository READMEs
 │   └── changelog-file.md         # Version-grouped change records
 ├── languages/
-│   ├── english.md                # English baseline: Title Case, vocabulary
-│   └── polish.md                 # Polish baseline: sentence case, diacritics, calques
+│   ├── en.md                     # English baseline: Title Case, vocabulary
+│   └── pl.md                     # Polish baseline: sentence case, diacritics, calques
 ├── conventions/
 │   ├── file-encoding.md          # UTF-8 default, UTF-16/UCS-2, code pages, line endings
 │   └── markdown-dialects.md      # ATX, setext, numbered chapters, export artifacts
 ├── templates/
-│   ├── en/                       # Eight English skeletons, named like the types/ files
-│   └── pl/                       # Eight Polish skeletons, same filenames
+│   ├── en/                       # Eight English skeletons, <type>-template-en.md
+│   └── pl/                       # Eight Polish skeletons, <type>-template-pl.md
 ├── tools/
 │   ├── detect-encoding.py        # BOM, encoding, and line-ending detection
 │   ├── format-table.py           # Source-width table formatter

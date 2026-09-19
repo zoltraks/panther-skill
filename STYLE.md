@@ -10,17 +10,24 @@ It compiles rules from the [Agent Skills specification](https://agentskills.io/s
 
 Every document created or modified as part of this skill must follow the rules below.
 
+These rules govern the skill's own files, which wrap prose at 100 characters.
+
+Documents produced by the skill follow the matching `languages/` baseline instead, which keeps one
+sentence per logical line and never hard-wraps.
+
 ## Contents
 
 | Section                    | Line | What it covers                                  |
 |----------------------------|------|-------------------------------------------------|
-| Document Structure         | 25   | Titles, purpose blocks, and contents tables     |
-| Paragraphs And Wrapping    | 85   | Sentence structure and line width               |
-| Headings And Lists         | 119  | Heading depth, lists, and spacing               |
-| Code And Inline Formatting | 168  | Fences, code spans, and special characters      |
-| Tables                     | 214  | Source-width alignment and automated formatting |
-| Skill Requirements         | 380  | Frontmatter and progressive disclosure          |
-| Maintenance                | 473  | File naming, encoding, and registration         |
+| Document Structure         | 32   | Titles, purpose blocks, and contents tables     |
+| Paragraphs And Wrapping    | 92   | Sentence structure and line width               |
+| Headings And Lists         | 126  | Heading depth, lists, and spacing               |
+| Code And Inline Formatting | 175  | Fences, code spans, and semicolons              |
+| Tables                     | 221  | Source-width alignment and automated formatting |
+| Characters And Language    | 387  | Box-drawing, emoji, and per-language rules      |
+| File References            | 405  | Relative paths and localised resources          |
+| Skill Requirements         | 438  | Frontmatter and progressive disclosure          |
+| Maintenance                | 499  | File naming, encoding, and registration         |
 
 ## Document Structure
 
@@ -407,7 +414,26 @@ Reference files clearly from `SKILL.md` with guidance on when to read them.
 
 Use backtick code spans around file paths in both prose and table cells.
 
-Examples: `languages/english.md`, `types/project-document.md`, `process/document-workflow.md`.
+Examples: `languages/en.md`, `types/project-document.md`, `process/document-workflow.md`.
+
+### Localised Resources
+
+Language-variant files follow a fixed naming scheme so the language is visible in the filename:
+
+- Language baselines live in `languages/<code>.md`, where `<code>` is the ISO 639-1 language
+  code. Each file carries YAML frontmatter with `code`, `name`, and `native-name` fields.
+- Per-language templates live in `templates/<code>/` and are named
+  `<type>-template-<code>.md`.
+
+Reference language variants as a bullet list under a bold `**Templates**` label, one file per
+line, never as inline "X and Y" prose:
+
+```markdown
+**Templates**
+
+- `templates/en/changelog-file-template-en.md`
+- `templates/pl/changelog-file-template-pl.md`
+```
 
 ## Skill Document Requirements
 
@@ -484,6 +510,13 @@ file.
 Use a single lowercase word for single-concept files: `cpu.md`, `sound.md`, `memory.md`.
 
 Use hyphens for multi-word names: `dasm-assembler.md`, `risk-register.md`.
+
+Match the dominant word-count convention of the target directory. When most existing filenames
+use two words, a new file uses at least two words even when one word would do: `article-text.md`
+in `types/`, not `article.md`.
+
+Language baselines are named `languages/<code>.md` and localised templates are named
+`templates/<code>/<type>-template-<code>.md`, where `<code>` is the ISO 639-1 language code.
 
 ### Required Sections
 

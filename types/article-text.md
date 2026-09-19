@@ -18,7 +18,10 @@ media.
 
 Use for articles, tutorials, course material, blog posts, and explanatory essays.
 
-Templates: `templates/en/article.md` and `templates/pl/article.md`.
+**Templates**
+
+- `templates/en/article-text-template-en.md`
+- `templates/pl/article-text-template-pl.md`
 
 ## Structure
 

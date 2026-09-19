@@ -1,3 +1,9 @@
+---
+code: pl
+name: Polish
+native-name: polski
+---
+
 # Styl i formatowanie dokumentów Markdown
 
 ## Przeznaczenie
@@ -14,23 +20,23 @@ Zasady opisane poniżej stosują się również do samego tego dokumentu.
 
 | Sekcja                  | Wiersz | Zakres                               |
 |-------------------------|--------|--------------------------------------|
-| Struktura dokumentu     | 36     | Tytuł, cel i układ dokumentu         |
-| Nagłówki                | 54     | Wielkość liter i kwalifikatory       |
-| Numeracja sekcji        | 86     | Zasady numerowania sekcji            |
-| Zasady spisu treści     | 98     | Kiedy dodawać spis treści            |
-| Akapity i zdania        | 112    | Budowa zdań i akapitów               |
-| Zawijanie wierszy       | 126    | Wiersze logiczne i twarde łamania    |
-| Listy                   | 136    | Punktory, numeracja i odstępy        |
-| Puste wiersze i odstępy | 158    | Zasady odstępów                      |
-| Bloki kodu              | 172    | Ogrodzenia, znaczniki i kod liniowy  |
-| Formatowanie w treści   | 182    | Cudzysłowy, pogrubienia i kursywa    |
-| Średniki                | 198    | Zakaz średników w tekście            |
-| Znaki specjalne         | 224    | Znaki ramek i emoji                  |
-| Słownictwo polskie      | 232    | Preferowane terminy i kalki          |
-| Tabele                  | 255    | Wyrównanie według źródła             |
-| Nazwy plików            | 359    | Nazywanie nowych plików dokumentacji |
-| Przykład                | 369    | Przykład poprawny i niepoprawny      |
-| Utrzymanie plików       | 403    | Kodowanie i złamania wierszy         |
+| Struktura dokumentu     | 41     | Tytuł, cel i układ dokumentu         |
+| Nagłówki                | 59     | Wielkość liter i kwalifikatory       |
+| Numeracja sekcji        | 91     | Zasady numerowania sekcji            |
+| Zasady spisu treści     | 103    | Kiedy dodawać spis treści            |
+| Akapity i zdania        | 117    | Budowa zdań i akapitów               |
+| Zawijanie wierszy       | 131    | Wiersze logiczne i twarde łamania    |
+| Listy                   | 141    | Punktory, numeracja i odstępy        |
+| Puste wiersze i odstępy | 163    | Zasady odstępów                      |
+| Bloki kodu              | 177    | Ogrodzenia, znaczniki i kod liniowy  |
+| Formatowanie w treści   | 187    | Cudzysłowy, pogrubienia i kursywa    |
+| Średniki                | 203    | Zakaz średników w tekście            |
+| Znaki specjalne         | 229    | Znaki ramek i emoji                  |
+| Słownictwo polskie      | 237    | Preferowane terminy i kalki          |
+| Tabele                  | 260    | Wyrównanie według źródła             |
+| Nazwy plików            | 364    | Nazywanie nowych plików dokumentacji |
+| Przykład                | 374    | Przykład poprawny i niepoprawny      |
+| Utrzymanie plików       | 408    | Kodowanie i złamania wierszy         |
 
 ## Struktura dokumentu
 

@@ -17,7 +17,10 @@ change-kind bullets.
 
 Use for `CHANGELOG.md` files and for release-notes sections inside other documents.
 
-Templates: `templates/en/changelog-file.md` and `templates/pl/changelog-file.md`.
+**Templates**
+
+- `templates/en/changelog-file-template-en.md`
+- `templates/pl/changelog-file-template-pl.md`
 
 The filename is `CHANGELOG.md` - a type-conventional name that overrides the lowercase naming
 rule.
@@ -46,6 +49,7 @@ why it matters.
 | English  | Polish     |
 |----------|------------|
 | Changes  | Zmiany     |
+| Version  | Wersja     |
 | Added    | Dodane     |
 | Improved | Ulepszone  |
 | Fixed    | Naprawione |

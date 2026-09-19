@@ -61,6 +61,11 @@ For skill maintenance, run `validate-skill.py` and `check-references.py` first.
 
 ## Limitations
 
+`format-table.py` and `validate-document.py` split table rows on every `|` character.
+
+Escaped `\|` sequences and pipes inside inline code spans are not supported, so table cells must
+not contain literal pipe characters.
+
 The validators are mechanical checks, not judgment.
 
 A passing validator does not prove that a document is well written or correct.

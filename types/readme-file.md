@@ -17,7 +17,10 @@ directory tree, license - like this skill's own `README.md`.
 
 Use for the root `README.md` of a repository and for package-level READMEs in subdirectories.
 
-Templates: `templates/en/readme-file.md` and `templates/pl/readme-file.md`.
+**Templates**
+
+- `templates/en/readme-file-template-en.md`
+- `templates/pl/readme-file-template-pl.md`
 
 The filename is always `README.md` - a type-conventional name that overrides the lowercase naming
 rule.

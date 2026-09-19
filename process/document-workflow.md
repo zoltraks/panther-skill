@@ -79,8 +79,8 @@ HTML artifacts.
 
 Load rule files in this order:
 
-1. **`languages/<lang>.md`** - mandatory for every document. Load the file matching the document
-   language, never both at once.
+1. **`languages/<lang>.md`** - mandatory for every document. `<lang>` is the ISO 639-1 language
+   code (`en`, `pl`). Load the file matching the document language, never both at once.
 2. **`types/<type>.md`** - load when the document matches a known type. The type file adds deltas
    on top of the language file.
 3. **`conventions/file-encoding.md`** - load when the document encoding is not UTF-8, when the request
@@ -95,7 +95,8 @@ language.
 
 ## Drafting And Editing
 
-For a new typed document, start from the matching `templates/<lang>/` skeleton.
+For a new typed document, start from the matching `templates/<lang>/<type>-template-<lang>.md`
+skeleton.
 
 A template is a starting point, not a cage - add, remove, or rename sections when the request or
 the content requires it.
