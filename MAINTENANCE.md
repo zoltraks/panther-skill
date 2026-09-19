@@ -22,6 +22,7 @@ Prose and formatting style for the skill's files lives in `STYLE.md`.
 | `process/`     | Document-production workflow and checklists                   |
 | `types/`       | Per-document-type deltas on top of the language baseline      |
 | `languages/`   | Per-language self-contained style baselines, one per ISO code |
+| `scopes/`      | Per-project-layout organization and registration rules        |
 | `conventions/` | Cross-cutting encoding and Markdown dialect rules             |
 | `templates/`   | Per-language document skeletons grouped by ISO code directory |
 | `tools/`       | Canonical scripts: document production and skill maintenance  |
@@ -32,8 +33,12 @@ Root files govern the repository itself: `SKILL.md` (router), `README.md`, `STYL
 
 Keep rule files one level deep under their directory.
 
-Do not nest subdirectories inside `types/`, `languages/`, `conventions/`, `process/`, or
-`principles/`.
+Do not nest subdirectories inside `types/`, `languages/`, `scopes/`, `conventions/`, `process/`,
+or `principles/`.
+
+A new top-level rule directory also needs its name added to `KNOWN_DIRS` in
+`tools/check-references.py`, otherwise references to its files inside rule documents are not
+checked.
 
 `templates/` is the exception: it groups skeletons one level deep under per-language
 directories (`templates/<code>/`).
@@ -105,6 +110,15 @@ Keep `evals/evals.json` prompts in sync with capabilities that change.
    table.
 2. Create `templates/en/<name>-template-en.md` and `templates/pl/<name>-template-pl.md`.
 3. Register the type in `SKILL.md` under `types/` and add trigger phrases when needed.
+4. Update the `README.md` directory tree.
+
+## Adding A Scope
+
+1. Create `scopes/<name>.md` following the scope-file shape: Purpose blockquote, Detection,
+   Directory Roles or layout table, Conventions, Document Types In This Scope.
+2. Register the scope in `SKILL.md` under the `scopes/` section and add trigger phrases when
+   needed.
+3. Extend the Scope Detection table in `process/document-workflow.md` with the scope's signals.
 4. Update the `README.md` directory tree.
 
 ## Adding A Tool

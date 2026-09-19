@@ -271,6 +271,16 @@ Wstawiaj jeden odstęp po kresce otwierającej komórkę i jeden odstęp przed k
 
 Nie dodawaj dodatkowych odstępów wokół kresek ponad ten jeden wymagany.
 
+Rozpoczynaj każdy wiersz - nagłówek, separator i dane - pojedynczą kreską pionową.
+
+Podwójna kreska na początku wiersza (`||`) jest interpretowana jako pusta pierwsza komórka.
+
+Narzędzie formatujące zamienia ją wtedy w dodatkową pustą kolumnę, co po cichu psuje strukturę
+tabeli, a nie tylko ją rozjeżdża.
+
+Celowo pustą pierwszą komórkę zapisuj jako `| |` i tylko wtedy, gdy tabela jej rzeczywiście
+potrzebuje.
+
 ### Wiersz separatora
 
 Wiersz separatora umieszczaj bezpośrednio po wierszu nagłówka.

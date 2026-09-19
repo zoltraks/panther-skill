@@ -1,18 +1,21 @@
 ---
 name: panther-skill
 description: >-
-  Document authoring skill. Creates and edits text documents in Markdown:
-  technical documentation, project specifications, rules and guidelines
-  documents, format specifications, articles, quick notes, READMEs, and
-  changelogs. Enforces plain-text-readable Markdown: one sentence per
-  paragraph, source-width-aligned tables, consistent heading and list rules.
-  Documents are written in English by default with full Polish support, and
-  new files use UTF-8 while existing encodings (UTF-16, UCS-2, code pages such
-  as CP1250) and line endings are preserved on edit. Use whenever the user
-  asks to write, draft, create, edit, reformat, or translate a document,
-  specification, README, changelog, guideline, or article - including Polish
-  requests like napisz dokument, specyfikacja, projekt, notatka, artykuł, or
-  popraw tabelę. See the full trigger list in the body.
+  Document authoring skill. Creates and edits Markdown documents: technical
+  documentation, project specifications, rules documents, format
+  specifications, articles, notes, READMEs, and changelogs. Enforces
+  plain-text-readable Markdown: one sentence per paragraph, source-width-
+  aligned tables, consistent heading and list rules. Documents are written
+  in English by default with full Polish support, and new files use UTF-8
+  while existing encodings (UTF-16, UCS-2, code pages such as CP1250) and
+  line endings are preserved on edit. Handles document collections in
+  organized layouts - agent skill repositories, Sphinx sites, guided
+  software projects, documentation collections, multi-project
+  repositories - and discovers a location's document layout on request.
+  Use whenever the user asks to write, draft, create, edit, reformat, or
+  translate a document, specification, README, changelog, guideline, or
+  article - including Polish requests like napisz dokument, specyfikacja,
+  projekt, notatka, artykuł, or popraw tabelę.
 license: MIT
 compatibility: >-
   Designed for agent coding environments with file system access (Claude Code,
@@ -33,19 +36,20 @@ metadata:
 
 | Section                 | Line | What it covers                                |
 |-------------------------|------|-----------------------------------------------|
-| Trigger Keywords        | 60   | Activation phrases                            |
-| How To Use              | 103  | Progressive disclosure and mandatory reading  |
-| Parameter Configuration | 129  | Defaults and user-controlled document shape   |
-| Principles              | 149  | Authoring invariants                          |
-| Process                 | 155  | Workflow and delivery checklist               |
-| Document Types          | 162  | Per-type rule files                           |
-| Languages               | 183  | Per-language style baselines                  |
-| Conventions             | 192  | Encoding and dialect rules                    |
-| Templates               | 199  | Per-type, per-language skeletons              |
-| Tools                   | 209  | Detection, formatting, and validation scripts |
-| Evaluation Prompts      | 226  | Behavioral regression prompts                 |
-| Repository Files        | 234  | Housekeeping files governing this repository  |
-| File Handling Contract  | 245  | Byte-level guarantees                         |
+| Trigger Keywords        | 64   | Activation phrases                            |
+| How To Use              | 126  | Progressive disclosure and mandatory reading  |
+| Parameter Configuration | 159  | Defaults and user-controlled document shape   |
+| Principles              | 180  | Authoring invariants                          |
+| Process                 | 186  | Workflow and delivery checklist               |
+| Document Types          | 195  | Per-type rule files                           |
+| Languages               | 216  | Per-language style baselines                  |
+| Scopes                  | 225  | Per-project-layout organization rules         |
+| Conventions             | 245  | Encoding, dialect, and reStructuredText rules |
+| Templates               | 254  | Per-type, per-language skeletons              |
+| Tools                   | 264  | Detection, formatting, and validation scripts |
+| Evaluation Prompts      | 283  | Behavioral regression prompts                 |
+| Repository Files        | 291  | Housekeeping files governing this repository  |
+| File Handling Contract  | 302  | Byte-level guarantees                         |
 
 You are a Document Authoring Agent.
 
@@ -99,6 +103,25 @@ The skill activates on any of these phrases:
 - przetłumacz dokument
 - run panther
 - use panther
+- add a page to the docs
+- documentation project
+- new document in this project
+- extend this skill
+- add a rule file to this skill
+- update the toctree
+- dokumentacja projektu
+- dodaj dokument do projektu
+- write an implementation plan
+- add a feature document
+- add a standards document
+- dokument funkcji
+- plan implementacji
+- discover layout
+- detect document layout
+- what layout is this
+- analyze document structure
+- wykryj układ
+- rozpoznaj strukturę dokumentów
 
 ## How To Use This Skill
 
@@ -109,6 +132,10 @@ Use progressive disclosure:
   document. They are mandatory for every task.
 - Load the matching `languages/` file for the document language.
 - Load the matching `types/` file when the document is a known type.
+- Load the matching `scopes/` file when the task runs inside an organized document project, or
+  when the request names a scope.
+- Follow `process/scope-discovery.md` when the request asks to discover or detect a document
+  layout.
 - Load `conventions/` files only when the situation requires them.
 
 This skill is self-contained. The files below are the available rule material in this
@@ -116,7 +143,10 @@ repository.
 
 When asked how this skill works, explain that Panther produces plain-text-readable Markdown
 documents: technical docs, specs, rules documents, articles, notes, READMEs, and changelogs, in
-English or Polish, with UTF-8 output and preserved encodings on edit.
+English or Polish, with UTF-8 output and preserved encodings on edit, for single files and for
+organized document collections such as agent skill repositories and Sphinx documentation
+projects. On request it also discovers a location's document layout - analyzing the directory
+structure and document types, naming the best-matching scope, and listing exceptions.
 
 ## Mandatory Reading
 
@@ -138,7 +168,8 @@ parameters. Defaults are:
 |-------------------|---------------------------------------------------------------------|
 | Document type     | Inferred from the request, ask when ambiguous                       |
 | Document language | Language of the user's request, English when unclear                |
-| Filename          | Per the language file naming rules, type-conventional names allowed |
+| Document scope    | Detected from the project layout, unstructured when nothing matches |
+| Filename          | Per the language file naming rules, or the scope's convention       |
 | Encoding          | UTF-8 without BOM                                                   |
 | Line endings      | LF, or the dominant style of the target directory                   |
 | Delivery          | File in the location named by the request                           |
@@ -158,6 +189,8 @@ minimal-diff rule provide the answers.
   drafting, validation, and delivery.
 - **`process/document-checklist.md`** - The mechanical pre-delivery checklist: structure,
   spacing, characters, lists, tables, language, and file properties.
+- **`process/scope-discovery.md`** - The standalone layout-discovery procedure: signal census,
+  scope comparison, exception analysis, and the report format.
 
 ## `types/` - Document Type Rules
 
@@ -189,12 +222,34 @@ baselines covering structure, headings, lists, tables, characters, vocabulary, a
 - **`languages/pl.md`** - Polish documents: sentence case headings, diacritics, calque
   avoidance, terminology tables.
 
+## `scopes/` - Project Layouts
+
+Load the file matching the detected or named document scope, it governs placement, naming, and
+registration inside an organized project:
+
+- **`scopes/unstructured-layout.md`** - The default scope: no defined organization, documents
+  land where the request puts them.
+- **`scopes/agent-skill.md`** - Agent Skill repositories: the `SKILL.md` router contract,
+  directory roles, and the registration procedure for adding or removing rule files.
+- **`scopes/sphinx-docs.md`** - Sphinx documentation projects authoring Markdown:
+  `docs/source/` page conventions, kebab-case filenames, and `index.rst` toctree registration.
+- **`scopes/guided-project.md`** - Software projects with a governed `docs/` tree: `README.md`
+  entry point, a `GUIDELINES.md` source of truth inside `docs/`, UPPERCASE document set, and
+  versioned artifact directories.
+- **`scopes/docs-collection.md`** - Documentation-only repositories: `docs/` as the payload,
+  rule files versus content documents, `standard/` and `template/` directories, frozen
+  `archive/` snapshots.
+- **`scopes/multi-project.md`** - Repositories holding several projects: per-directory scope
+  resolution, nearest governing `docs/` wins, sparse root.
+
 ## `conventions/` - Encoding And Dialects
 
 - **`conventions/file-encoding.md`** - UTF-8 default, BOM handling, UTF-16/UCS-2 and code-page
   (CP1250) preservation, conversion rules, line endings, composed diacritics.
 - **`conventions/markdown-dialects.md`** - Dialect catalog (ATX, setext, closed ATX, numbered
   chapters, export artifacts) with detection signals and preserve-on-edit rules.
+- **`conventions/rst-documents.md`** - reStructuredText dialect and the minimal-edit contract
+  for structural files such as Sphinx `index.rst` toctrees.
 
 ## `templates/` - Skeletons
 
@@ -213,6 +268,8 @@ name before use and remove them when done. See `tools/README.md`.
 
 - **`tools/detect-encoding.py`** - Reports BOM, guessed encoding, line-ending style, and
   trailing whitespace for a file. Run before editing any existing file.
+- **`tools/detect-scope.py`** - Reports which document-scope signals a directory carries and
+  counts documents per directory. Run when detecting a layout or discovering a scope.
 - **`tools/format-table.py`** - Rebuilds every table with source-width alignment and
   width-plus-two separators, preserving encoding and line endings.
 - **`tools/validate-document.py`** - Mechanical checker covering the scriptable items of

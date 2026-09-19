@@ -26,7 +26,7 @@ PATH_SUFFIX = re.compile(r"(?:\.md|\.py|\.json|\.txt)$", re.IGNORECASE)
 
 ROOT_FILES = ("SKILL.md", "README.md")
 KNOWN_DIRS = {
-    "tools", "types", "languages", "conventions", "process",
+    "tools", "types", "languages", "scopes", "conventions", "process",
     "principles", "templates", "evals",
 }
 EXCLUDED_DIRS = ("docs", "templates")

@@ -51,6 +51,8 @@ Fix every failure, or report it to the user with a reason.
 ## Tables
 
 - Columns align in plain-text view, every cell is padded to the column width.
+- Every table row starts with a single pipe - a leading `||` produces a spurious empty first
+  column.
 - The separator row matches each column width plus two hyphens.
 - Column widths were measured on source text, including backticks and emphasis markers.
 - The table is compacted to the minimum widths that fit the widest cell per column.
@@ -68,6 +70,15 @@ Fix every failure, or report it to the user with a reason.
 - The filename follows the language file naming rules, or a type-conventional name.
 - **Existing:** the file keeps its original encoding, byte order mark, and line-ending style.
 - **Existing:** the diff is limited to the requested scope.
+
+## Project Scope
+
+- The detected or named scope was reported, `unstructured-layout` when nothing matched.
+- A new file sits in the directory the scope assigns to its role.
+- The filename follows the scope's naming convention when it overrides the language default.
+- Every registration or index file the scope requires was updated, for example a `SKILL.md`
+  router entry or an `index.rst` toctree entry.
+- Validators the scope mandates ran, for example the skill repository's own checkers.
 
 ## Final Pass
 

@@ -11,13 +11,13 @@
 | Section             | Line | What it covers                            |
 |---------------------|------|-------------------------------------------|
 | What The Skill Does | 33   | Authoring purpose and workflow            |
-| Core Principles     | 63   | Convention preservation and minimal diffs |
-| When To Use         | 74   | Supported requests and exclusions         |
-| Example Prompts     | 89   | Phrases the skill activates on            |
-| What's Inside       | 107  | Rule files, templates, tools, and evals   |
-| Verification        | 154  | Skill-maintenance checks                  |
-| License             | 161  | License for the skill itself              |
-| Credits             | 167  | Methodology and example sources           |
+| Core Principles     | 79   | Convention preservation and minimal diffs |
+| When To Use         | 90   | Supported requests and exclusions         |
+| Example Prompts     | 110  | Phrases the skill activates on            |
+| What's Inside       | 131  | Rule files, templates, tools, and evals   |
+| Verification        | 188  | Skill-maintenance checks                  |
+| License             | 195  | License for the skill itself              |
+| Credits             | 201  | Methodology and example sources           |
 
 Panther is a document authoring process packaged as an agent skill.
 
@@ -44,10 +44,18 @@ defaults. For an edit it skips the questions and follows the document's own conv
 Encoding, byte order mark, line-ending style, and Markdown dialect (standard ATX, setext
 headings, numbered chapters, export artifacts) are detected before any write.
 
+**Detects the document scope**
+
+When the task runs inside a project, its document layout is classified - an agent skill
+repository, a Sphinx documentation project, or the unstructured default - and the matching
+scope file governs where new documents go, how they are named, and which index files are
+updated.
+
 **Selects the smallest rule set**
 
 One language baseline plus one document-type file, loaded only when the document is a known
-type. A simple note needs far less machinery than a project specification.
+type, plus a scope file when the project layout is organized. A simple note needs far less
+machinery than a project specification.
 
 **Writes to the baseline**
 
@@ -59,6 +67,14 @@ its own terminology guidance.
 
 Tables are formatted by script, not by hand. A document validator checks structure, spacing,
 characters, and table alignment before delivery.
+
+**Discovers document layouts**
+
+Separately, when you ask to "discover layout" or "detect document layout", the agent analyzes a
+directory or repository: it censuses layout signals and document types, compares them with
+every defined scope, names the best match, and lists exceptions - missing expected directories
+or documents no scope covers. The report is delivered inline, and a file is written only when
+asked.
 
 ## Core Principles
 
@@ -83,6 +99,11 @@ characters, and table alignment before delivery.
 | "Translate this document to Polish"               | **Yes** - language baseline switch       |
 | "Edit this CP1250-encoded document"               | **Yes** - encoding preserved             |
 | "Take a quick note"                               | **Yes** - minimal-structure note         |
+| "Add a page to this Sphinx docs project"          | **Yes** - toctree registration           |
+| "Add a rule file to this skill repository"        | **Yes** - `SKILL.md` registration        |
+| "Write an implementation plan for this release"   | **Yes** - versioned `docs/plan/` entry   |
+| "Add a standard to this documentation repo"       | **Yes** - `docs/standard/` conventions   |
+| "What document layout does this repo use?"        | **Yes** - scope discovery report         |
 | "Write code for this feature"                     | No - this skill writes documents         |
 | "Review this document for technical correctness"  | No - authoring skill, not an auditor     |
 
@@ -104,6 +125,9 @@ characters, and table alignment before delivery.
 **Quick note**
 > Zapisz notatkę z planowania - trzy punkty i dwie pozycje otwarte.
 
+**New page in a documentation project**
+> Add a page documenting the retry helpers to this Sphinx documentation project.
+
 ## What's Inside
 
 ```
@@ -116,7 +140,8 @@ panther-skill/
 │   └── authoring-rules.md        # Plain-text-first, convention preservation, minimal diff
 ├── process/
 │   ├── document-workflow.md      # Intake, detection, rule selection, validation, delivery
-│   └── document-checklist.md     # Mechanical pre-delivery checklist
+│   ├── document-checklist.md     # Mechanical pre-delivery checklist
+│   └── scope-discovery.md        # Standalone layout-discovery procedure and report format
 ├── types/
 │   ├── technical-document.md     # Guides, architecture notes, reference material
 │   ├── project-document.md       # Specifications: version comment, glossary, requirement IDs
@@ -129,14 +154,23 @@ panther-skill/
 ├── languages/
 │   ├── en.md                     # English baseline: Title Case, vocabulary
 │   └── pl.md                     # Polish baseline: sentence case, diacritics, calques
+├── scopes/
+│   ├── unstructured-layout.md    # Default scope: no defined organization
+│   ├── agent-skill.md            # Skill repositories: router contract, registration
+│   ├── sphinx-docs.md            # Sphinx Markdown docs: toctree registration
+│   ├── guided-project.md         # Governed docs/ trees: GUIDELINES, versioned artifacts
+│   ├── docs-collection.md        # Documentation-only repositories
+│   └── multi-project.md          # Several projects per repository, per-dir scope
 ├── conventions/
 │   ├── file-encoding.md          # UTF-8 default, UTF-16/UCS-2, code pages, line endings
-│   └── markdown-dialects.md      # ATX, setext, numbered chapters, export artifacts
+│   ├── markdown-dialects.md      # ATX, setext, numbered chapters, export artifacts
+│   └── rst-documents.md          # reStructuredText minimal-edit contract
 ├── templates/
 │   ├── en/                       # Eight English skeletons, <type>-template-en.md
 │   └── pl/                       # Eight Polish skeletons, <type>-template-pl.md
 ├── tools/
 │   ├── detect-encoding.py        # BOM, encoding, and line-ending detection
+│   ├── detect-scope.py           # Document-scope signal census
 │   ├── format-table.py           # Source-width table formatter
 │   ├── validate-document.py      # Mechanical document checker
 │   ├── validate-skill.py         # Skill metadata and disclosure validator

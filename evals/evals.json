@@ -70,6 +70,105 @@
         "Line endings remain CRLF.",
         "The agent ran encoding detection before writing."
       ]
+    },
+    {
+      "id": 7,
+      "prompt": "Add a new topic page documenting the retry helpers to this Sphinx documentation project.",
+      "expected_output": "A kebab-case Markdown page in docs/source/, written in the dominant dialect of the surrounding pages, with a new entry added to the index.rst toctree.",
+      "files": [],
+      "expectations": [
+        "The agent detected the sphinx-docs scope before writing.",
+        "The new page filename is lowercase kebab-case.",
+        "The page heading style matches the dominant dialect of the neighboring pages.",
+        "The page is registered as a toctree entry in index.rst without other changes to that file.",
+        "No unrelated files were modified."
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Add a new rule file covering glossary conventions to this agent skill repository and register it.",
+      "expected_output": "A kebab-case rule file in the correct directory, registered in SKILL.md under the matching directory section, with Contents and README kept in sync.",
+      "files": [],
+      "expectations": [
+        "The agent detected the agent-skill scope before writing.",
+        "The new file follows the target directory's naming convention.",
+        "SKILL.md gained a registration line saying what the file covers and when to load it.",
+        "Affected Contents tables and the README directory tree were updated."
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "Create a README for this directory that has no documentation structure.",
+      "expected_output": "A standalone README.md written to the location named by the request, with no registration or index updates performed.",
+      "files": [],
+      "expectations": [
+        "The agent reported the unstructured-layout scope.",
+        "No index, router, or registry file was created or modified.",
+        "The filename follows the language file naming rules or a type-conventional name."
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "Write an implementation plan for the new retry feature in this guided project.",
+      "expected_output": "A kebab-case plan document placed in docs/plan/<current-version>/ with an -implementation suffix, carrying the project's version comment convention.",
+      "files": [],
+      "expectations": [
+        "The agent detected the guided-project scope and read the project's guidelines document first.",
+        "The plan file sits in docs/plan/ under the current version directory.",
+        "The filename is kebab-case with the -implementation suffix.",
+        "The document carries the project's version-comment convention.",
+        "No version number was bumped."
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "Add a new engineering standard for Kotlin development to this documentation repository.",
+      "expected_output": "A rules-voice standard document at docs/standard/kotlin-development.md, following the repository's own style documents.",
+      "files": [],
+      "expectations": [
+        "The agent detected the docs-collection scope.",
+        "The new file is named docs/standard/kotlin-development.md.",
+        "The document follows the shape of the neighboring standard documents.",
+        "No governing rule file was modified."
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "Document the import pipeline in the converter subproject of this multi-project repository.",
+      "expected_output": "A document inside converter/docs/ that follows that subproject's own conventions, with no root-level or sibling-project files touched.",
+      "files": [],
+      "expectations": [
+        "The agent resolved the scope per directory and applied the subproject's nearest governing documents.",
+        "The new document sits inside the converter subproject's docs tree.",
+        "Conventions were not mixed across project boundaries.",
+        "No files outside the target subproject were modified."
+      ]
+    },
+    {
+      "id": 13,
+      "prompt": "Discover the document layout of this repository.",
+      "expected_output": "An inline layout report naming the best-matching scope with its signal basis, matched and missing signals per candidate, document-type classification, and exceptions.",
+      "files": [],
+      "expectations": [
+        "The agent ran the scope signal census tool on the target directory.",
+        "The verdict names a scope and whether the match is full, partial, or closest.",
+        "Matched and missing signals are listed for the candidate scopes.",
+        "Exceptions and documents no scope covers are reported, not hidden.",
+        "No file was created or modified in the analyzed location."
+      ]
+    },
+    {
+      "id": 14,
+      "prompt": "Wykryj układ dokumentów w tym katalogu.",
+      "expected_output": "An inline Polish layout report naming the best-matching scope or the unstructured fallback, with signals and exceptions.",
+      "files": [],
+      "expectations": [
+        "The report is delivered in Polish, matching the request language.",
+        "The agent ran the scope signal census on the target directory.",
+        "The verdict names a scope with its basis, or unstructured-layout when nothing matches.",
+        "Exceptions and unclassified documents are reported.",
+        "The report is inline - no file was written."
+      ]
     }
   ]
 }

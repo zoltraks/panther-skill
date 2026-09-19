@@ -21,6 +21,7 @@ Classify the request into one primary task:
 | Edit      | "add a section", "update the glossary"            | document's own conventions win |
 | Reformat  | "fix this table", "align the columns"             | language file table rules      |
 | Translate | "translate this doc to Polish"                    | target language file           |
+| Discover  | "discover layout", "detect document layout"       | scope discovery procedure      |
 
 A request may combine tasks.
 
@@ -40,7 +41,8 @@ Ask the user whether to accept the defaults or configure the core parameters.
 |-------------------|---------------------------------------------------------------------|
 | Document type     | Inferred from the request, ask when ambiguous                       |
 | Document language | Language of the user's request, English when unclear                |
-| Filename          | Per the language file naming rules, type-conventional names allowed |
+| Document scope    | Detected from the project layout, unstructured when nothing matches |
+| Filename          | Per the language file naming rules, or the scope's convention       |
 | Encoding          | UTF-8 without BOM                                                   |
 | Line endings      | LF, or the dominant style of the target directory                   |
 | Delivery          | File in the location named by the request                           |
@@ -75,6 +77,37 @@ Then identify the Markdown dialect of the document per `conventions/markdown-dia
 Dialect signals include heading style, section numbering, list markers, table shape, and embedded
 HTML artifacts.
 
+## Scope Detection
+
+When the task touches a project or repository, detect the document scope before selecting rules:
+
+| Signal                                                                        | Scope                 |
+|-------------------------------------------------------------------------------|-----------------------|
+| `SKILL.md` at the root with `name` and `description` frontmatter              | `agent-skill`         |
+| `conf.py` with `master_doc`, `index.rst` toctree, Sphinx Makefile             | `sphinx-docs`         |
+| `docs/GUIDELINES.md` plus a `README.md` entry point, software project present | `guided-project`      |
+| `docs/GUIDELINES.md` in a documents-only repository                           | `docs-collection`     |
+| Several top-level project directories, sparse root documentation              | `multi-project`       |
+| The request names a scope                                                     | The named scope       |
+| Nothing matches                                                               | `unstructured-layout` |
+
+The scope describes how documents are organized in the project - where new documents go, which
+naming convention applies, and which registration or index files must be updated when a document
+is added, moved, or removed.
+
+In a multi-project repository, detection runs per directory - the scope of the subproject that
+contains the target file applies.
+
+Load the matching `scopes/<scope>.md` file when a scope is detected or named.
+
+The `unstructured-layout` scope is the default and needs no signals.
+
+Run `python detect-scope.tmp.py <dir>` on the target when the layout is not obvious from the
+visible structure - the census reports every scope's signals at once, see `tools/README.md`.
+
+When the request asks to discover or detect the document layout itself, follow
+`process/scope-discovery.md` - that procedure produces a full report, not just a scope name.
+
 ## Rule Selection
 
 Load rule files in this order:
@@ -83,10 +116,16 @@ Load rule files in this order:
    code (`en`, `pl`). Load the file matching the document language, never both at once.
 2. **`types/<type>.md`** - load when the document matches a known type. The type file adds deltas
    on top of the language file.
-3. **`conventions/file-encoding.md`** - load when the document encoding is not UTF-8, when the request
+3. **`scopes/<scope>.md`** - load when scope detection matches a project layout, or when the
+   request names a scope. The scope file governs placement, filename conventions, and
+   registration side effects, it never replaces the language baseline for prose style, and the
+   document's own conventions still win on edit.
+4. **`conventions/file-encoding.md`** - load when the document encoding is not UTF-8, when the request
    involves encoding or code pages, or when detection reports an unexpected result.
-4. **`conventions/markdown-dialects.md`** - load when the document uses a non-default dialect or
+5. **`conventions/markdown-dialects.md`** - load when the document uses a non-default dialect or
    when the request involves reformatting.
+6. **`conventions/rst-documents.md`** - load when the task touches an `.rst` file or when a scope
+   file delegates to it.
 
 For a simple document, the language file alone may suffice.
 
@@ -104,6 +143,10 @@ the content requires it.
 For an edit, work inside the document's existing conventions.
 
 Keep the minimal-diff rule: touch only what the request covers.
+
+The detected scope decides the target directory for new documents, overrides the filename
+convention when it defines one, and lists the registration steps that follow adding, moving, or
+removing a document.
 
 Apply the language file rules to the content you write even inside a dialect document - sentence
 shape, vocabulary, and terminology still follow the language rules.
@@ -126,7 +169,7 @@ whole file.
 
 In-place edits that follow the request do not need confirmation.
 
-When finished, report the file path, the conventions detected and applied, and any checks that
-were skipped or failed.
+When finished, report the file path, the scope detected, the conventions applied, every
+registration or index file updated, and any checks that were skipped or failed.
 
 Remove every copied `.tmp.` script from the working repository.

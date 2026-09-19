@@ -271,6 +271,15 @@ Insert one space after the pipe opening a cell and one space before the pipe clo
 
 Do not add extra spaces around pipes beyond the one required.
 
+Start every row - header, separator, and data - with a single pipe.
+
+A leading double pipe (`||`) parses as an empty first cell.
+
+An automated formatter materializes that cell into a spurious empty column, which silently
+corrupts the table structure instead of only misaligning it.
+
+Write an intentionally empty first cell as `| |`, and only when the table truly needs one.
+
 ### Separator Row
 
 Place the separator row directly after the header row.

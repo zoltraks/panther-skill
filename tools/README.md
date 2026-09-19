@@ -3,8 +3,8 @@
 ## Purpose
 
 > **Scope:** Document-production and skill-maintenance scripts
-> **Key items:** encoding detection, table formatting, document validation, skill validation,
-> reference integrity
+> **Key items:** encoding detection, scope signals, table formatting, document validation,
+> skill validation, reference integrity
 
 These scripts support deterministic production of documents and maintenance of Panther itself.
 
@@ -14,8 +14,8 @@ They do not modify documents beyond the specific task each tool performs.
 
 ### Document-Production Tools
 
-Copy `detect-encoding.py`, `format-table.py`, and `validate-document.py` into the working
-repository's `work/` directory under a `.tmp.` name before use.
+Copy `detect-encoding.py`, `detect-scope.py`, `format-table.py`, and `validate-document.py`
+into the working repository's `work/` directory under a `.tmp.` name before use.
 
 If `work/` does not exist, use an existing `temp` or `temporary` directory.
 
@@ -37,17 +37,23 @@ They use the Python standard library and do not require PyYAML or a package mana
 
 ```text
 python detect-encoding.tmp.py <file>
+python detect-scope.tmp.py <directory>
 python format-table.tmp.py <file.md>
 python validate-document.tmp.py <file.md>
 python tools/validate-skill.py .
 python tools/check-references.py .
 ```
 
-`detect-encoding.py` always exits `0` and prints a report.
+`detect-encoding.py` and `detect-scope.py` always exit `0` and print a report.
+
+`detect-scope.py` reports a signal census only - the agent maps signals to a scope per
+`process/scope-discovery.md`.
 
 The validators exit `0` when all checks pass and `1` when one or more checks fail.
 
 ## Validation Order
+
+Run `detect-scope.py` on the target directory first when the task needs the document scope.
 
 Run checks in this order:
 
