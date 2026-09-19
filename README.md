@@ -15,9 +15,9 @@
 | When To Use         | 74   | Supported requests and exclusions         |
 | Example Prompts     | 89   | Phrases the skill activates on            |
 | What's Inside       | 107  | Rule files, templates, tools, and evals   |
-| Verification        | 153  | Skill-maintenance checks                  |
-| License             | 160  | License for the skill itself              |
-| Credits             | 166  | Methodology and example sources           |
+| Verification        | 154  | Skill-maintenance checks                  |
+| License             | 161  | License for the skill itself              |
+| Credits             | 167  | Methodology and example sources           |
 
 Panther is a document authoring process packaged as an agent skill.
 
@@ -110,6 +110,7 @@ characters, and table alignment before delivery.
 panther-skill/
 ├── SKILL.md                      # Root router - load this first
 ├── STYLE.md                      # Document style rules for all files in this skill
+├── MAINTENANCE.md                # Skill extension and restructuring rules
 ├── VERSIONING.md                 # Skill versioning policy
 ├── principles/
 │   └── authoring-rules.md        # Plain-text-first, convention preservation, minimal diff

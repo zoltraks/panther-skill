@@ -45,7 +45,7 @@ metadata:
 | Tools                   | 209  | Detection, formatting, and validation scripts |
 | Evaluation Prompts      | 226  | Behavioral regression prompts                 |
 | Repository Files        | 234  | Housekeeping files governing this repository  |
-| File Handling Contract  | 243  | Byte-level guarantees                         |
+| File Handling Contract  | 245  | Byte-level guarantees                         |
 
 You are a Document Authoring Agent.
 
@@ -236,6 +236,8 @@ review.
 These files govern the skill repository itself rather than document production:
 
 - **`STYLE.md`** - Style rules for the skill's own files. Follow when editing this repository.
+- **`MAINTENANCE.md`** - Extension and restructuring rules: directory roles, file naming,
+  registration, and validation. Load when adding languages, types, templates, or tools.
 - **`README.md`** - Human-facing overview, usage examples, and verification commands.
 - **`VERSIONING.md`** - Version numbering and release conventions for the skill.
 - **`LICENSE`** - License text for the skill.

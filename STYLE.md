@@ -26,8 +26,8 @@ sentence per logical line and never hard-wraps.
 | Tables                     | 221  | Source-width alignment and automated formatting |
 | Characters And Language    | 387  | Box-drawing, emoji, and per-language rules      |
 | File References            | 405  | Relative paths and localised resources          |
-| Skill Requirements         | 438  | Frontmatter and progressive disclosure          |
-| Maintenance                | 499  | File naming, encoding, and registration         |
+| Skill Requirements         | 433  | Frontmatter and progressive disclosure          |
+| Maintenance                | 494  | Pointer to the skill extension rules            |
 
 ## Document Structure
 
@@ -418,15 +418,8 @@ Examples: `languages/en.md`, `types/project-document.md`, `process/document-work
 
 ### Localised Resources
 
-Language-variant files follow a fixed naming scheme so the language is visible in the filename:
-
-- Language baselines live in `languages/<code>.md`, where `<code>` is the ISO 639-1 language
-  code. Each file carries YAML frontmatter with `code`, `name`, and `native-name` fields.
-- Per-language templates live in `templates/<code>/` and are named
-  `<type>-template-<code>.md`.
-
-Reference language variants as a bullet list under a bold `**Templates**` label, one file per
-line, never as inline "X and Y" prose:
+Reference language-variant files as a bullet list under a bold `**Templates**` label, one file
+per line, never as inline "X and Y" prose:
 
 ```markdown
 **Templates**
@@ -434,6 +427,8 @@ line, never as inline "X and Y" prose:
 - `templates/en/changelog-file-template-en.md`
 - `templates/pl/changelog-file-template-pl.md`
 ```
+
+The naming scheme for language-variant files is defined in `MAINTENANCE.md`.
 
 ## Skill Document Requirements
 
@@ -496,40 +491,8 @@ Optional directories:
 When a skill supports multiple domains or frameworks, organize by variant and let the agent read
 only the relevant reference file.
 
-## Adding New Files
+## Maintenance
 
-### Register in SKILL.md
-
-Every new file must be registered in `SKILL.md`.
-
-Add a reference to the appropriate section or table in `SKILL.md` with guidance on when to read the
-file.
-
-### File Naming
-
-Use a single lowercase word for single-concept files: `cpu.md`, `sound.md`, `memory.md`.
-
-Use hyphens for multi-word names: `dasm-assembler.md`, `risk-register.md`.
-
-Match the dominant word-count convention of the target directory. When most existing filenames
-use two words, a new file uses at least two words even when one word would do: `article-text.md`
-in `types/`, not `article.md`.
-
-Language baselines are named `languages/<code>.md` and localised templates are named
-`templates/<code>/<type>-template-<code>.md`, where `<code>` is the ISO 639-1 language code.
-
-### Required Sections
-
-Every new topic file must include at minimum:
-
-- H1 title
-- `## Purpose` section
-- One or more main content sections
-
-Files over 300 lines must also include a `## Contents` table.
-
-## File Maintenance
-
-Maintain the existing line break style and encoding of any document you edit.
-
-Create new files in UTF-8 by default.
+Structural rules for extending this skill - directory roles, file naming conventions, the
+registration contract, addition procedures, encoding rules, and validation - live in
+`MAINTENANCE.md`.
