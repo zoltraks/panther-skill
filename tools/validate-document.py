@@ -39,8 +39,20 @@ def raw_cells(line):
 
 def check_tables(lines, issues):
     i = 0
+    in_fence = False
+    fence_len = 0
     while i < len(lines):
-        if not lines[i].startswith("|"):
+        fence = FENCE.match(lines[i])
+        if fence:
+            marker = len(fence.group(1))
+            if not in_fence:
+                fence_len = marker
+                in_fence = True
+            elif marker >= fence_len:
+                in_fence = False
+            i += 1
+            continue
+        if in_fence or not lines[i].startswith("|"):
             i += 1
             continue
         block = []

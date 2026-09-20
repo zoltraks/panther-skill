@@ -100,6 +100,34 @@ Rule: these artifacts are part of the document's conventions. Do not clean them 
 unrelated edit - the minimal-diff rule applies. Normalize them only when the request is about
 reformatting or cleanup.
 
+## YAML Frontmatter
+
+Many documents open with a metadata block between fence lines:
+
+```yaml
+---
+title: Installation Guide
+sidebar_position: 3
+---
+```
+
+Signals: the file opens with a `---` line, followed by `key: value` lines, and closed by a
+second `---` line.
+
+Seen in MkDocs, Docusaurus, VitePress, and GitBook sites, and in blog engines.
+
+Rule: the frontmatter belongs to the document's conventions.
+
+- Preserve every existing key on edit, keep the original key order.
+- Never remove or rename a key silently, report a key that seems wrong instead of fixing it.
+- Add or change a key only when the task requires it, for example `sidebar_position` when
+  reordering pages.
+- The block is metadata, not prose - the sentence-per-paragraph and wrapping rules do not apply
+  inside it.
+- Keep values in their existing scalar style, quoted or bare.
+- Common keys: `title`, `description`, `slug`, `sidebar_position`, `sidebar_label`, `layout`,
+  `nav_order`, `order`, `weight`, `draft`.
+
 ## Mixed And Unknown Dialects
 
 A document may mix dialects, for example ATX headings with a numbered chapter scheme.

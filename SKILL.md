@@ -2,20 +2,19 @@
 name: panther-skill
 description: >-
   Document authoring skill. Creates and edits Markdown documents: technical
-  documentation, project specifications, rules documents, format
-  specifications, articles, notes, READMEs, and changelogs. Enforces
+  documentation, project and format specifications, rules documents, articles,
+  notes, READMEs, changelogs, decision records (ADR), and RFCs. Enforces
   plain-text-readable Markdown: one sentence per paragraph, source-width-
-  aligned tables, consistent heading and list rules. Documents are written
-  in English by default with full Polish support, and new files use UTF-8
-  while existing encodings (UTF-16, UCS-2, code pages such as CP1250) and
-  line endings are preserved on edit. Handles document collections in
-  organized layouts - agent skill repositories, Sphinx sites, guided
-  software projects, documentation collections, multi-project
-  repositories - and discovers a location's document layout on request.
-  Use whenever the user asks to write, draft, create, edit, reformat, or
-  translate a document, specification, README, changelog, guideline, or
-  article - including Polish requests like napisz dokument, specyfikacja,
-  projekt, notatka, artykuł, or popraw tabelę.
+  aligned tables, consistent heading and list rules. English by default, full
+  Polish support. New files use UTF-8, existing encodings and line endings are
+  preserved on edit. Handles organized document layouts - agent skill
+  repositories, Sphinx, MkDocs, Docusaurus, VitePress, GitBook sites, guided
+  projects, documentation collections, multi-project repositories - and
+  discovers a location's layout on request. AsciiDoc and reStructuredText
+  files follow a minimal-edit contract. Use when asked to write, draft,
+  create, edit, reformat, or translate a document, specification, README,
+  changelog, guideline, ADR, or article - including Polish requests like
+  napisz dokument, specyfikacja, projekt, notatka, artykuł, or popraw tabelę.
 license: MIT
 compatibility: >-
   Designed for agent coding environments with file system access (Claude Code,
@@ -37,24 +36,25 @@ metadata:
 | Section                 | Line | What it covers                                |
 |-------------------------|------|-----------------------------------------------|
 | Trigger Keywords        | 64   | Activation phrases                            |
-| How To Use              | 126  | Progressive disclosure and mandatory reading  |
-| Parameter Configuration | 159  | Defaults and user-controlled document shape   |
-| Principles              | 180  | Authoring invariants                          |
-| Process                 | 186  | Workflow and delivery checklist               |
-| Document Types          | 195  | Per-type rule files                           |
-| Languages               | 216  | Per-language style baselines                  |
-| Scopes                  | 225  | Per-project-layout organization rules         |
-| Conventions             | 245  | Encoding, dialect, and reStructuredText rules |
-| Templates               | 254  | Per-type, per-language skeletons              |
-| Tools                   | 264  | Detection, formatting, and validation scripts |
-| Evaluation Prompts      | 283  | Behavioral regression prompts                 |
-| Repository Files        | 291  | Housekeeping files governing this repository  |
-| File Handling Contract  | 302  | Byte-level guarantees                         |
+| How To Use              | 143  | Progressive disclosure and mandatory reading  |
+| Parameter Configuration | 178  | Defaults and user-controlled document shape   |
+| Principles              | 199  | Authoring invariants                          |
+| Process                 | 205  | Workflow and delivery checklist               |
+| Document Types          | 214  | Per-type rule files                           |
+| Languages               | 239  | Per-language style baselines                  |
+| Scopes                  | 248  | Per-project-layout organization rules         |
+| Conventions             | 276  | Encoding, dialect, and format contract rules  |
+| Templates               | 287  | Per-type, per-language skeletons              |
+| Tools                   | 297  | Detection, formatting, and validation scripts |
+| Evaluation Prompts      | 316  | Behavioral regression prompts                 |
+| Repository Files        | 324  | Housekeeping files governing this repository  |
+| File Handling Contract  | 335  | Byte-level guarantees                         |
 
 You are a Document Authoring Agent.
 
 You create and edit text documents - technical documentation, project specifications, rules
-documents, format specifications, articles, notes, READMEs, and changelogs.
+documents, format specifications, articles, notes, READMEs, changelogs, decision records, and
+RFCs.
 
 You write Markdown that stays readable in a plain text editor, a terminal, and a diff.
 
@@ -114,8 +114,25 @@ The skill activates on any of these phrases:
 - write an implementation plan
 - add a feature document
 - add a standards document
+- write an ADR
+- architecture decision record
+- supersede the ADR
+- write an RFC
+- proposal document
+- design proposal
+- add a page to this MkDocs site
+- update the nav
+- add a page to this Docusaurus site
+- set the sidebar position
+- add a page to this VitePress site
+- add a page to this GitBook
+- update the summary file
+- edit this AsciiDoc file
+- preserve the frontmatter
 - dokument funkcji
 - plan implementacji
+- napisz ADR
+- propozycja rozwiązania
 - discover layout
 - detect document layout
 - what layout is this
@@ -142,11 +159,13 @@ This skill is self-contained. The files below are the available rule material in
 repository.
 
 When asked how this skill works, explain that Panther produces plain-text-readable Markdown
-documents: technical docs, specs, rules documents, articles, notes, READMEs, and changelogs, in
-English or Polish, with UTF-8 output and preserved encodings on edit, for single files and for
-organized document collections such as agent skill repositories and Sphinx documentation
-projects. On request it also discovers a location's document layout - analyzing the directory
-structure and document types, naming the best-matching scope, and listing exceptions.
+documents: technical docs, specs, rules documents, articles, notes, READMEs, changelogs,
+decision records, and RFCs, in English or Polish, with UTF-8 output and preserved encodings on
+edit, for single files and for organized document collections such as agent skill repositories,
+Sphinx sites, and MkDocs, Docusaurus, VitePress, or GitBook documentation sites. On request it
+also discovers a location's document layout - analyzing the directory structure and document
+types, naming the best-matching scope, and listing exceptions. AsciiDoc and reStructuredText
+files are edited minimally and never restyled.
 
 ## Mandatory Reading
 
@@ -212,6 +231,10 @@ Load the file matching the document type, it adds deltas on top of the language 
   trees.
 - **`types/changelog-file.md`** - Version-grouped change records: newest first, user-facing
   language.
+- **`types/decision-record.md`** - Architecture decision records: status lifecycle, numbered
+  filenames, immutable once accepted, supersede chain.
+- **`types/proposal-document.md`** - RFC and design proposals: review states, alternatives
+  considered, open questions, decision recorded on resolution.
 
 ## `languages/` - Language Baselines
 
@@ -241,6 +264,14 @@ registration inside an organized project:
   `archive/` snapshots.
 - **`scopes/multi-project.md`** - Repositories holding several projects: per-directory scope
   resolution, nearest governing `docs/` wins, sparse root.
+- **`scopes/mkdocs-site.md`** - MkDocs documentation sites: `mkdocs.yml` nav registration,
+  `index.md` homepage in `docs/`, kebab-case pages.
+- **`scopes/docusaurus-site.md`** - Docusaurus sites: autogenerated sidebars,
+  `sidebar_position` frontmatter, underscore partials, MDX tolerance.
+- **`scopes/vitepress-site.md`** - VitePress sites: `.vitepress/` configuration, file-based
+  routing, `index.md` homepages, frontmatter layouts.
+- **`scopes/gitbook-site.md`** - GitBook projects: `SUMMARY.md` outline as the table of
+  contents, entry registration in reading order.
 
 ## `conventions/` - Encoding And Dialects
 
@@ -250,6 +281,8 @@ registration inside an organized project:
   chapters, export artifacts) with detection signals and preserve-on-edit rules.
 - **`conventions/rst-documents.md`** - reStructuredText dialect and the minimal-edit contract
   for structural files such as Sphinx `index.rst` toctrees.
+- **`conventions/asciidoc-documents.md`** - AsciiDoc dialect and the minimal-edit contract for
+  `.adoc` files: title markers, admonitions, includes, opaque tables.
 
 ## `templates/` - Skeletons
 

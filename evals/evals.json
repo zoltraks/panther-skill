@@ -169,6 +169,90 @@
         "Exceptions and unclassified documents are reported.",
         "The report is inline - no file was written."
       ]
+    },
+    {
+      "id": 15,
+      "prompt": "Write an ADR in this repository deciding to use a Postgres-backed queue instead of RabbitMQ for the event pipeline. The docs/adr/ directory already holds records 0001 through 0007.",
+      "expected_output": "A new decision record at docs/adr/0008-postgres-queue.md with a status block, context, decision drivers, both options, and consequences, written in the skill's sentence-per-line style.",
+      "files": [],
+      "expectations": [
+        "The new record filename is NNNN-kebab-case-title.md with NNNN being the next free number after the existing records.",
+        "A status metadata list sits directly below the H1 with Status set to proposed.",
+        "The record covers exactly one decision, with both options and their trade-offs.",
+        "No existing ADR file was modified."
+      ]
+    },
+    {
+      "id": 16,
+      "prompt": "Supersede the accepted ADR-0003 in docs/adr/ with a new decision that reverses it.",
+      "expected_output": "A new numbered ADR recording the reversing decision, plus a single-line status change on ADR-0003 marking it superseded by the new record.",
+      "files": [],
+      "expectations": [
+        "A new record was created with the next free number instead of editing the old record's body.",
+        "The old record changed only its Status line to superseded by the new ADR number.",
+        "The old record's decision body, context, and options were left untouched.",
+        "The new record links back to the record it supersedes."
+      ]
+    },
+    {
+      "id": 17,
+      "prompt": "Draft an RFC for adding multi-tenant support to this service, with alternatives and open questions.",
+      "expected_output": "A proposal document with a metadata block, summary, background, proposal, alternatives with rejection reasons, risks, open questions marked TBD, and a Decision section marked NOT SPECIFIED.",
+      "files": [],
+      "expectations": [
+        "A metadata block with Status, Author, and dates sits directly below the H1.",
+        "Every unresolved point in Open Questions is marked TBD with an owner.",
+        "The Decision section reads NOT SPECIFIED, not an invented resolution.",
+        "Each alternative states its rejection reason in one sentence."
+      ]
+    },
+    {
+      "id": 18,
+      "prompt": "Add a page documenting the retry helpers to this MkDocs project.",
+      "expected_output": "A kebab-case Markdown page in docs/, plus a nav entry added to mkdocs.yml in the correct section, with no other changes to the configuration file.",
+      "files": [],
+      "expectations": [
+        "The agent detected the mkdocs-site scope before writing.",
+        "The new page filename is lowercase kebab-case.",
+        "The page path was added to the nav list in mkdocs.yml when a nav key is defined.",
+        "No unrelated nav entries or configuration values were modified."
+      ]
+    },
+    {
+      "id": 19,
+      "prompt": "Add a page documenting the retry helpers to this Docusaurus project, placed right after the usage guide in the sidebar.",
+      "expected_output": "A Markdown or MDX page in docs/ with sidebar_position frontmatter that places it after the usage guide, with no configuration file changes.",
+      "files": [],
+      "expectations": [
+        "The agent detected the docusaurus-site scope before writing.",
+        "The page carries frontmatter with a title and a sidebar_position consistent with the neighboring pages.",
+        "No sidebars.js or docusaurus.config.js change was made for placement.",
+        "Underscore-prefixed partial files were not created, renamed, or edited."
+      ]
+    },
+    {
+      "id": 20,
+      "prompt": "Add a page documenting the retry helpers to this GitBook project.",
+      "expected_output": "A Markdown page referenced by a new entry in SUMMARY.md at the position that defines the reading order.",
+      "files": [],
+      "expectations": [
+        "The agent detected the gitbook-site scope before writing.",
+        "A new entry linking the page was added to SUMMARY.md.",
+        "The entry was placed in the thematic group and order matching the content.",
+        "No unrelated SUMMARY.md entries were reordered or edited."
+      ]
+    },
+    {
+      "id": 21,
+      "prompt": "Update the installation instructions in this page that opens with YAML frontmatter carrying title, description, and sidebar_position keys.",
+      "expected_output": "An edit that preserves every frontmatter key, its order, and its scalar style, touching only the installation section in the body.",
+      "files": [],
+      "expectations": [
+        "All frontmatter keys are present after the edit, in their original order.",
+        "No frontmatter value was reformatted or requoted.",
+        "The diff is limited to the installation section of the body.",
+        "The edit did not add frontmatter keys the task does not require."
+      ]
     }
   ]
 }

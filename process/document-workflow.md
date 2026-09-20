@@ -85,11 +85,19 @@ When the task touches a project or repository, detect the document scope before 
 |-------------------------------------------------------------------------------|-----------------------|
 | `SKILL.md` at the root with `name` and `description` frontmatter              | `agent-skill`         |
 | `conf.py` with `master_doc`, `index.rst` toctree, Sphinx Makefile             | `sphinx-docs`         |
+| `mkdocs.yml` with `site_name`, `docs/` with `index.md`                        | `mkdocs-site`         |
+| `docusaurus.config.js`, `docs/` or `website/docs/` content tree               | `docusaurus-site`     |
+| `.vitepress/` directory with a config file                                    | `vitepress-site`      |
+| `.gitbook.yaml` or a `SUMMARY.md` page outline                                | `gitbook-site`        |
 | `docs/GUIDELINES.md` plus a `README.md` entry point, software project present | `guided-project`      |
 | `docs/GUIDELINES.md` in a documents-only repository                           | `docs-collection`     |
 | Several top-level project directories, sparse root documentation              | `multi-project`       |
 | The request names a scope                                                     | The named scope       |
 | Nothing matches                                                               | `unstructured-layout` |
+
+A site-generator configuration file is a stronger signal than `docs/GUIDELINES.md` - a repository
+with both `mkdocs.yml` and `docs/GUIDELINES.md` follows the site scope for placement and
+registration, while the guidelines document still governs the project's own rules.
 
 The scope describes how documents are organized in the project - where new documents go, which
 naming convention applies, and which registration or index files must be updated when a document
@@ -126,6 +134,8 @@ Load rule files in this order:
    when the request involves reformatting.
 6. **`conventions/rst-documents.md`** - load when the task touches an `.rst` file or when a scope
    file delegates to it.
+7. **`conventions/asciidoc-documents.md`** - load when the task touches an `.adoc` file or when
+   a scope file delegates to it.
 
 For a simple document, the language file alone may suffice.
 

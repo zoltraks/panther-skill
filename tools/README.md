@@ -72,6 +72,9 @@ For skill maintenance, run `validate-skill.py` and `check-references.py` first.
 Escaped `\|` sequences and pipes inside inline code spans are not supported, so table cells must
 not contain literal pipe characters.
 
+`validate-document.py` skips fenced code blocks when checking tables - example tables inside
+code fences, such as AsciiDoc samples, are payload, not Markdown tables.
+
 The validators are mechanical checks, not judgment.
 
 A passing validator does not prove that a document is well written or correct.

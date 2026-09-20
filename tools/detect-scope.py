@@ -60,6 +60,18 @@ def find_first(root: Path, name: str, max_depth: int = 4) -> Path | None:
     return None
 
 
+def find_dot_dir(root: Path, name: str, max_depth: int = 4) -> Path | None:
+    for current, dirs, _files in os.walk(root):
+        parts = Path(current).relative_to(root).parts
+        if len(parts) > max_depth:
+            dirs[:] = []
+            continue
+        dirs[:] = sorted(d for d in dirs if d not in SKIP_DIRS)
+        if name in dirs:
+            return Path(current) / name
+    return None
+
+
 def emit(lines: list[str]) -> None:
     if lines:
         print("\n".join(lines))
@@ -170,6 +182,72 @@ def multi_signals(root: Path, out: list[str]) -> None:
     out.append(f"  root docs .md count: {root_docs}")
 
 
+def mkdocs_signals(root: Path, out: list[str]) -> None:
+    config = find_first(root, "mkdocs.yml") or find_first(root, "mkdocs.yaml")
+    out.append(
+        f"  mkdocs.yml or mkdocs.yaml: {f'yes ({rel(root, config)})' if config else 'no'}"
+    )
+    site_name = "no"
+    if config is not None:
+        site_name = "yes" if "site_name" in read_head(config, 200) else "no"
+    out.append(f"  site_name key: {site_name}")
+    nav = "no"
+    if config is not None:
+        nav = "yes" if re.search(r"^nav:", read_head(config, 400), re.MULTILINE) else "no"
+    out.append(f"  nav key: {nav}")
+    index = root / "docs" / "index.md"
+    out.append(f"  docs/index.md: {'yes' if index.is_file() else 'no'}")
+
+
+def docusaurus_signals(root: Path, out: list[str]) -> None:
+    config = None
+    for path in walk_files(root):
+        if path.name.startswith("docusaurus.config"):
+            config = path
+            break
+    out.append(
+        f"  docusaurus.config.*: {f'yes ({rel(root, config)})' if config else 'no'}"
+    )
+    docs = (root / "docs").is_dir() or (root / "website" / "docs").is_dir()
+    out.append(f"  docs or website/docs: {'yes' if docs else 'no'}")
+    pages = (root / "src" / "pages").is_dir() or (
+        root / "website" / "src" / "pages"
+    ).is_dir()
+    out.append(f"  src/pages: {'yes' if pages else 'no'}")
+    sidebars = find_first(root, "sidebars.js") or find_first(root, "sidebars.ts")
+    out.append(
+        f"  sidebars.js or sidebars.ts: {f'yes ({rel(root, sidebars)})' if sidebars else 'no'}"
+    )
+
+
+def vitepress_signals(root: Path, out: list[str]) -> None:
+    vitepress = find_dot_dir(root, ".vitepress")
+    out.append(
+        f"  .vitepress directory: {f'yes ({rel(root, vitepress)})' if vitepress else 'no'}"
+    )
+    config = "no"
+    if vitepress is not None:
+        names = sorted(
+            p.name for p in vitepress.iterdir()
+            if p.is_file() and p.name.startswith("config")
+        )
+        config = f"yes ({', '.join(names)})" if names else "no"
+    out.append(f"  config file in .vitepress: {config}")
+
+
+def gitbook_signals(root: Path, out: list[str]) -> None:
+    dot_config = root / ".gitbook.yaml"
+    out.append(f"  .gitbook.yaml: {'yes' if dot_config.is_file() else 'no'}")
+    summary = root / "SUMMARY.md"
+    outline = "no"
+    if summary.is_file():
+        head = read_head(summary, 80)
+        has_links = re.search(r"\[[^\]]+\]\([^)]+\.md\)", head)
+        has_groups = re.search(r"^#{1,2} ", head, re.MULTILINE)
+        outline = "yes" if has_links or has_groups else "no"
+    out.append(f"  SUMMARY.md with outline: {outline}")
+
+
 def document_census(root: Path, out: list[str]) -> None:
     counts: dict[str, dict[str, int]] = {}
     for path in walk_files(root):
@@ -209,6 +287,18 @@ def main() -> int:
     emit(lines)
     print("multi-project")
     multi_signals(root, lines := [])
+    emit(lines)
+    print("mkdocs-site")
+    mkdocs_signals(root, lines := [])
+    emit(lines)
+    print("docusaurus-site")
+    docusaurus_signals(root, lines := [])
+    emit(lines)
+    print("vitepress-site")
+    vitepress_signals(root, lines := [])
+    emit(lines)
+    print("gitbook-site")
+    gitbook_signals(root, lines := [])
     emit(lines)
     print("document census")
     document_census(root, lines := [])

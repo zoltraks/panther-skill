@@ -39,6 +39,21 @@ The canonical skeleton, adjusted to the request:
 - Keep each section self-contained enough to be found by search, do not rely on pronouns that
   resolve only in earlier sections.
 
+## Diataxis Mapping
+
+Documentation organized per the Diataxis framework maps onto this skill's types:
+
+| Diataxis kind                                    | Panther handling                                |
+|--------------------------------------------------|-------------------------------------------------|
+| Tutorial - learning-oriented lesson              | `article-text` type                             |
+| How-to guide - task-oriented, problem-first      | `technical-document` with a steps-first Usage   |
+| Reference - information-oriented, dry facts      | `technical-document` with reference tables      |
+| Explanation - understanding-oriented, discursive | `technical-document` overview or `article-text` |
+
+When a project organizes docs into Diataxis quadrants - `docs/tutorials/`, `docs/how-to/`,
+`docs/reference/`, `docs/explanation/` - place a new document in the directory matching its
+kind and follow the dominant style of that directory.
+
 ## Section Names
 
 | English         | Polish                  |

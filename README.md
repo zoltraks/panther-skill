@@ -13,11 +13,11 @@
 | What The Skill Does | 33   | Authoring purpose and workflow            |
 | Core Principles     | 79   | Convention preservation and minimal diffs |
 | When To Use         | 90   | Supported requests and exclusions         |
-| Example Prompts     | 110  | Phrases the skill activates on            |
-| What's Inside       | 131  | Rule files, templates, tools, and evals   |
-| Verification        | 188  | Skill-maintenance checks                  |
-| License             | 195  | License for the skill itself              |
-| Credits             | 201  | Methodology and example sources           |
+| Example Prompts     | 117  | Phrases the skill activates on            |
+| What's Inside       | 142  | Rule files, templates, tools, and evals   |
+| Verification        | 206  | Skill-maintenance checks                  |
+| License             | 213  | License for the skill itself              |
+| Credits             | 219  | Methodology and example sources           |
 
 Panther is a document authoring process packaged as an agent skill.
 
@@ -100,6 +100,13 @@ asked.
 | "Edit this CP1250-encoded document"               | **Yes** - encoding preserved             |
 | "Take a quick note"                               | **Yes** - minimal-structure note         |
 | "Add a page to this Sphinx docs project"          | **Yes** - toctree registration           |
+| "Add a page to this MkDocs site"                  | **Yes** - `nav` registration             |
+| "Add a page to this Docusaurus site"              | **Yes** - sidebar and frontmatter        |
+| "Add a page to this VitePress site"               | **Yes** - file-based routing             |
+| "Add a page to this GitBook project"              | **Yes** - `SUMMARY` outline registration |
+| "Write an ADR for this technology choice"         | **Yes** - status lifecycle, numbering    |
+| "Draft an RFC for the new service"                | **Yes** - review states, open questions  |
+| "Edit this AsciiDoc file"                         | **Yes** - minimal-edit contract          |
 | "Add a rule file to this skill repository"        | **Yes** - `SKILL.md` registration        |
 | "Write an implementation plan for this release"   | **Yes** - versioned `docs/plan/` entry   |
 | "Add a standard to this documentation repo"       | **Yes** - `docs/standard/` conventions   |
@@ -112,6 +119,10 @@ asked.
 **New project specification**
 > Write a project specification for a Go order-tracking service. Cover goals, non-goals,
 > glossary, functional requirements, and design decisions.
+
+**Architecture decision record**
+> Write an ADR in docs/adr/ deciding between RabbitMQ and a Postgres-backed queue for the
+> event pipeline. Include decision drivers, both options, and the consequences.
 
 **Polish article**
 > Napisz artykuł o buforze cyklicznym z przykładem w systemie wbudowanym.
@@ -150,7 +161,9 @@ panther-skill/
 │   ├── article-text.md           # Prose documents: narrative, dialect tolerance
 │   ├── quick-note.md             # Quick notes: minimal structure
 │   ├── readme-file.md            # Repository READMEs
-│   └── changelog-file.md         # Version-grouped change records
+│   ├── changelog-file.md         # Version-grouped change records
+│   ├── decision-record.md        # ADRs: status lifecycle, numbered records
+│   └── proposal-document.md      # RFCs: review states, open questions
 ├── languages/
 │   ├── en.md                     # English baseline: Title Case, vocabulary
 │   └── pl.md                     # Polish baseline: sentence case, diacritics, calques
@@ -160,14 +173,19 @@ panther-skill/
 │   ├── sphinx-docs.md            # Sphinx Markdown docs: toctree registration
 │   ├── guided-project.md         # Governed docs/ trees: GUIDELINES, versioned artifacts
 │   ├── docs-collection.md        # Documentation-only repositories
-│   └── multi-project.md          # Several projects per repository, per-dir scope
+│   ├── multi-project.md          # Several projects per repository, per-dir scope
+│   ├── mkdocs-site.md            # MkDocs sites: nav registration
+│   ├── docusaurus-site.md        # Docusaurus sites: sidebars, frontmatter
+│   ├── vitepress-site.md         # VitePress sites: file-based routing
+│   └── gitbook-site.md           # GitBook projects: SUMMARY.md registration
 ├── conventions/
 │   ├── file-encoding.md          # UTF-8 default, UTF-16/UCS-2, code pages, line endings
-│   ├── markdown-dialects.md      # ATX, setext, numbered chapters, export artifacts
-│   └── rst-documents.md          # reStructuredText minimal-edit contract
+│   ├── markdown-dialects.md      # ATX, setext, numbered chapters, frontmatter
+│   ├── rst-documents.md          # reStructuredText minimal-edit contract
+│   └── asciidoc-documents.md     # AsciiDoc minimal-edit contract
 ├── templates/
-│   ├── en/                       # Eight English skeletons, <type>-template-en.md
-│   └── pl/                       # Eight Polish skeletons, <type>-template-pl.md
+│   ├── en/                       # Ten English skeletons, <type>-template-en.md
+│   └── pl/                       # Ten Polish skeletons, <type>-template-pl.md
 ├── tools/
 │   ├── detect-encoding.py        # BOM, encoding, and line-ending detection
 │   ├── detect-scope.py           # Document-scope signal census

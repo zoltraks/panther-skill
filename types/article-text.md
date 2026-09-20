@@ -51,6 +51,14 @@ Keep sentences short even inside paragraphs.
 - A closing `---` horizontal rule may separate major parts in narrative documents that already
   use it.
 
+## Diataxis Mapping
+
+In Diataxis terms, this type covers the tutorial quadrant - learning-oriented, step-by-step
+lessons - and shares the explanation quadrant with `types/technical-document.md`.
+
+When a project organizes docs into Diataxis quadrants, tutorials and explanations land in this
+type, how-to guides and reference pages land in the `technical-document` type.
+
 ## Section Names
 
 | English         | Polish         |

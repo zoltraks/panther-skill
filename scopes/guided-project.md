@@ -110,6 +110,8 @@ project.
 | `docs/feature/`, `docs/change/` docs                                                             | `technical-document` type - feature and change speclets |
 | `docs/plan/` docs                                                                                | `technical-document` type - implementation plans        |
 | `docs/refactoring/` pairs                                                                        | `project-document` type - assessments and proposals     |
+| `docs/adr/` records                                                                              | `decision-record` type - numbered decision records      |
+| `docs/rfcs/`, `docs/proposals/` docs                                                             | `proposal-document` type                                |
 | `docs/report/` status files                                                                      | `quick-note` or `technical-document` type               |
 | `docs/template/` skeletons                                                                       | Payload artifacts - keep placeholder conventions        |
 | `docs/archive/`                                                                                  | Frozen snapshots - never edit                           |

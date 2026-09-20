@@ -68,6 +68,8 @@ Content documents follow the repository's own style documents when it defines th
 | File or directory                             | Type or handling                                 |
 |-----------------------------------------------|--------------------------------------------------|
 | `docs/standard/` documents                    | `rules-document` type - imperative standards     |
+| `docs/adr/` records                           | `decision-record` type - numbered decisions      |
+| `docs/rfcs/`, `docs/proposals/` docs          | `proposal-document` type                         |
 | `docs/template/` documents                    | Payload skeletons - keep placeholder conventions |
 | `docs/archive/` documents                     | Frozen snapshots - never edit                    |
 | `STYLE.md`, `TABLE.md`                        | `rules-document` type                            |
