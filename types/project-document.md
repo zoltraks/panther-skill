@@ -89,6 +89,29 @@ exercises.
 
 - The glossary table defines terms before first use, keep it early in the document.
 
+## PMBOK Artifact Mapping
+
+When documenting a project with PMBOK 7, map its artifacts to the Panther types:
+
+| PMBOK artifact                                 | Panther handling                                                |
+|------------------------------------------------|-----------------------------------------------------------------|
+| Business case, business need                   | `proposal-document` type - benefits and financial justification |
+| Project charter, project brief                 | `project-charter` type                                          |
+| Vision statement, roadmap                      | `project-document` type                                         |
+| Requirements documentation, activity list      | `project-document` type - requirement tables                    |
+| Team charter                                   | `rules-document` type                                           |
+| Management plans                               | `management-plan` type                                          |
+| Logs and registers                             | `register-log` type                                             |
+| Status, variance, forecasting, quality reports | `status-report` type                                            |
+| Meeting agendas and minutes                    | `meeting-minutes` type                                          |
+| WBS and WBS dictionary                         | `work-breakdown-structure` type                                 |
+| Baselines                                      | Frozen artifacts - change control only, never informally edited |
+| Contracts, MOU, SLA                            | Verbatim legal text - preserve, never restyle                   |
+| Visual data artifacts                          | Out of scope - generated visuals, not text documents            |
+
+Boundary rule: architectural decisions go to `decision-record`, scope and budget changes go to
+the change log per `register-log`, and meeting decisions go to `meeting-minutes`.
+
 ## Section Names
 
 | English               | Polish                    |

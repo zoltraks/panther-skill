@@ -22,6 +22,9 @@ document future maintainers will consult.
 Do not use for implementation plans or design proposals that cover several decisions - use
 `types/proposal-document.md` for those.
 
+Meeting decisions belong in `types/meeting-minutes.md`, and scope or budget change requests
+belong in the change log per `types/register-log.md`.
+
 **Templates**
 
 - `templates/en/decision-record-template-en.md`

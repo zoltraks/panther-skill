@@ -253,6 +253,90 @@
         "The diff is limited to the installation section of the body.",
         "The edit did not add frontmatter keys the task does not require."
       ]
+    },
+    {
+      "id": 22,
+      "prompt": "Create a risk register for the payments migration project.",
+      "expected_output": "A register-log document with scoring definitions above the table and seeded risk entries using R-prefixed IDs.",
+      "files": [],
+      "expectations": [
+        "Probability and impact scale definitions sit above the register table.",
+        "Entries use sequential R-prefixed IDs starting at R-01.",
+        "Risk statements are written in cause-and-effect form.",
+        "Every entry carries an owner and a status."
+      ]
+    },
+    {
+      "id": 23,
+      "prompt": "Add the vendor lock-in risk to this existing risk register that already tracks six risks, two of them closed.",
+      "expected_output": "An edit that appends one entry with the next free ID and leaves every existing row untouched.",
+      "files": [],
+      "expectations": [
+        "The new entry uses the next sequential ID without renumbering existing entries.",
+        "Closed entries remain in the table, closed by status rather than deletion.",
+        "Existing statuses and column values are preserved.",
+        "The document's own ID prefix and column set were kept."
+      ]
+    },
+    {
+      "id": 24,
+      "prompt": "Write the project charter for the warehouse automation initiative.",
+      "expected_output": "A project-charter document with a SMART objectives table, scope boundaries, and a sponsor approval block.",
+      "files": [],
+      "expectations": [
+        "Measurable objectives appear in a table with metric and target columns.",
+        "Scope boundaries list both in-scope and out-of-scope items.",
+        "The document ends with a sponsor approval block.",
+        "A version comment sits directly below the H1."
+      ]
+    },
+    {
+      "id": 25,
+      "prompt": "Write this week's status report for the mobile app project - schedule amber, everything else green.",
+      "expected_output": "A status-report document identifying the period, a granular RAG table, and a decisions-needed section.",
+      "files": [],
+      "expectations": [
+        "The report identifies the reporting period in the title or header block.",
+        "A per-area status table rates schedule, budget, scope, and risk.",
+        "Decisions needed are phrased as questions with deadlines.",
+        "Risks and issues reference register IDs rather than restating entries."
+      ]
+    },
+    {
+      "id": 26,
+      "prompt": "Write up the minutes of yesterday's steering committee - three attendees, two decisions, four action items.",
+      "expected_output": "A meeting-minutes document with attendees, a decisions table, and an action items table.",
+      "files": [],
+      "expectations": [
+        "Attendees are listed with their roles.",
+        "Each decision records what was decided with an owner and a date.",
+        "Every action item carries exactly one owner and a due date.",
+        "The document records outcomes, not a discussion transcript."
+      ]
+    },
+    {
+      "id": 27,
+      "prompt": "Create the WBS for phase one of the data platform project with a dictionary.",
+      "expected_output": "A work-breakdown-structure document with a decimal-coded outline and a dictionary entry per work package.",
+      "files": [],
+      "expectations": [
+        "The outline uses continuous decimal codes such as 1, 1.1, and 1.1.1.",
+        "Work packages sit at the lowest level of decomposition.",
+        "Each work package has a dictionary entry with acceptance criteria and an owner.",
+        "Dictionary entries reference codes, not titles."
+      ]
+    },
+    {
+      "id": 28,
+      "prompt": "Draft the risk management plan for the ERP rollout - thresholds, monthly reviews, and who does what.",
+      "expected_output": "A management-plan document covering methodology, roles, thresholds, and cadence, pointing at the risk register.",
+      "files": [],
+      "expectations": [
+        "Thresholds and tolerances state the variance that triggers action.",
+        "A review cadence and update process are defined.",
+        "Roles and responsibilities name who does what in the domain.",
+        "The plan references the risk register instead of duplicating risk entries."
+      ]
     }
   ]
 }

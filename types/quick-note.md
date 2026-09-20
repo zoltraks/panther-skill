@@ -18,6 +18,9 @@ and stay informal.
 Use for quick notes, drafts, outlines, scratch documentation, and any short document where speed
 matters more than ceremony.
 
+For formal meeting records with decisions and action items use `types/meeting-minutes.md`
+instead.
+
 **Templates**
 
 - `templates/en/quick-note-template-en.md`

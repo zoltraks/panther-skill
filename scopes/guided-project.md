@@ -108,11 +108,14 @@ project.
 | `GUIDELINES.md`, `ALWAYS.md`, `IGNORE.md`, `WORKFLOW.md`, `standard/`                            | `rules-document` type                                   |
 | `CONCEPT.md`, `SPECIFICATION.md`, `ARCHITECTURE.md`, `PROJECT.md`, `TESTING.md`, `DEPLOYMENT.md` | `technical-document` or `project-document` type         |
 | `docs/feature/`, `docs/change/` docs                                                             | `technical-document` type - feature and change speclets |
-| `docs/plan/` docs                                                                                | `technical-document` type - implementation plans        |
+| `docs/plan/` docs                                                                                | `technical-document` or `management-plan` type          |
 | `docs/refactoring/` pairs                                                                        | `project-document` type - assessments and proposals     |
 | `docs/adr/` records                                                                              | `decision-record` type - numbered decision records      |
 | `docs/rfcs/`, `docs/proposals/` docs                                                             | `proposal-document` type                                |
-| `docs/report/` status files                                                                      | `quick-note` or `technical-document` type               |
+| `docs/report/` status files                                                                      | `status-report` type - periodic health reports          |
+| `docs/registers/` docs                                                                           | `register-log` type - living entry tables               |
+| `docs/minutes/` docs                                                                             | `meeting-minutes` type - dated meeting records          |
+| `docs/CHARTER.md`, `docs/WBS.md`                                                                 | `project-charter`, `work-breakdown-structure` types     |
 | `docs/template/` skeletons                                                                       | Payload artifacts - keep placeholder conventions        |
 | `docs/archive/`                                                                                  | Frozen snapshots - never edit                           |
 | `CHANGELOG.md`                                                                                   | `changelog-file` type                                   |

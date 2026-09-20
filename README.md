@@ -13,11 +13,11 @@
 | What The Skill Does | 33   | Authoring purpose and workflow            |
 | Core Principles     | 79   | Convention preservation and minimal diffs |
 | When To Use         | 90   | Supported requests and exclusions         |
-| Example Prompts     | 117  | Phrases the skill activates on            |
-| What's Inside       | 142  | Rule files, templates, tools, and evals   |
-| Verification        | 206  | Skill-maintenance checks                  |
-| License             | 213  | License for the skill itself              |
-| Credits             | 219  | Methodology and example sources           |
+| Example Prompts     | 123  | Phrases the skill activates on            |
+| What's Inside       | 153  | Rule files, templates, tools, and evals   |
+| Verification        | 223  | Skill-maintenance checks                  |
+| License             | 230  | License for the skill itself              |
+| Credits             | 236  | Methodology and example sources           |
 
 Panther is a document authoring process packaged as an agent skill.
 
@@ -110,6 +110,12 @@ asked.
 | "Add a rule file to this skill repository"        | **Yes** - `SKILL.md` registration        |
 | "Write an implementation plan for this release"   | **Yes** - versioned `docs/plan/` entry   |
 | "Add a standard to this documentation repo"       | **Yes** - `docs/standard/` conventions   |
+| "Write the project charter for this initiative"   | **Yes** - SMART objectives, approval     |
+| "Create a risk register for this project"         | **Yes** - append-only entry table        |
+| "Write our weekly status report"                  | **Yes** - RAG ratings, decisions needed  |
+| "Write up the steering committee minutes"         | **Yes** - decisions and action items     |
+| "Create the WBS for phase one"                    | **Yes** - decimal codes, dictionary      |
+| "Draft the risk management plan"                  | **Yes** - thresholds and cadence         |
 | "What document layout does this repo use?"        | **Yes** - scope discovery report         |
 | "Write code for this feature"                     | No - this skill writes documents         |
 | "Review this document for technical correctness"  | No - authoring skill, not an auditor     |
@@ -123,6 +129,11 @@ asked.
 **Architecture decision record**
 > Write an ADR in docs/adr/ deciding between RabbitMQ and a Postgres-backed queue for the
 > event pipeline. Include decision drivers, both options, and the consequences.
+
+**Project risk register**
+> Create a risk register for the payments migration project in docs/registers/. Define the
+> probability and impact scales, then seed it with three risks - each with an owner and a
+> response strategy.
 
 **Polish article**
 > Napisz artykuł o buforze cyklicznym z przykładem w systemie wbudowanym.
@@ -163,7 +174,13 @@ panther-skill/
 │   ├── readme-file.md            # Repository READMEs
 │   ├── changelog-file.md         # Version-grouped change records
 │   ├── decision-record.md        # ADRs: status lifecycle, numbered records
-│   └── proposal-document.md      # RFCs: review states, open questions
+│   ├── proposal-document.md      # RFCs: review states, open questions
+│   ├── project-charter.md        # Charters: SMART objectives, approval block
+│   ├── register-log.md           # Registers and logs: entry tables, lifecycles
+│   ├── status-report.md          # Status reports: RAG ratings, decisions needed
+│   ├── meeting-minutes.md        # Minutes: attendees, decisions, action items
+│   ├── management-plan.md        # Management plans: thresholds, cadence, roles
+│   └── work-breakdown-structure.md # WBS: decimal outline, dictionary, RACI
 ├── languages/
 │   ├── en.md                     # English baseline: Title Case, vocabulary
 │   └── pl.md                     # Polish baseline: sentence case, diacritics, calques
@@ -184,8 +201,8 @@ panther-skill/
 │   ├── rst-documents.md          # reStructuredText minimal-edit contract
 │   └── asciidoc-documents.md     # AsciiDoc minimal-edit contract
 ├── templates/
-│   ├── en/                       # Ten English skeletons, <type>-template-en.md
-│   └── pl/                       # Ten Polish skeletons, <type>-template-pl.md
+│   ├── en/                       # Sixteen English skeletons, <type>-template-en.md
+│   └── pl/                       # Sixteen Polish skeletons, <type>-template-pl.md
 ├── tools/
 │   ├── detect-encoding.py        # BOM, encoding, and line-ending detection
 │   ├── detect-scope.py           # Document-scope signal census

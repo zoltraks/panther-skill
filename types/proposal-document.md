@@ -26,6 +26,9 @@ recording.
 Use `types/project-document.md` instead when the document is the durable specification the
 implementation will follow.
 
+A business case is the benefits-focused variant of this type - each option carries measurable
+benefits, costs, and risks, and doing nothing is a valid option.
+
 **Templates**
 
 - `templates/en/proposal-document-template-en.md`

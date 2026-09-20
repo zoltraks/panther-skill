@@ -70,6 +70,9 @@ Content documents follow the repository's own style documents when it defines th
 | `docs/standard/` documents                    | `rules-document` type - imperative standards     |
 | `docs/adr/` records                           | `decision-record` type - numbered decisions      |
 | `docs/rfcs/`, `docs/proposals/` docs          | `proposal-document` type                         |
+| `docs/registers/` docs                        | `register-log` type - living entry tables        |
+| `docs/reports/` docs                          | `status-report` type - periodic health reports   |
+| `docs/minutes/` docs                          | `meeting-minutes` type - dated meeting records   |
 | `docs/template/` documents                    | Payload skeletons - keep placeholder conventions |
 | `docs/archive/` documents                     | Frozen snapshots - never edit                    |
 | `STYLE.md`, `TABLE.md`                        | `rules-document` type                            |

@@ -17,6 +17,8 @@ change-kind bullets.
 
 Use for `CHANGELOG.md` files and for release-notes sections inside other documents.
 
+A project change-request register is a different document - use `types/register-log.md` for it.
+
 **Templates**
 
 - `templates/en/changelog-file-template-en.md`

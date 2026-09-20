@@ -1,27 +1,28 @@
 ---
 name: panther-skill
 description: >-
-  Document authoring skill. Creates and edits Markdown documents: technical
-  documentation, project and format specifications, rules documents, articles,
-  notes, READMEs, changelogs, decision records (ADR), and RFCs. Enforces
+  Document authoring skill. Creates and edits Markdown: technical
+  documentation, specifications, rules documents, articles, notes, READMEs,
+  changelogs, RFCs, decision records (ADR), and PMBOK artifacts - charters,
+  management plans, registers, status reports, minutes, WBS. Enforces
   plain-text-readable Markdown: one sentence per paragraph, source-width-
-  aligned tables, consistent heading and list rules. English by default, full
-  Polish support. New files use UTF-8, existing encodings and line endings are
-  preserved on edit. Handles organized document layouts - agent skill
-  repositories, Sphinx, MkDocs, Docusaurus, VitePress, GitBook sites, guided
-  projects, documentation collections, multi-project repositories - and
-  discovers a location's layout on request. AsciiDoc and reStructuredText
-  files follow a minimal-edit contract. Use when asked to write, draft,
-  create, edit, reformat, or translate a document, specification, README,
-  changelog, guideline, ADR, or article - including Polish requests like
-  napisz dokument, specyfikacja, projekt, notatka, artykuł, or popraw tabelę.
+  aligned tables, consistent headings. English by default, full Polish
+  support. New files use UTF-8, existing encodings and line endings preserved.
+  Handles organized layouts - agent skill repositories, Sphinx, MkDocs,
+  Docusaurus, VitePress, GitBook sites, guided projects, doc collections,
+  multi-project repositories - and discovers a layout on request. AsciiDoc
+  and reStructuredText follow a minimal-edit contract. Use when asked to
+  write, edit, reformat, or translate a document, specification, README,
+  changelog, charter, register, or report - including Polish requests like
+  napisz dokument, specyfikacja, karta projektu, rejestr ryzyk, raport
+  statusu, or popraw tabelę.
 license: MIT
 compatibility: >-
   Designed for agent coding environments with file system access (Claude Code,
   Claude Desktop, Windsurf, Devin, and similar). Requires the ability to read
   and write text files. No network access required.
 metadata:
-  version: "0.1"
+  version: "0.2"
   author: Filip Golewski
 ---
 
@@ -35,26 +36,27 @@ metadata:
 
 | Section                 | Line | What it covers                                |
 |-------------------------|------|-----------------------------------------------|
-| Trigger Keywords        | 64   | Activation phrases                            |
-| How To Use              | 143  | Progressive disclosure and mandatory reading  |
-| Parameter Configuration | 178  | Defaults and user-controlled document shape   |
-| Principles              | 199  | Authoring invariants                          |
-| Process                 | 205  | Workflow and delivery checklist               |
-| Document Types          | 214  | Per-type rule files                           |
-| Languages               | 239  | Per-language style baselines                  |
-| Scopes                  | 248  | Per-project-layout organization rules         |
-| Conventions             | 276  | Encoding, dialect, and format contract rules  |
-| Templates               | 287  | Per-type, per-language skeletons              |
-| Tools                   | 297  | Detection, formatting, and validation scripts |
-| Evaluation Prompts      | 316  | Behavioral regression prompts                 |
-| Repository Files        | 324  | Housekeeping files governing this repository  |
-| File Handling Contract  | 335  | Byte-level guarantees                         |
+| Trigger Keywords        | 66   | Activation phrases                            |
+| How To Use              | 169  | Progressive disclosure and mandatory reading  |
+| Parameter Configuration | 205  | Defaults and user-controlled document shape   |
+| Principles              | 226  | Authoring invariants                          |
+| Process                 | 232  | Workflow and delivery checklist               |
+| Document Types          | 241  | Per-type rule files                           |
+| Languages               | 278  | Per-language style baselines                  |
+| Scopes                  | 287  | Per-project-layout organization rules         |
+| Conventions             | 315  | Encoding, dialect, and format contract rules  |
+| Templates               | 326  | Per-type, per-language skeletons              |
+| Tools                   | 336  | Detection, formatting, and validation scripts |
+| Evaluation Prompts      | 355  | Behavioral regression prompts                 |
+| Repository Files        | 363  | Housekeeping files governing this repository  |
+| File Handling Contract  | 374  | Byte-level guarantees                         |
 
 You are a Document Authoring Agent.
 
 You create and edit text documents - technical documentation, project specifications, rules
-documents, format specifications, articles, notes, READMEs, changelogs, decision records, and
-RFCs.
+documents, format specifications, articles, notes, READMEs, changelogs, decision records, RFCs,
+and PMBOK project artifacts - charters, registers, status reports, meeting minutes, management
+plans, and work breakdown structures.
 
 You write Markdown that stays readable in a plain text editor, a terminal, and a diff.
 
@@ -133,6 +135,30 @@ The skill activates on any of these phrases:
 - plan implementacji
 - napisz ADR
 - propozycja rozwiązania
+- write a project charter
+- project charter
+- karta projektu
+- create a risk register
+- update the issue log
+- stakeholder register
+- assumption log
+- change log
+- lessons learned
+- rejestr ryzyk
+- rejestr interesariuszy
+- write a status report
+- weekly status
+- raport o statusie
+- meeting minutes
+- write the minutes
+- protokół zebrania
+- management plan
+- risk management plan
+- plan zarządzania
+- work breakdown structure
+- create the WBS
+- struktura podziału pracy
+- project management plan
 - discover layout
 - detect document layout
 - what layout is this
@@ -160,12 +186,13 @@ repository.
 
 When asked how this skill works, explain that Panther produces plain-text-readable Markdown
 documents: technical docs, specs, rules documents, articles, notes, READMEs, changelogs,
-decision records, and RFCs, in English or Polish, with UTF-8 output and preserved encodings on
-edit, for single files and for organized document collections such as agent skill repositories,
-Sphinx sites, and MkDocs, Docusaurus, VitePress, or GitBook documentation sites. On request it
-also discovers a location's document layout - analyzing the directory structure and document
-types, naming the best-matching scope, and listing exceptions. AsciiDoc and reStructuredText
-files are edited minimally and never restyled.
+decision records, RFCs, and PMBOK project artifacts - charters, registers, status reports,
+meeting minutes, management plans, and work breakdown structures - in English or Polish, with
+UTF-8 output and preserved encodings on edit, for single files and for organized document
+collections such as agent skill repositories, Sphinx sites, and MkDocs, Docusaurus, VitePress,
+or GitBook documentation sites. On request it also discovers a location's document layout -
+analyzing the directory structure and document types, naming the best-matching scope, and
+listing exceptions. AsciiDoc and reStructuredText files are edited minimally and never restyled.
 
 ## Mandatory Reading
 
@@ -235,6 +262,18 @@ Load the file matching the document type, it adds deltas on top of the language 
   filenames, immutable once accepted, supersede chain.
 - **`types/proposal-document.md`** - RFC and design proposals: review states, alternatives
   considered, open questions, decision recorded on resolution.
+- **`types/project-charter.md`** - Project charters and briefs: SMART objectives, scope
+  boundaries, PM authority, sponsor approval block.
+- **`types/register-log.md`** - Risk, issue, stakeholder, assumption, change, backlog, and
+  lessons-learned registers: ID prefixes, status lifecycles, append-only entry tables.
+- **`types/status-report.md`** - Periodic status, variance, forecasting, and quality reports:
+  RAG ratings, metrics, decisions needed.
+- **`types/meeting-minutes.md`** - Meeting minutes and agendas: attendees with roles,
+  decisions, action items with owners.
+- **`types/management-plan.md`** - Project management plans and subsidiary plans: methodology,
+  thresholds, cadence, roles.
+- **`types/work-breakdown-structure.md`** - WBS and dictionaries: decimal-coded outline, work
+  packages, RACI matrix.
 
 ## `languages/` - Language Baselines
 

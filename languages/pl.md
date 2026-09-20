@@ -250,6 +250,9 @@ Nie odmieniaj angielskich wyrazów polskimi końcówkami, gdy istnieje naturalny
 | fixować           | poprawiać             |
 | kastomizacja      | dostosowanie          |
 | performance       | wydajność             |
+| stakeholderzy     | interesariusze        |
+| status report     | raport o statusie     |
+| meeting minutes   | protokół zebrania     |
 
 Ustalone nazwy własne, nazwy produktów i nazwy elementów architektury zachowuj w formie oryginalnej, na przykład Microsoft Fabric, Lakehouse, Warehouse, Power BI, workspace.
 
