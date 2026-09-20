@@ -10,8 +10,7 @@
 
 ## When To Use
 
-Use for authorizing documents - a project charter or a project brief. In Polish
-projects the charter is `karta projektu`.
+Use for authorizing documents - a project charter or a project brief.
 
 Distinguish from `types/proposal-document.md`: the business case argues for
 approval before it happens, the charter authorizes the project after it and
@@ -24,7 +23,7 @@ empowers the project manager.
 
 ## Structure
 
-1. H1 title carrying the project name - `# <Project> Charter`, Polish `# Karta projektu <Nazwa>`.
+1. H1 title carrying the project name - `# <Project> Charter`.
 2. Version comment per the project-document convention.
 3. Project information block - sponsor, project manager, charter date.
 4. Purpose and Justification - why the project exists and what it addresses.
@@ -62,21 +61,21 @@ empowers the project manager.
 
 ## Section Names
 
-| English                            | Polish                                 |
-|------------------------------------|----------------------------------------|
-| Purpose and Justification          | Uzasadnienie                           |
-| Measurable Objectives              | Mierzalne cele                         |
-| Success Criteria                   | Kryteria sukcesu                       |
-| High-Level Requirements            | Wymagania ogólne                       |
-| Scope Boundaries                   | Granice zakresu                        |
-| In Scope                           | W zakresie                             |
-| Out of Scope                       | Poza zakresem                          |
-| Deliverables                       | Rezultaty                              |
-| Milestones                         | Kamienie milowe                        |
-| High-Level Budget                  | Budżet                                 |
-| Key Stakeholders                   | Kluczowi interesariusze                |
-| Project Manager Role and Authority | Rola i uprawnienia kierownika projektu |
-| Assumptions and Constraints        | Założenia i ograniczenia               |
-| High-Level Risks                   | Ryzyka ogólne                          |
-| Exit Criteria                      | Kryteria zakończenia                   |
-| Approval                           | Zatwierdzenie                          |
+- Purpose and Justification
+- Measurable Objectives
+- Success Criteria
+- High-Level Requirements
+- Scope Boundaries
+- In Scope
+- Out of Scope
+- Deliverables
+- Milestones
+- High-Level Budget
+- Key Stakeholders
+- Project Manager Role and Authority
+- Assumptions and Constraints
+- High-Level Risks
+- Exit Criteria
+- Approval
+
+Polish section names for this document type are declared in `languages/pl.md`.

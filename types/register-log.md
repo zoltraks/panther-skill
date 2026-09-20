@@ -46,7 +46,7 @@ conventions always win on edit.
 
 ## Structure
 
-1. H1 title - `# Risk Register`, `# Issue Log`, `# Rejestr ryzyk`, and the other
+1. H1 title - `# Risk Register`, `# Issue Log`, and the other
    register names.
 2. Purpose - one paragraph stating what the register tracks.
 3. Scoring definitions - probability and impact scale tables sit above the
@@ -75,27 +75,27 @@ conventions always win on edit.
 
 ## Section Names
 
-| English             | Polish               |
-|---------------------|----------------------|
-| Purpose             | Przeznaczenie        |
-| Scoring Definitions | Definicje skali      |
-| Probability         | Prawdopodobieństwo   |
-| Impact              | Skutek               |
-| Score               | Wynik                |
-| Response Strategy   | Strategia reagowania |
-| Owner               | Właściciel           |
-| Status              | Stan                 |
-| Review Date         | Data przeglądu       |
-| Raised Date         | Data zgłoszenia      |
-| Due Date            | Termin               |
-| Resolution          | Rozwiązanie          |
-| Priority            | Priorytet            |
-| Description         | Opis                 |
-| Category            | Kategoria            |
-| Assumption          | Założenie            |
-| Constraint          | Ograniczenie         |
-| Validated By        | Zweryfikowane przez  |
-| Submitted By        | Zgłoszone przez      |
-| Decision            | Decyzja              |
-| Authority           | Organ decyzyjny      |
-| Recommendation      | Rekomendacja         |
+- Purpose
+- Scoring Definitions
+- Probability
+- Impact
+- Score
+- Response Strategy
+- Owner
+- Status
+- Review Date
+- Raised Date
+- Due Date
+- Resolution
+- Priority
+- Description
+- Category
+- Assumption
+- Constraint
+- Validated By
+- Submitted By
+- Decision
+- Authority
+- Recommendation
+
+Polish section names for this document type are declared in `languages/pl.md`.

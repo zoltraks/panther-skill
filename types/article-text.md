@@ -61,9 +61,9 @@ type, how-to guides and reference pages land in the `technical-document` type.
 
 ## Section Names
 
-| English         | Polish         |
-|-----------------|----------------|
-| Introduction    | Wprowadzenie   |
-| Summary         | Podsumowanie   |
-| Further Reading | Dalsza lektura |
-| References      | Referencje     |
+- Introduction
+- Summary
+- Further Reading
+- References
+
+Polish section names for this document type are declared in `languages/pl.md`.

@@ -61,23 +61,26 @@ Rule: keep the closing markers when editing such a document, match the style for
 Formal documents may number chapters and sections:
 
 ```markdown
-# 1 Podstawowe informacje
+# 1 Basic Information
 
-## 1.1 Cel
+## 1.1 Purpose
 
-### Podział konfiguracji
+### Configuration Split
 ```
 
 Signals: heading text starting with a chapter or section number, one H1 per chapter.
 
-Seen in formal project documents, especially Polish specifications.
+Seen in formal project documents.
+
+The Polish variant of this dialect is described in `languages/pl.md`.
 
 Additional traits that may accompany this dialect:
 
 - H4 headings (`####`) or deeper, used sparingly for enumeration detail. Preserve them when
   established, even though the standard dialect stops at H3.
 - Double-backtick inline code for filenames and identifiers: `` ``config.yaml`` ``.
-- Bold pseudo-headings such as `**Uwaga**`, `**Ważne**`, or `**Opis:**` standing in for headings.
+- Bold pseudo-headings such as `**Note**`, `**Important**`, or `**Description:**` standing in
+  for headings.
 - Spaced table separator cells (`| ------ |`) instead of compact ones (`|------|`).
 
 Rule: keep the numbering scheme, renumber continuously after adding, removing, or moving a

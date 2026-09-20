@@ -10,8 +10,8 @@
 
 ## When To Use
 
-Use for work breakdown structures and their dictionaries, Polish `struktura
-podziału pracy` (SPP). Product breakdown structures follow the same shape.
+Use for work breakdown structures and their dictionaries. Product breakdown
+structures follow the same shape.
 
 **Templates:**
 
@@ -49,14 +49,14 @@ podziału pracy` (SPP). Product breakdown structures follow the same shape.
 
 ## Section Names
 
-| English             | Polish              |
-|---------------------|---------------------|
-| Structure           | Struktura           |
-| Work Packages       | Pakiety robocze     |
-| WBS Dictionary      | Słownik SPP         |
-| Acceptance Criteria | Kryteria akceptacji |
-| Owner               | Właściciel          |
-| Estimate            | Szacunek            |
-| Dependencies        | Zależności          |
-| RACI Matrix         | Macierz RACI        |
-| Baseline            | Baza                |
+- Structure
+- Work Packages
+- WBS Dictionary
+- Acceptance Criteria
+- Owner
+- Estimate
+- Dependencies
+- RACI Matrix
+- Baseline
+
+Polish section names for this document type are declared in `languages/pl.md`.

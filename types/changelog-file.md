@@ -29,7 +29,7 @@ rule.
 
 ## Structure
 
-1. H1 title - `# Changes` or `# Changelog` (PL: `# Zmiany`).
+1. H1 title - `# Changes` or `# Changelog`.
 2. One H2 section per version, newest first (`## Version X.Y.Z`).
 3. A one-sentence summary under each version heading.
 4. Bullet items grouped by change kind: added, improved, fixed, removed.
@@ -48,11 +48,11 @@ why it matters.
 
 ## Section Names
 
-| English  | Polish     |
-|----------|------------|
-| Changes  | Zmiany     |
-| Version  | Wersja     |
-| Added    | Dodane     |
-| Improved | Ulepszone  |
-| Fixed    | Naprawione |
-| Removed  | Usunięte   |
+- Changes
+- Version
+- Added
+- Improved
+- Fixed
+- Removed
+
+Polish section names for this document type are declared in `languages/pl.md`.

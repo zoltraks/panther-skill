@@ -13,9 +13,8 @@ description: >-
   multi-project repositories - and discovers a layout on request. AsciiDoc
   and reStructuredText follow a minimal-edit contract. Use when asked to
   write, edit, reformat, or translate a document, specification, README,
-  changelog, charter, register, or report - including Polish requests like
-  napisz dokument, specyfikacja, karta projektu, rejestr ryzyk, raport
-  statusu, or popraw tabelę.
+  changelog, charter, register, or report - including requests phrased in a
+  supported non-English language such as Polish.
 license: MIT
 compatibility: >-
   Designed for agent coding environments with file system access (Claude Code,
@@ -36,20 +35,20 @@ metadata:
 
 | Section                 | Line | What it covers                                |
 |-------------------------|------|-----------------------------------------------|
-| Trigger Keywords        | 66   | Activation phrases                            |
-| How To Use              | 169  | Progressive disclosure and mandatory reading  |
-| Parameter Configuration | 205  | Defaults and user-controlled document shape   |
-| Principles              | 226  | Authoring invariants                          |
-| Process                 | 232  | Workflow and delivery checklist               |
-| Document Types          | 241  | Per-type rule files                           |
-| Languages               | 278  | Per-language style baselines                  |
-| Scopes                  | 287  | Per-project-layout organization rules         |
-| Conventions             | 315  | Encoding, dialect, and format contract rules  |
-| Templates               | 326  | Per-type, per-language skeletons              |
-| Tools                   | 336  | Detection, formatting, and validation scripts |
-| Evaluation Prompts      | 355  | Behavioral regression prompts                 |
-| Repository Files        | 363  | Housekeeping files governing this repository  |
-| File Handling Contract  | 374  | Byte-level guarantees                         |
+| Trigger Keywords        | 65   | Activation phrases                            |
+| How To Use              | 153  | Progressive disclosure and mandatory reading  |
+| Parameter Configuration | 189  | Defaults and user-controlled document shape   |
+| Principles              | 210  | Authoring invariants                          |
+| Process                 | 216  | Workflow and delivery checklist               |
+| Document Types          | 225  | Per-type rule files                           |
+| Languages               | 262  | Per-language style baselines                  |
+| Scopes                  | 272  | Per-project-layout organization rules         |
+| Conventions             | 300  | Encoding, dialect, and format contract rules  |
+| Templates               | 311  | Per-type, per-language skeletons              |
+| Tools                   | 321  | Detection, formatting, and validation scripts |
+| Evaluation Prompts      | 340  | Behavioral regression prompts                 |
+| Repository Files        | 348  | Housekeeping files governing this repository  |
+| File Handling Contract  | 359  | Byte-level guarantees                         |
 
 You are a Document Authoring Agent.
 
@@ -92,17 +91,6 @@ The skill activates on any of these phrases:
 - translate this document
 - document in Polish
 - polish this document
-- napisz dokument
-- utwórz dokument
-- specyfikacja
-- projekt rozwiązania
-- dokumentacja techniczna
-- artykuł
-- notatka
-- popraw tabelę
-- sformatuj tabelę
-- zaktualizuj dokument
-- przetłumacz dokument
 - run panther
 - use panther
 - add a page to the docs
@@ -111,8 +99,6 @@ The skill activates on any of these phrases:
 - extend this skill
 - add a rule file to this skill
 - update the toctree
-- dokumentacja projektu
-- dodaj dokument do projektu
 - write an implementation plan
 - add a feature document
 - add a standards document
@@ -131,40 +117,38 @@ The skill activates on any of these phrases:
 - update the summary file
 - edit this AsciiDoc file
 - preserve the frontmatter
-- dokument funkcji
-- plan implementacji
-- napisz ADR
-- propozycja rozwiązania
 - write a project charter
 - project charter
-- karta projektu
 - create a risk register
 - update the issue log
 - stakeholder register
 - assumption log
 - change log
 - lessons learned
-- rejestr ryzyk
-- rejestr interesariuszy
 - write a status report
 - weekly status
-- raport o statusie
 - meeting minutes
 - write the minutes
-- protokół zebrania
 - management plan
 - risk management plan
-- plan zarządzania
 - work breakdown structure
 - create the WBS
-- struktura podziału pracy
 - project management plan
 - discover layout
 - detect document layout
 - what layout is this
 - analyze document structure
-- wykryj układ
-- rozpoznaj strukturę dokumentów
+- analyze this repository
+- analyse this codebase
+- audit the document layout
+- document census
+
+Requests may arrive in any supported language, not only English.
+
+Each `languages/<code>.md` file declares that language's activation phrases together with their
+English equivalents.
+
+Treat a request matching a declared phrase as its English equivalent.
 
 ## How To Use This Skill
 
@@ -282,7 +266,8 @@ baselines covering structure, headings, lists, tables, characters, vocabulary, a
 
 - **`languages/en.md`** - English documents: Title Case headings, vocabulary preferences.
 - **`languages/pl.md`** - Polish documents: sentence case headings, diacritics, calque
-  avoidance, terminology tables.
+  avoidance, terminology tables, per-type section names, and Polish activation phrases with
+  English equivalents.
 
 ## `scopes/` - Project Layouts
 

@@ -64,7 +64,7 @@ Illustrate non-obvious rules with paired examples:
 ````
 
 Use the language-specific example headings: `Correct`/`Incorrect` in English,
-`Poprawnie`/`Niepoprawnie` in Polish.
+the equivalents declared in `languages/pl.md` for other languages.
 
 Show the smallest example that demonstrates the rule.
 
@@ -77,15 +77,15 @@ Show the smallest example that demonstrates the rule.
 
 ## Section Names
 
-| English          | Polish              |
-|------------------|---------------------|
-| Purpose          | Przeznaczenie       |
-| Sources Of Truth | Źródła prawdy       |
-| Scope            | Zakres              |
-| General Rules    | Zasady ogólne       |
-| Exceptions       | Wyjątki             |
-| Correct          | Poprawnie           |
-| Incorrect        | Niepoprawnie        |
-| Example Content  | Przykład zawartości |
-| File Maintenance | Utrzymanie plików   |
-| Verification     | Weryfikacja         |
+- Purpose
+- Sources Of Truth
+- Scope
+- General Rules
+- Exceptions
+- Correct
+- Incorrect
+- Example Content
+- File Maintenance
+- Verification
+
+Polish section names for this document type are declared in `languages/pl.md`.

@@ -18,25 +18,28 @@ Zasady opisane poniżej stosują się również do samego tego dokumentu.
 
 ## Spis treści
 
-| Sekcja                  | Wiersz | Zakres                               |
-|-------------------------|--------|--------------------------------------|
-| Struktura dokumentu     | 41     | Tytuł, cel i układ dokumentu         |
-| Nagłówki                | 59     | Wielkość liter i kwalifikatory       |
-| Numeracja sekcji        | 91     | Zasady numerowania sekcji            |
-| Zasady spisu treści     | 103    | Kiedy dodawać spis treści            |
-| Akapity i zdania        | 117    | Budowa zdań i akapitów               |
-| Zawijanie wierszy       | 131    | Wiersze logiczne i twarde łamania    |
-| Listy                   | 141    | Punktory, numeracja i odstępy        |
-| Puste wiersze i odstępy | 163    | Zasady odstępów                      |
-| Bloki kodu              | 177    | Ogrodzenia, znaczniki i kod liniowy  |
-| Formatowanie w treści   | 187    | Cudzysłowy, pogrubienia i kursywa    |
-| Średniki                | 203    | Zakaz średników w tekście            |
-| Znaki specjalne         | 229    | Znaki ramek i emoji                  |
-| Słownictwo polskie      | 237    | Preferowane terminy i kalki          |
-| Tabele                  | 260    | Wyrównanie według źródła             |
-| Nazwy plików            | 364    | Nazywanie nowych plików dokumentacji |
-| Przykład                | 374    | Przykład poprawny i niepoprawny      |
-| Utrzymanie plików       | 408    | Kodowanie i złamania wierszy         |
+| Sekcja                             | Wiersz | Zakres                                      |
+|------------------------------------|--------|---------------------------------------------|
+| Struktura dokumentu                | 41     | Tytuł, cel i układ dokumentu                |
+| Nagłówki                           | 59     | Wielkość liter i kwalifikatory              |
+| Numeracja sekcji                   | 91     | Zasady numerowania sekcji                   |
+| Zasady spisu treści                | 103    | Kiedy dodawać spis treści                   |
+| Akapity i zdania                   | 117    | Budowa zdań i akapitów                      |
+| Zawijanie wierszy                  | 131    | Wiersze logiczne i twarde łamania           |
+| Listy                              | 141    | Punktory, numeracja i odstępy               |
+| Puste wiersze i odstępy            | 163    | Zasady odstępów                             |
+| Bloki kodu                         | 177    | Ogrodzenia, znaczniki i kod liniowy         |
+| Formatowanie w treści              | 187    | Cudzysłowy, pogrubienia i kursywa           |
+| Średniki                           | 203    | Zakaz średników w tekście                   |
+| Znaki specjalne                    | 229    | Znaki ramek i emoji                         |
+| Słownictwo polskie                 | 237    | Preferowane terminy i kalki                 |
+| Nazwy sekcji według typu dokumentu | 263    | Polskie nazwy sekcji i elementy typów       |
+| Cechy dialektów                    | 451    | Numeracja rozdziałów i pseudo-nagłówki      |
+| Tabele                             | 468    | Wyrównanie według źródła                    |
+| Nazwy plików                       | 582    | Nazywanie nowych plików dokumentacji        |
+| Przykład                           | 592    | Przykład poprawny i niepoprawny             |
+| Utrzymanie plików                  | 626    | Kodowanie i złamania wierszy                |
+| Frazy aktywujące                   | 636    | Polskie frazy i ich angielskie odpowiedniki |
 
 ## Struktura dokumentu
 
@@ -260,6 +263,211 @@ Nazwy techniczne pochodzące z systemu źródłowego zapisuj dokładnie tak, jak
 
 W nagłówkach przykładów stosuj polskie nazwy sekcji, na przykład "Przykład zawartości", "Poprawnie" oraz "Niepoprawnie".
 
+## Nazwy sekcji według typu dokumentu
+
+Nazwy polskich sekcji deklaruje wyłącznie ta sekcja.
+
+Pliki w `types/` wymieniają tylko nazwy angielskie.
+
+Dobieraj polską nazwę sekcji według typu dokumentu z poniższej tabeli.
+
+| Typ dokumentu            | Sekcja angielska                   | Sekcja polska                          |
+|--------------------------|------------------------------------|----------------------------------------|
+| article-text             | Introduction                       | Wprowadzenie                           |
+| article-text             | Summary                            | Podsumowanie                           |
+| article-text             | Further Reading                    | Dalsza lektura                         |
+| article-text             | References                         | Referencje                             |
+| changelog-file           | Changes                            | Zmiany                                 |
+| changelog-file           | Version                            | Wersja                                 |
+| changelog-file           | Added                              | Dodane                                 |
+| changelog-file           | Improved                           | Ulepszone                              |
+| changelog-file           | Fixed                              | Naprawione                             |
+| changelog-file           | Removed                            | Usunięte                               |
+| decision-record          | Status                             | Stan                                   |
+| decision-record          | Context                            | Kontekst                               |
+| decision-record          | Decision Drivers                   | Czynniki decyzyjne                     |
+| decision-record          | Considered Options                 | Rozważane opcje                        |
+| decision-record          | Decision Outcome                   | Wynik decyzji                          |
+| decision-record          | Consequences                       | Konsekwencje                           |
+| decision-record          | Positive Consequences              | Konsekwencje pozytywne                 |
+| decision-record          | Negative Consequences              | Konsekwencje negatywne                 |
+| decision-record          | Pros and Cons of Options           | Zalety i wady opcji                    |
+| decision-record          | Links                              | Linki                                  |
+| decision-record          | Supersedes                         | Zastępuje                              |
+| management-plan          | Methodology                        | Metodyka                               |
+| management-plan          | Roles and Responsibilities         | Role i odpowiedzialności               |
+| management-plan          | Thresholds and Tolerances          | Progi i tolerancje                     |
+| management-plan          | Cadence                            | Częstotliwość przeglądów               |
+| management-plan          | Process                            | Proces                                 |
+| management-plan          | Tools                              | Narzędzia                              |
+| management-plan          | Reporting                          | Raportowanie                           |
+| management-plan          | Related Plans                      | Plany powiązane                        |
+| management-plan          | Related Registers                  | Powiązane rejestry                     |
+| management-plan          | Change Control                     | Kontrola zmian                         |
+| management-plan          | Master Plan                        | Plan główny                            |
+| meeting-minutes          | Meeting Details                    | Dane zebrania                          |
+| meeting-minutes          | Attendees                          | Obecni                                 |
+| meeting-minutes          | Absentees                          | Nieobecni                              |
+| meeting-minutes          | Agenda                             | Porządek obrad                         |
+| meeting-minutes          | Discussion                         | Dyskusja                               |
+| meeting-minutes          | Decisions                          | Decyzje                                |
+| meeting-minutes          | Action Items                       | Elementy działania                     |
+| meeting-minutes          | Open Questions                     | Otwarte pytania                        |
+| meeting-minutes          | Next Meeting                       | Następne zebranie                      |
+| meeting-minutes          | Facilitator                        | Prowadzący                             |
+| meeting-minutes          | Minute Taker                       | Protokolant                            |
+| meeting-minutes          | Due Date                           | Termin                                 |
+| meeting-minutes          | Owner                              | Właściciel                             |
+| project-charter          | Purpose and Justification          | Uzasadnienie                           |
+| project-charter          | Measurable Objectives              | Mierzalne cele                         |
+| project-charter          | Success Criteria                   | Kryteria sukcesu                       |
+| project-charter          | High-Level Requirements            | Wymagania ogólne                       |
+| project-charter          | Scope Boundaries                   | Granice zakresu                        |
+| project-charter          | In Scope                           | W zakresie                             |
+| project-charter          | Out of Scope                       | Poza zakresem                          |
+| project-charter          | Deliverables                       | Rezultaty                              |
+| project-charter          | Milestones                         | Kamienie milowe                        |
+| project-charter          | High-Level Budget                  | Budżet                                 |
+| project-charter          | Key Stakeholders                   | Kluczowi interesariusze                |
+| project-charter          | Project Manager Role and Authority | Rola i uprawnienia kierownika projektu |
+| project-charter          | Assumptions and Constraints        | Założenia i ograniczenia               |
+| project-charter          | High-Level Risks                   | Ryzyka ogólne                          |
+| project-charter          | Exit Criteria                      | Kryteria zakończenia                   |
+| project-charter          | Approval                           | Zatwierdzenie                          |
+| project-document         | Document Purpose                   | Cel dokumentu                          |
+| project-document         | Document Navigation                | Nawigacja dokumentu                    |
+| project-document         | Glossary                           | Słownik pojęć                          |
+| project-document         | Abbreviations                      | Skróty                                 |
+| project-document         | Vision                             | Wizja                                  |
+| project-document         | Goals                              | Cele                                   |
+| project-document         | Non-Goals                          | Cele wykluczone                        |
+| project-document         | Quality Requirements               | Wymagania jakościowe                   |
+| project-document         | System Architecture                | Architektura systemu                   |
+| project-document         | Component Diagram                  | Diagram komponentów                    |
+| project-document         | Functional Reqs                    | Wymagania funkcjonalne                 |
+| project-document         | Non-Functional Reqs                | Wymagania niefunkcjonalne              |
+| project-document         | Use Cases                          | Przypadki użycia                       |
+| project-document         | Design Decisions                   | Decyzje architektoniczne               |
+| project-document         | Implementation Phases              | Fazy realizacji                        |
+| project-document         | Testing Strategy                   | Strategia testowania                   |
+| project-document         | Naming Conventions                 | Konwencje nazewnicze                   |
+| project-document         | Version Control                    | Kontrola wersji                        |
+| project-document         | Documentation                      | Dokumentacja                           |
+| proposal-document        | Status                             | Stan                                   |
+| proposal-document        | Summary                            | Podsumowanie                           |
+| proposal-document        | Background                         | Tło                                    |
+| proposal-document        | Proposal                           | Propozycja                             |
+| proposal-document        | Alternatives Considered            | Rozważane alternatywy                  |
+| proposal-document        | Risks and Mitigations              | Ryzyka i środki zaradcze               |
+| proposal-document        | Open Questions                     | Otwarte pytania                        |
+| proposal-document        | Decision                           | Decyzja                                |
+| proposal-document        | Reviewers                          | Recenzenci                             |
+| readme-file              | Contents                           | Spis treści                            |
+| readme-file              | Overview                           | Przegląd                               |
+| readme-file              | Installation                       | Instalacja                             |
+| readme-file              | Usage                              | Użycie                                 |
+| readme-file              | Project Layout                     | Struktura projektu                     |
+| readme-file              | Documentation                      | Dokumentacja                           |
+| readme-file              | License                            | Licencja                               |
+| readme-file              | Credits                            | Autorzy                                |
+| register-log             | Purpose                            | Przeznaczenie                          |
+| register-log             | Scoring Definitions                | Definicje skali                        |
+| register-log             | Probability                        | Prawdopodobieństwo                     |
+| register-log             | Impact                             | Skutek                                 |
+| register-log             | Score                              | Wynik                                  |
+| register-log             | Response Strategy                  | Strategia reagowania                   |
+| register-log             | Owner                              | Właściciel                             |
+| register-log             | Status                             | Stan                                   |
+| register-log             | Review Date                        | Data przeglądu                         |
+| register-log             | Raised Date                        | Data zgłoszenia                        |
+| register-log             | Due Date                           | Termin                                 |
+| register-log             | Resolution                         | Rozwiązanie                            |
+| register-log             | Priority                           | Priorytet                              |
+| register-log             | Description                        | Opis                                   |
+| register-log             | Category                           | Kategoria                              |
+| register-log             | Assumption                         | Założenie                              |
+| register-log             | Constraint                         | Ograniczenie                           |
+| register-log             | Validated By                       | Zweryfikowane przez                    |
+| register-log             | Submitted By                       | Zgłoszone przez                        |
+| register-log             | Decision                           | Decyzja                                |
+| register-log             | Authority                          | Organ decyzyjny                        |
+| register-log             | Recommendation                     | Rekomendacja                           |
+| rules-document           | Purpose                            | Przeznaczenie                          |
+| rules-document           | Sources Of Truth                   | Źródła prawdy                          |
+| rules-document           | Scope                              | Zakres                                 |
+| rules-document           | General Rules                      | Zasady ogólne                          |
+| rules-document           | Exceptions                         | Wyjątki                                |
+| rules-document           | Correct                            | Poprawnie                              |
+| rules-document           | Incorrect                          | Niepoprawnie                           |
+| rules-document           | Example Content                    | Przykład zawartości                    |
+| rules-document           | File Maintenance                   | Utrzymanie plików                      |
+| rules-document           | Verification                       | Weryfikacja                            |
+| status-report            | Reporting Period                   | Okres raportowania                     |
+| status-report            | Overall Status                     | Status ogólny                          |
+| status-report            | Status by Area                     | Status według obszaru                  |
+| status-report            | Schedule                           | Harmonogram                            |
+| status-report            | Budget                             | Budżet                                 |
+| status-report            | Scope                              | Zakres                                 |
+| status-report            | Risk                               | Ryzyko                                 |
+| status-report            | Summary                            | Podsumowanie                           |
+| status-report            | Accomplishments                    | Osiągnięcia                            |
+| status-report            | Milestones                         | Kamienie milowe                        |
+| status-report            | Metrics                            | Mierniki                               |
+| status-report            | Top Risks and Issues               | Najważniejsze ryzyka i problemy        |
+| status-report            | Planned Next Period                | Plan na kolejny okres                  |
+| status-report            | Decisions Needed                   | Wymagane decyzje                       |
+| technical-document       | Purpose                            | Przeznaczenie                          |
+| technical-document       | Overview                           | Przegląd                               |
+| technical-document       | Prerequisites                      | Wymagania wstępne                      |
+| technical-document       | Configuration                      | Konfiguracja                           |
+| technical-document       | Usage                              | Użycie                                 |
+| technical-document       | Examples                           | Przykłady                              |
+| technical-document       | Troubleshooting                    | Rozwiązywanie problemów                |
+| technical-document       | Limitations                        | Ograniczenia                           |
+| technical-document       | References                         | Referencje                             |
+| work-breakdown-structure | Structure                          | Struktura                              |
+| work-breakdown-structure | Work Packages                      | Pakiety robocze                        |
+| work-breakdown-structure | WBS Dictionary                     | Słownik SPP                            |
+| work-breakdown-structure | Acceptance Criteria                | Kryteria akceptacji                    |
+| work-breakdown-structure | Owner                              | Właściciel                             |
+| work-breakdown-structure | Estimate                           | Szacunek                               |
+| work-breakdown-structure | Dependencies                       | Zależności                             |
+| work-breakdown-structure | RACI Matrix                        | Macierz RACI                           |
+| work-breakdown-structure | Baseline                           | Baza                                   |
+
+### Elementy specyficzne dla typu
+
+Niektóre typy dokumentów określają także polskie tytuły, wzorce nagłówków i klucze pól.
+
+| Typ dokumentu            | Element                             | Postać polska                                  |
+|--------------------------|-------------------------------------|------------------------------------------------|
+| changelog-file           | Tytuł H1                            | `# Zmiany`                                     |
+| management-plan          | Wzorzec tytułu H1                   | `# Plan zarządzania <obszarem>`                |
+| project-charter          | Nazwa typu i wzorzec tytułu H1      | `karta projektu`, `# Karta projektu <Nazwa>`   |
+| project-document         | Typowe tytuły dokumentu             | `Projekt rozwiązania`, `Specyfikacja Projektu` |
+| project-document         | Nagłówek grupy wymagań H3           | `Kamień milowy I: ...`                         |
+| project-document         | Wiersz mechanizmów przypadku użycia | `**Wykorzystywane mechanizmy:**`               |
+| project-document         | Klucze tabeli metadanych            | `Nazwa projektu`, `Wersja`                     |
+| register-log             | Tytuł H1 rejestru ryzyk             | `# Rejestr ryzyk`                              |
+| work-breakdown-structure | Nazwa typu i skrót                  | `struktura podziału pracy` (SPP)               |
+
+## Cechy dialektów
+
+Polskie dokumenty formalne często numerują rozdziały i podrozdziały, na przykład `# 1 Podstawowe informacje` i `## 1.1 Cel`.
+
+Mogą też stosować pogrubione pseudo-nagłówki takie jak `**Uwaga**`, `**Ważne**` albo `**Opis:**` zamiast nagłówków sekcji.
+
+Tabela metadanych z pustym wierszem nagłówka może zastępować komentarz wersji w polskiej konwencji dokumentu projektowego.
+
+```markdown
+|                |                          |
+|----------------|--------------------------|
+| Nazwa projektu | Data Integration Service |
+| Wersja         | 1.0.7                    |
+```
+
+Zachowuj te cechy przy redakcji zgodnie z `conventions/markdown-dialects.md`.
+
 ## Tabele
 
 Tabele mają pozostać czytelne w widoku tekstowym, przed przetworzeniem przez przeglądarkę Markdown.
@@ -380,7 +588,7 @@ Nazwy nowych plików dokumentacji zapisuj małymi literami, a wyrazy rozdzielaj 
 
 Nie używaj liter diakrytycznych ani odstępów w nazwach nowych plików.
 
-Nazwy przyjęte umownie zachowuj w formie oryginalnej, na przykład `README.md`.
+Nazwy przyjęte umownie zachowuj w formie oryginalnej, na przykład `README.md`, `CHANGELOG.md` albo `SPECYFIKACJA.md`.
 
 Nazwa pliku ma odpowiadać tematowi dokumentu.
 
@@ -427,3 +635,40 @@ Nowe pliki twórz w kodowaniu UTF-8.
 Nie zmieniaj konwencji istniejącego dokumentu w zakresie numeracji sekcji, numeracji list i sekcji opcjonalnych, o ile żądanie zmiany tego nie obejmuje.
 
 Przy redakcji ograniczaj zmiany do zakresu wynikającego z żądania.
+
+## Frazy aktywujące
+
+Żądania kierowane do tej umiejętności mogą być sformułowane po polsku.
+
+Poniższe frazy aktywują umiejętność tak samo jak ich angielskie odpowiedniki wymienione w `SKILL.md`.
+
+Traktuj żądanie pasujące do frazy z tabeli jako jej angielski odpowiednik.
+
+| Fraza                          | Odpowiednik angielski        |
+|--------------------------------|------------------------------|
+| napisz dokument                | create a document            |
+| utwórz dokument                | create a document            |
+| specyfikacja                   | draft a specification        |
+| projekt rozwiązania            | project document             |
+| dokumentacja techniczna        | technical documentation      |
+| dokumentacja projektu          | project documentation        |
+| artykuł                        | write an article             |
+| notatka                        | quick note                   |
+| popraw tabelę                  | fix this table               |
+| sformatuj tabelę               | format this table            |
+| zaktualizuj dokument           | update this document         |
+| przetłumacz dokument           | translate this document      |
+| dodaj dokument do projektu     | new document in this project |
+| dokument funkcji               | add a feature document       |
+| plan implementacji             | write an implementation plan |
+| napisz ADR                     | write an ADR                 |
+| propozycja rozwiązania         | design proposal              |
+| karta projektu                 | project charter              |
+| rejestr ryzyk                  | risk register                |
+| rejestr interesariuszy         | stakeholder register         |
+| raport o statusie              | status report                |
+| protokół zebrania              | meeting minutes              |
+| plan zarządzania               | management plan              |
+| struktura podziału pracy       | work breakdown structure     |
+| wykryj układ                   | detect document layout       |
+| rozpoznaj strukturę dokumentów | analyze document structure   |

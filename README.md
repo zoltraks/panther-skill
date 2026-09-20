@@ -135,8 +135,9 @@ asked.
 > probability and impact scales, then seed it with three risks - each with an owner and a
 > response strategy.
 
-**Polish article**
-> Napisz artykuł o buforze cyklicznym z przykładem w systemie wbudowanym.
+**Article in Polish**
+> Write a short article in Polish about the ring buffer, with a usage example in an embedded
+> system.
 
 **Convention-preserving edit**
 > Add a new functional requirement and use case to this numbered-chapter project document.
@@ -145,7 +146,7 @@ asked.
 > Fix the formatting of the tables in this document so they align in plain text.
 
 **Quick note**
-> Zapisz notatkę z planowania - trzy punkty i dwie pozycje otwarte.
+> Take a quick planning note in Polish - three discussion points and two open items.
 
 **New page in a documentation project**
 > Add a page documenting the retry helpers to this Sphinx documentation project.
@@ -183,7 +184,7 @@ panther-skill/
 │   └── work-breakdown-structure.md # WBS: decimal outline, dictionary, RACI
 ├── languages/
 │   ├── en.md                     # English baseline: Title Case, vocabulary
-│   └── pl.md                     # Polish baseline: sentence case, diacritics, calques
+│   └── pl.md                     # Polish baseline: style, section names, activation phrases
 ├── scopes/
 │   ├── unstructured-layout.md    # Default scope: no defined organization
 │   ├── agent-skill.md            # Skill repositories: router contract, registration

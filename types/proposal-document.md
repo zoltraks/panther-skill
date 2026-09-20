@@ -80,14 +80,14 @@ afterward, record follow-up work in a `decision-record` or an implementation doc
 
 ## Section Names
 
-| English                 | Polish                   |
-|-------------------------|--------------------------|
-| Status                  | Stan                     |
-| Summary                 | Podsumowanie             |
-| Background              | Tło                      |
-| Proposal                | Propozycja               |
-| Alternatives Considered | Rozważane alternatywy    |
-| Risks and Mitigations   | Ryzyka i środki zaradcze |
-| Open Questions          | Otwarte pytania          |
-| Decision                | Decyzja                  |
-| Reviewers               | Recenzenci               |
+- Status
+- Summary
+- Background
+- Proposal
+- Alternatives Considered
+- Risks and Mitigations
+- Open Questions
+- Decision
+- Reviewers
+
+Polish section names for this document type are declared in `languages/pl.md`.

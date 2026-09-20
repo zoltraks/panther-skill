@@ -28,8 +28,7 @@ is governed - that is this type.
 
 ## Structure
 
-1. H1 title naming the domain - `# Risk Management Plan`, Polish `# Plan
-   zarządzania ryzykiem`.
+1. H1 title naming the domain - `# Risk Management Plan`.
 2. Version comment per the project-document convention.
 3. Purpose - the domain covered and the relationship to the master plan.
 4. Methodology and Approach - how the domain is managed.
@@ -55,16 +54,16 @@ is governed - that is this type.
 
 ## Section Names
 
-| English                    | Polish                   |
-|----------------------------|--------------------------|
-| Methodology                | Metodyka                 |
-| Roles and Responsibilities | Role i odpowiedzialności |
-| Thresholds and Tolerances  | Progi i tolerancje       |
-| Cadence                    | Częstotliwość przeglądów |
-| Process                    | Proces                   |
-| Tools                      | Narzędzia                |
-| Reporting                  | Raportowanie             |
-| Related Plans              | Plany powiązane          |
-| Related Registers          | Powiązane rejestry       |
-| Change Control             | Kontrola zmian           |
-| Master Plan                | Plan główny              |
+- Methodology
+- Roles and Responsibilities
+- Thresholds and Tolerances
+- Cadence
+- Process
+- Tools
+- Reporting
+- Related Plans
+- Related Registers
+- Change Control
+- Master Plan
+
+Polish section names for this document type are declared in `languages/pl.md`.

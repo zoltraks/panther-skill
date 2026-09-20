@@ -49,13 +49,13 @@ The canonical skeleton, adjusted to the request:
 
 ## Section Names
 
-| English        | Polish             |
-|----------------|--------------------|
-| Contents       | Spis treści        |
-| Overview       | Przegląd           |
-| Installation   | Instalacja         |
-| Usage          | Użycie             |
-| Project Layout | Struktura projektu |
-| Documentation  | Dokumentacja       |
-| License        | Licencja           |
-| Credits        | Autorzy            |
+- Contents
+- Overview
+- Installation
+- Usage
+- Project Layout
+- Documentation
+- License
+- Credits
+
+Polish section names for this document type are declared in `languages/pl.md`.

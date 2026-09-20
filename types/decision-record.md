@@ -87,16 +87,16 @@ adjust the naming - the scope wins for placement.
 
 ## Section Names
 
-| English                  | Polish                 |
-|--------------------------|------------------------|
-| Status                   | Stan                   |
-| Context                  | Kontekst               |
-| Decision Drivers         | Czynniki decyzyjne     |
-| Considered Options       | Rozważane opcje        |
-| Decision Outcome         | Wynik decyzji          |
-| Consequences             | Konsekwencje           |
-| Positive Consequences    | Konsekwencje pozytywne |
-| Negative Consequences    | Konsekwencje negatywne |
-| Pros and Cons of Options | Zalety i wady opcji    |
-| Links                    | Linki                  |
-| Supersedes               | Zastępuje              |
+- Status
+- Context
+- Decision Drivers
+- Considered Options
+- Decision Outcome
+- Consequences
+- Positive Consequences
+- Negative Consequences
+- Pros and Cons of Options
+- Links
+- Supersedes
+
+Polish section names for this document type are declared in `languages/pl.md`.

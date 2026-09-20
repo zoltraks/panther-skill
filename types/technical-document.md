@@ -56,14 +56,14 @@ kind and follow the dominant style of that directory.
 
 ## Section Names
 
-| English         | Polish                  |
-|-----------------|-------------------------|
-| Purpose         | Przeznaczenie           |
-| Overview        | Przegląd                |
-| Prerequisites   | Wymagania wstępne       |
-| Configuration   | Konfiguracja            |
-| Usage           | Użycie                  |
-| Examples        | Przykłady               |
-| Troubleshooting | Rozwiązywanie problemów |
-| Limitations     | Ograniczenia            |
-| References      | Referencje              |
+- Purpose
+- Overview
+- Prerequisites
+- Configuration
+- Usage
+- Examples
+- Troubleshooting
+- Limitations
+- References
+
+Polish section names for this document type are declared in `languages/pl.md`.

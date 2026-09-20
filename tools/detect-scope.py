@@ -32,6 +32,7 @@ VERSIONED_DIRS = (
     "standard", "template", "archive", "reference", "skill",
 )
 DOC_SUFFIXES = {".md", ".markdown", ".rst", ".txt"}
+EXTRA_SUFFIXES = {".yaml", ".yml", ".json", ".example"}
 
 
 def walk_files(root: Path):
@@ -263,6 +264,54 @@ def document_census(root: Path, out: list[str]) -> None:
         out.append(f"  {key}: {per}")
 
 
+def docs_subdirs(root: Path, out: list[str]) -> None:
+    docs = root / "docs"
+    if not docs.is_dir():
+        out.append("  docs/ subdirectories: no docs/ directory")
+        return
+    found = []
+    for entry in sorted(docs.iterdir()):
+        if entry.is_dir():
+            count = sum(
+                1 for p in entry.rglob("*")
+                if p.is_file() and p.suffix.lower() in DOC_SUFFIXES
+            )
+            found.append(f"{entry.name}/ ({count} docs)")
+    out.append(f"  docs/ subdirectories: {', '.join(found) if found else 'none'}")
+
+
+def artifact_census(root: Path, out: list[str]) -> None:
+    counts: dict[str, int] = {}
+    for path in walk_files(root):
+        if path.name in MANIFEST_NAMES:
+            continue
+        if path.suffix.lower() not in EXTRA_SUFFIXES:
+            continue
+        top = path.relative_to(root).parts
+        key = top[0] if len(top) > 1 else "(root)"
+        counts[key] = counts.get(key, 0) + 1
+    per = ", ".join(f"{k}={n}" for k, n in sorted(counts.items()))
+    out.append(f"  non-document artifacts: {per if per else 'none'}")
+
+
+def ignored_dirs(root: Path, out: list[str]) -> None:
+    gitignore = root / ".gitignore"
+    found = []
+    if gitignore.is_file():
+        for raw in read_head(gitignore, 400).splitlines():
+            line = raw.strip()
+            if not line or line.startswith(("#", "!")) or "*" in line:
+                continue
+            name = line.rstrip("/").lstrip("/")
+            if not name or "/" in name:
+                continue
+            is_dir = (root / name).is_dir()
+            if not line.endswith("/") and not is_dir:
+                continue
+            found.append(f"{name}/ ({'present' if is_dir else 'absent'})")
+    out.append(f"  ignored directories: {', '.join(found) if found else 'none'}")
+
+
 def main() -> int:
     if len(sys.argv) != 2:
         print("Usage: python detect-scope.py <directory>")
@@ -302,6 +351,12 @@ def main() -> int:
     emit(lines)
     print("document census")
     document_census(root, lines := [])
+    emit(lines)
+    print("directory census")
+    lines = []
+    docs_subdirs(root, lines)
+    artifact_census(root, lines)
+    ignored_dirs(root, lines)
     emit(lines)
     return 0
 

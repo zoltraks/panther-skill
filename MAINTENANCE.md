@@ -100,7 +100,9 @@ Keep `evals/evals.json` prompts in sync with capabilities that change.
 2. Create `templates/<code>/` with one `<type>-template-<code>.md` per document type.
 3. Register both in `SKILL.md` under the `languages/` and `templates/` sections.
 4. Extend the `**Templates**` list in every file under `types/`.
-5. Add the language's trigger phrases to the `SKILL.md` description and Trigger Keywords list.
+5. Declare the language's activation phrases with their English equivalents and its per-type
+   section names inside `languages/<code>.md` - keep `SKILL.md` and the other rule files in
+   English only.
 6. Update the `README.md` directory tree.
 
 ## Adding A Document Type

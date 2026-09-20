@@ -19,7 +19,11 @@ into the working repository's `work/` directory under a `.tmp.` name before use.
 
 If `work/` does not exist, use an existing `temp` or `temporary` directory.
 
-Use the repository root only when none of those directories exists.
+When the project declares a temporary directory - for example `work/` in its guidelines or
+`.gitignore` - that does not exist yet, create it for the copy rather than using the repository
+root.
+
+Use the repository root only when no declared or existing temporary directory applies.
 
 Run the copied scripts only against the document being created or edited.
 
@@ -48,6 +52,9 @@ python tools/check-references.py .
 
 `detect-scope.py` reports a signal census only - the agent maps signals to a scope per
 `process/scope-discovery.md`.
+
+Its directory census also lists `docs/` subdirectories, non-document artifacts such as API
+specifications and configs, and `.gitignore`-declared directories that are absent on disk.
 
 The validators exit `0` when all checks pass and `1` when one or more checks fail.
 

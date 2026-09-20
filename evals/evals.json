@@ -337,6 +337,19 @@
         "Roles and responsibilities name who does what in the domain.",
         "The plan references the risk register instead of duplicating risk entries."
       ]
+    },
+    {
+      "id": 29,
+      "prompt": "Analyze this repository's document layout.",
+      "expected_output": "An inline layout report naming the best-matching scope with its signal basis, matched and missing signals per candidate, document-type classification, declared-but-absent elements, consistency findings, and exceptions.",
+      "files": [],
+      "expectations": [
+        "The agent ran the scope signal census tool on the target directory.",
+        "The verdict names a scope and whether the match is full, partial, or closest.",
+        "Declared-but-absent elements such as a missing declared temporary directory are reported.",
+        "Consistency findings such as version or path drift are reported under exceptions.",
+        "No file was created or modified in the analyzed location."
+      ]
     }
   ]
 }

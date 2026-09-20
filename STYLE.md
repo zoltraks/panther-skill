@@ -25,9 +25,9 @@ sentence per logical line and never hard-wraps.
 | Code And Inline Formatting | 175  | Fences, code spans, and semicolons              |
 | Tables                     | 221  | Source-width alignment and automated formatting |
 | Characters And Language    | 387  | Box-drawing, emoji, and per-language rules      |
-| File References            | 405  | Relative paths and localised resources          |
-| Skill Requirements         | 433  | Frontmatter and progressive disclosure          |
-| Maintenance                | 494  | Pointer to the skill extension rules            |
+| File References            | 417  | Relative paths and localised resources          |
+| Skill Requirements         | 445  | Frontmatter and progressive disclosure          |
+| Maintenance                | 506  | Pointer to the skill extension rules            |
 
 ## Document Structure
 
@@ -403,13 +403,16 @@ Do not use emojis unless explicitly requested.
 
 ## Language
 
-Write documentation in the language used by the project.
+Write the skill's own rule files in English.
+
+Non-English specifications, vocabulary, section names, and activation phrases live in the
+matching `languages/<code>.md` file, which is intentionally written in that language.
+
+Write documentation produced by the skill in the language used by the project.
 
 For English, use Title Case in section names.
 
-For Polish, use sentence case in section names.
-
-For Polish content examples, use "Przykład zawartości" instead of "Content Example".
+For Polish, use sentence case in section names and follow `languages/pl.md`.
 
 ## File References
 

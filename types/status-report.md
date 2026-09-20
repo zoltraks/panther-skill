@@ -50,19 +50,19 @@ reports on a weekly, biweekly, or monthly cadence.
 
 ## Section Names
 
-| English              | Polish                          |
-|----------------------|---------------------------------|
-| Reporting Period     | Okres raportowania              |
-| Overall Status       | Status ogólny                   |
-| Status by Area       | Status według obszaru           |
-| Schedule             | Harmonogram                     |
-| Budget               | Budżet                          |
-| Scope                | Zakres                          |
-| Risk                 | Ryzyko                          |
-| Summary              | Podsumowanie                    |
-| Accomplishments      | Osiągnięcia                     |
-| Milestones           | Kamienie milowe                 |
-| Metrics              | Mierniki                        |
-| Top Risks and Issues | Najważniejsze ryzyka i problemy |
-| Planned Next Period  | Plan na kolejny okres           |
-| Decisions Needed     | Wymagane decyzje                |
+- Reporting Period
+- Overall Status
+- Status by Area
+- Schedule
+- Budget
+- Scope
+- Risk
+- Summary
+- Accomplishments
+- Milestones
+- Metrics
+- Top Risks and Issues
+- Planned Next Period
+- Decisions Needed
+
+Polish section names for this document type are declared in `languages/pl.md`.

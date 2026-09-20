@@ -56,8 +56,10 @@ For edits to existing documents, do not ask.
 The existing document's conventions and the minimal-diff rule provide the answers.
 
 Type-conventional names such as `README.md`, `CHANGELOG.md`, `SPECIFICATION.md`,
-`SPECYFIKACJA.md`, `CHARTER.md`, or `WBS.md` are allowed even though the default naming rule is
+`CHARTER.md`, or `WBS.md` are allowed even though the default naming rule is
 lowercase with underscores.
+
+Conventional names in other languages are declared in the matching `languages/` file.
 
 ## Detection
 

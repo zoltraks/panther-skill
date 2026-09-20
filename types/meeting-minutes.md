@@ -47,18 +47,18 @@ For informal scratch notes use `types/quick-note.md` instead.
 
 ## Section Names
 
-| English         | Polish             |
-|-----------------|--------------------|
-| Meeting Details | Dane zebrania      |
-| Attendees       | Obecni             |
-| Absentees       | Nieobecni          |
-| Agenda          | Porządek obrad     |
-| Discussion      | Dyskusja           |
-| Decisions       | Decyzje            |
-| Action Items    | Elementy działania |
-| Open Questions  | Otwarte pytania    |
-| Next Meeting    | Następne zebranie  |
-| Facilitator     | Prowadzący         |
-| Minute Taker    | Protokolant        |
-| Due Date        | Termin             |
-| Owner           | Właściciel         |
+- Meeting Details
+- Attendees
+- Absentees
+- Agenda
+- Discussion
+- Decisions
+- Action Items
+- Open Questions
+- Next Meeting
+- Facilitator
+- Minute Taker
+- Due Date
+- Owner
+
+Polish section names for this document type are declared in `languages/pl.md`.
