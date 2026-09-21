@@ -140,6 +140,39 @@ When signals conflict, the dominant pattern wins.
 When no pattern is clear, apply the standard ATX dialect to new content and leave existing
 content untouched.
 
+## Embedded Payload Documents
+
+Some documents carry complete documents inside ` ```markdown ` fenced blocks - embedded
+templates, examples, and prompt payloads that readers copy into other files.
+
+The host document and its payloads can legitimately follow different conventions, treat each
+payload as its own dialect region.
+
+Recognize a payload by context: the fence language is `markdown`, the content forms a
+complete document (own headings, lists, tables, sometimes indented code blocks such as
+directory trees), and surrounding prose says the content is copied elsewhere or defines a
+target file.
+
+Inside a payload:
+
+- The payload's own established style is authoritative, not the host document's and not this
+  skill's defaults.
+- Content is opaque unless the user asks for changes inside payloads. In particular,
+  reformat tables inside payloads only on explicit request -
+  `tools/format-table.py --payload-markdown` exists for that case.
+- Wrap payload prose only when the host convention requires it or the user asks, via
+  `tools/wrap-prose.py --payload-markdown`.
+- Payload content can carry real formatting defects (trailing whitespace, lone list markers,
+  merged indented lines). Surface them with `tools/validate-document.py --payload-markdown`.
+- Other fence languages (` ```bash `, ` ```python `, ` ```text `, bare ` ``` `) and indented
+  code blocks are always opaque - they may contain table-like `|` text or prose-like lines
+  that must never be reformatted.
+
+When a document embeds another fenced block inside a payload, the inner fence must use a
+longer marker than the outer one (four backticks inside a three-backtick fence).
+
+Nested fences never nest at the same marker length.
+
 ## Detection Procedure
 
 1. Read the document, or its outline when it is long.

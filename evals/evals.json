@@ -350,6 +350,32 @@
         "Consistency findings such as version or path drift are reported under exceptions.",
         "No file was created or modified in the analyzed location."
       ]
+    },
+    {
+      "id": 30,
+      "prompt": "This repository's STYLE.md requires lines no longer than 100 characters. Rewrap this guideline document so every line fits the limit.",
+      "expected_output": "The same document with prose lines split to fit the width, verified content-identical via the token-stream diff tool.",
+      "files": [],
+      "expectations": [
+        "The agent detected the repository's width convention before wrapping instead of applying the no-hard-wrap default.",
+        "Every line is at most 100 characters after the pass.",
+        "No line contains a lone list marker and no two list items were merged.",
+        "Tables, fenced code blocks, and indented code blocks are unchanged.",
+        "The token-stream diff against the pre-edit baseline reports identical tokens."
+      ]
+    },
+    {
+      "id": 31,
+      "prompt": "Fix the formatting of this guidelines document that embeds complete template documents inside ```markdown code blocks.",
+      "expected_output": "The host document reformatted, with embedded payload documents treated as separate regions and verified intact.",
+      "files": [],
+      "expectations": [
+        "The agent recognized ```markdown fenced blocks as embedded payload documents with their own conventions.",
+        "Tables and prose inside payloads were reformatted only when the request covered them, using --payload-markdown explicitly.",
+        "Indented directory trees inside payloads kept their original line structure.",
+        "Fenced blocks in other languages were left fully opaque.",
+        "The content-integrity check reports no merged lines and no token changes beyond the requested edits."
+      ]
     }
   ]
 }

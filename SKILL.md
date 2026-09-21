@@ -46,9 +46,9 @@ metadata:
 | Conventions             | 300  | Encoding, dialect, and format contract rules  |
 | Templates               | 311  | Per-type, per-language skeletons              |
 | Tools                   | 321  | Detection, formatting, and validation scripts |
-| Evaluation Prompts      | 340  | Behavioral regression prompts                 |
-| Repository Files        | 348  | Housekeeping files governing this repository  |
-| File Handling Contract  | 359  | Byte-level guarantees                         |
+| Evaluation Prompts      | 349  | Behavioral regression prompts                 |
+| Repository Files        | 357  | Housekeeping files governing this repository  |
+| File Handling Contract  | 368  | Byte-level guarantees                         |
 
 You are a Document Authoring Agent.
 
@@ -327,10 +327,19 @@ name before use and remove them when done. See `tools/README.md`.
   trailing whitespace for a file. Run before editing any existing file.
 - **`tools/detect-scope.py`** - Reports which document-scope signals a directory carries and
   counts documents per directory. Run when detecting a layout or discovering a scope.
+- **`tools/wrap-prose.py`** - Splits over-width lines at whitespace without ever joining
+  lines. `--check` reports without writing, `--width N` sets the limit, `--payload-markdown`
+  extends into ` ```markdown ` payload blocks. Use when a repository convention sets a hard
+  line-width limit.
 - **`tools/format-table.py`** - Rebuilds every table with source-width alignment and
-  width-plus-two separators, preserving encoding and line endings.
+  width-plus-two separators, preserving encoding and line endings. `--check` reports without
+  writing, `--payload-markdown` includes tables inside ` ```markdown ` payload blocks.
 - **`tools/validate-document.py`** - Mechanical checker covering the scriptable items of
-  `process/document-checklist.md`.
+  `process/document-checklist.md`. `--width N` flags over-width lines, `--payload-markdown`
+  applies curated checks inside ` ```markdown ` payload blocks.
+- **`tools/diff-content.py`** - Compares a document's normalized token stream against `HEAD`
+  or a `--baseline` file to prove a formatting-only pass changed no words, and warns on
+  possible merged lines.
 - **`tools/validate-skill.py`** - Skill-maintenance validator for frontmatter, disclosure
   limits, and root references. Run from the Panther repository only.
 - **`tools/check-references.py`** - Relative-reference integrity checker for `SKILL.md` and

@@ -80,6 +80,13 @@ Then identify the Markdown dialect of the document per `conventions/markdown-dia
 Dialect signals include heading style, section numbering, list markers, table shape, and embedded
 HTML artifacts.
 
+Identify embedded payload documents the same way - ` ```markdown ` fenced blocks that carry
+complete documents are separate dialect regions with their own conventions.
+
+When the task involves reformatting or wrapping, check the repository's own style rules for a
+hard line-width limit before touching the document - a `STYLE.md` or equivalent guideline
+overrides the no-hard-wrap default of the language files.
+
 ## Scope Detection
 
 When the task touches a project or repository, detect the document scope before selecting rules:
@@ -164,13 +171,24 @@ removing a document.
 Apply the language file rules to the content you write even inside a dialect document - sentence
 shape, vocabulary, and terminology still follow the language rules.
 
+For a requested reformatting, prefer the dedicated tools over hand edits:
+`tools/wrap-prose.py --width N` wraps prose and never joins lines, `tools/format-table.py`
+realigns tables.
+
+Pass `--payload-markdown` to either tool only when the request covers embedded payload
+documents - payload content stays opaque otherwise.
+
 ## Validation
 
 Before delivering, run the checks from `process/document-checklist.md`:
 
 - Mechanical self-review of the written content.
-- `tools/format-table.py` on the file when it contains tables.
-- `tools/validate-document.py` on the file.
+- `tools/format-table.py --check` on the file when it contains tables.
+- `tools/wrap-prose.py --check --width N` when the document follows a width convention.
+- `tools/validate-document.py` on the file, with `--payload-markdown` when the document embeds
+  ` ```markdown ` payload blocks.
+- `tools/diff-content.py` after any formatting-only pass - the token stream must be identical
+  to the pre-edit baseline and no merged-line warnings may remain.
 - `git diff --check` when working inside a repository.
 
 A failing check must be fixed or explicitly reported to the user with a reason.

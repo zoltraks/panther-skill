@@ -198,7 +198,7 @@ panther-skill/
 │   └── gitbook-site.md           # GitBook projects: SUMMARY.md registration
 ├── conventions/
 │   ├── file-encoding.md          # UTF-8 default, UTF-16/UCS-2, code pages, line endings
-│   ├── markdown-dialects.md      # ATX, setext, numbered chapters, frontmatter
+│   ├── markdown-dialects.md      # ATX, setext, numbered chapters, frontmatter, payloads
 │   ├── rst-documents.md          # reStructuredText minimal-edit contract
 │   └── asciidoc-documents.md     # AsciiDoc minimal-edit contract
 ├── templates/
@@ -207,8 +207,10 @@ panther-skill/
 ├── tools/
 │   ├── detect-encoding.py        # BOM, encoding, and line-ending detection
 │   ├── detect-scope.py           # Document-scope signal census
+│   ├── wrap-prose.py             # Split-only line wrapper for width conventions
 │   ├── format-table.py           # Source-width table formatter
 │   ├── validate-document.py      # Mechanical document checker
+│   ├── diff-content.py           # Token-stream content-integrity diff
 │   ├── validate-skill.py         # Skill metadata and disclosure validator
 │   ├── check-references.py       # Root reference integrity checker
 │   └── README.md                 # Tool classes, commands, and limits

@@ -7,11 +7,20 @@ repository root when no `work/` exists) as `format-table.tmp.py`, run it
 on the document file, verify that all `|` separators align vertically, then
 remove the copy.
 
-Usage: python format-table.py <document.md>
+Usage: python format-table.py <document.md> [--check] [--payload-markdown]
+
+  --check              report tables that would be reformatted and exit 1,
+                       without writing the file
+  --payload-markdown   also format tables inside ```markdown fenced blocks
+                       (embedded payload documents); other fence languages
+                       always stay opaque
 """
 
+import argparse
 import re
 import sys
+
+FENCE = re.compile(r"^\s*(`{3,})\s*(\w*)")
 
 
 def decode(raw):
@@ -30,7 +39,34 @@ def is_sep(cells):
     return len(cells) > 0 and all(set(c) <= set("-:") and "-" in c for c in cells)
 
 
-def main(path):
+def format_block(block):
+    rows = [parse_row(l) for l in block]
+    ncols = max(len(r) for r in rows)
+    rows = [r + [""] * (ncols - len(r)) for r in rows]
+    widths = [1] * ncols
+    for r in rows:
+        if is_sep(r):
+            continue
+        for j, c in enumerate(r):
+            widths[j] = max(widths[j], len(c))
+    out = []
+    for r in rows:
+        if is_sep(r):
+            out.append("|" + "|".join("-" * (w + 2) for w in widths) + "|")
+        else:
+            out.append(
+                "| " + " | ".join(c.ljust(widths[j]) for j, c in enumerate(r)) + " |"
+            )
+    return out
+
+
+def in_payload(fences, payload_markdown):
+    return payload_markdown and bool(fences) and all(
+        lang == "markdown" for _, lang in fences
+    )
+
+
+def main(path, check_only, payload_markdown):
     raw = open(path, "rb").read()
     crlf = b"\r\n" in raw
     try:
@@ -42,44 +78,44 @@ def main(path):
     lines = text.replace("\r\n", "\n").split("\n")
 
     out, i, tables = [], 0, 0
-    in_fence = False
-    fence_len = 0
+    fences = []
+    changed = []
     while i < len(lines):
         line = lines[i]
-        fence = re.match(r"^\s*(`{3,})", line)
+        fence = FENCE.match(line)
         if fence:
             marker = len(fence.group(1))
-            if not in_fence:
-                fence_len = marker
-                in_fence = True
-            elif marker >= fence_len:
-                in_fence = False
+            if fences and marker >= fences[-1][0]:
+                fences.pop()
+            else:
+                fences.append((marker, fence.group(2)))
             out.append(line)
             i += 1
             continue
-        if not in_fence and line.startswith("|"):
+        if (not fences or in_payload(fences, payload_markdown)) \
+                and line.startswith("|"):
             block = []
+            start = i
             while i < len(lines) and lines[i].startswith("|"):
                 block.append(lines[i])
                 i += 1
-            rows = [parse_row(l) for l in block]
-            ncols = max(len(r) for r in rows)
-            rows = [r + [""] * (ncols - len(r)) for r in rows]
-            widths = [1] * ncols
-            for r in rows:
-                if is_sep(r):
-                    continue
-                for j, c in enumerate(r):
-                    widths[j] = max(widths[j], len(c))
-            for r in rows:
-                if is_sep(r):
-                    out.append("|" + "|".join("-" * (w + 2) for w in widths) + "|")
-                else:
-                    out.append("| " + " | ".join(c.ljust(widths[j]) for j, c in enumerate(r)) + " |")
+            formatted = format_block(block)
+            if formatted != block:
+                changed.append(start + 1)
+            out.extend(formatted)
             tables += 1
         else:
             out.append(line)
             i += 1
+
+    if check_only:
+        for n in changed:
+            print(f"line {n}: table would be reformatted")
+        if changed:
+            print(f"{len(changed)} table(s) need formatting")
+            return 1
+        print(f"PASS {path}: {tables} table(s) already aligned")
+        return 0
 
     eol = "\r\n" if crlf else "\n"
     open(path, "wb").write(eol.join(out).encode(encoding))
@@ -88,4 +124,11 @@ def main(path):
 
 
 if __name__ == "__main__":
-    raise SystemExit(main(sys.argv[1]))
+    parser = argparse.ArgumentParser(
+        description="Format Markdown tables with source-width alignment."
+    )
+    parser.add_argument("file")
+    parser.add_argument("--check", action="store_true")
+    parser.add_argument("--payload-markdown", action="store_true")
+    parsed = parser.parse_args()
+    raise SystemExit(main(parsed.file, parsed.check, parsed.payload_markdown))

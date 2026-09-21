@@ -20,26 +20,26 @@ Zasady opisane poniżej stosują się również do samego tego dokumentu.
 
 | Sekcja                             | Wiersz | Zakres                                      |
 |------------------------------------|--------|---------------------------------------------|
-| Struktura dokumentu                | 41     | Tytuł, cel i układ dokumentu                |
-| Nagłówki                           | 59     | Wielkość liter i kwalifikatory              |
-| Numeracja sekcji                   | 91     | Zasady numerowania sekcji                   |
-| Zasady spisu treści                | 103    | Kiedy dodawać spis treści                   |
-| Akapity i zdania                   | 117    | Budowa zdań i akapitów                      |
-| Zawijanie wierszy                  | 131    | Wiersze logiczne i twarde łamania           |
-| Listy                              | 141    | Punktory, numeracja i odstępy               |
-| Puste wiersze i odstępy            | 163    | Zasady odstępów                             |
-| Bloki kodu                         | 177    | Ogrodzenia, znaczniki i kod liniowy         |
-| Formatowanie w treści              | 187    | Cudzysłowy, pogrubienia i kursywa           |
-| Średniki                           | 203    | Zakaz średników w tekście                   |
-| Znaki specjalne                    | 229    | Znaki ramek i emoji                         |
-| Słownictwo polskie                 | 237    | Preferowane terminy i kalki                 |
-| Nazwy sekcji według typu dokumentu | 263    | Polskie nazwy sekcji i elementy typów       |
-| Cechy dialektów                    | 451    | Numeracja rozdziałów i pseudo-nagłówki      |
-| Tabele                             | 468    | Wyrównanie według źródła                    |
-| Nazwy plików                       | 582    | Nazywanie nowych plików dokumentacji        |
-| Przykład                           | 592    | Przykład poprawny i niepoprawny             |
-| Utrzymanie plików                  | 626    | Kodowanie i złamania wierszy                |
-| Frazy aktywujące                   | 636    | Polskie frazy i ich angielskie odpowiedniki |
+| Struktura dokumentu                | 44     | Tytuł, cel i układ dokumentu                |
+| Nagłówki                           | 62     | Wielkość liter i kwalifikatory              |
+| Numeracja sekcji                   | 94     | Zasady numerowania sekcji                   |
+| Zasady spisu treści                | 106    | Kiedy dodawać spis treści                   |
+| Akapity i zdania                   | 120    | Budowa zdań i akapitów                      |
+| Zawijanie wierszy                  | 134    | Wiersze logiczne i twarde łamania           |
+| Listy                              | 148    | Punktory, numeracja i odstępy               |
+| Puste wiersze i odstępy            | 170    | Zasady odstępów                             |
+| Bloki kodu                         | 184    | Ogrodzenia, znaczniki i kod liniowy         |
+| Formatowanie w treści              | 198    | Cudzysłowy, pogrubienia i kursywa           |
+| Średniki                           | 214    | Zakaz średników w tekście                   |
+| Znaki specjalne                    | 240    | Znaki ramek i emoji                         |
+| Słownictwo polskie                 | 248    | Preferowane terminy i kalki                 |
+| Nazwy sekcji według typu dokumentu | 274    | Polskie nazwy sekcji i elementy typów       |
+| Cechy dialektów                    | 462    | Numeracja rozdziałów i pseudo-nagłówki      |
+| Tabele                             | 479    | Wyrównanie według źródła                    |
+| Nazwy plików                       | 593    | Nazywanie nowych plików dokumentacji        |
+| Przykład                           | 603    | Przykład poprawny i niepoprawny             |
+| Utrzymanie plików                  | 637    | Kodowanie i złamania wierszy                |
+| Frazy aktywujące                   | 647    | Polskie frazy i ich angielskie odpowiedniki |
 
 ## Struktura dokumentu
 
@@ -140,6 +140,10 @@ Każde zdanie zajmuje jeden wiersz logiczny.
 Zdanie może być długie, gdy myśl jest długa, edytor lub przeglądarka zawinie tekst przy wyświetlaniu.
 
 Wstawiaj twarde złamanie wiersza tylko wtedy, gdy wymaga tego sama treść źródłowa, na przykład w bloku kodu lub w diagramie.
+
+Wyjątek: gdy własne reguły repozytorium narzucają twardy limit, na przykład `STYLE.md` wymagający wierszy nie dłuższych niż 100 znaków, wykryj tę konwencję przed formatowaniem i zastosuj `tools/wrap-prose.py --width N`.
+
+Narzędzie tylko dzieli wiersze - nigdy ich nie łączy i nie rusza tabel, bloków kodu ani wciętych bloków kodu.
 
 ## Listy
 

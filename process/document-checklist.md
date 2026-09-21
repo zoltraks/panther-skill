@@ -29,6 +29,9 @@ Fix every failure, or report it to the user with a reason.
 - No two consecutive blank lines exist anywhere.
 - No line ends with a whitespace character.
 - No blank line sits as the first or last line inside a fenced code block.
+- No line carries a lone list marker without content.
+- **Existing:** lines respect the document's width convention when one exists - verified with
+  `tools/wrap-prose.py --check --width N`, otherwise one logical line per sentence applies.
 
 ## Characters
 
@@ -73,6 +76,17 @@ Fix every failure, or report it to the user with a reason.
 - **Existing:** the file keeps its original encoding, byte order mark, and line-ending style.
 - **Existing:** the diff is limited to the requested scope.
 
+## Embedded Payloads
+
+- ` ```markdown ` payload blocks were treated as separate dialect regions - the payload's own
+  style was preserved.
+- Payload content stayed opaque unless the request covered it - tables and prose inside
+  payloads were reformatted only through the `--payload-markdown` tools on explicit request.
+- Indented code blocks inside payloads, such as directory trees, kept their original line
+  structure.
+- **Existing:** a formatting-only pass changed no words - `tools/diff-content.py` reports a
+  token stream identical to the baseline with no merged-line warnings.
+
 ## Project Scope
 
 - The detected or named scope was reported, `unstructured-layout` when nothing matched.
@@ -84,6 +98,8 @@ Fix every failure, or report it to the user with a reason.
 
 ## Final Pass
 
-- `tools/validate-document.py` reports no failures on the written file.
+- `tools/validate-document.py` reports no failures on the written file, run with
+  `--payload-markdown` when the document embeds ` ```markdown ` blocks.
+- `tools/diff-content.py` reports an identical token stream after formatting-only passes.
 - `git diff --check` reports no whitespace errors when inside a repository.
 - Temporary `.tmp.` tool copies are removed from the working repository.
