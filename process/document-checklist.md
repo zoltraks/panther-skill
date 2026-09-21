@@ -47,6 +47,8 @@ Fix every failure, or report it to the user with a reason.
 - Task lists use `- [ ]` and `- [x]`.
 - Every fenced code block carrying code in a programming, markup, or data language has a language
   tag.
+- Fenced blocks carrying plain text, directory trees, diagrams, console output, or tables have no
+  language tag.
 
 ## Tables
 

@@ -179,7 +179,11 @@ Nie zostawiaj znaków odstępu na końcu wiersza.
 
 ## Bloki kodu
 
-Każdy blok kodu ogradzaj trzema znakami odwróconego apostrofu i podawaj znacznik języka.
+Każdy blok kodu ogradzaj trzema znakami odwróconego apostrofu.
+
+Podawaj znacznik języka tylko wtedy, gdy blok zawiera kod w języku programowania, znaczników lub danych.
+
+Bloki ze zwykłym tekstem, drzewami katalogów, diagramami, wynikami konsoli lub tabelami pozostawiaj bez znacznika.
 
 Nie zostawiaj pustego wiersza jako pierwszego ani jako ostatniego wiersza wewnątrz bloku.
 

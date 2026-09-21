@@ -176,7 +176,11 @@ Do not leave whitespace characters at the end of a line.
 
 ## Code Blocks
 
-Fence every code block with three backticks and provide a language tag.
+Fence every code block with three backticks.
+
+Provide a language tag only when the block contains code in a programming, markup, or data language.
+
+Leave blocks that contain plain text, directory trees, diagrams, console output, or tables untagged.
 
 Do not leave a blank line as the first or the last line inside the block.
 

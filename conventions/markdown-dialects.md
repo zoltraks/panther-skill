@@ -21,7 +21,7 @@ The default dialect for new documents.
 - ATX headings (`#`, `##`, `###`), never deeper than H3.
 - Hyphen (`-`) bullets.
 - Pipe tables aligned by source width.
-- Fenced code blocks with language tags.
+- Fenced code blocks with language tags for code in a programming, markup, or data language, untagged for plain text.
 
 This is the dialect the `languages/` files define.
 
