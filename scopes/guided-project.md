@@ -120,4 +120,4 @@ project.
 | `docs/archive/`                                                                                  | Frozen snapshots - never edit                           |
 | `CHANGELOG.md`                                                                                   | `changelog-file` type                                   |
 | `COPYRIGHTS.md`, `LICENSE.md`                                                                    | Verbatim legal text - preserve, never restyle           |
-| `README.md`                                                                                      | `readme-file` type                                      |
+| `README.md`                                                                                      | `readme-application` type                               |

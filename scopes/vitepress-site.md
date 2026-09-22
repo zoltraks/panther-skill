@@ -76,7 +76,7 @@ suggests.
 |------------------------------|--------------------------------------------|
 | Doc pages                    | `technical-document` type                  |
 | Tutorials, guides            | `article-text` type                        |
-| `index.md` homepage          | `readme-file` type or home frontmatter     |
+| `index.md` homepage          | `readme-docs` type or home frontmatter     |
 | `.vitepress/config.*`        | Build configuration - edit only when asked |
 | `.vitepress/cache/`, `dist/` | Generated output - never edit              |
 

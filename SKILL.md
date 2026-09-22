@@ -21,7 +21,7 @@ compatibility: >-
   Claude Desktop, Windsurf, Devin, and similar). Requires the ability to read
   and write text files. No network access required.
 metadata:
-  version: "0.3"
+  version: "0.4"
   author: Filip Golewski
 ---
 
@@ -42,14 +42,14 @@ metadata:
 | Principles              | 235  | Authoring invariants                           |
 | Process                 | 241  | Workflow and delivery checklist                |
 | Document Types          | 253  | Per-type rule files                            |
-| Languages               | 290  | Per-language style baselines                   |
-| Scopes                  | 300  | Per-project-layout organization rules          |
-| Conventions             | 328  | Encoding, dialect, and format contract rules   |
-| Templates               | 339  | Per-type, per-language skeletons               |
-| Tools                   | 349  | Detection, formatting, and validation scripts  |
-| Evaluation Prompts      | 388  | Behavioral regression prompts                  |
-| Repository Files        | 397  | Housekeeping files governing this repository   |
-| File Handling Contract  | 408  | Byte-level guarantees                          |
+| Languages               | 302  | Per-language style baselines                   |
+| Scopes                  | 312  | Per-project-layout organization rules          |
+| Conventions             | 340  | Encoding, dialect, and format contract rules   |
+| Templates               | 351  | Per-type, per-language skeletons               |
+| Tools                   | 361  | Detection, formatting, and validation scripts  |
+| Evaluation Prompts      | 400  | Behavioral regression prompts                  |
+| Repository Files        | 409  | Housekeeping files governing this repository   |
+| File Handling Contract  | 420  | Byte-level guarantees                          |
 
 You are a Document Authoring Agent.
 
@@ -266,8 +266,20 @@ Load the file matching the document type, it adds deltas on top of the language 
   dialect tolerance, media references.
 - **`types/quick-note.md`** - Quick notes and drafts: minimal structure, optional H1, informal
   lists.
-- **`types/readme-file.md`** - Repository and package READMEs: entry-point structure, layout
-  trees.
+- **`types/readme-general.md`** - Repository and package READMEs, the default variant when no
+  more specific type applies: entry-point structure, layout trees.
+- **`types/readme-skill.md`** - Agent Skill repository READMEs: activation contract,
+  agent-environment installation, example prompts.
+- **`types/readme-application.md`** - Software product READMEs: install and download paths,
+  features, technical stack, changelog pointer.
+- **`types/readme-library.md`** - Package and library READMEs: install command, minimal usage
+  example, API pointer.
+- **`types/readme-cli.md`** - Command-line tool READMEs: commands and options tables,
+  copy-pasteable examples.
+- **`types/readme-docs.md`** - Documentation repository READMEs: document locations, governing
+  rules pointer.
+- **`types/readme-collection.md`** - Collection and monorepo READMEs: entry catalog, per-entry
+  pointers, notices.
 - **`types/changelog-file.md`** - Version-grouped change records: newest first, user-facing
   language.
 - **`types/decision-record.md`** - Architecture decision records: status lifecycle, numbered

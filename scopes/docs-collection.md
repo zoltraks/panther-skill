@@ -77,4 +77,4 @@ Content documents follow the repository's own style documents when it defines th
 | `docs/archive/` documents                     | Frozen snapshots - never edit                    |
 | `STYLE.md`, `TABLE.md`                        | `rules-document` type                            |
 | `PREPARATION.md`, `BENCHMARK.md`, `ALWAYS.md` | `technical-document` type                        |
-| `README.md`                                   | `readme-file` type                               |
+| `README.md`                                   | `readme-docs` type                               |

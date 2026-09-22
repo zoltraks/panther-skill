@@ -68,7 +68,7 @@ Keep `evals/evals.json` prompts in sync with capabilities that change.
 | File                                          | Handling                                            |
 |-----------------------------------------------|-----------------------------------------------------|
 | `SKILL.md`                                    | Router document - governed by this scope's contract |
-| `README.md`                                   | `readme-file` type                                  |
+| `README.md`                                   | `readme-skill` type                                 |
 | Rule and topic files                          | `technical-document` or `rules-document` type       |
 | `MAINTENANCE.md`, `STYLE.md`, `VERSIONING.md` | `rules-document` type                               |
 | `LICENSE`                                     | Verbatim legal text - preserve, never restyle       |

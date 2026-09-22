@@ -76,7 +76,7 @@ Never reorder unrelated `nav` entries, the nav order defines the site's reading 
 |----------------------------|--------------------------------------------|
 | Topic and guide pages      | `technical-document` type                  |
 | Tutorials, narrative pages | `article-text` type                        |
-| `docs/index.md`            | `readme-file` type - the site landing page |
+| `docs/index.md`            | `readme-docs` type - the site landing page |
 | `mkdocs.yml`               | Build configuration - nav edits only       |
 | `site/` directory          | Generated output - never edit              |
 

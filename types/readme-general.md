@@ -1,10 +1,19 @@
-# README Document
+# General README
 
 ## Purpose
 
-> **Scope:** Conventions for repository and package `README.md` files - the entry point that
-> orients a reader in the project
+> **Scope:** Conventions for repository and package `README.md` files with no more specific
+> variant - the default README type and the entry point that orients a reader in the project
 > **Key items:** title, purpose, contents, usage, license, conventional filename
+
+| Out of scope                    | See instead                   |
+|---------------------------------|-------------------------------|
+| Agent skill repository README   | `types/readme-skill.md`       |
+| Software product README         | `types/readme-application.md` |
+| Package and library README      | `types/readme-library.md`     |
+| Command-line tool README        | `types/readme-cli.md`         |
+| Documentation repository README | `types/readme-docs.md`        |
+| Collection and monorepo README  | `types/readme-collection.md`  |
 
 A README is the first document a reader opens.
 
@@ -15,12 +24,18 @@ directory tree, license - like this skill's own `README.md`.
 
 ## When To Use
 
-Use for the root `README.md` of a repository and for package-level READMEs in subdirectories.
+Use for the root `README.md` of a repository and for package-level READMEs in subdirectories
+when no more specific README variant applies.
+
+The detected scope selects the variant - see `process/document-workflow.md`.
+
+When the scope gives no signal and the request does not name a variant, ask the user or fall
+back to this general type.
 
 **Templates**
 
-- `templates/en/readme-file-template-en.md`
-- `templates/pl/readme-file-template-pl.md`
+- `templates/en/readme-general-template-en.md`
+- `templates/pl/readme-general-template-pl.md`
 
 The filename is always `README.md` - a type-conventional name that overrides the lowercase naming
 rule.

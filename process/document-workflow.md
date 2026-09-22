@@ -54,6 +54,12 @@ If the user accepts the defaults or says "bypass", proceed immediately.
 
 If the user chooses to configure, ask only the unresolved parameter questions.
 
+README documents resolve their variant through the detected scope's Document Types table -
+`types/readme-general.md` is the fallback.
+
+When the scope gives no signal and the request does not name a variant, ask the user which
+README variant applies.
+
 For edits to existing documents, do not ask.
 
 The existing document's conventions and the minimal-diff rule provide the answers.
@@ -141,8 +147,9 @@ Load rule files in this order:
    request names a scope. The scope file governs placement, filename conventions, and
    registration side effects, it never replaces the language baseline for prose style, and the
    document's own conventions still win on edit.
-4. **`conventions/file-encoding.md`** - load when the document encoding is not UTF-8, when the request
-   involves encoding or code pages, or when detection reports an unexpected result.
+4. **`conventions/file-encoding.md`** - load when the document encoding is not UTF-8, when
+   the request involves encoding or code pages, or when detection reports an unexpected
+   result.
 5. **`conventions/markdown-dialects.md`** - load when the document uses a non-default dialect or
    when the request involves reformatting.
 6. **`conventions/rst-documents.md`** - load when the task touches an `.rst` file or when a scope

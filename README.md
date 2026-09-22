@@ -19,9 +19,9 @@
 | Core Principles     | 341  | Convention preservation and minimal diffs  |
 | When To Use         | 352  | Supported requests and exclusions          |
 | What's Inside       | 387  | Rule files, templates, tools, and evals    |
-| Verification        | 470  | Skill-maintenance checks                   |
-| License             | 477  | License for the skill itself               |
-| Credits             | 483  | Methodology and example sources            |
+| Verification        | 476  | Skill-maintenance checks                   |
+| License             | 483  | License for the skill itself               |
+| Credits             | 489  | Methodology and example sources            |
 
 ## Overview
 
@@ -406,7 +406,13 @@ panther-skill/
 │   ├── format-specification.md   # Format specs: version history, field tables
 │   ├── article-text.md           # Prose documents: narrative, dialect tolerance
 │   ├── quick-note.md             # Quick notes: minimal structure
-│   ├── readme-file.md            # Repository READMEs
+│   ├── readme-general.md         # Default repository README variant
+│   ├── readme-skill.md           # Agent skill repository READMEs
+│   ├── readme-application.md     # Software product READMEs
+│   ├── readme-library.md         # Package and library READMEs
+│   ├── readme-cli.md             # Command-line tool READMEs
+│   ├── readme-docs.md            # Documentation repository READMEs
+│   ├── readme-collection.md      # Collection and monorepo READMEs
 │   ├── changelog-file.md         # Version-grouped change records
 │   ├── decision-record.md        # ADRs: status lifecycle, numbered records
 │   ├── proposal-document.md      # RFCs: review states, open questions
@@ -436,8 +442,8 @@ panther-skill/
 │   ├── rst-documents.md          # reStructuredText minimal-edit contract
 │   └── asciidoc-documents.md     # AsciiDoc minimal-edit contract
 ├── templates/
-│   ├── en/                       # Sixteen English skeletons, <type>-template-en.md
-│   └── pl/                       # Sixteen Polish skeletons, <type>-template-pl.md
+│   ├── en/                       # Twenty-two English skeletons, <type>-template-en.md
+│   └── pl/                       # Twenty-two Polish skeletons, <type>-template-pl.md
 ├── tools/
 │   ├── detect-encoding.py        # BOM, encoding, and line-ending detection
 │   ├── detect-scope.py           # Document-scope signal census

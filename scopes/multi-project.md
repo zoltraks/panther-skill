@@ -55,7 +55,7 @@ siblings.
 
 | Location                 | Handling                                            |
 |--------------------------|-----------------------------------------------------|
-| Root `README.md`         | `readme-file` type - often minimal link lists       |
+| Root `README.md`         | `readme-collection` type - often minimal link lists |
 | Root `docs/` documents   | Per-document classification, cross-project material |
 | Subproject documents     | Per the subproject's own detected scope             |
 | Undocumented subprojects | `unstructured-layout` rules                         |

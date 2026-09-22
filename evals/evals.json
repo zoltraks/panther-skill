@@ -103,6 +103,7 @@
       "files": [],
       "expectations": [
         "The agent reported the unstructured-layout scope.",
+        "The agent resolved the README type as readme-general or asked which README variant applies.",
         "No index, router, or registry file was created or modified.",
         "The filename follows the language file naming rules or a type-conventional name."
       ]
@@ -440,6 +441,40 @@
         "Abbreviations such as e.g. and periods inside inline code spans were not treated as boundaries.",
         "List items and their continuation lines kept their packed-sentence convention.",
         "Fenced blocks and embedded payloads were left opaque."
+      ]
+    },
+    {
+      "id": 37,
+      "prompt": "Create a README for this agent skill repository.",
+      "expected_output": "A README.md following the readme-skill variant: what the skill does, per-agent installation paths, example prompts, and a directory tree of skill resources.",
+      "files": [],
+      "expectations": [
+        "The agent detected the agent-skill scope and selected the readme-skill variant.",
+        "The README contains an Installation section naming concrete skills directories for agent environments.",
+        "The README lists example prompts that activate the skill.",
+        "The README carries a directory tree of the skill's resource files."
+      ]
+    },
+    {
+      "id": 38,
+      "prompt": "Write a README for this command-line tool repository. It has no documentation layout.",
+      "expected_output": "A README.md following the readme-cli variant with commands and options tables and copy-pasteable examples, or a clarifying question about which README variant applies.",
+      "files": [],
+      "expectations": [
+        "The agent selected the readme-cli variant from the request or asked which README variant applies.",
+        "Commands and options appear in tables with names in inline code.",
+        "Examples are real, copy-pasteable invocations."
+      ]
+    },
+    {
+      "id": 39,
+      "prompt": "Create a README for this documentation-only repository whose documents live in docs/.",
+      "expected_output": "A README.md following the readme-docs variant stating what the documents cover, where they live, and pointing to the governing rules document.",
+      "files": [],
+      "expectations": [
+        "The agent detected the docs-collection scope or selected the readme-docs variant.",
+        "The README states where documents live and points to the governing rules document instead of restating rules.",
+        "No install or usage sections were added for a repository that ships no tooling."
       ]
     }
   ]

@@ -371,14 +371,65 @@ Dobieraj polską nazwę sekcji według typu dokumentu z poniższej tabeli.
 | proposal-document        | Open Questions                     | Otwarte pytania                        |
 | proposal-document        | Decision                           | Decyzja                                |
 | proposal-document        | Reviewers                          | Recenzenci                             |
-| readme-file              | Contents                           | Spis treści                            |
-| readme-file              | Overview                           | Przegląd                               |
-| readme-file              | Installation                       | Instalacja                             |
-| readme-file              | Usage                              | Użycie                                 |
-| readme-file              | Project Layout                     | Struktura projektu                     |
-| readme-file              | Documentation                      | Dokumentacja                           |
-| readme-file              | License                            | Licencja                               |
-| readme-file              | Credits                            | Autorzy                                |
+| readme-application       | Contents                           | Spis treści                            |
+| readme-application       | Overview                           | Przegląd                               |
+| readme-application       | Download                           | Pobieranie                             |
+| readme-application       | Installation                       | Instalacja                             |
+| readme-application       | Project Status                     | Status projektu                        |
+| readme-application       | Technical Stack                    | Stos technologiczny                    |
+| readme-application       | Features                           | Funkcje                                |
+| readme-application       | Quick Start                        | Szybki start                           |
+| readme-application       | Usage                              | Użycie                                 |
+| readme-application       | Configuration                      | Konfiguracja                           |
+| readme-application       | Repository Structure               | Struktura repozytorium                 |
+| readme-application       | Documentation                      | Dokumentacja                           |
+| readme-application       | Changelog                          | Dziennik zmian                         |
+| readme-application       | License                            | Licencja                               |
+| readme-application       | Credits                            | Autorzy                                |
+| readme-cli               | Overview                           | Przegląd                               |
+| readme-cli               | Install                            | Instalacja                             |
+| readme-cli               | Commands                           | Polecenia                              |
+| readme-cli               | Options                            | Opcje                                  |
+| readme-cli               | Examples                           | Przykłady                              |
+| readme-cli               | Configuration                      | Konfiguracja                           |
+| readme-cli               | License                            | Licencja                               |
+| readme-collection        | Overview                           | Przegląd                               |
+| readme-collection        | About This Repository              | O tym repozytorium                     |
+| readme-collection        | Contents                           | Spis treści                            |
+| readme-collection        | Usage                              | Użycie                                 |
+| readme-collection        | Notices                            | Uwagi                                  |
+| readme-collection        | License                            | Licencja                               |
+| readme-collection        | Credits                            | Autorzy                                |
+| readme-docs              | Overview                           | Przegląd                               |
+| readme-docs              | Documentation                      | Dokumentacja                           |
+| readme-docs              | Project Guidelines                 | Zasady projektu                        |
+| readme-docs              | Repository Layout                  | Struktura repozytorium                 |
+| readme-docs              | License                            | Licencja                               |
+| readme-general           | Contents                           | Spis treści                            |
+| readme-general           | Overview                           | Przegląd                               |
+| readme-general           | Installation                       | Instalacja                             |
+| readme-general           | Usage                              | Użycie                                 |
+| readme-general           | Project Layout                     | Struktura projektu                     |
+| readme-general           | Documentation                      | Dokumentacja                           |
+| readme-general           | License                            | Licencja                               |
+| readme-general           | Credits                            | Autorzy                                |
+| readme-library           | Install                            | Instalacja                             |
+| readme-library           | Usage                              | Użycie                                 |
+| readme-library           | API Reference                      | Dokumentacja API                       |
+| readme-library           | Configuration                      | Konfiguracja                           |
+| readme-library           | Contributing                       | Współpraca                             |
+| readme-library           | License                            | Licencja                               |
+| readme-skill             | Contents                           | Spis treści                            |
+| readme-skill             | Overview                           | Przegląd                               |
+| readme-skill             | What The Skill Does                | Możliwości                             |
+| readme-skill             | Installation                       | Instalacja                             |
+| readme-skill             | Agent Environments                 | Środowiska agentów                     |
+| readme-skill             | Usage                              | Użycie                                 |
+| readme-skill             | Example Prompts                    | Przykładowe polecenia                  |
+| readme-skill             | What's Inside                      | Zawartość                              |
+| readme-skill             | Verification                       | Weryfikacja                            |
+| readme-skill             | License                            | Licencja                               |
+| readme-skill             | Credits                            | Autorzy                                |
 | register-log             | Purpose                            | Przeznaczenie                          |
 | register-log             | Scoring Definitions                | Definicje skali                        |
 | register-log             | Probability                        | Prawdopodobieństwo                     |
