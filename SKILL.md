@@ -35,21 +35,21 @@ metadata:
 
 | Section                 | Line | What it covers                                 |
 |-------------------------|------|------------------------------------------------|
-| Skill Update Check      | 65   | Once-per-session git freshness gate before use |
-| Trigger Keywords        | 80   | Activation phrases                             |
-| How To Use              | 168  | Progressive disclosure and mandatory reading   |
-| Parameter Configuration | 204  | Defaults and user-controlled document shape    |
-| Principles              | 225  | Authoring invariants                           |
-| Process                 | 231  | Workflow and delivery checklist                |
-| Document Types          | 240  | Per-type rule files                            |
-| Languages               | 277  | Per-language style baselines                   |
-| Scopes                  | 287  | Per-project-layout organization rules          |
-| Conventions             | 315  | Encoding, dialect, and format contract rules   |
-| Templates               | 326  | Per-type, per-language skeletons               |
-| Tools                   | 336  | Detection, formatting, and validation scripts  |
-| Evaluation Prompts      | 366  | Behavioral regression prompts                  |
-| Repository Files        | 374  | Housekeeping files governing this repository   |
-| File Handling Contract  | 385  | Byte-level guarantees                          |
+| Skill Update Check      | 66   | Once-per-session git freshness gate before use |
+| Trigger Keywords        | 81   | Activation phrases                             |
+| How To Use              | 175  | Progressive disclosure and mandatory reading   |
+| Parameter Configuration | 214  | Defaults and user-controlled document shape    |
+| Principles              | 235  | Authoring invariants                           |
+| Process                 | 241  | Workflow and delivery checklist                |
+| Document Types          | 253  | Per-type rule files                            |
+| Languages               | 290  | Per-language style baselines                   |
+| Scopes                  | 300  | Per-project-layout organization rules          |
+| Conventions             | 328  | Encoding, dialect, and format contract rules   |
+| Templates               | 339  | Per-type, per-language skeletons               |
+| Tools                   | 349  | Detection, formatting, and validation scripts  |
+| Evaluation Prompts      | 383  | Behavioral regression prompts                  |
+| Repository Files        | 392  | Housekeeping files governing this repository   |
+| File Handling Contract  | 403  | Byte-level guarantees                          |
 
 You are a Document Authoring Agent.
 
@@ -158,6 +158,12 @@ The skill activates on any of these phrases:
 - analyse this codebase
 - audit the document layout
 - document census
+- audit this document
+- document audit
+- audit this file
+- check document formatting
+- document conformance check
+- plan fixes for findings
 
 Requests may arrive in any supported language, not only English.
 
@@ -179,6 +185,7 @@ Use progressive disclosure:
   when the request names a scope.
 - Follow `process/scope-discovery.md` when the request asks to discover or detect a document
   layout.
+- Follow `process/document-audit.md` when the request asks to audit a document.
 - Load `conventions/` files only when the situation requires them.
 
 This skill is self-contained. The files below are the available rule material in this
@@ -192,7 +199,9 @@ UTF-8 output and preserved encodings on edit, for single files and for organized
 collections such as agent skill repositories, Sphinx sites, and MkDocs, Docusaurus, VitePress,
 or GitBook documentation sites. On request it also discovers a location's document layout -
 analyzing the directory structure and document types, naming the best-matching scope, and
-listing exceptions. AsciiDoc and reStructuredText files are edited minimally and never restyled.
+listing exceptions - and audits a document against its governing rules, reporting mechanical,
+structural, and content findings with an optional fix plan. AsciiDoc and reStructuredText
+files are edited minimally and never restyled.
 
 ## Mandatory Reading
 
@@ -237,6 +246,9 @@ minimal-diff rule provide the answers.
   spacing, characters, lists, tables, language, and file properties.
 - **`process/scope-discovery.md`** - The standalone layout-discovery procedure: signal census,
   scope comparison, exception analysis, and the report format.
+- **`process/document-audit.md`** - The standalone document-audit procedure: mechanical
+  checks, structural census, convention evaluation, content review, findings, and the
+  optional fix plan.
 
 ## `types/` - Document Type Rules
 
@@ -343,6 +355,10 @@ name before use and remove them when done. See `tools/README.md`.
   trailing whitespace for a file. Run before editing any existing file.
 - **`tools/detect-scope.py`** - Reports which document-scope signals a directory carries and
   counts documents per directory. Run when detecting a layout or discovering a scope.
+- **`tools/census-document.py`** - Reports a structural census for a Markdown document:
+  headings, lists, fenced blocks, characters, paragraphs, tables, markers, and links.
+  `--width N` sets the checked width, `--payload-markdown` includes ` ```markdown ` payload
+  interiors. Run during a document audit.
 - **`tools/wrap-prose.py`** - Splits over-width lines at whitespace without ever joining
   lines. `--check` reports without writing, `--width N` sets the limit, `--payload-markdown`
   extends into ` ```markdown ` payload blocks. Use when a repository convention sets a hard
@@ -367,8 +383,8 @@ name before use and remove them when done. See `tools/README.md`.
 ## Evaluation Prompts
 
 - **`evals/evals.json`** - Skill-creator regression prompts covering document creation in both
-  languages, convention-preserving edits, table reformatting, encoding edge cases, and the
-  session update check.
+  languages, convention-preserving edits, table reformatting, encoding edge cases, the
+  session update check, and document audits.
 
 Run these as behavioral evaluations after structural changes. They do not replace independent
 review.

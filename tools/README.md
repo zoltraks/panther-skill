@@ -4,7 +4,8 @@
 
 > **Scope:** Document-production and skill-maintenance scripts
 > **Key items:** encoding detection, scope signals, prose wrapping, table formatting,
-> document validation, content diffing, skill validation, reference integrity, self-update check
+> document validation, content diffing, document census, skill validation, reference
+> integrity, self-update check
 
 These scripts support deterministic production of documents and maintenance of Panther itself.
 
@@ -15,8 +16,8 @@ They do not modify documents beyond the specific task each tool performs.
 ### Document-Production Tools
 
 Copy `detect-encoding.py`, `detect-scope.py`, `wrap-prose.py`, `format-table.py`,
-`validate-document.py`, and `diff-content.py` into the working repository's `work/` directory
-under a `.tmp.` name before use.
+`validate-document.py`, `diff-content.py`, and `census-document.py` into the working
+repository's `work/` directory under a `.tmp.` name before use.
 
 If `work/` does not exist, use an existing `temp` or `temporary` directory.
 
@@ -26,7 +27,7 @@ root.
 
 Use the repository root only when no declared or existing temporary directory applies.
 
-Run the copied scripts only against the document being created or edited.
+Run the copied scripts only against the document being created, edited, or audited.
 
 Remove every copied script after use.
 
@@ -50,6 +51,7 @@ python wrap-prose.tmp.py <file.md> [--check] [--width N] [--payload-markdown]
 python format-table.tmp.py <file.md> [--check] [--payload-markdown]
 python validate-document.tmp.py <file.md> [--width N] [--payload-markdown]
 python diff-content.tmp.py <file.md> [--baseline <file>]
+python census-document.tmp.py <file.md> [--width N] [--payload-markdown]
 python tools/validate-skill.py .
 python tools/check-references.py .
 python tools/check-update.py
@@ -76,6 +78,11 @@ It exits `0` in every case and prints `WARN` for possible merged lines - review 
 
 Its directory census also lists `docs/` subdirectories, non-document artifacts such as API
 specifications and configs, and `.gitignore`-declared directories that are absent on disk.
+
+`census-document.py` reports a structural census of a single document - headings, list
+markers, fenced blocks and ` ```markdown ` payloads, special characters, paragraph shape,
+tables, task markers, and internal links - and the agent maps counts to findings per
+`process/document-audit.md`.
 
 The validators exit `0` when all checks pass and `1` when one or more checks fail.
 

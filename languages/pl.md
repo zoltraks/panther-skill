@@ -687,3 +687,6 @@ Traktuj żądanie pasujące do frazy z tabeli jako jej angielski odpowiednik.
 | struktura podziału pracy       | work breakdown structure     |
 | wykryj układ                   | detect document layout       |
 | rozpoznaj strukturę dokumentów | analyze document structure   |
+| audyt dokumentu                | audit this document          |
+| sprawdź formatowanie dokumentu | check document formatting    |
+| zaplanuj poprawki ustaleń      | plan fixes for findings      |

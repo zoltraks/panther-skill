@@ -15,17 +15,20 @@ a reformatting, or a translation.
 
 Classify the request into one primary task:
 
-| Task      | Trigger example                                   | Rule source                    |
-|-----------|---------------------------------------------------|--------------------------------|
-| Create    | "write a spec", "create a README", "draft a note" | language file + type file      |
-| Edit      | "add a section", "update the glossary"            | document's own conventions win |
-| Reformat  | "fix this table", "align the columns"             | language file table rules      |
-| Translate | "translate this doc to Polish"                    | target language file           |
-| Discover  | "discover layout", "detect document layout"       | scope discovery procedure      |
+| Task      | Trigger example                                    | Rule source                    |
+|-----------|----------------------------------------------------|--------------------------------|
+| Create    | "write a spec", "create a README", "draft a note"  | language file + type file      |
+| Edit      | "add a section", "update the glossary"             | document's own conventions win |
+| Reformat  | "fix this table", "align the columns"              | language file table rules      |
+| Translate | "translate this doc to Polish"                     | target language file           |
+| Discover  | "discover layout", "detect document layout"        | scope discovery procedure      |
+| Audit     | "audit this document", "check document formatting" | document audit procedure       |
 
 A request may combine tasks.
 
 Apply the union of the required rule files.
+
+An approved fix plan from an audit becomes an Edit task.
 
 Identify the target file or the intended output location before writing anything.
 

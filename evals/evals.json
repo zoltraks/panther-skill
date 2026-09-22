@@ -390,6 +390,32 @@
         "A status other than UPDATE-AVAILABLE produces no user-facing mention of the check.",
         "The check writes no state files and never commits, stashes, or discards changes in the skill repository."
       ]
+    },
+    {
+      "id": 33,
+      "prompt": "Audit docs/GUIDE.md in this repository.",
+      "expected_output": "A document audit report delivered inline, with findings numbered FINDING-001 style and no changes to the audited location.",
+      "files": [],
+      "expectations": [
+        "The agent identifies the repository's own governing rule documents and evaluates the file against them before applying skill defaults.",
+        "The agent copies the document-production tools and census-document.py into the working repository as .tmp. copies, runs them, and removes the copies when done.",
+        "Mechanical results, the structural census, findings, and content observations appear in the report's fixed section order.",
+        "Findings carry FINDING-001 style IDs, a severity, and evidence with the rule source that judges them.",
+        "A systematic in-document convention is reported as a convention with its diverging rule named, never silently normalized.",
+        "The audited file and repository are left unmodified."
+      ]
+    },
+    {
+      "id": 34,
+      "prompt": "Audit this document and plan fixes for the findings.",
+      "expected_output": "A document audit report ending with a Fix Plan section that maps every finding to an action, scope, and verification.",
+      "files": [],
+      "expectations": [
+        "The report follows the fixed section order and includes a Fix Plan section because the request asked for one.",
+        "Every finding ID appears in the Fix Plan with a concrete action, the affected lines or sections, and the tool or check that re-proves the fix.",
+        "The plan is ordered by severity and states that executing it is an Edit task the user must approve.",
+        "The audit applies no fixes itself and leaves the audited location unmodified."
+      ]
     }
   ]
 }

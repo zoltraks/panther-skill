@@ -11,13 +11,13 @@
 | Section             | Line | What it covers                            |
 |---------------------|------|-------------------------------------------|
 | What The Skill Does | 33   | Authoring purpose and workflow            |
-| Core Principles     | 84   | Convention preservation and minimal diffs |
-| When To Use         | 95   | Supported requests and exclusions         |
-| Example Prompts     | 128  | Phrases the skill activates on            |
-| What's Inside       | 159  | Rule files, templates, tools, and evals   |
-| Verification        | 232  | Skill-maintenance checks                  |
-| License             | 239  | License for the skill itself              |
-| Credits             | 245  | Methodology and example sources           |
+| Core Principles     | 91   | Convention preservation and minimal diffs |
+| When To Use         | 102  | Supported requests and exclusions         |
+| Example Prompts     | 135  | Phrases the skill activates on            |
+| What's Inside       | 166  | Rule files, templates, tools, and evals   |
+| Verification        | 241  | Skill-maintenance checks                  |
+| License             | 248  | License for the skill itself              |
+| Credits             | 254  | Methodology and example sources           |
 
 Panther is a document authoring process packaged as an agent skill.
 
@@ -80,6 +80,13 @@ directory or repository: it censuses layout signals and document types, compares
 every defined scope, names the best match, and lists exceptions - missing expected directories
 or documents no scope covers. The report is delivered inline, and a file is written only when
 asked.
+
+**Audits documents**
+
+When you ask to "audit this document" or "check document formatting", the agent runs the
+mechanical checkers and a structural census on one file, evaluates the results against the
+repository's own governing rules, reviews content quality, and reports numbered findings -
+with an optional fix plan when asked. The audit changes nothing in the audited location.
 
 ## Core Principles
 
@@ -169,7 +176,8 @@ panther-skill/
 ├── process/
 │   ├── document-workflow.md      # Intake, detection, rule selection, validation, delivery
 │   ├── document-checklist.md     # Mechanical pre-delivery checklist
-│   └── scope-discovery.md        # Standalone layout-discovery procedure and report format
+│   ├── scope-discovery.md        # Standalone layout-discovery procedure and report format
+│   └── document-audit.md         # Standalone document-audit procedure and report format
 ├── types/
 │   ├── technical-document.md     # Guides, architecture notes, reference material
 │   ├── project-document.md       # Specifications: version comment, glossary, requirement IDs
@@ -212,6 +220,7 @@ panther-skill/
 ├── tools/
 │   ├── detect-encoding.py        # BOM, encoding, and line-ending detection
 │   ├── detect-scope.py           # Document-scope signal census
+│   ├── census-document.py        # Structural census of a single document
 │   ├── wrap-prose.py             # Split-only line wrapper for width conventions
 │   ├── format-table.py           # Source-width table formatter
 │   ├── validate-document.py      # Mechanical document checker
