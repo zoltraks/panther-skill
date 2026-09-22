@@ -8,16 +8,22 @@
 
 ## Contents
 
-| Section             | Line | What it covers                            |
-|---------------------|------|-------------------------------------------|
-| What The Skill Does | 33   | Authoring purpose and workflow            |
-| Core Principles     | 91   | Convention preservation and minimal diffs |
-| When To Use         | 102  | Supported requests and exclusions         |
-| Example Prompts     | 135  | Phrases the skill activates on            |
-| What's Inside       | 166  | Rule files, templates, tools, and evals   |
-| Verification        | 241  | Skill-maintenance checks                  |
-| License             | 248  | License for the skill itself              |
-| Credits             | 254  | Methodology and example sources           |
+| Section             | Line | What it covers                             |
+|---------------------|------|--------------------------------------------|
+| Overview            | 26   | What Panther is and what it produces       |
+| What The Skill Does | 50   | Authoring purpose and workflow             |
+| Installation        | 109  | How to add Panther to an agent environment |
+| Usage               | 171  | How agents activate and run the skill      |
+| Example Prompts     | 182  | Phrases the skill activates on             |
+| Workflow Diagrams   | 216  | ASCII and Mermaid diagrams of the pipeline |
+| Core Principles     | 341  | Convention preservation and minimal diffs  |
+| When To Use         | 352  | Supported requests and exclusions          |
+| What's Inside       | 387  | Rule files, templates, tools, and evals    |
+| Verification        | 470  | Skill-maintenance checks                   |
+| License             | 477  | License for the skill itself               |
+| Credits             | 483  | Methodology and example sources            |
+
+## Overview
 
 Panther is a document authoring process packaged as an agent skill.
 
@@ -29,6 +35,17 @@ Documents are written in English by default, with full Polish support, and new f
 
 The skill detects and preserves the encoding, line endings, and Markdown dialect of existing
 documents - a file in UTF-16 or a legacy code page stays that way after an edit.
+
+Supported types cover technical documentation, project specifications, rules documents, format
+specifications, articles, notes, READMEs, changelogs, decision records, RFCs, and PMBOK
+artifacts - charters, registers, status reports, meeting minutes, management plans, and work
+breakdown structures.
+
+Supported project layouts cover agent skill repositories, Sphinx, MkDocs, Docusaurus,
+VitePress, GitBook sites, guided projects, documentation collections, and multi-project
+repositories.
+
+AsciiDoc and reStructuredText documents follow a minimal-edit contract.
 
 ## What The Skill Does
 
@@ -83,54 +100,84 @@ asked.
 
 **Audits documents**
 
-When you ask to "audit this document" or "check document formatting", the agent runs the
-mechanical checkers and a structural census on one file, evaluates the results against the
-repository's own governing rules, reviews content quality, and reports numbered findings -
-with an optional fix plan when asked. The audit changes nothing in the audited location.
+Separately, when you ask to "audit this document" or "check document formatting", the agent
+follows `process/document-audit.md`: it runs mechanical checks and a structural census with
+`tools/census-document.py`, evaluates the document against its governing rules, and reports
+findings with an optional fix plan. An audit is analysis only - it changes nothing in the
+document.
 
-## Core Principles
+## Installation
 
-- **Plain text first** - the source must read well in a console before any renderer touches it.
-- **The document's own conventions win** - existing dialects, numbering, encodings, and naming
-  are preserved on edit.
-- **Minimal diff** - changes stay inside the scope of the request.
-- **Explicit unknowns** - missing information is marked `NOT SPECIFIED` or `TBD`, never
-  invented.
-- **One language file per document** - the matching `languages/` file is the authoritative style
-  source.
+Panther is a filesystem-based skill.
 
-## When To Use This Skill
+Agents load it by reading the directory and activating `SKILL.md` when a request matches a
+trigger phrase.
 
-| Situation                                         | Use this skill?                          |
-|---------------------------------------------------|------------------------------------------|
-| "Write a spec for this service"                   | **Yes**                                  |
-| "Create a README for this repo"                   | **Yes**                                  |
-| "Draft a Polish article about POKEY sound design" | **Yes**                                  |
-| "Update the glossary in this spec"                | **Yes** - preserves document conventions |
-| "Fix the tables in this document"                 | **Yes** - script-formatted tables        |
-| "Translate this document to Polish"               | **Yes** - language baseline switch       |
-| "Edit this CP1250-encoded document"               | **Yes** - encoding preserved             |
-| "Take a quick note"                               | **Yes** - minimal-structure note         |
-| "Add a page to this Sphinx docs project"          | **Yes** - toctree registration           |
-| "Add a page to this MkDocs site"                  | **Yes** - `nav` registration             |
-| "Add a page to this Docusaurus site"              | **Yes** - sidebar and frontmatter        |
-| "Add a page to this VitePress site"               | **Yes** - file-based routing             |
-| "Add a page to this GitBook project"              | **Yes** - `SUMMARY` outline registration |
-| "Write an ADR for this technology choice"         | **Yes** - status lifecycle, numbering    |
-| "Draft an RFC for the new service"                | **Yes** - review states, open questions  |
-| "Edit this AsciiDoc file"                         | **Yes** - minimal-edit contract          |
-| "Add a rule file to this skill repository"        | **Yes** - `SKILL.md` registration        |
-| "Write an implementation plan for this release"   | **Yes** - versioned `docs/plan/` entry   |
-| "Add a standard to this documentation repo"       | **Yes** - `docs/standard/` conventions   |
-| "Write the project charter for this initiative"   | **Yes** - SMART objectives, approval     |
-| "Create a risk register for this project"         | **Yes** - append-only entry table        |
-| "Write our weekly status report"                  | **Yes** - RAG ratings, decisions needed  |
-| "Write up the steering committee minutes"         | **Yes** - decisions and action items     |
-| "Create the WBS for phase one"                    | **Yes** - decimal codes, dictionary      |
-| "Draft the risk management plan"                  | **Yes** - thresholds and cadence         |
-| "What document layout does this repo use?"        | **Yes** - scope discovery report         |
-| "Write code for this feature"                     | No - this skill writes documents         |
-| "Review this document for technical correctness"  | No - authoring skill, not an auditor     |
+Clone the repository into the agent's skills directory:
+
+```bash
+git clone https://github.com/zoltraks/panther-skill.git
+```
+
+### Agent Environments
+
+**Devin and Windsurf**
+
+Project skills live under `.devin/skills/`, `.windsurf/skills/`, or `.agents/skills/`:
+
+```
+your-project/
+└── .devin/
+    └── skills/
+        └── panther-skill/
+```
+
+For a global install across all projects, use `~/.config/devin/skills/panther-skill/` instead.
+
+**Claude Code**
+
+Project skills live under `.claude/skills/`:
+
+```
+your-project/
+└── .claude/
+    └── skills/
+        └── panther-skill/
+```
+
+For a personal install across all projects, use `~/.claude/skills/panther-skill/` instead.
+
+**Other Agents**
+
+Agents that follow the shared skills convention load project skills from `.agents/skills/`:
+
+```
+your-project/
+└── .agents/
+    └── skills/
+        └── panther-skill/
+```
+
+### Updating
+
+Once per session the skill checks its own git upstream and offers to pull incoming commits.
+
+To update by hand, pull the clone wherever it was installed:
+
+```bash
+git -C <skills-dir>/panther-skill pull --ff-only
+```
+
+## Usage
+
+Panther activates when a request matches any trigger phrase declared in `SKILL.md`.
+
+Examples include "write a README", "draft a specification", "format this table", "quick note",
+"write an ADR", "audit this document", and "run panther".
+
+The skill performs an update check, resolves parameters, detects conventions and scope, selects
+rule files, drafts the document, validates it mechanically, and delivers the file with preserved
+encoding and line endings.
 
 ## Example Prompts
 
@@ -163,6 +210,180 @@ with an optional fix plan when asked. The audit changes nothing in the audited l
 **New page in a documentation project**
 > Add a page documenting the retry helpers to this Sphinx documentation project.
 
+**Document audit**
+> Audit this document's formatting against its governing rules and report the findings.
+
+## Workflow Diagrams
+
+The diagrams show the authoring pipeline for document tasks.
+
+Layout discovery and document audits follow their own standalone procedures in
+`process/scope-discovery.md` and `process/document-audit.md`.
+
+### ASCII Diagram
+
+```
+                           ┌──────────────────────────┐
+                           │ User Request Arrives     │
+                           │ (e.g., "write a README") │
+                           └──────────────┬───────────┘
+                                          │
+                                          ▼
+                     ┌────────────────────────────────────────┐
+                     │ Trigger Phrase Match?                  │
+                     │ (SKILL.md activation phrases)          │─ No ─▶┌───────────────────────────┐
+                     └──────────────┬─────────────────────────┘       │ Not a Panther request     │
+                                    │ Yes                             │ Skill not activated       │
+                                    ▼                                 └───────────────────────────┘
+                     ┌────────────────────────────────────────┐
+                     │ Session Update Check                   │
+                     │ tools/check-update.py                  │
+                     └──────────────┬─────────────────────────┘
+                                    │
+                                    ▼
+                     ┌────────────────────────────────────────┐
+                     │ Load Mandatory Files                   │
+                     │ principles/authoring-rules.md          │
+                     │ process/document-workflow.md           │
+                     └──────────────┬─────────────────────────┘
+                                    │
+                                    ▼
+                     ┌────────────────────────────────────────┐
+                     │ Classify Task                          │
+                     │ create, edit, reformat, translate,     │
+                     │ discover, audit                        │
+                     └──────────────┬─────────────────────────┘
+                                    │
+                                    ▼
+                     ┌────────────────────────────────────────┐
+                     │ Parameter Resolution                   │
+                     │ - type                                 │
+                     │ - language                             │
+                     │ - scope                                │
+                     │ - filename                             │
+                     │ - encoding / line endings              │
+                     └──────────────┬─────────────────────────┘
+                                    │
+                                    ▼
+                     ┌────────────────────────────────────────┐
+                     │ Detect Document Conventions            │
+                     │ tools/detect-encoding.py               │
+                     │ conventions/markdown-dialects.md       │
+                     └──────────────┬─────────────────────────┘
+                                    │
+                                    ▼
+                     ┌────────────────────────────────────────┐
+                     │ Detect Project Layout (Scope)          │
+                     │ tools/detect-scope.py                  │
+                     │ scopes/<scope>.md                      │
+                     └──────────────┬─────────────────────────┘
+                                    │
+                                    ▼
+                     ┌────────────────────────────────────────┐
+                     │ Select Rule Set                        │
+                     │ - language baseline                    │
+                     │ - document type rules                  │
+                     │ - scope rules                          │
+                     └──────────────┬─────────────────────────┘
+                                    │
+                                    ▼
+                     ┌────────────────────────────────────────┐
+                     │ Draft Document                         │
+                     │ - templates/<lang>/<type>-template.md  │
+                     │ - minimal diff for edits               │
+                     └──────────────┬─────────────────────────┘
+                                    │
+                                    ▼
+                     ┌────────────────────────────────────────┐
+                     │ Mechanical Validation                  │
+                     │ tools/format-table.py                  │
+                     │ tools/wrap-prose.py                    │
+                     │ tools/validate-document.py             │
+                     │ tools/diff-content.py                  │
+                     └──────────────┬─────────────────────────┘
+                                    │
+                                    ▼
+                     ┌────────────────────────────────────────┐
+                     │ Delivery                               │
+                     │ - write file                           │
+                     │ - preserve encoding & line endings     │
+                     └────────────────────────────────────────┘
+```
+
+### Mermaid Diagram
+
+```mermaid
+flowchart TD
+
+    A[User Request<br/>e.g., 'write a README'] --> B{Trigger Phrase Match?}
+    B -->|Yes| C[Session Update Check<br/>tools/check-update.py]
+    C --> D[Load Mandatory Files<br/>principles/authoring-rules.md<br/>process/document-workflow.md]
+
+    D --> D2[Classify Task<br/>create, edit, reformat,<br/>translate, discover, audit]
+
+    D2 --> E[Parameter Resolution<br/>type, language, scope,<br/>filename, encoding, line endings]
+
+    E --> F[Detect Document Conventions<br/>tools/detect-encoding.py<br/>conventions/markdown-dialects.md]
+
+    F --> G[Detect Project Layout (Scope)<br/>tools/detect-scope.py<br/>scopes/<scope>.md]
+
+    G --> H[Select Rule Set<br/>language baseline<br/>document type rules<br/>scope rules]
+
+    H --> I[Draft Document<br/>templates/<lang>/<type>-template.md<br/>minimal diff for edits]
+
+    I --> J[Mechanical Validation<br/>tools/format-table.py<br/>tools/wrap-prose.py<br/>tools/validate-document.py<br/>tools/diff-content.py]
+
+    J --> K[Delivery<br/>write file<br/>preserve encoding & line endings]
+
+    B -->|No| Z[Not a Panther request<br/>Skill not activated]
+```
+
+## Core Principles
+
+- **Plain text first** - the source must read well in a console before any renderer touches it.
+- **The document's own conventions win** - existing dialects, numbering, encodings, and naming
+  are preserved on edit.
+- **Minimal diff** - changes stay inside the scope of the request.
+- **Explicit unknowns** - missing information is marked `NOT SPECIFIED` or `TBD`, never
+  invented.
+- **One language file per document** - the matching `languages/` file is the authoritative style
+  source.
+
+## When To Use This Skill
+
+| Situation                                        | Use this skill?                          |
+|--------------------------------------------------|------------------------------------------|
+| "Write a spec for this service"                  | **Yes**                                  |
+| "Create a README for this repo"                  | **Yes**                                  |
+| "Draft a Polish article about sound design"      | **Yes**                                  |
+| "Update the glossary in this spec"               | **Yes** - preserves document conventions |
+| "Fix the tables in this document"                | **Yes** - script-formatted tables        |
+| "Translate this document to Polish"              | **Yes** - language baseline switch       |
+| "Edit this CP1250-encoded document"              | **Yes** - encoding preserved             |
+| "Take a quick note"                              | **Yes** - minimal-structure note         |
+| "Add a page to this Sphinx docs project"         | **Yes** - toctree registration           |
+| "Add a page to this MkDocs site"                 | **Yes** - `nav` registration             |
+| "Add a page to this Docusaurus site"             | **Yes** - sidebar and frontmatter        |
+| "Add a page to this VitePress site"              | **Yes** - file-based routing             |
+| "Add a page to this GitBook project"             | **Yes** - `SUMMARY` outline registration |
+| "Write an ADR for this technology choice"        | **Yes** - status lifecycle, numbering    |
+| "Draft an RFC for the new service"               | **Yes** - review states, open questions  |
+| "Edit this AsciiDoc file"                        | **Yes** - minimal-edit contract          |
+| "Add a rule file to this skill repository"       | **Yes** - `SKILL.md` registration        |
+| "Write an implementation plan for this release"  | **Yes** - versioned `docs/plan/` entry   |
+| "Add a standard to this documentation repo"      | **Yes** - `docs/standard/` conventions   |
+| "Write the project charter for this initiative"  | **Yes** - SMART objectives, approval     |
+| "Create a risk register for this project"        | **Yes** - append-only entry table        |
+| "Write our weekly status report"                 | **Yes** - RAG ratings, decisions needed  |
+| "Write up the steering committee minutes"        | **Yes** - decisions and action items     |
+| "Create the WBS for phase one"                   | **Yes** - decimal codes, dictionary      |
+| "Draft the risk management plan"                 | **Yes** - thresholds and cadence         |
+| "What document layout does this repo use?"       | **Yes** - scope discovery report         |
+| "Audit this document"                            | **Yes** - findings and optional fix plan |
+| "Check this document's formatting"               | **Yes** - audit procedure                |
+| "Write code for this feature"                    | No - this skill writes documents         |
+| "Review this document for technical correctness" | No - authoring skill, not an auditor     |
+
 ## What's Inside
 
 ```
@@ -176,8 +397,8 @@ panther-skill/
 ├── process/
 │   ├── document-workflow.md      # Intake, detection, rule selection, validation, delivery
 │   ├── document-checklist.md     # Mechanical pre-delivery checklist
-│   ├── scope-discovery.md        # Standalone layout-discovery procedure and report format
-│   └── document-audit.md         # Standalone document-audit procedure and report format
+│   ├── document-audit.md         # Standalone audit procedure: findings and fix plan
+│   └── scope-discovery.md        # Standalone layout-discovery procedure and report format
 ├── types/
 │   ├── technical-document.md     # Guides, architecture notes, reference material
 │   ├── project-document.md       # Specifications: version comment, glossary, requirement IDs
@@ -220,8 +441,7 @@ panther-skill/
 ├── tools/
 │   ├── detect-encoding.py        # BOM, encoding, and line-ending detection
 │   ├── detect-scope.py           # Document-scope signal census
-│   ├── census-document.py        # Structural census of a single document
-│   ├── split-sentences.py        # Sentence splitter for packed paragraph lines
+│   ├── census-document.py        # Structural document census for audits
 │   ├── wrap-prose.py             # Split-only line wrapper for width conventions
 │   ├── format-table.py           # Source-width table formatter
 │   ├── validate-document.py      # Mechanical document checker
@@ -238,6 +458,14 @@ Document-production tools are copied into the working repository under a `.tmp.`
 against the document, and removed afterward.
 
 Skill-maintenance tools run from this repository only.
+
+`SKILL.md` is the router and taxonomy for the whole skill.
+
+`principles/authoring-rules.md` and `process/document-workflow.md` are mandatory reading for
+every document task.
+
+Type rules, language baselines, scope rules, encoding conventions, templates, and tools load
+only as the workflow requires them.
 
 ## Verification
 
