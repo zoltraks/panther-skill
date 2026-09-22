@@ -99,6 +99,15 @@ them into sentences.
 
 Do not use emoji unless explicitly requested.
 
+When a request requires ASCII-only text and the document contains em or en dashes, replace
+them with ` - `.
+
+Use ` -- ` only when the edited document already uses the double-minus form or when the
+request explicitly asks for it.
+
+A repository style document that prescribes ` -- ` makes it an eligible option - ask for
+confirmation before applying it.
+
 Write file names, commands, column names, and values in inline code.
 
 Write term definitions with bold in the form **Term**: definition.

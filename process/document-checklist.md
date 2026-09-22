@@ -32,6 +32,8 @@ Fix every failure, or report it to the user with a reason.
 - No line carries a lone list marker without content.
 - **Existing:** lines respect the document's width convention when one exists - verified with
   `tools/wrap-prose.py --check --width N`, otherwise one logical line per sentence applies.
+- **Existing:** character substitutions that change line length were re-verified against the
+  document's width convention - for example `—` replaced by `--` adds one character per dash.
 
 ## Characters
 
@@ -42,6 +44,8 @@ Fix every failure, or report it to the user with a reason.
 - Diacritics are written in composed form, one Unicode character per letter.
 - **Existing:** quote and apostrophe style matches the document's established convention when it
   deliberately differs.
+- **Existing:** non-ASCII punctuation in prose (dashes, ellipsis, non-breaking spaces) was
+  surfaced and checked against the document's convention.
 
 ## Lists And Code
 
@@ -85,7 +89,7 @@ Fix every failure, or report it to the user with a reason.
 - Indented code blocks inside payloads, such as directory trees, kept their original line
   structure.
 - **Existing:** a formatting-only pass changed no words - `tools/diff-content.py` reports a
-  token stream identical to the baseline with no merged-line warnings.
+  token stream identical to the baseline, and every merged-line warning was reviewed.
 
 ## Project Scope
 

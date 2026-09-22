@@ -30,10 +30,12 @@ FENCE = re.compile(r"^\s*(`{3,})\s*(\w*)")
 ITEM = re.compile(r"^(\s*)([-*+]|\d+[.)])([ \t]+)(.*)$")
 LONE_ITEM = re.compile(r"^(\s*)([-*+]|\d+[.)])\s*$")
 QUOTE = re.compile(r"^(\s*)((?:>\s*)+)(.*)$")
+LEAD_PUNCT = r"[(\[{'\"]*"
+TRAIL_PUNCT = r"[\")\].,;:!?}\"]*(?:'[a-zA-Z]*)?[\"')\].,;:!?}]*"
 PROTECTED = re.compile(
-    r"(`+[^`]*`+)"           # inline code span, any backtick run length
-    r"|(\[[^]]*\]\([^)]*\))"  # inline link [text](target)
-    r"|(https?://\S+)"        # bare URL
+    r"(" + LEAD_PUNCT + r"`+[^`]*`+" + TRAIL_PUNCT + r")"           # code span + adjacent punct
+    r"|(" + LEAD_PUNCT + r"\[[^]]*\]\([^)]*\)" + TRAIL_PUNCT + r")"  # inline link + adjacent punct
+    r"|(https?://\S+)"                                              # bare URL
 )
 BOUNDARY_END = ",.:;?!)]}"
 
@@ -118,7 +120,7 @@ def wrap_line(line, width):
         split = boundary_split(parts, width - len(prefix))
         if split:
             head, tail = split
-            out.append(prefix + " ".join(head))
+            out.append((prefix if not out else cont) + " ".join(head))
             carry = tail + [atom]
         else:
             out.append(cur)
@@ -181,7 +183,7 @@ def main(path, width, payload_markdown, check_only):
             continue
 
         if in_front:
-            if s == "---":
+            if n != 1 and s == "---":
                 in_front = False
             out.append(line)
             continue

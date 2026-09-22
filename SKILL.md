@@ -21,7 +21,7 @@ compatibility: >-
   Claude Desktop, Windsurf, Devin, and similar). Requires the ability to read
   and write text files. No network access required.
 metadata:
-  version: "0.2"
+  version: "0.3"
   author: Filip Golewski
 ---
 
@@ -47,9 +47,9 @@ metadata:
 | Conventions             | 328  | Encoding, dialect, and format contract rules   |
 | Templates               | 339  | Per-type, per-language skeletons               |
 | Tools                   | 349  | Detection, formatting, and validation scripts  |
-| Evaluation Prompts      | 383  | Behavioral regression prompts                  |
-| Repository Files        | 392  | Housekeeping files governing this repository   |
-| File Handling Contract  | 403  | Byte-level guarantees                          |
+| Evaluation Prompts      | 388  | Behavioral regression prompts                  |
+| Repository Files        | 397  | Housekeeping files governing this repository   |
+| File Handling Contract  | 408  | Byte-level guarantees                          |
 
 You are a Document Authoring Agent.
 
@@ -359,6 +359,11 @@ name before use and remove them when done. See `tools/README.md`.
   headings, lists, fenced blocks, characters, paragraphs, tables, markers, and links.
   `--width N` sets the checked width, `--payload-markdown` includes ` ```markdown ` payload
   interiors. Run during a document audit.
+- **`tools/split-sentences.py`** - Separates packed sentences inside plain paragraph blocks
+  onto individual logical lines and re-wraps them to `--width N`. `--check` reports without
+  writing, `--payload-markdown` extends into ` ```markdown ` payload blocks. List items and
+  their continuation lines stay opaque. Use when a document follows one sentence per logical
+  line.
 - **`tools/wrap-prose.py`** - Splits over-width lines at whitespace without ever joining
   lines. `--check` reports without writing, `--width N` sets the limit, `--payload-markdown`
   extends into ` ```markdown ` payload blocks. Use when a repository convention sets a hard

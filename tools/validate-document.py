@@ -4,6 +4,10 @@
 Covers the scriptable items of process/document-checklist.md: structure,
 spacing, characters, lists, code fences, and table alignment.
 
+Non-ASCII characters in prose (outside inline code spans) are reported as
+warnings, not failures - they may be a deliberate document convention.
+Box-drawing characters (U+2500-U+257F) are exempt.
+
 Copy this file into the working repository's `work/` directory (or the
 repository root when no `work/` exists) as `validate-document.tmp.py`, run it
 on the document file, then remove the copy.
@@ -117,6 +121,7 @@ def main(path, width, payload_markdown):
 
     lines = text.replace("\r\n", "\n").split("\n")
     issues = []
+    warnings = []
 
     h1 = 0
     fences = []
@@ -181,6 +186,16 @@ def main(path, width, payload_markdown):
             if re.search(r"[\U0001F300-\U0001FAFF☀-➿⬀-⯿]", line):
                 issues.append(f"line {n}: emoji or pictograph")
 
+            foreign = [
+                c for c in dict.fromkeys(prose)
+                if ord(c) > 127 and not 0x2500 <= ord(c) <= 0x257F
+            ]
+            if foreign:
+                warnings.append(
+                    f"line {n}: non-ASCII character(s) in prose: "
+                    + " ".join(f"U+{ord(c):04X} '{c}'" for c in foreign)
+                )
+
         if width and not line.startswith("|") and len(line) > width:
             issues.append(f"line {n}: {len(line)} chars exceeds width {width}")
 
@@ -204,7 +219,6 @@ def main(path, width, payload_markdown):
 
         prev = line
 
-    warnings = []
     if h1 == 0:
         warnings.append("document has no H1 title (allowed for notes, verify the type)")
     if h1 > 1:

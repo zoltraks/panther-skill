@@ -173,6 +173,19 @@ longer marker than the outer one (four backticks inside a three-backtick fence).
 
 Nested fences never nest at the same marker length.
 
+## Element-Level Conventions
+
+Conventions may differ between element types within one document.
+
+A document may place every paragraph sentence on its own logical line while its list items
+pack several sentences into a wrapped block, or the reverse.
+
+Detect the dominant pattern per element type - paragraphs, list items, and headings are
+separate conventions.
+
+Normalize one element type only when the request covers it, and never impose the paragraph
+convention on list items or vice versa.
+
 ## Detection Procedure
 
 1. Read the document, or its outline when it is long.

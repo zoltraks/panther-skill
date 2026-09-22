@@ -175,23 +175,26 @@ Apply the language file rules to the content you write even inside a dialect doc
 shape, vocabulary, and terminology still follow the language rules.
 
 For a requested reformatting, prefer the dedicated tools over hand edits:
+`tools/split-sentences.py` separates packed sentences onto individual logical lines,
 `tools/wrap-prose.py --width N` wraps prose and never joins lines, `tools/format-table.py`
 realigns tables.
 
-Pass `--payload-markdown` to either tool only when the request covers embedded payload
-documents - payload content stays opaque otherwise.
+Pass `--payload-markdown` to the payload-aware tools only when the request covers embedded
+payload documents - payload content stays opaque otherwise.
 
 ## Validation
 
 Before delivering, run the checks from `process/document-checklist.md`:
 
 - Mechanical self-review of the written content.
+- `tools/split-sentences.py --check` when the request covered packed sentences.
 - `tools/format-table.py --check` on the file when it contains tables.
 - `tools/wrap-prose.py --check --width N` when the document follows a width convention.
 - `tools/validate-document.py` on the file, with `--payload-markdown` when the document embeds
   ` ```markdown ` payload blocks.
 - `tools/diff-content.py` after any formatting-only pass - the token stream must be identical
-  to the pre-edit baseline and no merged-line warnings may remain.
+  to the pre-edit baseline, and every merged-line warning must be reviewed.
+- Legitimate sentence joins and deliberate reflows produce expected merged-line warnings.
 - `git diff --check` when working inside a repository.
 
 A failing check must be fixed or explicitly reported to the user with a reason.

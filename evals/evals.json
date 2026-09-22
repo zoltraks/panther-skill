@@ -416,6 +416,31 @@
         "The plan is ordered by severity and states that executing it is an Edit task the user must approve.",
         "The audit applies no fixes itself and leaves the audited location unmodified."
       ]
+    },
+    {
+      "id": 35,
+      "prompt": "This guidelines document uses em-dashes throughout its prose. Convert them to ASCII equivalents.",
+      "expected_output": "Every em-dash in prose replaced by the spaced single-minus form, with width conventions re-verified.",
+      "files": [],
+      "expectations": [
+        "Em-dashes were replaced with ` - ` as the default ASCII substitution, not ` -- `.",
+        "The double-minus form was used only when the document already used it or the user confirmed it after the repository style documents suggested it.",
+        "Substitutions that lengthened lines were re-checked against the document's width convention.",
+        "Embedded payload documents were left untouched unless the request covered them."
+      ]
+    },
+    {
+      "id": 36,
+      "prompt": "This technical document packs multiple sentences onto single lines in its paragraphs. Separate them so every sentence starts on its own line.",
+      "expected_output": "Each paragraph sentence starting on its own logical line, re-wrapped to the document's width convention, with all other element types untouched.",
+      "files": [],
+      "expectations": [
+        "The agent used the sentence-splitting tool rather than splitting lines by hand.",
+        "Label lines ending in a colon stayed on their own line and did not absorb following sentences.",
+        "Abbreviations such as e.g. and periods inside inline code spans were not treated as boundaries.",
+        "List items and their continuation lines kept their packed-sentence convention.",
+        "Fenced blocks and embedded payloads were left opaque."
+      ]
     }
   ]
 }

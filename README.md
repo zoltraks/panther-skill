@@ -221,6 +221,7 @@ panther-skill/
 │   ├── detect-encoding.py        # BOM, encoding, and line-ending detection
 │   ├── detect-scope.py           # Document-scope signal census
 │   ├── census-document.py        # Structural census of a single document
+│   ├── split-sentences.py        # Sentence splitter for packed paragraph lines
 │   ├── wrap-prose.py             # Split-only line wrapper for width conventions
 │   ├── format-table.py           # Source-width table formatter
 │   ├── validate-document.py      # Mechanical document checker
