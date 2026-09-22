@@ -39,7 +39,8 @@ Zasady opisane poniżej stosują się również do samego tego dokumentu.
 | Nazwy plików                       | 593    | Nazywanie nowych plików dokumentacji        |
 | Przykład                           | 603    | Przykład poprawny i niepoprawny             |
 | Utrzymanie plików                  | 637    | Kodowanie i złamania wierszy                |
-| Frazy aktywujące                   | 647    | Polskie frazy i ich angielskie odpowiedniki |
+| Pytanie o aktualizację             | 647    | Polskie brzmienie pytania o aktualizację    |
+| Frazy aktywujące                   | 652    | Polskie frazy i ich angielskie odpowiedniki |
 
 ## Struktura dokumentu
 
@@ -643,6 +644,12 @@ Nowe pliki twórz w kodowaniu UTF-8.
 Nie zmieniaj konwencji istniejącego dokumentu w zakresie numeracji sekcji, numeracji list i sekcji opcjonalnych, o ile żądanie zmiany tego nie obejmuje.
 
 Przy redakcji ograniczaj zmiany do zakresu wynikającego z żądania.
+
+## Pytanie o aktualizację
+
+Gdy repozytorium umiejętności ma nadchodzące zmiany do pobrania, pytanie o aktualizację brzmi `Dostępna jest aktualizacja umiejętności (<n> nowych commitów). Zaktualizować teraz czy pominąć w tej sesji?`.
+
+Opcje odpowiedzi to `Zaktualizuj teraz` i `Pomiń w tej sesji`.
 
 ## Frazy aktywujące
 

@@ -33,22 +33,23 @@ metadata:
 
 ## Contents
 
-| Section                 | Line | What it covers                                |
-|-------------------------|------|-----------------------------------------------|
-| Trigger Keywords        | 65   | Activation phrases                            |
-| How To Use              | 153  | Progressive disclosure and mandatory reading  |
-| Parameter Configuration | 189  | Defaults and user-controlled document shape   |
-| Principles              | 210  | Authoring invariants                          |
-| Process                 | 216  | Workflow and delivery checklist               |
-| Document Types          | 225  | Per-type rule files                           |
-| Languages               | 262  | Per-language style baselines                  |
-| Scopes                  | 272  | Per-project-layout organization rules         |
-| Conventions             | 300  | Encoding, dialect, and format contract rules  |
-| Templates               | 311  | Per-type, per-language skeletons              |
-| Tools                   | 321  | Detection, formatting, and validation scripts |
-| Evaluation Prompts      | 349  | Behavioral regression prompts                 |
-| Repository Files        | 357  | Housekeeping files governing this repository  |
-| File Handling Contract  | 368  | Byte-level guarantees                         |
+| Section                 | Line | What it covers                                 |
+|-------------------------|------|------------------------------------------------|
+| Skill Update Check      | 65   | Once-per-session git freshness gate before use |
+| Trigger Keywords        | 80   | Activation phrases                             |
+| How To Use              | 168  | Progressive disclosure and mandatory reading   |
+| Parameter Configuration | 204  | Defaults and user-controlled document shape    |
+| Principles              | 225  | Authoring invariants                           |
+| Process                 | 231  | Workflow and delivery checklist                |
+| Document Types          | 240  | Per-type rule files                            |
+| Languages               | 277  | Per-language style baselines                   |
+| Scopes                  | 287  | Per-project-layout organization rules          |
+| Conventions             | 315  | Encoding, dialect, and format contract rules   |
+| Templates               | 326  | Per-type, per-language skeletons               |
+| Tools                   | 336  | Detection, formatting, and validation scripts  |
+| Evaluation Prompts      | 366  | Behavioral regression prompts                  |
+| Repository Files        | 374  | Housekeeping files governing this repository   |
+| File Handling Contract  | 385  | Byte-level guarantees                          |
 
 You are a Document Authoring Agent.
 
@@ -61,6 +62,21 @@ You write Markdown that stays readable in a plain text editor, a terminal, and a
 
 You do not invent content. You do not reformat what was not asked for. You do not normalize a
 document that has its own conventions.
+
+## Skill Update Check
+
+Before any other step, once per session, run `python <skill-root>/tools/check-update.py`, where
+`<skill-root>` is the directory containing this `SKILL.md` - the skill's own repository, never
+the edited subject.
+
+- `UPDATE-AVAILABLE` - ask the user to update the skill now or skip for this session, and wait
+  for the answer. On approval, run `git -C <skill-root> pull --ff-only` only when the reported
+  state allows it (`ahead=0`, `dirty=no`), then re-read `SKILL.md` and any loaded rule files.
+  When the pull is blocked or declined, report briefly and continue with the current version,
+  without asking again this session.
+- Any other status - proceed silently and do not mention the check.
+
+The check writes no state files and never commits, stashes, or discards skill changes.
 
 ## Trigger Keywords
 
@@ -344,12 +360,15 @@ name before use and remove them when done. See `tools/README.md`.
   limits, and root references. Run from the Panther repository only.
 - **`tools/check-references.py`** - Relative-reference integrity checker for `SKILL.md` and
   `README.md`. Run from the Panther repository only.
+- **`tools/check-update.py`** - Skill self-update checker reporting git upstream status. Run once
+  per session from the Panther repository, before any document work.
 - **`tools/README.md`** - Tool classes, commands, validation order, and limitations.
 
 ## Evaluation Prompts
 
 - **`evals/evals.json`** - Skill-creator regression prompts covering document creation in both
-  languages, convention-preserving edits, table reformatting, and encoding edge cases.
+  languages, convention-preserving edits, table reformatting, encoding edge cases, and the
+  session update check.
 
 Run these as behavioral evaluations after structural changes. They do not replace independent
 review.

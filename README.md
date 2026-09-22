@@ -11,13 +11,13 @@
 | Section             | Line | What it covers                            |
 |---------------------|------|-------------------------------------------|
 | What The Skill Does | 33   | Authoring purpose and workflow            |
-| Core Principles     | 79   | Convention preservation and minimal diffs |
-| When To Use         | 90   | Supported requests and exclusions         |
-| Example Prompts     | 123  | Phrases the skill activates on            |
-| What's Inside       | 153  | Rule files, templates, tools, and evals   |
-| Verification        | 223  | Skill-maintenance checks                  |
-| License             | 230  | License for the skill itself              |
-| Credits             | 236  | Methodology and example sources           |
+| Core Principles     | 84   | Convention preservation and minimal diffs |
+| When To Use         | 95   | Supported requests and exclusions         |
+| Example Prompts     | 128  | Phrases the skill activates on            |
+| What's Inside       | 159  | Rule files, templates, tools, and evals   |
+| Verification        | 232  | Skill-maintenance checks                  |
+| License             | 239  | License for the skill itself              |
+| Credits             | 245  | Methodology and example sources           |
 
 Panther is a document authoring process packaged as an agent skill.
 
@@ -33,6 +33,11 @@ documents - a file in UTF-16 or a legacy code page stays that way after an edit.
 ## What The Skill Does
 
 When you ask for a document, the agent loads the skill and performs the following:
+
+**Checks for updates**
+
+Once per session, the agent runs a git self-update check on the skill's own repository and offers
+to pull incoming commits before starting, when the skill lives in a git clone.
 
 **Resolves parameters**
 
@@ -213,6 +218,7 @@ panther-skill/
 │   ├── diff-content.py           # Token-stream content-integrity diff
 │   ├── validate-skill.py         # Skill metadata and disclosure validator
 │   ├── check-references.py       # Root reference integrity checker
+│   ├── check-update.py           # Git upstream self-update checker for the skill repo
 │   └── README.md                 # Tool classes, commands, and limits
 └── evals/
     └── evals.json                # Behavioral regression prompts

@@ -376,6 +376,20 @@
         "Fenced blocks in other languages were left fully opaque.",
         "The content-integrity check reports no merged lines and no token changes beyond the requested edits."
       ]
+    },
+    {
+      "id": 32,
+      "prompt": "Create a README for this repository. The skill directory is a git clone that currently sits two commits behind its upstream branch.",
+      "expected_output": "A self-update check that runs before any document work, asks the user to update or skip for the session, and honors the answer without re-asking.",
+      "files": [],
+      "expectations": [
+        "The agent runs python <skill-root>/tools/check-update.py against the skill's own repository before any other step, never against the edited subject.",
+        "On UPDATE-AVAILABLE the agent asks whether to update the skill now or skip for this session and waits for the answer.",
+        "On approval the agent runs git pull --ff-only only when the reported tree state allows it, then re-reads SKILL.md and loaded rule files.",
+        "On skip or a blocked pull the agent continues with the current version and does not ask again in the session.",
+        "A status other than UPDATE-AVAILABLE produces no user-facing mention of the check.",
+        "The check writes no state files and never commits, stashes, or discards changes in the skill repository."
+      ]
     }
   ]
 }

@@ -4,7 +4,7 @@
 
 > **Scope:** Document-production and skill-maintenance scripts
 > **Key items:** encoding detection, scope signals, prose wrapping, table formatting,
-> document validation, content diffing, skill validation, reference integrity
+> document validation, content diffing, skill validation, reference integrity, self-update check
 
 These scripts support deterministic production of documents and maintenance of Panther itself.
 
@@ -32,9 +32,12 @@ Remove every copied script after use.
 
 ### Skill-Maintenance Tools
 
-Run `validate-skill.py` and `check-references.py` from the Panther repository.
+Run `validate-skill.py`, `check-references.py`, and `check-update.py` from the Panther repository.
 
 These tools inspect the skill itself and are never copied into a working project.
+
+`check-update.py` reports the git upstream status of the skill repository for the once-per-session
+Skill Update Check in `SKILL.md`, and always exits `0` with a `STATUS` verdict line.
 
 They use the Python standard library and do not require PyYAML or a package manager.
 
@@ -49,6 +52,7 @@ python validate-document.tmp.py <file.md> [--width N] [--payload-markdown]
 python diff-content.tmp.py <file.md> [--baseline <file>]
 python tools/validate-skill.py .
 python tools/check-references.py .
+python tools/check-update.py
 ```
 
 `detect-encoding.py` and `detect-scope.py` always exit `0` and print a report.
