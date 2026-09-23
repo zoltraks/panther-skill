@@ -3,11 +3,11 @@ name: panther-skill
 description: >-
   Document authoring skill. Creates and edits Markdown: technical
   documentation, specifications, rules documents, agent instruction
-  documents, articles, notes, READMEs, changelogs, RFCs, decision
-  records (ADR), and PMBOK artifacts - charters, management plans,
-  registers, status reports, minutes, WBS. Enforces
+  documents, contributing guides, articles, notes, READMEs, changelogs,
+  RFCs, decision records (ADR), and PMBOK artifacts - charters,
+  management plans, registers, status reports, minutes, WBS. Enforces
   plain-text-readable Markdown: one sentence per paragraph, source-width-
-  aligned tables, consistent headings. English by default, full Polish
+  aligned tables, consistent headings. English by default, Polish
   support. New files use UTF-8, existing encodings and line endings preserved.
   Handles organized layouts - agent skill repositories, Sphinx, MkDocs,
   Docusaurus, VitePress, GitBook sites, guided projects, doc collections,
@@ -38,19 +38,19 @@ metadata:
 |-------------------------|------|------------------------------------------------|
 | Skill Update Check      | 67   | Once-per-session git freshness gate before use |
 | Trigger Keywords        | 82   | Activation phrases                             |
-| How To Use              | 179  | Progressive disclosure and mandatory reading   |
-| Parameter Configuration | 218  | Defaults and user-controlled document shape    |
-| Principles              | 239  | Authoring invariants                           |
-| Process                 | 245  | Workflow and delivery checklist                |
-| Document Types          | 257  | Per-type rule files                            |
-| Languages               | 309  | Per-language style baselines                   |
-| Scopes                  | 319  | Per-project-layout organization rules          |
-| Conventions             | 347  | Encoding, dialect, and format contract rules   |
-| Templates               | 358  | Per-type, per-language skeletons               |
-| Tools                   | 368  | Detection, formatting, and validation scripts  |
-| Evaluation Prompts      | 407  | Behavioral regression prompts                  |
-| Repository Files        | 416  | Housekeeping files governing this repository   |
-| File Handling Contract  | 427  | Byte-level guarantees                          |
+| How To Use              | 181  | Progressive disclosure and mandatory reading   |
+| Parameter Configuration | 220  | Defaults and user-controlled document shape    |
+| Principles              | 241  | Authoring invariants                           |
+| Process                 | 247  | Workflow and delivery checklist                |
+| Document Types          | 259  | Per-type rule files                            |
+| Languages               | 314  | Per-language style baselines                   |
+| Scopes                  | 324  | Per-project-layout organization rules          |
+| Conventions             | 352  | Encoding, dialect, and format contract rules   |
+| Templates               | 363  | Per-type, per-language skeletons               |
+| Tools                   | 373  | Detection, formatting, and validation scripts  |
+| Evaluation Prompts      | 412  | Behavioral regression prompts                  |
+| Repository Files        | 421  | Housekeeping files governing this repository   |
+| File Handling Contract  | 432  | Byte-level guarantees                          |
 
 You are a Document Authoring Agent.
 
@@ -91,6 +91,8 @@ The skill activates on any of these phrases:
 - technical documentation
 - write a README
 - write a changelog
+- contributing guide
+- CONTRIBUTING.md
 - format specification
 - file format spec
 - guidelines document
@@ -289,6 +291,9 @@ Load the file matching the document type, it adds deltas on top of the language 
   pointers, notices.
 - **`types/changelog-file.md`** - Version-grouped change records: newest first, user-facing
   language.
+- **`types/contributing-file.md`** - `CONTRIBUTING.md` contributor guides: ways to
+  contribute, issue reporting, development setup, pull request rules, AI-assisted
+  contributions, license.
 - **`types/decision-record.md`** - Architecture decision records: status lifecycle, numbered
   filenames, immutable once accepted, supersede chain.
 - **`types/proposal-document.md`** - RFC and design proposals: review states, alternatives

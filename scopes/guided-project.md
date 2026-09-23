@@ -120,5 +120,6 @@ project.
 | `docs/template/` skeletons                                                                       | Payload artifacts - keep placeholder conventions        |
 | `docs/archive/`                                                                                  | Frozen snapshots - never edit                           |
 | `CHANGELOG.md`                                                                                   | `changelog-file` type                                   |
+| `CONTRIBUTING.md`                                                                                | `contributing-file` type                                |
 | `COPYRIGHTS.md`, `LICENSE.md`                                                                    | Verbatim legal text - preserve, never restyle           |
 | `README.md`                                                                                      | `readme-application` type                               |

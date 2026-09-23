@@ -18,10 +18,10 @@
 | Workflow Diagrams   | 216  | ASCII and Mermaid diagrams of the pipeline |
 | Core Principles     | 341  | Convention preservation and minimal diffs  |
 | When To Use         | 352  | Supported requests and exclusions          |
-| What's Inside       | 388  | Rule files, templates, tools, and evals    |
-| Verification        | 478  | Skill-maintenance checks                   |
-| License             | 485  | License for the skill itself               |
-| Credits             | 491  | Methodology and example sources            |
+| What's Inside       | 389  | Rule files, templates, tools, and evals    |
+| Verification        | 480  | Skill-maintenance checks                   |
+| License             | 487  | License for the skill itself               |
+| Credits             | 493  | Methodology and example sources            |
 
 ## Overview
 
@@ -37,9 +37,9 @@ The skill detects and preserves the encoding, line endings, and Markdown dialect
 documents - a file in UTF-16 or a legacy code page stays that way after an edit.
 
 Supported types cover technical documentation, project specifications, rules documents, agent
-instruction documents, format specifications, articles, notes, READMEs, changelogs, decision
-records, RFCs, and PMBOK artifacts - charters, registers, status reports, meeting minutes,
-management plans, and work breakdown structures.
+instruction documents, contributing guides, format specifications, articles, notes, READMEs,
+changelogs, decision records, RFCs, and PMBOK artifacts - charters, registers, status reports,
+meeting minutes, management plans, and work breakdown structures.
 
 Supported project layouts cover agent skill repositories, Sphinx, MkDocs, Docusaurus,
 VitePress, GitBook sites, guided projects, documentation collections, and multi-project
@@ -358,6 +358,7 @@ flowchart TD
 | "Draft a Polish article about sound design"      | **Yes**                                  |
 | "Update the glossary in this spec"               | **Yes** - preserves document conventions |
 | "Update this agent instruction document"         | **Yes** - dual-audience conventions      |
+| "Write a CONTRIBUTING.md"                        | **Yes** - contributor-guide conventions  |
 | "Fix the tables in this document"                | **Yes** - script-formatted tables        |
 | "Translate this document to Polish"              | **Yes** - language baseline switch       |
 | "Edit this CP1250-encoded document"              | **Yes** - encoding preserved             |
@@ -416,6 +417,7 @@ panther-skill/
 │   ├── readme-docs.md            # Documentation repository READMEs
 │   ├── readme-collection.md      # Collection and monorepo READMEs
 │   ├── changelog-file.md         # Version-grouped change records
+│   ├── contributing-file.md      # CONTRIBUTING.md guides: PR rules, AI-assisted policy
 │   ├── decision-record.md        # ADRs: status lifecycle, numbered records
 │   ├── proposal-document.md      # RFCs: review states, open questions
 │   ├── project-charter.md        # Charters: SMART objectives, approval block
@@ -444,8 +446,8 @@ panther-skill/
 │   ├── rst-documents.md          # reStructuredText minimal-edit contract
 │   └── asciidoc-documents.md     # AsciiDoc minimal-edit contract
 ├── templates/
-│   ├── en/                       # Twenty-three English skeletons, <type>-template-en.md
-│   └── pl/                       # Twenty-three Polish skeletons, <type>-template-pl.md
+│   ├── en/                       # Twenty-four English skeletons, <type>-template-en.md
+│   └── pl/                       # Twenty-four Polish skeletons, <type>-template-pl.md
 ├── tools/
 │   ├── detect-encoding.py        # BOM, encoding, and line-ending detection
 │   ├── detect-scope.py           # Document-scope signal census

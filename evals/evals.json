@@ -488,6 +488,18 @@
         "Embedded markdown payload blocks were preserved or updated consistently with the normative text.",
         "Numbered lists were renumbered and no references to stale section names remain."
       ]
+    },
+    {
+      "id": 41,
+      "prompt": "Write a CONTRIBUTING.md for an open source CLI tool. Cover ways to contribute, reporting issues, development setup, pull request rules, and the project's policy on AI-assisted contributions.",
+      "expected_output": "A Markdown contributing file with a 'Contributing to <Project>' H1, a welcome paragraph, ways-to-contribute list, issue-reporting guidance, fenced setup commands, pull request rules, an AI-Assisted Contributions section, and a license note.",
+      "files": [],
+      "expectations": [
+        "The H1 follows the 'Contributing to <Project>' convention.",
+        "The document addresses the contributor directly with concrete, checkable instructions.",
+        "An AI-Assisted Contributions section states the disclosure, verification, and ownership rules.",
+        "Setup commands appear in a fenced bash block a contributor can copy and run."
+      ]
     }
   ]
 }

@@ -34,13 +34,13 @@ Zasady opisane poniżej stosują się również do samego tego dokumentu.
 | Znaki specjalne                    | 241    | Znaki ramek i emoji                         |
 | Słownictwo polskie                 | 249    | Preferowane terminy i kalki                 |
 | Nazwy sekcji według typu dokumentu | 275    | Polskie nazwy sekcji i elementy typów       |
-| Cechy dialektów                    | 523    | Numeracja rozdziałów i pseudo-nagłówki      |
-| Tabele                             | 540    | Wyrównanie według źródła                    |
-| Nazwy plików                       | 654    | Nazywanie nowych plików dokumentacji        |
-| Przykład                           | 664    | Przykład poprawny i niepoprawny             |
-| Utrzymanie plików                  | 698    | Kodowanie i złamania wierszy                |
-| Pytanie o aktualizację             | 708    | Polskie brzmienie pytania o aktualizację    |
-| Frazy aktywujące                   | 714    | Polskie frazy i ich angielskie odpowiedniki |
+| Cechy dialektów                    | 532    | Numeracja rozdziałów i pseudo-nagłówki      |
+| Tabele                             | 549    | Wyrównanie według źródła                    |
+| Nazwy plików                       | 663    | Nazywanie nowych plików dokumentacji        |
+| Przykład                           | 673    | Przykład poprawny i niepoprawny             |
+| Utrzymanie plików                  | 707    | Kodowanie i złamania wierszy                |
+| Pytanie o aktualizację             | 717    | Polskie brzmienie pytania o aktualizację    |
+| Frazy aktywujące                   | 723    | Polskie frazy i ich angielskie odpowiedniki |
 
 ## Struktura dokumentu
 
@@ -301,6 +301,15 @@ Dobieraj polską nazwę sekcji według typu dokumentu z poniższej tabeli.
 | changelog-file           | Improved                           | Ulepszone                              |
 | changelog-file           | Fixed                              | Naprawione                             |
 | changelog-file           | Removed                            | Usunięte                               |
+| contributing-file        | Purpose                            | Przeznaczenie                          |
+| contributing-file        | Ways To Contribute                 | Sposoby współpracy                     |
+| contributing-file        | Reporting Issues                   | Zgłaszanie problemów                   |
+| contributing-file        | Development Setup                  | Konfiguracja środowiska                |
+| contributing-file        | Pull Requests                      | Pull requesty                          |
+| contributing-file        | AI-Assisted Contributions          | Wkład wspomagany AI                    |
+| contributing-file        | License                            | Licencja                               |
+| contributing-file        | Code Of Conduct                    | Kodeks postępowania                    |
+| contributing-file        | Getting Help                       | Uzyskiwanie pomocy                     |
 | decision-record          | Status                             | Stan                                   |
 | decision-record          | Context                            | Kontekst                               |
 | decision-record          | Decision Drivers                   | Czynniki decyzyjne                     |
@@ -752,3 +761,5 @@ Traktuj żądanie pasujące do frazy z tabeli jako jej angielski odpowiednik.
 | zaplanuj poprawki ustaleń      | plan fixes for findings      |
 | dokument instrukcji agenta     | agent instruction document   |
 | dokument przygotowania         | preparation document         |
+| przewodnik współpracy          | contributing guide           |
+| dokument współpracy            | contributing guide           |

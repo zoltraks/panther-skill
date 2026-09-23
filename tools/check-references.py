@@ -9,8 +9,8 @@ Scope:
     known skill directory are verified, so filename examples such as
     `hardware/chip.md` or `CHANGELOG.md` are ignored.
 
-Payload files under `templates/` and `docs/` are example artifacts, not rule
-documents, and are not scanned.
+Payload files under `templates/` and `docs/` are example artifacts, and `work/`
+holds scratch material - none of them are rule documents, so they are not scanned.
 """
 
 from __future__ import annotations
@@ -29,7 +29,7 @@ KNOWN_DIRS = {
     "tools", "types", "languages", "scopes", "conventions", "process",
     "principles", "templates", "evals",
 }
-EXCLUDED_DIRS = ("docs", "templates")
+EXCLUDED_DIRS = ("docs", "templates", "work")
 
 
 def candidates(text: str) -> set[str]:

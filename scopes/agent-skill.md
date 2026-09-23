@@ -71,6 +71,7 @@ Keep `evals/evals.json` prompts in sync with capabilities that change.
 | `README.md`                                   | `readme-skill` type                                                 |
 | Rule and topic files                          | `technical-document`, `rules-document`, or `agent-instruction` type |
 | `MAINTENANCE.md`, `STYLE.md`, `VERSIONING.md` | `rules-document` type                                               |
+| `CONTRIBUTING.md`                             | `contributing-file` type                                            |
 | `LICENSE`                                     | Verbatim legal text - preserve, never restyle                       |
 | `evals.json`, scripts                         | Data and code - not documents                                       |
 | `templates/` skeletons                        | Payload artifacts - style follows the skill's rules                 |
