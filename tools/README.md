@@ -44,6 +44,8 @@ They use the Python standard library and do not require PyYAML or a package mana
 
 ## Commands
 
+The commands below use `python` - substitute `python3` when `python` is not on PATH.
+
 ```text
 python detect-encoding.tmp.py <file>
 python detect-scope.tmp.py <directory>

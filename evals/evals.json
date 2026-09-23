@@ -476,6 +476,18 @@
         "The README states where documents live and points to the governing rules document instead of restating rules.",
         "No install or usage sections were added for a repository that ships no tooling."
       ]
+    },
+    {
+      "id": 40,
+      "prompt": "Extend this agent instruction document: add a new optional file to the canonical document set it defines, keeping both its human-facing reference parts and its agent-facing procedure parts consistent.",
+      "expected_output": "An in-place edit that threads the new file through every enumeration - tables, decision menus, procedures, checklists, and embedded templates - while preserving the document's conventions and payload blocks.",
+      "files": [],
+      "expectations": [
+        "The new file appears in every enumeration of the governed set: tables, lists, decision menus, checklists, and embedded examples.",
+        "Agent-facing instructions and human-facing explanations stay consistent about the new file.",
+        "Embedded markdown payload blocks were preserved or updated consistently with the normative text.",
+        "Numbered lists were renumbered and no references to stale section names remain."
+      ]
     }
   ]
 }

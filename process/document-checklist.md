@@ -74,6 +74,18 @@ Fix every failure, or report it to the user with a reason.
 - The vocabulary table of the language file was applied, no discouraged terms remain.
 - Technical names and proper nouns keep their original spelling.
 
+## Consistency
+
+- Every enumeration of a governed set - canonical files, owners, options, steps - lists the
+  same members wherever it appears in tables, menus, checklists, and examples.
+- No reference to a renamed or removed section, file, or owner remains.
+- Numbered lists renumber correctly after inserted or removed items.
+- A document serving both human readers and AI agents states each shared rule consistently
+  for both audiences.
+- Embedded ` ```markdown ` example documents match the normative text they illustrate.
+- Version markers and contents tables reflect the current change when the document's own
+  convention maintains them.
+
 ## File Properties
 
 - The filename follows the language file naming rules, or a type-conventional name.

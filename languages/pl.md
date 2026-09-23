@@ -20,27 +20,27 @@ Zasady opisane poniżej stosują się również do samego tego dokumentu.
 
 | Sekcja                             | Wiersz | Zakres                                      |
 |------------------------------------|--------|---------------------------------------------|
-| Struktura dokumentu                | 44     | Tytuł, cel i układ dokumentu                |
-| Nagłówki                           | 62     | Wielkość liter i kwalifikatory              |
-| Numeracja sekcji                   | 94     | Zasady numerowania sekcji                   |
-| Zasady spisu treści                | 106    | Kiedy dodawać spis treści                   |
-| Akapity i zdania                   | 120    | Budowa zdań i akapitów                      |
-| Zawijanie wierszy                  | 134    | Wiersze logiczne i twarde łamania           |
-| Listy                              | 148    | Punktory, numeracja i odstępy               |
-| Puste wiersze i odstępy            | 170    | Zasady odstępów                             |
-| Bloki kodu                         | 184    | Ogrodzenia, znaczniki i kod liniowy         |
-| Formatowanie w treści              | 198    | Cudzysłowy, pogrubienia i kursywa           |
-| Średniki                           | 214    | Zakaz średników w tekście                   |
-| Znaki specjalne                    | 240    | Znaki ramek i emoji                         |
-| Słownictwo polskie                 | 248    | Preferowane terminy i kalki                 |
-| Nazwy sekcji według typu dokumentu | 274    | Polskie nazwy sekcji i elementy typów       |
-| Cechy dialektów                    | 462    | Numeracja rozdziałów i pseudo-nagłówki      |
-| Tabele                             | 479    | Wyrównanie według źródła                    |
-| Nazwy plików                       | 593    | Nazywanie nowych plików dokumentacji        |
-| Przykład                           | 603    | Przykład poprawny i niepoprawny             |
-| Utrzymanie plików                  | 637    | Kodowanie i złamania wierszy                |
-| Pytanie o aktualizację             | 647    | Polskie brzmienie pytania o aktualizację    |
-| Frazy aktywujące                   | 652    | Polskie frazy i ich angielskie odpowiedniki |
+| Struktura dokumentu                | 45     | Tytuł, cel i układ dokumentu                |
+| Nagłówki                           | 63     | Wielkość liter i kwalifikatory              |
+| Numeracja sekcji                   | 95     | Zasady numerowania sekcji                   |
+| Zasady spisu treści                | 107    | Kiedy dodawać spis treści                   |
+| Akapity i zdania                   | 121    | Budowa zdań i akapitów                      |
+| Zawijanie wierszy                  | 135    | Wiersze logiczne i twarde łamania           |
+| Listy                              | 149    | Punktory, numeracja i odstępy               |
+| Puste wiersze i odstępy            | 171    | Zasady odstępów                             |
+| Bloki kodu                         | 185    | Ogrodzenia, znaczniki i kod liniowy         |
+| Formatowanie w treści              | 199    | Cudzysłowy, pogrubienia i kursywa           |
+| Średniki                           | 215    | Zakaz średników w tekście                   |
+| Znaki specjalne                    | 241    | Znaki ramek i emoji                         |
+| Słownictwo polskie                 | 249    | Preferowane terminy i kalki                 |
+| Nazwy sekcji według typu dokumentu | 275    | Polskie nazwy sekcji i elementy typów       |
+| Cechy dialektów                    | 523    | Numeracja rozdziałów i pseudo-nagłówki      |
+| Tabele                             | 540    | Wyrównanie według źródła                    |
+| Nazwy plików                       | 654    | Nazywanie nowych plików dokumentacji        |
+| Przykład                           | 664    | Przykład poprawny i niepoprawny             |
+| Utrzymanie plików                  | 698    | Kodowanie i złamania wierszy                |
+| Pytanie o aktualizację             | 708    | Polskie brzmienie pytania o aktualizację    |
+| Frazy aktywujące                   | 714    | Polskie frazy i ich angielskie odpowiedniki |
 
 ## Struktura dokumentu
 
@@ -282,6 +282,15 @@ Dobieraj polską nazwę sekcji według typu dokumentu z poniższej tabeli.
 
 | Typ dokumentu            | Sekcja angielska                   | Sekcja polska                          |
 |--------------------------|------------------------------------|----------------------------------------|
+| agent-instruction        | Purpose                            | Przeznaczenie                          |
+| agent-instruction        | Audiences                          | Odbiorcy                               |
+| agent-instruction        | Use Cases                          | Przypadki użycia                       |
+| agent-instruction        | Decision Points                    | Punkty decyzyjne                       |
+| agent-instruction        | Procedures                         | Procedury                              |
+| agent-instruction        | Validation                         | Weryfikacja                            |
+| agent-instruction        | Example Content                    | Przykład zawartości                    |
+| agent-instruction        | Best Practices                     | Dobre praktyki                         |
+| agent-instruction        | References                         | Referencje                             |
 | article-text             | Introduction                       | Wprowadzenie                           |
 | article-text             | Summary                            | Podsumowanie                           |
 | article-text             | Further Reading                    | Dalsza lektura                         |
@@ -741,3 +750,5 @@ Traktuj żądanie pasujące do frazy z tabeli jako jej angielski odpowiednik.
 | audyt dokumentu                | audit this document          |
 | sprawdź formatowanie dokumentu | check document formatting    |
 | zaplanuj poprawki ustaleń      | plan fixes for findings      |
+| dokument instrukcji agenta     | agent instruction document   |
+| dokument przygotowania         | preparation document         |

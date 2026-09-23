@@ -18,6 +18,10 @@ correct/incorrect examples - like this skill's own `STYLE.md`.
 Use for coding standards, documentation guidelines, workflow rules, review checklists, and agent
 instruction documents.
 
+When the document carries executable machinery - trigger routing, decision menus, staged
+procedures, validation checklists, or embedded templates - it follows the `agent-instruction`
+type instead.
+
 **Templates**
 
 - `templates/en/rules-document-template-en.md`
@@ -45,6 +49,18 @@ One rule per sentence, one sentence per line.
 
 Keep rules general - describe the principle, not a single instance.
 
+## Audiences
+
+A rules document may address human readers, AI agents, or both.
+
+When it serves both, the purpose section declares the audiences and what each uses the
+document for.
+
+Agent-facing rules stay imperative and mechanically checkable where possible.
+
+A rule that applies to both audiences is stated once and referenced, never restated in two
+diverging forms.
+
 ## Examples
 
 Illustrate non-obvious rules with paired examples:
@@ -70,7 +86,8 @@ Show the smallest example that demonstrates the rule.
 
 ## Deltas From The Language Baseline
 
-- The document may address an AI agent directly, rules phrased as commands are acceptable.
+- The document may address an AI agent directly, rules phrased as commands are acceptable -
+  see `## Audiences`.
 - A `Sources Of Truth` section near the top declares which files outrank this one on conflict.
 - Rule sentences stay short even at the cost of elegance, a rule must be checkable mechanically
   where possible.

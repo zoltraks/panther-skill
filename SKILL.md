@@ -2,9 +2,10 @@
 name: panther-skill
 description: >-
   Document authoring skill. Creates and edits Markdown: technical
-  documentation, specifications, rules documents, articles, notes, READMEs,
-  changelogs, RFCs, decision records (ADR), and PMBOK artifacts - charters,
-  management plans, registers, status reports, minutes, WBS. Enforces
+  documentation, specifications, rules documents, agent instruction
+  documents, articles, notes, READMEs, changelogs, RFCs, decision
+  records (ADR), and PMBOK artifacts - charters, management plans,
+  registers, status reports, minutes, WBS. Enforces
   plain-text-readable Markdown: one sentence per paragraph, source-width-
   aligned tables, consistent headings. English by default, full Polish
   support. New files use UTF-8, existing encodings and line endings preserved.
@@ -21,7 +22,7 @@ compatibility: >-
   Claude Desktop, Windsurf, Devin, and similar). Requires the ability to read
   and write text files. No network access required.
 metadata:
-  version: "0.4"
+  version: "0.5"
   author: Filip Golewski
 ---
 
@@ -35,21 +36,21 @@ metadata:
 
 | Section                 | Line | What it covers                                 |
 |-------------------------|------|------------------------------------------------|
-| Skill Update Check      | 66   | Once-per-session git freshness gate before use |
-| Trigger Keywords        | 81   | Activation phrases                             |
-| How To Use              | 175  | Progressive disclosure and mandatory reading   |
-| Parameter Configuration | 214  | Defaults and user-controlled document shape    |
-| Principles              | 235  | Authoring invariants                           |
-| Process                 | 241  | Workflow and delivery checklist                |
-| Document Types          | 253  | Per-type rule files                            |
-| Languages               | 302  | Per-language style baselines                   |
-| Scopes                  | 312  | Per-project-layout organization rules          |
-| Conventions             | 340  | Encoding, dialect, and format contract rules   |
-| Templates               | 351  | Per-type, per-language skeletons               |
-| Tools                   | 361  | Detection, formatting, and validation scripts  |
-| Evaluation Prompts      | 400  | Behavioral regression prompts                  |
-| Repository Files        | 409  | Housekeeping files governing this repository   |
-| File Handling Contract  | 420  | Byte-level guarantees                          |
+| Skill Update Check      | 67   | Once-per-session git freshness gate before use |
+| Trigger Keywords        | 82   | Activation phrases                             |
+| How To Use              | 179  | Progressive disclosure and mandatory reading   |
+| Parameter Configuration | 218  | Defaults and user-controlled document shape    |
+| Principles              | 239  | Authoring invariants                           |
+| Process                 | 245  | Workflow and delivery checklist                |
+| Document Types          | 257  | Per-type rule files                            |
+| Languages               | 309  | Per-language style baselines                   |
+| Scopes                  | 319  | Per-project-layout organization rules          |
+| Conventions             | 347  | Encoding, dialect, and format contract rules   |
+| Templates               | 358  | Per-type, per-language skeletons               |
+| Tools                   | 368  | Detection, formatting, and validation scripts  |
+| Evaluation Prompts      | 407  | Behavioral regression prompts                  |
+| Repository Files        | 416  | Housekeeping files governing this repository   |
+| File Handling Contract  | 427  | Byte-level guarantees                          |
 
 You are a Document Authoring Agent.
 
@@ -67,7 +68,7 @@ document that has its own conventions.
 
 Before any other step, once per session, run `python <skill-root>/tools/check-update.py`, where
 `<skill-root>` is the directory containing this `SKILL.md` - the skill's own repository, never
-the edited subject.
+the edited subject. Use `python3` when `python` is not on PATH.
 
 - `UPDATE-AVAILABLE` - ask the user to update the skill now or skip for this session, and wait
   for the answer. On approval, run `git -C <skill-root> pull --ff-only` only when the reported
@@ -95,6 +96,9 @@ The skill activates on any of these phrases:
 - guidelines document
 - coding standard document
 - style guide document
+- agent instruction document
+- preparation document
+- dual-audience document
 - write an article
 - quick note
 - meeting notes
@@ -260,6 +264,9 @@ Load the file matching the document type, it adds deltas on top of the language 
   comment, document navigation, glossary, requirements tables, numbered-chapter variant.
 - **`types/rules-document.md`** - Guidelines, standards, and workflow rules: imperative voice,
   sources of truth, Correct/Incorrect examples.
+- **`types/agent-instruction.md`** - Documents an AI coding agent executes: dual audiences,
+  activation routing, decision menus, staged procedures, validation checklists, embedded
+  templates.
 - **`types/format-specification.md`** - File format and protocol specifications: document
   information, version history, field tables, value enumerations.
 - **`types/article-text.md`** - Prose documents, tutorials, course material: narrative paragraphs,

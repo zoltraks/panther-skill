@@ -189,6 +189,31 @@ realigns tables.
 Pass `--payload-markdown` to the payload-aware tools only when the request covers embedded
 payload documents - payload content stays opaque otherwise.
 
+## Editing Governed Documents
+
+A governed document defines a set other parts of itself enumerate - canonical files, section
+names, rule owners, or options.
+
+Re-verify the target before planning a multi-part edit when time passed or the file may have
+changed - re-read it or check its version marker and `git status`, never rely on an earlier
+read.
+
+When the change adds, removes, or renames a member of a governed set, first inventory every
+place the document enumerates that set - tables, bullet lists, decision menus, checklists,
+procedures, and embedded examples - then update all of them in one pass.
+
+When renaming a section or file the document references by name, search the whole document
+for the old name before and after the rename and update every reference.
+
+Renumber ordered lists after inserting or removing items.
+
+Apply edits that share anchor context sequentially - when an edit fails because the anchor
+text no longer matches, re-read the region and retry with the current text.
+
+Keep embedded ` ```markdown ` templates consistent with the normative text they implement.
+
+A verification search that finds no match confirms absence - it is not a failure.
+
 ## Validation
 
 Before delivering, run the checks from `process/document-checklist.md`:

@@ -88,7 +88,7 @@ Never bump version numbers unless the request explicitly asks for it.
 UPPERCASE conventional names are used for the governed document set in `docs/`:
 `GUIDELINES.md`, `SPECIFICATION.md`, `ARCHITECTURE.md`, `TESTING.md`, `DEPLOYMENT.md`,
 `WORKFLOW.md`, `REFERENCES.md`, `COPYRIGHTS.md`, `CONCEPT.md`, `PREPARATION.md`, `PLAN.md`,
-`BENCHMARK.md`, `IGNORE.md`.
+`BENCHMARK.md`, `IGNORE.md`, `STYLE.md`.
 
 Versioned artifact files use lowercase kebab-case inside the version directory, for example
 `docs/feature/0.1.8/knowledge-library.md`.
@@ -105,7 +105,8 @@ project.
 
 | File or directory                                                                                | Type or handling                                        |
 |--------------------------------------------------------------------------------------------------|---------------------------------------------------------|
-| `GUIDELINES.md`, `ALWAYS.md`, `IGNORE.md`, `WORKFLOW.md`, `standard/`                            | `rules-document` type                                   |
+| `GUIDELINES.md`, `ALWAYS.md`, `IGNORE.md`, `WORKFLOW.md`, `STYLE.md`, `standard/`                | `rules-document` type                                   |
+| `PREPARATION.md`                                                                                 | `agent-instruction` type                                |
 | `CONCEPT.md`, `SPECIFICATION.md`, `ARCHITECTURE.md`, `PROJECT.md`, `TESTING.md`, `DEPLOYMENT.md` | `technical-document` or `project-document` type         |
 | `docs/feature/`, `docs/change/` docs                                                             | `technical-document` type - feature and change speclets |
 | `docs/plan/` docs                                                                                | `technical-document` or `management-plan` type          |

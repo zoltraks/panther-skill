@@ -65,15 +65,15 @@ Keep `evals/evals.json` prompts in sync with capabilities that change.
 
 ## Document Types In This Scope
 
-| File                                          | Handling                                            |
-|-----------------------------------------------|-----------------------------------------------------|
-| `SKILL.md`                                    | Router document - governed by this scope's contract |
-| `README.md`                                   | `readme-skill` type                                 |
-| Rule and topic files                          | `technical-document` or `rules-document` type       |
-| `MAINTENANCE.md`, `STYLE.md`, `VERSIONING.md` | `rules-document` type                               |
-| `LICENSE`                                     | Verbatim legal text - preserve, never restyle       |
-| `evals.json`, scripts                         | Data and code - not documents                       |
-| `templates/` skeletons                        | Payload artifacts - style follows the skill's rules |
+| File                                          | Handling                                                            |
+|-----------------------------------------------|---------------------------------------------------------------------|
+| `SKILL.md`                                    | Router document - governed by this scope's contract                 |
+| `README.md`                                   | `readme-skill` type                                                 |
+| Rule and topic files                          | `technical-document`, `rules-document`, or `agent-instruction` type |
+| `MAINTENANCE.md`, `STYLE.md`, `VERSIONING.md` | `rules-document` type                                               |
+| `LICENSE`                                     | Verbatim legal text - preserve, never restyle                       |
+| `evals.json`, scripts                         | Data and code - not documents                                       |
+| `templates/` skeletons                        | Payload artifacts - style follows the skill's rules                 |
 
 ## Naming
 
