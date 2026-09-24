@@ -19,9 +19,9 @@
 | Core Principles     | 341  | Convention preservation and minimal diffs  |
 | When To Use         | 352  | Supported requests and exclusions          |
 | What's Inside       | 389  | Rule files, templates, tools, and evals    |
-| Verification        | 482  | Skill-maintenance checks                   |
-| License             | 489  | License for the skill itself               |
-| Credits             | 495  | Methodology and example sources            |
+| Verification        | 484  | Skill-maintenance checks                   |
+| License             | 491  | License for the skill itself               |
+| Credits             | 497  | Methodology and example sources            |
 
 ## Overview
 
@@ -223,91 +223,91 @@ Layout discovery and document audits follow their own standalone procedures in
 ### ASCII Diagram
 
 ```
-                           ┌──────────────────────────┐
-                           │ User Request Arrives     │
-                           │ (e.g., "write a README") │
-                           └──────────────┬───────────┘
-                                          │
-                                          ▼
-                     ┌────────────────────────────────────────┐
-                     │ Trigger Phrase Match?                  │
-                     │ (SKILL.md activation phrases)          │─ No ─▶┌───────────────────────────┐
-                     └──────────────┬─────────────────────────┘       │ Not a Panther request     │
-                                    │ Yes                             │ Skill not activated       │
-                                    ▼                                 └───────────────────────────┘
-                     ┌────────────────────────────────────────┐
-                     │ Session Update Check                   │
-                     │ tools/check-update.py                  │
-                     └──────────────┬─────────────────────────┘
-                                    │
-                                    ▼
-                     ┌────────────────────────────────────────┐
-                     │ Load Mandatory Files                   │
-                     │ principles/authoring-rules.md          │
-                     │ process/document-workflow.md           │
-                     └──────────────┬─────────────────────────┘
-                                    │
-                                    ▼
-                     ┌────────────────────────────────────────┐
-                     │ Classify Task                          │
-                     │ create, edit, reformat, translate,     │
-                     │ discover, audit                        │
-                     └──────────────┬─────────────────────────┘
-                                    │
-                                    ▼
-                     ┌────────────────────────────────────────┐
-                     │ Parameter Resolution                   │
-                     │ - type                                 │
-                     │ - language                             │
-                     │ - scope                                │
-                     │ - filename                             │
-                     │ - encoding / line endings              │
-                     └──────────────┬─────────────────────────┘
-                                    │
-                                    ▼
-                     ┌────────────────────────────────────────┐
-                     │ Detect Document Conventions            │
-                     │ tools/detect-encoding.py               │
-                     │ conventions/markdown-dialects.md       │
-                     └──────────────┬─────────────────────────┘
-                                    │
-                                    ▼
-                     ┌────────────────────────────────────────┐
-                     │ Detect Project Layout (Scope)          │
-                     │ tools/detect-scope.py                  │
-                     │ scopes/<scope>.md                      │
-                     └──────────────┬─────────────────────────┘
-                                    │
-                                    ▼
-                     ┌────────────────────────────────────────┐
-                     │ Select Rule Set                        │
-                     │ - language baseline                    │
-                     │ - document type rules                  │
-                     │ - scope rules                          │
-                     └──────────────┬─────────────────────────┘
-                                    │
-                                    ▼
-                     ┌────────────────────────────────────────┐
-                     │ Draft Document                         │
-                     │ - templates/<lang>/<type>-template.md  │
-                     │ - minimal diff for edits               │
-                     └──────────────┬─────────────────────────┘
-                                    │
-                                    ▼
-                     ┌────────────────────────────────────────┐
-                     │ Mechanical Validation                  │
-                     │ tools/format-table.py                  │
-                     │ tools/wrap-prose.py                    │
-                     │ tools/validate-document.py             │
-                     │ tools/diff-content.py                  │
-                     └──────────────┬─────────────────────────┘
-                                    │
-                                    ▼
-                     ┌────────────────────────────────────────┐
-                     │ Delivery                               │
-                     │ - write file                           │
-                     │ - preserve encoding & line endings     │
-                     └────────────────────────────────────────┘
+         ┌──────────────────────────┐
+         │   User Request Arrives   │
+         │ (e.g., "write a README") │
+         └────────────┬─────────────┘
+                      │
+                      ▼
+      ┌───────────────────────────────┐       ┌───────────────────────┐
+      │     Trigger Phrase Match?     │  No   │ Not a Panther request │
+      │ (SKILL.md activation phrases) │──────▶│  Skill not activated  │
+      └───────────────┬───────────────┘       └───────────────────────┘
+                      │ Yes
+                      ▼
+          ┌───────────────────────┐
+          │ Session Update Check  │
+          │ tools/check-update.py │
+          └───────────┬───────────┘
+                      │
+                      ▼
+      ┌───────────────────────────────┐
+      │     Load Mandatory Files      │
+      │ principles/authoring-rules.md │
+      │ process/document-workflow.md  │
+      └───────────────┬───────────────┘
+                      │
+                      ▼
+   ┌────────────────────────────────────┐
+   │           Classify Task            │
+   │ create, edit, reformat, translate, │
+   │ discover, audit                    │
+   └──────────────────┬─────────────────┘
+                      │
+                      ▼
+        ┌───────────────────────────┐
+        │   Parameter Resolution    │
+        │ - type                    │
+        │ - language                │
+        │ - scope                   │
+        │ - filename                │
+        │ - encoding / line endings │
+        └─────────────┬─────────────┘
+                      │
+                      ▼
+     ┌──────────────────────────────────┐
+     │   Detect Document Conventions    │
+     │ tools/detect-encoding.py         │
+     │ conventions/markdown-dialects.md │
+     └────────────────┬─────────────────┘
+                      │
+                      ▼
+      ┌───────────────────────────────┐
+      │ Detect Project Layout (Scope) │
+      │ tools/detect-scope.py         │
+      │ scopes/<scope>.md             │
+      └───────────────┬───────────────┘
+                      │
+                      ▼
+          ┌───────────────────────┐
+          │    Select Rule Set    │
+          │ - language baseline   │
+          │ - document type rules │
+          │ - scope rules         │
+          └───────────┬───────────┘
+                      │
+                      ▼
+  ┌───────────────────────────────────────┐
+  │            Draft Document             │
+  │ - templates/<lang>/<type>-template.md │
+  │ - minimal diff for edits              │
+  └───────────────────┬───────────────────┘
+                      │
+                      ▼
+       ┌────────────────────────────┐
+       │   Mechanical Validation    │
+       │ tools/format-table.py      │
+       │ tools/wrap-prose.py        │
+       │ tools/validate-document.py │
+       │ tools/diff-content.py      │
+       └──────────────┬─────────────┘
+                      │
+                      ▼
+   ┌────────────────────────────────────┐
+   │              Delivery              │
+   │ - write file                       │
+   │ - preserve encoding & line endings │
+   └────────────────────────────────────┘
 ```
 
 ### Mermaid Diagram
@@ -444,7 +444,9 @@ panther-skill/
 │   ├── file-encoding.md             # UTF-8 default, UTF-16/UCS-2, code pages, line endings
 │   ├── markdown-dialects.md         # ATX, setext, numbered chapters, frontmatter, payloads
 │   ├── rst-documents.md             # reStructuredText minimal-edit contract
-│   └── asciidoc-documents.md        # AsciiDoc minimal-edit contract
+│   ├── asciidoc-documents.md        # AsciiDoc minimal-edit contract
+│   ├── plain-text-comments.md       # Trailing comment alignment in plain-text blocks
+│   └── ascii-diagrams.md            # Box-drawing flow diagram rules
 ├── templates/
 │   ├── en/                          # Twenty-four English skeletons, <type>-template-en.md
 │   └── pl/                          # Twenty-four Polish skeletons, <type>-template-pl.md

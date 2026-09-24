@@ -23,11 +23,11 @@ sentence per logical line and never hard-wraps.
 | Paragraphs And Wrapping    | 92   | Sentence structure and line width               |
 | Headings And Lists         | 126  | Heading depth, lists, and spacing               |
 | Code And Inline Formatting | 175  | Fences, code spans, and semicolons              |
-| Tables                     | 250  | Source-width alignment and automated formatting |
-| Characters And Language    | 425  | Box-drawing, emoji, and per-language rules      |
-| File References            | 446  | Relative paths and localised resources          |
-| Skill Requirements         | 474  | Frontmatter and progressive disclosure          |
-| Maintenance                | 535  | Pointer to the skill extension rules            |
+| Tables                     | 281  | Source-width alignment and automated formatting |
+| Characters And Language    | 456  | Box-drawing, emoji, and per-language rules      |
+| File References            | 477  | Relative paths and localised resources          |
+| Skill Requirements         | 505  | Frontmatter and progressive disclosure          |
+| Maintenance                | 566  | Pointer to the skill extension rules            |
 
 ## Document Structure
 
@@ -222,6 +222,37 @@ The rule applies per block: different fenced blocks may use different comment co
 Align comments with `tools/align-comments.py` or an equivalent script, not by hand.
 
 The full convention for produced documents lives in `conventions/plain-text-comments.md`.
+
+### ASCII Diagrams
+
+Flow diagrams live in untagged fenced blocks and use box-drawing characters - never
+`+`, `-`, `|`, `v`, or `-->` approximations.
+
+All main-flow boxes share one vertical axis column and are centered on it.
+
+A box's interior is its longest line plus one space of padding on each side.
+
+Center every prose line inside the box, putting the odd extra space on the right when
+the padding cannot split evenly.
+
+Keep enumeration and reference lines - dash items, file paths, tool names, list
+continuations - left-aligned with one leading space.
+
+A downward edge is `┬` in the bottom border on the axis, one `│` row, then one `▼` row.
+
+An edge label sits one space after the `│` on the connector row.
+
+A side branch box aligns its top border with the source box's top border.
+
+Its arrow leaves on the source's last content row as `─` across the whole gap plus `▶`
+touching the target border, and the branch label sits centered in the gap on the row
+above the arrow.
+
+A terminal box ends with a plain `└ ─ ┘` border, no tee.
+
+Connector rows end after their last glyph - no padding to the box width.
+
+The full convention for produced documents lives in `conventions/ascii-diagrams.md`.
 
 ## Inline Formatting
 

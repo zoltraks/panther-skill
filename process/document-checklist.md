@@ -59,6 +59,8 @@ Fix every failure, or report it to the user with a reason.
 - Trailing `#` comments inside a plain-text or shell-tagged block share one column - the
   established column, or the longest entry plus two spaces - aligned with
   `tools/align-comments.py` or an equivalent script, not by hand.
+- Box-drawing flow diagrams follow `conventions/ascii-diagrams.md` - one shared axis,
+  centered prose lines, left-aligned enumerations, `┬`/`▼` and `▶` connectors.
 
 ## Tables
 

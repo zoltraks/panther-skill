@@ -46,11 +46,11 @@ metadata:
 | Languages               | 316  | Per-language style baselines                   |
 | Scopes                  | 326  | Per-project-layout organization rules          |
 | Conventions             | 354  | Encoding, dialect, and format contract rules   |
-| Templates               | 367  | Per-type, per-language skeletons               |
-| Tools                   | 377  | Detection, formatting, and validation scripts  |
-| Evaluation Prompts      | 422  | Behavioral regression prompts                  |
-| Repository Files        | 431  | Housekeeping files governing this repository   |
-| File Handling Contract  | 442  | Byte-level guarantees                          |
+| Templates               | 369  | Per-type, per-language skeletons               |
+| Tools                   | 379  | Detection, formatting, and validation scripts  |
+| Evaluation Prompts      | 424  | Behavioral regression prompts                  |
+| Repository Files        | 433  | Housekeeping files governing this repository   |
+| File Handling Contract  | 444  | Byte-level guarantees                          |
 
 You are a Document Authoring Agent.
 
@@ -363,6 +363,8 @@ registration inside an organized project:
   `.adoc` files: title markers, admonitions, includes, opaque tables.
 - **`conventions/plain-text-comments.md`** - `#` comment alignment inside untagged fenced blocks
   and shell-tagged blocks: one shared column per block, longest entry plus two spaces.
+- **`conventions/ascii-diagrams.md`** - Box-drawing flow diagrams: one shared axis, centered
+  boxes and prose lines, `┬`/`▼` vertical edges, gap-filling `▶` side branches.
 
 ## `templates/` - Skeletons
 

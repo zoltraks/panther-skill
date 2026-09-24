@@ -58,6 +58,8 @@ The canonical skeleton, adjusted to the request:
 - A directory tree in an untagged fenced block may use box-drawing characters.
 - Trailing `#` comments on tree or listing lines align to a shared column per block - see
   `conventions/plain-text-comments.md`.
+- A box-drawing flow diagram follows `conventions/ascii-diagrams.md` - one shared axis,
+  centered prose lines, tee and arrowhead connectors.
 - A "when to use" table is a good fit for the usage section.
 - Badges and HTML are allowed only when the repository's README convention already uses them -
   do not introduce them unasked.
