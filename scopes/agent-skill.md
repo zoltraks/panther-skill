@@ -40,8 +40,8 @@ Optional directories seen in real skills:
 Skills may define their own taxonomy on top, for example `principles/`, `process/`, `types/`,
 `languages/`, `conventions/`, `scopes/`, `assessment/`, `synthesis/`, or `translation/`.
 
-The skill's own `SKILL.md` and `MAINTENANCE.md` describe its specific taxonomy - read them when
-working inside that skill.
+The skill's own governing files describe its specific taxonomy and cascade - read them when
+working inside that skill (see Governing Files).
 
 ## The Router Contract
 
@@ -62,6 +62,42 @@ Mirror layout changes in the `README.md` directory tree when one exists.
 Renumber every `## Contents` table affected by line shifts.
 
 Keep `evals/evals.json` prompts in sync with capabilities that change.
+
+## Governing Files
+
+Before editing inside a skill repository, read its governing documents in order:
+
+1. `SKILL.md` - the router: taxonomy, registration entries, and activation contract.
+2. The maintenance document, conventionally `MAINTENANCE.md` - directory roles, naming rules,
+   and the per-kind addition procedures.
+3. The style document, conventionally `STYLE.md` - prose and formatting rules for the skill's
+   own files.
+4. The versioning document, conventionally `VERSIONING.md` - version field location and bump
+   policy.
+5. `tools/README.md` when the skill ships tools - tool classes and command conventions.
+
+The skill's own maintenance document defines its registration cascade - follow it.
+
+When no maintenance document exists, apply the procedure in Adding Or Removing A Document.
+
+## Consistency Sets
+
+One resource is typically enumerated in several places at once: the `SKILL.md` registry, the
+`README.md` directory tree, `## Contents` tables, language or translation files, and
+`evals/evals.json`.
+
+Update every enumeration in a single pass - the governed-set inventory rules of
+`process/document-workflow.md` apply to skill files the same way they apply to governed
+documents.
+
+`## Contents` entries carry approximate line numbers, so renumber them when sections move
+significantly.
+
+Verify a renumbered table against `grep -n '^## ' <file>` or with the skill's contents checker
+when it provides one, for example `tools/check-contents.py` in the Panther repository.
+
+Untracked scratch directories such as `work/` are not rule material - never register them, and
+keep them out of reference checks and audits.
 
 ## Document Types In This Scope
 
@@ -91,7 +127,8 @@ files inside the skill.
 1. Create or remove the file in the directory matching its role.
 2. Register or remove its line in `SKILL.md` under the matching directory section.
 3. Update the `README.md` directory tree when the layout changed.
-4. Renumber `## Contents` tables affected by line shifts.
+4. Renumber `## Contents` tables affected by line shifts - see Consistency Sets.
 5. Sync `evals/evals.json` when behavior changed.
 6. Run the skill's own validators when it defines them, for example
-   `tools/validate-skill.py .` and `tools/check-references.py .` in the Panther repository.
+   `tools/validate-skill.py .`, `tools/check-references.py .`, and `tools/check-contents.py .`
+   in the Panther repository.

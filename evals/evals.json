@@ -500,6 +500,31 @@
         "An AI-Assisted Contributions section states the disclosure, verification, and ownership rules.",
         "Setup commands appear in a fenced bash block a contributor can copy and run."
       ]
+    },
+    {
+      "id": 42,
+      "prompt": "Extend this skill repository: add a new rule file and renumber every contents table the insertion affects.",
+      "expected_output": "The file registered in SKILL.md, the README.md tree mirrored, contents-table line numbers corrected, and the skill's own validators run.",
+      "files": [],
+      "expectations": [
+        "The skill's governing files were read first: SKILL.md, then its maintenance, style, and versioning documents.",
+        "The new file is registered in SKILL.md under the matching directory section and mirrored in the README.md directory tree.",
+        "Every contents table listing line numbers was renumbered against actual heading positions.",
+        "The skill's own validators ran after the structural change, including a contents-table check when the skill provides one."
+      ]
+    },
+    {
+      "id": 43,
+      "prompt": "Fix this README: the trailing '#' comments in the directory tree block start at different columns.",
+      "expected_output": "Every commented line in the tree block shares one column - the longest entry plus two spaces - with standalone comment lines and tagged code blocks left untouched.",
+      "files": [],
+      "expectations": [
+        "All '#' comments in the plain-text block start at the same column.",
+        "When most comments already shared a column, outliers were aligned to it instead of moving the majority.",
+        "Without an established column - or on a compaction request - the column is the longest entry plus exactly two spaces.",
+        "Standalone '#' lines and tagged non-shell code blocks were left untouched.",
+        "The fix was produced or verified with tools/align-comments.py rather than manual spacing."
+      ]
     }
   ]
 }

@@ -89,7 +89,8 @@ list, see the Localised Resources rule in `STYLE.md`.
 
 Mirror every layout change in the `README.md` directory tree.
 
-Renumber every `## Contents` table affected by line shifts.
+Renumber every `## Contents` table affected by line shifts and verify the result with
+`tools/check-contents.py`.
 
 Keep `evals/evals.json` prompts in sync with capabilities that change.
 
@@ -138,6 +139,7 @@ Run the skill-maintenance tools after every structural change:
 ```text
 python tools/validate-skill.py .
 python tools/check-references.py .
+python tools/check-contents.py .
 ```
 
 Run `python tools/format-table.py <file>` on every file whose tables were touched.

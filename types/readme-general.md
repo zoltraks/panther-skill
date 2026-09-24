@@ -56,6 +56,8 @@ The canonical skeleton, adjusted to the request:
 
 - A blockquote purpose block is acceptable and common in READMEs.
 - A directory tree in an untagged fenced block may use box-drawing characters.
+- Trailing `#` comments on tree or listing lines align to a shared column per block - see
+  `conventions/plain-text-comments.md`.
 - A "when to use" table is a good fit for the usage section.
 - Badges and HTML are allowed only when the repository's README convention already uses them -
   do not introduce them unasked.

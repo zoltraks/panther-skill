@@ -56,6 +56,9 @@ Fix every failure, or report it to the user with a reason.
   tag.
 - Fenced blocks carrying plain text, directory trees, diagrams, console output, or tables have no
   language tag.
+- Trailing `#` comments inside a plain-text or shell-tagged block share one column - the
+  established column, or the longest entry plus two spaces - aligned with
+  `tools/align-comments.py` or an equivalent script, not by hand.
 
 ## Tables
 

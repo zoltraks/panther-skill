@@ -184,7 +184,8 @@ shape, vocabulary, and terminology still follow the language rules.
 For a requested reformatting, prefer the dedicated tools over hand edits:
 `tools/split-sentences.py` separates packed sentences onto individual logical lines,
 `tools/wrap-prose.py --width N` wraps prose and never joins lines, `tools/format-table.py`
-realigns tables.
+realigns tables, `tools/align-comments.py` aligns `#` comments inside plain-text and shell
+blocks.
 
 Pass `--payload-markdown` to the payload-aware tools only when the request covers embedded
 payload documents - payload content stays opaque otherwise.
@@ -221,6 +222,8 @@ Before delivering, run the checks from `process/document-checklist.md`:
 - Mechanical self-review of the written content.
 - `tools/split-sentences.py --check` when the request covered packed sentences.
 - `tools/format-table.py --check` on the file when it contains tables.
+- `tools/align-comments.py --check` when the document contains plain-text blocks with `#`
+  comments.
 - `tools/wrap-prose.py --check --width N` when the document follows a width convention.
 - `tools/validate-document.py` on the file, with `--payload-markdown` when the document embeds
   ` ```markdown ` payload blocks.

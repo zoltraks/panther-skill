@@ -19,9 +19,9 @@
 | Core Principles     | 341  | Convention preservation and minimal diffs  |
 | When To Use         | 352  | Supported requests and exclusions          |
 | What's Inside       | 389  | Rule files, templates, tools, and evals    |
-| Verification        | 480  | Skill-maintenance checks                   |
-| License             | 487  | License for the skill itself               |
-| Credits             | 493  | Methodology and example sources            |
+| Verification        | 482  | Skill-maintenance checks                   |
+| License             | 489  | License for the skill itself               |
+| Credits             | 495  | Methodology and example sources            |
 
 ## Overview
 
@@ -390,78 +390,80 @@ flowchart TD
 
 ```
 panther-skill/
-├── SKILL.md                      # Root router - load this first
-├── STYLE.md                      # Document style rules for all files in this skill
-├── MAINTENANCE.md                # Skill extension and restructuring rules
-├── VERSIONING.md                 # Skill versioning policy
+├── SKILL.md                         # Root router - load this first
+├── STYLE.md                         # Document style rules for all files in this skill
+├── MAINTENANCE.md                   # Skill extension and restructuring rules
+├── VERSIONING.md                    # Skill versioning policy
 ├── principles/
-│   └── authoring-rules.md        # Plain-text-first, convention preservation, minimal diff
+│   └── authoring-rules.md           # Plain-text-first, convention preservation, minimal diff
 ├── process/
-│   ├── document-workflow.md      # Intake, detection, rule selection, validation, delivery
-│   ├── document-checklist.md     # Mechanical pre-delivery checklist
-│   ├── document-audit.md         # Standalone audit procedure: findings and fix plan
-│   └── scope-discovery.md        # Standalone layout-discovery procedure and report format
+│   ├── document-workflow.md         # Intake, detection, rule selection, validation, delivery
+│   ├── document-checklist.md        # Mechanical pre-delivery checklist
+│   ├── document-audit.md            # Standalone audit procedure: findings and fix plan
+│   └── scope-discovery.md           # Standalone layout-discovery procedure and report format
 ├── types/
-│   ├── technical-document.md     # Guides, architecture notes, reference material
-│   ├── project-document.md       # Specifications: version comment, glossary, requirement IDs
-│   ├── rules-document.md         # Guidelines and standards: imperative rules, examples
-│   ├── agent-instruction.md      # Agent-executable docs: dual audience, decision menus
-│   ├── format-specification.md   # Format specs: version history, field tables
-│   ├── article-text.md           # Prose documents: narrative, dialect tolerance
-│   ├── quick-note.md             # Quick notes: minimal structure
-│   ├── readme-general.md         # Default repository README variant
-│   ├── readme-skill.md           # Agent skill repository READMEs
-│   ├── readme-application.md     # Software product READMEs
-│   ├── readme-library.md         # Package and library READMEs
-│   ├── readme-cli.md             # Command-line tool READMEs
-│   ├── readme-docs.md            # Documentation repository READMEs
-│   ├── readme-collection.md      # Collection and monorepo READMEs
-│   ├── changelog-file.md         # Version-grouped change records
-│   ├── contributing-file.md      # CONTRIBUTING.md guides: PR rules, AI-assisted policy
-│   ├── decision-record.md        # ADRs: status lifecycle, numbered records
-│   ├── proposal-document.md      # RFCs: review states, open questions
-│   ├── project-charter.md        # Charters: SMART objectives, approval block
-│   ├── register-log.md           # Registers and logs: entry tables, lifecycles
-│   ├── status-report.md          # Status reports: RAG ratings, decisions needed
-│   ├── meeting-minutes.md        # Minutes: attendees, decisions, action items
-│   ├── management-plan.md        # Management plans: thresholds, cadence, roles
-│   └── work-breakdown-structure.md # WBS: decimal outline, dictionary, RACI
+│   ├── technical-document.md        # Guides, architecture notes, reference material
+│   ├── project-document.md          # Specifications: version comment, glossary, requirement IDs
+│   ├── rules-document.md            # Guidelines and standards: imperative rules, examples
+│   ├── agent-instruction.md         # Agent-executable docs: dual audience, decision menus
+│   ├── format-specification.md      # Format specs: version history, field tables
+│   ├── article-text.md              # Prose documents: narrative, dialect tolerance
+│   ├── quick-note.md                # Quick notes: minimal structure
+│   ├── readme-general.md            # Default repository README variant
+│   ├── readme-skill.md              # Agent skill repository READMEs
+│   ├── readme-application.md        # Software product READMEs
+│   ├── readme-library.md            # Package and library READMEs
+│   ├── readme-cli.md                # Command-line tool READMEs
+│   ├── readme-docs.md               # Documentation repository READMEs
+│   ├── readme-collection.md         # Collection and monorepo READMEs
+│   ├── changelog-file.md            # Version-grouped change records
+│   ├── contributing-file.md         # CONTRIBUTING.md guides: PR rules, AI-assisted policy
+│   ├── decision-record.md           # ADRs: status lifecycle, numbered records
+│   ├── proposal-document.md         # RFCs: review states, open questions
+│   ├── project-charter.md           # Charters: SMART objectives, approval block
+│   ├── register-log.md              # Registers and logs: entry tables, lifecycles
+│   ├── status-report.md             # Status reports: RAG ratings, decisions needed
+│   ├── meeting-minutes.md           # Minutes: attendees, decisions, action items
+│   ├── management-plan.md           # Management plans: thresholds, cadence, roles
+│   └── work-breakdown-structure.md  # WBS: decimal outline, dictionary, RACI
 ├── languages/
-│   ├── en.md                     # English baseline: Title Case, vocabulary
-│   └── pl.md                     # Polish baseline: style, section names, activation phrases
+│   ├── en.md                        # English baseline: Title Case, vocabulary
+│   └── pl.md                        # Polish baseline: style, section names, activation phrases
 ├── scopes/
-│   ├── unstructured-layout.md    # Default scope: no defined organization
-│   ├── agent-skill.md            # Skill repositories: router contract, registration
-│   ├── sphinx-docs.md            # Sphinx Markdown docs: toctree registration
-│   ├── guided-project.md         # Governed docs/ trees: GUIDELINES, versioned artifacts
-│   ├── docs-collection.md        # Documentation-only repositories
-│   ├── multi-project.md          # Several projects per repository, per-dir scope
-│   ├── mkdocs-site.md            # MkDocs sites: nav registration
-│   ├── docusaurus-site.md        # Docusaurus sites: sidebars, frontmatter
-│   ├── vitepress-site.md         # VitePress sites: file-based routing
-│   └── gitbook-site.md           # GitBook projects: SUMMARY.md registration
+│   ├── unstructured-layout.md       # Default scope: no defined organization
+│   ├── agent-skill.md               # Skill repositories: router contract, registration
+│   ├── sphinx-docs.md               # Sphinx Markdown docs: toctree registration
+│   ├── guided-project.md            # Governed docs/ trees: GUIDELINES, versioned artifacts
+│   ├── docs-collection.md           # Documentation-only repositories
+│   ├── multi-project.md             # Several projects per repository, per-dir scope
+│   ├── mkdocs-site.md               # MkDocs sites: nav registration
+│   ├── docusaurus-site.md           # Docusaurus sites: sidebars, frontmatter
+│   ├── vitepress-site.md            # VitePress sites: file-based routing
+│   └── gitbook-site.md              # GitBook projects: SUMMARY.md registration
 ├── conventions/
-│   ├── file-encoding.md          # UTF-8 default, UTF-16/UCS-2, code pages, line endings
-│   ├── markdown-dialects.md      # ATX, setext, numbered chapters, frontmatter, payloads
-│   ├── rst-documents.md          # reStructuredText minimal-edit contract
-│   └── asciidoc-documents.md     # AsciiDoc minimal-edit contract
+│   ├── file-encoding.md             # UTF-8 default, UTF-16/UCS-2, code pages, line endings
+│   ├── markdown-dialects.md         # ATX, setext, numbered chapters, frontmatter, payloads
+│   ├── rst-documents.md             # reStructuredText minimal-edit contract
+│   └── asciidoc-documents.md        # AsciiDoc minimal-edit contract
 ├── templates/
-│   ├── en/                       # Twenty-four English skeletons, <type>-template-en.md
-│   └── pl/                       # Twenty-four Polish skeletons, <type>-template-pl.md
+│   ├── en/                          # Twenty-four English skeletons, <type>-template-en.md
+│   └── pl/                          # Twenty-four Polish skeletons, <type>-template-pl.md
 ├── tools/
-│   ├── detect-encoding.py        # BOM, encoding, and line-ending detection
-│   ├── detect-scope.py           # Document-scope signal census
-│   ├── census-document.py        # Structural document census for audits
-│   ├── wrap-prose.py             # Split-only line wrapper for width conventions
-│   ├── format-table.py           # Source-width table formatter
-│   ├── validate-document.py      # Mechanical document checker
-│   ├── diff-content.py           # Token-stream content-integrity diff
-│   ├── validate-skill.py         # Skill metadata and disclosure validator
-│   ├── check-references.py       # Root reference integrity checker
-│   ├── check-update.py           # Git upstream self-update checker for the skill repo
-│   └── README.md                 # Tool classes, commands, and limits
+│   ├── detect-encoding.py           # BOM, encoding, and line-ending detection
+│   ├── detect-scope.py              # Document-scope signal census
+│   ├── census-document.py           # Structural document census for audits
+│   ├── wrap-prose.py                # Split-only line wrapper for width conventions
+│   ├── format-table.py              # Source-width table formatter
+│   ├── align-comments.py            # Plain-text block comment aligner
+│   ├── validate-document.py         # Mechanical document checker
+│   ├── diff-content.py              # Token-stream content-integrity diff
+│   ├── validate-skill.py            # Skill metadata and disclosure validator
+│   ├── check-references.py          # Root reference integrity checker
+│   ├── check-contents.py            # Contents-table line-number drift checker
+│   ├── check-update.py              # Git upstream self-update checker for the skill repo
+│   └── README.md                    # Tool classes, commands, and limits
 └── evals/
-    └── evals.json                # Behavioral regression prompts
+    └── evals.json                   # Behavioral regression prompts
 ```
 
 Document-production tools are copied into the working repository under a `.tmp.` name, run
@@ -479,8 +481,8 @@ only as the workflow requires them.
 
 ## Verification
 
-- Run `python tools/validate-skill.py .` and `python tools/check-references.py .` after changing
-  `SKILL.md`, `README.md`, or file layout.
+- Run `python tools/validate-skill.py .`, `python tools/check-references.py .`, and
+  `python tools/check-contents.py .` after changing `SKILL.md`, `README.md`, or file layout.
 - Exercise the regression prompts in `evals/evals.json` after structural changes.
 - Run `python tools/validate-document.py <file>` on any document the skill produces.
 

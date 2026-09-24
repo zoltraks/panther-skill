@@ -23,11 +23,11 @@ sentence per logical line and never hard-wraps.
 | Paragraphs And Wrapping    | 92   | Sentence structure and line width               |
 | Headings And Lists         | 126  | Heading depth, lists, and spacing               |
 | Code And Inline Formatting | 175  | Fences, code spans, and semicolons              |
-| Tables                     | 221  | Source-width alignment and automated formatting |
-| Characters And Language    | 387  | Box-drawing, emoji, and per-language rules      |
-| File References            | 417  | Relative paths and localised resources          |
-| Skill Requirements         | 445  | Frontmatter and progressive disclosure          |
-| Maintenance                | 506  | Pointer to the skill extension rules            |
+| Tables                     | 250  | Source-width alignment and automated formatting |
+| Characters And Language    | 425  | Box-drawing, emoji, and per-language rules      |
+| File References            | 446  | Relative paths and localised resources          |
+| Skill Requirements         | 474  | Frontmatter and progressive disclosure          |
+| Maintenance                | 535  | Pointer to the skill extension rules            |
 
 ## Document Structure
 
@@ -193,6 +193,35 @@ Do not leave a blank line as the first or last line inside the block.
 Keep code blocks compact and relevant.
 
 Use backticks for inline code, file names, commands, and values.
+
+### Comments In Plain-Text Blocks
+
+Lines inside a plain-text block, such as a directory tree or a file listing, may carry a `#`
+comment after the entry text.
+
+Start every comment in the same block at the same column.
+
+When most comments in a block already share a column, keep it and align the outliers.
+
+Otherwise set the comment column from the longest entry in the block: the comment begins at
+least two spaces after the end of that entry.
+
+The longest entry keeps a two-space gap.
+
+Pad every shorter entry so its comment reaches the shared column.
+
+Compacting the column left to the minimum - two spaces after the longest entry - is allowed
+on request.
+
+Keep comment text short - a list of key items, not a full description.
+
+Recompute the column and re-pad the whole block after adding, removing, or renaming an entry.
+
+The rule applies per block: different fenced blocks may use different comment columns.
+
+Align comments with `tools/align-comments.py` or an equivalent script, not by hand.
+
+The full convention for produced documents lives in `conventions/plain-text-comments.md`.
 
 ## Inline Formatting
 

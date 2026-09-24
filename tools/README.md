@@ -4,8 +4,8 @@
 
 > **Scope:** Document-production and skill-maintenance scripts
 > **Key items:** encoding detection, scope signals, sentence splitting, prose wrapping,
-> table formatting, document validation, content diffing, document census, skill
-> validation, reference integrity, self-update check
+> table formatting, comment alignment, document validation, content diffing, document
+> census, skill validation, reference integrity, contents-table drift, self-update check
 
 These scripts support deterministic production of documents and maintenance of Panther itself.
 
@@ -16,8 +16,9 @@ They do not modify documents beyond the specific task each tool performs.
 ### Document-Production Tools
 
 Copy `detect-encoding.py`, `detect-scope.py`, `split-sentences.py`, `wrap-prose.py`,
-`format-table.py`, `validate-document.py`, `diff-content.py`, and `census-document.py` into
-the working repository's `work/` directory under a `.tmp.` name before use.
+`format-table.py`, `align-comments.py`, `validate-document.py`, `diff-content.py`, and
+`census-document.py` into the working repository's `work/` directory under a `.tmp.` name
+before use.
 
 If `work/` does not exist, use an existing `temp` or `temporary` directory.
 
@@ -33,9 +34,13 @@ Remove every copied script after use.
 
 ### Skill-Maintenance Tools
 
-Run `validate-skill.py`, `check-references.py`, and `check-update.py` from the Panther repository.
+Run `validate-skill.py`, `check-references.py`, `check-contents.py`, and `check-update.py` from
+the Panther repository.
 
 These tools inspect the skill itself and are never copied into a working project.
+
+`check-contents.py` verifies that every `## Contents` table row still points at a real `## `
+section - run it after any edit that shifts lines in a file carrying a contents table.
 
 `check-update.py` reports the git upstream status of the skill repository for the once-per-session
 Skill Update Check in `SKILL.md`, and always exits `0` with a `STATUS` verdict line.
@@ -52,11 +57,13 @@ python detect-scope.tmp.py <directory>
 python split-sentences.tmp.py <file.md> [--check] [--width N] [--payload-markdown]
 python wrap-prose.tmp.py <file.md> [--check] [--width N] [--payload-markdown]
 python format-table.tmp.py <file.md> [--check] [--payload-markdown]
+python align-comments.tmp.py <file.md> [--check] [--compact] [--payload-markdown]
 python validate-document.tmp.py <file.md> [--width N] [--payload-markdown]
 python diff-content.tmp.py <file.md> [--baseline <file>]
 python census-document.tmp.py <file.md> [--width N] [--payload-markdown]
 python tools/validate-skill.py .
 python tools/check-references.py .
+python tools/check-contents.py .
 python tools/check-update.py
 ```
 
@@ -82,9 +89,16 @@ wrapped.
 It only splits over-width lines at whitespace - it never joins lines, and it leaves tables,
 fenced code blocks, indented code blocks, HTML comments, and frontmatter untouched.
 
-`--payload-markdown` extends `split-sentences.py`, `wrap-prose.py`, `format-table.py`, and
-`validate-document.py` into ` ```markdown ` fenced blocks, all other fence languages stay
-opaque.
+`--payload-markdown` extends `split-sentences.py`, `wrap-prose.py`, `format-table.py`,
+`align-comments.py`, and `validate-document.py` into ` ```markdown ` fenced blocks, all
+other fence languages stay opaque.
+
+`align-comments.py` aligns trailing `#` comments inside untagged fenced blocks and
+shell-tagged blocks to one shared column per block - the established column when most
+comments already share one, otherwise the longest entry plus two spaces.
+
+`--compact` moves the column to the minimum. The convention lives in
+`conventions/plain-text-comments.md`.
 
 `diff-content.py` compares the normalized token stream of a document against `git show HEAD`
 or a `--baseline` file, identical tokens mean a pass changed formatting only.
@@ -115,12 +129,15 @@ Run checks in this order:
    sentence separation.
 3. Check wrap convention with `wrap-prose.py --check` when a width rule applies.
 4. Format edited tables with `format-table.py`.
-5. Validate the written document with `validate-document.py`.
-6. Verify formatting-only passes with `diff-content.py`.
-7. Run `git diff --check` when inside a repository.
-8. Remove temporary `.tmp.` copies from the working repository.
+5. Align comments in plain-text blocks with `align-comments.py` when the document contains
+   them.
+6. Validate the written document with `validate-document.py`.
+7. Verify formatting-only passes with `diff-content.py`.
+8. Run `git diff --check` when inside a repository.
+9. Remove temporary `.tmp.` copies from the working repository.
 
-For skill maintenance, run `validate-skill.py` and `check-references.py` first.
+For skill maintenance, run `validate-skill.py`, `check-references.py`, and `check-contents.py`
+first.
 
 ## Limitations
 

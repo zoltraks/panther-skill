@@ -22,7 +22,7 @@ compatibility: >-
   Claude Desktop, Windsurf, Devin, and similar). Requires the ability to read
   and write text files. No network access required.
 metadata:
-  version: "0.5"
+  version: "0.7"
   author: Filip Golewski
 ---
 
@@ -38,19 +38,19 @@ metadata:
 |-------------------------|------|------------------------------------------------|
 | Skill Update Check      | 67   | Once-per-session git freshness gate before use |
 | Trigger Keywords        | 82   | Activation phrases                             |
-| How To Use              | 181  | Progressive disclosure and mandatory reading   |
-| Parameter Configuration | 220  | Defaults and user-controlled document shape    |
-| Principles              | 241  | Authoring invariants                           |
-| Process                 | 247  | Workflow and delivery checklist                |
-| Document Types          | 259  | Per-type rule files                            |
-| Languages               | 314  | Per-language style baselines                   |
-| Scopes                  | 324  | Per-project-layout organization rules          |
-| Conventions             | 352  | Encoding, dialect, and format contract rules   |
-| Templates               | 363  | Per-type, per-language skeletons               |
-| Tools                   | 373  | Detection, formatting, and validation scripts  |
-| Evaluation Prompts      | 412  | Behavioral regression prompts                  |
-| Repository Files        | 421  | Housekeeping files governing this repository   |
-| File Handling Contract  | 432  | Byte-level guarantees                          |
+| How To Use              | 183  | Progressive disclosure and mandatory reading   |
+| Parameter Configuration | 222  | Defaults and user-controlled document shape    |
+| Principles              | 243  | Authoring invariants                           |
+| Process                 | 249  | Workflow and delivery checklist                |
+| Document Types          | 261  | Per-type rule files                            |
+| Languages               | 316  | Per-language style baselines                   |
+| Scopes                  | 326  | Per-project-layout organization rules          |
+| Conventions             | 354  | Encoding, dialect, and format contract rules   |
+| Templates               | 367  | Per-type, per-language skeletons               |
+| Tools                   | 377  | Detection, formatting, and validation scripts  |
+| Evaluation Prompts      | 422  | Behavioral regression prompts                  |
+| Repository Files        | 431  | Housekeeping files governing this repository   |
+| File Handling Contract  | 442  | Byte-level guarantees                          |
 
 You are a Document Authoring Agent.
 
@@ -109,6 +109,8 @@ The skill activates on any of these phrases:
 - fix this table
 - format this table
 - align the table
+- align the comments
+- fix tree comments
 - reformat this markdown
 - translate this document
 - document in Polish
@@ -359,6 +361,8 @@ registration inside an organized project:
   for structural files such as Sphinx `index.rst` toctrees.
 - **`conventions/asciidoc-documents.md`** - AsciiDoc dialect and the minimal-edit contract for
   `.adoc` files: title markers, admonitions, includes, opaque tables.
+- **`conventions/plain-text-comments.md`** - `#` comment alignment inside untagged fenced blocks
+  and shell-tagged blocks: one shared column per block, longest entry plus two spaces.
 
 ## `templates/` - Skeletons
 
@@ -395,6 +399,10 @@ name before use and remove them when done. See `tools/README.md`.
 - **`tools/format-table.py`** - Rebuilds every table with source-width alignment and
   width-plus-two separators, preserving encoding and line endings. `--check` reports without
   writing, `--payload-markdown` includes tables inside ` ```markdown ` payload blocks.
+- **`tools/align-comments.py`** - Aligns trailing `#` comments inside untagged fenced blocks
+  and shell-tagged blocks to one shared column per block. `--check` reports without writing,
+  `--compact` forces the minimum column, `--payload-markdown` extends into ` ```markdown `
+  payload blocks.
 - **`tools/validate-document.py`** - Mechanical checker covering the scriptable items of
   `process/document-checklist.md`. `--width N` flags over-width lines, `--payload-markdown`
   applies curated checks inside ` ```markdown ` payload blocks.
@@ -405,6 +413,8 @@ name before use and remove them when done. See `tools/README.md`.
   limits, and root references. Run from the Panther repository only.
 - **`tools/check-references.py`** - Relative-reference integrity checker for `SKILL.md` and
   `README.md`. Run from the Panther repository only.
+- **`tools/check-contents.py`** - `## Contents` table drift checker verifying listed line
+  numbers against actual `## ` section positions. Run from the Panther repository only.
 - **`tools/check-update.py`** - Skill self-update checker reporting git upstream status. Run once
   per session from the Panther repository, before any document work.
 - **`tools/README.md`** - Tool classes, commands, validation order, and limitations.
