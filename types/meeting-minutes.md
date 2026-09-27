@@ -16,7 +16,7 @@ minutes.
 
 For informal scratch notes use `types/quick-note.md` instead.
 
-**Templates:**
+**Templates**
 
 - `templates/en/meeting-minutes-template-en.md`
 - `templates/pl/meeting-minutes-template-pl.md`

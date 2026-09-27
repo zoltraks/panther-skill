@@ -23,6 +23,7 @@ Usage: python wrap-prose.py <file.md> [--width N] [--payload-markdown]
 """
 
 import argparse
+import os
 import re
 import sys
 
@@ -244,7 +245,14 @@ def main(path, width, payload_markdown, check_only):
         return 0
 
     eol = "\r\n" if crlf else "\n"
-    open(path, "wb").write(eol.join(out).encode(encoding))
+    tmp = path + ".tmp-write"
+    try:
+        with open(tmp, "wb") as handle:
+            handle.write(eol.join(out).encode(encoding))
+        os.replace(tmp, path)
+    finally:
+        if os.path.exists(tmp):
+            os.unlink(tmp)
     print(f"wrapped {wrapped} lines to width {width}")
     for n, size, preview in unbreakable:
         print(f"note: line {n} still {size} chars (unbreakable span): {preview}...")

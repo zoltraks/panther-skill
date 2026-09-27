@@ -14,7 +14,7 @@ Use for work breakdown structures and their dictionaries.
 
 Product breakdown structures follow the same shape.
 
-**Templates:**
+**Templates**
 
 - `templates/en/work-breakdown-structure-template-en.md`
 - `templates/pl/work-breakdown-structure-template-pl.md`

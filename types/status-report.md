@@ -13,7 +13,7 @@
 Use for the PMBOK report family - status, variance, forecasting, and quality
 reports on a weekly, biweekly, or monthly cadence.
 
-**Templates:**
+**Templates**
 
 - `templates/en/status-report-template-en.md`
 - `templates/pl/status-report-template-pl.md`

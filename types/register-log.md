@@ -24,7 +24,7 @@ A project change log tracks change requests and their decisions.
 
 It is a different document from `types/changelog-file.md`, which records release history.
 
-**Templates:**
+**Templates**
 
 - `templates/en/register-log-template-en.md`
 - `templates/pl/register-log-template-pl.md`

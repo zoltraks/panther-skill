@@ -16,7 +16,7 @@ Distinguish from `types/proposal-document.md`: the business case argues for
 approval before it happens, the charter authorizes the project after it and
 empowers the project manager.
 
-**Templates:**
+**Templates**
 
 - `templates/en/project-charter-template-en.md`
 - `templates/pl/project-charter-template-pl.md`

@@ -17,6 +17,7 @@ Usage: python format-table.py <document.md> [--check] [--payload-markdown]
 """
 
 import argparse
+import os
 import re
 import sys
 
@@ -119,7 +120,14 @@ def main(path, check_only, payload_markdown):
         return 0
 
     eol = "\r\n" if crlf else "\n"
-    open(path, "wb").write(eol.join(out).encode(encoding))
+    tmp = path + ".tmp-write"
+    try:
+        with open(tmp, "wb") as handle:
+            handle.write(eol.join(out).encode(encoding))
+        os.replace(tmp, path)
+    finally:
+        if os.path.exists(tmp):
+            os.unlink(tmp)
     print(f"formatted {tables} tables")
     return 0
 

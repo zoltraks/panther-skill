@@ -21,10 +21,10 @@
 | Core Principles     | 388  | Convention preservation and minimal diffs  |
 | When To Use         | 399  | Supported requests and exclusions          |
 | What's Inside       | 437  | Rule files, templates, tools, and evals    |
-| Specification       | 553  | Agent Skills specification conformance     |
-| Verification        | 569  | Skill-maintenance checks                   |
-| License             | 576  | License for the skill itself               |
-| Credits             | 572  | Methodology and example sources            |
+| Specification       | 554  | Agent Skills specification conformance     |
+| Verification        | 570  | Skill-maintenance checks                   |
+| License             | 577  | License for the skill itself               |
+| Credits             | 583  | Methodology and example sources            |
 
 ## Overview
 
@@ -523,6 +523,7 @@ panther-skill/
 │   ├── detect-scope.py                # Document-scope signal census
 │   ├── census-document.py             # Structural document census for audits
 │   ├── wrap-prose.py                  # Split-only line wrapper for width conventions
+│   ├── split-sentences.py             # Sentence-per-line prose splitter
 │   ├── format-table.py                # Source-width table formatter
 │   ├── align-comments.py              # Plain-text block comment aligner
 │   ├── validate-document.py           # Mechanical document checker

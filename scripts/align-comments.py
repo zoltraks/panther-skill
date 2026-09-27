@@ -23,6 +23,7 @@ Usage: python align-comments.py <document.md> [--check] [--compact] [--payload-m
 """
 
 import argparse
+import os
 import re
 from collections import Counter
 
@@ -124,7 +125,14 @@ def main(path, check_only, compact, payload_markdown):
 
     if out != lines:
         eol = "\r\n" if crlf else "\n"
-        open(path, "wb").write(eol.join(out).encode(encoding))
+        tmp = path + ".tmp-write"
+        try:
+            with open(tmp, "wb") as handle:
+                handle.write(eol.join(out).encode(encoding))
+            os.replace(tmp, path)
+        finally:
+            if os.path.exists(tmp):
+                os.unlink(tmp)
     print(f"aligned {len(misaligned)} comment(s)")
     return 0
 

@@ -111,7 +111,9 @@ The convention lives in `conventions/plain-text-comments.md`.
 `diff-content.py` compares the normalized token stream of a document against `git show HEAD`
 or a `--baseline` file, identical tokens mean a pass changed formatting only.
 
-It exits `0` in every case and prints `WARN` for possible merged lines - review those by hand.
+It exits `0` for identical token streams and `1` when tokens differ.
+
+It prints `WARN` for possible merged lines - review those by hand.
 
 `detect-scope.py` reports a signal census only - the agent maps signals to a scope per
 `process/scope-discovery.md`.

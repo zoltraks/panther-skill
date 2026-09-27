@@ -21,7 +21,7 @@ An implementation plan that describes how to build a feature is a `types/technic
 
 A management plan describes how a project domain is governed - that is this type.
 
-**Templates:**
+**Templates**
 
 - `templates/en/management-plan-template-en.md`
 - `templates/pl/management-plan-template-pl.md`

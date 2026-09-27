@@ -45,6 +45,7 @@ Usage: python split-sentences.py <file.md> [--check] [--paragraphs] [--width N]
 """
 
 import argparse
+import os
 import re
 import sys
 
@@ -377,7 +378,14 @@ def main(path, width, payload_markdown, check_only, paragraphs):
             i += 1
 
     eol = "\r\n" if crlf else "\n"
-    open(path, "wb").write(eol.join(result).encode(encoding))
+    tmp = path + ".tmp-write"
+    try:
+        with open(tmp, "wb") as handle:
+            handle.write(eol.join(result).encode(encoding))
+        os.replace(tmp, path)
+    finally:
+        if os.path.exists(tmp):
+            os.unlink(tmp)
     noun = "paragraph(s)" if paragraphs else "paragraph block(s)"
     print(f"split {split_count} sentence(s) across {len(repl)} {noun}")
     return 0
