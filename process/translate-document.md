@@ -121,9 +121,9 @@ Refuse non-Markdown, binary, or non-textual input with a stated reason.
 
 Run the mechanical checks on the written file:
 
-- `tools/format-table.py` - mandatory on output with tables, translated cells change
+- `scripts/format-table.py` - mandatory on output with tables, translated cells change
   column widths.
-- `tools/validate-document.py` - on the written file, with `--payload-markdown` when the
+- `scripts/validate-document.py` - on the written file, with `--payload-markdown` when the
   document embeds ` ```markdown ` blocks.
 
 Self-review against `process/document-checklist.md` plus the translation items:
@@ -136,7 +136,7 @@ Self-review against `process/document-checklist.md` plus the translation items:
 - Code, identifiers, and the untranslated set are byte-identical to the source.
 - One English term renders one Polish term consistently, except declared context forms.
 
-`tools/diff-content.py` does not apply - the token stream changes by design across
+`scripts/diff-content.py` does not apply - the token stream changes by design across
 languages, state the skip in the report.
 
 ## Delivery

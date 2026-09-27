@@ -8,23 +8,22 @@ description: >-
   management plans, registers, status reports, minutes, WBS. Enforces
   plain-text-readable Markdown: one-sentence paragraphs,
   source-width-aligned tables, consistent headings. English by default,
-  Polish support. UTF-8 for new files, existing encodings and line
-  endings preserved. Handles organized layouts - agent skill
-  repositories, Sphinx, MkDocs, Docusaurus, VitePress, GitBook sites,
-  guided projects, doc collections, multi-project repositories -
-  discovers a layout, audits a document, and describes a subject inline.
-  AsciiDoc and reStructuredText follow a minimal-edit contract. Use when
-  asked to write, edit, reformat, or translate a document, specification,
-  README, changelog, charter, register, or report - including requests in
-  any supported language.
+  Polish support. UTF-8 output, existing encodings preserved. Handles
+  organized layouts - agent skill repositories, Sphinx, MkDocs,
+  Docusaurus, VitePress, GitBook, guided projects, doc collections,
+  multi-project repositories - discovers layouts, audits documents, and
+  describes subjects inline. AsciiDoc and reStructuredText follow a
+  minimal-edit contract. Use when asked to write, edit, reformat, or
+  translate a document, README, changelog, charter, register, or report.
 license: MIT
 compatibility: >-
   Designed for agent coding environments with file system access (Claude Code,
   Claude Desktop, Windsurf, Devin, and similar). Requires the ability to read
   and write text files. No network access required.
 metadata:
-  version: "0.7"
+  version: "0.8"
   author: Filip Golewski
+allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob Grep
 ---
 
 # Document Authoring Skill
@@ -37,22 +36,22 @@ metadata:
 
 | Section                 | Line | What it covers                                 |
 |-------------------------|------|------------------------------------------------|
-| Skill Update Check      | 69   | Once-per-session git freshness gate before use |
-| Trigger Keywords        | 84   | Activation phrases                             |
-| How To Use              | 199  | Progressive disclosure and mandatory reading   |
-| Parameter Configuration | 247  | Defaults and user-controlled document shape    |
-| Principles              | 268  | Authoring invariants                           |
-| Process                 | 274  | Workflow, checklist, and standalone procedures |
-| Document Types          | 291  | Per-type rule files                            |
-| Languages               | 346  | Per-language style baselines                   |
-| Translations            | 356  | Language pair rules and industry glossaries    |
-| Scopes                  | 366  | Per-project-layout organization rules          |
-| Conventions             | 394  | Encoding, dialect, and format contract rules   |
-| Templates               | 409  | Per-type, per-language skeletons               |
-| Tools                   | 419  | Detection, formatting, and validation scripts  |
-| Evaluation Prompts      | 464  | Behavioral regression prompts                  |
-| Repository Files        | 473  | Housekeeping files governing this repository   |
-| File Handling Contract  | 484  | Byte-level guarantees                          |
+| Skill Update Check      | 68   | Once-per-session git freshness gate before use |
+| Trigger Keywords        | 83   | Activation phrases                             |
+| How To Use              | 129  | Progressive disclosure and mandatory reading   |
+| Parameter Configuration | 177  | Defaults and user-controlled document shape    |
+| Principles              | 198  | Authoring invariants                           |
+| Process                 | 204  | Workflow, checklist, and standalone procedures |
+| Document Types          | 221  | Per-type rule files                            |
+| Languages               | 276  | Per-language style baselines                   |
+| Translations            | 286  | Language pair rules and industry glossaries    |
+| Scopes                  | 296  | Per-project-layout organization rules          |
+| Conventions             | 324  | Encoding, dialect, and format contract rules   |
+| Templates               | 339  | Per-type, per-language skeletons               |
+| Scripts                 | 349  | Detection, formatting, and validation scripts  |
+| Evaluation Prompts      | 372  | Behavioral regression prompts                  |
+| Repository Files        | 381  | Housekeeping files governing this repository   |
+| File Handling Contract  | 392  | Byte-level guarantees                          |
 
 You are a Document Authoring Agent.
 
@@ -68,7 +67,7 @@ document that has its own conventions.
 
 ## Skill Update Check
 
-Before any other step, once per session, run `python <skill-root>/tools/check-update.py`, where
+Before any other step, once per session, run `python <skill-root>/scripts/check-update.py`, where
 `<skill-root>` is the directory containing this `SKILL.md` - the skill's own repository, never
 the edited subject. Use `python3` when `python` is not on PATH.
 
@@ -83,111 +82,42 @@ The check writes no state files and never commits, stashes, or discards skill ch
 
 ## Trigger Keywords
 
-The skill activates on any of these phrases:
+The skill activates on any of these phrases, grouped by intent:
 
-- create a document
-- write documentation
-- draft a specification
-- write a spec for
-- project document
-- technical documentation
-- write a README
-- write a changelog
-- contributing guide
-- CONTRIBUTING.md
-- format specification
-- file format spec
-- guidelines document
-- coding standard document
-- style guide document
-- agent instruction document
-- preparation document
-- dual-audience document
-- write an article
-- quick note
-- meeting notes
-- edit this document
-- update this document
-- fix this table
-- format this table
-- align the table
-- align the comments
-- fix tree comments
-- reformat this markdown
-- translate this document
-- translate this file
-- translate to Polish
-- translate to English
-- document in Polish
-- polish this document
-- run panther
-- use panther
-- add a page to the docs
-- documentation project
-- new document in this project
-- extend this skill
-- add a rule file to this skill
-- update the toctree
-- write an implementation plan
-- add a feature document
-- add a standards document
-- write an ADR
-- architecture decision record
-- supersede the ADR
-- write an RFC
-- proposal document
-- design proposal
-- add a page to this MkDocs site
-- update the nav
-- add a page to this Docusaurus site
-- set the sidebar position
-- add a page to this VitePress site
-- add a page to this GitBook
-- update the summary file
-- edit this AsciiDoc file
-- preserve the frontmatter
-- write a project charter
-- project charter
-- create a risk register
-- update the issue log
-- stakeholder register
-- assumption log
-- change log
-- lessons learned
-- write a status report
-- weekly status
-- meeting minutes
-- write the minutes
-- management plan
-- risk management plan
-- work breakdown structure
-- create the WBS
-- project management plan
-- discover layout
-- detect document layout
-- what layout is this
-- analyze document structure
-- analyze this repository
-- analyse this codebase
-- audit the document layout
-- document census
-- audit this document
-- document audit
-- audit this file
-- check document formatting
-- document conformance check
-- plan fixes for findings
-- describe
-- describe shortly
-- make a description
-- summarize
-- write a summary
-- give an overview
-- short description
-- long description
-- detailed description
-- describe in detail
-- full description
+- **Create documents**: create a document, write documentation, draft a specification,
+  write a spec for, project document, technical documentation, write a README, write a
+  changelog, contributing guide, CONTRIBUTING.md, format specification, file format spec,
+  guidelines document, coding standard document, style guide document, agent instruction
+  document, preparation document, dual-audience document, write an article, quick note,
+  meeting notes.
+- **Edit and format**: edit this document, update this document, fix this table, format
+  this table, align the table, align the comments, fix tree comments, reformat this
+  markdown.
+- **Translate**: translate this document, translate this file, translate to Polish,
+  translate to English, document in Polish, polish this document.
+- **Activate**: run panther, use panther.
+- **Extend and maintain**: add a page to the docs, documentation project, new document in
+  this project, extend this skill, add a rule file to this skill, update the toctree,
+  write an implementation plan, add a feature document, add a standards document.
+- **Decisions and proposals**: write an ADR, architecture decision record, supersede the
+  ADR, write an RFC, proposal document, design proposal.
+- **Documentation sites**: add a page to this MkDocs site, update the nav, add a page to
+  this Docusaurus site, set the sidebar position, add a page to this VitePress site, add a
+  page to this GitBook, update the summary file.
+- **Dialects**: edit this AsciiDoc file, preserve the frontmatter.
+- **PMBOK artifacts**: write a project charter, project charter, create a risk register,
+  update the issue log, stakeholder register, assumption log, change log, lessons learned,
+  write a status report, weekly status, meeting minutes, write the minutes, management
+  plan, risk management plan, work breakdown structure, create the WBS, project
+  management plan.
+- **Layout discovery**: discover layout, detect document layout, what layout is this,
+  analyze document structure, analyze this repository, analyse this codebase, audit the
+  document layout, document census.
+- **Document audit**: audit this document, document audit, audit this file, check document
+  formatting, document conformance check, plan fixes for findings.
+- **Describe and summarize**: describe, describe shortly, make a description, summarize,
+  write a summary, give an overview, short description, long description, detailed
+  description, describe in detail, full description.
 
 Requests may arrive in any supported language, not only English.
 
@@ -416,50 +346,28 @@ filenames carry the language code: `<type>-template-<code>.md`.
 
 A template is a starting point - adjust sections to the request and the content.
 
-## `tools/` - Canonical Scripts
+## `scripts/` - Canonical Scripts
 
 Copy document-production tools into the working repository's `work/` directory under a `.tmp.`
-name before use and remove them when done. See `tools/README.md`.
+name before use and remove them when done. See `scripts/README.md`.
 
-- **`tools/detect-encoding.py`** - Reports BOM, guessed encoding, line-ending style, and
-  trailing whitespace for a file. Run before editing any existing file.
-- **`tools/detect-scope.py`** - Reports which document-scope signals a directory carries and
-  counts documents per directory. Run when detecting a layout or discovering a scope.
-- **`tools/census-document.py`** - Reports a structural census for a Markdown document:
-  headings, lists, fenced blocks, characters, paragraphs, tables, markers, and links.
-  `--width N` sets the checked width, `--payload-markdown` includes ` ```markdown ` payload
-  interiors. Run during a document audit.
-- **`tools/split-sentences.py`** - Separates packed sentences inside plain paragraph blocks
-  onto individual logical lines and re-wraps them to `--width N`. `--check` reports without
-  writing, `--payload-markdown` extends into ` ```markdown ` payload blocks. List items and
-  their continuation lines stay opaque. Use when a document follows one sentence per logical
-  line.
-- **`tools/wrap-prose.py`** - Splits over-width lines at whitespace without ever joining
-  lines. `--check` reports without writing, `--width N` sets the limit, `--payload-markdown`
-  extends into ` ```markdown ` payload blocks. Use when a repository convention sets a hard
-  line-width limit.
-- **`tools/format-table.py`** - Rebuilds every table with source-width alignment and
-  width-plus-two separators, preserving encoding and line endings. `--check` reports without
-  writing, `--payload-markdown` includes tables inside ` ```markdown ` payload blocks.
-- **`tools/align-comments.py`** - Aligns trailing `#` comments inside untagged fenced blocks
-  and shell-tagged blocks to one shared column per block. `--check` reports without writing,
-  `--compact` forces the minimum column, `--payload-markdown` extends into ` ```markdown `
-  payload blocks.
-- **`tools/validate-document.py`** - Mechanical checker covering the scriptable items of
-  `process/document-checklist.md`. `--width N` flags over-width lines, `--payload-markdown`
-  applies curated checks inside ` ```markdown ` payload blocks.
-- **`tools/diff-content.py`** - Compares a document's normalized token stream against `HEAD`
-  or a `--baseline` file to prove a formatting-only pass changed no words, and warns on
-  possible merged lines.
-- **`tools/validate-skill.py`** - Skill-maintenance validator for frontmatter, disclosure
-  limits, and root references. Run from the Panther repository only.
-- **`tools/check-references.py`** - Relative-reference integrity checker for `SKILL.md` and
-  `README.md`. Run from the Panther repository only.
-- **`tools/check-contents.py`** - `## Contents` table drift checker verifying listed line
-  numbers against actual `## ` section positions. Run from the Panther repository only.
-- **`tools/check-update.py`** - Skill self-update checker reporting git upstream status. Run once
-  per session from the Panther repository, before any document work.
-- **`tools/README.md`** - Tool classes, commands, validation order, and limitations.
+- **`scripts/detect-encoding.py`** - BOM, guessed encoding, line endings, trailing whitespace.
+- **`scripts/detect-scope.py`** - Document-scope signals and per-directory document counts.
+- **`scripts/census-document.py`** - Structural census: headings, lists, fences, characters,
+  paragraphs, tables, links.
+- **`scripts/split-sentences.py`** - Split packed sentences onto logical lines, re-wrap to
+  `--width N`.
+- **`scripts/wrap-prose.py`** - Split over-width lines at whitespace; never joins lines.
+- **`scripts/format-table.py`** - Rebuild tables with source-width alignment.
+- **`scripts/align-comments.py`** - Align trailing `#` comments to one column per block.
+- **`scripts/validate-document.py`** - Mechanical checker for `process/document-checklist.md`.
+- **`scripts/diff-content.py`** - Prove a formatting-only pass changed no words vs `HEAD`.
+- **`scripts/validate-skill.py`** - Panther-repo frontmatter, disclosure, and root-reference
+  validator.
+- **`scripts/check-references.py`** - Panther-repo relative-reference integrity checker.
+- **`scripts/check-contents.py`** - Panther-repo `## Contents` line-number drift checker.
+- **`scripts/check-update.py`** - Git upstream self-update checker, once per session.
+- **`scripts/README.md`** - Tool classes, commands, flags, validation order, limitations.
 
 ## Evaluation Prompts
 
@@ -487,7 +395,7 @@ Never change the encoding, byte order mark, or line-ending style of an existing 
 
 Create new files in UTF-8 without BOM.
 
-Run `tools/detect-encoding.py` before editing any existing file.
+Run `scripts/detect-encoding.py` before editing any existing file.
 
 Never transcode a file unless the request explicitly asks for a target encoding.
 

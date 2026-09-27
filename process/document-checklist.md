@@ -31,7 +31,7 @@ Fix every failure, or report it to the user with a reason.
 - No blank line sits as the first or last line inside a fenced code block.
 - No line carries a lone list marker without content.
 - **Existing:** lines respect the document's width convention when one exists - verified with
-  `tools/wrap-prose.py --check --width N`, otherwise one logical line per sentence applies.
+  `scripts/wrap-prose.py --check --width N`, otherwise one logical line per sentence applies.
 - **Existing:** character substitutions that change line length were re-verified against the
   document's width convention - for example `—` replaced by `--` adds one character per dash.
 
@@ -58,7 +58,7 @@ Fix every failure, or report it to the user with a reason.
   language tag.
 - Trailing `#` comments inside a plain-text or shell-tagged block share one column - the
   established column, or the longest entry plus two spaces - aligned with
-  `tools/align-comments.py` or an equivalent script, not by hand.
+  `scripts/align-comments.py` or an equivalent script, not by hand.
 - Box-drawing flow diagrams follow `conventions/ascii-diagrams.md` - one shared axis,
   centered prose lines, left-aligned enumerations, `┬`/`▼` and `▶` connectors.
 
@@ -70,7 +70,7 @@ Fix every failure, or report it to the user with a reason.
 - The separator row matches each column width plus two hyphens.
 - Column widths were measured on source text, including backticks and emphasis markers.
 - The table is compacted to the minimum widths that fit the widest cell per column.
-- Tables were formatted with `tools/format-table.py` or an equivalent script, not by hand.
+- Tables were formatted with `scripts/format-table.py` or an equivalent script, not by hand.
 
 ## Language
 
@@ -105,7 +105,7 @@ Fix every failure, or report it to the user with a reason.
   payloads were reformatted only through the `--payload-markdown` tools on explicit request.
 - Indented code blocks inside payloads, such as directory trees, kept their original line
   structure.
-- **Existing:** a formatting-only pass changed no words - `tools/diff-content.py` reports a
+- **Existing:** a formatting-only pass changed no words - `scripts/diff-content.py` reports a
   token stream identical to the baseline, and every merged-line warning was reviewed.
 
 ## Project Scope
@@ -119,8 +119,8 @@ Fix every failure, or report it to the user with a reason.
 
 ## Final Pass
 
-- `tools/validate-document.py` reports no failures on the written file, run with
+- `scripts/validate-document.py` reports no failures on the written file, run with
   `--payload-markdown` when the document embeds ` ```markdown ` blocks.
-- `tools/diff-content.py` reports an identical token stream after formatting-only passes.
+- `scripts/diff-content.py` reports an identical token stream after formatting-only passes.
 - `git diff --check` reports no whitespace errors when inside a repository.
 - Temporary `.tmp.` tool copies are removed from the working repository.

@@ -4,24 +4,27 @@
 > rules documents, format specifications, articles, notes, READMEs, and changelogs, in English
 > or Polish.
 >
+> Structured per the [Agent Skills specification](https://agentskills.io/specification).
+>
 > [Versioning Policy](./VERSIONING.md)
 
 ## Contents
 
 | Section             | Line | What it covers                             |
 |---------------------|------|--------------------------------------------|
-| Overview            | 26   | What Panther is and what it produces       |
-| What The Skill Does | 50   | Authoring purpose and workflow             |
-| Installation        | 128  | How to add Panther to an agent environment |
-| Usage               | 190  | How agents activate and run the skill      |
-| Example Prompts     | 201  | Phrases the skill activates on             |
-| Workflow Diagrams   | 241  | ASCII and Mermaid diagrams of the pipeline |
-| Core Principles     | 367  | Convention preservation and minimal diffs  |
-| When To Use         | 378  | Supported requests and exclusions          |
-| What's Inside       | 416  | Rule files, templates, tools, and evals    |
-| Verification        | 530  | Skill-maintenance checks                   |
-| License             | 537  | License for the skill itself               |
-| Credits             | 543  | Methodology and example sources            |
+| Overview            | 28   | What Panther is and what it produces       |
+| What The Skill Does | 52   | Authoring purpose and workflow             |
+| Installation        | 130  | How to add Panther to an agent environment |
+| Usage               | 193  | How agents activate and run the skill      |
+| Example Prompts     | 204  | Phrases the skill activates on             |
+| Workflow Diagrams   | 244  | ASCII and Mermaid diagrams of the pipeline |
+| Core Principles     | 370  | Convention preservation and minimal diffs  |
+| When To Use         | 381  | Supported requests and exclusions          |
+| What's Inside       | 419  | Rule files, templates, tools, and evals    |
+| Specification       | 533  | Agent Skills specification conformance     |
+| Verification        | 544  | Skill-maintenance checks                   |
+| License             | 551  | License for the skill itself               |
+| Credits             | 557  | Methodology and example sources            |
 
 ## Overview
 
@@ -102,7 +105,7 @@ asked.
 
 Separately, when you ask to "audit this document" or "check document formatting", the agent
 follows `process/document-audit.md`: it runs mechanical checks and a structural census with
-`tools/census-document.py`, evaluates the document against its governing rules, and reports
+`scripts/census-document.py`, evaluates the document against its governing rules, and reports
 findings with an optional fix plan. An audit is analysis only - it changes nothing in the
 document.
 
@@ -127,7 +130,8 @@ the delivery report lists the glossaries applied and notable term choices.
 
 ## Installation
 
-Panther is a filesystem-based skill.
+Panther is a filesystem-based skill following the [Agent Skills
+specification](https://agentskills.io/specification).
 
 Agents load it by reading the directory and activating `SKILL.md` when a request matches a
 trigger phrase.
@@ -263,7 +267,7 @@ follow `process/describe-response.md`.
                       ▼
           ┌───────────────────────┐
           │ Session Update Check  │
-          │ tools/check-update.py │
+          │ scripts/check-update.py │
           └───────────┬───────────┘
                       │
                       ▼
@@ -293,14 +297,14 @@ follow `process/describe-response.md`.
                       ▼
      ┌──────────────────────────────────┐
      │   Detect Document Conventions    │
-     │ tools/detect-encoding.py         │
+     │ scripts/detect-encoding.py         │
      │ conventions/markdown-dialects.md │
      └────────────────┬─────────────────┘
                       │
                       ▼
       ┌───────────────────────────────┐
       │ Detect Project Layout (Scope) │
-      │ tools/detect-scope.py         │
+      │ scripts/detect-scope.py         │
       │ scopes/<scope>.md             │
       └───────────────┬───────────────┘
                       │
@@ -322,10 +326,10 @@ follow `process/describe-response.md`.
                       ▼
        ┌────────────────────────────┐
        │   Mechanical Validation    │
-       │ tools/format-table.py      │
-       │ tools/wrap-prose.py        │
-       │ tools/validate-document.py │
-       │ tools/diff-content.py      │
+       │ scripts/format-table.py      │
+       │ scripts/wrap-prose.py        │
+       │ scripts/validate-document.py │
+       │ scripts/diff-content.py      │
        └──────────────┬─────────────┘
                       │
                       ▼
@@ -342,22 +346,22 @@ follow `process/describe-response.md`.
 flowchart TD
 
     A[User Request<br/>e.g., 'write a README'] --> B{Trigger Phrase Match?}
-    B -->|Yes| C[Session Update Check<br/>tools/check-update.py]
+    B -->|Yes| C[Session Update Check<br/>scripts/check-update.py]
     C --> D[Load Mandatory Files<br/>principles/authoring-rules.md<br/>process/document-workflow.md]
 
     D --> D2[Classify Task<br/>create, edit, reformat,<br/>translate, discover, audit,<br/>describe]
 
     D2 --> E[Parameter Resolution<br/>type, language, scope,<br/>filename, encoding, line endings]
 
-    E --> F[Detect Document Conventions<br/>tools/detect-encoding.py<br/>conventions/markdown-dialects.md]
+    E --> F[Detect Document Conventions<br/>scripts/detect-encoding.py<br/>conventions/markdown-dialects.md]
 
-    F --> G[Detect Project Layout (Scope)<br/>tools/detect-scope.py<br/>scopes/<scope>.md]
+    F --> G[Detect Project Layout (Scope)<br/>scripts/detect-scope.py<br/>scopes/<scope>.md]
 
     G --> H[Select Rule Set<br/>language baseline<br/>document type rules<br/>scope rules]
 
     H --> I[Draft Document<br/>templates/<lang>/<type>-template.md<br/>minimal diff for edits]
 
-    I --> J[Mechanical Validation<br/>tools/format-table.py<br/>tools/wrap-prose.py<br/>tools/validate-document.py<br/>tools/diff-content.py]
+    I --> J[Mechanical Validation<br/>scripts/format-table.py<br/>scripts/wrap-prose.py<br/>scripts/validate-document.py<br/>scripts/diff-content.py]
 
     J --> K[Delivery<br/>write file<br/>preserve encoding & line endings]
 
@@ -496,7 +500,7 @@ panther-skill/
 ├── templates/
 │   ├── en/                            # Twenty-four English skeletons, <type>-template-en.md
 │   └── pl/                            # Twenty-four Polish skeletons, <type>-template-pl.md
-├── tools/
+├── scripts/
 │   ├── detect-encoding.py             # BOM, encoding, and line-ending detection
 │   ├── detect-scope.py                # Document-scope signal census
 │   ├── census-document.py             # Structural document census for audits
@@ -527,12 +531,23 @@ every document task.
 Type rules, language baselines, scope rules, encoding conventions, templates, and tools load
 only as the workflow requires them.
 
+## Specification
+
+Panther is structured per the [Agent Skills specification](https://agentskills.io/specification).
+
+The layout follows the specification's conventions: `SKILL.md` as the router with required
+`name` and `description` frontmatter, canonical scripts under `scripts/`, rule material under
+named directories, and progressive disclosure keeping the router under 500 lines.
+
+Run the conformance validators listed in [Verification](#verification) after structural
+changes.
+
 ## Verification
 
-- Run `python tools/validate-skill.py .`, `python tools/check-references.py .`, and
-  `python tools/check-contents.py .` after changing `SKILL.md`, `README.md`, or file layout.
+- Run `python scripts/validate-skill.py .`, `python scripts/check-references.py .`, and
+  `python scripts/check-contents.py .` after changing `SKILL.md`, `README.md`, or file layout.
 - Exercise the regression prompts in `evals/evals.json` after structural changes.
-- Run `python tools/validate-document.py <file>` on any document the skill produces.
+- Run `python scripts/validate-document.py <file>` on any document the skill produces.
 
 ## License
 

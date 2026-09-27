@@ -27,7 +27,7 @@ document task.
 
 Never reformat, restyle, or normalize an `.rst` file.
 
-The skill's document tools `tools/format-table.py` and `tools/validate-document.py` do not apply
+The skill's document tools `scripts/format-table.py` and `scripts/validate-document.py` do not apply
 to `.rst` files, verify edits by reading the file instead.
 
 ## Heading Underlines

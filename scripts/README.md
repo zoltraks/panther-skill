@@ -61,10 +61,10 @@ python align-comments.tmp.py <file.md> [--check] [--compact] [--payload-markdown
 python validate-document.tmp.py <file.md> [--width N] [--payload-markdown]
 python diff-content.tmp.py <file.md> [--baseline <file>]
 python census-document.tmp.py <file.md> [--width N] [--payload-markdown]
-python tools/validate-skill.py .
-python tools/check-references.py .
-python tools/check-contents.py .
-python tools/check-update.py
+python scripts/validate-skill.py .
+python scripts/check-references.py .
+python scripts/check-contents.py .
+python scripts/check-update.py
 ```
 
 `detect-encoding.py` and `detect-scope.py` always exit `0` and print a report.

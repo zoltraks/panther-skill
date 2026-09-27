@@ -134,7 +134,7 @@ def main() -> int:
             paths.append(argument)
 
     if len(paths) != 1:
-        print("Usage: python tools/check-contents.py <file-or-directory> [--tolerance N]")
+        print("Usage: python scripts/check-contents.py <file-or-directory> [--tolerance N]")
         return 1
 
     target = Path(paths[0]).resolve()

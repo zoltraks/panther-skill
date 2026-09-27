@@ -43,7 +43,7 @@ names them - an `archive/` tree is the common case.
 ## Mechanical Checks
 
 Copy the document-production tools into the working repository as `.tmp.` copies, see
-`tools/README.md` and the File Handling Contract in `principles/authoring-rules.md`.
+`scripts/README.md` and the File Handling Contract in `principles/authoring-rules.md`.
 
 Run them on the target:
 
@@ -63,7 +63,7 @@ Record every `PASS`, `WARN`, and `FAIL` for the report.
 
 ## Structural Census
 
-Copy `tools/census-document.py` as `census-document.tmp.py` and run it on the target.
+Copy `scripts/census-document.py` as `census-document.tmp.py` and run it on the target.
 
 ```text
 python census-document.tmp.py <file> --width <convention-or-100>

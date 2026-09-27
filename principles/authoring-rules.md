@@ -120,5 +120,5 @@ Preserve the encoding and line-ending style of every existing file you edit.
 
 Never transcode or change line endings silently.
 
-See `conventions/file-encoding.md` for the full encoding rules and `tools/detect-encoding.py` for
+See `conventions/file-encoding.md` for the full encoding rules and `scripts/detect-encoding.py` for
 detection.

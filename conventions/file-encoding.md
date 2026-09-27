@@ -10,7 +10,7 @@
 This file defines how the skill handles document encodings.
 
 Load it when a document's encoding is not UTF-8, when the request mentions encodings or code
-pages, or when `tools/detect-encoding.py` reports an unexpected result.
+pages, or when `scripts/detect-encoding.py` reports an unexpected result.
 
 ## Default
 
@@ -35,8 +35,8 @@ Mixing encodings inside one file is never allowed - an edited file keeps exactly
 
 Detect the encoding before editing an existing file.
 
-Copy `tools/detect-encoding.py` into the working repository as `detect-encoding.tmp.py` and run it
-on the target file, see `tools/README.md`.
+Copy `scripts/detect-encoding.py` into the working repository as `detect-encoding.tmp.py` and run it
+on the target file, see `scripts/README.md`.
 
 Detection order:
 

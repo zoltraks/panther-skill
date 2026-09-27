@@ -142,7 +142,7 @@ Zdanie może być długie, gdy myśl jest długa, edytor lub przeglądarka zawin
 
 Wstawiaj twarde złamanie wiersza tylko wtedy, gdy wymaga tego sama treść źródłowa, na przykład w bloku kodu lub w diagramie.
 
-Wyjątek: gdy własne reguły repozytorium narzucają twardy limit, na przykład `STYLE.md` wymagający wierszy nie dłuższych niż 100 znaków, wykryj tę konwencję przed formatowaniem i zastosuj `tools/wrap-prose.py --width N`.
+Wyjątek: gdy własne reguły repozytorium narzucają twardy limit, na przykład `STYLE.md` wymagający wierszy nie dłuższych niż 100 znaków, wykryj tę konwencję przed formatowaniem i zastosuj `scripts/wrap-prose.py --width N`.
 
 Narzędzie tylko dzieli wiersze - nigdy ich nie łączy i nie rusza tabel, bloków kodu ani wciętych bloków kodu.
 

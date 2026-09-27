@@ -153,7 +153,7 @@ Convention:
 
 Tooling:
 
-- **`tools/align-comments.py`** - checks and fixes comment columns in fenced blocks
+- **`scripts/align-comments.py`** - checks and fixes comment columns in fenced blocks
 - **`--check`** - reports misaligned lines without rewriting
 - **`--compact`** - forces the minimum column per block
 

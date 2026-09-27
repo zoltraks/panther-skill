@@ -34,7 +34,7 @@ Optional directories seen in real skills:
 | `assets/`     | Files used in output such as templates, icons, and fonts |
 | `agents/`     | Prompt files for delegated subagent roles                |
 | `evals/`      | Behavioral regression prompts, usually `evals.json`      |
-| `tools/`      | Canonical scripts with their own `README.md`             |
+| `scripts/`    | Canonical scripts with their own `README.md`             |
 | `templates/`  | Skeletons for produced artifacts                         |
 
 Skills may define their own taxonomy on top, for example `principles/`, `process/`, `types/`,
@@ -74,7 +74,7 @@ Before editing inside a skill repository, read its governing documents in order:
    own files.
 4. The versioning document, conventionally `VERSIONING.md` - version field location and bump
    policy.
-5. `tools/README.md` when the skill ships tools - tool classes and command conventions.
+5. `scripts/README.md` when the skill ships tools - tool classes and command conventions.
 
 The skill's own maintenance document defines its registration cascade - follow it.
 
@@ -94,7 +94,7 @@ documents.
 significantly.
 
 Verify a renumbered table against `grep -n '^## ' <file>` or with the skill's contents checker
-when it provides one, for example `tools/check-contents.py` in the Panther repository.
+when it provides one, for example `scripts/check-contents.py` in the Panther repository.
 
 Untracked scratch directories such as `work/` are not rule material - never register them, and
 keep them out of reference checks and audits.
@@ -130,5 +130,5 @@ files inside the skill.
 4. Renumber `## Contents` tables affected by line shifts - see Consistency Sets.
 5. Sync `evals/evals.json` when behavior changed.
 6. Run the skill's own validators when it defines them, for example
-   `tools/validate-skill.py .`, `tools/check-references.py .`, and `tools/check-contents.py .`
+   `scripts/validate-skill.py .`, `scripts/check-references.py .`, and `scripts/check-contents.py .`
    in the Panther repository.

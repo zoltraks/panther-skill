@@ -82,10 +82,10 @@ A `#` inside the comment text itself is part of the comment and never affects al
 
 ## Reformatting
 
-Use `tools/align-comments.py` to check and fix comment columns instead of counting by hand.
+Use `scripts/align-comments.py` to check and fix comment columns instead of counting by hand.
 
 Copy it into the working repository as `align-comments.tmp.py`, run it on the document, and
-remove the copy afterward - see `tools/README.md`.
+remove the copy afterward - see `scripts/README.md`.
 
 Run `--check` to report misaligned comments without writing.
 

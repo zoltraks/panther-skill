@@ -27,7 +27,7 @@ document task.
 
 Never reformat, restyle, or normalize an `.adoc` file.
 
-The skill's document tools `tools/format-table.py` and `tools/validate-document.py` do not apply
+The skill's document tools `scripts/format-table.py` and `scripts/validate-document.py` do not apply
 to `.adoc` files, verify edits by reading the file instead.
 
 ## Title Markers

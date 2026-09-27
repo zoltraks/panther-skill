@@ -26,7 +26,7 @@ Prose and formatting style for the skill's files lives in `STYLE.md`.
 | `scopes/`       | Per-project-layout organization and registration rules         |
 | `conventions/`  | Cross-cutting encoding and Markdown dialect rules              |
 | `templates/`    | Per-language document skeletons grouped by ISO code directory  |
-| `tools/`        | Canonical scripts: document production and skill maintenance   |
+| `scripts/`      | Canonical scripts: document production and skill maintenance   |
 | `evals/`        | Behavioral regression prompts                                  |
 
 Root files govern the repository itself: `SKILL.md` (router), `README.md`, `STYLE.md`,
@@ -38,7 +38,7 @@ Do not nest subdirectories inside `types/`, `languages/`, `scopes/`, `convention
 `process/`, or `principles/`.
 
 A new top-level rule directory also needs its name added to `KNOWN_DIRS` in
-`tools/check-references.py`, otherwise references to its files inside rule documents are not
+`scripts/check-references.py`, otherwise references to its files inside rule documents are not
 checked.
 
 `templates/` and `translations/` are the exceptions: `templates/` groups skeletons one
@@ -71,7 +71,7 @@ Direction rules use `translations/<pair>/<pair>-general.md`. Glossaries use a st
 category slug shared by every pair directory (`software`, `project`, `finance`, `legal`,
 `medical`, `electrical`) so the same subject keeps the same filename across languages.
 
-Tools are named `tools/<verb>-<object>.py`, for example `detect-encoding.py` or
+Tools are named `scripts/<verb>-<object>.py`, for example `detect-encoding.py` or
 `format-table.py`.
 
 Document-production tools are copied into working repositories under a `.tmp.` infix before
@@ -101,7 +101,7 @@ list, see the Localised Resources rule in `STYLE.md`.
 Mirror every layout change in the `README.md` directory tree.
 
 Renumber every `## Contents` table affected by line shifts and verify the result with
-`tools/check-contents.py`.
+`scripts/check-contents.py`.
 
 Keep `evals/evals.json` prompts in sync with capabilities that change.
 
@@ -137,11 +137,11 @@ Keep `evals/evals.json` prompts in sync with capabilities that change.
 
 ## Adding A Tool
 
-1. Create `tools/<verb>-<object>.py`, standard library only unless the dependency is
+1. Create `scripts/<verb>-<object>.py`, standard library only unless the dependency is
    documented.
-2. Classify it in `tools/README.md` as document-production (copied as `.tmp.`) or
+2. Classify it in `scripts/README.md` as document-production (copied as `.tmp.`) or
    skill-maintenance (runs from this repository only).
-3. Reference it from the `SKILL.md` `tools/` section and from the workflow step where it runs.
+3. Reference it from the `SKILL.md` `scripts/` section and from the workflow step where it runs.
 
 ## Adding A Translation Pair
 
@@ -169,14 +169,14 @@ Keep `evals/evals.json` prompts in sync with capabilities that change.
 Run the skill-maintenance tools after every structural change:
 
 ```text
-python tools/validate-skill.py .
-python tools/check-references.py .
-python tools/check-contents.py .
+python scripts/validate-skill.py .
+python scripts/check-references.py .
+python scripts/check-contents.py .
 ```
 
-Run `python tools/format-table.py <file>` on every file whose tables were touched.
+Run `python scripts/format-table.py <file>` on every file whose tables were touched.
 
-Run `python tools/validate-document.py <file>` on every edited rule document.
+Run `python scripts/validate-document.py <file>` on every edited rule document.
 
 Exercise the prompts in `evals/evals.json` after changes that alter behavior.
 

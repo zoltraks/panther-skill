@@ -21,8 +21,8 @@ When the request names none, the target is the working directory or the reposito
 
 ## Signal Census
 
-Copy `tools/detect-scope.py` into the working repository as `detect-scope.tmp.py`, see
-`tools/README.md`.
+Copy `scripts/detect-scope.py` into the working repository as `detect-scope.tmp.py`, see
+`scripts/README.md`.
 
 Run it on the target:
 

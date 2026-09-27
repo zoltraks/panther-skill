@@ -82,8 +82,8 @@ For every existing file involved in the task, run the detection tool before edit
 python detect-encoding.tmp.py <file>
 ```
 
-Copy `tools/detect-encoding.py` into the working repository under a `.tmp.` name first, see
-`tools/README.md`.
+Copy `scripts/detect-encoding.py` into the working repository under a `.tmp.` name first, see
+`scripts/README.md`.
 
 The report gives the byte order mark, the guessed encoding, the line-ending style, and the
 trailing-whitespace count.
@@ -134,7 +134,7 @@ Load the matching `scopes/<scope>.md` file when a scope is detected or named.
 The `unstructured-layout` scope is the default and needs no signals.
 
 Run `python detect-scope.tmp.py <dir>` on the target when the layout is not obvious from the
-visible structure - the census reports every scope's signals at once, see `tools/README.md`.
+visible structure - the census reports every scope's signals at once, see `scripts/README.md`.
 
 When the request asks to discover or detect the document layout itself, follow
 `process/scope-discovery.md` - that procedure produces a full report, not just a scope name.
@@ -191,9 +191,9 @@ Apply the language file rules to the content you write even inside a dialect doc
 shape, vocabulary, and terminology still follow the language rules.
 
 For a requested reformatting, prefer the dedicated tools over hand edits:
-`tools/split-sentences.py` separates packed sentences onto individual logical lines,
-`tools/wrap-prose.py --width N` wraps prose and never joins lines, `tools/format-table.py`
-realigns tables, `tools/align-comments.py` aligns `#` comments inside plain-text and shell
+`scripts/split-sentences.py` separates packed sentences onto individual logical lines,
+`scripts/wrap-prose.py --width N` wraps prose and never joins lines, `scripts/format-table.py`
+realigns tables, `scripts/align-comments.py` aligns `#` comments inside plain-text and shell
 blocks.
 
 Pass `--payload-markdown` to the payload-aware tools only when the request covers embedded
@@ -229,14 +229,14 @@ A verification search that finds no match confirms absence - it is not a failure
 Before delivering, run the checks from `process/document-checklist.md`:
 
 - Mechanical self-review of the written content.
-- `tools/split-sentences.py --check` when the request covered packed sentences.
-- `tools/format-table.py --check` on the file when it contains tables.
-- `tools/align-comments.py --check` when the document contains plain-text blocks with `#`
+- `scripts/split-sentences.py --check` when the request covered packed sentences.
+- `scripts/format-table.py --check` on the file when it contains tables.
+- `scripts/align-comments.py --check` when the document contains plain-text blocks with `#`
   comments.
-- `tools/wrap-prose.py --check --width N` when the document follows a width convention.
-- `tools/validate-document.py` on the file, with `--payload-markdown` when the document embeds
+- `scripts/wrap-prose.py --check --width N` when the document follows a width convention.
+- `scripts/validate-document.py` on the file, with `--payload-markdown` when the document embeds
   ` ```markdown ` payload blocks.
-- `tools/diff-content.py` after any formatting-only pass - the token stream must be identical
+- `scripts/diff-content.py` after any formatting-only pass - the token stream must be identical
   to the pre-edit baseline, and every merged-line warning must be reviewed.
 - Legitimate sentence joins and deliberate reflows produce expected merged-line warnings.
 - `git diff --check` when working inside a repository.

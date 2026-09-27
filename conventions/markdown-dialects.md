@@ -159,11 +159,11 @@ Inside a payload:
   skill's defaults.
 - Content is opaque unless the user asks for changes inside payloads. In particular,
   reformat tables inside payloads only on explicit request -
-  `tools/format-table.py --payload-markdown` exists for that case.
+  `scripts/format-table.py --payload-markdown` exists for that case.
 - Wrap payload prose only when the host convention requires it or the user asks, via
-  `tools/wrap-prose.py --payload-markdown`.
+  `scripts/wrap-prose.py --payload-markdown`.
 - Payload content can carry real formatting defects (trailing whitespace, lone list markers,
-  merged indented lines). Surface them with `tools/validate-document.py --payload-markdown`.
+  merged indented lines). Surface them with `scripts/validate-document.py --payload-markdown`.
 - Other fence languages (` ```bash `, ` ```python `, ` ```text `, bare ` ``` `) and indented
   code blocks are always opaque - they may contain table-like `|` text or prose-like lines
   that must never be reformatted.

@@ -384,7 +384,7 @@
       "expected_output": "A self-update check that runs before any document work, asks the user to update or skip for the session, and honors the answer without re-asking.",
       "files": [],
       "expectations": [
-        "The agent runs python <skill-root>/tools/check-update.py against the skill's own repository before any other step, never against the edited subject.",
+        "The agent runs python <skill-root>/scripts/check-update.py against the skill's own repository before any other step, never against the edited subject.",
         "On UPDATE-AVAILABLE the agent asks whether to update the skill now or skip for this session and waits for the answer.",
         "On approval the agent runs git pull --ff-only only when the reported tree state allows it, then re-reads SKILL.md and loaded rule files.",
         "On skip or a blocked pull the agent continues with the current version and does not ask again in the session.",
@@ -523,7 +523,7 @@
         "When most comments already shared a column, outliers were aligned to it instead of moving the majority.",
         "Without an established column - or on a compaction request - the column is the longest entry plus exactly two spaces.",
         "Standalone '#' lines and tagged non-shell code blocks were left untouched.",
-        "The fix was produced or verified with tools/align-comments.py rather than manual spacing."
+        "The fix was produced or verified with scripts/align-comments.py rather than manual spacing."
       ]
     },
     {

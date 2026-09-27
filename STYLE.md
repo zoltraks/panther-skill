@@ -219,7 +219,7 @@ Recompute the column and re-pad the whole block after adding, removing, or renam
 
 The rule applies per block: different fenced blocks may use different comment columns.
 
-Align comments with `tools/align-comments.py` or an equivalent script, not by hand.
+Align comments with `scripts/align-comments.py` or an equivalent script, not by hand.
 
 The full convention for produced documents lives in `conventions/plain-text-comments.md`.
 

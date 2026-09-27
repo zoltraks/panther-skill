@@ -138,7 +138,7 @@ A sentence may be long when the thought is long, the editor or viewer wraps it o
 
 Insert a hard line break only when the source content itself requires it, for example in a code block or a diagram.
 
-Exception: when the repository's own rules set a hard limit, for example a `STYLE.md` that requires lines no longer than 100 characters, detect that convention before formatting and apply `tools/wrap-prose.py --width N`.
+Exception: when the repository's own rules set a hard limit, for example a `STYLE.md` that requires lines no longer than 100 characters, detect that convention before formatting and apply `scripts/wrap-prose.py --width N`.
 
 The wrapper only splits lines - it never joins them, and it leaves tables, code fences, and indented code blocks untouched.
 
