@@ -12,16 +12,16 @@
 |---------------------|------|--------------------------------------------|
 | Overview            | 26   | What Panther is and what it produces       |
 | What The Skill Does | 50   | Authoring purpose and workflow             |
-| Installation        | 109  | How to add Panther to an agent environment |
-| Usage               | 171  | How agents activate and run the skill      |
-| Example Prompts     | 182  | Phrases the skill activates on             |
-| Workflow Diagrams   | 216  | ASCII and Mermaid diagrams of the pipeline |
-| Core Principles     | 341  | Convention preservation and minimal diffs  |
-| When To Use         | 352  | Supported requests and exclusions          |
-| What's Inside       | 389  | Rule files, templates, tools, and evals    |
-| Verification        | 484  | Skill-maintenance checks                   |
-| License             | 491  | License for the skill itself               |
-| Credits             | 497  | Methodology and example sources            |
+| Installation        | 117  | How to add Panther to an agent environment |
+| Usage               | 179  | How agents activate and run the skill      |
+| Example Prompts     | 190  | Phrases the skill activates on             |
+| Workflow Diagrams   | 227  | ASCII and Mermaid diagrams of the pipeline |
+| Core Principles     | 353  | Convention preservation and minimal diffs  |
+| When To Use         | 364  | Supported requests and exclusions          |
+| What's Inside       | 402  | Rule files, templates, tools, and evals    |
+| Verification        | 498  | Skill-maintenance checks                   |
+| License             | 505  | License for the skill itself               |
+| Credits             | 511  | Methodology and example sources            |
 
 ## Overview
 
@@ -105,6 +105,14 @@ follows `process/document-audit.md`: it runs mechanical checks and a structural 
 `tools/census-document.py`, evaluates the document against its governing rules, and reports
 findings with an optional fix plan. An audit is analysis only - it changes nothing in the
 document.
+
+**Describes subjects**
+
+Separately, when you ask to "describe", "describe shortly", or "make a description", the agent
+follows `process/describe-response.md`: it consolidates the subject - session work, a document,
+a repository - into an impersonal, compact inline response. A "shortly" request caps the answer
+at ten sentences, twenty for large subjects. The description is delivered inline, and a file is
+written only when asked.
 
 ## Installation
 
@@ -213,12 +221,16 @@ encoding and line endings.
 **Document audit**
 > Audit this document's formatting against its governing rules and report the findings.
 
+**Inline description**
+> Describe shortly what this skill does.
+
 ## Workflow Diagrams
 
 The diagrams show the authoring pipeline for document tasks.
 
 Layout discovery and document audits follow their own standalone procedures in
-`process/scope-discovery.md` and `process/document-audit.md`.
+`process/scope-discovery.md` and `process/document-audit.md`, and inline descriptions
+follow `process/describe-response.md`.
 
 ### ASCII Diagram
 
@@ -251,7 +263,7 @@ Layout discovery and document audits follow their own standalone procedures in
    ┌────────────────────────────────────┐
    │           Classify Task            │
    │ create, edit, reformat, translate, │
-   │ discover, audit                    │
+   │ discover, audit, describe          │
    └──────────────────┬─────────────────┘
                       │
                       ▼
@@ -319,7 +331,7 @@ flowchart TD
     B -->|Yes| C[Session Update Check<br/>tools/check-update.py]
     C --> D[Load Mandatory Files<br/>principles/authoring-rules.md<br/>process/document-workflow.md]
 
-    D --> D2[Classify Task<br/>create, edit, reformat,<br/>translate, discover, audit]
+    D --> D2[Classify Task<br/>create, edit, reformat,<br/>translate, discover, audit,<br/>describe]
 
     D2 --> E[Parameter Resolution<br/>type, language, scope,<br/>filename, encoding, line endings]
 
@@ -383,6 +395,7 @@ flowchart TD
 | "What document layout does this repo use?"       | **Yes** - scope discovery report         |
 | "Audit this document"                            | **Yes** - findings and optional fix plan |
 | "Check this document's formatting"               | **Yes** - audit procedure                |
+| "Describe this repository shortly"               | **Yes** - consolidated inline response   |
 | "Write code for this feature"                    | No - this skill writes documents         |
 | "Review this document for technical correctness" | No - authoring skill, not an auditor     |
 
@@ -400,6 +413,7 @@ panther-skill/
 │   ├── document-workflow.md         # Intake, detection, rule selection, validation, delivery
 │   ├── document-checklist.md        # Mechanical pre-delivery checklist
 │   ├── document-audit.md            # Standalone audit procedure: findings and fix plan
+│   ├── describe-response.md         # Standalone describe procedure: caps, response style
 │   └── scope-discovery.md           # Standalone layout-discovery procedure and report format
 ├── types/
 │   ├── technical-document.md        # Guides, architecture notes, reference material

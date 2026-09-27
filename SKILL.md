@@ -6,16 +6,17 @@ description: >-
   documents, contributing guides, articles, notes, READMEs, changelogs,
   RFCs, decision records (ADR), and PMBOK artifacts - charters,
   management plans, registers, status reports, minutes, WBS. Enforces
-  plain-text-readable Markdown: one sentence per paragraph, source-width-
-  aligned tables, consistent headings. English by default, Polish
-  support. New files use UTF-8, existing encodings and line endings preserved.
-  Handles organized layouts - agent skill repositories, Sphinx, MkDocs,
-  Docusaurus, VitePress, GitBook sites, guided projects, doc collections,
-  multi-project repositories - and discovers a layout on request. AsciiDoc
-  and reStructuredText follow a minimal-edit contract. Use when asked to
-  write, edit, reformat, or translate a document, specification, README,
-  changelog, charter, register, or report - including requests phrased in a
-  supported non-English language such as Polish.
+  plain-text-readable Markdown: one-sentence paragraphs,
+  source-width-aligned tables, consistent headings. English by default,
+  Polish support. UTF-8 for new files, existing encodings and line
+  endings preserved. Handles organized layouts - agent skill
+  repositories, Sphinx, MkDocs, Docusaurus, VitePress, GitBook sites,
+  guided projects, doc collections, multi-project repositories -
+  discovers a layout, audits a document, and describes a subject inline.
+  AsciiDoc and reStructuredText follow a minimal-edit contract. Use when
+  asked to write, edit, reformat, or translate a document, specification,
+  README, changelog, charter, register, or report - including requests in
+  any supported language.
 license: MIT
 compatibility: >-
   Designed for agent coding environments with file system access (Claude Code,
@@ -36,21 +37,21 @@ metadata:
 
 | Section                 | Line | What it covers                                 |
 |-------------------------|------|------------------------------------------------|
-| Skill Update Check      | 67   | Once-per-session git freshness gate before use |
-| Trigger Keywords        | 82   | Activation phrases                             |
-| How To Use              | 183  | Progressive disclosure and mandatory reading   |
-| Parameter Configuration | 222  | Defaults and user-controlled document shape    |
-| Principles              | 243  | Authoring invariants                           |
-| Process                 | 249  | Workflow and delivery checklist                |
-| Document Types          | 261  | Per-type rule files                            |
-| Languages               | 316  | Per-language style baselines                   |
-| Scopes                  | 326  | Per-project-layout organization rules          |
-| Conventions             | 354  | Encoding, dialect, and format contract rules   |
-| Templates               | 369  | Per-type, per-language skeletons               |
-| Tools                   | 379  | Detection, formatting, and validation scripts  |
-| Evaluation Prompts      | 424  | Behavioral regression prompts                  |
-| Repository Files        | 433  | Housekeeping files governing this repository   |
-| File Handling Contract  | 444  | Byte-level guarantees                          |
+| Skill Update Check      | 68   | Once-per-session git freshness gate before use |
+| Trigger Keywords        | 83   | Activation phrases                             |
+| How To Use              | 191  | Progressive disclosure and mandatory reading   |
+| Parameter Configuration | 234  | Defaults and user-controlled document shape    |
+| Principles              | 255  | Authoring invariants                           |
+| Process                 | 261  | Workflow, checklist, and standalone procedures |
+| Document Types          | 275  | Per-type rule files                            |
+| Languages               | 330  | Per-language style baselines                   |
+| Scopes                  | 340  | Per-project-layout organization rules          |
+| Conventions             | 368  | Encoding, dialect, and format contract rules   |
+| Templates               | 383  | Per-type, per-language skeletons               |
+| Tools                   | 393  | Detection, formatting, and validation scripts  |
+| Evaluation Prompts      | 438  | Behavioral regression prompts                  |
+| Repository Files        | 447  | Housekeeping files governing this repository   |
+| File Handling Contract  | 458  | Byte-level guarantees                          |
 
 You are a Document Authoring Agent.
 
@@ -172,6 +173,13 @@ The skill activates on any of these phrases:
 - check document formatting
 - document conformance check
 - plan fixes for findings
+- describe
+- describe shortly
+- make a description
+- summarize
+- write a summary
+- give an overview
+- short description
 
 Requests may arrive in any supported language, not only English.
 
@@ -194,6 +202,8 @@ Use progressive disclosure:
 - Follow `process/scope-discovery.md` when the request asks to discover or detect a document
   layout.
 - Follow `process/document-audit.md` when the request asks to audit a document.
+- Follow `process/describe-response.md` when the request asks to describe or summarize a
+  subject inline.
 - Load `conventions/` files only when the situation requires them.
 
 This skill is self-contained. The files below are the available rule material in this
@@ -208,8 +218,10 @@ collections such as agent skill repositories, Sphinx sites, and MkDocs, Docusaur
 or GitBook documentation sites. On request it also discovers a location's document layout -
 analyzing the directory structure and document types, naming the best-matching scope, and
 listing exceptions - and audits a document against its governing rules, reporting mechanical,
-structural, and content findings with an optional fix plan. AsciiDoc and reStructuredText
-files are edited minimally and never restyled.
+structural, and content findings with an optional fix plan. On describe or summarize requests
+it produces consolidated inline descriptions of a subject - impersonal, compact, capped for
+"shortly" requests. AsciiDoc and reStructuredText files are edited minimally and never
+restyled.
 
 ## Mandatory Reading
 
@@ -257,6 +269,8 @@ minimal-diff rule provide the answers.
 - **`process/document-audit.md`** - The standalone document-audit procedure: mechanical
   checks, structural census, convention evaluation, content review, findings, and the
   optional fix plan.
+- **`process/describe-response.md`** - The standalone describe procedure: consolidation,
+  shortly length caps, impersonal response style, and inline delivery.
 
 ## `types/` - Document Type Rules
 

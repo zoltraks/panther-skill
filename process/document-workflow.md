@@ -23,12 +23,16 @@ Classify the request into one primary task:
 | Translate | "translate this doc to Polish"                     | target language file           |
 | Discover  | "discover layout", "detect document layout"        | scope discovery procedure      |
 | Audit     | "audit this document", "check document formatting" | document audit procedure       |
+| Describe  | "describe this", "summarize the session"           | describe-response procedure    |
 
 A request may combine tasks.
 
 Apply the union of the required rule files.
 
 An approved fix plan from an audit becomes an Edit task.
+
+A describe task produces an inline response, not a document - a file is written only when
+the request explicitly asks for one.
 
 Identify the target file or the intended output location before writing anything.
 

@@ -763,3 +763,10 @@ Traktuj żądanie pasujące do frazy z tabeli jako jej angielski odpowiednik.
 | dokument przygotowania         | preparation document         |
 | przewodnik współpracy          | contributing guide           |
 | dokument współpracy            | contributing guide           |
+| opisz                          | describe                     |
+| opisz krótko                   | describe shortly             |
+| przygotuj opis                 | make a description           |
+| podsumuj                       | summarize                    |
+| napisz podsumowanie            | write a summary              |
+| daj przegląd                   | give an overview             |
+| krótki opis                    | short description            |

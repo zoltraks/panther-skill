@@ -525,6 +525,31 @@
         "Standalone '#' lines and tagged non-shell code blocks were left untouched.",
         "The fix was produced or verified with tools/align-comments.py rather than manual spacing."
       ]
+    },
+    {
+      "id": 44,
+      "prompt": "Describe shortly what the document workflow covers.",
+      "expected_output": "An inline consolidated description of process/document-workflow.md - impersonal, compact, at most ten sentences in total, no file written.",
+      "files": [],
+      "expectations": [
+        "The description is delivered inline - no file was created.",
+        "Total length stays within ten sentences, counting list items.",
+        "No first-person phrasing appears - the subject or the work is the actor.",
+        "List items start lowercase and carry no trailing period or comma.",
+        "Clauses join with commas, spaced hyphens ' - ' stand in for dashes, and no semicolons or em-dashes appear."
+      ]
+    },
+    {
+      "id": 45,
+      "prompt": "Make a description of this repository's structure and write it to repo-description.md.",
+      "expected_output": "A consolidated description of the repository written to repo-description.md - the describe-response style applied, document rules governing the file delivery.",
+      "files": [],
+      "expectations": [
+        "A file was written because the request explicitly asked for one.",
+        "The content is a consolidated description, impersonal and compact, not a chronological retelling.",
+        "The written file follows the language baseline, filename rules, and UTF-8 encoding contract.",
+        "Filename and location follow the request rather than a scope convention."
+      ]
     }
   ]
 }
