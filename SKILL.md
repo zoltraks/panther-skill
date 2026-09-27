@@ -39,19 +39,19 @@ metadata:
 |-------------------------|------|------------------------------------------------|
 | Skill Update Check      | 68   | Once-per-session git freshness gate before use |
 | Trigger Keywords        | 83   | Activation phrases                             |
-| How To Use              | 191  | Progressive disclosure and mandatory reading   |
-| Parameter Configuration | 234  | Defaults and user-controlled document shape    |
-| Principles              | 255  | Authoring invariants                           |
-| Process                 | 261  | Workflow, checklist, and standalone procedures |
-| Document Types          | 275  | Per-type rule files                            |
-| Languages               | 330  | Per-language style baselines                   |
-| Scopes                  | 340  | Per-project-layout organization rules          |
-| Conventions             | 368  | Encoding, dialect, and format contract rules   |
-| Templates               | 383  | Per-type, per-language skeletons               |
-| Tools                   | 393  | Detection, formatting, and validation scripts  |
-| Evaluation Prompts      | 438  | Behavioral regression prompts                  |
-| Repository Files        | 447  | Housekeeping files governing this repository   |
-| File Handling Contract  | 458  | Byte-level guarantees                          |
+| How To Use              | 195  | Progressive disclosure and mandatory reading   |
+| Parameter Configuration | 238  | Defaults and user-controlled document shape    |
+| Principles              | 259  | Authoring invariants                           |
+| Process                 | 265  | Workflow, checklist, and standalone procedures |
+| Document Types          | 280  | Per-type rule files                            |
+| Languages               | 335  | Per-language style baselines                   |
+| Scopes                  | 345  | Per-project-layout organization rules          |
+| Conventions             | 373  | Encoding, dialect, and format contract rules   |
+| Templates               | 388  | Per-type, per-language skeletons               |
+| Tools                   | 398  | Detection, formatting, and validation scripts  |
+| Evaluation Prompts      | 443  | Behavioral regression prompts                  |
+| Repository Files        | 452  | Housekeeping files governing this repository   |
+| File Handling Contract  | 463  | Byte-level guarantees                          |
 
 You are a Document Authoring Agent.
 
@@ -180,6 +180,10 @@ The skill activates on any of these phrases:
 - write a summary
 - give an overview
 - short description
+- long description
+- detailed description
+- describe in detail
+- full description
 
 Requests may arrive in any supported language, not only English.
 
@@ -220,7 +224,7 @@ analyzing the directory structure and document types, naming the best-matching s
 listing exceptions - and audits a document against its governing rules, reporting mechanical,
 structural, and content findings with an optional fix plan. On describe or summarize requests
 it produces consolidated inline descriptions of a subject - impersonal, compact, capped for
-"shortly" requests. AsciiDoc and reStructuredText files are edited minimally and never
+"shortly" requests and floored at one hundred sentences for long requests. AsciiDoc and reStructuredText files are edited minimally and never
 restyled.
 
 ## Mandatory Reading
@@ -270,7 +274,8 @@ minimal-diff rule provide the answers.
   checks, structural census, convention evaluation, content review, findings, and the
   optional fix plan.
 - **`process/describe-response.md`** - The standalone describe procedure: consolidation,
-  shortly length caps, impersonal response style, and inline delivery.
+  shortly caps and long-description floors, impersonal response style, and inline
+  delivery.
 
 ## `types/` - Document Type Rules
 

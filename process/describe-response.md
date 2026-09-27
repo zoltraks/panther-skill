@@ -4,7 +4,7 @@
 
 > **Scope:** Consolidated descriptions produced when a request asks to describe a subject
 > **Key items:** collection and consolidation, impersonal compact style, shortly length
-> caps, inline delivery
+> caps, long-description floors, inline delivery
 
 This file defines the describe procedure and the response style it produces.
 
@@ -14,7 +14,8 @@ subject.
 ## When This Applies
 
 The describe task activates on requests such as "describe", "describe shortly", "make a
-description", "summarize", "write a summary", "give an overview", or "short
+description", "summarize", "write a summary", "give an overview", "short description",
+"long description", "detailed description", "describe in detail", or "full
 description", including their equivalents declared in the matching `languages/` file.
 
 The subject is whatever the request points at - the current session's work, a document,
@@ -35,8 +36,10 @@ request's context.
 
 Consolidate the material by theme instead of retelling it chronologically.
 
-A description states what the subject is, names its key elements, and closes with the
-outcome or verification status.
+A description opens with one sentence naming the subject and its state, names its key
+elements, and closes with the outcome or verification status.
+
+Name concrete artifacts - files, tools, commands, and counts carry the facts.
 
 Never invent content to fill a gap - mark missing facts per
 `principles/authoring-rules.md`.
@@ -54,6 +57,19 @@ a multi-part session.
 Count every sentence and every list item toward the cap.
 
 A bare label line ending with a colon, such as `Key elements:`, does not count.
+
+A "long description", "detailed description", "describe in detail", or "full
+description" request sets a floor of one hundred sentences - produce one hundred
+sentences or more.
+
+Reach the floor by expanding coverage - per-file facts, decisions made, registration
+steps, verification results - never by padding or invented content.
+
+The counting rule applies to the floor the same way as to the cap - every sentence and
+every list item counts, bare label lines do not.
+
+When the subject cannot honestly support one hundred sentences, deliver the fullest
+honest description and state the shortfall explicitly at the end.
 
 ## Response Style
 
@@ -90,6 +106,11 @@ End items without a trailing period or comma.
 Keep the lead-in name short - one to three words - followed by a ` - ` explanation when
 the item needs one.
 
+Group items under a bare label line ending with a colon, one label per theme.
+
+A plain description may use one group or none - a long description uses several labeled
+groups.
+
 ## Output
 
 Deliver the description as an inline response.
@@ -114,6 +135,32 @@ Measured invariants:
 - **edges** - `│` then `▼` between boxes, `▶` across a branch gap
 
 Convention registered in `conventions/ascii-diagrams.md` and wired into `SKILL.md`.
+
+All validators pass.
+```
+
+A long description repeats this pattern across every theme until the one-hundred-sentence
+floor is met:
+
+```
+Session delivered a comment-alignment convention for panther-skill.
+
+Convention:
+
+- **shared column** - one column per block carries every `#` comment
+- **dominant column** - an established column is kept, outliers align to it
+- **compaction** - the column drops to the longest entry plus two spaces on request
+
+Tooling:
+
+- **`tools/align-comments.py`** - checks and fixes comment columns in fenced blocks
+- **`--check`** - reports misaligned lines without rewriting
+- **`--compact`** - forces the minimum column per block
+
+Verification:
+
+- **validators** - `validate-skill.py`, `check-references.py`, `check-contents.py` pass
+- **edits** - whitespace-only where alignment was the change
 
 All validators pass.
 ```

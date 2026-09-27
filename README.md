@@ -12,16 +12,16 @@
 |---------------------|------|--------------------------------------------|
 | Overview            | 26   | What Panther is and what it produces       |
 | What The Skill Does | 50   | Authoring purpose and workflow             |
-| Installation        | 117  | How to add Panther to an agent environment |
-| Usage               | 179  | How agents activate and run the skill      |
-| Example Prompts     | 190  | Phrases the skill activates on             |
-| Workflow Diagrams   | 227  | ASCII and Mermaid diagrams of the pipeline |
-| Core Principles     | 353  | Convention preservation and minimal diffs  |
-| When To Use         | 364  | Supported requests and exclusions          |
-| What's Inside       | 402  | Rule files, templates, tools, and evals    |
-| Verification        | 498  | Skill-maintenance checks                   |
-| License             | 505  | License for the skill itself               |
-| Credits             | 511  | Methodology and example sources            |
+| Installation        | 118  | How to add Panther to an agent environment |
+| Usage               | 180  | How agents activate and run the skill      |
+| Example Prompts     | 191  | Phrases the skill activates on             |
+| Workflow Diagrams   | 228  | ASCII and Mermaid diagrams of the pipeline |
+| Core Principles     | 354  | Convention preservation and minimal diffs  |
+| When To Use         | 365  | Supported requests and exclusions          |
+| What's Inside       | 403  | Rule files, templates, tools, and evals    |
+| Verification        | 499  | Skill-maintenance checks                   |
+| License             | 506  | License for the skill itself               |
+| Credits             | 512  | Methodology and example sources            |
 
 ## Overview
 
@@ -111,8 +111,9 @@ document.
 Separately, when you ask to "describe", "describe shortly", or "make a description", the agent
 follows `process/describe-response.md`: it consolidates the subject - session work, a document,
 a repository - into an impersonal, compact inline response. A "shortly" request caps the answer
-at ten sentences, twenty for large subjects. The description is delivered inline, and a file is
-written only when asked.
+at ten sentences, twenty for large subjects, while a "long" or "detailed" request sets a floor
+of one hundred sentences. The description is delivered inline, and a file is written only when
+asked.
 
 ## Installation
 
@@ -413,7 +414,7 @@ panther-skill/
 │   ├── document-workflow.md         # Intake, detection, rule selection, validation, delivery
 │   ├── document-checklist.md        # Mechanical pre-delivery checklist
 │   ├── document-audit.md            # Standalone audit procedure: findings and fix plan
-│   ├── describe-response.md         # Standalone describe procedure: caps, response style
+│   ├── describe-response.md         # Standalone describe procedure: caps and floors
 │   └── scope-discovery.md           # Standalone layout-discovery procedure and report format
 ├── types/
 │   ├── technical-document.md        # Guides, architecture notes, reference material

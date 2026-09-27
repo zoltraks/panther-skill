@@ -550,6 +550,20 @@
         "The written file follows the language baseline, filename rules, and UTF-8 encoding contract.",
         "Filename and location follow the request rather than a scope convention."
       ]
+    },
+    {
+      "id": 46,
+      "prompt": "Write a detailed description of the work done in this session.",
+      "expected_output": "An inline consolidated description of the session work - impersonal, organized into labeled theme groups, at least one hundred sentences counting every sentence and list item, no file written.",
+      "files": [],
+      "expectations": [
+        "The description is delivered inline - no file was created.",
+        "Total length reaches at least one hundred sentences, counting every list item.",
+        "Items group under bare label lines ending with a colon, one label per theme.",
+        "Concrete artifacts carry the facts - files, tools, commands, and counts are named.",
+        "No first-person phrasing appears - the subject or the work is the actor.",
+        "When the subject cannot honestly support one hundred sentences, the response states the shortfall explicitly at the end."
+      ]
     }
   ]
 }

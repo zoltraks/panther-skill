@@ -770,3 +770,7 @@ Traktuj żądanie pasujące do frazy z tabeli jako jej angielski odpowiednik.
 | napisz podsumowanie            | write a summary              |
 | daj przegląd                   | give an overview             |
 | krótki opis                    | short description            |
+| długi opis                     | long description             |
+| szczegółowy opis               | detailed description         |
+| opisz szczegółowo              | describe in detail           |
+| pełny opis                     | full description             |
