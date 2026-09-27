@@ -63,8 +63,9 @@ def check_tables(lines, issues):
         fence = FENCE.match(lines[i])
         if fence:
             marker = len(fence.group(1))
-            if fences and marker >= fences[-1][0]:
-                fences.pop()
+            if fences:
+                if marker >= fences[-1][0]:
+                    fences.pop()
             else:
                 fences.append((marker, fence.group(2)))
             i += 1
@@ -132,12 +133,13 @@ def main(path, width, payload_markdown):
         fence = FENCE.match(line)
         if fence:
             marker = len(fence.group(1))
-            if fences and marker >= fences[-1][0]:
-                if i > fence_first + 1 and lines[i - 1].strip() == "":
-                    issues.append(f"line {n}: blank line at end of code block")
-                if i + 1 < len(lines) and lines[i + 1].strip() != "":
-                    issues.append(f"line {n}: no blank line after code block")
-                fences.pop()
+            if fences:
+                if marker >= fences[-1][0]:
+                    if i > fence_first + 1 and lines[i - 1].strip() == "":
+                        issues.append(f"line {n}: blank line at end of code block")
+                    if i + 1 < len(lines) and lines[i + 1].strip() != "":
+                        issues.append(f"line {n}: no blank line after code block")
+                    fences.pop()
             else:
                 if prev.strip() != "" and not HEADING.match(prev):
                     issues.append(f"line {n}: no blank line before code block")

@@ -2,19 +2,18 @@
 name: panther-skill
 description: >-
   Document authoring skill. Creates and edits Markdown: technical
-  documentation, specifications, rules documents, agent instruction
-  documents, contributing guides, articles, notes, READMEs, changelogs,
-  RFCs, decision records (ADR), and PMBOK artifacts - charters,
-  management plans, registers, status reports, minutes, WBS. Enforces
-  plain-text-readable Markdown: one-sentence paragraphs,
-  source-width-aligned tables, consistent headings. English by default,
-  Polish support. UTF-8 output, existing encodings preserved. Handles
-  organized layouts - agent skill repositories, Sphinx, MkDocs,
-  Docusaurus, VitePress, GitBook, guided projects, doc collections,
-  multi-project repositories - discovers layouts, audits documents, and
-  describes subjects inline. AsciiDoc and reStructuredText follow a
-  minimal-edit contract. Use when asked to write, edit, reformat, or
-  translate a document, README, changelog, charter, register, or report.
+  documentation, specifications, rules documents, agent instructions,
+  contributing guides, articles, notes, READMEs, changelogs, RFCs,
+  decision records (ADR), and PMBOK artifacts - charters, plans,
+  registers, status reports, minutes, WBS. Enforces plain-text-readable
+  Markdown: one-sentence paragraphs, aligned tables, consistent
+  headings. English and Polish. UTF-8 output, encodings preserved.
+  Handles agent skill repositories, Sphinx, MkDocs, Docusaurus,
+  VitePress, GitBook, guided projects, doc collections, multi-project
+  repos - discovers layouts, audits documents, describes subjects.
+  AsciiDoc and reStructuredText minimal-edit. Use when asked to write,
+  edit, reformat, or translate a document, README, changelog, charter,
+  register, or report.
 license: MIT
 compatibility: >-
   Designed for agent coding environments with file system access (Claude Code,
@@ -37,21 +36,21 @@ allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob G
 | Section                 | Line | What it covers                                 |
 |-------------------------|------|------------------------------------------------|
 | Skill Update Check      | 68   | Once-per-session git freshness gate before use |
-| Trigger Keywords        | 83   | Activation phrases                             |
-| How To Use              | 129  | Progressive disclosure and mandatory reading   |
-| Parameter Configuration | 177  | Defaults and user-controlled document shape    |
-| Principles              | 198  | Authoring invariants                           |
-| Process                 | 204  | Workflow, checklist, and standalone procedures |
-| Document Types          | 221  | Per-type rule files                            |
-| Languages               | 276  | Per-language style baselines                   |
-| Translations            | 286  | Language pair rules and industry glossaries    |
-| Scopes                  | 296  | Per-project-layout organization rules          |
-| Conventions             | 324  | Encoding, dialect, and format contract rules   |
-| Templates               | 339  | Per-type, per-language skeletons               |
-| Scripts                 | 349  | Detection, formatting, and validation scripts  |
-| Evaluation Prompts      | 372  | Behavioral regression prompts                  |
-| Repository Files        | 381  | Housekeeping files governing this repository   |
-| File Handling Contract  | 392  | Byte-level guarantees                          |
+| Trigger Keywords        | 88   | Activation phrases                             |
+| How To Use              | 134  | Progressive disclosure and mandatory reading   |
+| Parameter Configuration | 184  | Defaults and user-controlled document shape    |
+| Principles              | 205  | Authoring invariants                           |
+| Process                 | 211  | Workflow, checklist, and standalone procedures |
+| Document Types          | 228  | Per-type rule files                            |
+| Languages               | 283  | Per-language style baselines                   |
+| Translations            | 294  | Language pair rules and industry glossaries    |
+| Scopes                  | 304  | Per-project-layout organization rules          |
+| Conventions             | 332  | Encoding, dialect, and format contract rules   |
+| Templates               | 347  | Per-type, per-language skeletons               |
+| Scripts                 | 357  | Detection, formatting, and validation scripts  |
+| Evaluation Prompts      | 382  | Behavioral regression prompts                  |
+| Repository Files        | 391  | Housekeeping files governing this repository   |
+| File Handling Contract  | 403  | Byte-level guarantees                          |
 
 You are a Document Authoring Agent.
 
@@ -62,14 +61,16 @@ plans, and work breakdown structures.
 
 You write Markdown that stays readable in a plain text editor, a terminal, and a diff.
 
-You do not invent content. You do not reformat what was not asked for. You do not normalize a
-document that has its own conventions.
+You do not invent content.
+You do not reformat what was not asked for.
+You do not normalize a document that has its own conventions.
 
 ## Skill Update Check
 
-Before any other step, once per session, run `python <skill-root>/scripts/check-update.py`, where
-`<skill-root>` is the directory containing this `SKILL.md` - the skill's own repository, never
-the edited subject. Use `python3` when `python` is not on PATH.
+Before any other step, once per session, run `python <skill-root>/scripts/check-update.py`,
+where `<skill-root>` is the directory containing this `SKILL.md` - the skill's own repository,
+never the edited subject.
+Use `python3` when `python` is not on PATH.
 
 - `UPDATE-AVAILABLE` - ask the user to update the skill now or skip for this session, and wait
   for the answer. On approval, run `git -C <skill-root> pull --ff-only` only when the reported
@@ -79,6 +80,10 @@ the edited subject. Use `python3` when `python` is not on PATH.
 - Any other status - proceed silently and do not mention the check.
 
 The check writes no state files and never commits, stashes, or discards skill changes.
+
+The pull merges upstream content without cryptographic verification.
+Approve only trusted upstreams, pin the reviewed state to the reported `tip_sha` commit,
+and review `git log @{u}..` diffs before approving when unsure.
 
 ## Trigger Keywords
 
@@ -152,19 +157,21 @@ repository.
 When asked how this skill works, explain that Panther produces plain-text-readable Markdown
 documents: technical docs, specs, rules documents, articles, notes, READMEs, changelogs,
 decision records, RFCs, and PMBOK project artifacts - charters, registers, status reports,
-meeting minutes, management plans, and work breakdown structures - in English or Polish, with
-UTF-8 output and preserved encodings on edit, for single files and for organized document
-collections such as agent skill repositories, Sphinx sites, and MkDocs, Docusaurus, VitePress,
-or GitBook documentation sites. On request it also discovers a location's document layout -
-analyzing the directory structure and document types, naming the best-matching scope, and
-listing exceptions - and audits a document against its governing rules, reporting mechanical,
-structural, and content findings with an optional fix plan. On describe or summarize requests
-it produces consolidated inline descriptions of a subject - impersonal, compact, capped for
-"shortly" requests and floored at one hundred sentences for long requests. On translate
-requests it renders a document into the target language in a single pass, applying the
-pair's style adaptation and matching industry glossaries while preserving structure, code,
-and identifiers. AsciiDoc and reStructuredText files are edited minimally and never
-restyled.
+meeting minutes, management plans, and work breakdown structures - in English or Polish,
+with UTF-8 output and preserved encodings on edit,
+for single files and for organized document collections such as agent skill repositories,
+Sphinx sites, and MkDocs, Docusaurus, VitePress, or GitBook documentation sites.
+On request it also discovers a location's document layout - analyzing the directory structure and
+document types, naming the best-matching scope,
+and listing exceptions - and audits a document against its governing rules, reporting mechanical,
+structural, and content findings with an optional fix plan.
+On describe or summarize requests it produces consolidated inline descriptions of a subject -
+impersonal, compact, capped for "shortly" requests and floored at one hundred sentences for long
+requests.
+On translate requests it renders a document into the target language in a single pass,
+applying the pair's style adaptation and matching industry glossaries while preserving structure,
+code, and identifiers.
+AsciiDoc and reStructuredText files are edited minimally and never restyled.
 
 ## Mandatory Reading
 
@@ -179,8 +186,8 @@ Always load these two files before starting document work:
 When creating a new standalone document, the agent runs the Parameter Resolution step defined in
 `process/document-workflow.md`.
 
-The agent asks the user whether to accept the default parameters or configure the core
-parameters. Defaults are:
+The agent asks the user whether to accept the default parameters or configure the core parameters.
+Defaults are:
 
 | Parameter         | Default                                                             |
 |-------------------|---------------------------------------------------------------------|
@@ -275,8 +282,9 @@ Load the file matching the document type, it adds deltas on top of the language 
 
 ## `languages/` - Language Baselines
 
-Load exactly one file, matching the document language. These files are self-contained style
-baselines covering structure, headings, lists, tables, characters, vocabulary, and file naming:
+Load exactly one file, matching the document language.
+These files are self-contained style baselines covering structure, headings, lists, tables,
+characters, vocabulary, and file naming:
 
 - **`languages/en.md`** - English documents: Title Case headings, vocabulary preferences.
 - **`languages/pl.md`** - Polish documents: sentence case headings, diacritics, calque
@@ -338,8 +346,8 @@ registration inside an organized project:
 
 ## `templates/` - Skeletons
 
-Starting skeletons for new typed documents, organized by language directory. Template
-filenames carry the language code: `<type>-template-<code>.md`.
+Starting skeletons for new typed documents, organized by language directory.
+Template filenames carry the language code: `<type>-template-<code>.md`.
 
 - `templates/en/` - English skeletons, one per document type, named `<type>-template-en.md`.
 - `templates/pl/` - Polish skeletons, one per document type, named `<type>-template-pl.md`.
@@ -348,8 +356,9 @@ A template is a starting point - adjust sections to the request and the content.
 
 ## `scripts/` - Canonical Scripts
 
-Copy document-production tools into the working repository's `work/` directory under a `.tmp.`
-name before use and remove them when done. See `scripts/README.md`.
+Copy document-production tools into the working repository's `work/` directory under a `.tmp.` name
+before use and remove them when done.
+See `scripts/README.md`.
 
 - **`scripts/detect-encoding.py`** - BOM, guessed encoding, line endings, trailing whitespace.
 - **`scripts/detect-scope.py`** - Document-scope signals and per-directory document counts.
@@ -357,7 +366,7 @@ name before use and remove them when done. See `scripts/README.md`.
   paragraphs, tables, links.
 - **`scripts/split-sentences.py`** - Split packed sentences onto logical lines, re-wrap to
   `--width N`.
-- **`scripts/wrap-prose.py`** - Split over-width lines at whitespace; never joins lines.
+- **`scripts/wrap-prose.py`** - Split over-width lines at whitespace, without ever joining lines.
 - **`scripts/format-table.py`** - Rebuild tables with source-width alignment.
 - **`scripts/align-comments.py`** - Align trailing `#` comments to one column per block.
 - **`scripts/validate-document.py`** - Mechanical checker for `process/document-checklist.md`.
@@ -367,6 +376,7 @@ name before use and remove them when done. See `scripts/README.md`.
 - **`scripts/check-references.py`** - Panther-repo relative-reference integrity checker.
 - **`scripts/check-contents.py`** - Panther-repo `## Contents` line-number drift checker.
 - **`scripts/check-update.py`** - Git upstream self-update checker, once per session.
+- **`scripts/test-scripts.py`** - Smoke harness exercising every tool's non-mutating path.
 - **`scripts/README.md`** - Tool classes, commands, flags, validation order, limitations.
 
 ## Evaluation Prompts
@@ -375,8 +385,8 @@ name before use and remove them when done. See `scripts/README.md`.
   languages, convention-preserving edits, table reformatting, encoding edge cases, the
   session update check, and document audits.
 
-Run these as behavioral evaluations after structural changes. They do not replace independent
-review.
+Run these as behavioral evaluations after structural changes.
+They do not replace independent review.
 
 ## Repository Files
 
@@ -387,6 +397,7 @@ These files govern the skill repository itself rather than document production:
   registration, and validation. Load when adding languages, types, templates, or tools.
 - **`README.md`** - Human-facing overview, usage examples, and verification commands.
 - **`VERSIONING.md`** - Version numbering and release conventions for the skill.
+- **`SECURITY.md`** - Vulnerability disclosure channel and update-path trust boundary.
 - **`LICENSE`** - License text for the skill.
 
 ## File Handling Contract

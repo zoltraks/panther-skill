@@ -9,8 +9,8 @@
 
 ## When To Use
 
-Use for meeting minutes and published agendas. PMBOK lists meetings as a
-project management method and each meeting requires both an agenda and
+Use for meeting minutes and published agendas.
+PMBOK lists meetings as a project management method and each meeting requires both an agenda and
 minutes.
 
 For informal scratch notes use `types/quick-note.md` instead.

@@ -627,6 +627,18 @@
         "Headings render in English Title Case per the pl-en direction contract.",
         "The output avoids reverse-direction artifacts such as kart of project or register of risks."
       ]
+    },
+    {
+      "id": 52,
+      "prompt": "Run a regression check on the panther-skill tooling.",
+      "expected_output": "A smoke pass over every maintenance and document-production script that reports clean exits or controlled findings.",
+      "files": [],
+      "expectations": [
+        "The agent runs python scripts/test-scripts.py from the Panther repository root.",
+        "The harness prints a PASS or FAIL line per tool plus a RESULT summary line.",
+        "Repo validators are expected to exit 0, while check-mode tools may exit 0 or 1 as controlled verdicts.",
+        "Any FAIL line reporting an unhandled traceback is treated as a regression to fix, not a finding to report."
+      ]
     }
   ]
 }

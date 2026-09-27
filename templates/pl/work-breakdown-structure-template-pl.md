@@ -13,8 +13,9 @@
 
 ## Pakiety robocze
 
-Najniższy poziom struktury. Każdy pakiet można przypisać jednemu właścicielowi,
-oszacować, i zazwyczaj obejmuje od ośmiu do osiemdziesięciu godzin pracy.
+Najniższy poziom struktury.
+Każdy pakiet można przypisać jednemu właścicielowi, oszacować,
+i zazwyczaj obejmuje od ośmiu do osiemdziesięciu godzin pracy.
 
 ## Słownik SPP
 

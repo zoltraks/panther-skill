@@ -12,19 +12,19 @@
 
 | Section             | Line | What it covers                             |
 |---------------------|------|--------------------------------------------|
-| Overview            | 28   | What Panther is and what it produces       |
-| What The Skill Does | 52   | Authoring purpose and workflow             |
-| Installation        | 130  | How to add Panther to an agent environment |
-| Usage               | 193  | How agents activate and run the skill      |
-| Example Prompts     | 204  | Phrases the skill activates on             |
-| Workflow Diagrams   | 244  | ASCII and Mermaid diagrams of the pipeline |
-| Core Principles     | 370  | Convention preservation and minimal diffs  |
-| When To Use         | 381  | Supported requests and exclusions          |
-| What's Inside       | 419  | Rule files, templates, tools, and evals    |
-| Specification       | 533  | Agent Skills specification conformance     |
-| Verification        | 544  | Skill-maintenance checks                   |
-| License             | 551  | License for the skill itself               |
-| Credits             | 557  | Methodology and example sources            |
+| Overview            | 29   | What Panther is and what it produces       |
+| What The Skill Does | 53   | Authoring purpose and workflow             |
+| Installation        | 132  | How to add Panther to an agent environment |
+| Usage               | 202  | How agents activate and run the skill      |
+| Example Prompts     | 213  | Phrases the skill activates on             |
+| Workflow Diagrams   | 253  | ASCII and Mermaid diagrams of the pipeline |
+| Core Principles     | 379  | Convention preservation and minimal diffs  |
+| When To Use         | 390  | Supported requests and exclusions          |
+| What's Inside       | 428  | Rule files, templates, tools, and evals    |
+| Specification       | 544  | Agent Skills specification conformance     |
+| Verification        | 560  | Skill-maintenance checks                   |
+| License             | 567  | License for the skill itself               |
+| Credits             | 572  | Methodology and example sources            |
 
 ## Overview
 
@@ -61,8 +61,8 @@ to pull incoming commits before starting, when the skill lives in a git clone.
 
 **Resolves parameters**
 
-For a new document it confirms the type, language, filename, and encoding, with sensible
-defaults. For an edit it skips the questions and follows the document's own conventions.
+For a new document it confirms the type, language, filename, and encoding, with sensible defaults.
+For an edit it skips the questions and follows the document's own conventions.
 
 **Detects the document's conventions**
 
@@ -84,49 +84,50 @@ machinery than a project specification.
 
 **Writes to the baseline**
 
-Every language file covers structure, headings, lists, characters, tables, vocabulary, and file
-naming. English uses Title Case headings, Polish uses sentence case, and each language carries
-its own terminology guidance.
+Every language file covers structure, headings, lists, characters, tables, vocabulary,
+and file naming.
+English uses Title Case headings, Polish uses sentence case,
+and each language carries its own terminology guidance.
 
 **Validates mechanically**
 
-Tables are formatted by script, not by hand. A document validator checks structure, spacing,
-characters, and table alignment before delivery.
+Tables are formatted by script, not by hand.
+A document validator checks structure, spacing, characters, and table alignment before delivery.
 
 **Discovers document layouts**
 
-Separately, when you ask to "discover layout" or "detect document layout", the agent analyzes a
-directory or repository: it censuses layout signals and document types, compares them with
-every defined scope, names the best match, and lists exceptions - missing expected directories
-or documents no scope covers. The report is delivered inline, and a file is written only when
-asked.
+Separately, when you ask to "discover layout" or "detect document layout",
+the agent analyzes a directory or repository: it censuses layout signals and document types,
+compares them with every defined scope, names the best match,
+and lists exceptions - missing expected directories or documents no scope covers.
+The report is delivered inline, and a file is written only when asked.
 
 **Audits documents**
 
-Separately, when you ask to "audit this document" or "check document formatting", the agent
-follows `process/document-audit.md`: it runs mechanical checks and a structural census with
-`scripts/census-document.py`, evaluates the document against its governing rules, and reports
-findings with an optional fix plan. An audit is analysis only - it changes nothing in the
-document.
+Separately, when you ask to "audit this document" or "check document formatting",
+the agent follows `process/document-audit.md`:
+it runs mechanical checks and a structural census with `scripts/census-document.py`,
+evaluates the document against its governing rules, and reports findings with an optional fix plan.
+An audit is analysis only - it changes nothing in the document.
 
 **Describes subjects**
 
-Separately, when you ask to "describe", "describe shortly", or "make a description", the agent
-follows `process/describe-response.md`: it consolidates the subject - session work, a document,
-a repository - into an impersonal, compact inline response. A "shortly" request caps the answer
-at ten sentences, twenty for large subjects, while a "long" or "detailed" request sets a floor
-of one hundred sentences. The description is delivered inline, and a file is written only when
-asked.
+Separately, when you ask to "describe", "describe shortly", or "make a description",
+the agent follows `process/describe-response.md`: it consolidates the subject - session work,
+a document, a repository - into an impersonal, compact inline response.
+A "shortly" request caps the answer at ten sentences, twenty for large subjects,
+while a "long" or "detailed" request sets a floor of one hundred sentences.
+The description is delivered inline, and a file is written only when asked.
 
 **Translates documents**
 
-Separately, when you ask to "translate this document" or "translate to Polish", the agent
-follows `process/translate-document.md`: it resolves the language pair, loads the target
-language baseline with the matching `translations/` pair file and industry glossaries, and
-renders the document in a single pass - adapting headings, section names, vocabulary, and
-characters to the target language while preserving structure, code, and identifiers. The
-output lands in a sibling file carrying the language code, named `<basename>-<code>.md`, and
-the delivery report lists the glossaries applied and notable term choices.
+Separately, when you ask to "translate this document" or "translate to Polish",
+the agent follows `process/translate-document.md`: it resolves the language pair,
+loads the target language baseline with the matching `translations/` pair file and industry
+glossaries, and renders the document in a single pass - adapting headings, section names,
+vocabulary, and characters to the target language while preserving structure, code, and identifiers.
+The output lands in a sibling file carrying the language code, named `<basename>-<code>.md`,
+and the delivery report lists the glossaries applied and notable term choices.
 
 ## Installation
 
@@ -190,6 +191,13 @@ To update by hand, pull the clone wherever it was installed:
 ```bash
 git -C <skills-dir>/panther-skill pull --ff-only
 ```
+
+The pull merges upstream content without cryptographic verification.
+
+The update verdict reports `tip_sha` and `tip_date` details for the upstream tip, so the new
+state can be reviewed and pinned to a specific commit before pulling.
+
+Approve only trusted upstreams, and review `git log @{u}..` diffs before pulling when unsure.
 
 ## Usage
 
@@ -425,6 +433,7 @@ panther-skill/
 ├── STYLE.md                           # Document style rules for all files in this skill
 ├── MAINTENANCE.md                     # Skill extension and restructuring rules
 ├── VERSIONING.md                      # Skill versioning policy
+├── SECURITY.md                        # Vulnerability disclosure channel
 ├── principles/
 │   └── authoring-rules.md             # Plain-text-first, convention preservation, minimal diff
 ├── process/
@@ -513,6 +522,7 @@ panther-skill/
 │   ├── check-references.py            # Root reference integrity checker
 │   ├── check-contents.py              # Contents-table line-number drift checker
 │   ├── check-update.py                # Git upstream self-update checker for the skill repo
+│   ├── test-scripts.py                # Smoke harness for all maintenance and production tools
 │   └── README.md                      # Tool classes, commands, and limits
 └── evals/
     └── evals.json                     # Behavioral regression prompts
@@ -539,6 +549,11 @@ The layout follows the specification's conventions: `SKILL.md` as the router wit
 `name` and `description` frontmatter, canonical scripts under `scripts/`, rule material under
 named directories, and progressive disclosure keeping the router under 500 lines.
 
+The corpus intentionally uses domain-named directories (`types/`, `scopes/`, `conventions/`,
+`languages/`, `translations/`, `templates/`) instead of a single `references/` directory.
+
+Every file is registered in `SKILL.md` under progressive disclosure.
+
 Run the conformance validators listed in [Verification](#verification) after structural
 changes.
 
@@ -558,6 +573,15 @@ MIT - see [LICENSE](./LICENSE).
 ## Credits
 
 Built by Filip Golewski.
+
+Panther is a single-maintainer project.
+
+The `MAINTENANCE.md` registration contract, the three mechanical validators
+(`validate-skill.py`, `check-references.py`, `check-contents.py`), and the behavioral prompts in
+`evals/evals.json` serve as the regression gate that keeps the corpus consistent between reviews.
+
+When external contributors appear, structural changes to `SKILL.md`, frontmatter, or `scripts/`
+require a second-reviewer pass before merging.
 
 Made at **KWAS #42**, a meeting at ATARI MUZEUM in Poznań, on 19 September 2026.
 

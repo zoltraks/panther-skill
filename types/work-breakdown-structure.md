@@ -10,8 +10,8 @@
 
 ## When To Use
 
-Use for work breakdown structures and their dictionaries. Product breakdown
-structures follow the same shape.
+Use for work breakdown structures and their dictionaries.
+Product breakdown structures follow the same shape.
 
 **Templates:**
 

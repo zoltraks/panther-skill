@@ -15,6 +15,9 @@ These rules govern the skill's own files, which wrap prose at 100 characters.
 Documents produced by the skill follow the matching `languages/` baseline instead, which keeps one
 sentence per logical line and never hard-wraps.
 
+The `languages/` files themselves follow that baseline - they are dialect examples, not wrapped
+rule documents.
+
 ## Contents
 
 | Section                    | Line | What it covers                                  |

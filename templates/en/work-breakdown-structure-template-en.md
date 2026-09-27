@@ -13,8 +13,9 @@
 
 ## Work Packages
 
-The lowest level of the structure. Each package is assignable to one owner,
-estimable, and typically carries eight to eighty hours of effort.
+The lowest level of the structure.
+Each package is assignable to one owner, estimable,
+and typically carries eight to eighty hours of effort.
 
 ## WBS Dictionary
 

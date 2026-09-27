@@ -45,6 +45,10 @@ section - run it after any edit that shifts lines in a file carrying a contents 
 `check-update.py` reports the git upstream status of the skill repository for the once-per-session
 Skill Update Check in `SKILL.md`, and always exits `0` with a `STATUS` verdict line.
 
+Its verdicts after upstream resolution carry `tip_sha` and `tip_date` details identifying the
+incoming tip commit - the pull path applies no cryptographic verification, so those fields are
+the review anchor an agent presents before asking to pull.
+
 They use the Python standard library and do not require PyYAML or a package manager.
 
 ## Commands
@@ -97,8 +101,8 @@ other fence languages stay opaque.
 shell-tagged blocks to one shared column per block - the established column when most
 comments already share one, otherwise the longest entry plus two spaces.
 
-`--compact` moves the column to the minimum. The convention lives in
-`conventions/plain-text-comments.md`.
+`--compact` moves the column to the minimum.
+The convention lives in `conventions/plain-text-comments.md`.
 
 `diff-content.py` compares the normalized token stream of a document against `git show HEAD`
 or a `--baseline` file, identical tokens mean a pass changed formatting only.

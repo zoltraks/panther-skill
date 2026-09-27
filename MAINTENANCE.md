@@ -30,7 +30,7 @@ Prose and formatting style for the skill's files lives in `STYLE.md`.
 | `evals/`        | Behavioral regression prompts                                  |
 
 Root files govern the repository itself: `SKILL.md` (router), `README.md`, `STYLE.md`,
-`VERSIONING.md`, `MAINTENANCE.md`, `LICENSE`.
+`VERSIONING.md`, `MAINTENANCE.md`, `SECURITY.md`, `LICENSE`.
 
 Keep rule files one level deep under their directory.
 
@@ -67,9 +67,10 @@ Translation pair directories are named `translations/<pair>/` with ISO 639-1 cod
 ordered source to target.
 
 Translation files inside a pair directory are named `translations/<pair>/<pair>-<category>.md`.
-Direction rules use `translations/<pair>/<pair>-general.md`. Glossaries use a stable
-category slug shared by every pair directory (`software`, `project`, `finance`, `legal`,
-`medical`, `electrical`) so the same subject keeps the same filename across languages.
+Direction rules use `translations/<pair>/<pair>-general.md`.
+Glossaries use a stable category slug shared by every pair directory (`software`, `project`,
+`finance`, `legal`, `medical`, `electrical`)
+so the same subject keeps the same filename across languages.
 
 Tools are named `scripts/<verb>-<object>.py`, for example `detect-encoding.py` or
 `format-table.py`.
