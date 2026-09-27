@@ -39,6 +39,8 @@ the Panther repository.
 
 These tools inspect the skill itself and are never copied into a working project.
 
+Untracked scratch under `work/` is gitignored and excluded from validation.
+
 `check-contents.py` verifies that every `## Contents` table row still points at a real `## `
 section - run it after any edit that shifts lines in a file carrying a contents table.
 
@@ -48,6 +50,10 @@ Skill Update Check in `SKILL.md`, and always exits `0` with a `STATUS` verdict l
 Its verdicts after upstream resolution carry `tip_sha` and `tip_date` details identifying the
 incoming tip commit - the pull path applies no cryptographic verification, so those fields are
 the review anchor an agent presents before asking to pull.
+
+`UPDATE-AVAILABLE` also reports `incoming_total` plus one `incoming_<n>=<sha> <subject>` line per
+incoming commit (capped at ten, `incoming_truncated=yes` beyond that), `changed_files`, and the
+`changed_scripts` / `changed_skill` risk flags so the reviewer sees the payload before approving.
 
 They use the Python standard library and do not require PyYAML or a package manager.
 

@@ -185,6 +185,9 @@ Run `python scripts/validate-document.py <file>` on every edited rule document.
 
 Exercise the prompts in `evals/evals.json` after changes that alter behavior.
 
+The gate is manual by design: no CI pipeline or hook automation runs these checks, so the
+maintainer runs the full suite before each commit.
+
 ## Style Self-Audit
 
 Run the checkers over every Markdown file outside `work/`:

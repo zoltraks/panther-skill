@@ -45,5 +45,5 @@ The pull path applies no cryptographic verification of merged content.
 The `tip_sha` and `tip_date` details in the update verdicts identify the incoming upstream tip
 commit, which serves as the review anchor for deciding whether to pull.
 
-Approve updates only from upstreams you trust, and review `git log @{u}..` diffs before pulling
-when unsure.
+Approve updates only from upstreams you trust, and review `git log HEAD..@{u}` diffs before
+pulling when unsure.

@@ -22,9 +22,9 @@
 | When To Use         | 399  | Supported requests and exclusions          |
 | What's Inside       | 437  | Rule files, templates, tools, and evals    |
 | Specification       | 554  | Agent Skills specification conformance     |
-| Verification        | 570  | Skill-maintenance checks                   |
-| License             | 577  | License for the skill itself               |
-| Credits             | 583  | Methodology and example sources            |
+| Verification        | 571  | Skill-maintenance checks                   |
+| License             | 590  | License for the skill itself               |
+| Credits             | 596  | Methodology and example sources            |
 
 ## Overview
 
@@ -443,6 +443,7 @@ panther-skill/
 ├── MAINTENANCE.md                     # Skill extension and restructuring rules
 ├── VERSIONING.md                      # Skill versioning policy
 ├── SECURITY.md                        # Vulnerability disclosure channel
+├── CONTRIBUTING.md                    # Contribution rules and review policy
 ├── principles/
 │   └── authoring-rules.md             # Plain-text-first, convention preservation, minimal diff
 ├── process/
@@ -574,6 +575,18 @@ changes.
 - Exercise the regression prompts in `evals/evals.json` after structural changes.
 - Run `python scripts/validate-document.py <file>` on any document the skill produces.
 
+The `MAINTENANCE.md` registration contract, the three mechanical validators
+(`validate-skill.py`, `check-references.py`, `check-contents.py`), and the behavioral prompts in
+`evals/evals.json` serve as the regression gate that keeps the corpus consistent between reviews.
+
+The gate is manual by design: the project runs no CI pipeline, so the maintainer runs the
+validators and smoke harness before each commit.
+
+Panther is a single-maintainer project.
+
+When external contributors appear, structural changes to `SKILL.md`, frontmatter, or `scripts/`
+require a second-reviewer pass before merging - see [CONTRIBUTING.md](./CONTRIBUTING.md).
+
 ## License
 
 MIT - see [LICENSE](./LICENSE).
@@ -584,14 +597,7 @@ MIT - see [LICENSE](./LICENSE).
 
 Built by Filip Golewski.
 
-Panther is a single-maintainer project.
-
-The `MAINTENANCE.md` registration contract, the three mechanical validators
-(`validate-skill.py`, `check-references.py`, `check-contents.py`), and the behavioral prompts in
-`evals/evals.json` serve as the regression gate that keeps the corpus consistent between reviews.
-
-When external contributors appear, structural changes to `SKILL.md`, frontmatter, or `scripts/`
-require a second-reviewer pass before merging.
+If you use this skill in a project, a link back is appreciated but not required.
 
 Made at **KWAS #42**, a meeting at ATARI MUZEUM in Poznań, on 19 September 2026.
 

@@ -21,6 +21,15 @@ Verdicts after upstream resolution also carry tip detail lines:
 - tip_date=<date>   its committer date - a tag-free review anchor for
                     deciding whether to pull
 
+UPDATE-AVAILABLE also carries review detail lines:
+
+- incoming_total=<n>          commit count in the HEAD..@{u} range
+- incoming_<n>=<sha> <subj>   the first ten incoming commits
+- incoming_truncated=yes      present only when more than ten commits arrive
+- changed_files=<n>           files touched by the incoming range
+- changed_scripts=yes|no      whether any scripts/ path changes
+- changed_skill=yes|no        whether SKILL.md itself changes
+
 Usage: python scripts/check-update.py [skill-directory]
 """
 
@@ -56,6 +65,25 @@ def verdict(status: str, **details: str) -> int:
     for key, value in details.items():
         print(f"{key}={value}")
     return 0
+
+
+def incoming_details(root: Path, cap: int = 10) -> dict[str, str]:
+    details: dict[str, str] = {}
+    log = git(root, "log", "--format=%h %s", "HEAD..@{u}")
+    if log is not None and log.returncode == 0:
+        commits = [line.strip() for line in log.stdout.splitlines() if line.strip()]
+        details["incoming_total"] = str(len(commits))
+        for index, entry in enumerate(commits[:cap], start=1):
+            details[f"incoming_{index}"] = entry
+        if len(commits) > cap:
+            details["incoming_truncated"] = "yes"
+    names = git(root, "diff", "--name-only", "HEAD..@{u}")
+    if names is not None and names.returncode == 0:
+        files = [line.strip() for line in names.stdout.splitlines() if line.strip()]
+        details["changed_files"] = str(len(files))
+        details["changed_scripts"] = "yes" if any(f.startswith("scripts/") for f in files) else "no"
+        details["changed_skill"] = "yes" if "SKILL.md" in files else "no"
+    return details
 
 
 def tip_details(root: Path) -> dict[str, str]:
@@ -115,6 +143,7 @@ def main() -> int:
         ahead=ahead,
         dirty=dirty,
         **tip,
+        **incoming_details(root),
     )
 
 

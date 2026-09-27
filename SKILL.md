@@ -75,11 +75,12 @@ never the edited subject.
 
 Use `python3` when `python` is not on PATH.
 
-- `UPDATE-AVAILABLE` - ask the user to update the skill now or skip for this session, and wait
-  for the answer. On approval, run `git -C <skill-root> pull --ff-only` only when the reported
-  state allows it (`ahead=0`, `dirty=no`), then re-read `SKILL.md` and any loaded rule files.
-  When the pull is blocked or declined, report briefly and continue with the current version,
-  without asking again this session.
+- `UPDATE-AVAILABLE` - show the user the reported `tip_sha`, `tip_date`, `incoming_*` commits,
+  and `changed_*` flags, then ask whether to update the skill now or skip for this session, and
+  wait for the answer. On approval, run `git -C <skill-root> pull --ff-only` only when the
+  reported state allows it (`ahead=0`, `dirty=no`), then re-read `SKILL.md` and any loaded rule
+  files. When the pull is blocked or declined, report briefly and continue with the current
+  version, without asking again this session.
 - Any other status - proceed silently and do not mention the check.
 
 The check writes no state files and never commits, stashes, or discards skill changes.
@@ -87,7 +88,7 @@ The check writes no state files and never commits, stashes, or discards skill ch
 The pull merges upstream content without cryptographic verification.
 
 Approve only trusted upstreams, pin the reviewed state to the reported `tip_sha` commit,
-and review `git log @{u}..` diffs before approving when unsure.
+and review `git log HEAD..@{u}` diffs before approving when unsure.
 
 ## Trigger Keywords
 
