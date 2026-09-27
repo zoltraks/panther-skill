@@ -30,7 +30,11 @@ Prose and formatting style for the skill's files lives in `STYLE.md`.
 | `evals/`        | Behavioral regression prompts                                  |
 
 Root files govern the repository itself: `SKILL.md` (router), `README.md`, `STYLE.md`,
-`VERSIONING.md`, `MAINTENANCE.md`, `SECURITY.md`, `LICENSE`.
+`VERSIONING.md`, `MAINTENANCE.md`, `SECURITY.md`, `CONTRIBUTING.md`, `LICENSE`.
+
+`work/` is gitignored research scratch outside the rule corpus.
+
+Its content must not be promoted into tracked files without provenance review.
 
 Keep rule files one level deep under their directory.
 

@@ -42,10 +42,17 @@ The skill has no dependencies beyond `python3` and `git` - everything else is do
 - The project runs no CI by design, so this local gate is the only regression check.
 - Bump the skill version only on request - `VERSIONING.md` reserves bumps for explicit asks.
 - Review goes through the maintainer, with a second reviewer per `README.md`.
+- Keep `work/` research scratch out of tracked content - replace copied examples with links
+  instead.
 
 ## AI-Assisted Contributions
 
 Disclose when a report or change was produced with AI assistance.
+
+Record meaningful AI involvement in the pull request description or a commit trailer such as
+`Co-Authored-By`, so provenance stays traceable.
+
+Trailers are expected only when meaningful AI involvement occurred.
 
 Verify every AI-generated finding yourself before reporting it.
 
