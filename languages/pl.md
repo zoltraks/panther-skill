@@ -742,6 +742,9 @@ Traktuj żądanie pasujące do frazy z tabeli jako jej angielski odpowiednik.
 | sformatuj tabelę               | format this table            |
 | zaktualizuj dokument           | update this document         |
 | przetłumacz dokument           | translate this document      |
+| przetłumacz na polski          | translate to Polish          |
+| przetłumacz na angielski       | translate to English         |
+| tłumaczenie dokumentu          | translate this document      |
 | dodaj dokument do projektu     | new document in this project |
 | dokument funkcji               | add a feature document       |
 | plan implementacji             | write an implementation plan |

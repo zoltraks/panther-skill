@@ -12,16 +12,16 @@
 |---------------------|------|--------------------------------------------|
 | Overview            | 26   | What Panther is and what it produces       |
 | What The Skill Does | 50   | Authoring purpose and workflow             |
-| Installation        | 118  | How to add Panther to an agent environment |
-| Usage               | 180  | How agents activate and run the skill      |
-| Example Prompts     | 191  | Phrases the skill activates on             |
-| Workflow Diagrams   | 228  | ASCII and Mermaid diagrams of the pipeline |
-| Core Principles     | 354  | Convention preservation and minimal diffs  |
-| When To Use         | 365  | Supported requests and exclusions          |
-| What's Inside       | 403  | Rule files, templates, tools, and evals    |
-| Verification        | 499  | Skill-maintenance checks                   |
-| License             | 506  | License for the skill itself               |
-| Credits             | 512  | Methodology and example sources            |
+| Installation        | 128  | How to add Panther to an agent environment |
+| Usage               | 190  | How agents activate and run the skill      |
+| Example Prompts     | 201  | Phrases the skill activates on             |
+| Workflow Diagrams   | 241  | ASCII and Mermaid diagrams of the pipeline |
+| Core Principles     | 367  | Convention preservation and minimal diffs  |
+| When To Use         | 378  | Supported requests and exclusions          |
+| What's Inside       | 416  | Rule files, templates, tools, and evals    |
+| Verification        | 530  | Skill-maintenance checks                   |
+| License             | 537  | License for the skill itself               |
+| Credits             | 543  | Methodology and example sources            |
 
 ## Overview
 
@@ -114,6 +114,16 @@ a repository - into an impersonal, compact inline response. A "shortly" request 
 at ten sentences, twenty for large subjects, while a "long" or "detailed" request sets a floor
 of one hundred sentences. The description is delivered inline, and a file is written only when
 asked.
+
+**Translates documents**
+
+Separately, when you ask to "translate this document" or "translate to Polish", the agent
+follows `process/translate-document.md`: it resolves the language pair, loads the target
+language baseline with the matching `translations/` pair file and industry glossaries, and
+renders the document in a single pass - adapting headings, section names, vocabulary, and
+characters to the target language while preserving structure, code, and identifiers. The
+output lands in a sibling file carrying the language code, named `<basename>-<code>.md`, and
+the delivery report lists the glossaries applied and notable term choices.
 
 ## Installation
 
@@ -224,6 +234,9 @@ encoding and line endings.
 
 **Inline description**
 > Describe shortly what this skill does.
+
+**Document translation**
+> Translate this English project specification into Polish.
 
 ## Workflow Diagrams
 
@@ -373,7 +386,7 @@ flowchart TD
 | "Update this agent instruction document"         | **Yes** - dual-audience conventions      |
 | "Write a CONTRIBUTING.md"                        | **Yes** - contributor-guide conventions  |
 | "Fix the tables in this document"                | **Yes** - script-formatted tables        |
-| "Translate this document to Polish"              | **Yes** - language baseline switch       |
+| "Translate this document to Polish"              | **Yes** - pair rules + domain glossaries |
 | "Edit this CP1250-encoded document"              | **Yes** - encoding preserved             |
 | "Take a quick note"                              | **Yes** - minimal-structure note         |
 | "Add a page to this Sphinx docs project"         | **Yes** - toctree registration           |
@@ -404,83 +417,101 @@ flowchart TD
 
 ```
 panther-skill/
-├── SKILL.md                         # Root router - load this first
-├── STYLE.md                         # Document style rules for all files in this skill
-├── MAINTENANCE.md                   # Skill extension and restructuring rules
-├── VERSIONING.md                    # Skill versioning policy
+├── SKILL.md                           # Root router - load this first
+├── STYLE.md                           # Document style rules for all files in this skill
+├── MAINTENANCE.md                     # Skill extension and restructuring rules
+├── VERSIONING.md                      # Skill versioning policy
 ├── principles/
-│   └── authoring-rules.md           # Plain-text-first, convention preservation, minimal diff
+│   └── authoring-rules.md             # Plain-text-first, convention preservation, minimal diff
 ├── process/
-│   ├── document-workflow.md         # Intake, detection, rule selection, validation, delivery
-│   ├── document-checklist.md        # Mechanical pre-delivery checklist
-│   ├── document-audit.md            # Standalone audit procedure: findings and fix plan
-│   ├── describe-response.md         # Standalone describe procedure: caps and floors
-│   └── scope-discovery.md           # Standalone layout-discovery procedure and report format
+│   ├── document-workflow.md           # Intake, detection, rule selection, validation, delivery
+│   ├── document-checklist.md          # Mechanical pre-delivery checklist
+│   ├── document-audit.md              # Standalone audit procedure: findings and fix plan
+│   ├── describe-response.md           # Standalone describe procedure: caps and floors
+│   ├── scope-discovery.md             # Standalone layout-discovery procedure and report format
+│   └── translate-document.md          # Standalone translate procedure: pairs and glossaries
 ├── types/
-│   ├── technical-document.md        # Guides, architecture notes, reference material
-│   ├── project-document.md          # Specifications: version comment, glossary, requirement IDs
-│   ├── rules-document.md            # Guidelines and standards: imperative rules, examples
-│   ├── agent-instruction.md         # Agent-executable docs: dual audience, decision menus
-│   ├── format-specification.md      # Format specs: version history, field tables
-│   ├── article-text.md              # Prose documents: narrative, dialect tolerance
-│   ├── quick-note.md                # Quick notes: minimal structure
-│   ├── readme-general.md            # Default repository README variant
-│   ├── readme-skill.md              # Agent skill repository READMEs
-│   ├── readme-application.md        # Software product READMEs
-│   ├── readme-library.md            # Package and library READMEs
-│   ├── readme-cli.md                # Command-line tool READMEs
-│   ├── readme-docs.md               # Documentation repository READMEs
-│   ├── readme-collection.md         # Collection and monorepo READMEs
-│   ├── changelog-file.md            # Version-grouped change records
-│   ├── contributing-file.md         # CONTRIBUTING.md guides: PR rules, AI-assisted policy
-│   ├── decision-record.md           # ADRs: status lifecycle, numbered records
-│   ├── proposal-document.md         # RFCs: review states, open questions
-│   ├── project-charter.md           # Charters: SMART objectives, approval block
-│   ├── register-log.md              # Registers and logs: entry tables, lifecycles
-│   ├── status-report.md             # Status reports: RAG ratings, decisions needed
-│   ├── meeting-minutes.md           # Minutes: attendees, decisions, action items
-│   ├── management-plan.md           # Management plans: thresholds, cadence, roles
-│   └── work-breakdown-structure.md  # WBS: decimal outline, dictionary, RACI
+│   ├── technical-document.md          # Guides, architecture notes, reference material
+│   ├── project-document.md            # Specifications: version comment, glossary, requirement IDs
+│   ├── rules-document.md              # Guidelines and standards: imperative rules, examples
+│   ├── agent-instruction.md           # Agent-executable docs: dual audience, decision menus
+│   ├── format-specification.md        # Format specs: version history, field tables
+│   ├── article-text.md                # Prose documents: narrative, dialect tolerance
+│   ├── quick-note.md                  # Quick notes: minimal structure
+│   ├── readme-general.md              # Default repository README variant
+│   ├── readme-skill.md                # Agent skill repository READMEs
+│   ├── readme-application.md          # Software product READMEs
+│   ├── readme-library.md              # Package and library READMEs
+│   ├── readme-cli.md                  # Command-line tool READMEs
+│   ├── readme-docs.md                 # Documentation repository READMEs
+│   ├── readme-collection.md           # Collection and monorepo READMEs
+│   ├── changelog-file.md              # Version-grouped change records
+│   ├── contributing-file.md           # CONTRIBUTING.md guides: PR rules, AI-assisted policy
+│   ├── decision-record.md             # ADRs: status lifecycle, numbered records
+│   ├── proposal-document.md           # RFCs: review states, open questions
+│   ├── project-charter.md             # Charters: SMART objectives, approval block
+│   ├── register-log.md                # Registers and logs: entry tables, lifecycles
+│   ├── status-report.md               # Status reports: RAG ratings, decisions needed
+│   ├── meeting-minutes.md             # Minutes: attendees, decisions, action items
+│   ├── management-plan.md             # Management plans: thresholds, cadence, roles
+│   └── work-breakdown-structure.md    # WBS: decimal outline, dictionary, RACI
 ├── languages/
-│   ├── en.md                        # English baseline: Title Case, vocabulary
-│   └── pl.md                        # Polish baseline: style, section names, activation phrases
+│   ├── en.md                          # English baseline: Title Case, vocabulary
+│   └── pl.md                          # Polish baseline: style, section names, activation phrases
+├── translations/
+│   ├── en-pl/                         # English-to-Polish direction rules and glossaries
+│   │   ├── en-pl-general.md           # Direction contract: style, locale, untranslated set
+│   │   ├── en-pl-software.md          # SDLC and software glossary
+│   │   ├── en-pl-project.md           # PMBOK glossary
+│   │   ├── en-pl-finance.md           # Finance and banking glossary
+│   │   ├── en-pl-legal.md             # Legal glossary
+│   │   ├── en-pl-medical.md           # Medical and pharma glossary
+│   │   └── en-pl-electrical.md        # Electrical and site-safety glossary
+│   └── pl-en/                         # Polish-to-English direction rules and glossaries
+│       ├── pl-en-general.md           # Direction contract: Title Case, abbreviations
+│       ├── pl-en-software.md          # SDLC and software glossary
+│       ├── pl-en-project.md           # PMBOK glossary
+│       ├── pl-en-finance.md           # Finance and banking glossary
+│       ├── pl-en-legal.md             # Legal glossary
+│       ├── pl-en-medical.md           # Medical and pharma glossary
+│       └── pl-en-electrical.md        # Electrical and site-safety glossary
 ├── scopes/
-│   ├── unstructured-layout.md       # Default scope: no defined organization
-│   ├── agent-skill.md               # Skill repositories: router contract, registration
-│   ├── sphinx-docs.md               # Sphinx Markdown docs: toctree registration
-│   ├── guided-project.md            # Governed docs/ trees: GUIDELINES, versioned artifacts
-│   ├── docs-collection.md           # Documentation-only repositories
-│   ├── multi-project.md             # Several projects per repository, per-dir scope
-│   ├── mkdocs-site.md               # MkDocs sites: nav registration
-│   ├── docusaurus-site.md           # Docusaurus sites: sidebars, frontmatter
-│   ├── vitepress-site.md            # VitePress sites: file-based routing
-│   └── gitbook-site.md              # GitBook projects: SUMMARY.md registration
+│   ├── unstructured-layout.md         # Default scope: no defined organization
+│   ├── agent-skill.md                 # Skill repositories: router contract, registration
+│   ├── sphinx-docs.md                 # Sphinx Markdown docs: toctree registration
+│   ├── guided-project.md              # Governed docs/ trees: GUIDELINES, versioned artifacts
+│   ├── docs-collection.md             # Documentation-only repositories
+│   ├── multi-project.md               # Several projects per repository, per-dir scope
+│   ├── mkdocs-site.md                 # MkDocs sites: nav registration
+│   ├── docusaurus-site.md             # Docusaurus sites: sidebars, frontmatter
+│   ├── vitepress-site.md              # VitePress sites: file-based routing
+│   └── gitbook-site.md                # GitBook projects: SUMMARY.md registration
 ├── conventions/
-│   ├── file-encoding.md             # UTF-8 default, UTF-16/UCS-2, code pages, line endings
-│   ├── markdown-dialects.md         # ATX, setext, numbered chapters, frontmatter, payloads
-│   ├── rst-documents.md             # reStructuredText minimal-edit contract
-│   ├── asciidoc-documents.md        # AsciiDoc minimal-edit contract
-│   ├── plain-text-comments.md       # Trailing comment alignment in plain-text blocks
-│   └── ascii-diagrams.md            # Box-drawing flow diagram rules
+│   ├── file-encoding.md               # UTF-8 default, UTF-16/UCS-2, code pages, line endings
+│   ├── markdown-dialects.md           # ATX, setext, numbered chapters, frontmatter, payloads
+│   ├── rst-documents.md               # reStructuredText minimal-edit contract
+│   ├── asciidoc-documents.md          # AsciiDoc minimal-edit contract
+│   ├── plain-text-comments.md         # Trailing comment alignment in plain-text blocks
+│   └── ascii-diagrams.md              # Box-drawing flow diagram rules
 ├── templates/
-│   ├── en/                          # Twenty-four English skeletons, <type>-template-en.md
-│   └── pl/                          # Twenty-four Polish skeletons, <type>-template-pl.md
+│   ├── en/                            # Twenty-four English skeletons, <type>-template-en.md
+│   └── pl/                            # Twenty-four Polish skeletons, <type>-template-pl.md
 ├── tools/
-│   ├── detect-encoding.py           # BOM, encoding, and line-ending detection
-│   ├── detect-scope.py              # Document-scope signal census
-│   ├── census-document.py           # Structural document census for audits
-│   ├── wrap-prose.py                # Split-only line wrapper for width conventions
-│   ├── format-table.py              # Source-width table formatter
-│   ├── align-comments.py            # Plain-text block comment aligner
-│   ├── validate-document.py         # Mechanical document checker
-│   ├── diff-content.py              # Token-stream content-integrity diff
-│   ├── validate-skill.py            # Skill metadata and disclosure validator
-│   ├── check-references.py          # Root reference integrity checker
-│   ├── check-contents.py            # Contents-table line-number drift checker
-│   ├── check-update.py              # Git upstream self-update checker for the skill repo
-│   └── README.md                    # Tool classes, commands, and limits
+│   ├── detect-encoding.py             # BOM, encoding, and line-ending detection
+│   ├── detect-scope.py                # Document-scope signal census
+│   ├── census-document.py             # Structural document census for audits
+│   ├── wrap-prose.py                  # Split-only line wrapper for width conventions
+│   ├── format-table.py                # Source-width table formatter
+│   ├── align-comments.py              # Plain-text block comment aligner
+│   ├── validate-document.py           # Mechanical document checker
+│   ├── diff-content.py                # Token-stream content-integrity diff
+│   ├── validate-skill.py              # Skill metadata and disclosure validator
+│   ├── check-references.py            # Root reference integrity checker
+│   ├── check-contents.py              # Contents-table line-number drift checker
+│   ├── check-update.py                # Git upstream self-update checker for the skill repo
+│   └── README.md                      # Tool classes, commands, and limits
 └── evals/
-    └── evals.json                   # Behavioral regression prompts
+    └── evals.json                     # Behavioral regression prompts
 ```
 
 Document-production tools are copied into the working repository under a `.tmp.` name, run

@@ -16,32 +16,35 @@ Prose and formatting style for the skill's files lives in `STYLE.md`.
 
 ## Directory Roles
 
-| Directory      | Role                                                          |
-|----------------|---------------------------------------------------------------|
-| `principles/`  | Non-negotiable authoring invariants                           |
-| `process/`     | Document-production workflow and checklists                   |
-| `types/`       | Per-document-type deltas on top of the language baseline      |
-| `languages/`   | Per-language self-contained style baselines, one per ISO code |
-| `scopes/`      | Per-project-layout organization and registration rules        |
-| `conventions/` | Cross-cutting encoding and Markdown dialect rules             |
-| `templates/`   | Per-language document skeletons grouped by ISO code directory |
-| `tools/`       | Canonical scripts: document production and skill maintenance  |
-| `evals/`       | Behavioral regression prompts                                 |
+| Directory       | Role                                                           |
+|-----------------|----------------------------------------------------------------|
+| `principles/`   | Non-negotiable authoring invariants                            |
+| `process/`      | Document-production workflow and checklists                    |
+| `types/`        | Per-document-type deltas on top of the language baseline       |
+| `languages/`    | Per-language self-contained style baselines, one per ISO code  |
+| `translations/` | Directional pair rules and per-industry translation glossaries |
+| `scopes/`       | Per-project-layout organization and registration rules         |
+| `conventions/`  | Cross-cutting encoding and Markdown dialect rules              |
+| `templates/`    | Per-language document skeletons grouped by ISO code directory  |
+| `tools/`        | Canonical scripts: document production and skill maintenance   |
+| `evals/`        | Behavioral regression prompts                                  |
 
 Root files govern the repository itself: `SKILL.md` (router), `README.md`, `STYLE.md`,
 `VERSIONING.md`, `MAINTENANCE.md`, `LICENSE`.
 
 Keep rule files one level deep under their directory.
 
-Do not nest subdirectories inside `types/`, `languages/`, `scopes/`, `conventions/`, `process/`,
-or `principles/`.
+Do not nest subdirectories inside `types/`, `languages/`, `scopes/`, `conventions/`,
+`process/`, or `principles/`.
 
 A new top-level rule directory also needs its name added to `KNOWN_DIRS` in
 `tools/check-references.py`, otherwise references to its files inside rule documents are not
 checked.
 
-`templates/` is the exception: it groups skeletons one level deep under per-language
-directories (`templates/<code>/`).
+`templates/` and `translations/` are the exceptions: `templates/` groups skeletons one
+level deep under per-language directories (`templates/<code>/`), and `translations/`
+groups direction files one level deep under per-pair directories
+(`translations/<pair>/`).
 
 ## File Naming
 
@@ -59,6 +62,14 @@ Each language file carries YAML frontmatter with `code`, `name`, and `native-nam
 
 Localised templates are named `templates/<code>/<type>-template-<code>.md` - the language code
 in the filename makes the variant self-describing.
+
+Translation pair directories are named `translations/<pair>/` with ISO 639-1 codes
+ordered source to target.
+
+Translation files inside a pair directory are named `translations/<pair>/<pair>-<category>.md`.
+Direction rules use `translations/<pair>/<pair>-general.md`. Glossaries use a stable
+category slug shared by every pair directory (`software`, `project`, `finance`, `legal`,
+`medical`, `electrical`) so the same subject keeps the same filename across languages.
 
 Tools are named `tools/<verb>-<object>.py`, for example `detect-encoding.py` or
 `format-table.py`.
@@ -131,6 +142,27 @@ Keep `evals/evals.json` prompts in sync with capabilities that change.
 2. Classify it in `tools/README.md` as document-production (copied as `.tmp.`) or
    skill-maintenance (runs from this repository only).
 3. Reference it from the `SKILL.md` `tools/` section and from the workflow step where it runs.
+
+## Adding A Translation Pair
+
+1. Create `translations/<pair>/` with `<pair>-general.md` following the pair-file shape:
+   Purpose blockquote, Loading Order, Style Adaptation, Locale Conventions, Vocabulary
+   And Register, What Stays Untranslated, Terminology Resolution, Output Conventions.
+2. Create the reverse pair directory `translations/<reverse-pair>/` with its own
+   directional `general` file.
+3. Register both pair directories in `SKILL.md` under the `translations/` section.
+4. Update the `README.md` directory tree.
+
+## Adding A Translation Glossary
+
+1. Create `translations/<pair>/<pair>-<category>.md` following the glossary shape:
+   Purpose blockquote, Domain Signals, Terminology, Context Forms, Calque Traps,
+   Untranslated. The `<category>` slug must match the same subject's slug in every
+   other pair directory.
+2. Create the matching `translations/<reverse-pair>/<reverse-pair>-<category>.md` with
+   its own directional tables and calque traps.
+3. Register the category slug in `SKILL.md` under the `translations/` section.
+4. Update the `README.md` directory tree.
 
 ## Validation After Changes
 

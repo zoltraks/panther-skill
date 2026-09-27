@@ -20,7 +20,7 @@ Classify the request into one primary task:
 | Create    | "write a spec", "create a README", "draft a note"  | language file + type file      |
 | Edit      | "add a section", "update the glossary"             | document's own conventions win |
 | Reformat  | "fix this table", "align the columns"              | language file table rules      |
-| Translate | "translate this doc to Polish"                     | target language file           |
+| Translate | "translate this doc to Polish"                     | translate procedure            |
 | Discover  | "discover layout", "detect document layout"        | scope discovery procedure      |
 | Audit     | "audit this document", "check document formatting" | document audit procedure       |
 | Describe  | "describe this", "summarize the session"           | describe-response procedure    |
@@ -160,6 +160,11 @@ Load rule files in this order:
    file delegates to it.
 7. **`conventions/asciidoc-documents.md`** - load when the task touches an `.adoc` file or when
    a scope file delegates to it.
+
+On a Translate task the selection shifts: `languages/<lang>.md` is the target language,
+and `process/translate-document.md` defines the procedure - it loads
+`translations/<pair>/<pair>-general.md` and the matching industry glossaries on top of
+the target baseline.
 
 For a simple document, the language file alone may suffice.
 

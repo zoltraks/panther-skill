@@ -37,21 +37,22 @@ metadata:
 
 | Section                 | Line | What it covers                                 |
 |-------------------------|------|------------------------------------------------|
-| Skill Update Check      | 68   | Once-per-session git freshness gate before use |
-| Trigger Keywords        | 83   | Activation phrases                             |
-| How To Use              | 195  | Progressive disclosure and mandatory reading   |
-| Parameter Configuration | 238  | Defaults and user-controlled document shape    |
-| Principles              | 259  | Authoring invariants                           |
-| Process                 | 265  | Workflow, checklist, and standalone procedures |
-| Document Types          | 280  | Per-type rule files                            |
-| Languages               | 335  | Per-language style baselines                   |
-| Scopes                  | 345  | Per-project-layout organization rules          |
-| Conventions             | 373  | Encoding, dialect, and format contract rules   |
-| Templates               | 388  | Per-type, per-language skeletons               |
-| Tools                   | 398  | Detection, formatting, and validation scripts  |
-| Evaluation Prompts      | 443  | Behavioral regression prompts                  |
-| Repository Files        | 452  | Housekeeping files governing this repository   |
-| File Handling Contract  | 463  | Byte-level guarantees                          |
+| Skill Update Check      | 69   | Once-per-session git freshness gate before use |
+| Trigger Keywords        | 84   | Activation phrases                             |
+| How To Use              | 199  | Progressive disclosure and mandatory reading   |
+| Parameter Configuration | 247  | Defaults and user-controlled document shape    |
+| Principles              | 268  | Authoring invariants                           |
+| Process                 | 274  | Workflow, checklist, and standalone procedures |
+| Document Types          | 291  | Per-type rule files                            |
+| Languages               | 346  | Per-language style baselines                   |
+| Translations            | 356  | Language pair rules and industry glossaries    |
+| Scopes                  | 366  | Per-project-layout organization rules          |
+| Conventions             | 394  | Encoding, dialect, and format contract rules   |
+| Templates               | 409  | Per-type, per-language skeletons               |
+| Tools                   | 419  | Detection, formatting, and validation scripts  |
+| Evaluation Prompts      | 464  | Behavioral regression prompts                  |
+| Repository Files        | 473  | Housekeeping files governing this repository   |
+| File Handling Contract  | 484  | Byte-level guarantees                          |
 
 You are a Document Authoring Agent.
 
@@ -114,6 +115,9 @@ The skill activates on any of these phrases:
 - fix tree comments
 - reformat this markdown
 - translate this document
+- translate this file
+- translate to Polish
+- translate to English
 - document in Polish
 - polish this document
 - run panther
@@ -208,6 +212,8 @@ Use progressive disclosure:
 - Follow `process/document-audit.md` when the request asks to audit a document.
 - Follow `process/describe-response.md` when the request asks to describe or summarize a
   subject inline.
+- Follow `process/translate-document.md` when the request asks to translate a document
+  into another language.
 - Load `conventions/` files only when the situation requires them.
 
 This skill is self-contained. The files below are the available rule material in this
@@ -224,7 +230,10 @@ analyzing the directory structure and document types, naming the best-matching s
 listing exceptions - and audits a document against its governing rules, reporting mechanical,
 structural, and content findings with an optional fix plan. On describe or summarize requests
 it produces consolidated inline descriptions of a subject - impersonal, compact, capped for
-"shortly" requests and floored at one hundred sentences for long requests. AsciiDoc and reStructuredText files are edited minimally and never
+"shortly" requests and floored at one hundred sentences for long requests. On translate
+requests it renders a document into the target language in a single pass, applying the
+pair's style adaptation and matching industry glossaries while preserving structure, code,
+and identifiers. AsciiDoc and reStructuredText files are edited minimally and never
 restyled.
 
 ## Mandatory Reading
@@ -276,6 +285,8 @@ minimal-diff rule provide the answers.
 - **`process/describe-response.md`** - The standalone describe procedure: consolidation,
   shortly caps and long-description floors, impersonal response style, and inline
   delivery.
+- **`process/translate-document.md`** - The standalone translate procedure: pair
+  resolution, industry glossaries, single-pass rendering, and output conventions.
 
 ## `types/` - Document Type Rules
 
@@ -341,6 +352,16 @@ baselines covering structure, headings, lists, tables, characters, vocabulary, a
 - **`languages/pl.md`** - Polish documents: sentence case headings, diacritics, calque
   avoidance, terminology tables, per-type section names, and Polish activation phrases with
   English equivalents.
+
+## `translations/` - Language Pairs And Glossaries
+
+Load on translate tasks only, per `process/translate-document.md`: the direction's
+`translations/<pair>/<pair>-general.md`, then every matching `<pair>-<category>.md`:
+
+- **`translations/en-pl/`** - English to Polish direction rules and glossaries.
+- **`translations/pl-en/`** - Polish to English direction rules and glossaries.
+- Category slugs shared by every pair directory: `general`, `software`, `project`,
+  `finance`, `legal`, `medical`, `electrical`.
 
 ## `scopes/` - Project Layouts
 

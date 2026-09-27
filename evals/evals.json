@@ -564,6 +564,69 @@
         "No first-person phrasing appears - the subject or the work is the actor.",
         "When the subject cannot honestly support one hundred sentences, the response states the shortfall explicitly at the end."
       ]
+    },
+    {
+      "id": 47,
+      "prompt": "Translate this English project specification into Polish.",
+      "expected_output": "A Polish sibling file named <basename>-pl.md with sentence-case headings, mapped section names, glossary terminology, and untouched code and identifiers.",
+      "files": [],
+      "expectations": [
+        "The agent followed the translate procedure and loaded the en-pl pair file plus the software-engineering glossary.",
+        "Headings render in Polish sentence case, and type-known section names map per the Polish language file.",
+        "Code blocks, inline code, file paths, and identifiers stay byte-identical to the source.",
+        "Tables were reformatted after translation so every column still aligns in plain text.",
+        "The output is a new UTF-8 sibling file named with the -pl suffix and the source file is unchanged."
+      ]
+    },
+    {
+      "id": 48,
+      "prompt": "Przetłumacz ten polski dokument na angielski.",
+      "expected_output": "An English sibling file named <basename>-en.md with Title Case headings, reverse-mapped section names, and canonical English terminology.",
+      "files": [],
+      "expectations": [
+        "The agent followed the translate procedure and loaded the pl-en pair file.",
+        "Headings render in English Title Case, and Polish section names map back to the English type-table names.",
+        "Polish abbreviations such as np., tj., and itd. render as e.g., i.e., and etc.",
+        "No Polish diacritics remain in prose, except inside preserved proper nouns.",
+        "The delivery report lists the glossaries applied and notable term choices."
+      ]
+    },
+    {
+      "id": 49,
+      "prompt": "Translate this financial report document to Polish.",
+      "expected_output": "A Polish translation that applies the finance glossary - balance sheet renders bilans, income statement renders rachunek zyskow i strat - and reports term choices inline.",
+      "files": [],
+      "expectations": [
+        "The agent detected the finance domain and loaded translations/en-pl/en-pl-finance.md.",
+        "Finance terms render per the glossary, not literal calques such as lista dochodow.",
+        "Numeric values, dates, and code elements are preserved verbatim.",
+        "The inline report names the applied glossaries and any literal renders."
+      ]
+    },
+    {
+      "id": 50,
+      "prompt": "Translate this English electrical safety procedure into Polish.",
+      "expected_output": "A Polish translation that applies the electrical glossary - residual current device renders wylacznik roznicowopradowy, safe isolation renders bezpieczne odlaczenie, muster point renders punkt zbiorki - and avoids the documented calques.",
+      "files": [],
+      "expectations": [
+        "The agent detected the electrical domain and loaded translations/en-pl/en-pl-electrical.md.",
+        "UK scheme acronyms such as RCD, PAT, LOTO, and HSE stay verbatim in the Polish output.",
+        "Site-safety terms follow the glossary - permit to work, muster point, proving dead - never literal calques.",
+        "Voltage ratings, device designations, and numeric values are preserved verbatim.",
+        "The inline report names the applied glossaries and notable term choices."
+      ]
+    },
+    {
+      "id": 51,
+      "prompt": "Przetłumacz na angielski polską dokumentację zarządzania projektem.",
+      "expected_output": "An English translation that applies the pl-en project glossary - rejestr ryzyk renders risk register, karta projektu renders project charter - with Title Case headings.",
+      "files": [],
+      "expectations": [
+        "The agent loaded translations/pl-en/pl-en-general.md and translations/pl-en/pl-en-project.md.",
+        "The Polish-source terminology table drives the render - Polish terms map to their canonical English forms.",
+        "Headings render in English Title Case per the pl-en direction contract.",
+        "The output avoids reverse-direction artifacts such as kart of project or register of risks."
+      ]
     }
   ]
 }
