@@ -21,6 +21,7 @@ Use for file format specifications, protocol descriptions, and structured data l
 
 - `templates/en/format-specification-template-en.md`
 - `templates/pl/format-specification-template-pl.md`
+- `templates/de/format-specification-template-de.md`
 
 ## Structure
 

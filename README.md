@@ -1,8 +1,8 @@
 # Panther - Document Authoring Skill
 
 > Plain-text-readable Markdown documents - technical documentation, project specifications,
-> rules documents, format specifications, articles, notes, READMEs, and changelogs, in English
-> or Polish.
+> rules documents, format specifications, articles, notes, READMEs, and changelogs, in English,
+> Polish, or German.
 >
 > Structured per the [Agent Skills specification](https://agentskills.io/specification).
 >
@@ -13,18 +13,18 @@
 | Section             | Line | What it covers                             |
 |---------------------|------|--------------------------------------------|
 | Overview            | 29   | What Panther is and what it produces       |
-| What The Skill Does | 53   | Authoring purpose and workflow             |
-| Installation        | 141  | How to add Panther to an agent environment |
-| Usage               | 211  | How agents activate and run the skill      |
-| Example Prompts     | 222  | Phrases the skill activates on             |
-| Workflow Diagrams   | 262  | ASCII and Mermaid diagrams of the pipeline |
-| Core Principles     | 388  | Convention preservation and minimal diffs  |
-| When To Use         | 399  | Supported requests and exclusions          |
-| What's Inside       | 437  | Rule files, templates, tools, and evals    |
-| Specification       | 554  | Agent Skills specification conformance     |
-| Verification        | 571  | Skill-maintenance checks                   |
-| License             | 590  | License for the skill itself               |
-| Credits             | 596  | Methodology and example sources            |
+| What The Skill Does | 54   | Authoring purpose and workflow             |
+| Installation        | 142  | How to add Panther to an agent environment |
+| Usage               | 212  | How agents activate and run the skill      |
+| Example Prompts     | 223  | Phrases the skill activates on             |
+| Workflow Diagrams   | 263  | ASCII and Mermaid diagrams of the pipeline |
+| Core Principles     | 389  | Convention preservation and minimal diffs  |
+| When To Use         | 400  | Supported requests and exclusions          |
+| What's Inside       | 438  | Rule files, templates, tools, and evals    |
+| Specification       | 572  | Agent Skills specification conformance     |
+| Verification        | 588  | Skill-maintenance checks                   |
+| License             | 607  | License for the skill itself               |
+| Credits             | 613  | Methodology and example sources            |
 
 ## Overview
 
@@ -34,7 +34,8 @@ It guides an AI coding agent through creating or editing a Markdown document wit
 plain-text-readable conventions: one sentence per paragraph, source-width-aligned tables, and
 language-appropriate style rules.
 
-Documents are written in English by default, with full Polish support, and new files use UTF-8.
+Documents are written in English by default, with full Polish and German support, and new
+files use UTF-8.
 
 The skill detects and preserves the encoding, line endings, and Markdown dialect of existing
 documents - a file in UTF-16 or a legacy code page stays that way after an edit.
@@ -88,7 +89,7 @@ machinery than a project specification.
 Every language file covers structure, headings, lists, characters, tables, vocabulary,
 and file naming.
 
-English uses Title Case headings, Polish uses sentence case,
+English uses Title Case headings, Polish and German use sentence case,
 and each language carries its own terminology guidance.
 
 **Validates mechanically**
@@ -479,9 +480,19 @@ panther-skill/
 │   ├── management-plan.md             # Management plans: thresholds, cadence, roles
 │   └── work-breakdown-structure.md    # WBS: decimal outline, dictionary, RACI
 ├── languages/
+│   ├── de.md                          # German baseline: style, section names, activation phrases
 │   ├── en.md                          # English baseline: Title Case, vocabulary
 │   └── pl.md                          # Polish baseline: style, section names, activation phrases
 ├── translations/
+│   ├── de-en/                         # German-to-English direction rules and glossaries
+│   │   ├── de-en-general.md           # Direction contract: Title Case, abbreviations
+│   │   └── de-en-construction.md      # Construction and concrete glossary
+│   ├── de-pl/                         # German-to-Polish direction rules and glossaries
+│   │   ├── de-pl-general.md           # Direction contract: style, abbreviations
+│   │   └── de-pl-construction.md      # Construction and concrete glossary
+│   ├── en-de/                         # English-to-German direction rules and glossaries
+│   │   ├── en-de-general.md           # Direction contract: style, locale, abbreviations
+│   │   └── en-de-construction.md      # Construction and concrete glossary
 │   ├── en-pl/                         # English-to-Polish direction rules and glossaries
 │   │   ├── en-pl-general.md           # Direction contract: style, locale, untranslated set
 │   │   ├── en-pl-software.md          # SDLC and software glossary
@@ -489,7 +500,11 @@ panther-skill/
 │   │   ├── en-pl-finance.md           # Finance and banking glossary
 │   │   ├── en-pl-legal.md             # Legal glossary
 │   │   ├── en-pl-medical.md           # Medical and pharma glossary
-│   │   └── en-pl-electrical.md        # Electrical and site-safety glossary
+│   │   ├── en-pl-electrical.md        # Electrical and site-safety glossary
+│   │   └── en-pl-construction.md      # Construction and concrete glossary
+│   ├── pl-de/                         # Polish-to-German direction rules and glossaries
+│   │   ├── pl-de-general.md           # Direction contract: style, abbreviations
+│   │   └── pl-de-construction.md      # Construction and concrete glossary
 │   └── pl-en/                         # Polish-to-English direction rules and glossaries
 │       ├── pl-en-general.md           # Direction contract: Title Case, abbreviations
 │       ├── pl-en-software.md          # SDLC and software glossary
@@ -497,7 +512,8 @@ panther-skill/
 │       ├── pl-en-finance.md           # Finance and banking glossary
 │       ├── pl-en-legal.md             # Legal glossary
 │       ├── pl-en-medical.md           # Medical and pharma glossary
-│       └── pl-en-electrical.md        # Electrical and site-safety glossary
+│       ├── pl-en-electrical.md        # Electrical and site-safety glossary
+│       └── pl-en-construction.md      # Construction and concrete glossary
 ├── scopes/
 │   ├── unstructured-layout.md         # Default scope: no defined organization
 │   ├── agent-skill.md                 # Skill repositories: router contract, registration
@@ -517,6 +533,7 @@ panther-skill/
 │   ├── plain-text-comments.md         # Trailing comment alignment in plain-text blocks
 │   └── ascii-diagrams.md              # Box-drawing flow diagram rules
 ├── templates/
+│   ├── de/                            # Twenty-four German skeletons, <type>-template-de.md
 │   ├── en/                            # Twenty-four English skeletons, <type>-template-en.md
 │   └── pl/                            # Twenty-four Polish skeletons, <type>-template-pl.md
 ├── scripts/

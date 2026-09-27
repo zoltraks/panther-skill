@@ -33,6 +33,7 @@ benefits, costs, and risks, and doing nothing is a valid option.
 
 - `templates/en/proposal-document-template-en.md`
 - `templates/pl/proposal-document-template-pl.md`
+- `templates/de/proposal-document-template-de.md`
 
 ## Structure
 
@@ -90,4 +91,4 @@ afterward, record follow-up work in a `decision-record` or an implementation doc
 - Decision
 - Reviewers
 
-Polish section names for this document type are declared in `languages/pl.md`.
+Section names for other languages are declared in the matching `languages/<code>.md` file.

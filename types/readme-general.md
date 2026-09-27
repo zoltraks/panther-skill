@@ -36,6 +36,7 @@ back to this general type.
 
 - `templates/en/readme-general-template-en.md`
 - `templates/pl/readme-general-template-pl.md`
+- `templates/de/readme-general-template-de.md`
 
 The filename is always `README.md` - a type-conventional name that overrides the lowercase naming
 rule.
@@ -77,4 +78,4 @@ The canonical skeleton, adjusted to the request:
 - License
 - Credits
 
-Polish section names for this document type are declared in `languages/pl.md`.
+Section names for other languages are declared in the matching `languages/<code>.md` file.

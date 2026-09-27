@@ -20,6 +20,7 @@ For informal scratch notes use `types/quick-note.md` instead.
 
 - `templates/en/meeting-minutes-template-en.md`
 - `templates/pl/meeting-minutes-template-pl.md`
+- `templates/de/meeting-minutes-template-de.md`
 
 ## Structure
 
@@ -62,4 +63,4 @@ For informal scratch notes use `types/quick-note.md` instead.
 - Due Date
 - Owner
 
-Polish section names for this document type are declared in `languages/pl.md`.
+Section names for other languages are declared in the matching `languages/<code>.md` file.

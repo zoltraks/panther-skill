@@ -20,6 +20,7 @@ system's structure, requirements, and conventions.
 
 - `templates/en/project-document-template-en.md`
 - `templates/pl/project-document-template-pl.md`
+- `templates/de/project-document-template-de.md`
 
 ## Structure
 
@@ -127,4 +128,4 @@ the change log per `register-log`, and meeting decisions go to `meeting-minutes`
 - Version Control
 - Documentation
 
-Polish section names for this document type are declared in `languages/pl.md`.
+Section names for other languages are declared in the matching `languages/<code>.md` file.

@@ -28,9 +28,9 @@ is not wrapped to 100 characters.
 | Code And Inline Formatting | 175  | Fences, code spans, and semicolons              |
 | Tables                     | 281  | Source-width alignment and automated formatting |
 | Characters And Language    | 456  | Box-drawing, emoji, and per-language rules      |
-| File References            | 477  | Relative paths and localised resources          |
-| Skill Requirements         | 505  | Frontmatter and progressive disclosure          |
-| Maintenance                | 566  | Pointer to the skill extension rules            |
+| File References            | 482  | Relative paths and localised resources          |
+| Skill Requirements         | 510  | Frontmatter and progressive disclosure          |
+| Maintenance                | 571  | Pointer to the skill extension rules            |
 
 ## Document Structure
 
@@ -476,6 +476,8 @@ Write documentation produced by the skill in the language used by the project.
 For English, use Title Case in section names.
 
 For Polish, use sentence case in section names and follow `languages/pl.md`.
+
+For German, use sentence case in section names and follow `languages/de.md`.
 
 ## File References
 

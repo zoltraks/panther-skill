@@ -29,6 +29,7 @@ a crate, a gem, or any library consumed through a package manager or an import.
 
 - `templates/en/readme-library-template-en.md`
 - `templates/pl/readme-library-template-pl.md`
+- `templates/de/readme-library-template-de.md`
 
 ## Structure
 
@@ -63,4 +64,4 @@ The canonical skeleton, adjusted to the request:
 - Contributing
 - License
 
-Polish section names for this document type are declared in `languages/pl.md`.
+Section names for other languages are declared in the matching `languages/<code>.md` file.

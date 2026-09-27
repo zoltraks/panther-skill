@@ -25,6 +25,7 @@ instead.
 
 - `templates/en/quick-note-template-en.md`
 - `templates/pl/quick-note-template-pl.md`
+- `templates/de/quick-note-template-de.md`
 
 ## Structure
 

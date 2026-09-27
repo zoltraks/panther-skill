@@ -20,6 +20,7 @@ empowers the project manager.
 
 - `templates/en/project-charter-template-en.md`
 - `templates/pl/project-charter-template-pl.md`
+- `templates/de/project-charter-template-de.md`
 
 ## Structure
 
@@ -78,4 +79,4 @@ empowers the project manager.
 - Exit Criteria
 - Approval
 
-Polish section names for this document type are declared in `languages/pl.md`.
+Section names for other languages are declared in the matching `languages/<code>.md` file.

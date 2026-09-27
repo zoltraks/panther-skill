@@ -653,6 +653,56 @@
         "Findings are fixed through the canonical tools (split-sentences.py, wrap-prose.py, format-table.py, align-comments.py), not by hand.",
         "Contents tables are renumbered and verified with check-contents.py after any section-moving edit."
       ]
+    },
+
+    {
+      "id": 54,
+      "prompt": "Translate this English construction durability specification into German.",
+      "expected_output": "A German translation that applies the en-de direction contract and the construction glossary - concrete cover renders Betondeckung, pitting corrosion renders Lochfraßkorrosion, de-icing salt renders Tausalz - with sentence-case headings.",
+      "files": [],
+      "expectations": [
+        "The agent loaded languages/de.md, translations/en-de/en-de-general.md, and translations/en-de/en-de-construction.md.",
+        "Headings render in German sentence case with normal noun capitalization - no Title Case calque.",
+        "Exposure-class codes, chemical formulas, and standard designations such as DIN EN 206 stay verbatim.",
+        "Settled terms follow the glossary - reinforcement renders Bewehrung, carbonation renders Karbonatisierung - and documented calques are avoided.",
+        "The inline report names the applied glossaries and notable term choices."
+      ]
+    },
+    {
+      "id": 55,
+      "prompt": "Übersetze diese deutsche Betontechnologie-Dokumentation ins Polnische.",
+      "expected_output": "A Polish translation that applies the de-pl direction contract and the construction glossary - Betondeckung renders otulina, Lochfraßkorrosion renders korozja wżerowa, Bewehrung renders zbrojenie - with sentence-case headings.",
+      "files": [],
+      "expectations": [
+        "The agent loaded languages/pl.md, translations/de-pl/de-pl-general.md, and translations/de-pl/de-pl-construction.md.",
+        "German abbreviations map to Polish equivalents - z. B. renders np., d. h. renders tj., usw. renders itd.",
+        "Exposure-class codes, chemical formulas, and standard designations stay verbatim.",
+        "The output avoids the documented calques - pokrywa betonu, armatura, sól drogowa."
+      ]
+    },
+    {
+      "id": 56,
+      "prompt": "Schreibe eine kurze technische Dokumentation für einen Caching-Mechanismus auf Deutsch.",
+      "expected_output": "A German technical document with sentence-case headings using the de.md section names - Zweck, Überblick, Verwendung - and composed-form umlauts.",
+      "files": [],
+      "expectations": [
+        "The agent loaded languages/de.md and types/technical-document.md.",
+        "Headings use sentence case with German noun capitalization, section names come from the de.md type table.",
+        "Prose uses one sentence per paragraph, straight ASCII quotes, and no semicolons.",
+        "No Denglish calques appear - bereitstellen, aktualisieren, and leistungsfähig are used where the English terms would be deployen, updaten, and performant."
+      ]
+    },
+    {
+      "id": 57,
+      "prompt": "Przetłumacz dokumentację trwałości betonu na niemiecki.",
+      "expected_output": "A German translation that applies the pl-de direction contract and the construction glossary - otulina renders Betondeckung, zbrojenie renders Bewehrung, karbonatyzacja renders Karbonatisierung.",
+      "files": [],
+      "expectations": [
+        "The agent loaded languages/de.md, translations/pl-de/pl-de-general.md, and translations/pl-de/pl-de-construction.md.",
+        "Polish abbreviations map to German equivalents - np. renders z. B., tj. renders d. h., itd. renders usw.",
+        "Class naming contexts use Einwirkung where the source uses oddziaływanie, and Angriff where the source uses atak.",
+        "Exposure-class codes, chemical formulas, and standard designations stay verbatim."
+      ]
     }
   ]
 }

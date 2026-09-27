@@ -28,6 +28,7 @@ the agent must instantiate.
 
 - `templates/en/agent-instruction-template-en.md`
 - `templates/pl/agent-instruction-template-pl.md`
+- `templates/de/agent-instruction-template-de.md`
 
 ## Audiences
 
@@ -102,4 +103,4 @@ Preserve payload interiors on edit - reformat them only when the request covers 
 - Best Practices
 - References
 
-Polish section names for this document type are declared in `languages/pl.md`.
+Section names for other languages are declared in the matching `languages/<code>.md` file.

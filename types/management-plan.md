@@ -25,6 +25,7 @@ A management plan describes how a project domain is governed - that is this type
 
 - `templates/en/management-plan-template-en.md`
 - `templates/pl/management-plan-template-pl.md`
+- `templates/de/management-plan-template-de.md`
 
 ## Structure
 
@@ -66,4 +67,4 @@ A management plan describes how a project domain is governed - that is this type
 - Change Control
 - Master Plan
 
-Polish section names for this document type are declared in `languages/pl.md`.
+Section names for other languages are declared in the matching `languages/<code>.md` file.

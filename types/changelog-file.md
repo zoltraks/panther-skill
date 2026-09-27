@@ -23,6 +23,7 @@ A project change-request register is a different document - use `types/register-
 
 - `templates/en/changelog-file-template-en.md`
 - `templates/pl/changelog-file-template-pl.md`
+- `templates/de/changelog-file-template-de.md`
 
 The filename is `CHANGELOG.md` - a type-conventional name that overrides the lowercase naming
 rule.
@@ -55,4 +56,4 @@ why it matters.
 - Fixed
 - Removed
 
-Polish section names for this document type are declared in `languages/pl.md`.
+Section names for other languages are declared in the matching `languages/<code>.md` file.

@@ -29,6 +29,7 @@ belong in the change log per `types/register-log.md`.
 
 - `templates/en/decision-record-template-en.md`
 - `templates/pl/decision-record-template-pl.md`
+- `templates/de/decision-record-template-de.md`
 
 ## Structure
 
@@ -99,4 +100,4 @@ adjust the naming - the scope wins for placement.
 - Links
 - Supersedes
 
-Polish section names for this document type are declared in `languages/pl.md`.
+Section names for other languages are declared in the matching `languages/<code>.md` file.

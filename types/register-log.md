@@ -28,6 +28,7 @@ It is a different document from `types/changelog-file.md`, which records release
 
 - `templates/en/register-log-template-en.md`
 - `templates/pl/register-log-template-pl.md`
+- `templates/de/register-log-template-de.md`
 
 ## Kinds
 
@@ -99,4 +100,4 @@ The document's own conventions always win on edit.
 - Authority
 - Recommendation
 
-Polish section names for this document type are declared in `languages/pl.md`.
+Section names for other languages are declared in the matching `languages/<code>.md` file.

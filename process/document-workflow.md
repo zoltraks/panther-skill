@@ -144,7 +144,8 @@ When the request asks to discover or detect the document layout itself, follow
 Load rule files in this order:
 
 1. **`languages/<lang>.md`** - mandatory for every document. `<lang>` is the ISO 639-1 language
-   code (`en`, `pl`). Load the file matching the document language, never both at once.
+   code (`en`, `pl`, `de`). Load the file matching the document language, never more than one
+   at once.
 2. **`types/<type>.md`** - load when the document matches a known type. The type file adds deltas
    on top of the language file.
 3. **`scopes/<scope>.md`** - load when scope detection matches a project layout, or when the

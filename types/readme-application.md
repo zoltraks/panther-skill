@@ -35,6 +35,7 @@ For a pure command-line utility, prefer `types/readme-cli.md`.
 
 - `templates/en/readme-application-template-en.md`
 - `templates/pl/readme-application-template-pl.md`
+- `templates/de/readme-application-template-de.md`
 
 ## Structure
 
@@ -81,4 +82,4 @@ The canonical skeleton, adjusted to the request:
 - License
 - Credits
 
-Polish section names for this document type are declared in `languages/pl.md`.
+Section names for other languages are declared in the matching `languages/<code>.md` file.

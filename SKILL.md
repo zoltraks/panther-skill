@@ -7,7 +7,7 @@ description: >-
   decision records (ADR), and PMBOK artifacts - charters, plans,
   registers, status reports, minutes, WBS. Enforces plain-text-readable
   Markdown: one-sentence paragraphs, aligned tables, consistent
-  headings. English and Polish. UTF-8 output, encodings preserved.
+  headings. English, Polish, and German. UTF-8 output, encodings preserved.
   Handles agent skill repositories, Sphinx, MkDocs, Docusaurus,
   VitePress, GitBook, guided projects, doc collections, multi-project
   repos - discovers layouts, audits documents, describes subjects.
@@ -20,7 +20,7 @@ compatibility: >-
   Claude Desktop, Windsurf, Devin, and similar). Requires the ability to read
   and write text files. No network access required.
 metadata:
-  version: "0.9"
+  version: "1.0"
   author: Filip Golewski
 allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob Grep
 ---
@@ -36,21 +36,21 @@ allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob G
 | Section                 | Line | What it covers                                 |
 |-------------------------|------|------------------------------------------------|
 | Skill Update Check      | 70   | Once-per-session git freshness gate before use |
-| Trigger Keywords        | 92   | Activation phrases                             |
-| How To Use              | 138  | Progressive disclosure and mandatory reading   |
-| Parameter Configuration | 192  | Defaults and user-controlled document shape    |
-| Principles              | 214  | Authoring invariants                           |
-| Process                 | 220  | Workflow, checklist, and standalone procedures |
-| Document Types          | 237  | Per-type rule files                            |
-| Languages               | 292  | Per-language style baselines                   |
-| Translations            | 304  | Language pair rules and industry glossaries    |
-| Scopes                  | 314  | Per-project-layout organization rules          |
-| Conventions             | 342  | Encoding, dialect, and format contract rules   |
-| Templates               | 357  | Per-type, per-language skeletons               |
-| Scripts                 | 368  | Detection, formatting, and validation scripts  |
-| Evaluation Prompts      | 394  | Behavioral regression prompts                  |
-| Repository Files        | 404  | Housekeeping files governing this repository   |
-| File Handling Contract  | 416  | Byte-level guarantees                          |
+| Trigger Keywords        | 93   | Activation phrases                             |
+| How To Use              | 140  | Progressive disclosure and mandatory reading   |
+| Parameter Configuration | 194  | Defaults and user-controlled document shape    |
+| Principles              | 216  | Authoring invariants                           |
+| Process                 | 222  | Workflow, checklist, and standalone procedures |
+| Document Types          | 239  | Per-type rule files                            |
+| Languages               | 294  | Per-language style baselines                   |
+| Translations            | 309  | Language pair rules and industry glossaries    |
+| Scopes                  | 323  | Per-project-layout organization rules          |
+| Conventions             | 351  | Encoding, dialect, and format contract rules   |
+| Templates               | 366  | Per-type, per-language skeletons               |
+| Scripts                 | 378  | Detection, formatting, and validation scripts  |
+| Evaluation Prompts      | 404  | Behavioral regression prompts                  |
+| Repository Files        | 414  | Housekeeping files governing this repository   |
+| File Handling Contract  | 426  | Byte-level guarantees                          |
 
 You are a Document Authoring Agent.
 
@@ -104,7 +104,8 @@ The skill activates on any of these phrases, grouped by intent:
   this table, align the table, align the comments, fix tree comments, reformat this
   markdown.
 - **Translate**: translate this document, translate this file, translate to Polish,
-  translate to English, document in Polish, polish this document.
+  translate to English, translate to German, document in Polish, document in German,
+  polish this document.
 - **Activate**: run panther, use panther.
 - **Extend and maintain**: add a page to the docs, documentation project, new document in
   this project, extend this skill, add a rule file to this skill, update the toctree,
@@ -162,8 +163,8 @@ repository.
 When asked how this skill works, explain that Panther produces plain-text-readable Markdown
 documents: technical docs, specs, rules documents, articles, notes, READMEs, changelogs,
 decision records, RFCs, and PMBOK project artifacts - charters, registers, status reports,
-meeting minutes, management plans, and work breakdown structures - in English or Polish,
-with UTF-8 output and preserved encodings on edit,
+meeting minutes, management plans, and work breakdown structures - in English, Polish, or
+German, with UTF-8 output and preserved encodings on edit,
 for single files and for organized document collections such as agent skill repositories,
 Sphinx sites, and MkDocs, Docusaurus, VitePress, or GitBook documentation sites.
 
@@ -301,6 +302,9 @@ characters, vocabulary, and file naming:
 - **`languages/pl.md`** - Polish documents: sentence case headings, diacritics, calque
   avoidance, terminology tables, per-type section names, and Polish activation phrases with
   English equivalents.
+- **`languages/de.md`** - German documents: sentence case headings with noun
+  capitalization, umlauts, Denglish calque avoidance, terminology tables, per-type section
+  names, and German activation phrases with English equivalents.
 
 ## `translations/` - Language Pairs And Glossaries
 
@@ -309,8 +313,12 @@ Load on translate tasks only, per `process/translate-document.md`: the direction
 
 - **`translations/en-pl/`** - English to Polish direction rules and glossaries.
 - **`translations/pl-en/`** - Polish to English direction rules and glossaries.
+- **`translations/en-de/`** - English to German direction rules and glossaries.
+- **`translations/de-en/`** - German to English direction rules and glossaries.
+- **`translations/pl-de/`** - Polish to German direction rules and glossaries.
+- **`translations/de-pl/`** - German to Polish direction rules and glossaries.
 - Category slugs shared by every pair directory: `general`, `software`, `project`,
-  `finance`, `legal`, `medical`, `electrical`.
+  `finance`, `legal`, `medical`, `electrical`, `construction`.
 
 ## `scopes/` - Project Layouts
 
@@ -363,6 +371,7 @@ Template filenames carry the language code: `<type>-template-<code>.md`.
 
 - `templates/en/` - English skeletons, one per document type, named `<type>-template-en.md`.
 - `templates/pl/` - Polish skeletons, one per document type, named `<type>-template-pl.md`.
+- `templates/de/` - German skeletons, one per document type, named `<type>-template-de.md`.
 
 A template is a starting point - adjust sections to the request and the content.
 
@@ -394,9 +403,9 @@ See `scripts/README.md`.
 
 ## Evaluation Prompts
 
-- **`evals/evals.json`** - Skill-creator regression prompts covering document creation in both
-  languages, convention-preserving edits, table reformatting, encoding edge cases, the
-  session update check, and document audits.
+- **`evals/evals.json`** - Skill-creator regression prompts covering document creation in
+  all supported languages, convention-preserving edits, table reformatting, encoding edge
+  cases, the session update check, and document audits.
 
 Run these as behavioral evaluations after structural changes.
 

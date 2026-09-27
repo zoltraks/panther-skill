@@ -25,6 +25,7 @@ For contribution sections inside a `README.md`, use the matching `readme-*` type
 
 - `templates/en/contributing-file-template-en.md`
 - `templates/pl/contributing-file-template-pl.md`
+- `templates/de/contributing-file-template-de.md`
 
 ## Structure
 
@@ -93,4 +94,4 @@ ban is valid, as long as the document states it unambiguously.
 - Code Of Conduct
 - Getting Help
 
-Polish section names for this document type are declared in `languages/pl.md`.
+Section names for other languages are declared in the matching `languages/<code>.md` file.

@@ -19,6 +19,7 @@ reference material.
 
 - `templates/en/technical-document-template-en.md`
 - `templates/pl/technical-document-template-pl.md`
+- `templates/de/technical-document-template-de.md`
 
 ## Structure
 
@@ -66,4 +67,4 @@ kind and follow the dominant style of that directory.
 - Limitations
 - References
 
-Polish section names for this document type are declared in `languages/pl.md`.
+Section names for other languages are declared in the matching `languages/<code>.md` file.

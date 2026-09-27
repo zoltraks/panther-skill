@@ -18,6 +18,7 @@ Product breakdown structures follow the same shape.
 
 - `templates/en/work-breakdown-structure-template-en.md`
 - `templates/pl/work-breakdown-structure-template-pl.md`
+- `templates/de/work-breakdown-structure-template-de.md`
 
 ## Structure
 
@@ -60,4 +61,4 @@ Product breakdown structures follow the same shape.
 - RACI Matrix
 - Baseline
 
-Polish section names for this document type are declared in `languages/pl.md`.
+Section names for other languages are declared in the matching `languages/<code>.md` file.

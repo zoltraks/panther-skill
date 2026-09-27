@@ -31,6 +31,7 @@ call for an entry-point document.
 
 - `templates/en/readme-docs-template-en.md`
 - `templates/pl/readme-docs-template-pl.md`
+- `templates/de/readme-docs-template-de.md`
 
 ## Structure
 
@@ -59,4 +60,4 @@ The canonical skeleton, adjusted to the request:
 - Repository Layout
 - License
 
-Polish section names for this document type are declared in `languages/pl.md`.
+Section names for other languages are declared in the matching `languages/<code>.md` file.

@@ -126,7 +126,8 @@ def validate_body(root: Path, body: str, issues: list[str]) -> None:
             if "examples" in path.relative_to(root).parts or "templates" in path.relative_to(root).parts:
                 continue
             content = path.read_text(encoding="utf-8")
-            if "## Contents" not in content and "## Spis treści" not in content:
+            contents_headings = ("## Contents", "## Spis treści", "## Inhaltsverzeichnis")
+            if not any(heading in content for heading in contents_headings):
                 issue(f"large document has no Contents section: {path.relative_to(root)}", issues)
 
 

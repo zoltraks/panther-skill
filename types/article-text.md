@@ -22,6 +22,7 @@ Use for articles, tutorials, course material, blog posts, and explanatory essays
 
 - `templates/en/article-text-template-en.md`
 - `templates/pl/article-text-template-pl.md`
+- `templates/de/article-text-template-de.md`
 
 ## Structure
 
@@ -66,4 +67,4 @@ type, how-to guides and reference pages land in the `technical-document` type.
 - Further Reading
 - References
 
-Polish section names for this document type are declared in `languages/pl.md`.
+Section names for other languages are declared in the matching `languages/<code>.md` file.

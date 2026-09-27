@@ -17,6 +17,7 @@ reports on a weekly, biweekly, or monthly cadence.
 
 - `templates/en/status-report-template-en.md`
 - `templates/pl/status-report-template-pl.md`
+- `templates/de/status-report-template-de.md`
 
 ## Structure
 
@@ -65,4 +66,4 @@ reports on a weekly, biweekly, or monthly cadence.
 - Planned Next Period
 - Decisions Needed
 
-Polish section names for this document type are declared in `languages/pl.md`.
+Section names for other languages are declared in the matching `languages/<code>.md` file.

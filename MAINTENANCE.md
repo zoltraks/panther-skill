@@ -75,7 +75,7 @@ Translation files inside a pair directory are named `translations/<pair>/<pair>-
 Direction rules use `translations/<pair>/<pair>-general.md`.
 
 Glossaries use a stable category slug shared by every pair directory (`software`, `project`,
-`finance`, `legal`, `medical`, `electrical`)
+`finance`, `legal`, `medical`, `electrical`, `construction`)
 so the same subject keeps the same filename across languages.
 
 Tools are named `scripts/<verb>-<object>.py`, for example `detect-encoding.py` or

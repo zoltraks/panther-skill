@@ -31,6 +31,7 @@ For a larger product that also ships a CLI among other interfaces, prefer
 
 - `templates/en/readme-cli-template-en.md`
 - `templates/pl/readme-cli-template-pl.md`
+- `templates/de/readme-cli-template-de.md`
 
 ## Structure
 
@@ -64,4 +65,4 @@ The canonical skeleton, adjusted to the request:
 - Configuration
 - License
 
-Polish section names for this document type are declared in `languages/pl.md`.
+Section names for other languages are declared in the matching `languages/<code>.md` file.

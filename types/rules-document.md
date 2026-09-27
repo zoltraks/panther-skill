@@ -26,6 +26,7 @@ type instead.
 
 - `templates/en/rules-document-template-en.md`
 - `templates/pl/rules-document-template-pl.md`
+- `templates/de/rules-document-template-de.md`
 
 ## Structure
 
@@ -105,4 +106,4 @@ Show the smallest example that demonstrates the rule.
 - File Maintenance
 - Verification
 
-Polish section names for this document type are declared in `languages/pl.md`.
+Section names for other languages are declared in the matching `languages/<code>.md` file.

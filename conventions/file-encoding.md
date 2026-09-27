@@ -45,7 +45,8 @@ Detection order:
 3. **UTF-8 validation** - bytes that decode as valid UTF-8 with multibyte sequences are UTF-8.
 4. **ASCII** - bytes below `0x80` only.
 5. **Code page fallback** - bytes in `0x80-0xFF` that are not valid UTF-8 usually mean a legacy
-   code page. For Polish content, try CP1250 first.
+   code page. For Polish content, try CP1250 first, and for German and other Western
+   European content, try CP1252 first.
 
 When detection is ambiguous, report the ambiguity and ask the user rather than guessing.
 

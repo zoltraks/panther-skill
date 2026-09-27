@@ -2,7 +2,8 @@
 """Check `## Contents` table line numbers against actual `## ` section positions.
 
 Scope:
-  - Every Markdown file carrying a `## Contents` or `## Spis treści` section is
+  - Every Markdown file carrying a `## Contents`, `## Spis treści`, or
+    `## Inhaltsverzeichnis` section is
     checked: each row's stated line number must sit within `--tolerance` lines of a
     document-level `## ` heading.
   - Fenced code blocks are opaque: example tables and headings inside fences, such
@@ -24,9 +25,9 @@ from pathlib import Path
 
 FENCE = re.compile(r"^[ ]{0,3}(```+|~~~+)")
 HEADING = re.compile(r"^## ")
-CONTENTS_HEADING = re.compile(r"^## (Contents|Spis treści)\s*$")
+CONTENTS_HEADING = re.compile(r"^## (Contents|Spis treści|Inhaltsverzeichnis)\s*$")
 TABLE_ROW = re.compile(r"^\|")
-LINE_COLUMNS = {"line", "wiersz"}
+LINE_COLUMNS = {"line", "wiersz", "zeile"}
 
 EXCLUDED_DIRS = ("docs", "templates", "work")
 

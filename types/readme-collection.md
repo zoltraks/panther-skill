@@ -34,6 +34,7 @@ of duplicating them.
 
 - `templates/en/readme-collection-template-en.md`
 - `templates/pl/readme-collection-template-pl.md`
+- `templates/de/readme-collection-template-de.md`
 
 ## Structure
 
@@ -65,4 +66,4 @@ The canonical skeleton, adjusted to the request:
 - License
 - Credits
 
-Polish section names for this document type are declared in `languages/pl.md`.
+Section names for other languages are declared in the matching `languages/<code>.md` file.
