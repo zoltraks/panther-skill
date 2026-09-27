@@ -13,10 +13,10 @@ Every document created or modified as part of this skill must follow the rules b
 These rules govern the skill's own files, which wrap prose at 100 characters.
 
 Documents produced by the skill follow the matching `languages/` baseline instead, which keeps one
-sentence per logical line and never hard-wraps.
+sentence per paragraph and never hard-wraps.
 
-The `languages/` files themselves follow that baseline - they are dialect examples, not wrapped
-rule documents.
+The `languages/` files themselves follow that baseline - they are dialect examples, so their prose
+is not wrapped to 100 characters.
 
 ## Contents
 
@@ -98,9 +98,9 @@ Write short sentences.
 
 Use one sentence per paragraph for technical descriptions.
 
-This keeps the text readable in plain text editors, terminal viewers, and diff output.
+Every sentence is its own paragraph, separated from the next sentence by one empty line.
 
-Separate every sentence with an empty line.
+This keeps the text readable in plain text editors, terminal viewers, and diff output.
 
 A sentence may contain multiple related clauses if they express a single thought.
 

@@ -174,8 +174,9 @@ def main(path, width, payload_markdown, check_only):
         fence = FENCE.match(line)
         if fence:
             marker_len, lang = len(fence.group(1)), fence.group(2)
-            if fences and marker_len >= fences[-1][0]:
-                fences.pop()
+            if fences:
+                if marker_len >= fences[-1][0]:
+                    fences.pop()
             else:
                 fences.append((marker_len, lang))
             list_stack = []

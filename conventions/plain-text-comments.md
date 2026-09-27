@@ -32,6 +32,7 @@ When most comments in a block already share a column, keep that column and align
 outliers to it - do not move the majority.
 
 When no column is established, set the comment column from the longest entry in the block:
+
 the comment begins exactly two spaces after the end of that entry.
 
 Pad every shorter entry so its comment reaches the shared column.

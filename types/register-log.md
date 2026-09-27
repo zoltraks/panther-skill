@@ -21,6 +21,7 @@ Use for the PMBOK register and log family:
 - lessons learned register
 
 A project change log tracks change requests and their decisions.
+
 It is a different document from `types/changelog-file.md`, which records release history.
 
 **Templates:**
@@ -31,6 +32,7 @@ It is a different document from `types/changelog-file.md`, which records release
 ## Kinds
 
 Each register kind has its own ID prefix and column set.
+
 The document's own conventions always win on edit.
 
 | Kind                     | ID prefix | Typical columns                                                                         |

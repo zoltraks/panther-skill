@@ -12,6 +12,7 @@ Documents in the wild do not all look the same.
 This file catalogs the dialects the skill recognizes, and defines how to handle them.
 
 The core rule: the document's own dialect wins over the default style.
+
 Detect it, preserve it, normalize only on explicit request.
 
 ## Standard ATX
@@ -43,6 +44,7 @@ Signals: lines of `=` or `-` directly below a text line.
 Seen in older prose documents and documents produced by converters.
 
 Rule: when editing a setext document, keep using setext for existing headings.
+
 For added headings, match the document's dominant style.
 
 ## Closed ATX
@@ -85,8 +87,11 @@ Additional traits that may accompany this dialect:
 - Spaced table separator cells (`| ------ |`) instead of compact ones (`|------|`).
 
 Rule: keep the numbering scheme, renumber continuously after adding, removing, or moving a section.
+
 Subsection numbers reflect the parent (`3.1.` inside `3.`).
+
 Preserve the additional traits above when editing.
+
 Apply them to new content when the document uses them consistently.
 
 ## Pandoc And Export Artifacts
@@ -102,7 +107,9 @@ Documents produced by converters or exports may carry:
 Seen in documents produced by converters or written outside the skill's conventions.
 
 Rule: these artifacts are part of the document's conventions.
+
 Do not clean them up during an unrelated edit - the minimal-diff rule applies.
+
 Normalize them only when the request is about reformatting or cleanup.
 
 ## YAML Frontmatter
@@ -187,6 +194,17 @@ separate conventions.
 
 Normalize one element type only when the request covers it, and never impose the paragraph
 convention on list items or vice versa.
+
+Within paragraphs, two sentence-layout dialects exist.
+
+Paragraph-per-sentence puts every sentence in its own paragraph, separated from the next by
+one empty line - the house convention in `STYLE.md` and the `languages/` baselines.
+
+Sentence-per-line starts each sentence on its own logical line but keeps consecutive sentences
+inside one shared paragraph block.
+
+`split-sentences.py` defaults to sentence-per-line output, and `--paragraphs` produces
+paragraph-per-sentence.
 
 ## Detection Procedure
 

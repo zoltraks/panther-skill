@@ -14,16 +14,16 @@
 |---------------------|------|--------------------------------------------|
 | Overview            | 29   | What Panther is and what it produces       |
 | What The Skill Does | 53   | Authoring purpose and workflow             |
-| Installation        | 132  | How to add Panther to an agent environment |
-| Usage               | 202  | How agents activate and run the skill      |
-| Example Prompts     | 213  | Phrases the skill activates on             |
-| Workflow Diagrams   | 253  | ASCII and Mermaid diagrams of the pipeline |
-| Core Principles     | 379  | Convention preservation and minimal diffs  |
-| When To Use         | 390  | Supported requests and exclusions          |
-| What's Inside       | 428  | Rule files, templates, tools, and evals    |
-| Specification       | 544  | Agent Skills specification conformance     |
-| Verification        | 560  | Skill-maintenance checks                   |
-| License             | 567  | License for the skill itself               |
+| Installation        | 141  | How to add Panther to an agent environment |
+| Usage               | 211  | How agents activate and run the skill      |
+| Example Prompts     | 222  | Phrases the skill activates on             |
+| Workflow Diagrams   | 262  | ASCII and Mermaid diagrams of the pipeline |
+| Core Principles     | 388  | Convention preservation and minimal diffs  |
+| When To Use         | 399  | Supported requests and exclusions          |
+| What's Inside       | 437  | Rule files, templates, tools, and evals    |
+| Specification       | 553  | Agent Skills specification conformance     |
+| Verification        | 569  | Skill-maintenance checks                   |
+| License             | 576  | License for the skill itself               |
 | Credits             | 572  | Methodology and example sources            |
 
 ## Overview
@@ -62,6 +62,7 @@ to pull incoming commits before starting, when the skill lives in a git clone.
 **Resolves parameters**
 
 For a new document it confirms the type, language, filename, and encoding, with sensible defaults.
+
 For an edit it skips the questions and follows the document's own conventions.
 
 **Detects the document's conventions**
@@ -86,12 +87,14 @@ machinery than a project specification.
 
 Every language file covers structure, headings, lists, characters, tables, vocabulary,
 and file naming.
+
 English uses Title Case headings, Polish uses sentence case,
 and each language carries its own terminology guidance.
 
 **Validates mechanically**
 
 Tables are formatted by script, not by hand.
+
 A document validator checks structure, spacing, characters, and table alignment before delivery.
 
 **Discovers document layouts**
@@ -100,14 +103,17 @@ Separately, when you ask to "discover layout" or "detect document layout",
 the agent analyzes a directory or repository: it censuses layout signals and document types,
 compares them with every defined scope, names the best match,
 and lists exceptions - missing expected directories or documents no scope covers.
+
 The report is delivered inline, and a file is written only when asked.
 
 **Audits documents**
 
 Separately, when you ask to "audit this document" or "check document formatting",
 the agent follows `process/document-audit.md`:
+
 it runs mechanical checks and a structural census with `scripts/census-document.py`,
 evaluates the document against its governing rules, and reports findings with an optional fix plan.
+
 An audit is analysis only - it changes nothing in the document.
 
 **Describes subjects**
@@ -115,8 +121,10 @@ An audit is analysis only - it changes nothing in the document.
 Separately, when you ask to "describe", "describe shortly", or "make a description",
 the agent follows `process/describe-response.md`: it consolidates the subject - session work,
 a document, a repository - into an impersonal, compact inline response.
+
 A "shortly" request caps the answer at ten sentences, twenty for large subjects,
 while a "long" or "detailed" request sets a floor of one hundred sentences.
+
 The description is delivered inline, and a file is written only when asked.
 
 **Translates documents**
@@ -126,6 +134,7 @@ the agent follows `process/translate-document.md`: it resolves the language pair
 loads the target language baseline with the matching `translations/` pair file and industry
 glossaries, and renders the document in a single pass - adapting headings, section names,
 vocabulary, and characters to the target language while preserving structure, code, and identifiers.
+
 The output lands in a sibling file carrying the language code, named `<basename>-<code>.md`,
 and the delivery report lists the glossaries applied and notable term choices.
 

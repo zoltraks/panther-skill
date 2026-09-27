@@ -1,11 +1,24 @@
 #!/usr/bin/env python3
 """Split packed sentences inside prose paragraphs onto individual logical lines.
 
-Documents that follow the one-sentence-per-paragraph convention may contain
-lines packing two or more sentences, either written that way or produced by a
-mechanical rewrap. The tool detects mid-line sentence boundaries inside plain
-paragraph blocks and emits each sentence starting on its own line, re-wrapping
-the affected sentences to the document's width convention.
+Two sentence-layout dialects exist. The house convention (STYLE.md, the
+`languages/` baselines) is paragraph-per-sentence: every sentence is its own
+paragraph, separated from the next by one empty line. Repositories in the wild
+also use sentence-per-line: each sentence starts on its own logical line but
+shares the paragraph block with its neighbors. The default mode serves the
+second dialect; `--paragraphs` produces the first.
+
+Documents that follow either convention may contain lines packing two or more
+sentences, either written that way or produced by a mechanical rewrap. The tool
+detects mid-line sentence boundaries inside plain paragraph blocks and emits
+each sentence starting on its own line, re-wrapping the affected sentences to
+the document's width convention in default mode.
+
+In `--paragraphs` mode every multi-sentence paragraph block - packed or
+already line-split - becomes one sentence per paragraph, sentences separated
+by one empty line. Sentences are emitted verbatim as single logical lines and
+are never re-wrapped; apply `wrap-prose.py` separately when the document's
+dialect sets a width limit.
 
 Only plain paragraph blocks are processed. List items and their continuation
 lines, headings, tables, blockquotes, fenced blocks, indented code, HTML
@@ -17,12 +30,15 @@ Copy this file into the working repository's `work/` directory (or the
 repository root when no `work/` exists) as `split-sentences.tmp.py`, run it on
 the document file, then remove the copy.
 
-Usage: python split-sentences.py <file.md> [--check] [--width N]
+Usage: python split-sentences.py <file.md> [--check] [--paragraphs] [--width N]
                                    [--payload-markdown]
 
-  --check              report lines carrying a mid-line sentence boundary
-                       without writing, exit 1 when any exist
-  --width N            re-wrap split sentences to this limit, default 100
+  --check              report lines or blocks needing a split, without
+                       writing, exit 1 when any exist
+  --paragraphs         emit one sentence per paragraph, sentences separated
+                       by one empty line; combines with --check
+  --width N            re-wrap split sentences to this limit, default 100,
+                       ignored in --paragraphs mode
   --payload-markdown   also process prose inside ```markdown fenced blocks
                        (embedded payload documents); other fence languages
                        always stay opaque
@@ -176,7 +192,22 @@ def paragraph_line(line, list_stack):
     return True
 
 
-def main(path, width, payload_markdown, check_only):
+def block_sentences(block, lines):
+    """Reconstruct every sentence unit inside a paragraph block."""
+    units = []
+    cur = []
+    for n in block:
+        for seg in split_line(lines[n - 1]):
+            cur.append(seg.strip())
+            if TERMINAL.search(seg.strip()):
+                units.append(" ".join(p for p in cur if p).strip())
+                cur = []
+    if cur:
+        units.append(" ".join(p for p in cur if p).strip())
+    return units
+
+
+def main(path, width, payload_markdown, check_only, paragraphs):
     raw = open(path, "rb").read()
     crlf = b"\r\n" in raw
     try:
@@ -200,8 +231,9 @@ def main(path, width, payload_markdown, check_only):
         fence = FENCE.match(line)
         if fence:
             marker_len, lang = len(fence.group(1)), fence.group(2)
-            if fences and marker_len >= fences[-1][0]:
-                fences.pop()
+            if fences:
+                if marker_len >= fences[-1][0]:
+                    fences.pop()
             else:
                 fences.append((marker_len, lang))
             list_stack = []
@@ -255,6 +287,16 @@ def main(path, width, payload_markdown, check_only):
         blocks.append(cur_block)
 
     if check_only:
+        if paragraphs:
+            found = [b[0] for b in blocks if len(block_sentences(b, lines)) > 1]
+            for n in found:
+                print(f"line {n}: paragraph block packs multiple sentences: "
+                      f"{lines[n - 1].strip()[:60]}...")
+            if found:
+                print(f"{len(found)} paragraph block(s) pack multiple sentences")
+                return 1
+            print(f"PASS {path}: every sentence is its own paragraph")
+            return 0
         found = []
         for b in blocks:
             for n in b:
@@ -269,10 +311,23 @@ def main(path, width, payload_markdown, check_only):
         print(f"PASS {path}: every paragraph sentence starts on a line")
         return 0
 
-    # Pass 2 - rebuild the flagged blocks one sentence per logical line.
+    # Pass 2 - rebuild the flagged blocks one sentence per logical line,
+    # or one sentence per paragraph when --paragraphs is given.
     repl = {}
     split_count = 0
     for b in blocks:
+        if paragraphs:
+            units = block_sentences(b, lines)
+            if len(units) <= 1:
+                continue
+            out_b = []
+            for unit in units:
+                if out_b:
+                    out_b.append("")
+                out_b.append(unit)
+            split_count += len(units) - 1
+            repl[b[0]] = out_b
+            continue
         segs_per_line = [(n, split_line(lines[n - 1])) for n in b]
         if not any(len(s) > 1 for _, s in segs_per_line):
             continue
@@ -323,19 +378,23 @@ def main(path, width, payload_markdown, check_only):
 
     eol = "\r\n" if crlf else "\n"
     open(path, "wb").write(eol.join(result).encode(encoding))
-    print(f"split {split_count} sentence(s) across {len(repl)} paragraph block(s)")
+    noun = "paragraph(s)" if paragraphs else "paragraph block(s)"
+    print(f"split {split_count} sentence(s) across {len(repl)} {noun}")
     return 0
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="Split packed sentences onto individual logical lines."
+        description="Split packed sentences onto individual logical lines "
+                    "or paragraphs."
     )
     parser.add_argument("file")
     parser.add_argument("--check", action="store_true")
+    parser.add_argument("--paragraphs", action="store_true")
     parser.add_argument("--width", type=int, default=100)
     parser.add_argument("--payload-markdown", action="store_true")
     parsed = parser.parse_args()
     raise SystemExit(
-        main(parsed.file, parsed.width, parsed.payload_markdown, parsed.check)
+        main(parsed.file, parsed.width, parsed.payload_markdown,
+             parsed.check, parsed.paragraphs)
     )

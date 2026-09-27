@@ -58,7 +58,7 @@ The commands below use `python` - substitute `python3` when `python` is not on P
 ```text
 python detect-encoding.tmp.py <file>
 python detect-scope.tmp.py <directory>
-python split-sentences.tmp.py <file.md> [--check] [--width N] [--payload-markdown]
+python split-sentences.tmp.py <file.md> [--check] [--paragraphs] [--width N] [--payload-markdown]
 python wrap-prose.tmp.py <file.md> [--check] [--width N] [--payload-markdown]
 python format-table.tmp.py <file.md> [--check] [--payload-markdown]
 python align-comments.tmp.py <file.md> [--check] [--compact] [--payload-markdown]
@@ -73,11 +73,14 @@ python scripts/check-update.py
 
 `detect-encoding.py` and `detect-scope.py` always exit `0` and print a report.
 
-`split-sentences.py` rewrites the file in place, `--check` only reports lines that pack
+`split-sentences.py` rewrites the file in place, `--check` only reports lines or blocks that pack
 multiple sentences.
 
-It emits each paragraph sentence starting on its own logical line and re-wraps the affected
-sentences to `--width N`.
+By default it emits each paragraph sentence starting on its own logical line and re-wraps the
+affected sentences to `--width N`.
+
+With `--paragraphs` it emits the house convention instead: every sentence becomes its own
+paragraph, separated by one empty line, and sentences are never re-wrapped.
 
 It leaves list items and their continuation lines opaque - a packed list item is an
 element-level convention, not a defect (see `conventions/markdown-dialects.md`).
@@ -102,6 +105,7 @@ shell-tagged blocks to one shared column per block - the established column when
 comments already share one, otherwise the longest entry plus two spaces.
 
 `--compact` moves the column to the minimum.
+
 The convention lives in `conventions/plain-text-comments.md`.
 
 `diff-content.py` compares the normalized token stream of a document against `git show HEAD`
@@ -154,6 +158,7 @@ not contain literal pipe characters.
 code fences, such as AsciiDoc samples, are payload, not Markdown tables.
 
 Pass `--payload-markdown` to apply a curated subset of checks inside ` ```markdown ` blocks:
+
 trailing whitespace, consecutive blank lines, lone list markers, and line width.
 
 `diff-content.py` is a heuristic net, not a proof - its merged-line warnings require manual

@@ -5,6 +5,7 @@
 ## Definicje skali
 
 Prawdopodobieństwo i skutek oceniane są w skali 1-5.
+
 Wynik = Prawdopodobieństwo x Skutek.
 
 | Wynik | Prawdopodobieństwo | Skutek      |

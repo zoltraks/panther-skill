@@ -191,10 +191,11 @@ Apply the language file rules to the content you write even inside a dialect doc
 shape, vocabulary, and terminology still follow the language rules.
 
 For a requested reformatting, prefer the dedicated tools over hand edits:
+
 `scripts/split-sentences.py` separates packed sentences onto individual logical lines,
-`scripts/wrap-prose.py --width N` wraps prose and never joins lines, `scripts/format-table.py`
-realigns tables, `scripts/align-comments.py` aligns `#` comments inside plain-text and shell
-blocks.
+`scripts/wrap-prose.py --width N` wraps prose and never joins lines,
+`scripts/format-table.py` realigns tables,
+`scripts/align-comments.py` aligns `#` comments inside plain-text and shell blocks.
 
 Pass `--payload-markdown` to the payload-aware tools only when the request covers embedded
 payload documents - payload content stays opaque otherwise.

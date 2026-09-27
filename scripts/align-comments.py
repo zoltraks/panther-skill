@@ -78,8 +78,9 @@ def align(lines, payload_markdown, compact):
         if fence:
             flush()
             marker = len(fence.group(1))
-            if fences and marker >= fences[-1][0]:
-                fences.pop()
+            if fences:
+                if marker >= fences[-1][0]:
+                    fences.pop()
             else:
                 fences.append((marker, fence.group(2)))
             continue

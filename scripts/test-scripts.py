@@ -32,6 +32,7 @@ CASES: list[tuple[str, list[str], tuple[int, ...], str | None]] = [
     ("detect-scope.py", ["."], (0,), None),
     ("census-document.py", ["README.md"], (0,), None),
     ("split-sentences.py", ["README.md", "--check"], (0, 1), None),
+    ("split-sentences.py", ["README.md", "--paragraphs", "--check"], (0,), None),
     ("wrap-prose.py", ["README.md", "--check"], (0, 1), None),
     ("format-table.py", ["README.md", "--check"], (0, 1), None),
     ("align-comments.py", ["README.md", "--check"], (0, 1), None),

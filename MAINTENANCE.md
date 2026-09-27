@@ -67,7 +67,9 @@ Translation pair directories are named `translations/<pair>/` with ISO 639-1 cod
 ordered source to target.
 
 Translation files inside a pair directory are named `translations/<pair>/<pair>-<category>.md`.
+
 Direction rules use `translations/<pair>/<pair>-general.md`.
+
 Glossaries use a stable category slug shared by every pair directory (`software`, `project`,
 `finance`, `legal`, `medical`, `electrical`)
 so the same subject keeps the same filename across languages.
@@ -140,9 +142,11 @@ Keep `evals/evals.json` prompts in sync with capabilities that change.
 
 1. Create `scripts/<verb>-<object>.py`, standard library only unless the dependency is
    documented.
-2. Classify it in `scripts/README.md` as document-production (copied as `.tmp.`) or
+2. Keep it a self-contained single file - document-production tools are copied into working
+   repositories under `.tmp.` names, where a shared helper module would not exist.
+3. Classify it in `scripts/README.md` as document-production (copied as `.tmp.`) or
    skill-maintenance (runs from this repository only).
-3. Reference it from the `SKILL.md` `scripts/` section and from the workflow step where it runs.
+4. Reference it from the `SKILL.md` `scripts/` section and from the workflow step where it runs.
 
 ## Adding A Translation Pair
 
@@ -180,6 +184,24 @@ Run `python scripts/format-table.py <file>` on every file whose tables were touc
 Run `python scripts/validate-document.py <file>` on every edited rule document.
 
 Exercise the prompts in `evals/evals.json` after changes that alter behavior.
+
+## Style Self-Audit
+
+Run the checkers over every Markdown file outside `work/`:
+
+- `python scripts/split-sentences.py <file> --paragraphs --check` - every sentence must be its
+  own paragraph, per `STYLE.md`.
+- `python scripts/wrap-prose.py <file> --check` - skill files wrap prose at 100 characters.
+- `python scripts/format-table.py <file> --check`
+- `python scripts/align-comments.py <file> --check`
+- `python scripts/validate-document.py <file>`
+- `python scripts/check-contents.py .` - Contents tables still anchor to real headings.
+
+Skip `wrap-prose.py` on `languages/` and `templates/` files - produced documents never
+hard-wrap.
+
+`align-comments.py` flags the intentional "Incorrect" example block in
+`conventions/plain-text-comments.md` - that flag is expected, not a defect.
 
 ## Versioning
 

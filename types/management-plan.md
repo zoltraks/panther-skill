@@ -18,6 +18,7 @@ Use for the project management plan and its subsidiary plans:
 - stakeholder engagement and change management plans
 
 An implementation plan that describes how to build a feature is a `types/technical-document.md`.
+
 A management plan describes how a project domain is governed - that is this type.
 
 **Templates:**

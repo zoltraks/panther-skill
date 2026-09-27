@@ -5,6 +5,7 @@
 ## Scoring Definitions
 
 Probability and impact are rated on a 1-5 scale.
+
 Score = Probability x Impact.
 
 | Score | Probability    | Impact     |

@@ -86,6 +86,7 @@ Never bump version numbers unless the request explicitly asks for it.
 ## Naming
 
 UPPERCASE conventional names are used for the governed document set in `docs/`:
+
 `GUIDELINES.md`, `SPECIFICATION.md`, `ARCHITECTURE.md`, `TESTING.md`, `DEPLOYMENT.md`,
 `WORKFLOW.md`, `REFERENCES.md`, `COPYRIGHTS.md`, `CONCEPT.md`, `PREPARATION.md`, `PLAN.md`,
 `BENCHMARK.md`, `IGNORE.md`, `STYLE.md`.

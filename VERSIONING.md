@@ -29,14 +29,17 @@ Versions use a two-part decimal format: `<major>.<minor>`.
 ## When To Bump
 
 Never bump the version automatically.
+
 The version is bumped only when the user explicitly asks for it.
 
 Do not bump the version as a side effect of adding features, fixing issues, or refactoring.
+
 Wait for the user to request a version bump, then apply the increment rules above.
 
 ## Release Anchors
 
 Panther does not tag releases.
+
 The commit that bumps `metadata.version` is the release anchor - its hash is the named state
 consumers pin or revert to, since the version alone lives only in frontmatter text.
 
@@ -50,6 +53,7 @@ frontmatter.
 
 Documents produced by the skill may carry their own version markers,
 such as a version comment or a Version History section, defined by the matching `types/` file.
+
 Those document versions belong to the produced document, not to the skill.
 
 ## Where Version Is Recorded

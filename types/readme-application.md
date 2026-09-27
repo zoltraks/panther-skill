@@ -24,6 +24,7 @@ documentation instead of duplicating it.
 ## When To Use
 
 Use for the root `README.md` of a software project that builds or ships a runnable artifact:
+
 desktop and server applications, services, emulators, tools with a deployment story.
 
 For a consumable package or importable module, prefer `types/readme-library.md`.

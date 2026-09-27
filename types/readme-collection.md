@@ -23,8 +23,9 @@ the reader to each entry's own documentation.
 ## When To Use
 
 Use for the root `README.md` of a repository whose value is the set of things it contains:
-a collection of skills or plugins, a monorepo holding several projects, an examples or
-templates showcase.
+
+a collection of skills or plugins, a monorepo holding several projects,
+an examples or templates showcase.
 
 Each entry's own `README.md` carries its details - the collection README links to them instead
 of duplicating them.

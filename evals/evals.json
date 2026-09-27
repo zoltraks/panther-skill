@@ -639,6 +639,20 @@
         "Repo validators are expected to exit 0, while check-mode tools may exit 0 or 1 as controlled verdicts.",
         "Any FAIL line reporting an unhandled traceback is treated as a regression to fix, not a finding to report."
       ]
+    },
+    {
+      "id": 53,
+      "prompt": "Audit this skill's own documents for style compliance.",
+      "expected_output": "A full checker sweep over every Markdown file with per-file findings, expected-flag zones identified, and fixes applied through the canonical tools.",
+      "files": [],
+      "expectations": [
+        "The agent runs split-sentences.py --paragraphs --check on every Markdown file to verify the paragraph-per-sentence convention.",
+        "The agent runs wrap-prose.py --check on skill files only, skipping languages/ and templates/ which never hard-wrap.",
+        "The agent runs format-table.py --check, align-comments.py --check, and validate-document.py across the file set.",
+        "The intentional 'Incorrect' example block in conventions/plain-text-comments.md is named an expected flag rather than rewritten.",
+        "Findings are fixed through the canonical tools (split-sentences.py, wrap-prose.py, format-table.py, align-comments.py), not by hand.",
+        "Contents tables are renumbered and verified with check-contents.py after any section-moving edit."
+      ]
     }
   ]
 }
