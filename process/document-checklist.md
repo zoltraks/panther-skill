@@ -30,10 +30,11 @@ Fix every failure, or report it to the user with a reason.
 - No line ends with a whitespace character.
 - No blank line sits as the first or last line inside a fenced code block.
 - No line carries a lone list marker without content.
-- **Existing:** lines respect the document's width convention when one exists - verified with
-  `scripts/wrap-prose.py --check --width N`, otherwise one logical line per sentence applies.
+- **Existing:** lines follow the document's detected wrap convention - verified with
+  `scripts/reflow-prose.py --wrap --check --width N` for fixed-width documents and
+  `scripts/reflow-prose.py --unwrap --check` for logical-line documents.
 - **Existing:** character substitutions that change line length were re-verified against the
-  document's width convention - for example `—` replaced by `--` adds one character per dash.
+  document's wrap convention - for example `—` replaced by `--` adds one character per dash.
 
 ## Characters
 

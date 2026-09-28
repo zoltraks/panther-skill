@@ -19,7 +19,7 @@ Classify the request into one primary task:
 |-----------|----------------------------------------------------|--------------------------------|
 | Create    | "write a spec", "create a README", "draft a note"  | language file + type file      |
 | Edit      | "add a section", "update the glossary"             | document's own conventions win |
-| Reformat  | "fix this table", "align the columns"              | language file table rules      |
+| Reformat  | "fix this table", "unwrap the document"            | language file + convention set |
 | Translate | "translate this doc to Polish"                     | translate procedure            |
 | Discover  | "discover layout", "detect document layout"        | scope discovery procedure      |
 | Audit     | "audit this document", "check document formatting" | document audit procedure       |
@@ -96,9 +96,27 @@ HTML artifacts.
 Identify embedded payload documents the same way - ` ```markdown ` fenced blocks that carry
 complete documents are separate dialect regions with their own conventions.
 
-When the task involves reformatting or wrapping, check the repository's own style rules for a
-hard line-width limit before touching the document - a `STYLE.md` or equivalent guideline
-overrides the no-hard-wrap default of the language files.
+Before planning changes, gather every convention the document currently follows and record them
+as the working set for the edit:
+
+- encoding, byte order mark, and line-ending style (from `detect-encoding.py`)
+- Markdown dialect, heading style, and section numbering
+- sentence layout - paragraph-per-sentence, sentence-per-line, or packed
+- wrap convention - unwrapped logical lines or a fixed width, with the dominant width
+- quote and apostrophe style, list markers, table alignment
+- version markers or contents tables the document maintains
+- embedded payload regions and their own interior conventions
+
+The document's own observed conventions are authoritative for edits.
+
+Repository rule documents such as `STYLE.md` or `GUIDELINES.md` declare the convention for new
+files and break ties when the document is mixed or ambiguous.
+
+When the observed convention conflicts with a declared rule, report the conflict instead of
+silently normalizing the document.
+
+Converting between wrapped and logical-line layout is itself a convention change - apply it only
+when the request explicitly covers it, using `scripts/reflow-prose.py`.
 
 ## Scope Detection
 
@@ -194,7 +212,8 @@ shape, vocabulary, and terminology still follow the language rules.
 For a requested reformatting, prefer the dedicated tools over hand edits:
 
 `scripts/split-sentences.py` separates packed sentences onto individual logical lines,
-`scripts/wrap-prose.py --width N` wraps prose and never joins lines,
+`scripts/reflow-prose.py --wrap --width N` wraps prose and `--unwrap` joins wrapped
+continuations back into logical lines,
 `scripts/format-table.py` realigns tables,
 `scripts/align-comments.py` aligns `#` comments inside plain-text and shell blocks.
 
@@ -235,7 +254,8 @@ Before delivering, run the checks from `process/document-checklist.md`:
 - `scripts/format-table.py --check` on the file when it contains tables.
 - `scripts/align-comments.py --check` when the document contains plain-text blocks with `#`
   comments.
-- `scripts/wrap-prose.py --check --width N` when the document follows a width convention.
+- `scripts/reflow-prose.py --wrap --check --width N` when the document follows a width
+  convention, `scripts/reflow-prose.py --unwrap --check` when it keeps logical lines.
 - `scripts/validate-document.py` on the file, with `--payload-markdown` when the document embeds
   ` ```markdown ` payload blocks.
 - `scripts/diff-content.py` after any formatting-only pass - the token stream must be identical

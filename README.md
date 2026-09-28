@@ -345,7 +345,7 @@ follow `process/describe-response.md`.
        ┌────────────────────────────┐
        │   Mechanical Validation    │
        │ scripts/format-table.py      │
-       │ scripts/wrap-prose.py        │
+       │ scripts/reflow-prose.py      │
        │ scripts/validate-document.py │
        │ scripts/diff-content.py      │
        └──────────────┬─────────────┘
@@ -379,7 +379,7 @@ flowchart TD
 
     H --> I[Draft Document<br/>templates/<lang>/<type>-template.md<br/>minimal diff for edits]
 
-    I --> J[Mechanical Validation<br/>scripts/format-table.py<br/>scripts/wrap-prose.py<br/>scripts/validate-document.py<br/>scripts/diff-content.py]
+    I --> J[Mechanical Validation<br/>scripts/format-table.py<br/>scripts/reflow-prose.py<br/>scripts/validate-document.py<br/>scripts/diff-content.py]
 
     J --> K[Delivery<br/>write file<br/>preserve encoding & line endings]
 
@@ -540,7 +540,8 @@ panther-skill/
 │   ├── detect-encoding.py             # BOM, encoding, and line-ending detection
 │   ├── detect-scope.py                # Document-scope signal census
 │   ├── census-document.py             # Structural document census for audits
-│   ├── wrap-prose.py                  # Split-only line wrapper for width conventions
+│   ├── reflow-prose.py                # Bidirectional prose wrapper and unwrapper
+│   ├── wrap-prose.py                  # Deprecated split-only wrapper, use reflow-prose.py
 │   ├── split-sentences.py             # Sentence-per-line prose splitter
 │   ├── format-table.py                # Source-width table formatter
 │   ├── align-comments.py              # Plain-text block comment aligner

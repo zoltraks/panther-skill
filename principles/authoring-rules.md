@@ -32,7 +32,13 @@ A sentence may contain several related clauses if they express a single thought.
 When editing an existing document, preserve its conventions.
 
 This covers the Markdown dialect, section numbering, heading style and depth, list style, table
-layout, character encoding, line-ending style, and file naming.
+layout, line wrapping and sentence layout, character encoding, line-ending style, and file naming.
+
+The wrapping convention - fixed-width wrapped lines or unwrapped logical lines - comes from the
+document itself.
+
+Detect it before reformatting and never convert between the two layouts unless the request
+explicitly covers the conversion.
 
 Never normalize an existing document silently.
 

@@ -26,21 +26,21 @@ Zasady opisane poniżej stosują się również do samego tego dokumentu.
 | Zasady spisu treści                | 107    | Kiedy dodawać spis treści                   |
 | Akapity i zdania                   | 121    | Budowa zdań i akapitów                      |
 | Zawijanie wierszy                  | 135    | Wiersze logiczne i twarde łamania           |
-| Listy                              | 149    | Punktory, numeracja i odstępy               |
-| Puste wiersze i odstępy            | 171    | Zasady odstępów                             |
-| Bloki kodu                         | 185    | Ogrodzenia, znaczniki i kod liniowy         |
-| Formatowanie w treści              | 199    | Cudzysłowy, pogrubienia i kursywa           |
-| Średniki                           | 215    | Zakaz średników w tekście                   |
-| Znaki specjalne                    | 241    | Znaki ramek i emoji                         |
-| Słownictwo polskie                 | 249    | Preferowane terminy i kalki                 |
-| Nazwy sekcji według typu dokumentu | 275    | Polskie nazwy sekcji i elementy typów       |
-| Cechy dialektów                    | 532    | Numeracja rozdziałów i pseudo-nagłówki      |
-| Tabele                             | 549    | Wyrównanie według źródła                    |
-| Nazwy plików                       | 663    | Nazywanie nowych plików dokumentacji        |
-| Przykład                           | 673    | Przykład poprawny i niepoprawny             |
-| Utrzymanie plików                  | 707    | Kodowanie i złamania wierszy                |
-| Pytanie o aktualizację             | 717    | Polskie brzmienie pytania o aktualizację    |
-| Frazy aktywujące                   | 723    | Polskie frazy i ich angielskie odpowiedniki |
+| Listy                              | 155    | Punktory, numeracja i odstępy               |
+| Puste wiersze i odstępy            | 177    | Zasady odstępów                             |
+| Bloki kodu                         | 191    | Ogrodzenia, znaczniki i kod liniowy         |
+| Formatowanie w treści              | 205    | Cudzysłowy, pogrubienia i kursywa           |
+| Średniki                           | 221    | Zakaz średników w tekście                   |
+| Znaki specjalne                    | 247    | Znaki ramek i emoji                         |
+| Słownictwo polskie                 | 255    | Preferowane terminy i kalki                 |
+| Nazwy sekcji według typu dokumentu | 281    | Polskie nazwy sekcji i elementy typów       |
+| Cechy dialektów                    | 538    | Numeracja rozdziałów i pseudo-nagłówki      |
+| Tabele                             | 555    | Wyrównanie według źródła                    |
+| Nazwy plików                       | 669    | Nazywanie nowych plików dokumentacji        |
+| Przykład                           | 679    | Przykład poprawny i niepoprawny             |
+| Utrzymanie plików                  | 713    | Kodowanie i złamania wierszy                |
+| Pytanie o aktualizację             | 723    | Polskie brzmienie pytania o aktualizację    |
+| Frazy aktywujące                   | 729    | Polskie frazy i ich angielskie odpowiedniki |
 
 ## Struktura dokumentu
 
@@ -142,9 +142,15 @@ Zdanie może być długie, gdy myśl jest długa, edytor lub przeglądarka zawin
 
 Wstawiaj twarde złamanie wiersza tylko wtedy, gdy wymaga tego sama treść źródłowa, na przykład w bloku kodu lub w diagramie.
 
-Wyjątek: gdy własne reguły repozytorium narzucają twardy limit, na przykład `STYLE.md` wymagający wierszy nie dłuższych niż 100 znaków, wykryj tę konwencję przed formatowaniem i zastosuj `scripts/wrap-prose.py --width N`.
+Dla istniejącego dokumentu jego własna konwencja zawijania ma pierwszeństwo przed tą regułą.
 
-Narzędzie tylko dzieli wiersze - nigdy ich nie łączy i nie rusza tabel, bloków kodu ani wciętych bloków kodu.
+Wykryj, czy dokument zawija tekst przy stałej szerokości, czy utrzymuje wiersze logiczne, i zachowaj tę konwencję - zmieniaj ją tylko wtedy, gdy żądanie tego dotyczy.
+
+Reguły repozytorium takie jak `STYLE.md` wymagający wierszy nie dłuższych niż 100 znaków ustalają konwencję dla nowych plików i rozstrzygają przypadki niejednoznaczne.
+
+Użyj `scripts/reflow-prose.py --wrap --width N`, aby zastosować stałą szerokość, i `scripts/reflow-prose.py --unwrap`, aby połączyć zawinięte wiersze w wiersze logiczne.
+
+Tryb zawijania tylko dzieli wiersze, tryb łączenia tylko je łączy, oba nie ruszają tabel, bloków kodu ani wciętych bloków kodu.
 
 ## Listy
 

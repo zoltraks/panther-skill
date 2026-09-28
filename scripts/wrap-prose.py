@@ -2,6 +2,10 @@
 """Wrap Markdown prose lines to a maximum width for documents whose own
 conventions declare one.
 
+Deprecated: superseded by `reflow-prose.py`, whose `--wrap` mode runs the
+same algorithm and whose `--unwrap` mode performs the inverse join. This
+file stays for compatibility with documents that already reference it.
+
 The tool only ever splits a line - it never joins lines. Every output line
 is therefore a prefix of a source line, which makes the operation safe on
 documents mixing prose with opaque blocks such as tables, headings, fenced

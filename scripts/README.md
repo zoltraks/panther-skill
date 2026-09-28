@@ -3,9 +3,10 @@
 ## Purpose
 
 > **Scope:** Document-production and skill-maintenance scripts
-> **Key items:** encoding detection, scope signals, sentence splitting, prose wrapping,
-> table formatting, comment alignment, document validation, content diffing, document
-> census, skill validation, reference integrity, contents-table drift, self-update check
+> **Key items:** encoding detection, scope signals, sentence splitting, prose wrapping and
+> unwrapping, table formatting, comment alignment, document validation, content diffing,
+> document census, skill validation, reference integrity, contents-table drift, self-update
+> check
 
 These scripts support deterministic production of documents and maintenance of Panther itself.
 
@@ -15,10 +16,10 @@ They do not modify documents beyond the specific task each tool performs.
 
 ### Document-Production Tools
 
-Copy `detect-encoding.py`, `detect-scope.py`, `split-sentences.py`, `wrap-prose.py`,
-`format-table.py`, `align-comments.py`, `validate-document.py`, `diff-content.py`, and
-`census-document.py` into the working repository's `work/` directory under a `.tmp.` name
-before use.
+Copy `detect-encoding.py`, `detect-scope.py`, `split-sentences.py`, `reflow-prose.py`,
+`wrap-prose.py`, `format-table.py`, `align-comments.py`, `validate-document.py`,
+`diff-content.py`, and `census-document.py` into the working repository's `work/` directory
+under a `.tmp.` name before use.
 
 If `work/` does not exist, use an existing `temp` or `temporary` directory.
 
@@ -65,6 +66,7 @@ The commands below use `python` - substitute `python3` when `python` is not on P
 python detect-encoding.tmp.py <file>
 python detect-scope.tmp.py <directory>
 python split-sentences.tmp.py <file.md> [--check] [--paragraphs] [--width N] [--payload-markdown]
+python reflow-prose.tmp.py <file.md> (--wrap | --unwrap) [--check] [--width N] [--payload-markdown]
 python wrap-prose.tmp.py <file.md> [--check] [--width N] [--payload-markdown]
 python format-table.tmp.py <file.md> [--check] [--payload-markdown]
 python align-comments.tmp.py <file.md> [--check] [--compact] [--payload-markdown]
@@ -96,15 +98,34 @@ Lines ending in `:` are treated as label lines and never absorb following senten
 Abbreviations such as `e.g.` and `etc.` and periods inside inline code spans do not count as
 boundaries.
 
-`wrap-prose.py` rewrites the file in place, `--check` only reports lines that would be
-wrapped.
+`reflow-prose.py` rewrites the file in place, `--check` only reports the lines the chosen
+direction would change.
 
-It only splits over-width lines at whitespace - it never joins lines, and it leaves tables,
-fenced code blocks, indented code blocks, HTML comments, and frontmatter untouched.
+Its `--wrap` mode splits over-width lines at whitespace - the same algorithm as
+`wrap-prose.py`.
 
-`--payload-markdown` extends `split-sentences.py`, `wrap-prose.py`, `format-table.py`,
-`align-comments.py`, and `validate-document.py` into ` ```markdown ` fenced blocks, all
-other fence languages stay opaque.
+`--wrap` is width-only and does not place sentences on their own lines - run
+`split-sentences.py --paragraphs` first when the convention also requires one sentence per
+line.
+
+Its `--unwrap` mode joins hard-wrapped continuation lines inside paragraphs, list items,
+and blockquotes back into single logical lines.
+
+Unwrap joins a line only when the accumulated text does not end with sentence-final
+punctuation or a label colon, so separate sentences sharing a paragraph block stay on
+their own lines - combine it with `split-sentences.py --paragraphs` when the task also asks
+for one sentence per paragraph.
+
+Both directions leave tables, fenced code blocks, indented code blocks, HTML comments, and
+frontmatter untouched.
+
+`wrap-prose.py` is deprecated, use `reflow-prose.py --wrap` instead.
+
+It stays in `scripts/` for compatibility with documents that already reference it.
+
+`--payload-markdown` extends `split-sentences.py`, `reflow-prose.py`, `wrap-prose.py`,
+`format-table.py`, `align-comments.py`, and `validate-document.py` into ` ```markdown `
+fenced blocks, all other fence languages stay opaque.
 
 `align-comments.py` aligns trailing `#` comments inside untagged fenced blocks and
 shell-tagged blocks to one shared column per block - the established column when most
@@ -143,7 +164,9 @@ Run checks in this order:
 1. Detect encoding before editing an existing file.
 2. Check packed sentences with `split-sentences.py --check` when the request covers
    sentence separation.
-3. Check wrap convention with `wrap-prose.py --check` when a width rule applies.
+3. Check the wrap convention with `reflow-prose.py --wrap --check` for fixed-width
+   documents or `reflow-prose.py --unwrap --check` for logical-line documents, matching
+   the detected convention.
 4. Format edited tables with `format-table.py`.
 5. Align comments in plain-text blocks with `align-comments.py` when the document contains
    them.
@@ -174,6 +197,10 @@ review, and a clean report still does not replace reading the diff.
 
 `split-sentences.py` detects boundaries heuristically - review its diff before accepting,
 and prefer leaving a questionable line packed over splitting it wrong.
+
+`reflow-prose.py --unwrap` joins a line when the accumulated text does not end with
+sentence-final punctuation, and treats a label line ending in `:` as a boundary - review
+the joins on documents that mix several layouts.
 
 The validators are mechanical checks, not judgment.
 

@@ -26,21 +26,21 @@ Die unten beschriebenen Regeln gelten auch für dieses Dokument selbst.
 | Regeln zum Inhaltsverzeichnis    | 107   | Wann ein Inhaltsverzeichnis eingefügt wird      |
 | Absätze und Sätze                | 121   | Aufbau von Sätzen und Absätzen                  |
 | Zeilenumbruch                    | 135   | Logische Zeilen und harte Zeilenumbrüche        |
-| Listen                           | 149   | Aufzählungszeichen, Nummerierung und Abstände   |
-| Leerzeilen und Abstände          | 171   | Regeln für Abstände                             |
-| Codeblöcke                       | 185   | Zäune, Sprachkennzeichnungen und Inline-Code    |
-| Inline-Formatierung              | 199   | Anführungszeichen, Fettung und Kursivierung     |
-| Semikolons                       | 215   | Verbot des Semikolons im Fließtext              |
-| Sonderzeichen                    | 241   | Rahmenzeichen und Emoji                         |
-| Deutscher Wortschatz             | 249   | Bevorzugte Begriffe und Übersetzungskalküle     |
-| Abschnittsnamen nach Dokumenttyp | 279   | Deutsche Abschnittsnamen und Elemente der Typen |
-| Dialektmerkmale                  | 536   | Kapitelnummerierung und Pseudo-Überschriften    |
-| Tabellen                         | 553   | Ausrichtung nach dem Quelltext                  |
-| Dateinamen                       | 665   | Benennung neuer Dokumentationsdateien           |
-| Beispiel                         | 675   | Richtiges und falsches Beispiel                 |
-| Dateipflege                      | 709   | Kodierung und Zeilenenden                       |
-| Aktualisierungsfrage             | 719   | Deutsche Formulierung der Aktualisierungsfrage  |
-| Aktivierungsphrasen              | 725   | Deutsche Phrasen und englische Entsprechungen   |
+| Listen                           | 155   | Aufzählungszeichen, Nummerierung und Abstände   |
+| Leerzeilen und Abstände          | 177   | Regeln für Abstände                             |
+| Codeblöcke                       | 191   | Zäune, Sprachkennzeichnungen und Inline-Code    |
+| Inline-Formatierung              | 205   | Anführungszeichen, Fettung und Kursivierung     |
+| Semikolons                       | 221   | Verbot des Semikolons im Fließtext              |
+| Sonderzeichen                    | 247   | Rahmenzeichen und Emoji                         |
+| Deutscher Wortschatz             | 255   | Bevorzugte Begriffe und Übersetzungskalküle     |
+| Abschnittsnamen nach Dokumenttyp | 285   | Deutsche Abschnittsnamen und Elemente der Typen |
+| Dialektmerkmale                  | 542   | Kapitelnummerierung und Pseudo-Überschriften    |
+| Tabellen                         | 559   | Ausrichtung nach dem Quelltext                  |
+| Dateinamen                       | 671   | Benennung neuer Dokumentationsdateien           |
+| Beispiel                         | 681   | Richtiges und falsches Beispiel                 |
+| Dateipflege                      | 715   | Kodierung und Zeilenenden                       |
+| Aktualisierungsfrage             | 725   | Deutsche Formulierung der Aktualisierungsfrage  |
+| Aktivierungsphrasen              | 731   | Deutsche Phrasen und englische Entsprechungen   |
 
 ## Dokumentstruktur
 
@@ -142,9 +142,15 @@ Ein Satz darf lang sein, wenn der Gedanke lang ist, Editor oder Browser brechen 
 
 Setze einen harten Zeilenumbruch nur dann, wenn der Quelltext selbst ihn erfordert, zum Beispiel in einem Codeblock oder in einem Diagramm.
 
-Ausnahme: wenn die eigenen Regeln des Repositorys eine harte Begrenzung vorschreiben, zum Beispiel ein `STYLE.md` mit Zeilen von höchstens 100 Zeichen, erkenne diese Konvention vor dem Formatieren und wende `scripts/wrap-prose.py --width N` an.
+Für ein bestehendes Dokument gewinnt dessen eigene Umbruchkonvention gegenüber dieser Vorgabe.
 
-Das Werkzeug teilt Zeilen nur, es fügt sie niemals zusammen und lässt Tabellen, Codeblöcke und eingezogene Codeblöcke unverändert.
+Erkenne, ob das Dokument Text an einer festen Breite umbricht oder logische Zeilen nutzt, behalte diese Konvention bei und ändere sie nur, wenn der Auftrag sie abdeckt.
+
+Regeln des Repositorys wie ein `STYLE.md` mit Zeilen von höchstens 100 Zeichen legen die Konvention für neue Dateien fest und entscheiden in uneindeutigen Fällen.
+
+Verwende `scripts/reflow-prose.py --wrap --width N`, um eine feste Breite anzuwenden, und `scripts/reflow-prose.py --unwrap`, um umgebrochene Zeilen zu logischen Zeilen zu verbinden.
+
+Der Wrap-Modus teilt Zeilen nur, der Unwrap-Modus fügt sie nur zusammen, beide lassen Tabellen, Codeblöcke und eingezogene Codeblöcke unverändert.
 
 ## Listen
 

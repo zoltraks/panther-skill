@@ -50,14 +50,19 @@ Run them on the target:
 ```text
 python detect-encoding.tmp.py <file>
 python validate-document.tmp.py <file>
-python wrap-prose.tmp.py <file> --check --width <convention-or-100>
+python reflow-prose.tmp.py <file> --wrap --check --width <convention>
+python reflow-prose.tmp.py <file> --unwrap --check
 python format-table.tmp.py <file> --check
 ```
 
-Add `--payload-markdown` to `validate-document.py` and `format-table.py` when the document
-carries ` ```markdown ` payload blocks.
+Run the reflow check matching the document's detected wrap convention - `--wrap` for
+fixed-width documents, `--unwrap` for logical-line documents.
 
-The width comes from the repository's own convention - 100 when it declares none.
+The width comes from the document's convention, declared by the repository's rules or observed
+in the document itself - 100 when neither declares one.
+
+Add `--payload-markdown` to `validate-document.py`, `reflow-prose.py`, and `format-table.py`
+when the document carries ` ```markdown ` payload blocks.
 
 Record every `PASS`, `WARN`, and `FAIL` for the report.
 

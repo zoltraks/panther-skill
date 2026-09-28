@@ -26,17 +26,17 @@ The rules described below apply to this document itself as well.
 | Table of Contents        | 103  | When to add a contents section      |
 | Paragraphs and Sentences | 117  | Sentence structure                  |
 | Line Wrapping            | 131  | Logical lines and hard breaks       |
-| Lists                    | 145  | Bullets, numbering, and spacing     |
-| Blank Lines and Spacing  | 167  | Whitespace rules                    |
-| Code Blocks              | 181  | Fences, tags, and inline code       |
-| Inline Formatting        | 195  | Quotes, bold, and italics           |
-| Semicolons               | 211  | Semicolon prohibition in prose      |
-| Special Characters       | 237  | Box-drawing and emoji               |
-| English Vocabulary       | 245  | Preferred terms and calques         |
-| Tables                   | 268  | Source-width alignment rules        |
-| File Names               | 381  | Naming new documentation files      |
-| Example                  | 391  | Correct and incorrect sample        |
-| File Maintenance         | 425  | Encoding and line-ending preserving |
+| Lists                    | 151  | Bullets, numbering, and spacing     |
+| Blank Lines and Spacing  | 173  | Whitespace rules                    |
+| Code Blocks              | 187  | Fences, tags, and inline code       |
+| Inline Formatting        | 201  | Quotes, bold, and italics           |
+| Semicolons               | 217  | Semicolon prohibition in prose      |
+| Special Characters       | 243  | Box-drawing and emoji               |
+| English Vocabulary       | 251  | Preferred terms and calques         |
+| Tables                   | 274  | Source-width alignment rules        |
+| File Names               | 387  | Naming new documentation files      |
+| Example                  | 397  | Correct and incorrect sample        |
+| File Maintenance         | 431  | Encoding and line-ending preserving |
 
 ## Document Structure
 
@@ -138,9 +138,15 @@ A sentence may be long when the thought is long, the editor or viewer wraps it o
 
 Insert a hard line break only when the source content itself requires it, for example in a code block or a diagram.
 
-Exception: when the repository's own rules set a hard limit, for example a `STYLE.md` that requires lines no longer than 100 characters, detect that convention before formatting and apply `scripts/wrap-prose.py --width N`.
+For an existing document, the document's own wrap convention wins over this default.
 
-The wrapper only splits lines - it never joins them, and it leaves tables, code fences, and indented code blocks untouched.
+Detect whether it wraps prose at a fixed width or keeps logical lines, keep that convention, and change it only when the request covers the conversion.
+
+Repository rules such as a `STYLE.md` requiring lines no longer than 100 characters declare the convention for new files and break ties when a document's wrapping is mixed or ambiguous.
+
+Use `scripts/reflow-prose.py --wrap --width N` to apply a fixed width and `scripts/reflow-prose.py --unwrap` to join wrapped continuations into logical lines.
+
+The wrap mode only splits lines, the unwrap mode only joins them, and both leave tables, code fences, and indented code blocks untouched.
 
 ## Lists
 

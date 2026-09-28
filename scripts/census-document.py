@@ -25,6 +25,9 @@ TABLE_ROW = re.compile(r"^\s*\|.*\|\s*$")
 LINK = re.compile(r"\[[^\]]*\]\(([^)\s]+)[^)]*\)")
 MARKER = re.compile(r"\b(TODO|FIXME|TBD|XXX)\b")
 SENTENCE_BOUNDARY = re.compile(r"[.!?]['\")]*[ \t]+[A-Z]")
+SENT_END = re.compile(r"[.!?:][\"')\]`}*]*\s*$")
+RULE_LINE = re.compile(r"^\s*(={2,}|-{2,}|\*{3,}|_{3,})\s*$")
+ITEM_COL = re.compile(r"^\s*(?:[-*+]|\d+[.)])[ \t]+")
 CODE_SPAN = re.compile(r"`[^`]*`")
 CONTENTS_TITLE = re.compile(r"^(contents|table of contents|spis tre[śs]ci)\b", re.I)
 
@@ -127,10 +130,20 @@ def main(argv: list[str]) -> int:
     marker_hits: list[tuple[int, str]] = []
     blank_start = None
     in_table = False
+    para_frag: list[int] = []
+    list_frag: list[int] = []
+    quote_frag: list[int] = []
+    para_seen = items_seen = quotes_seen = 0
+    prev_open = False
+    prev_min = 0
+    prev_quote = False
+    prev_kind = ""
+    list_stack: list[int] = []
 
     for i, line in enumerate(lines):
         if i not in scan:
             blank_start = None
+            prev_open = False
             if state[i] == "fence":
                 in_table = False
             continue
@@ -140,8 +153,54 @@ def main(argv: list[str]) -> int:
                 blank_start = i + 1
             else:
                 blank_runs.append(blank_start)
+            prev_open = False
             continue
         blank_start = None
+
+        # wrap-convention census - same continuation model as reflow-prose.py
+        indent = len(line) - len(line.lstrip())
+        content = line.lstrip()
+        if content.startswith(">"):
+            qtext = re.sub(r"^(?:>[ \t]*)+", "", content)
+            if prev_open and prev_quote:
+                quote_frag.append(i + 1)
+            quotes_seen += 1
+            prev_open = not SENT_END.search(qtext)
+            prev_quote = True
+            prev_kind = "quote"
+        elif content.startswith(("#", "<!--")) or RULE_LINE.match(content):
+            while list_stack and indent < list_stack[-1]:
+                list_stack.pop()
+            prev_open = False
+            prev_quote = False
+        elif ITEM_COL.match(line):
+            content_col = ITEM_COL.match(line).end()
+            while list_stack and list_stack[-1] > indent:
+                list_stack.pop()
+            list_stack.append(content_col)
+            items_seen += 1
+            prev_open = not SENT_END.search(line[content_col:].strip())
+            prev_min = content_col
+            prev_quote = False
+            prev_kind = "item"
+        elif TABLE_ROW.match(line):
+            prev_open = False
+            prev_quote = False
+        else:
+            while list_stack and indent < list_stack[-1]:
+                list_stack.pop()
+            base = list_stack[-1] if list_stack else 0
+            if indent >= base + 4:
+                prev_open = False   # indented code block
+            elif prev_open and not prev_quote and prev_min <= indent < prev_min + 4:
+                (list_frag if prev_kind == "item" else para_frag).append(i + 1)
+                prev_open = not SENT_END.search(stripped)
+            else:
+                para_seen += 1
+                prev_open = not SENT_END.search(content)
+                prev_min = indent
+                prev_quote = False
+                prev_kind = "para"
         if len(line) > width:
             wide.append(i + 1)
         if SENTENCE_BOUNDARY.search(stripped):
@@ -234,6 +293,22 @@ def main(argv: list[str]) -> int:
     print(f"  multi-sentence lines: {len(multi)}" + (f" (lines {refs(multi)})" if multi else ""))
     print(f"  consecutive blank runs: {refs(blank_runs)}")
     print(f"  lines over {width}: {refs(wide)}")
+    kinds = [("paragraph", para_frag, para_seen), ("list item", list_frag, items_seen),
+             ("blockquote", quote_frag, quotes_seen)]
+    wrapped = [name for name, frag, _ in kinds if frag]
+    logical = [name for name, frag, seen in kinds if not frag and seen]
+    if not any(seen for _, _, seen in kinds):
+        conv = "no prose"
+    elif wrapped and logical:
+        conv = "mixed"
+    elif wrapped:
+        conv = "fixed width"
+    else:
+        conv = "logical lines"
+    print(f"  wrap convention: {conv}")
+    for name, frag, seen in kinds:
+        detail = f" (lines {refs(frag)})" if frag else ""
+        print(f"    {name}: {seen} element(s), {len(frag)} continuation line(s){detail}")
     print("TABLES")
     print(f"  tables: {tables}")
     print("MARKERS")

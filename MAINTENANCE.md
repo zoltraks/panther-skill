@@ -112,6 +112,20 @@ Renumber every `## Contents` table affected by line shifts and verify the result
 
 Keep `evals/evals.json` prompts in sync with capabilities that change.
 
+## External Examples
+
+A change request may supply example documents, file paths, or project names to illustrate the
+requested behavior.
+
+Never reference those supplied examples inside skill documents, scripts, templates, or evals -
+external material may not be reachable later, and real names or paths do not belong in the rule
+corpus.
+
+Create the skill's own examples instead.
+
+Keep them generic and anonymized - invented project names, placeholder paths, and synthetic
+content that demonstrates the same point without depending on anything outside this repository.
+
 ## Adding A Language
 
 1. Create `languages/<code>.md` with frontmatter (`code`, `name`, `native-name`) and a full

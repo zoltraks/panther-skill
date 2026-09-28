@@ -34,6 +34,8 @@ CASES: list[tuple[str, list[str], tuple[int, ...], str | None]] = [
     ("split-sentences.py", ["README.md", "--check"], (0, 1), None),
     ("split-sentences.py", ["README.md", "--paragraphs", "--check"], (0,), None),
     ("wrap-prose.py", ["README.md", "--check"], (0, 1), None),
+    ("reflow-prose.py", ["README.md", "--wrap", "--check"], (0, 1), None),
+    ("reflow-prose.py", ["README.md", "--unwrap", "--check"], (0, 1), None),
     ("format-table.py", ["README.md", "--check"], (0, 1), None),
     ("align-comments.py", ["README.md", "--check"], (0, 1), None),
     ("validate-document.py", ["README.md"], (0, 1), None),

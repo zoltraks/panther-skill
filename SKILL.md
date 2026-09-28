@@ -48,9 +48,9 @@ allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob G
 | Conventions             | 351  | Encoding, dialect, and format contract rules   |
 | Templates               | 366  | Per-type, per-language skeletons               |
 | Scripts                 | 378  | Detection, formatting, and validation scripts  |
-| Evaluation Prompts      | 404  | Behavioral regression prompts                  |
-| Repository Files        | 414  | Housekeeping files governing this repository   |
-| File Handling Contract  | 426  | Byte-level guarantees                          |
+| Evaluation Prompts      | 408  | Behavioral regression prompts                  |
+| Repository Files        | 418  | Housekeeping files governing this repository   |
+| File Handling Contract  | 430  | Byte-level guarantees                          |
 
 You are a Document Authoring Agent.
 
@@ -102,7 +102,7 @@ The skill activates on any of these phrases, grouped by intent:
   meeting notes.
 - **Edit and format**: edit this document, update this document, fix this table, format
   this table, align the table, align the comments, fix tree comments, reformat this
-  markdown.
+  markdown, unwrap this document, unwrap long lines, reflow the prose.
 - **Translate**: translate this document, translate this file, translate to Polish,
   translate to English, translate to German, document in Polish, document in German,
   polish this document.
@@ -388,7 +388,11 @@ See `scripts/README.md`.
   paragraphs, tables, links.
 - **`scripts/split-sentences.py`** - Split packed sentences onto logical lines, or one sentence
   per paragraph with `--paragraphs`, re-wrap to `--width N` in default mode.
-- **`scripts/wrap-prose.py`** - Split over-width lines at whitespace, without ever joining lines.
+- **`scripts/reflow-prose.py`** - Bidirectional prose reflow: `--wrap` splits over-width lines
+  at whitespace, `--unwrap` joins wrapped continuations in paragraphs, list items, and
+  blockquotes back into logical lines.
+- **`scripts/wrap-prose.py`** - Deprecated split-only wrapper, superseded by
+  `reflow-prose.py --wrap`, kept for documents that already reference it.
 - **`scripts/format-table.py`** - Rebuild tables with source-width alignment.
 - **`scripts/align-comments.py`** - Align trailing `#` comments to one column per block.
 - **`scripts/validate-document.py`** - Mechanical checker for `process/document-checklist.md`.

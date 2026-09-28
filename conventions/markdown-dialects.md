@@ -182,6 +182,29 @@ longer marker than the outer one (four backticks inside a three-backtick fence).
 
 Nested fences never nest at the same marker length.
 
+## Wrapping Conventions
+
+Two line-layout conventions exist for prose, and one document can mix them per element type.
+
+Fixed-width wrapping breaks prose at a character limit such as 80, 100, or 120, indenting
+continuation lines inside list items and repeating the marker inside blockquotes.
+
+Logical-line layout keeps every sentence or paragraph on a single line of any length and lets
+the reader wrap on display.
+
+Signals: in a wrapped document most prose lines cluster below one width and continuation lines
+are common, in a logical-line document prose lines vary in length and regularly run past the
+usual limits.
+
+The dominant pattern per element type is the convention - paragraphs, list items, and
+blockquotes are evaluated separately.
+
+Rule: detect the wrap convention with the rest of the dialect census, preserve it on edit, and
+never convert between layouts unless the request covers the conversion.
+
+`scripts/reflow-prose.py --wrap` applies a fixed width, `--unwrap` joins wrapped continuations
+into logical lines.
+
 ## Element-Level Conventions
 
 Conventions may differ between element types within one document.
@@ -209,7 +232,8 @@ paragraph-per-sentence.
 ## Detection Procedure
 
 1. Read the document, or its outline when it is long.
-2. Note the heading style, section numbering, list markers, table shape, and embedded HTML.
+2. Note the heading style, section numbering, list markers, table shape, wrap convention, and
+   embedded HTML.
 3. Classify the dialect or dialects.
 4. Record the classification in the working notes, and apply it consistently for the rest of the
    edit.

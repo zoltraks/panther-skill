@@ -44,6 +44,8 @@ The skill has no dependencies beyond `python3` and `git` - everything else is do
 - Review goes through the maintainer, with a second reviewer per `README.md`.
 - Keep `work/` research scratch out of tracked content - replace copied examples with links
   instead.
+- Never embed references to external example files, paths, or names supplied in a request -
+  contribute anonymized skill-owned examples instead, per [MAINTENANCE.md](./MAINTENANCE.md).
 
 ## AI-Assisted Contributions
 

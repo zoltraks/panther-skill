@@ -647,7 +647,7 @@
       "files": [],
       "expectations": [
         "The agent runs split-sentences.py --paragraphs --check on every Markdown file to verify the paragraph-per-sentence convention.",
-        "The agent runs wrap-prose.py --check on skill files only, skipping languages/ and templates/ which never hard-wrap.",
+        "The agent runs reflow-prose.py --wrap --check on skill files only, skipping languages/ and templates/ which never hard-wrap.",
         "The agent runs format-table.py --check, align-comments.py --check, and validate-document.py across the file set.",
         "The intentional 'Incorrect' example block in conventions/plain-text-comments.md is named an expected flag rather than rewritten.",
         "Findings are fixed through the canonical tools (split-sentences.py, wrap-prose.py, format-table.py, align-comments.py), not by hand.",
@@ -702,6 +702,41 @@
         "Polish abbreviations map to German equivalents - np. renders z. B., tj. renders d. h., itd. renders usw.",
         "Class naming contexts use Einwirkung where the source uses oddziaływanie, and Angriff where the source uses atak.",
         "Exposure-class codes, chemical formulas, and standard designations stay verbatim."
+      ]
+    },
+    {
+      "id": 58,
+      "prompt": "This guidelines document is hard-wrapped at a fixed width. Unwrap it so every sentence sits on a single logical line with blank lines between sentences - readers wrap on display.",
+      "expected_output": "Each wrapped continuation joined into its parent line, sentences separated by blank lines, verified content-identical via the token-stream diff tool.",
+      "files": [],
+      "expectations": [
+        "The agent used reflow-prose.py --unwrap rather than joining lines by hand.",
+        "Wrapped continuations in paragraphs and list items were joined into single logical lines.",
+        "Label lines ending in a colon, bold pseudo-headings, tables, and fenced blocks kept their line structure.",
+        "The token-stream diff against the pre-edit baseline reports identical tokens."
+      ]
+    },
+    {
+      "id": 59,
+      "prompt": "Update the installation section of this technical document - it keeps every sentence on a single unwrapped logical line and the repository carries no style guide.",
+      "expected_output": "An edit that preserves the document's own logical-line convention - new and touched prose stays unwrapped.",
+      "files": [],
+      "expectations": [
+        "The agent inventoried the document's conventions before editing - wrapping, sentence layout, headings, quotes, and tables.",
+        "The wrap convention came from the document's own line structure, not from a default or an absent STYLE.md.",
+        "New prose follows the observed logical-line style - no hard-wrapping was introduced.",
+        "No wrapping change was applied anywhere else in the document."
+      ]
+    },
+    {
+      "id": 60,
+      "prompt": "Extend this skill - here is a document named TEAM-HANDBOOK.md from the acme-docs project showing the style to support. Add the capability to the skill.",
+      "expected_output": "Skill documentation updated with a generic or anonymized example - no mention of the external document, its path, or its project name.",
+      "files": [],
+      "expectations": [
+        "No skill file references the example's file name, repository, project name, or author.",
+        "If an example was needed, the skill wrote its own with anonymized names.",
+        "The new component is registered wherever the skill tracks components - scripts README, SKILL.md, and contents tables."
       ]
     }
   ]
