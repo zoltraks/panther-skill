@@ -78,6 +78,9 @@ Before editing inside a skill repository, read its governing documents in order:
 
 The skill's own maintenance document defines its registration cascade - follow it.
 
+When the target is the Panther repository itself, `process/skill-maintenance.md` names the
+concrete governing set and intake steps.
+
 When no maintenance document exists, apply the procedure in Adding Or Removing A Document.
 
 ## Consistency Sets

@@ -264,6 +264,9 @@ def main(path, width, payload_markdown, check_only):
 
 
 if __name__ == "__main__":
+    for _stream in (sys.stdout, sys.stderr):
+        if hasattr(_stream, "reconfigure"):
+            _stream.reconfigure(errors="backslashreplace")
     parser = argparse.ArgumentParser(
         description="Wrap Markdown prose to a maximum width (split only)."
     )

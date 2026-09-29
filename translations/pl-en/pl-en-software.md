@@ -20,6 +20,8 @@ Apply this glossary when:
   instruction, format specification, or rules document for a software project.
 - The document's terminology is dominated by code, API, build, deploy, test, or
   infrastructure vocabulary.
+- The document's terminology is dominated by AI-agent, agentic-SDLC, or
+  assistant-orchestration vocabulary.
 
 ## Terminology
 
@@ -29,9 +31,13 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 
 | Polish                                    | English                        |
 |-------------------------------------------|--------------------------------|
+| agent AI                                  | AI agent                       |
+| agent kodujący                            | coding agent                   |
+| agentowy                                  | agentic                        |
 | aplikacja                                 | application                    |
 | artefakt                                  | artifact                       |
 | artefakt wynikowy / artefakt wdrożeniowy  | build artifact                 |
+| asystent AI                               | AI assistant                   |
 | backlog                                   | backlog                        |
 | baza                                      | baseline                       |
 | baza kodu                                 | codebase                       |
@@ -42,6 +48,7 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | ciągłe dostarczanie                       | continuous delivery            |
 | ciągłe wdrażanie                          | continuous deployment          |
 | cykl wytwarzania oprogramowania           | software development lifecycle |
+| człowiek w pętli                          | human in the loop              |
 | dług techniczny                           | technical debt                 |
 | dokumentacja                              | documentation                  |
 | dostępność                                | availability                   |
@@ -57,6 +64,7 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | interesariusz                             | stakeholder                    |
 | kandydat do wydania                       | release candidate              |
 | konfiguracja                              | configuration                  |
+| kontekst                                  | context                        |
 | kontener                                  | container                      |
 | kontrakt API                              | API contract                   |
 | kreator                                   | wizard                         |
@@ -65,6 +73,7 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | licencja                                  | license                        |
 | łańcuch narzędzi                          | toolchain                      |
 | martwy kod                                | dead code                      |
+| menu wyboru                               | choice menu                    |
 | middleware / oprogramowanie pośredniczące | middleware                     |
 | migracja                                  | migration                      |
 | moduł                                     | module                         |
@@ -74,6 +83,8 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | obserwowalność                            | observability                  |
 | obsługa błędów                            | error handling                 |
 | ograniczenie częstotliwości żądań         | rate limiting                  |
+| okno kontekstu                            | context window                 |
+| orkiestrator                              | orchestrator                   |
 | pamięć podręczna                          | cache                          |
 | panel                                     | dashboard                      |
 | plik blokady zależności                   | lockfile                       |
@@ -87,26 +98,33 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | problem / zgłoszenie                      | issue                          |
 | proces / proces CI / proces CI/CD         | pipeline / CI pipeline         |
 | proces budowania                          | build                          |
+| prompt                                    | prompt                         |
 | przegląd kodu                             | code review                    |
 | przepływ danych                           | data flow                      |
 | przepływ pracy / proces                   | workflow                       |
+| przyjęcie / pobór                         | intake                         |
 | przypadek użycia                          | use case                       |
 | pull request                              | pull request                   |
+| punkt decyzyjny                           | decision point                 |
 | refaktoryzacja                            | refactoring                    |
 | rejestr decyzji architektonicznych        | architecture decision record   |
 | rejestrowanie zdarzeń / logowanie         | logging                        |
 | repozytorium                              | repository                     |
+| sesja                                     | session                        |
 | skalowalność                              | scalability                    |
 | specyfikacja                              | specification                  |
 | sprint                                    | sprint                         |
 | szablon                                   | template                       |
+| szablon promptu                           | prompt template                |
 | środowisko                                | environment                    |
 | środowisko produkcyjne                    | production                     |
 | środowisko przejściowe / staging          | staging                        |
 | środowisko uruchomieniowe                 | runtime                        |
 | tag / znacznik                            | tag                            |
 | testowalność                              | testability                    |
+| token                                     | token                          |
 | token dostępu                             | access token                   |
+| umiejętność agenta                        | agent skill                    |
 | utrzymywalność                            | maintainability                |
 | wartość domyślna                          | default value                  |
 | wątek                                     | thread                         |
@@ -120,11 +138,15 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | wydanie                                   | release                        |
 | wymaganie                                 | requirement                    |
 | wytyczna                                  | guideline                      |
+| wywołanie narzędzia                       | tool call                      |
+| wyzwalacz                                 | trigger                        |
 | wzorzec projektowy                        | design pattern                 |
+| zabezpieczenie / guardrail                | guardrail                      |
 | zależność                                 | dependency                     |
 | zamrożenie wersji                         | version pinning                |
 | zmiana niezgodna wstecz                   | breaking change                |
 | zrzut ekranu                              | screenshot                     |
+| źródła prawdy                             | sources of truth               |
 
 ## Context Forms
 
@@ -140,6 +162,9 @@ everywhere:
 - `proces` renders `process` for automation and `pipeline` inside `proces CI`.
 - `wydajność` renders `performance`, never `efficiency` in software text.
 - `poprawka` renders `hotfix` for an urgent release and `fix` for a routine correction.
+- `prompt` renders `prompt` - a source mixing `prompt` and `polecenie` for AI
+  instructions collapses to `prompt`.
+  `polecenie` outside AI-instruction context renders `instruction` or `command`.
 
 ## Calque Traps
 

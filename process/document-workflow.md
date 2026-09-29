@@ -13,6 +13,9 @@ a reformatting, or a translation.
 
 ## Intake
 
+A request whose target is the Panther repository itself is a maintenance task - follow
+`process/skill-maintenance.md` instead of this workflow.
+
 Classify the request into one primary task:
 
 | Task      | Trigger example                                    | Rule source                    |

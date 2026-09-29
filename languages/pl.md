@@ -734,52 +734,61 @@ Poniższe frazy aktywują umiejętność tak samo jak ich angielskie odpowiednik
 
 Traktuj żądanie pasujące do frazy z tabeli jako jej angielski odpowiednik.
 
-| Fraza                          | Odpowiednik angielski        |
-|--------------------------------|------------------------------|
-| napisz dokument                | create a document            |
-| utwórz dokument                | create a document            |
-| specyfikacja                   | draft a specification        |
-| projekt rozwiązania            | project document             |
-| dokumentacja techniczna        | technical documentation      |
-| dokumentacja projektu          | project documentation        |
-| artykuł                        | write an article             |
-| notatka                        | quick note                   |
-| popraw tabelę                  | fix this table               |
-| sformatuj tabelę               | format this table            |
-| zaktualizuj dokument           | update this document         |
-| przetłumacz dokument           | translate this document      |
-| przetłumacz na polski          | translate to Polish          |
-| przetłumacz na angielski       | translate to English         |
-| tłumaczenie dokumentu          | translate this document      |
-| dodaj dokument do projektu     | new document in this project |
-| dokument funkcji               | add a feature document       |
-| plan implementacji             | write an implementation plan |
-| napisz ADR                     | write an ADR                 |
-| propozycja rozwiązania         | design proposal              |
-| karta projektu                 | project charter              |
-| rejestr ryzyk                  | risk register                |
-| rejestr interesariuszy         | stakeholder register         |
-| raport o statusie              | status report                |
-| protokół zebrania              | meeting minutes              |
-| plan zarządzania               | management plan              |
-| struktura podziału pracy       | work breakdown structure     |
-| wykryj układ                   | detect document layout       |
-| rozpoznaj strukturę dokumentów | analyze document structure   |
-| audyt dokumentu                | audit this document          |
-| sprawdź formatowanie dokumentu | check document formatting    |
-| zaplanuj poprawki ustaleń      | plan fixes for findings      |
-| dokument instrukcji agenta     | agent instruction document   |
-| dokument przygotowania         | preparation document         |
-| przewodnik współpracy          | contributing guide           |
-| dokument współpracy            | contributing guide           |
-| opisz                          | describe                     |
-| opisz krótko                   | describe shortly             |
-| przygotuj opis                 | make a description           |
-| podsumuj                       | summarize                    |
-| napisz podsumowanie            | write a summary              |
-| daj przegląd                   | give an overview             |
-| krótki opis                    | short description            |
-| długi opis                     | long description             |
-| szczegółowy opis               | detailed description         |
-| opisz szczegółowo              | describe in detail           |
-| pełny opis                     | full description             |
+| Fraza                              | Odpowiednik angielski        |
+|------------------------------------|------------------------------|
+| napisz dokument                    | create a document            |
+| utwórz dokument                    | create a document            |
+| specyfikacja                       | draft a specification        |
+| projekt rozwiązania                | project document             |
+| dokumentacja techniczna            | technical documentation      |
+| dokumentacja projektu              | project documentation        |
+| artykuł                            | write an article             |
+| notatka                            | quick note                   |
+| popraw tabelę                      | fix this table               |
+| sformatuj tabelę                   | format this table            |
+| zaktualizuj dokument               | update this document         |
+| przetłumacz dokument               | translate this document      |
+| przetłumacz na polski              | translate to Polish          |
+| przetłumacz na angielski           | translate to English         |
+| tłumaczenie dokumentu              | translate this document      |
+| dodaj dokument do projektu         | new document in this project |
+| dokument funkcji                   | add a feature document       |
+| plan implementacji                 | write an implementation plan |
+| napisz ADR                         | write an ADR                 |
+| propozycja rozwiązania             | design proposal              |
+| karta projektu                     | project charter              |
+| rejestr ryzyk                      | risk register                |
+| rejestr interesariuszy             | stakeholder register         |
+| raport o statusie                  | status report                |
+| protokół zebrania                  | meeting minutes              |
+| plan zarządzania                   | management plan              |
+| struktura podziału pracy           | work breakdown structure     |
+| wykryj układ                       | detect document layout       |
+| rozpoznaj strukturę dokumentów     | analyze document structure   |
+| audyt dokumentu                    | audit this document          |
+| sprawdź formatowanie dokumentu     | check document formatting    |
+| zaplanuj poprawki ustaleń          | plan fixes for findings      |
+| audyt tłumaczenia                  | audit this translation       |
+| sprawdź tłumaczenie                | check the translation        |
+| zweryfikuj tłumaczenie             | verify the translation       |
+| przetłumacz adaptacyjnie           | adapted translation          |
+| dokument instrukcji agenta         | agent instruction document   |
+| dokument przygotowania             | preparation document         |
+| przewodnik współpracy              | contributing guide           |
+| dokument współpracy                | contributing guide           |
+| opisz                              | describe                     |
+| opisz krótko                       | describe shortly             |
+| przygotuj opis                     | make a description           |
+| podsumuj                           | summarize                    |
+| napisz podsumowanie                | write a summary              |
+| daj przegląd                       | give an overview             |
+| krótki opis                        | short description            |
+| długi opis                         | long description             |
+| szczegółowy opis                   | detailed description         |
+| opisz szczegółowo                  | describe in detail           |
+| pełny opis                         | full description             |
+| pracuj nad panther                 | work on panther              |
+| pracuj nad tą umiejętnością        | work on this skill           |
+| napraw tę umiejętność              | fix this skill               |
+| dostosuj tę umiejętność            | adjust the skill             |
+| zaktualizuj dokumenty umiejętności | update the skill documents   |

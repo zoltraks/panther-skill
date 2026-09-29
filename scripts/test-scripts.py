@@ -15,6 +15,7 @@ Usage: python scripts/test-scripts.py
 
 from __future__ import annotations
 
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -22,35 +23,48 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 TIMEOUT = 60
 
-# (script, args, accepted exits, required stdout prefix)
-CASES: list[tuple[str, list[str], tuple[int, ...], str | None]] = [
-    ("validate-skill.py", ["."], (0,), None),
-    ("check-references.py", ["."], (0,), None),
-    ("check-contents.py", ["."], (0,), None),
-    ("check-update.py", [], (0,), "STATUS "),
-    ("detect-encoding.py", ["README.md"], (0,), None),
-    ("detect-scope.py", ["."], (0,), None),
-    ("census-document.py", ["README.md"], (0,), None),
-    ("split-sentences.py", ["README.md", "--check"], (0, 1), None),
-    ("split-sentences.py", ["README.md", "--paragraphs", "--check"], (0,), None),
-    ("wrap-prose.py", ["README.md", "--check"], (0, 1), None),
-    ("reflow-prose.py", ["README.md", "--wrap", "--check"], (0, 1), None),
-    ("reflow-prose.py", ["README.md", "--unwrap", "--check"], (0, 1), None),
-    ("format-table.py", ["README.md", "--check"], (0, 1), None),
-    ("align-comments.py", ["README.md", "--check"], (0, 1), None),
-    ("validate-document.py", ["README.md"], (0, 1), None),
-    ("diff-content.py", ["README.md"], (0, 1), None),
+# (script, args, accepted exits, required stdout prefix, extra env)
+CASES: list[tuple[str, list[str], tuple[int, ...], str | None,
+                 dict[str, str] | None]] = [
+    ("validate-skill.py", ["."], (0,), None, None),
+    ("check-references.py", ["."], (0,), None, None),
+    ("check-contents.py", ["."], (0,), None, None),
+    ("check-update.py", [], (0,), "STATUS ", None),
+    ("detect-encoding.py", ["README.md"], (0,), None, None),
+    ("detect-scope.py", ["."], (0,), None, None),
+    ("census-document.py", ["README.md"], (0,), None, None),
+    ("split-sentences.py", ["README.md", "--check"], (0, 1), None, None),
+    ("split-sentences.py", ["README.md", "--paragraphs", "--check"], (0,), None,
+     None),
+    ("wrap-prose.py", ["README.md", "--check"], (0, 1), None, None),
+    ("reflow-prose.py", ["README.md", "--wrap", "--check"], (0, 1), None, None),
+    ("reflow-prose.py", ["README.md", "--unwrap", "--check"], (0, 1), None, None),
+    ("format-table.py", ["README.md", "--check"], (0, 1), None, None),
+    ("align-comments.py", ["README.md", "--check"], (0, 1), None, None),
+    ("validate-document.py", ["README.md"], (0, 1), None, None),
+    ("diff-content.py", ["README.md"], (0, 1), None, None),
+    ("census-document.py", ["README.md"], (0,), None,
+     {"PYTHONIOENCODING": "cp1252"}),
+    ("validate-document.py", ["README.md"], (0, 1), None,
+     {"PYTHONIOENCODING": "cp1252"}),
+    ("diff-content.py", ["README.md"], (0, 1), None,
+     {"PYTHONIOENCODING": "cp1252", "PYTHONUTF8": "0", "LC_ALL": "C",
+      "LANG": "C"}),
 ]
 
 
-def run_case(script: str, args: list[str]) -> subprocess.CompletedProcess | None:
+def run_case(script: str, args: list[str],
+             env_extra: dict[str, str] | None = None
+             ) -> subprocess.CompletedProcess | None:
     try:
         return subprocess.run(
             [sys.executable, str(ROOT / "scripts" / script), *args],
             capture_output=True,
-            text=True,
+            encoding="utf-8",
+            errors="replace",
             timeout=TIMEOUT,
             cwd=ROOT,
+            env={**os.environ, **env_extra} if env_extra else None,
         )
     except (subprocess.TimeoutExpired, FileNotFoundError):
         return None
@@ -58,8 +72,8 @@ def run_case(script: str, args: list[str]) -> subprocess.CompletedProcess | None
 
 def main() -> int:
     failures = 0
-    for script, args, exits, prefix in CASES:
-        result = run_case(script, args)
+    for script, args, exits, prefix, env_extra in CASES:
+        result = run_case(script, args, env_extra)
         label = " ".join([script, *args])
         if result is None:
             print(f"FAIL {label} - no result (timeout or missing executable)")
@@ -83,4 +97,7 @@ def main() -> int:
 
 
 if __name__ == "__main__":
+    for _stream in (sys.stdout, sys.stderr):
+        if hasattr(_stream, "reconfigure"):
+            _stream.reconfigure(errors="backslashreplace")
     raise SystemExit(main())

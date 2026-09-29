@@ -374,6 +374,9 @@ def main(path, mode, width, payload_markdown, check_only):
 
 
 if __name__ == "__main__":
+    for _stream in (sys.stdout, sys.stderr):
+        if hasattr(_stream, "reconfigure"):
+            _stream.reconfigure(errors="backslashreplace")
     parser = argparse.ArgumentParser(
         description="Reflow Markdown prose: wrap to a width or unwrap "
                     "wrapped continuations into logical lines."

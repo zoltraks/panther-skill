@@ -133,6 +133,9 @@ def main(path, check_only, payload_markdown):
 
 
 if __name__ == "__main__":
+    for _stream in (sys.stdout, sys.stderr):
+        if hasattr(_stream, "reconfigure"):
+            _stream.reconfigure(errors="backslashreplace")
     parser = argparse.ArgumentParser(
         description="Format Markdown tables with source-width alignment."
     )

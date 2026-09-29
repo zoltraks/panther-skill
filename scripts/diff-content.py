@@ -22,6 +22,7 @@ import argparse
 import difflib
 import re
 import subprocess
+import sys
 from pathlib import Path
 
 SEPARATOR_ROW = re.compile(r"^[|\-: ]+$")
@@ -44,12 +45,13 @@ def head_version(path):
     try:
         root = subprocess.run(
             ["git", "-C", str(path.parent), "rev-parse", "--show-toplevel"],
-            capture_output=True, text=True, check=True,
+            capture_output=True, encoding="utf-8", errors="surrogateescape",
+            check=True,
         ).stdout.strip()
         rel = path.resolve().relative_to(Path(root).resolve())
         result = subprocess.run(
             ["git", "-C", root, "show", f"HEAD:{rel.as_posix()}"],
-            capture_output=True, text=True,
+            capture_output=True, encoding="utf-8", errors="surrogateescape",
         )
         if result.returncode != 0:
             return None
@@ -144,6 +146,9 @@ def main(path, baseline_path):
 
 
 if __name__ == "__main__":
+    for _stream in (sys.stdout, sys.stderr):
+        if hasattr(_stream, "reconfigure"):
+            _stream.reconfigure(errors="backslashreplace")
     parser = argparse.ArgumentParser(
         description="Compare document content against a baseline, ignoring "
         "whitespace, blank lines, and table separators."

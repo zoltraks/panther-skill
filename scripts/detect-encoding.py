@@ -68,6 +68,9 @@ def main(path: str) -> int:
 
 
 if __name__ == "__main__":
+    for _stream in (sys.stdout, sys.stderr):
+        if hasattr(_stream, "reconfigure"):
+            _stream.reconfigure(errors="backslashreplace")
     if len(sys.argv) != 2:
         print("Usage: python detect-encoding.py <file>")
         raise SystemExit(1)

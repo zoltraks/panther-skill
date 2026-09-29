@@ -4,37 +4,42 @@ This document defines the versioning rules for the `panther-skill` Agent Skill.
 
 ## Format
 
-Versions use a two-part decimal format: `<major>.<minor>`.
+Versions use a three-part decimal format: `<major>.<minor>.<patch>`.
 
-- `major` - increments when the skill undergoes structural or breaking changes
-- `minor` - increments for additive features, new document types, new languages, or rule refinements
+- `major` - the outer digit, rolls the whole minor-patch space
+- `minor` - the middle digit, rolls the patch space
+- `patch` - the innermost digit, the counter incremented by every release
 
 ## Increment Rules
 
-1. **Increment minor by 0.1** for each release that adds or refines capability without breaking
-   existing behavior.
+Every release increments the version - no distinction is made between minor and major
+changes.
 
-2. **Minor rolls over at 9**. When minor would reach 10, increment major by 1 and reset minor to 0.
+1. **Increment patch by 1** for each release.
 
-   | Before | After | Reason         |
-   |--------|-------|----------------|
-   | 0.8    | 0.9   | minor + 1      |
-   | 0.9    | 1.0   | minor rollover |
-   | 1.9    | 2.0   | minor rollover |
-   | 9.9    | 10.0  | minor rollover |
+2. **Patch rolls at 9 without resetting**. When a release lands on a version whose patch is
+   already 9, increment the minor digit by 1 and keep the patch at 9.
 
-3. **Major may also be incremented directly** for breaking changes that alter the document
-   workflow, remove mandatory files, or change the rule-selection semantics.
+3. **Minor and patch at 9 roll to major**. When both the minor digit and the patch digit
+   are 9, increment the major digit by 1 and reset minor and patch to 0.
+
+   | Before | After  | Reason                                    |
+   |--------|--------|-------------------------------------------|
+   | 1.0.0  | 1.0.1  | patch + 1                                 |
+   | 1.0.9  | 1.1.9  | patch at ceiling - minor + 1, patch stays |
+   | 1.9.9  | 2.0.0  | both at ceiling - major + 1, lower reset  |
+   | 9.9.9  | 10.0.0 | both at ceiling - major + 1, lower reset  |
 
 ## When To Bump
 
-Never bump the version automatically.
+A bump is applied when the user asks for it.
 
-The version is bumped only when the user explicitly asks for it.
+Whenever maintenance changes any document that is part of the skill, propose a version
+bump in the delivery report - the proposal names the current version and the next version
+the increment rules produce.
 
-Do not bump the version as a side effect of adding features, fixing issues, or refactoring.
-
-Wait for the user to request a version bump, then apply the increment rules above.
+The bump itself happens only on an explicit request or an accepted proposal - never as an
+unannounced side effect.
 
 ## Release Anchors
 
@@ -64,7 +69,7 @@ The version lives in `SKILL.md` frontmatter under `metadata.version`:
 ---
 name: panther-skill
 metadata:
-  version: "X.Y"
+  version: "X.Y.Z"
 ---
 ```
 

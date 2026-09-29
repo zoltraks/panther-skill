@@ -14,17 +14,17 @@
 |---------------------|------|--------------------------------------------|
 | Overview            | 29   | What Panther is and what it produces       |
 | What The Skill Does | 54   | Authoring purpose and workflow             |
-| Installation        | 142  | How to add Panther to an agent environment |
-| Usage               | 212  | How agents activate and run the skill      |
-| Example Prompts     | 223  | Phrases the skill activates on             |
-| Workflow Diagrams   | 263  | ASCII and Mermaid diagrams of the pipeline |
-| Core Principles     | 389  | Convention preservation and minimal diffs  |
-| When To Use         | 400  | Supported requests and exclusions          |
-| What's Inside       | 438  | Rule files, templates, tools, and evals    |
-| Specification       | 572  | Agent Skills specification conformance     |
-| Verification        | 588  | Skill-maintenance checks                   |
-| License             | 607  | License for the skill itself               |
-| Credits             | 613  | Methodology and example sources            |
+| Installation        | 156  | How to add Panther to an agent environment |
+| Usage               | 226  | How agents activate and run the skill      |
+| Example Prompts     | 237  | Phrases the skill activates on             |
+| Workflow Diagrams   | 280  | ASCII and Mermaid diagrams of the pipeline |
+| Core Principles     | 406  | Convention preservation and minimal diffs  |
+| When To Use         | 417  | Supported requests and exclusions          |
+| What's Inside       | 455  | Rule files, templates, tools, and evals    |
+| Specification       | 596  | Agent Skills specification conformance     |
+| Verification        | 612  | Skill-maintenance checks                   |
+| License             | 631  | License for the skill itself               |
+| Credits             | 637  | Methodology and example sources            |
 
 ## Overview
 
@@ -138,6 +138,20 @@ vocabulary, and characters to the target language while preserving structure, co
 
 The output lands in a sibling file carrying the language code, named `<basename>-<code>.md`,
 and the delivery report lists the glossaries applied and notable term choices.
+
+An explicitly requested adapted translation may compress and reorder the output, with every
+structural delta listed in the delivery report - faithful structure stays the default.
+
+Asking to "audit this translation" or "check how this was translated" runs
+`process/translation-audit.md`: it maps the rendered document against its source and reports
+a fidelity verdict with findings.
+
+**Maintains itself**
+
+Separately, when you ask to "work on panther-skill" or "fix this skill", the agent enters
+maintenance mode: it reads the skill's governing documents, applies `MAINTENANCE.md` and
+`STYLE.md`, and runs the skill's own validators - document-mode machinery does not apply to
+the skill's own files.
 
 ## Installation
 
@@ -259,6 +273,9 @@ encoding and line endings.
 
 **Document translation**
 > Translate this English project specification into Polish.
+
+**Translation audit**
+> Audit this Polish translation against the English source.
 
 ## Workflow Diagrams
 
@@ -453,7 +470,9 @@ panther-skill/
 │   ├── document-audit.md              # Standalone audit procedure: findings and fix plan
 │   ├── describe-response.md           # Standalone describe procedure: caps and floors
 │   ├── scope-discovery.md             # Standalone layout-discovery procedure and report format
-│   └── translate-document.md          # Standalone translate procedure: pairs and glossaries
+│   ├── skill-maintenance.md           # Maintenance-mode procedure for work on the skill itself
+│   ├── translate-document.md          # Standalone translate procedure: pairs and glossaries
+│   └── translation-audit.md           # Standalone translation-audit procedure: fidelity verdict
 ├── types/
 │   ├── technical-document.md          # Guides, architecture notes, reference material
 │   ├── project-document.md            # Specifications: version comment, glossary, requirement IDs
@@ -486,12 +505,15 @@ panther-skill/
 ├── translations/
 │   ├── de-en/                         # German-to-English direction rules and glossaries
 │   │   ├── de-en-general.md           # Direction contract: Title Case, abbreviations
+│   │   ├── de-en-software.md          # SDLC and software glossary
 │   │   └── de-en-construction.md      # Construction and concrete glossary
 │   ├── de-pl/                         # German-to-Polish direction rules and glossaries
 │   │   ├── de-pl-general.md           # Direction contract: style, abbreviations
+│   │   ├── de-pl-software.md          # SDLC and software glossary
 │   │   └── de-pl-construction.md      # Construction and concrete glossary
 │   ├── en-de/                         # English-to-German direction rules and glossaries
 │   │   ├── en-de-general.md           # Direction contract: style, locale, abbreviations
+│   │   ├── en-de-software.md          # SDLC and software glossary
 │   │   └── en-de-construction.md      # Construction and concrete glossary
 │   ├── en-pl/                         # English-to-Polish direction rules and glossaries
 │   │   ├── en-pl-general.md           # Direction contract: style, locale, untranslated set
@@ -504,6 +526,7 @@ panther-skill/
 │   │   └── en-pl-construction.md      # Construction and concrete glossary
 │   ├── pl-de/                         # Polish-to-German direction rules and glossaries
 │   │   ├── pl-de-general.md           # Direction contract: style, abbreviations
+│   │   ├── pl-de-software.md          # SDLC and software glossary
 │   │   └── pl-de-construction.md      # Construction and concrete glossary
 │   └── pl-en/                         # Polish-to-English direction rules and glossaries
 │       ├── pl-en-general.md           # Direction contract: Title Case, abbreviations

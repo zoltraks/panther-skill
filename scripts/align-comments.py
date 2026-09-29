@@ -25,6 +25,7 @@ Usage: python align-comments.py <document.md> [--check] [--compact] [--payload-m
 import argparse
 import os
 import re
+import sys
 from collections import Counter
 
 FENCE = re.compile(r"^\s*(`{3,})\s*(\w*)")
@@ -138,6 +139,9 @@ def main(path, check_only, compact, payload_markdown):
 
 
 if __name__ == "__main__":
+    for _stream in (sys.stdout, sys.stderr):
+        if hasattr(_stream, "reconfigure"):
+            _stream.reconfigure(errors="backslashreplace")
     parser = argparse.ArgumentParser(
         description="Align `#` comments inside fenced plain-text and shell blocks."
     )

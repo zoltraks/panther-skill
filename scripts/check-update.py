@@ -52,7 +52,8 @@ def git(root: Path, *args: str, timeout: int = GIT_TIMEOUT) -> subprocess.Comple
         return subprocess.run(
             ["git", "-C", str(root), *args],
             capture_output=True,
-            text=True,
+            encoding="utf-8",
+            errors="replace",
             timeout=timeout,
             env=env,
         )
@@ -148,4 +149,7 @@ def main() -> int:
 
 
 if __name__ == "__main__":
+    for _stream in (sys.stdout, sys.stderr):
+        if hasattr(_stream, "reconfigure"):
+            _stream.reconfigure(errors="backslashreplace")
     raise SystemExit(main())

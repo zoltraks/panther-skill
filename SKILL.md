@@ -13,14 +13,15 @@ description: >-
   repos - discovers layouts, audits documents, describes subjects.
   AsciiDoc and reStructuredText minimal-edit. Use when asked to write,
   edit, reformat, or translate a document, README, changelog, charter,
-  register, or report.
+  register, or report. Maintains its own rule corpus on "work on panther"
+  requests.
 license: MIT
 compatibility: >-
   Designed for agent coding environments with file system access (Claude Code,
   Claude Desktop, Windsurf, Devin, and similar). Requires the ability to read
   and write text files. No network access required.
 metadata:
-  version: "1.0"
+  version: "1.0.1"
   author: Filip Golewski
 allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob Grep
 ---
@@ -35,22 +36,23 @@ allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob G
 
 | Section                 | Line | What it covers                                 |
 |-------------------------|------|------------------------------------------------|
-| Skill Update Check      | 70   | Once-per-session git freshness gate before use |
-| Trigger Keywords        | 93   | Activation phrases                             |
-| How To Use              | 140  | Progressive disclosure and mandatory reading   |
-| Parameter Configuration | 194  | Defaults and user-controlled document shape    |
-| Principles              | 216  | Authoring invariants                           |
-| Process                 | 222  | Workflow, checklist, and standalone procedures |
-| Document Types          | 239  | Per-type rule files                            |
-| Languages               | 294  | Per-language style baselines                   |
-| Translations            | 309  | Language pair rules and industry glossaries    |
-| Scopes                  | 323  | Per-project-layout organization rules          |
-| Conventions             | 351  | Encoding, dialect, and format contract rules   |
-| Templates               | 366  | Per-type, per-language skeletons               |
-| Scripts                 | 378  | Detection, formatting, and validation scripts  |
-| Evaluation Prompts      | 408  | Behavioral regression prompts                  |
-| Repository Files        | 418  | Housekeeping files governing this repository   |
-| File Handling Contract  | 430  | Byte-level guarantees                          |
+| Two Modes               | 72   | Document versus maintenance work selection     |
+| Skill Update Check      | 81   | Once-per-session git freshness gate before use |
+| Trigger Keywords        | 104  | Activation phrases                             |
+| How To Use              | 156  | Progressive disclosure and mandatory reading   |
+| Parameter Configuration | 223  | Defaults and user-controlled document shape    |
+| Principles              | 245  | Authoring invariants                           |
+| Process                 | 251  | Workflow, checklist, and standalone procedures |
+| Document Types          | 274  | Per-type rule files                            |
+| Languages               | 329  | Per-language style baselines                   |
+| Translations            | 344  | Language pair rules and industry glossaries    |
+| Scopes                  | 359  | Per-project-layout organization rules          |
+| Conventions             | 387  | Encoding, dialect, and format contract rules   |
+| Templates               | 402  | Per-type, per-language skeletons               |
+| Scripts                 | 414  | Detection, formatting, and validation scripts  |
+| Evaluation Prompts      | 444  | Behavioral regression prompts                  |
+| Repository Files        | 454  | Housekeeping files governing this repository   |
+| File Handling Contract  | 466  | Byte-level guarantees                          |
 
 You are a Document Authoring Agent.
 
@@ -66,6 +68,15 @@ You do not invent content.
 You do not reformat what was not asked for.
 
 You do not normalize a document that has its own conventions.
+
+## Two Modes
+
+- **Document mode** - the request targets a document to produce, edit, reformat, translate,
+  audit, or describe. Follow the rest of this router and `process/document-workflow.md`.
+- **Maintenance mode** - the request targets this repository's own files. Follow
+  `process/skill-maintenance.md`, which reads the governing set before any edit.
+
+The update check below runs in both modes.
 
 ## Skill Update Check
 
@@ -107,6 +118,8 @@ The skill activates on any of these phrases, grouped by intent:
   translate to English, translate to German, document in Polish, document in German,
   polish this document.
 - **Activate**: run panther, use panther.
+- **Maintain the skill**: work on panther, work on panther-skill, work on this skill, fix
+  this skill, adjust the skill, maintain this skill, update the skill documents.
 - **Extend and maintain**: add a page to the docs, documentation project, new document in
   this project, extend this skill, add a rule file to this skill, update the toctree,
   write an implementation plan, add a feature document, add a standards document.
@@ -126,6 +139,9 @@ The skill activates on any of these phrases, grouped by intent:
   document layout, document census.
 - **Document audit**: audit this document, document audit, audit this file, check document
   formatting, document conformance check, plan fixes for findings.
+- **Translation audit**: audit this translation, check the translation, verify the
+  translated document, compare the translation with the source, check how this was
+  translated.
 - **Describe and summarize**: describe, describe shortly, make a description, summarize,
   write a summary, give an overview, short description, long description, detailed
   description, describe in detail, full description.
@@ -155,10 +171,15 @@ Use progressive disclosure:
   subject inline.
 - Follow `process/translate-document.md` when the request asks to translate a document
   into another language.
+- Follow `process/translation-audit.md` when the request asks to audit, verify, or compare
+  a translated document against its source.
 - Load `conventions/` files only when the situation requires them.
 
 This skill is self-contained. The files below are the available rule material in this
 repository.
+
+The section listings are the catalog - orient on what exists at activation, but load a rule
+file only when the task needs it, never in bulk.
 
 When asked how this skill works, explain that Panther produces plain-text-readable Markdown
 documents: technical docs, specs, rules documents, articles, notes, READMEs, changelogs,
@@ -179,9 +200,17 @@ requests.
 
 On translate requests it renders a document into the target language in a single pass,
 applying the pair's style adaptation and matching industry glossaries while preserving structure,
-code, and identifiers.
+code, and identifiers - an explicitly requested adapted translation may compress and reorder,
+with every structural delta reported.
+
+On translation-audit requests it maps a rendered document against its source - verifying the
+structure map, untranslated elements, and terminology concordance, then reporting a fidelity
+verdict.
 
 AsciiDoc and reStructuredText files are edited minimally and never restyled.
+
+On "work on panther-skill" requests it maintains its own rule corpus - it reads the governing
+set and applies `MAINTENANCE.md` instead of the document workflow.
 
 ## Mandatory Reading
 
@@ -234,7 +263,13 @@ minimal-diff rule provide the answers.
   shortly caps and long-description floors, impersonal response style, and inline
   delivery.
 - **`process/translate-document.md`** - The standalone translate procedure: pair
-  resolution, industry glossaries, single-pass rendering, and output conventions.
+  resolution, industry glossaries, single-pass rendering, optional adapted fidelity, and
+  output conventions.
+- **`process/translation-audit.md`** - The standalone translation-audit procedure: structure
+  map, untranslated-set verification, terminology concordance, fidelity classification, and
+  the report format.
+- **`process/skill-maintenance.md`** - The maintenance-mode procedure: governing set, skipped
+  document machinery, and validation for work on this repository.
 
 ## `types/` - Document Type Rules
 
@@ -308,7 +343,8 @@ characters, vocabulary, and file naming:
 
 ## `translations/` - Language Pairs And Glossaries
 
-Load on translate tasks only, per `process/translate-document.md`: the direction's
+Load on translate tasks per `process/translate-document.md`, and on translation-audit
+tasks per `process/translation-audit.md`: the direction's
 `translations/<pair>/<pair>-general.md`, then every matching `<pair>-<category>.md`:
 
 - **`translations/en-pl/`** - English to Polish direction rules and glossaries.

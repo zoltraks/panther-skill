@@ -20,6 +20,8 @@ Apply this glossary when:
   instruction, format specification, or rules document for a software project.
 - The document's terminology is dominated by code, API, build, deploy, test, or
   infrastructure vocabulary.
+- The document's terminology is dominated by AI-agent, agentic-SDLC, or
+  assistant-orchestration vocabulary.
 
 ## Terminology
 
@@ -31,6 +33,10 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 |--------------------------------|-------------------------------------------|
 | acceptance criteria            | kryteria akceptacji                       |
 | access token                   | token dostępu                             |
+| agent skill                    | umiejętność agenta                        |
+| agentic                        | agentowy                                  |
+| AI agent                       | agent AI                                  |
+| AI assistant                   | asystent AI                               |
 | API contract                   | kontrakt API                              |
 | application                    | aplikacja                                 |
 | architecture decision record   | rejestr decyzji architektonicznych        |
@@ -47,11 +53,15 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | build artifact                 | artefakt wynikowy / artefakt wdrożeniowy  |
 | cache                          | pamięć podręczna                          |
 | changelog                      | dziennik zmian                            |
+| choice menu                    | menu wyboru                               |
 | code review                    | przegląd kodu                             |
 | codebase                       | baza kodu                                 |
+| coding agent                   | agent kodujący                            |
 | concurrency                    | współbieżność                             |
 | configuration                  | konfiguracja                              |
 | container                      | kontener                                  |
+| context                        | kontekst                                  |
+| context window                 | okno kontekstu                            |
 | continuous delivery            | ciągłe dostarczanie                       |
 | continuous deployment          | ciągłe wdrażanie                          |
 | continuous integration         | ciągła integracja                         |
@@ -60,6 +70,7 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | dashboard                      | panel                                     |
 | data flow                      | przepływ danych                           |
 | dead code                      | martwy kod                                |
+| decision point                 | punkt decyzyjny                           |
 | default value                  | wartość domyślna                          |
 | dependency                     | zależność                                 |
 | deploy / deployment            | wdrażać / wdrożenie                       |
@@ -72,10 +83,13 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | feature                        | funkcja                                   |
 | fork                           | fork / rozwidlenie                        |
 | framework                      | framework / szkielet                      |
+| guardrail                      | zabezpieczenie / guardrail                |
 | guideline                      | wytyczna                                  |
 | hotfix                         | poprawka pilna                            |
+| human in the loop              | człowiek w pętli                          |
 | idempotent                     | idempotentny                              |
 | infrastructure                 | infrastruktura                            |
+| intake                         | przyjęcie / pobór                         |
 | issue                          | problem / zgłoszenie                      |
 | library                        | biblioteka                                |
 | license                        | licencja                                  |
@@ -87,10 +101,13 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | module                         | moduł                                     |
 | monitoring                     | monitorowanie                             |
 | observability                  | obserwowalność                            |
+| orchestrator                   | orkiestrator                              |
 | owner                          | właściciel                                |
 | pipeline / CI pipeline         | proces / proces CI / proces CI/CD         |
 | preview                        | podgląd                                   |
 | production                     | środowisko produkcyjne                    |
+| prompt                         | prompt                                    |
+| prompt template                | szablon promptu                           |
 | pull request                   | pull request                              |
 | quality gate                   | kryterium jakości / warunek jakości       |
 | rate limiting                  | ograniczenie częstotliwości żądań         |
@@ -104,7 +121,9 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | scalability                    | skalowalność                              |
 | screenshot                     | zrzut ekranu                              |
 | security                       | bezpieczeństwo                            |
+| session                        | sesja                                     |
 | software development lifecycle | cykl wytwarzania oprogramowania           |
+| sources of truth               | źródła prawdy                             |
 | specification                  | specyfikacja                              |
 | sprint                         | sprint                                    |
 | staging                        | środowisko przejściowe / staging          |
@@ -115,8 +134,11 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | test coverage                  | pokrycie testami                          |
 | testability                    | testowalność                              |
 | thread                         | wątek                                     |
+| token                          | token                                     |
+| tool call                      | wywołanie narzędzia                       |
 | toolchain                      | łańcuch narzędzi                          |
 | tooltip                        | podpowiedź                                |
+| trigger                        | wyzwalacz                                 |
 | use case                       | przypadek użycia                          |
 | user story                     | historyjka użytkownika                    |
 | version pinning                | zamrożenie wersji                         |
@@ -137,6 +159,10 @@ Some English terms render differently by context - do not force one form everywh
 - `fallback` renders `mechanizm awaryjny` or `obsługa zastępcza`.
 - `fail-closed` renders `odmowa dostępu` or `zamknięcie w przypadku błędu`.
 - `deploy` compounds translate in full - `środowisko wdrożeniowe`, `zadanie wdrożeniowe`.
+- `prompt` renders `prompt` throughout a document - do not split between `prompt` and
+  `polecenie` inside one document.
+  A project that already established `polecenie` keeps it per the precedence rule in
+  `en-pl-general.md`.
 
 ## Calque Traps
 

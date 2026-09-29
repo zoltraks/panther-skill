@@ -14,6 +14,9 @@ Document production rules live in `principles/`, `process/`, `types/`, `language
 
 Prose and formatting style for the skill's files lives in `STYLE.md`.
 
+The intake procedure for requests that target the skill itself - mode selection and the
+governing-file read set - lives in `process/skill-maintenance.md`.
+
 ## Directory Roles
 
 | Directory       | Role                                                           |
@@ -162,9 +165,12 @@ content that demonstrates the same point without depending on anything outside t
    documented.
 2. Keep it a self-contained single file - document-production tools are copied into working
    repositories under `.tmp.` names, where a shared helper module would not exist.
-3. Classify it in `scripts/README.md` as document-production (copied as `.tmp.`) or
+3. Under the `__main__` guard, reconfigure `sys.stdout` and `sys.stderr` with
+   `errors="backslashreplace"`, and pass explicit `encoding=` and `errors=` to every
+   `subprocess` text call - console and pipe output must survive legacy encodings.
+4. Classify it in `scripts/README.md` as document-production (copied as `.tmp.`) or
    skill-maintenance (runs from this repository only).
-4. Reference it from the `SKILL.md` `scripts/` section and from the workflow step where it runs.
+5. Reference it from the `SKILL.md` `scripts/` section and from the workflow step where it runs.
 
 ## Adding A Translation Pair
 

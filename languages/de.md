@@ -771,6 +771,10 @@ Behandle eine Anfrage, die einer Phrase aus der Tabelle entspricht, wie ihre eng
 | dokument-audit                        | audit this document          |
 | formatierung prüfen                   | check document formatting    |
 | korrekturen für feststellungen planen | plan fixes for findings      |
+| übersetzungs-audit                    | audit this translation       |
+| prüfe die übersetzung                 | check the translation        |
+| überprüfe die übersetzung             | verify the translation       |
+| adaptiv übersetzen                    | adapted translation          |
 | agenten-anweisungsdokument            | agent instruction document   |
 | vorbereitungsdokument                 | preparation document         |
 | contributing-leitfaden                | contributing guide           |
@@ -785,3 +789,8 @@ Behandle eine Anfrage, die einer Phrase aus der Tabelle entspricht, wie ihre eng
 | ausführliche beschreibung             | detailed description         |
 | beschreibe detailliert                | describe in detail           |
 | vollständige beschreibung             | full description             |
+| arbeite an panther                    | work on panther              |
+| arbeite an dieser fähigkeit           | work on this skill           |
+| repariere diese fähigkeit             | fix this skill               |
+| passe diese fähigkeit an              | adjust the skill             |
+| aktualisiere die fähigkeitsdokumente  | update the skill documents   |

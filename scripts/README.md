@@ -202,6 +202,13 @@ and prefer leaving a questionable line packed over splitting it wrong.
 sentence-final punctuation, and treats a label line ending in `:` as a boundary - review
 the joins on documents that mix several layouts.
 
+Console output never fails on a legacy encoding - every script reconfigures `sys.stdout`
+and `sys.stderr` with `errors="backslashreplace"` under its `__main__` guard, so characters
+the console cannot encode print as `\uXXXX` escapes instead of raising.
+
+Subprocess text output decodes as UTF-8 with an explicit error handler - `surrogateescape`
+where byte fidelity matters, `replace` for display payloads.
+
 The validators are mechanical checks, not judgment.
 
 A passing validator does not prove that a document is well written or correct.

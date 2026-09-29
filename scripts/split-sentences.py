@@ -392,6 +392,9 @@ def main(path, width, payload_markdown, check_only, paragraphs):
 
 
 if __name__ == "__main__":
+    for _stream in (sys.stdout, sys.stderr):
+        if hasattr(_stream, "reconfigure"):
+            _stream.reconfigure(errors="backslashreplace")
     parser = argparse.ArgumentParser(
         description="Split packed sentences onto individual logical lines "
                     "or paragraphs."

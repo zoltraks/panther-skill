@@ -637,7 +637,8 @@
         "The agent runs python scripts/test-scripts.py from the Panther repository root.",
         "The harness prints a PASS or FAIL line per tool plus a RESULT summary line.",
         "Repo validators are expected to exit 0, while check-mode tools may exit 0 or 1 as controlled verdicts.",
-        "Any FAIL line reporting an unhandled traceback is treated as a regression to fix, not a finding to report."
+        "Any FAIL line reporting an unhandled traceback is treated as a regression to fix, not a finding to report.",
+        "The harness includes legacy-console cases (PYTHONIOENCODING=cp1252 and a non-UTF-8 locale), and the tools under them report without crashing."
       ]
     },
     {
@@ -737,6 +738,68 @@
         "No skill file references the example's file name, repository, project name, or author.",
         "If an example was needed, the skill wrote its own with anonymized names.",
         "The new component is registered wherever the skill tracks components - scripts README, SKILL.md, and contents tables."
+      ]
+    },
+    {
+      "id": 61,
+      "prompt": "Work on panther-skill: the router's process list is missing the maintenance procedure entry - register it.",
+      "expected_output": "A maintenance-mode edit that reads the governing set first, applies the registration contract, and runs the skill validators.",
+      "files": [],
+      "expectations": [
+        "The agent ran the once-per-session update check before other steps.",
+        "The agent read the governing set - SKILL.md, MAINTENANCE.md, STYLE.md, VERSIONING.md, CONTRIBUTING.md, SECURITY.md, README.md, scripts/README.md - before planning the edit.",
+        "No parameter-resolution questions were asked, and no languages/, types/, or templates/ files were loaded for the skill's own documents.",
+        "Every enumeration of the changed component was updated in one pass - SKILL.md registry, README.md tree, and affected contents tables.",
+        "The agent ran validate-skill.py, check-references.py, and check-contents.py after the change."
+      ]
+    },
+    {
+      "id": 62,
+      "prompt": "Use panther - write a quick note about today's standup in English.",
+      "expected_output": "A minimal English quick note produced with progressive disclosure - only the rule files the task needed were loaded.",
+      "files": [],
+      "expectations": [
+        "The agent loaded SKILL.md, principles/authoring-rules.md, and process/document-workflow.md.",
+        "The agent loaded languages/en.md and types/quick-note.md as the matching rule files.",
+        "The agent did not bulk-read unrelated types/, scopes/, translations/, or templates/ files before the task required them.",
+        "The note follows the quick-note type - minimal structure, informal lists."
+      ]
+    },
+    {
+      "id": 63,
+      "prompt": "Audit this Polish translation against the English source document.",
+      "expected_output": "A translation audit that loads the pair rules, maps the structure heading by heading, verifies the untranslated set and terminology concordance, and reports a fidelity verdict with findings.",
+      "files": [],
+      "expectations": [
+        "The agent followed process/translation-audit.md and loaded languages/pl.md plus the matching translations/en-pl pair files.",
+        "The agent classified fidelity - faithful or adapted - before judging structural deltas.",
+        "The structure map classified every source heading as faithful, reworded, dropped, merged, reordered, or added.",
+        "The agent verified byte-identity of the untranslated set - code, paths, identifiers, frontmatter, TBD and NOT SPECIFIED markers.",
+        "The report delivered a fidelity verdict, structure-map delta counts, and findings in the document-audit format."
+      ]
+    },
+    {
+      "id": 64,
+      "prompt": "Translate this English specification to Polish, adapted for a Polish audience - you may shorten and reorganize.",
+      "expected_output": "A Polish adapted translation that may compress and reorder sections, follows all style and terminology rules for retained content, and lists every structural delta in the delivery report.",
+      "files": [],
+      "expectations": [
+        "The agent resolved Fidelity to adapted only because the request explicitly asked for adaptation.",
+        "Retained content applied the en-pl style adaptation, terminology precedence, and untranslated-set rules unchanged.",
+        "No content was invented - every retained statement exists in the source.",
+        "The delivery report listed every dropped, merged, and reordered section so the adaptation is auditable."
+      ]
+    },
+    {
+      "id": 65,
+      "prompt": "Translate this English agent-instruction guide into German.",
+      "expected_output": "A German translation that applies the en-de direction contract and the software glossary - AI agent renders KI-Agent, decision point renders Entscheidungspunkt, prompt renders Prompt - with sentence-case headings.",
+      "files": [],
+      "expectations": [
+        "The agent loaded languages/de.md, translations/en-de/en-de-general.md, and translations/en-de/en-de-software.md.",
+        "The software glossary's agentic terms were applied - KI-Agent, Agenten-Fähigkeit, Entscheidungspunkt, Prompt-Vorlage.",
+        "Untranslated set stayed verbatim - code, paths, identifiers, TBD and NOT SPECIFIED markers.",
+        "The output file was written as <basename>-de.md in UTF-8 without BOM."
       ]
     }
   ]

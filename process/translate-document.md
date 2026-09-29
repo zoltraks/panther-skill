@@ -37,11 +37,16 @@ Resolve these parameters before translating:
 | Target language | Named by the request, ask when absent                            |
 | Industry        | Detected from request, type, or terminology - ask when ambiguous |
 | Output location | Sibling file `<basename>-<code>.md`                              |
+| Fidelity        | faithful - one-to-one structure                                  |
 | Encoding        | UTF-8 without BOM                                                |
 | Line endings    | LF                                                               |
 
 Confirm the parameters with the user per `process/document-workflow.md` - ask whether to
 accept the defaults or configure them.
+
+Fidelity resolves to `adapted` only when the request explicitly asks for an adapted,
+abridged, loose, or audience-adapted translation - it is never inferred from the source or
+the target audience.
 
 An in-place overwrite of the source file happens only when the request explicitly asks for
 it and the user confirms, per the File Handling Contract.
@@ -117,6 +122,27 @@ loading the matching `conventions/` file.
 
 Refuse non-Markdown, binary, or non-textual input with a stated reason.
 
+## Adapted Translation
+
+This section applies only when Fidelity resolved to `adapted`.
+
+Explicit request phrases include "adapted translation", "adapt it", "translate loosely",
+"shorten for a <language> audience", "adapt for a <language> audience", and their localized
+equivalents declared in the matching `languages/` file.
+
+An adapted translation may drop, merge, or reorder sections, compress prose, and render the
+title adaptively.
+
+Retained content obeys every rule of this procedure - style adaptation, terminology
+precedence, and the untranslated set apply unchanged.
+
+Nothing may be invented - every retained statement must exist in the source document.
+
+The delivery report must list every structural delta - dropped, merged, and reordered
+sections - so the adaptation is auditable.
+
+A silent compression or reordering is a defect, not an adaptation.
+
 ## Validation
 
 Run the mechanical checks on the written file:
@@ -135,6 +161,8 @@ Self-review against `process/document-checklist.md` plus the translation items:
 - Internal `#anchor` links resolve against the translated headings.
 - Code, identifiers, and the untranslated set are byte-identical to the source.
 - One English term renders one Polish term consistently, except declared context forms.
+- Embedded example payloads follow the declared payload rule consistently.
+- An adapted output reports every structural delta in the delivery report.
 
 `scripts/diff-content.py` does not apply - the token stream changes by design across
 languages, state the skip in the report.
@@ -150,7 +178,8 @@ Remove every copied `.tmp.` script from the working repository.
 
 ## Non-Goals
 
-Translation does not review, improve, restructure, or summarize the content.
+A faithful translation does not review, improve, restructure, or summarize the content -
+restructuring happens only under the declared adapted mode.
 
 It does not produce bilingual documents unless the request asks for them.
 
