@@ -190,7 +190,7 @@ Fence every code block with three backticks.
 
 Provide a language tag only when the block contains code in a programming, markup, or data language.
 
-Leave blocks that contain plain text, directory trees, diagrams, console output, or tables untagged.
+Leave blocks that contain plain text, prompts, console or standard output, directory trees, diagrams, or tables untagged - a `text` or `txt` tag still counts as a tag, and a document that already uses such tags consistently keeps its convention.
 
 Do not leave a blank line as the first or the last line inside the block.
 

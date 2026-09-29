@@ -8,7 +8,7 @@ Co aplikacja robi, jaki problem rozwiązuje i jakie ma główne możliwości.
 
 ## Instalacja
 
-```text
+```bash
 polecenie instalacji
 ```
 
@@ -19,7 +19,7 @@ polecenie instalacji
 
 ## Użycie
 
-```text
+```bash
 polecenie użycia
 ```
 

@@ -55,8 +55,10 @@ Fix every failure, or report it to the user with a reason.
 - Task lists use `- [ ]` and `- [x]`.
 - Every fenced code block carrying code in a programming, markup, or data language has a language
   tag.
-- Fenced blocks carrying plain text, directory trees, diagrams, console output, or tables have no
-  language tag.
+- Fenced blocks carrying plain text, prompts, console or standard output, directory trees,
+  diagrams, or tables have no language tag - a `text` or `txt` tag counts as a tag.
+- **Existing:** a document that already uses `text`, `txt`, `bash`, or other fence tags
+  consistently keeps its convention - do not normalize tags on edit.
 - Trailing `#` comments inside a plain-text or shell-tagged block share one column - the
   established column, or the longest entry plus two spaces - aligned with
   `scripts/align-comments.py` or an equivalent script, not by hand.

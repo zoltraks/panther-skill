@@ -34,7 +34,7 @@ to `.rst` files, verify edits by reading the file instead.
 
 reStructuredText marks headings by underlining the title, optionally with an overline:
 
-```text
+```rst
 Document Title
 ==============
 
@@ -56,7 +56,7 @@ When editing, keep the document's existing character-to-level mapping.
 
 Directives are block elements starting with `.. ` followed by a name and two colons:
 
-```text
+```rst
 .. toctree::
    :maxdepth: 2
    :titlesonly:

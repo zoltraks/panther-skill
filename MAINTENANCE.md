@@ -197,7 +197,7 @@ content that demonstrates the same point without depending on anything outside t
 
 Run the skill-maintenance tools after every structural change:
 
-```text
+```bash
 python scripts/validate-skill.py .
 python scripts/check-references.py .
 python scripts/check-contents.py .

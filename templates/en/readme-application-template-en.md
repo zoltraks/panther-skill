@@ -8,7 +8,7 @@ What the application does, the problem it solves, and its main capabilities.
 
 ## Installation
 
-```text
+```bash
 install command
 ```
 
@@ -19,7 +19,7 @@ install command
 
 ## Usage
 
-```text
+```bash
 usage command
 ```
 

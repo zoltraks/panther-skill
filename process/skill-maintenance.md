@@ -12,14 +12,18 @@ Follow it when the request asks to adjust, extend, fix, or review the skill repo
 
 ## Mode Distinction
 
-Panther runs in two modes:
+Panther runs in three modes:
 
+- **Enable mode** - the request activates the skill without naming a task. Follow
+  `process/skill-activation.md`.
 - **Document mode** - the request targets a document the skill produces or edits: a
   specification, README, register, translation, audit, or description. Follow the router in
   `SKILL.md` and `process/document-workflow.md`.
 - **Maintenance mode** - the request targets this repository's own files. Follow this file.
 
-The target decides the mode, not the trigger phrase.
+A bare activation request has no target and takes enable mode.
+
+For every other request the target decides the mode, not the trigger phrase.
 
 "Work on panther-skill" phrasing signals the start of adjustment, extension, or fixing of the
 skill's documents - expect the following requests in the same session to stay in this mode.
@@ -32,7 +36,7 @@ When the target is ambiguous, ask which mode applies.
 ## Intake
 
 1. Run the once-per-session Skill Update Check from `SKILL.md` - the same gate applies in
-   both modes.
+   every mode.
 2. Read the governing set below in full before planning any edit.
 3. Read in full every additional rule file the change touches or contradicts - the governing
    set defines the process, the corpus defines the content.

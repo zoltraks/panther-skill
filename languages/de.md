@@ -194,7 +194,7 @@ Fasse jeden Codeblock mit drei Backticks ein.
 
 Gib die Sprachkennzeichnung nur dann an, wenn der Block Code in einer Programmier-, Auszeichnungs- oder Datensprache enthält.
 
-Blöcke mit reinem Text, Verzeichnisbäumen, Diagrammen, Konsolenausgaben oder Tabellen bleiben ohne Kennzeichnung.
+Blöcke mit reinem Text, Prompts, Konsolen- oder stdout-Ausgaben, Verzeichnisbäumen, Diagrammen oder Tabellen bleiben ohne Kennzeichnung - `text` und `txt` sind ebenfalls Kennzeichnungen, und ein Dokument mit konsistenter `text`-Konvention behält sie.
 
 Lasse keine Leerzeile als erste oder als letzte Zeile innerhalb des Blocks stehen.
 
@@ -794,3 +794,8 @@ Behandle eine Anfrage, die einer Phrase aus der Tabelle entspricht, wie ihre eng
 | repariere diese fähigkeit             | fix this skill               |
 | passe diese fähigkeit an              | adjust the skill             |
 | aktualisiere die fähigkeitsdokumente  | update the skill documents   |
+| starte panther                        | run panther                  |
+| verwende panther                      | use panther                  |
+| verwende die fähigkeit                | use skill                    |
+| verwende diese fähigkeit              | use this skill               |
+| aktiviere die fähigkeit               | activate the skill           |

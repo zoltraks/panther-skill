@@ -18,7 +18,7 @@ Szczegół należący do sekcji nadrzędnej.
 
 ## Przykłady
 
-```text
+```
 Przykład zawartości.
 ```
 

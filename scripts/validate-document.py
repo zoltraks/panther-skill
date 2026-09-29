@@ -8,6 +8,10 @@ Non-ASCII characters in prose (outside inline code spans) are reported as
 warnings, not failures - they may be a deliberate document convention.
 Box-drawing characters (U+2500-U+257F) are exempt.
 
+`text`/`txt` fence tags are warnings for the same reason - an existing
+document may carry them as its established convention, while new content
+defaults to untagged fences for plain text.
+
 Copy this file into the working repository's `work/` directory (or the
 repository root when no `work/` exists) as `validate-document.tmp.py`, run it
 on the document file, then remove the copy.
@@ -143,6 +147,11 @@ def main(path, width, payload_markdown):
             else:
                 if prev.strip() != "" and not HEADING.match(prev):
                     issues.append(f"line {n}: no blank line before code block")
+                if fence.group(2) in ("text", "txt"):
+                    warnings.append(
+                        f"line {n}: '{fence.group(2)}' tag on fenced block - "
+                        "plain-text blocks default to untagged fences in new content"
+                    )
                 fence_first = i
                 fences.append((marker, fence.group(2)))
             prev = line

@@ -10,7 +10,7 @@ package-manager install package-name
 
 ## Usage
 
-```text
+```
 import package-name
 
 minimal working example

@@ -31,7 +31,7 @@ This is the dialect the `languages/` files define.
 
 Some documents underline headings instead of using `#` markers:
 
-```text
+```markdown
 Title
 =====
 
@@ -51,7 +51,7 @@ For added headings, match the document's dominant style.
 
 A variant of ATX with trailing markers:
 
-```text
+```markdown
 ### Gitara elektryczna ###
 ```
 

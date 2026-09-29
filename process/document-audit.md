@@ -47,7 +47,7 @@ Copy the document-production tools into the working repository as `.tmp.` copies
 
 Run them on the target:
 
-```text
+```bash
 python detect-encoding.tmp.py <file>
 python validate-document.tmp.py <file>
 python reflow-prose.tmp.py <file> --wrap --check --width <convention>
@@ -70,7 +70,7 @@ Record every `PASS`, `WARN`, and `FAIL` for the report.
 
 Copy `scripts/census-document.py` as `census-document.tmp.py` and run it on the target.
 
-```text
+```bash
 python census-document.tmp.py <file> --width <convention-or-100>
 ```
 

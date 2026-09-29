@@ -8,13 +8,13 @@ Was das Projekt tut und seine Hauptfähigkeiten.
 
 ## Installation
 
-```text
+```bash
 Installationsbefehl
 ```
 
 ## Verwendung
 
-```text
+```bash
 Verwendungsbefehl
 ```
 

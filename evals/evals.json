@@ -801,6 +801,42 @@
         "Untranslated set stayed verbatim - code, paths, identifiers, TBD and NOT SPECIFIED markers.",
         "The output file was written as <basename>-de.md in UTF-8 without BOM."
       ]
+    },
+    {
+      "id": 66,
+      "prompt": "Use skill.",
+      "expected_output": "An enablement response: the session update check runs, the router stays the only loaded rule material, and a compact confirmation lists the capability families - then the agent waits for a task.",
+      "files": [],
+      "expectations": [
+        "The agent ran the once-per-session update check against the skill's own repository before other steps.",
+        "No document task was classified and no parameter-resolution questions were asked.",
+        "No rule files beyond SKILL.md and the activation procedure were loaded, and no file was created or modified.",
+        "The reply confirms the skill is enabled for editorial support and lists the capability families compactly.",
+        "A following task-bearing request enters document or maintenance mode without repeating the update check."
+      ]
+    },
+    {
+      "id": 67,
+      "prompt": "Write a technical document for a log-rotate helper that includes a console-output example and a directory tree.",
+      "expected_output": "A technical document where plain-text fenced blocks carry no language tag - bare fences for console output and the directory tree - while runnable commands keep `bash` tags.",
+      "files": [],
+      "expectations": [
+        "Fenced blocks containing plain text, prompts, console or standard output, directory trees, or tables carry no language tag.",
+        "No `text` or `txt` tag was used for plain-text content.",
+        "Runnable command examples are fenced with `bash` tags.",
+        "Markdown-syntax example blocks, if any, use the `markdown` tag."
+      ]
+    },
+    {
+      "id": 68,
+      "prompt": "Add a new section with a plain-text example block to this document - it already uses ```text fences throughout.",
+      "expected_output": "An in-place edit whose new fence matches the document's established ```text convention.",
+      "files": [],
+      "expectations": [
+        "The new fenced block carries the ```text tag, matching the document's own convention.",
+        "The agent did not normalize the document's existing ```text fences to bare fences.",
+        "No unrelated reformatting occurred."
+      ]
     }
   ]
 }

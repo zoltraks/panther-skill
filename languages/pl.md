@@ -194,7 +194,7 @@ Każdy blok kodu ogradzaj trzema znakami odwróconego apostrofu.
 
 Podawaj znacznik języka tylko wtedy, gdy blok zawiera kod w języku programowania, znaczników lub danych.
 
-Bloki ze zwykłym tekstem, drzewami katalogów, diagramami, wynikami konsoli lub tabelami pozostawiaj bez znacznika.
+Bloki ze zwykłym tekstem, promptami, wynikami konsoli lub standardowego wyjścia, drzewami katalogów, diagramami lub tabelami pozostawiaj bez znacznika - `text` i `txt` też są znacznikami, a dokument, który już ich używa konsekwentnie, zachowuje swoją konwencję.
 
 Nie zostawiaj pustego wiersza jako pierwszego ani jako ostatniego wiersza wewnątrz bloku.
 
@@ -792,3 +792,8 @@ Traktuj żądanie pasujące do frazy z tabeli jako jej angielski odpowiednik.
 | napraw tę umiejętność              | fix this skill               |
 | dostosuj tę umiejętność            | adjust the skill             |
 | zaktualizuj dokumenty umiejętności | update the skill documents   |
+| uruchom panther                    | run panther                  |
+| użyj panther                       | use panther                  |
+| użyj umiejętności                  | use skill                    |
+| użyj tej umiejętności              | use this skill               |
+| aktywuj umiejętność                | activate the skill           |

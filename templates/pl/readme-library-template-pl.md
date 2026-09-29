@@ -10,7 +10,7 @@ menedżer-pakietów install nazwa-pakietu
 
 ## Użycie
 
-```text
+```
 import nazwa-pakietu
 
 minimalny działający przykład

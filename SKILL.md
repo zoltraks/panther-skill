@@ -14,14 +14,15 @@ description: >-
   AsciiDoc and reStructuredText minimal-edit. Use when asked to write,
   edit, reformat, or translate a document, README, changelog, charter,
   register, or report. Maintains its own rule corpus on "work on panther"
-  requests.
+  requests. Enables for editorial support on bare "use skill" or
+  "run panther" requests.
 license: MIT
 compatibility: >-
   Designed for agent coding environments with file system access (Claude Code,
   Claude Desktop, Windsurf, Devin, and similar). Requires the ability to read
   and write text files. No network access required.
 metadata:
-  version: "1.0.1"
+  version: "1.0.2"
   author: Filip Golewski
 allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob Grep
 ---
@@ -36,23 +37,23 @@ allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob G
 
 | Section                 | Line | What it covers                                 |
 |-------------------------|------|------------------------------------------------|
-| Two Modes               | 72   | Document versus maintenance work selection     |
-| Skill Update Check      | 81   | Once-per-session git freshness gate before use |
-| Trigger Keywords        | 104  | Activation phrases                             |
-| How To Use              | 156  | Progressive disclosure and mandatory reading   |
-| Parameter Configuration | 223  | Defaults and user-controlled document shape    |
-| Principles              | 245  | Authoring invariants                           |
-| Process                 | 251  | Workflow, checklist, and standalone procedures |
-| Document Types          | 274  | Per-type rule files                            |
-| Languages               | 329  | Per-language style baselines                   |
-| Translations            | 344  | Language pair rules and industry glossaries    |
-| Scopes                  | 359  | Per-project-layout organization rules          |
-| Conventions             | 387  | Encoding, dialect, and format contract rules   |
-| Templates               | 402  | Per-type, per-language skeletons               |
-| Scripts                 | 414  | Detection, formatting, and validation scripts  |
-| Evaluation Prompts      | 444  | Behavioral regression prompts                  |
-| Repository Files        | 454  | Housekeeping files governing this repository   |
-| File Handling Contract  | 466  | Byte-level guarantees                          |
+| Three Modes             | 73   | Enable, document, and maintenance selection    |
+| Skill Update Check      | 85   | Once-per-session git freshness gate before use |
+| Trigger Keywords        | 108  | Activation phrases                             |
+| How To Use              | 160  | Progressive disclosure and mandatory reading   |
+| Parameter Configuration | 236  | Defaults and user-controlled document shape    |
+| Principles              | 258  | Authoring invariants                           |
+| Process                 | 264  | Workflow, checklist, and standalone procedures |
+| Document Types          | 289  | Per-type rule files                            |
+| Languages               | 344  | Per-language style baselines                   |
+| Translations            | 359  | Language pair rules and industry glossaries    |
+| Scopes                  | 374  | Per-project-layout organization rules          |
+| Conventions             | 402  | Encoding, dialect, and format contract rules   |
+| Templates               | 417  | Per-type, per-language skeletons               |
+| Scripts                 | 429  | Detection, formatting, and validation scripts  |
+| Evaluation Prompts      | 459  | Behavioral regression prompts                  |
+| Repository Files        | 469  | Housekeeping files governing this repository   |
+| File Handling Contract  | 481  | Byte-level guarantees                          |
 
 You are a Document Authoring Agent.
 
@@ -69,14 +70,17 @@ You do not reformat what was not asked for.
 
 You do not normalize a document that has its own conventions.
 
-## Two Modes
+## Three Modes
 
+- **Enable mode** - the request activates the skill without naming a task: "use skill",
+  "run panther", "activate the skill". Follow `process/skill-activation.md`, which confirms
+  readiness for editorial support and waits for the task request.
 - **Document mode** - the request targets a document to produce, edit, reformat, translate,
   audit, or describe. Follow the rest of this router and `process/document-workflow.md`.
 - **Maintenance mode** - the request targets this repository's own files. Follow
   `process/skill-maintenance.md`, which reads the governing set before any edit.
 
-The update check below runs in both modes.
+The update check below runs in every mode.
 
 ## Skill Update Check
 
@@ -117,7 +121,7 @@ The skill activates on any of these phrases, grouped by intent:
 - **Translate**: translate this document, translate this file, translate to Polish,
   translate to English, translate to German, document in Polish, document in German,
   polish this document.
-- **Activate**: run panther, use panther.
+- **Activate**: run panther, use panther, use skill, use this skill, activate the skill.
 - **Maintain the skill**: work on panther, work on panther-skill, work on this skill, fix
   this skill, adjust the skill, maintain this skill, update the skill documents.
 - **Extend and maintain**: add a page to the docs, documentation project, new document in
@@ -158,6 +162,8 @@ Treat a request matching a declared phrase as its English equivalent.
 Use progressive disclosure:
 
 - Read this router first.
+- Follow `process/skill-activation.md` when the request activates the skill without naming a
+  task - bare activation skips the document workflow below.
 - Read `principles/authoring-rules.md` and `process/document-workflow.md` before producing any
   document. They are mandatory for every task.
 - Load the matching `languages/` file for the document language.
@@ -211,6 +217,13 @@ AsciiDoc and reStructuredText files are edited minimally and never restyled.
 
 On "work on panther-skill" requests it maintains its own rule corpus - it reads the governing
 set and applies `MAINTENANCE.md` instead of the document workflow.
+
+On bare activation requests - "use skill", "run panther", or a language equivalent with no
+task attached - it enables for editorial support: the update check runs, the router is the
+loaded state, and a compact readiness summary listing the capability families answers the
+request.
+
+The next task-bearing request enters document or maintenance mode normally.
 
 ## Mandatory Reading
 
@@ -270,6 +283,8 @@ minimal-diff rule provide the answers.
   the report format.
 - **`process/skill-maintenance.md`** - The maintenance-mode procedure: governing set, skipped
   document machinery, and validation for work on this repository.
+- **`process/skill-activation.md`** - The enable-mode procedure: bare-activation intake, the
+  readiness response, and the hand-off to document or maintenance mode.
 
 ## `types/` - Document Type Rules
 
@@ -445,7 +460,7 @@ See `scripts/README.md`.
 
 - **`evals/evals.json`** - Skill-creator regression prompts covering document creation in
   all supported languages, convention-preserving edits, table reformatting, encoding edge
-  cases, the session update check, and document audits.
+  cases, the session update check, bare activation, and document audits.
 
 Run these as behavioral evaluations after structural changes.
 

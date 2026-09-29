@@ -62,7 +62,7 @@ They use the Python standard library and do not require PyYAML or a package mana
 
 The commands below use `python` - substitute `python3` when `python` is not on PATH.
 
-```text
+```bash
 python detect-encoding.tmp.py <file>
 python detect-scope.tmp.py <directory>
 python split-sentences.tmp.py <file.md> [--check] [--paragraphs] [--width N] [--payload-markdown]
@@ -154,6 +154,10 @@ tables, task markers, and internal links - and the agent maps counts to findings
 `process/document-audit.md`.
 
 The validators exit `0` when all checks pass and `1` when one or more checks fail.
+
+`validate-document.py` warns on `text` and `txt` fence tags - plain-text blocks default to
+untagged fences in new content, while an existing document may carry the tag as its own
+convention.
 
 ## Validation Order
 

@@ -18,7 +18,7 @@ Detail belonging to the parent section.
 
 ## Examples
 
-```text
+```
 Example content.
 ```
 

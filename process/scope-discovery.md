@@ -26,7 +26,7 @@ Copy `scripts/detect-scope.py` into the working repository as `detect-scope.tmp.
 
 Run it on the target:
 
-```text
+```bash
 python detect-scope.tmp.py <target>
 ```
 

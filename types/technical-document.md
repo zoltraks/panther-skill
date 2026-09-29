@@ -29,13 +29,13 @@ The canonical skeleton, adjusted to the request:
 2. Purpose - one paragraph stating what the document covers.
 3. Overview or context - what the reader needs to know first.
 4. Main content sections - H2 topics, H3 subtopics, ordered from general to specific.
-5. Examples - fenced blocks with language tags.
+5. Examples - fenced blocks, tagged with the language they carry, untagged for plain text.
 
 ## Deltas From The Language Baseline
 
 - Order sections from what the reader needs first to what they need last.
 - Put commands, file paths, and identifiers in inline code, put runnable commands in fenced
-  `bash` or `text` blocks.
+  `bash` blocks.
 - Prefer a table for enumerations of options, parameters, or fields.
 - Keep each section self-contained enough to be found by search, do not rely on pronouns that
   resolve only in earlier sections.

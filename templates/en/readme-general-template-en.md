@@ -8,13 +8,13 @@ What the project does and its main capabilities.
 
 ## Installation
 
-```text
+```bash
 install command
 ```
 
 ## Usage
 
-```text
+```bash
 usage command
 ```
 

@@ -16,6 +16,9 @@ a reformatting, or a translation.
 A request whose target is the Panther repository itself is a maintenance task - follow
 `process/skill-maintenance.md` instead of this workflow.
 
+A request that activates the skill without naming a task - "use skill", "run panther" - takes
+enable mode: follow `process/skill-activation.md` instead of this workflow.
+
 Classify the request into one primary task:
 
 | Task      | Trigger example                                    | Rule source                    |
@@ -81,7 +84,7 @@ Conventional names in other languages are declared in the matching `languages/` 
 
 For every existing file involved in the task, run the detection tool before editing:
 
-```text
+```bash
 python detect-encoding.tmp.py <file>
 ```
 

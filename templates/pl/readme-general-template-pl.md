@@ -8,13 +8,13 @@ Co projekt robi i jakie ma główne możliwości.
 
 ## Instalacja
 
-```text
+```bash
 polecenie instalacji
 ```
 
 ## Użycie
 
-```text
+```bash
 polecenie użycia
 ```
 

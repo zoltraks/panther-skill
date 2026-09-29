@@ -14,17 +14,17 @@
 |---------------------|------|--------------------------------------------|
 | Overview            | 29   | What Panther is and what it produces       |
 | What The Skill Does | 54   | Authoring purpose and workflow             |
-| Installation        | 156  | How to add Panther to an agent environment |
-| Usage               | 226  | How agents activate and run the skill      |
-| Example Prompts     | 237  | Phrases the skill activates on             |
-| Workflow Diagrams   | 280  | ASCII and Mermaid diagrams of the pipeline |
-| Core Principles     | 406  | Convention preservation and minimal diffs  |
-| When To Use         | 417  | Supported requests and exclusions          |
-| What's Inside       | 455  | Rule files, templates, tools, and evals    |
-| Specification       | 596  | Agent Skills specification conformance     |
-| Verification        | 612  | Skill-maintenance checks                   |
-| License             | 631  | License for the skill itself               |
-| Credits             | 637  | Methodology and example sources            |
+| Installation        | 166  | How to add Panther to an agent environment |
+| Usage               | 236  | How agents activate and run the skill      |
+| Example Prompts     | 250  | Phrases the skill activates on             |
+| Workflow Diagrams   | 296  | ASCII and Mermaid diagrams of the pipeline |
+| Core Principles     | 422  | Convention preservation and minimal diffs  |
+| When To Use         | 433  | Supported requests and exclusions          |
+| What's Inside       | 472  | Rule files, templates, tools, and evals    |
+| Specification       | 614  | Agent Skills specification conformance     |
+| Verification        | 630  | Skill-maintenance checks                   |
+| License             | 649  | License for the skill itself               |
+| Credits             | 655  | Methodology and example sources            |
 
 ## Overview
 
@@ -153,6 +153,16 @@ maintenance mode: it reads the skill's governing documents, applies `MAINTENANCE
 `STYLE.md`, and runs the skill's own validators - document-mode machinery does not apply to
 the skill's own files.
 
+**Enables on a bare request**
+
+Separately, when you say "use skill" or "run panther" without naming a task, the agent follows
+`process/skill-activation.md`: it runs the session update check, treats the loaded router as the
+enabled state, and answers with a compact confirmation that the skill is enabled for editorial
+support - a short list of the capability families, then it waits.
+
+No parameter questions, task classification, or document machinery runs until a task request
+arrives.
+
 ## Installation
 
 Panther is a filesystem-based skill following the [Agent Skills
@@ -230,6 +240,9 @@ Panther activates when a request matches any trigger phrase declared in `SKILL.m
 Examples include "write a README", "draft a specification", "format this table", "quick note",
 "write an ADR", "audit this document", and "run panther".
 
+A bare activation phrase such as "use skill" enables the skill for editorial support without
+starting a task.
+
 The skill performs an update check, resolves parameters, detects conventions and scope, selects
 rule files, drafts the document, validates it mechanically, and delivers the file with preserved
 encoding and line endings.
@@ -276,6 +289,9 @@ encoding and line endings.
 
 **Translation audit**
 > Audit this Polish translation against the English source.
+
+**Bare activation**
+> Use skill.
 
 ## Workflow Diagrams
 
@@ -449,6 +465,7 @@ flowchart TD
 | "Audit this document"                            | **Yes** - findings and optional fix plan |
 | "Check this document's formatting"               | **Yes** - audit procedure                |
 | "Describe this repository shortly"               | **Yes** - consolidated inline response   |
+| "Use skill" or "run panther" with no task        | **Yes** - enables for editorial support  |
 | "Write code for this feature"                    | No - this skill writes documents         |
 | "Review this document for technical correctness" | No - authoring skill, not an auditor     |
 
@@ -471,6 +488,7 @@ panther-skill/
 │   ├── describe-response.md           # Standalone describe procedure: caps and floors
 │   ├── scope-discovery.md             # Standalone layout-discovery procedure and report format
 │   ├── skill-maintenance.md           # Maintenance-mode procedure for work on the skill itself
+│   ├── skill-activation.md            # Enable-mode procedure for bare activation requests
 │   ├── translate-document.md          # Standalone translate procedure: pairs and glossaries
 │   └── translation-audit.md           # Standalone translation-audit procedure: fidelity verdict
 ├── types/

@@ -18,7 +18,7 @@ Detail, das zum übergeordneten Abschnitt gehört.
 
 ## Beispiele
 
-```text
+```
 Beispielinhalt.
 ```
 

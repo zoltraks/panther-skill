@@ -34,7 +34,7 @@ to `.adoc` files, verify edits by reading the file instead.
 
 AsciiDoc marks headings with equals signs preceding the title:
 
-```text
+```asciidoc
 = Document Title
 
 == Section
@@ -54,7 +54,7 @@ headings.
 
 The document header sits between the title and the first section and carries attribute lines:
 
-```text
+```asciidoc
 = Document Title
 Author Name <author@example.com>
 :toc: left
@@ -71,7 +71,7 @@ the task explicitly asks for it.
 
 AsciiDoc marks admonitions with a keyword prefix:
 
-```text
+```asciidoc
 NOTE: A single-line remark for the reader.
 
 TIP: A helpful suggestion.
@@ -79,7 +79,7 @@ TIP: A helpful suggestion.
 
 Block admonitions use a delimited form:
 
-```text
+```asciidoc
 [WARNING]
 ====
 Multi-line warning text.
@@ -94,7 +94,7 @@ Preserve the single-line or block form the document uses, match it for added adm
 
 Directives pull in other files and cross-link sections:
 
-```text
+```asciidoc
 include::shared/header.adoc[]
 
 xref:installation[see the installation section]
@@ -112,7 +112,7 @@ when editing.
 
 AsciiDoc tables use delimited blocks:
 
-```text
+```asciidoc
 [cols="1,1"]
 |===
 | Header one | Header two
