@@ -73,6 +73,10 @@ Run the checks in order and record each result for the report:
    one register throughout.
 5. **Embedded payloads** - ` ```markdown ` interiors are translated or declared verbatim,
    applied consistently across the document.
+6. **Language naturalness** - run `scripts/lint-polish.py` for `pl` targets and review
+   flagged lines. Scan for calques the pair's Calque Traps table names, clauses spliced
+   by a bare comma, personified files or branches, mixed quote or dash conventions, and
+   the same English term rendered by several Polish forms.
 
 ## Findings
 
@@ -86,7 +90,8 @@ Severity guidance:
   the rules required translated.
 - `Major` - a structural delta without a declared adaptation, untranslated-set corruption,
   or a glossary term ignored document-wide.
-- `Minor` - heading-case violations, inconsistent term renderings, style-adaptation misses.
+- `Minor` - heading-case violations, inconsistent term renderings, style-adaptation
+  misses, calques and unnatural phrasing that do not shift the meaning.
 - `Note` - evident adaptations worth surfacing, register choices, timing notes.
 
 ## Report

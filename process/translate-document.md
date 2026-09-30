@@ -151,6 +151,7 @@ Run the mechanical checks on the written file:
   column widths.
 - `scripts/validate-document.py` - on the written file, with `--payload-markdown` when the
   document embeds ` ```markdown ` blocks.
+- `scripts/lint-polish.py` - on `pl` output; every finding is fixed or reported.
 
 Self-review against `process/document-checklist.md` plus the translation items:
 
@@ -158,9 +159,17 @@ Self-review against `process/document-checklist.md` plus the translation items:
 - Section names map through the language file's type table when the type is known.
 - Polish output carries full diacritics in composed form.
 - No typographic quotes were introduced where the target baseline requires ASCII.
+- The resolved character convention is recorded - explicit request, source convention,
+  or the ASCII default.
 - Internal `#anchor` links resolve against the translated headings.
 - Code, identifiers, and the untranslated set are byte-identical to the source.
 - One English term renders one Polish term consistently, except declared context forms.
+- No form forbidden by a Calque Traps table or the language file's vocabulary table
+  appears in the output.
+- No independent clauses are joined by a bare comma, and no file, section, or branch is
+  personified as an actor.
+- Abbreviations are expanded at first use and a verbatim foreign-language quote carries
+  a Polish gloss beside it.
 - Embedded example payloads follow the declared payload rule consistently.
 - An adapted output reports every structural delta in the delivery report.
 

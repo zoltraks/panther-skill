@@ -575,6 +575,8 @@
         "Headings render in Polish sentence case, and type-known section names map per the Polish language file.",
         "Code blocks, inline code, file paths, and identifiers stay byte-identical to the source.",
         "Tables were reformatted after translation so every column still aligns in plain text.",
+        "No calque named in the software glossary's Calque Traps or the pl.md vocabulary table appears in the output.",
+        "No independent clauses are joined by a bare comma.",
         "The output is a new UTF-8 sibling file named with the -pl suffix and the source file is unchanged."
       ]
     },
@@ -775,6 +777,7 @@
         "The agent classified fidelity - faithful or adapted - before judging structural deltas.",
         "The structure map classified every source heading as faithful, reworded, dropped, merged, reordered, or added.",
         "The agent verified byte-identity of the untranslated set - code, paths, identifiers, frontmatter, TBD and NOT SPECIFIED markers.",
+        "The language-naturalness check covered calque tables, spliced clauses, personification, and consistent term renderings.",
         "The report delivered a fidelity verdict, structure-map delta counts, and findings in the document-audit format."
       ]
     },

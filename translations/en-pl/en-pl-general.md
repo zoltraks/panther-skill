@@ -53,6 +53,11 @@ A heading the table does not cover gets a faithful Polish rendering in sentence 
 A Polish source document already using typographic quotes keeps that convention - the
 document's own conventions win over this table.
 
+The character convention is a per-task decision resolved in this order: an explicit
+request, the source document's own convention, then the nature of the deliverable -
+plain ASCII is the default for every output, and typographic quotes, pauza or półpauza
+dashes, and `→` arrows are used only when one of those sources establishes them.
+
 ## Locale Conventions
 
 Polish locale facts - dates as `DD.MM.RRRR`, the decimal comma, thin-space thousands
@@ -75,6 +80,30 @@ or `runtime`, never `środowisko uruchomieniowe runtime`.
 
 Avoid literal calques the way `pl.md` and the glossaries describe - `rozbieżność`, not
 `rozjazd`, `zamrożenie wersji`, not `przypięcie wersji`.
+
+Check the loaded glossary's Calque Traps table and the `pl.md` vocabulary table before
+writing any flagged form - a form listed there is always wrong regardless of how
+natural it sounds in the source.
+
+Never join two independent Polish clauses with a bare comma - the English comma-splice
+habit does not transfer. Use a full stop, a colon, or a conjunction (`więc`,
+`natomiast`, `ponieważ`).
+
+Do not personify artifacts - files, sections, and branches do not act; persons and
+tools do. Render `the file removes X` as `plik usuwa X` only when the file is a
+program; otherwise use the passive or an action noun (`plik został usunięty`,
+`usunięcie X`).
+
+Expand abbreviations at first use and record them in the document's glossary -
+`merge request (MR)`, not a bare `MR`.
+
+Product and technology names keep their canonical spelling and decline normally -
+`Git`, `SemVer`, `w plikach Dockera`; filenames, commands, and identifiers never
+decline and take a generic noun (`plik AGENTS.md`, `system GitLab`).
+
+A verbatim foreign-language quotation stays in quotes with a Polish gloss beside it -
+never weave quoted English into Polish syntax. A translator's own rendering is marked
+as such or paraphrased without quotes.
 
 Decline adjectives in gender agreement with the governed noun - `ważność WYSOKA`,
 `wpływ WYSOKI`, `ryzyko WYSOKIE`, `następstwa NEGATYWNE`.
@@ -110,6 +139,9 @@ Apply terms in this precedence order:
 2. The matching `translations/en-pl/en-pl-<category>.md` glossaries.
 3. The `pl.md` vocabulary table and this file's rules.
 4. A faithful literal rendering when no entry exists - never invent an equivalent.
+
+The Calque Traps tables and the `pl.md` "Zamiast / Używaj" table act as a veto at every
+precedence level - a form they forbid is never a candidate, even for a literal render.
 
 One English term maps to one Polish rendering inside a document, except entries a glossary
 marks as context-dependent.

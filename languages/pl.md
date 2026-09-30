@@ -18,29 +18,30 @@ Zasady opisane poniżej stosują się również do samego tego dokumentu.
 
 ## Spis treści
 
-| Sekcja                             | Wiersz | Zakres                                      |
-|------------------------------------|--------|---------------------------------------------|
-| Struktura dokumentu                | 45     | Tytuł, cel i układ dokumentu                |
-| Nagłówki                           | 63     | Wielkość liter i kwalifikatory              |
-| Numeracja sekcji                   | 95     | Zasady numerowania sekcji                   |
-| Zasady spisu treści                | 107    | Kiedy dodawać spis treści                   |
-| Akapity i zdania                   | 121    | Budowa zdań i akapitów                      |
-| Zawijanie wierszy                  | 135    | Wiersze logiczne i twarde łamania           |
-| Listy                              | 155    | Punktory, numeracja i odstępy               |
-| Puste wiersze i odstępy            | 177    | Zasady odstępów                             |
-| Bloki kodu                         | 191    | Ogrodzenia, znaczniki i kod liniowy         |
-| Formatowanie w treści              | 205    | Cudzysłowy, pogrubienia i kursywa           |
-| Średniki                           | 221    | Zakaz średników w tekście                   |
-| Znaki specjalne                    | 247    | Znaki ramek i emoji                         |
-| Słownictwo polskie                 | 255    | Preferowane terminy i kalki                 |
-| Nazwy sekcji według typu dokumentu | 281    | Polskie nazwy sekcji i elementy typów       |
-| Cechy dialektów                    | 538    | Numeracja rozdziałów i pseudo-nagłówki      |
-| Tabele                             | 555    | Wyrównanie według źródła                    |
-| Nazwy plików                       | 669    | Nazywanie nowych plików dokumentacji        |
-| Przykład                           | 679    | Przykład poprawny i niepoprawny             |
-| Utrzymanie plików                  | 713    | Kodowanie i złamania wierszy                |
-| Pytanie o aktualizację             | 723    | Polskie brzmienie pytania o aktualizację    |
-| Frazy aktywujące                   | 729    | Polskie frazy i ich angielskie odpowiedniki |
+| Sekcja                             | Wiersz | Zakres                                        |
+|------------------------------------|--------|-----------------------------------------------|
+| Struktura dokumentu                | 45     | Tytuł, cel i układ dokumentu                  |
+| Nagłówki                           | 63     | Wielkość liter i kwalifikatory                |
+| Numeracja sekcji                   | 95     | Zasady numerowania sekcji                     |
+| Zasady spisu treści                | 107    | Kiedy dodawać spis treści                     |
+| Akapity i zdania                   | 121    | Budowa akapitów i konstrukcja zdania          |
+| Zawijanie wierszy                  | 159    | Wiersze logiczne i twarde łamania             |
+| Listy                              | 179    | Punktory, numeracja i odstępy                 |
+| Puste wiersze i odstępy            | 201    | Zasady odstępów                               |
+| Bloki kodu                         | 215    | Ogrodzenia, znaczniki i kod liniowy           |
+| Formatowanie w treści              | 229    | Cudzysłowy, pogrubienia i kursywa             |
+| Średniki                           | 251    | Zakaz średników i zdań sklejonych przecinkiem |
+| Znaki specjalne                    | 279    | Znaki ramek, emoji i znaki specjalne          |
+| Słownictwo polskie                 | 297    | Preferowane terminy i kalki                   |
+| Nazwy sekcji według typu dokumentu | 401    | Polskie nazwy sekcji i elementy typów         |
+| Cechy dialektów                    | 658    | Numeracja rozdziałów i pseudo-nagłówki        |
+| Tabele                             | 675    | Wyrównanie według źródła                      |
+| Nazwy plików                       | 789    | Nazywanie nowych plików dokumentacji          |
+| Przykład                           | 799    | Przykład poprawny i niepoprawny               |
+| Kontrola przed dostarczeniem       | 833    | Kontrole językowe przed dostarczeniem         |
+| Utrzymanie plików                  | 843    | Kodowanie i złamania wierszy                  |
+| Pytanie o aktualizację             | 853    | Polskie brzmienie pytania o aktualizację      |
+| Frazy aktywujące                   | 859    | Polskie frazy i ich angielskie odpowiedniki   |
 
 ## Struktura dokumentu
 
@@ -132,6 +133,30 @@ Zdanie może zawierać kilka powiązanych części, jeśli wyrażają jedną my�
 
 Nie upychaj niepowiązanych myśli w jednym długim akapicie.
 
+### Konstrukcja zdania
+
+Zdanie niesie jedną myśl i ma docelowo 15-25 wyrazów, z granicą około 35 wyrazów.
+
+Dłuższą myśl rozbij na zdania albo przenieś do listy punktowanej.
+
+Każde zdanie poza komórką tabeli ma jawnie wyrażone orzeczenie.
+
+Wykonawcą czynności w zdaniu jest osoba lub narzędzie, nie plik, sekcja czy gałąź.
+
+Stan repozytorium lub systemu opisuj stroną bierną albo rzeczownikiem czynności, na przykład "plik został usunięty" zamiast "plik usuwa".
+
+Imiesłów przysłówkowy stosuj tylko wtedy, gdy jego podmiot jest tym samym podmiotem co zdanie główne.
+
+W razie wątpliwości zastąp go konstrukcją "co" z czasownikiem albo rozdziel zdanie na dwa.
+
+Człony wyliczenia zapisuj w tej samej formie gramatycznej, na przykład samych rzeczowników albo samych czasowników.
+
+Wyliczenie dłuższe niż cztery człony lub zawierające zagnieżdżenie zapisuj jako listę punktowaną.
+
+Łańcuch rzeczowników ograniczaj do trzech członów, a dłuższy rozwijaj czasownikiem lub przyimkiem.
+
+Nie zostawiaj w zdaniu elipsy - każdy człon wymagany przez sens ma być zapisany wprost.
+
 ## Zawijanie wierszy
 
 Nie zawijaj tekstu na sztywno na ustalonej szerokości kolumny.
@@ -210,6 +235,12 @@ Stosuj proste cudzysłowy ASCII (`"`) zamiast cudzysłowów typograficznych.
 
 Stosuj prosty apostrof ASCII (`'`) zamiast apostrofu typograficznego.
 
+Stosuj łącznik z odstępami (` - `) jako znak wtrącenia zamiast półpausy lub pausy.
+
+Znaki typograficzne (cudzysłów „...", półpauza, strzałka `→`) są dozwolone tylko wtedy, gdy wynikają z wyraźnego żądania, konwencji istniejącego dokumentu albo charakteru przekładu.
+
+Gdy żadne z tych źródeł nie rozstrzyga konwencji, pozostań przy ASCII albo spytaj zamawiającego.
+
 Jeśli redagowany dokument konsekwentnie stosuje inną konwencję, zachowaj konwencję tego dokumentu.
 
 Definicje terminów zapisuj z użyciem pogrubienia w postaci **Termin**: definicja.
@@ -222,18 +253,20 @@ Nie nadużywaj wyróżnień.
 
 Nie używaj znaku średnika w tekście ciągłym.
 
-Dwa blisko powiązane zdania składowe łącz przecinkiem.
+Zdania samodzielne rozdzielaj kropką, dwukropkiem (gdy drugie zdanie objaśnia pierwsze) albo spójnikiem takim jak "więc", "natomiast" lub "ponieważ".
 
-Gdy zdania składowe wyrażają osobne myśli, rozdziel je na osobne zdania.
+Nie łącz zdań samodzielnych samym przecinkiem - taka konstrukcja jest błędem składniowym.
+
+Średnik jest dozwolony w wyliczeniu ze złożonymi członami, które same zawierają przecinki.
 
 Zasada nie dotyczy bloków kodu, kodu liniowego ani ścieżek plików.
 
 ### Poprawnie
 
 ```markdown
-Dane surowe trafiają do warstwy `bronze`, warstwa `silver` zawiera dane oczyszczone.
+Dane surowe trafiają do warstwy `bronze`. Warstwa `silver` zawiera dane oczyszczone.
 
-Nazwa nosi znaczenie, komentarz nosi uzasadnienie.
+Konfiguracja jest kompletna, więc wdrożenie może ruszyć.
 ```
 
 ### Niepoprawnie
@@ -241,7 +274,7 @@ Nazwa nosi znaczenie, komentarz nosi uzasadnienie.
 ```markdown
 Dane surowe trafiają do warstwy `bronze`; warstwa `silver` zawiera dane oczyszczone.
 
-Nazwa nosi znaczenie; komentarz nosi uzasadnienie.
+Konfiguracja jest kompletna, wdrożenie może ruszyć.
 ```
 
 ## Znaki specjalne
@@ -252,29 +285,117 @@ Nie zamieniaj znaków rysowania ramek na `+`, `-` ani na inne przybliżenia ASCI
 
 Nie używaj emoji, o ile nie zostało to wyraźnie zamówione.
 
+Strzałkę w tekście ciągłym zapisuj słowem, na przykład "przechodzi w" albo "skutkuje", a sekwencję `->` zachowaj tylko tam, gdy dokument już jej konsekwentnie używa.
+
+Przybliżenie `~` przed liczbą zamieniaj na "ok." albo "około".
+
+Ukośnik między pojedynczymi wyrazami zapisuj bez odstępów, na przykład `i/lub`, a między frazami z odstępami.
+
+Zapis dostępu do źródła prowadź w formie `[dostęp: RRRR-MM-DD]`.
+
+Zasada sierotek - spacja niełamliwa po jednoliterowych spójnikach - obowiązuje przy eksporcie do PDF albo DOCX, w źródle Markdown pozostaje zaleceniem.
+
 ## Słownictwo polskie
 
 Pisz poprawną polszczyzną i unikaj przypadkowych kalek z języka angielskiego.
 
 Nie odmieniaj angielskich wyrazów polskimi końcówkami, gdy istnieje naturalny polski odpowiednik.
 
-| Zamiast           | Używaj                |
-|-------------------|-----------------------|
-| ownerzy biznesowi | właściciele biznesowi |
-| dane skrapane     | dane skrapowane       |
-| deployować        | wdrażać               |
-| requestować       | zgłaszać              |
-| update'ować       | aktualizować          |
-| fixować           | poprawiać             |
-| kastomizacja      | dostosowanie          |
-| performance       | wydajność             |
-| stakeholderzy     | interesariusze        |
-| status report     | raport o statusie     |
-| meeting minutes   | protokół zebrania     |
+Poniższa tabela jest źródłem prawdy dla mechanicznej kontroli - `scripts/lint-polish.py` odczytuje z niej wzorce zabronione.
+
+| Zamiast                  | Używaj                                     |
+|--------------------------|--------------------------------------------|
+| ownerzy biznesowi        | właściciele biznesowi                      |
+| dane skrapane            | dane skrapowane                            |
+| deployować               | wdrażać                                    |
+| requestować              | zgłaszać                                   |
+| update'ować              | aktualizować                               |
+| fixować                  | poprawiać                                  |
+| kastomizacja             | dostosowanie                               |
+| performance              | wydajność                                  |
+| stakeholderzy            | interesariusze                             |
+| status report            | raport o statusie                          |
+| meeting minutes          | protokół zebrania                          |
+| commitowany              | dodany do repozytorium                     |
+| niecommitowany           | nieobecny w repozytorium                   |
+| onboardowanie            | wdrażanie nowych osób                      |
+| multi-agentowy           | wieloagentowy                              |
+| prozatorski              | opisowy                                    |
+| usankcjonować            | sankcjonować / formalizować                |
+| dostawczone              | dostarczone                                |
+| cykl wydawniczy          | cykl wydaniowy                             |
+| bramka wydawnicza        | bramka wydaniowa                           |
+| siostrzana gałąź         | pozostała gałąź                            |
+| wielorazowy              | wielokrotnego użytku                       |
+| linkowany                | powiązany odnośnikami                      |
+| progresywne ujawnianie   | stopniowe ujawnianie                       |
+| plus (jako spójnik)      | oraz / wraz z                              |
+| per pozycja              | dla każdej pozycji                         |
+| per endpoint             | dla każdego endpointu                      |
+| per adres                | dla każdego adresu                         |
+| pod (katalogiem)         | w katalogu                                 |
+| chudy (plik, dokument)   | odchudzony                                 |
+| najcięższy (dokument)    | najbardziej rozbudowany                    |
+| najlżejszy               | najbardziej zwięzły                        |
+| niesie / niosą           | zawiera / obejmuje                         |
+| dotyka                   | zmienia / obejmuje                         |
+| zakotwiczone w           | oparte na                                  |
+| wskaźnik (odnośnik)      | odnośnik / odwołanie                       |
+| wyposażenie agentowe     | konfiguracja narzędzi AI                   |
+| zyskuje                  | otrzymuje                                  |
+| właściciel (dokumentu)   | dokument nadrzędny / miejsce zdefiniowania |
+| mieszkają / żyje         | znajdują się / jest zachowana              |
+| lustro                   | kopia struktury                            |
+| ładunek                  | zawartość zmiany / zakres zmian            |
+| rekord zmiany            | zapis / wpis                               |
+| zaadresować              | uwzględnić / usunąć                        |
+| konsumowana              | obsługiwana / wykorzystywana               |
+| rekursują                | są rozwijane rekurencyjnie                 |
+| celują w                 | przyjmują jako cel / zalecają              |
+| kosztuje kontekst        | zajmuje miejsce w oknie kontekstu          |
+| przypięty (do trybu)     | ograniczony do trybu                       |
+| rozdzielczy (rzeczownik) | plik kierujący                             |
+| zestaw zarządzania       | zestaw dokumentów regulujących             |
+| autorytatywny            | wiążący / nadrzędny                        |
+| skonsultowano            | sprawdzono / przejrzano                    |
+| triaż                    | przegląd i klasyfikacja                    |
+| dryf                     | narastająca rozbieżność / odchylenie       |
+| parzystość (parity)      | zgodność / równoważność                    |
+| baseline                 | wartość bazowa / zbiór bazowy              |
+| zmaterializowane ryzyko  | ryzyko się zrealizowało                    |
+| re-audyt                 | ponowny audyt                              |
+| kontrola wykonawcza      | kontrola dynamiczna                        |
+| strażnik (guard)         | mechanizm ochronny                         |
+| jednorazowa instancja    | tymczasowa instancja                       |
+| zastany                  | istniejący wcześniej / odziedziczony       |
+| placeholder sekretu      | wartość zastępcza sekretu                  |
+| realna baza              | rzeczywista baza danych                    |
+| serwujący                | udostępniający                             |
+| brama (quality gate)     | kontrola blokująca / warunek jakości       |
+| bramy raportowe          | kontrole nieblokujące                      |
+| powierzchnia kodu        | zakres kodu                                |
+| delta kodowa             | zakres zmian w kodzie                      |
+| diff (rzeczownik)        | zestaw zmian (diff)                        |
 
 Ustalone nazwy własne, nazwy produktów i nazwy elementów architektury zachowuj w formie oryginalnej, na przykład Microsoft Fabric, Lakehouse, Warehouse, Power BI, workspace.
 
 Nazwy techniczne pochodzące z systemu źródłowego zapisuj dokładnie tak, jak występują w systemie.
+
+Nazwy produktów i narzędzi zachowują oficjalną pisownię i odmieniają się normalnie, na przykład Git, SemVer, "plików Dockera".
+
+Nazw plików, katalogów i poleceń nie odmieniaj - poprzedzaj je rzeczownikiem rodzajowym, na przykład "plik `AGENTS.md`", "katalog `.agents/`" albo "system GitLab".
+
+Skróty rozwijaj przy pierwszym użyciu i wpisuj do słownika dokumentu, na przykład "żądanie scalenia (merge request, MR)".
+
+Nie skracaj wyrazu "wierszy" do "w.".
+
+Jedno pojęcie opisuj jedną nazwą w całym dokumencie.
+
+Przy wyborze nazwy kolejność to: ustalony termin polski, utrwalony termin angielski w formie nieodmienianej z polskim opisem przy pierwszym użyciu, na końcu opis polski.
+
+Cytat obcojęzyczny podawaj dosłownie w cudzysłowie z polskim omówieniem obok, bez wplatania go w polską składnię zdania.
+
+Własne tłumaczenie cudzego tekstu oznacz jako tłumaczenie albo podaj parafrazą bez cudzysłowu.
 
 W nagłówkach przykładów stosuj polskie nazwy sekcji, na przykład "Przykład zawartości", "Poprawnie" oraz "Niepoprawnie".
 
@@ -709,6 +830,16 @@ Ten dokument opisuje planowane widoki danych w warstwie gold. Każde zdanie jest
 - Stosuj jedno zdanie na akapit.
 - Utrzymuj krótkie nazwy sekcji.
 ```
+
+## Kontrola przed dostarczeniem
+
+Przed dostarczeniem polskiego dokumentu wykonaj te kontrole.
+
+- Sprawdź pisownię narzędziem dla polszczyzny, na przykład LanguageTool albo Hunspell ze słownikiem polskim.
+- Uruchom `scripts/lint-polish.py`, aby wykryć kalki, sklejone zdania i naruszenia typografii.
+- Przejrzyj zdania dłuższe niż 35 wyrazów i rozważ ich podział.
+- Zestaw liczby i wartości w tekście z wartościami w tabelach tego dokumentu.
+- Sprawdź, czy jedno pojęcie ma jedną nazwę oraz czy wszystkie skróty są rozwinięte przy pierwszym użyciu.
 
 ## Utrzymanie plików
 

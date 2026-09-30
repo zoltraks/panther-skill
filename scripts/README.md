@@ -18,8 +18,12 @@ They do not modify documents beyond the specific task each tool performs.
 
 Copy `detect-encoding.py`, `detect-scope.py`, `split-sentences.py`, `reflow-prose.py`,
 `wrap-prose.py`, `format-table.py`, `align-comments.py`, `validate-document.py`,
-`diff-content.py`, and `census-document.py` into the working repository's `work/` directory
-under a `.tmp.` name before use.
+`diff-content.py`, `census-document.py`, and `lint-polish.py` into the working
+repository's `work/` directory under a `.tmp.` name before use.
+
+When `lint-polish.py` is copied out of the skill repository it cannot auto-discover its
+rule tables - pass them explicitly with `--rules <path>` pointing at the skill's
+`languages/pl.md` and the matching glossary files.
 
 If `work/` does not exist, use an existing `temp` or `temporary` directory.
 
@@ -73,6 +77,7 @@ python align-comments.tmp.py <file.md> [--check] [--compact] [--payload-markdown
 python validate-document.tmp.py <file.md> [--width N] [--payload-markdown]
 python diff-content.tmp.py <file.md> [--baseline <file>]
 python census-document.tmp.py <file.md> [--width N] [--payload-markdown]
+python lint-polish.tmp.py <file.md> [--rules <rulefile.md> ...]
 python scripts/validate-skill.py .
 python scripts/check-references.py .
 python scripts/check-contents.py .
@@ -153,6 +158,17 @@ markers, fenced blocks and ` ```markdown ` payloads, special characters, paragra
 tables, task markers, and internal links - and the agent maps counts to findings per
 `process/document-audit.md`.
 
+`lint-polish.py` lints a Polish document against the forbidden-form tables declared in
+the loaded rule files (the `Zamiast`/`Używaj` table in `languages/pl.md` and the Calque
+Traps tables of the matching glossaries).
+
+It reports calques, clauses spliced by a bare comma, `per X` constructions, `tylko, gdy`,
+typographic characters under the ASCII convention, and `w.` abbreviations with line-level
+findings; errors exit `1`, warnings are advisory and never fail the run.
+
+It targets Polish deliverable documents - the skill's own rule files contain the
+forbidden forms by definition and will report them.
+
 The validators exit `0` when all checks pass and `1` when one or more checks fail.
 
 `validate-document.py` warns on `text` and `txt` fence tags - plain-text blocks default to
@@ -175,9 +191,10 @@ Run checks in this order:
 5. Align comments in plain-text blocks with `align-comments.py` when the document contains
    them.
 6. Validate the written document with `validate-document.py`.
-7. Verify formatting-only passes with `diff-content.py`.
-8. Run `git diff --check` when inside a repository.
-9. Remove temporary `.tmp.` copies from the working repository.
+7. Lint Polish output with `lint-polish.py`.
+8. Verify formatting-only passes with `diff-content.py`.
+9. Run `git diff --check` when inside a repository.
+10. Remove temporary `.tmp.` copies from the working repository.
 
 For skill maintenance, run `validate-skill.py`, `check-references.py`, and `check-contents.py`
 first.

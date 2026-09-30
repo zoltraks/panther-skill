@@ -80,7 +80,11 @@ Fix every failure, or report it to the user with a reason.
 - Heading capitalization follows the document language (Title Case for English, sentence case for
   Polish and German, or the rule in the matching `languages/` file).
 - The vocabulary table of the language file was applied, no discouraged terms remain.
-- Technical names and proper nouns keep their original spelling.
+- Technical names and proper nouns keep their original spelling and decline normally.
+  Filenames, commands, and identifiers keep a generic noun instead of an ending.
+- Independent clauses are never joined by a bare comma, and abbreviations expand at first use.
+- A Polish document passes `scripts/lint-polish.py` - calques, spliced clauses, and
+  typographic violations are fixed or reported.
 
 ## Consistency
 
@@ -124,6 +128,7 @@ Fix every failure, or report it to the user with a reason.
 
 - `scripts/validate-document.py` reports no failures on the written file, run with
   `--payload-markdown` when the document embeds ` ```markdown ` blocks.
+- `scripts/lint-polish.py` reports no findings on a Polish document.
 - `scripts/diff-content.py` reports an identical token stream after formatting-only passes.
 - `git diff --check` reports no whitespace errors when inside a repository.
 - Temporary `.tmp.` tool copies are removed from the working repository.
