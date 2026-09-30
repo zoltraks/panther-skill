@@ -138,6 +138,10 @@ comments already share one, otherwise the longest entry plus two spaces.
 
 `--compact` moves the column to the minimum.
 
+A block whose opening fence is preceded by `<!-- align-comments: off -->` - optionally with one
+blank line between the marker and the fence - is skipped entirely, so the marker exempts
+deliberate examples of misalignment from both fixing and `--check`.
+
 The convention lives in `conventions/plain-text-comments.md`.
 
 `diff-content.py` compares the normalized token stream of a document against `git show HEAD`

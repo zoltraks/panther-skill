@@ -227,8 +227,9 @@ Run the checkers over every Markdown file outside `work/`:
 Skip `wrap-prose.py` on `languages/` and `templates/` files - produced documents never
 hard-wrap.
 
-`align-comments.py` flags the intentional "Incorrect" example block in
-`conventions/plain-text-comments.md` - that flag is expected, not a defect.
+The intentional "Incorrect" example block in `conventions/plain-text-comments.md` carries the
+`<!-- align-comments: off -->` marker, so `align-comments.py --check` must pass clean on every
+shipped file - an unmarked flag is a defect, not expected noise.
 
 ## Versioning
 
