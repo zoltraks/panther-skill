@@ -48,7 +48,9 @@ Detection order:
    code page. For Polish content, try CP1250 first, and for German and other Western
    European content, try CP1252 first.
 
-When detection is ambiguous, report the ambiguity and ask the user rather than guessing.
+When detection is ambiguous, report the ambiguity and ask the user rather than guessing - under
+JSON exchange the question emits as the `encoding` `choice` parameter per
+`process/json-exchange.md`.
 
 ## Conversion
 

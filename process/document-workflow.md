@@ -50,6 +50,12 @@ When creating a new standalone document, confirm the parameters before writing.
 
 Ask the user whether to accept the defaults or configure the core parameters.
 
+When the request asks for parameters in JSON or another machine-readable format, or names a
+diagnostic or verbose mode, apply `process/json-exchange.md` to every pending question surface.
+
+The acceptance question emits as the `parameters-acceptance` `choice` parameter under JSON
+exchange.
+
 | Parameter         | Default                                                             |
 |-------------------|---------------------------------------------------------------------|
 | Document type     | Inferred from the request, ask when ambiguous                       |
@@ -64,11 +70,16 @@ If the user accepts the defaults or says "bypass", proceed immediately.
 
 If the user chooses to configure, ask only the unresolved parameter questions.
 
+Under JSON exchange each unresolved parameter emits with its catalog `id`: `document-type`,
+`document-language`, `document-scope`, `filename`, `encoding`, `line-endings`, or `delivery`.
+
 README documents resolve their variant through the detected scope's Document Types table -
 `types/readme-general.md` is the fallback.
 
 When the scope gives no signal and the request does not name a variant, ask the user which
 README variant applies.
+
+Under JSON exchange this is the `readme-variant` `choice` parameter.
 
 For edits to existing documents, do not ask.
 
@@ -275,6 +286,8 @@ A failing check must be fixed or explicitly reported to the user with a reason.
 
 Never overwrite an existing document without the user's confirmation when the change replaces the
 whole file.
+
+Under JSON exchange the confirmation emits as the `overwrite-confirmation` `choice` parameter.
 
 In-place edits that follow the request do not need confirmation.
 

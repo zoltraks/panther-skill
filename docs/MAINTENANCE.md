@@ -12,7 +12,7 @@ These rules apply to the skill's own files, not to documents the skill produces.
 Document production rules live in `principles/`, `process/`, `types/`, `languages/`, and
 `conventions/`.
 
-Prose and formatting style for the skill's files lives in `STYLE.md`.
+Prose and formatting style for the skill's files lives in `docs/STYLE.md`.
 
 The intake procedure for requests that target the skill itself - mode selection and the
 governing-file read set - lives in `process/skill-maintenance.md`.
@@ -31,9 +31,12 @@ governing-file read set - lives in `process/skill-maintenance.md`.
 | `templates/`    | Per-language document skeletons grouped by ISO code directory  |
 | `scripts/`      | Canonical scripts: document production and skill maintenance   |
 | `evals/`        | Behavioral regression prompts                                  |
+| `docs/`         | Repository-governance documents for the skill itself           |
 
-Root files govern the repository itself: `SKILL.md` (router), `README.md`, `STYLE.md`,
-`VERSIONING.md`, `MAINTENANCE.md`, `SECURITY.md`, `CONTRIBUTING.md`, `LICENSE`.
+Root files govern the repository itself: `SKILL.md` (router), `AGENTS.md` (agent entry
+point), `README.md`, `LICENSE`, plus the `docs/` governance documents - `docs/STYLE.md`,
+`docs/VERSIONING.md`, `docs/MAINTENANCE.md`, `docs/SECURITY.md`, `docs/CONTRIBUTING.md`, and
+the `docs/README.md` index.
 
 `work/` is gitignored research scratch outside the rule corpus.
 
@@ -47,6 +50,9 @@ Do not nest subdirectories inside `types/`, `languages/`, `scopes/`, `convention
 A new top-level rule directory also needs its name added to `KNOWN_DIRS` in
 `scripts/check-references.py`, otherwise references to its files inside rule documents are not
 checked.
+
+`docs/` is a governance directory excluded from rule-document scanning, not a rule directory -
+it stays out of `KNOWN_DIRS`.
 
 `templates/` and `translations/` are the exceptions: `templates/` groups skeletons one
 level deep under per-language directories (`templates/<code>/`), and `translations/`
@@ -87,8 +93,9 @@ Tools are named `scripts/<verb>-<object>.py`, for example `detect-encoding.py` o
 Document-production tools are copied into working repositories under a `.tmp.` infix before
 use.
 
-Repository files use uppercase conventional names: `README.md`, `STYLE.md`, `VERSIONING.md`,
-`MAINTENANCE.md`, `LICENSE`.
+Repository files use uppercase conventional names: `README.md`, `AGENTS.md`, `LICENSE`, and the
+governance documents under `docs/` - `STYLE.md`, `VERSIONING.md`, `MAINTENANCE.md`,
+`SECURITY.md`, `CONTRIBUTING.md`, `README.md`.
 
 ## New Rule Files
 
@@ -106,7 +113,7 @@ Register every new rule file in `SKILL.md` with a line saying what it covers and
 it, under the section matching its directory.
 
 List every new template pair in the matching `types/<type>.md` file as a `**Templates**` bullet
-list, see the Localised Resources rule in `STYLE.md`.
+list, see the Localised Resources rule in `docs/STYLE.md`.
 
 Mirror every layout change in the `README.md` directory tree.
 
@@ -217,7 +224,7 @@ maintainer runs the full suite before each commit.
 Run the checkers over every Markdown file outside `work/`:
 
 - `python scripts/split-sentences.py <file> --paragraphs --check` - every sentence must be its
-  own paragraph, per `STYLE.md`.
+  own paragraph, per `docs/STYLE.md`.
 - `python scripts/wrap-prose.py <file> --check` - skill files wrap prose at 100 characters.
 - `python scripts/format-table.py <file> --check`
 - `python scripts/align-comments.py <file> --check`
@@ -234,7 +241,7 @@ shipped file - an unmarked flag is a defect, not expected noise.
 ## Versioning
 
 The skill version lives in `SKILL.md` frontmatter under `metadata.version` and follows
-`VERSIONING.md`.
+`docs/VERSIONING.md`.
 
 Bump it only on explicit user request, never as a side effect of a change.
 

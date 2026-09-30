@@ -22,7 +22,7 @@ compatibility: >-
   Claude Desktop, Windsurf, Devin, and similar). Requires the ability to read
   and write text files. No network access required.
 metadata:
-  version: "1.0.3"
+  version: "1.0.4"
   author: Filip Golewski
 allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob Grep
 ---
@@ -44,16 +44,16 @@ allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob G
 | Parameter Configuration | 236  | Defaults and user-controlled document shape    |
 | Principles              | 258  | Authoring invariants                           |
 | Process                 | 264  | Workflow, checklist, and standalone procedures |
-| Document Types          | 289  | Per-type rule files                            |
-| Languages               | 344  | Per-language style baselines                   |
-| Translations            | 359  | Language pair rules and industry glossaries    |
-| Scopes                  | 379  | Per-project-layout organization rules          |
-| Conventions             | 407  | Encoding, dialect, and format contract rules   |
-| Templates               | 422  | Per-type, per-language skeletons               |
-| Scripts                 | 434  | Detection, formatting, and validation scripts  |
-| Evaluation Prompts      | 464  | Behavioral regression prompts                  |
-| Repository Files        | 474  | Housekeeping files governing this repository   |
-| File Handling Contract  | 486  | Byte-level guarantees                          |
+| Document Types          | 290  | Per-type rule files                            |
+| Languages               | 345  | Per-language style baselines                   |
+| Translations            | 360  | Language pair rules and industry glossaries    |
+| Scopes                  | 380  | Per-project-layout organization rules          |
+| Conventions             | 408  | Encoding, dialect, and format contract rules   |
+| Templates               | 423  | Per-type, per-language skeletons               |
+| Scripts                 | 435  | Detection, formatting, and validation scripts  |
+| Evaluation Prompts      | 465  | Behavioral regression prompts                  |
+| Repository Files        | 475  | Housekeeping files governing this repository   |
+| File Handling Contract  | 488  | Byte-level guarantees                          |
 
 You are a Document Authoring Agent.
 
@@ -216,7 +216,7 @@ verdict.
 AsciiDoc and reStructuredText files are edited minimally and never restyled.
 
 On "work on panther-skill" requests it maintains its own rule corpus - it reads the governing
-set and applies `MAINTENANCE.md` instead of the document workflow.
+set and applies `docs/MAINTENANCE.md` instead of the document workflow.
 
 On bare activation requests - "use skill", "run panther", or a language equivalent with no
 task attached - it enables for editorial support: the update check runs, the router is the
@@ -281,6 +281,7 @@ minimal-diff rule provide the answers.
 - **`process/translation-audit.md`** - The standalone translation-audit procedure: structure
   map, untranslated-set verification, terminology concordance, fidelity classification, and
   the report format.
+- **`process/json-exchange.md`** - JSON parameter documents for intake question surfaces.
 - **`process/skill-maintenance.md`** - The maintenance-mode procedure: governing set, skipped
   document machinery, and validation for work on this repository.
 - **`process/skill-activation.md`** - The enable-mode procedure: bare-activation intake, the
@@ -475,13 +476,14 @@ They do not replace independent review.
 
 These files govern the skill repository itself rather than document production:
 
-- **`STYLE.md`** - Style rules for the skill's own files. Follow when editing this repository.
-- **`MAINTENANCE.md`** - Extension and restructuring rules: directory roles, file naming,
-  registration, and validation. Load when adding languages, types, templates, or tools.
+- **`AGENTS.md`** - Agent-facing entry point for repository authoring and maintenance.
 - **`README.md`** - Human-facing overview, usage examples, and verification commands.
-- **`VERSIONING.md`** - Version numbering and release conventions for the skill.
-- **`SECURITY.md`** - Vulnerability disclosure channel and update-path trust boundary.
-- **`LICENSE`** - License text for the skill.
+- **`docs/STYLE.md`** - Style rules for the skill's own files.
+- **`docs/MAINTENANCE.md`** - Extension and restructuring rules: directory roles, file naming,
+  registration, and validation. Load when adding languages, types, templates, or tools.
+- **`docs/VERSIONING.md`** - Version numbering and release conventions for the skill.
+- **`docs/CONTRIBUTING.md`** - Issue reporting, development setup, and pull-request rules.
+- **`docs/SECURITY.md`** - Vulnerability disclosure channel and update-path trust boundary.
 
 ## File Handling Contract
 

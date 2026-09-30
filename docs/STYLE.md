@@ -505,7 +505,7 @@ per line, never as inline "X and Y" prose:
 - `templates/pl/changelog-file-template-pl.md`
 ```
 
-The naming scheme for language-variant files is defined in `MAINTENANCE.md`.
+The naming scheme for language-variant files is defined in `docs/MAINTENANCE.md`.
 
 ## Skill Document Requirements
 
@@ -572,4 +572,4 @@ only the relevant reference file.
 
 Structural rules for extending this skill - directory roles, file naming conventions, the
 registration contract, addition procedures, encoding rules, and validation - live in
-`MAINTENANCE.md`.
+`docs/MAINTENANCE.md`.

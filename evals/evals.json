@@ -749,7 +749,7 @@
       "files": [],
       "expectations": [
         "The agent ran the once-per-session update check before other steps.",
-        "The agent read the governing set - SKILL.md, MAINTENANCE.md, STYLE.md, VERSIONING.md, CONTRIBUTING.md, SECURITY.md, README.md, scripts/README.md - before planning the edit.",
+        "The agent read the governing set - SKILL.md, docs/MAINTENANCE.md, docs/STYLE.md, docs/VERSIONING.md, docs/CONTRIBUTING.md, docs/SECURITY.md, README.md, AGENTS.md, scripts/README.md - before planning the edit.",
         "No parameter-resolution questions were asked, and no languages/, types/, or templates/ files were loaded for the skill's own documents.",
         "Every enumeration of the changed component was updated in one pass - SKILL.md registry, README.md tree, and affected contents tables.",
         "The agent ran validate-skill.py, check-references.py, and check-contents.py after the change."
@@ -886,6 +886,41 @@
         "baza scalenia, zaadaptowany, and audytowalny are reported as errors.",
         "na tym gdzie without a comma is reported as an error.",
         "trasa is reported as a warning, not an error."
+      ]
+    },
+    {
+      "id": 73,
+      "prompt": "Write a project specification for this repository and give me the intake parameters in JSON.",
+      "expected_output": "A JSON parameter document per process/json-exchange.md replaces the question prompts: description, target, task, date, time, and an intake array with the pending questions.",
+      "files": [],
+      "expectations": [
+        "The document carries description, target, task, date, and time context fields plus an intake array, with task set to create.",
+        "Each parameter object keeps the fixed key order id, question, answer, description, type, menu, open, default, with default last.",
+        "Pending surfaces emit with catalog ids such as parameters-acceptance, document-type, document-language, filename, encoding, line-endings, and delivery, with correct choice/selection/text types.",
+        "The bypass options, such as accepting every remaining default, do not appear as menu entries; defaults are carried by the default key."
+      ]
+    },
+    {
+      "id": 74,
+      "prompt": "Run panther in diagnostic/verbose mode on this new document request and show me the pending parameters.",
+      "expected_output": "The JSON parameter document is emitted first, then a text description of the pending decisions, then the question prompts run in full.",
+      "files": [],
+      "expectations": [
+        "Emission order is: JSON document, then text description of the pending decisions, then the question prompts.",
+        "The document is informational only - every pending question is still asked as a prompt.",
+        "Answers may still arrive as prompt selections, natural language, or a returned JSON document."
+      ]
+    },
+    {
+      "id": 75,
+      "prompt": "Here are my document answers embedded in a note: looks good overall. {\"response\": {\"document-language\": \"B\", \"encoding\": \"\", \"bogus-param\": \"X\"}} - proceed with the document.",
+      "expected_output": "The embedded returned document is consumed: document-language applies option B, encoding applies its default, bogus-param is ignored, and remaining unanswered questions are still asked.",
+      "files": [],
+      "expectations": [
+        "A returned document embedded in natural language is accepted; surrounding text is treated as context, not answers.",
+        "The empty encoding answer applies the parameter's default rather than failing.",
+        "The unknown bogus-param id is ignored.",
+        "Surfaces not answered in the document still run through their normal question flow."
       ]
     }
   ]

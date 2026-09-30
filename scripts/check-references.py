@@ -9,8 +9,8 @@ Scope:
     known skill directory are verified, so filename examples such as
     `hardware/chip.md` or `CHANGELOG.md` are ignored.
 
-Payload files under `templates/` and `docs/` are example artifacts, and `work/`
-holds scratch material - none of them are rule documents, so they are not scanned.
+Repository-governance documents under `docs/`, payload files under `templates/`, and
+`work/` scratch material are not rule documents, so they are not scanned.
 """
 
 from __future__ import annotations

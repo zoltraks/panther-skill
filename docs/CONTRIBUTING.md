@@ -68,4 +68,4 @@ AI-assisted changes follow the same style, testing, and licensing rules as other
 
 By contributing, you agree that your contributions are licensed under the MIT License.
 
-See [LICENSE](./LICENSE).
+See [LICENSE](../LICENSE).

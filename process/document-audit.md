@@ -151,6 +151,8 @@ Order the plan by severity - `Critical` first, `Note` last.
 
 Note explicitly that executing the plan is an Edit task the user must approve.
 
+Under JSON exchange the approval question emits as the `fix-plan-approval` `choice` parameter.
+
 The audit never applies fixes itself.
 
 ## Report

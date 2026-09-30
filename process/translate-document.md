@@ -44,6 +44,10 @@ Resolve these parameters before translating:
 Confirm the parameters with the user per `process/document-workflow.md` - ask whether to
 accept the defaults or configure them.
 
+Under JSON exchange the gate emits as `parameters-acceptance`, and the per-parameter asks emit as
+`source-language`, `target-language`, `translation-industry`, `translation-fidelity`,
+`filename`, `encoding`, and `line-endings` per `process/json-exchange.md`.
+
 Fidelity resolves to `adapted` only when the request explicitly asks for an adapted,
 abridged, loose, or audience-adapted translation - it is never inferred from the source or
 the target audience.
@@ -51,8 +55,12 @@ the target audience.
 An in-place overwrite of the source file happens only when the request explicitly asks for
 it and the user confirms, per the File Handling Contract.
 
+Under JSON exchange the overwrite confirmation emits as `overwrite-confirmation`.
+
 A language pair without a `translations/<pair>/<pair>-general.md` file is unsupported -
 report it and ask whether to proceed with the language baselines only or to stop.
+
+Under JSON exchange that question emits as the `unsupported-pair` `choice` parameter.
 
 A source document already in the target language is a no-op - report it and stop.
 
@@ -71,7 +79,8 @@ Identify the industry in this order:
 2. The document type implies one - PMBOK types map to the `project` glossary, for
    example `translations/en-pl/en-pl-project.md` on an English to Polish task.
 3. Terminology density inside the document.
-4. Ask when still ambiguous, otherwise translate with no glossary.
+4. Ask when still ambiguous, otherwise translate with no glossary - under JSON exchange the ask
+   emits as the `translation-industry` `selection` parameter, since several glossaries may apply.
 
 Several glossaries may apply to one document.
 

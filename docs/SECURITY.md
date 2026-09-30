@@ -54,9 +54,10 @@ The update path deliberately relies on `--ff-only` pulls, dirty-tree and diverge
 verdict's `incoming_*` and `changed_scripts`/`changed_skill` review payload, and explicit
 per-session user approval rather than signed commits or tags.
 
-Commit-hash anchoring per `VERSIONING.md` is the integrity anchor consumers verify against.
+Commit-hash anchoring per `docs/VERSIONING.md` is the integrity anchor consumers verify
+against.
 
 The regression gate is intentionally manual - no CI pipeline or hook automation runs it, per
-`MAINTENANCE.md`.
+`docs/MAINTENANCE.md`.
 
 These postures are standing accepted decisions, revisited at each audit.

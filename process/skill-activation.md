@@ -20,7 +20,8 @@ reformat, translate, audit, or describe, and no maintenance request.
 A request that combines activation with a task is a task request - "use panther, write a
 quick note" enters document mode directly and this procedure does not run.
 
-When the request is ambiguous between bare activation and a task, ask.
+When the request is ambiguous between bare activation and a task, ask - under JSON exchange the
+question emits as the `mode-selection` `choice` parameter per `process/json-exchange.md`.
 
 ## Procedure
 

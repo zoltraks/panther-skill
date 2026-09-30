@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Split packed sentences inside prose paragraphs onto individual logical lines.
 
-Two sentence-layout dialects exist. The house convention (STYLE.md, the
+Two sentence-layout dialects exist. The house convention (docs/STYLE.md, the
 `languages/` baselines) is paragraph-per-sentence: every sentence is its own
 paragraph, separated from the next by one empty line. Repositories in the wild
 also use sentence-per-line: each sentence starts on its own logical line but

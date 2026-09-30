@@ -11,7 +11,7 @@ A rules document instructs the reader.
 It exists to be applied, not just read - every rule must be unambiguous and checkable.
 
 Typical shape: a document made of short imperative rules grouped by topic, with paired
-correct/incorrect examples - like this skill's own `STYLE.md`.
+correct/incorrect examples - like this skill's own `docs/STYLE.md`.
 
 ## When To Use
 

@@ -221,7 +221,7 @@ convention on list items or vice versa.
 Within paragraphs, two sentence-layout dialects exist.
 
 Paragraph-per-sentence puts every sentence in its own paragraph, separated from the next by
-one empty line - the house convention in `STYLE.md` and the `languages/` baselines.
+one empty line - the house convention in `docs/STYLE.md` and the `languages/` baselines.
 
 Sentence-per-line starts each sentence on its own logical line but keeps consecutive sentences
 inside one shared paragraph block.

@@ -6,7 +6,7 @@
 >
 > Structured per the [Agent Skills specification](https://agentskills.io/specification).
 >
-> [Versioning Policy](./VERSIONING.md)
+> [Versioning Policy](./docs/VERSIONING.md)
 
 ## Contents
 
@@ -14,17 +14,17 @@
 |---------------------|------|--------------------------------------------|
 | Overview            | 29   | What Panther is and what it produces       |
 | What The Skill Does | 54   | Authoring purpose and workflow             |
-| Installation        | 166  | How to add Panther to an agent environment |
-| Usage               | 236  | How agents activate and run the skill      |
-| Example Prompts     | 250  | Phrases the skill activates on             |
-| Workflow Diagrams   | 296  | ASCII and Mermaid diagrams of the pipeline |
-| Core Principles     | 422  | Convention preservation and minimal diffs  |
-| When To Use         | 433  | Supported requests and exclusions          |
-| What's Inside       | 472  | Rule files, templates, tools, and evals    |
-| Specification       | 614  | Agent Skills specification conformance     |
-| Verification        | 630  | Skill-maintenance checks                   |
-| License             | 649  | License for the skill itself               |
-| Credits             | 655  | Methodology and example sources            |
+| Installation        | 169  | How to add Panther to an agent environment |
+| Usage               | 239  | How agents activate and run the skill      |
+| Example Prompts     | 253  | Phrases the skill activates on             |
+| Workflow Diagrams   | 299  | ASCII and Mermaid diagrams of the pipeline |
+| Core Principles     | 425  | Convention preservation and minimal diffs  |
+| When To Use         | 436  | Supported requests and exclusions          |
+| What's Inside       | 475  | Rule files, templates, tools, and evals    |
+| Specification       | 621  | Agent Skills specification conformance     |
+| Verification        | 637  | Skill-maintenance checks                   |
+| License             | 656  | License for the skill itself               |
+| Credits             | 662  | Methodology and example sources            |
 
 ## Overview
 
@@ -63,6 +63,9 @@ to pull incoming commits before starting, when the skill lives in a git clone.
 **Resolves parameters**
 
 For a new document it confirms the type, language, filename, and encoding, with sensible defaults.
+
+A request for parameters in JSON emits a machine-readable intake document per
+`process/json-exchange.md`, and JSON answers are accepted in reply.
 
 For an edit it skips the questions and follows the document's own conventions.
 
@@ -149,9 +152,9 @@ a fidelity verdict with findings.
 **Maintains itself**
 
 Separately, when you ask to "work on panther-skill" or "fix this skill", the agent enters
-maintenance mode: it reads the skill's governing documents, applies `MAINTENANCE.md` and
-`STYLE.md`, and runs the skill's own validators - document-mode machinery does not apply to
-the skill's own files.
+maintenance mode: it reads the skill's governing documents, applies `docs/MAINTENANCE.md` and
+`docs/STYLE.md`, and runs the skill's own validators - document-mode machinery does not apply
+to the skill's own files.
 
 **Enables on a bare request**
 
@@ -474,11 +477,14 @@ flowchart TD
 ```
 panther-skill/
 ├── SKILL.md                           # Root router - load this first
-├── STYLE.md                           # Document style rules for all files in this skill
-├── MAINTENANCE.md                     # Skill extension and restructuring rules
-├── VERSIONING.md                      # Skill versioning policy
-├── SECURITY.md                        # Vulnerability disclosure channel
-├── CONTRIBUTING.md                    # Contribution rules and review policy
+├── AGENTS.md                          # Agent-facing entry point for repository maintenance
+├── docs/
+│   ├── README.md                      # Index of the repository-governance documents
+│   ├── STYLE.md                       # Document style rules for all files in this skill
+│   ├── MAINTENANCE.md                 # Skill extension and restructuring rules
+│   ├── VERSIONING.md                  # Skill versioning policy
+│   ├── CONTRIBUTING.md                # Contribution rules and review policy
+│   └── SECURITY.md                    # Vulnerability disclosure channel
 ├── principles/
 │   └── authoring-rules.md             # Plain-text-first, convention preservation, minimal diff
 ├── process/
@@ -486,6 +492,7 @@ panther-skill/
 │   ├── document-checklist.md          # Mechanical pre-delivery checklist
 │   ├── document-audit.md              # Standalone audit procedure: findings and fix plan
 │   ├── describe-response.md           # Standalone describe procedure: caps and floors
+│   ├── json-exchange.md               # JSON parameter documents for pending questions
 │   ├── scope-discovery.md             # Standalone layout-discovery procedure and report format
 │   ├── skill-maintenance.md           # Maintenance-mode procedure for work on the skill itself
 │   ├── skill-activation.md            # Enable-mode procedure for bare activation requests
@@ -636,7 +643,7 @@ changes.
 - Exercise the regression prompts in `evals/evals.json` after structural changes.
 - Run `python scripts/validate-document.py <file>` on any document the skill produces.
 
-The `MAINTENANCE.md` registration contract, the three mechanical validators
+The `docs/MAINTENANCE.md` registration contract, the three mechanical validators
 (`validate-skill.py`, `check-references.py`, `check-contents.py`), and the behavioral prompts in
 `evals/evals.json` serve as the regression gate that keeps the corpus consistent between reviews.
 
@@ -646,7 +653,7 @@ validators and smoke harness before each commit.
 Panther is a single-maintainer project.
 
 When external contributors appear, structural changes to `SKILL.md`, frontmatter, or `scripts/`
-require a second-reviewer pass before merging - see [CONTRIBUTING.md](./CONTRIBUTING.md).
+require a second-reviewer pass before merging - see [CONTRIBUTING.md](./docs/CONTRIBUTING.md).
 
 ## License
 

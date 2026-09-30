@@ -31,7 +31,8 @@ skill's documents - expect the following requests in the same session to stay in
 A request to extend another skill repository follows `scopes/agent-skill.md` through document
 mode instead.
 
-When the target is ambiguous, ask which mode applies.
+When the target is ambiguous, ask which mode applies - under JSON exchange the question emits as
+the `mode-selection` `choice` parameter per `process/json-exchange.md`.
 
 ## Intake
 
@@ -49,14 +50,15 @@ When the target is ambiguous, ask which mode applies.
 Read these files completely before starting maintenance work:
 
 1. `SKILL.md` - the router: taxonomy, registrations, trigger phrases, update check.
-2. `MAINTENANCE.md` - directory roles, file naming, the registration contract, per-kind
+2. `docs/MAINTENANCE.md` - directory roles, file naming, the registration contract, per-kind
    addition procedures, validation, encoding.
-3. `STYLE.md` - prose and formatting rules for the skill's own files.
-4. `VERSIONING.md` - the version field location and the bump-only-on-request policy.
-5. `CONTRIBUTING.md` - contribution rules, including AI-assisted contributions.
-6. `SECURITY.md` - the update-path trust boundary and accepted postures.
+3. `docs/STYLE.md` - prose and formatting rules for the skill's own files.
+4. `docs/VERSIONING.md` - the version field location and the bump-only-on-request policy.
+5. `docs/CONTRIBUTING.md` - contribution rules, including AI-assisted contributions.
+6. `docs/SECURITY.md` - the update-path trust boundary and accepted postures.
 7. `README.md` - the human-facing overview and the directory tree that mirrors the layout.
-8. `scripts/README.md` - tool classes, commands, and limitations.
+8. `AGENTS.md` - the agent-facing entry point summarizing the same contract.
+9. `scripts/README.md` - tool classes, commands, and limitations.
 
 `work/` is untracked scratch and is never part of the governing set.
 
@@ -68,27 +70,29 @@ editing it when time passed or it may have changed, per the governed-document ru
 
 Document-mode machinery is skipped for the skill's own files:
 
-- No parameter-resolution questions - `MAINTENANCE.md` and `STYLE.md` already fix the answers.
+- No parameter-resolution questions - `docs/MAINTENANCE.md` and `docs/STYLE.md` already fix
+  the answers.
 - No `languages/` baseline, `types/` delta, or `templates/` skeleton - skill files follow
-  `STYLE.md`, which wraps prose at 100 characters instead of the produced-document baselines.
+  `docs/STYLE.md`, which wraps prose at 100 characters instead of the produced-document
+  baselines.
 - No scope detection - the repository is the `agent-skill` scope by definition.
 - No `.tmp.` tool copies - document-production tools run directly from `scripts/` here.
 
 ## Applicable Rules
 
-The change follows `MAINTENANCE.md`: directory roles, kebab-case naming, the registration
+The change follows `docs/MAINTENANCE.md`: directory roles, kebab-case naming, the registration
 contract, the per-kind addition procedures, the external-example anonymization rule, and the
 file-encoding rules.
 
-Prose follows `STYLE.md`.
+Prose follows `docs/STYLE.md`.
 
-Bump the skill version only on explicit request, per `VERSIONING.md` - when the change
+Bump the skill version only on explicit request, per `docs/VERSIONING.md` - when the change
 touched any skill document, propose the bump in the delivery report, naming the current
 and next version.
 
 ## Validation
 
-After the change, run the suite from `MAINTENANCE.md`:
+After the change, run the suite from `docs/MAINTENANCE.md`:
 
 - `scripts/validate-skill.py`, `scripts/check-references.py`, `scripts/check-contents.py`.
 - `scripts/format-table.py`, `scripts/align-comments.py`, `scripts/split-sentences.py`,

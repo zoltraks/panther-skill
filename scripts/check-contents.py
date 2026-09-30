@@ -7,7 +7,7 @@ Scope:
     checked: each row's stated line number must sit within `--tolerance` lines of a
     document-level `## ` heading.
   - Fenced code blocks are opaque: example tables and headings inside fences, such
-    as the ` ```markdown ` sample in `STYLE.md`, are payload, not structure.
+    as the ` ```markdown ` sample in `docs/STYLE.md`, are payload, not structure.
   - Matching is positional, not by section name: row labels are abbreviated (for
     example "How To Use" stands for "How To Use This Skill"), so only the stated
     line numbers are verified.
