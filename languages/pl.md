@@ -20,28 +20,28 @@ Zasady opisane poniżej stosują się również do samego tego dokumentu.
 
 | Sekcja                             | Wiersz | Zakres                                        |
 |------------------------------------|--------|-----------------------------------------------|
-| Struktura dokumentu                | 45     | Tytuł, cel i układ dokumentu                  |
-| Nagłówki                           | 63     | Wielkość liter i kwalifikatory                |
-| Numeracja sekcji                   | 95     | Zasady numerowania sekcji                     |
-| Zasady spisu treści                | 107    | Kiedy dodawać spis treści                     |
-| Akapity i zdania                   | 121    | Budowa akapitów i konstrukcja zdania          |
-| Zawijanie wierszy                  | 159    | Wiersze logiczne i twarde łamania             |
-| Listy                              | 179    | Punktory, numeracja i odstępy                 |
-| Puste wiersze i odstępy            | 201    | Zasady odstępów                               |
-| Bloki kodu                         | 215    | Ogrodzenia, znaczniki i kod liniowy           |
-| Formatowanie w treści              | 229    | Cudzysłowy, pogrubienia i kursywa             |
-| Średniki                           | 251    | Zakaz średników i zdań sklejonych przecinkiem |
-| Znaki specjalne                    | 279    | Znaki ramek, emoji i znaki specjalne          |
-| Słownictwo polskie                 | 297    | Preferowane terminy i kalki                   |
-| Nazwy sekcji według typu dokumentu | 401    | Polskie nazwy sekcji i elementy typów         |
-| Cechy dialektów                    | 658    | Numeracja rozdziałów i pseudo-nagłówki        |
-| Tabele                             | 675    | Wyrównanie według źródła                      |
-| Nazwy plików                       | 789    | Nazywanie nowych plików dokumentacji          |
-| Przykład                           | 799    | Przykład poprawny i niepoprawny               |
-| Kontrola przed dostarczeniem       | 833    | Kontrole językowe przed dostarczeniem         |
-| Utrzymanie plików                  | 843    | Kodowanie i złamania wierszy                  |
-| Pytanie o aktualizację             | 853    | Polskie brzmienie pytania o aktualizację      |
-| Frazy aktywujące                   | 859    | Polskie frazy i ich angielskie odpowiedniki   |
+| Struktura dokumentu                | 46     | Tytuł, cel i układ dokumentu                  |
+| Nagłówki                           | 64     | Wielkość liter i kwalifikatory                |
+| Numeracja sekcji                   | 96     | Zasady numerowania sekcji                     |
+| Zasady spisu treści                | 108    | Kiedy dodawać spis treści                     |
+| Akapity i zdania                   | 122    | Budowa akapitów i konstrukcja zdania          |
+| Zawijanie wierszy                  | 166    | Wiersze logiczne i twarde łamania             |
+| Listy                              | 186    | Punktory, numeracja i odstępy                 |
+| Puste wiersze i odstępy            | 208    | Zasady odstępów                               |
+| Bloki kodu                         | 222    | Ogrodzenia, znaczniki i kod liniowy           |
+| Formatowanie w treści              | 236    | Cudzysłowy, pogrubienia i kursywa             |
+| Średniki                           | 258    | Zakaz średników i zdań sklejonych przecinkiem |
+| Znaki specjalne                    | 286    | Znaki ramek, emoji i znaki specjalne          |
+| Słownictwo polskie                 | 304    | Preferowane terminy i kalki                   |
+| Nazwy sekcji według typu dokumentu | 423    | Polskie nazwy sekcji i elementy typów         |
+| Cechy dialektów                    | 680    | Numeracja rozdziałów i pseudo-nagłówki        |
+| Tabele                             | 697    | Wyrównanie według źródła                      |
+| Nazwy plików                       | 811    | Nazywanie nowych plików dokumentacji          |
+| Przykład                           | 821    | Przykład poprawny i niepoprawny               |
+| Kontrola przed dostarczeniem       | 855    | Kontrole językowe przed dostarczeniem         |
+| Utrzymanie plików                  | 865    | Kodowanie i złamania wierszy                  |
+| Pytanie o aktualizację             | 875    | Polskie brzmienie pytania o aktualizację      |
+| Frazy aktywujące                   | 881    | Polskie frazy i ich angielskie odpowiedniki   |
 
 ## Struktura dokumentu
 
@@ -156,6 +156,12 @@ Wyliczenie dłuższe niż cztery człony lub zawierające zagnieżdżenie zapisu
 Łańcuch rzeczowników ograniczaj do trzech członów, a dłuższy rozwijaj czasownikiem lub przyimkiem.
 
 Nie zostawiaj w zdaniu elipsy - każdy człon wymagany przez sens ma być zapisany wprost.
+
+Korelatywne "to" otwierające zdanie podrzędne wymaga przecinka, na przykład "polega na
+tym, gdzie..." albo "sprowadza się do tego, że...".
+
+Stan opisuj czasownikiem niedokonanym, na przykład "jest sformalizowany", a formę
+dokonaną "został" zachowaj dla dokonanych wyników i zdarzeń.
 
 ## Zawijanie wierszy
 
@@ -303,79 +309,91 @@ Nie odmieniaj angielskich wyrazów polskimi końcówkami, gdy istnieje naturalny
 
 Poniższa tabela jest źródłem prawdy dla mechanicznej kontroli - `scripts/lint-polish.py` odczytuje z niej wzorce zabronione.
 
-| Zamiast                  | Używaj                                     |
-|--------------------------|--------------------------------------------|
-| ownerzy biznesowi        | właściciele biznesowi                      |
-| dane skrapane            | dane skrapowane                            |
-| deployować               | wdrażać                                    |
-| requestować              | zgłaszać                                   |
-| update'ować              | aktualizować                               |
-| fixować                  | poprawiać                                  |
-| kastomizacja             | dostosowanie                               |
-| performance              | wydajność                                  |
-| stakeholderzy            | interesariusze                             |
-| status report            | raport o statusie                          |
-| meeting minutes          | protokół zebrania                          |
-| commitowany              | dodany do repozytorium                     |
-| niecommitowany           | nieobecny w repozytorium                   |
-| onboardowanie            | wdrażanie nowych osób                      |
-| multi-agentowy           | wieloagentowy                              |
-| prozatorski              | opisowy                                    |
-| usankcjonować            | sankcjonować / formalizować                |
-| dostawczone              | dostarczone                                |
-| cykl wydawniczy          | cykl wydaniowy                             |
-| bramka wydawnicza        | bramka wydaniowa                           |
-| siostrzana gałąź         | pozostała gałąź                            |
-| wielorazowy              | wielokrotnego użytku                       |
-| linkowany                | powiązany odnośnikami                      |
-| progresywne ujawnianie   | stopniowe ujawnianie                       |
-| plus (jako spójnik)      | oraz / wraz z                              |
-| per pozycja              | dla każdej pozycji                         |
-| per endpoint             | dla każdego endpointu                      |
-| per adres                | dla każdego adresu                         |
-| pod (katalogiem)         | w katalogu                                 |
-| chudy (plik, dokument)   | odchudzony                                 |
-| najcięższy (dokument)    | najbardziej rozbudowany                    |
-| najlżejszy               | najbardziej zwięzły                        |
-| niesie / niosą           | zawiera / obejmuje                         |
-| dotyka                   | zmienia / obejmuje                         |
-| zakotwiczone w           | oparte na                                  |
-| wskaźnik (odnośnik)      | odnośnik / odwołanie                       |
-| wyposażenie agentowe     | konfiguracja narzędzi AI                   |
-| zyskuje                  | otrzymuje                                  |
-| właściciel (dokumentu)   | dokument nadrzędny / miejsce zdefiniowania |
-| mieszkają / żyje         | znajdują się / jest zachowana              |
-| lustro                   | kopia struktury                            |
-| ładunek                  | zawartość zmiany / zakres zmian            |
-| rekord zmiany            | zapis / wpis                               |
-| zaadresować              | uwzględnić / usunąć                        |
-| konsumowana              | obsługiwana / wykorzystywana               |
-| rekursują                | są rozwijane rekurencyjnie                 |
-| celują w                 | przyjmują jako cel / zalecają              |
-| kosztuje kontekst        | zajmuje miejsce w oknie kontekstu          |
-| przypięty (do trybu)     | ograniczony do trybu                       |
-| rozdzielczy (rzeczownik) | plik kierujący                             |
-| zestaw zarządzania       | zestaw dokumentów regulujących             |
-| autorytatywny            | wiążący / nadrzędny                        |
-| skonsultowano            | sprawdzono / przejrzano                    |
-| triaż                    | przegląd i klasyfikacja                    |
-| dryf                     | narastająca rozbieżność / odchylenie       |
-| parzystość (parity)      | zgodność / równoważność                    |
-| baseline                 | wartość bazowa / zbiór bazowy              |
-| zmaterializowane ryzyko  | ryzyko się zrealizowało                    |
-| re-audyt                 | ponowny audyt                              |
-| kontrola wykonawcza      | kontrola dynamiczna                        |
-| strażnik (guard)         | mechanizm ochronny                         |
-| jednorazowa instancja    | tymczasowa instancja                       |
-| zastany                  | istniejący wcześniej / odziedziczony       |
-| placeholder sekretu      | wartość zastępcza sekretu                  |
-| realna baza              | rzeczywista baza danych                    |
-| serwujący                | udostępniający                             |
-| brama (quality gate)     | kontrola blokująca / warunek jakości       |
-| bramy raportowe          | kontrole nieblokujące                      |
-| powierzchnia kodu        | zakres kodu                                |
-| delta kodowa             | zakres zmian w kodzie                      |
-| diff (rzeczownik)        | zestaw zmian (diff)                        |
+| Zamiast                                                   | Używaj                                     |
+|-----------------------------------------------------------|--------------------------------------------|
+| ownerzy biznesowi                                         | właściciele biznesowi                      |
+| dane skrapane                                             | dane skrapowane                            |
+| deployować                                                | wdrażać                                    |
+| requestować                                               | zgłaszać                                   |
+| update'ować                                               | aktualizować                               |
+| fixować                                                   | poprawiać                                  |
+| kastomizacja                                              | dostosowanie                               |
+| performance                                               | wydajność                                  |
+| stakeholderzy                                             | interesariusze                             |
+| status report                                             | raport o statusie                          |
+| meeting minutes                                           | protokół zebrania                          |
+| commitowany                                               | dodany do repozytorium                     |
+| niecommitowany                                            | nieobecny w repozytorium                   |
+| onboardowanie                                             | wdrażanie nowych osób                      |
+| multi-agentowy                                            | wieloagentowy                              |
+| prozatorski                                               | opisowy                                    |
+| usankcjonować                                             | sankcjonować / formalizować                |
+| dostawczone                                               | dostarczone                                |
+| cykl wydawniczy                                           | cykl wydaniowy                             |
+| bramka wydawnicza                                         | bramka wydaniowa                           |
+| siostrzana gałąź                                          | pozostała gałąź                            |
+| wielorazowy                                               | wielokrotnego użytku                       |
+| linkowany                                                 | powiązany odnośnikami                      |
+| progresywne ujawnianie                                    | stopniowe ujawnianie                       |
+| plus (jako spójnik)                                       | oraz / wraz z                              |
+| per pozycja                                               | dla każdej pozycji                         |
+| per endpoint                                              | dla każdego endpointu                      |
+| per adres                                                 | dla każdego adresu                         |
+| pod (katalogiem)                                          | w katalogu                                 |
+| chudy (plik, dokument)                                    | odchudzony                                 |
+| najcięższy (dokument)                                     | najbardziej rozbudowany                    |
+| najlżejszy                                                | najbardziej zwięzły                        |
+| niesie / niosą                                            | zawiera / obejmuje                         |
+| dotyka                                                    | zmienia / obejmuje                         |
+| zakotwiczone w                                            | oparte na                                  |
+| wskaźnik (odnośnik)                                       | odnośnik / odwołanie                       |
+| wyposażenie agentowe                                      | konfiguracja narzędzi AI                   |
+| zyskuje                                                   | otrzymuje                                  |
+| właściciel (dokumentu)                                    | dokument nadrzędny / miejsce zdefiniowania |
+| mieszkają / żyje                                          | znajdują się / jest zachowana              |
+| lustro                                                    | kopia struktury                            |
+| ładunek                                                   | zawartość zmiany / zakres zmian            |
+| rekord zmiany                                             | zapis / wpis                               |
+| zaadresować                                               | uwzględnić / usunąć                        |
+| konsumowana                                               | obsługiwana / wykorzystywana               |
+| rekursują                                                 | są rozwijane rekurencyjnie                 |
+| celują w                                                  | przyjmują jako cel / zalecają              |
+| kosztuje kontekst                                         | zajmuje miejsce w oknie kontekstu          |
+| przypięty (do trybu)                                      | ograniczony do trybu                       |
+| rozdzielczy (rzeczownik)                                  | plik kierujący                             |
+| zestaw zarządzania                                        | zestaw dokumentów regulujących             |
+| autorytatywny                                             | wiążący / nadrzędny                        |
+| skonsultowano                                             | sprawdzono / przejrzano                    |
+| triaż                                                     | przegląd i klasyfikacja                    |
+| dryf                                                      | narastająca rozbieżność / odchylenie       |
+| parzystość (parity)                                       | zgodność / równoważność                    |
+| baseline                                                  | wartość bazowa / zbiór bazowy              |
+| zmaterializowane ryzyko                                   | ryzyko się zrealizowało                    |
+| re-audyt                                                  | ponowny audyt                              |
+| kontrola wykonawcza                                       | kontrola dynamiczna                        |
+| strażnik (guard)                                          | mechanizm ochronny                         |
+| jednorazowa instancja                                     | tymczasowa instancja                       |
+| zastany                                                   | istniejący wcześniej / odziedziczony       |
+| placeholder sekretu                                       | wartość zastępcza sekretu                  |
+| realna baza                                               | rzeczywista baza danych                    |
+| serwujący                                                 | udostępniający                             |
+| brama (quality gate)                                      | kontrola blokująca / warunek jakości       |
+| bramy raportowe                                           | kontrole nieblokujące                      |
+| powierzchnia kodu                                         | zakres kodu                                |
+| delta kodowa                                              | zakres zmian w kodzie                      |
+| diff (rzeczownik)                                         | zestaw zmian (diff)                        |
+| zaadaptowany / zaadaptowana / zaadaptowane                | dostosowany                                |
+| audytowalny / audytowalna / audytowalne                   | audytowy                                   |
+| wykonaniowy / wykonaniowa / wykonaniowe                   | dynamiczny / wykonawczy                    |
+| podbicie                                                  | inkrementacja                              |
+| trasa (routing)                                           | routing                                    |
+| narzędziowy / narzędziowa / narzędziowe                   | przez narzędzia / obsługiwane              |
+| ustalenia robocze / ustalenie robocze / ustaleń roboczych | uzgodnienia robocze                        |
+| baza scalenia / bazę scalenia                             | wspólny przodek (merge base)               |
+| mechanizm wytwarzania                                     | proces wytwarzania                         |
+| mechanizm procesowy                                       | proces                                     |
+
+Wpis `pod` w tabeli dotyczy wyłącznie kalki opisu miejsca - `pod katalogiem` zamiast `w katalogu` - a stałe zwroty takie jak `pod kątem`, `pod względem` czy `pod opieką` są poprawne i nie podlegają zastąpieniu.
 
 Ustalone nazwy własne, nazwy produktów i nazwy elementów architektury zachowuj w formie oryginalnej, na przykład Microsoft Fabric, Lakehouse, Warehouse, Power BI, workspace.
 
@@ -390,6 +408,9 @@ Skróty rozwijaj przy pierwszym użyciu i wpisuj do słownika dokumentu, na przy
 Nie skracaj wyrazu "wierszy" do "w.".
 
 Jedno pojęcie opisuj jedną nazwą w całym dokumencie.
+
+Elementy policzalne nazywaj rzeczownikami policzalnymi, na przykład "wpisy
+.gitignore" - zodrębniała forma jak "ignorowanie" nazywa mechanizm, nie pozycję.
 
 Przy wyborze nazwy kolejność to: ustalony termin polski, utrwalony termin angielski w formie nieodmienianej z polskim opisem przy pierwszym użyciu, na końcu opis polski.
 

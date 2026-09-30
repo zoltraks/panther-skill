@@ -22,7 +22,7 @@ compatibility: >-
   Claude Desktop, Windsurf, Devin, and similar). Requires the ability to read
   and write text files. No network access required.
 metadata:
-  version: "1.0.2"
+  version: "1.0.3"
   author: Filip Golewski
 allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob Grep
 ---
@@ -47,13 +47,13 @@ allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob G
 | Document Types          | 289  | Per-type rule files                            |
 | Languages               | 344  | Per-language style baselines                   |
 | Translations            | 359  | Language pair rules and industry glossaries    |
-| Scopes                  | 374  | Per-project-layout organization rules          |
-| Conventions             | 402  | Encoding, dialect, and format contract rules   |
-| Templates               | 417  | Per-type, per-language skeletons               |
-| Scripts                 | 429  | Detection, formatting, and validation scripts  |
-| Evaluation Prompts      | 459  | Behavioral regression prompts                  |
-| Repository Files        | 469  | Housekeeping files governing this repository   |
-| File Handling Contract  | 481  | Byte-level guarantees                          |
+| Scopes                  | 379  | Per-project-layout organization rules          |
+| Conventions             | 407  | Encoding, dialect, and format contract rules   |
+| Templates               | 422  | Per-type, per-language skeletons               |
+| Scripts                 | 434  | Detection, formatting, and validation scripts  |
+| Evaluation Prompts      | 464  | Behavioral regression prompts                  |
+| Repository Files        | 474  | Housekeeping files governing this repository   |
+| File Handling Contract  | 486  | Byte-level guarantees                          |
 
 You are a Document Authoring Agent.
 
@@ -360,7 +360,8 @@ characters, vocabulary, and file naming:
 
 Load on translate tasks per `process/translate-document.md`, and on translation-audit
 tasks per `process/translation-audit.md`: the direction's
-`translations/<pair>/<pair>-general.md`, then every matching `<pair>-<category>.md`:
+`translations/<pair>/<pair>-general.md`, then the pair's `<pair>-style.md` when it
+exists, then every matching `<pair>-<category>.md`:
 
 - **`translations/en-pl/`** - English to Polish direction rules and glossaries.
 - **`translations/pl-en/`** - Polish to English direction rules and glossaries.
@@ -368,8 +369,12 @@ tasks per `process/translation-audit.md`: the direction's
 - **`translations/de-en/`** - German to English direction rules and glossaries.
 - **`translations/pl-de/`** - Polish to German direction rules and glossaries.
 - **`translations/de-pl/`** - German to Polish direction rules and glossaries.
-- Category slugs shared by every pair directory: `general`, `software`, `project`,
-  `finance`, `legal`, `medical`, `electrical`, `construction`.
+- Category slugs shared by every pair directory: `general`, `style`, `software`,
+  `project`, `finance`, `legal`, `medical`, `electrical`, `construction`.
+
+A `<pair>-style.md` file carries sentence-level adaptation rules - aspect and voice,
+actor verbs, verb choice, fixed idioms, hedged verdicts - and loads between the
+direction contract and the industry glossaries.
 
 ## `scopes/` - Project Layouts
 

@@ -840,6 +840,53 @@
         "The agent did not normalize the document's existing ```text fences to bare fences.",
         "No unrelated reformatting occurred."
       ]
+    },
+    {
+      "id": 69,
+      "prompt": "Translate this English review report into Polish - it rates several configuration variants and claims conformance with a specification.",
+      "expected_output": "A Polish translation applying the en-pl direction contract and the style file - completed verdicts render as perfective resultatives, conformance claims render wykazuje zgodność, and pod idioms stay untouched.",
+      "files": [],
+      "expectations": [
+        "The agent loaded translations/en-pl/en-pl-style.md between the direction contract and the glossaries.",
+        "Completed verdicts render as perfective resultatives - została oceniona, został usunięty - not the stative jest oceniona.",
+        "A conformance claim renders wykazuje zgodność or deklaruje zgodność, never rejestruje zgodność.",
+        "Fixed pod idioms such as pod kątem and pod względem are kept verbatim."
+      ]
+    },
+    {
+      "id": 70,
+      "prompt": "Lint this Polish document with panther's polish linter - it contains the idioms pod kątem and pod opieką, a comma enumeration closed by a conjunction, and one occurrence of rejestruje zgodność.",
+      "expected_output": "A lint run reporting exactly one calque finding - rejestruje zgodność - with no findings on the pod idioms and no spliced-clause warnings on the enumeration.",
+      "files": [],
+      "expectations": [
+        "The agent ran lint-polish.py with the pl.md and glossary rule tables.",
+        "No finding was raised for pod kątem or pod opieką - the idiom allowlist suppressed them.",
+        "No spliced-clause warning was raised for the comma enumeration closed by a conjunction.",
+        "rejestruje zgodność was reported as a calque pointing at wykazuje zgodność."
+      ]
+    },
+    {
+      "id": 71,
+      "prompt": "Przetłumacz ten polski raport z przeglądu na angielski - dokument ocenia warianty konfiguracji i deklaruje zgodność ze specyfikacją.",
+      "expected_output": "An English translation applying the pl-en direction contract and the style file - perfective verdicts render as past passives, wykazuje zgodność renders demonstrates conformance, and pod idioms map to natural English phrases.",
+      "files": [],
+      "expectations": [
+        "The agent loaded translations/pl-en/pl-en-style.md between the direction contract and the glossaries.",
+        "Perfective resultative verdicts such as została oceniona render as past passives - was rated, was removed.",
+        "wykazuje zgodność renders demonstrates conformance, never registers compliance.",
+        "pod kątem and pod względem render as in terms of or regarding, not word-by-word calques."
+      ]
+    },
+    {
+      "id": 72,
+      "prompt": "Lint this Polish technical document with panther's polish linter - it contains baza scalenia, zaadaptowany, an audytowalny ślad, a sentence polega na tym gdzie without a comma, and a legitimate trasa rowerowa mention.",
+      "expected_output": "A lint run reporting errors for the calques and the missing correlative comma, with trasa reported only as an advisory warning.",
+      "files": [],
+      "expectations": [
+        "baza scalenia, zaadaptowany, and audytowalny are reported as errors.",
+        "na tym gdzie without a comma is reported as an error.",
+        "trasa is reported as a warning, not an error."
+      ]
     }
   ]
 }

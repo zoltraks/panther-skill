@@ -535,6 +535,7 @@ panther-skill/
 │   │   └── en-de-construction.md      # Construction and concrete glossary
 │   ├── en-pl/                         # English-to-Polish direction rules and glossaries
 │   │   ├── en-pl-general.md           # Direction contract: style, locale, untranslated set
+│   │   ├── en-pl-style.md             # Sentence-level adaptation rules
 │   │   ├── en-pl-software.md          # SDLC and software glossary
 │   │   ├── en-pl-project.md           # PMBOK glossary
 │   │   ├── en-pl-finance.md           # Finance and banking glossary
@@ -548,6 +549,7 @@ panther-skill/
 │   │   └── pl-de-construction.md      # Construction and concrete glossary
 │   └── pl-en/                         # Polish-to-English direction rules and glossaries
 │       ├── pl-en-general.md           # Direction contract: Title Case, abbreviations
+│       ├── pl-en-style.md             # Sentence-level adaptation rules
 │       ├── pl-en-software.md          # SDLC and software glossary
 │       ├── pl-en-project.md           # PMBOK glossary
 │       ├── pl-en-finance.md           # Finance and banking glossary

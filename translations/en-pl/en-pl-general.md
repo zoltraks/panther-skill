@@ -19,10 +19,12 @@ Apply the rule files in this order:
    vocabulary, file naming, and per-type section names.
 2. `translations/en-pl/en-pl-general.md` - this file: direction adaptation and
    terminology rules.
-3. `translations/en-pl/en-pl-<category>.md` - every glossary whose domain signals match
+3. `translations/en-pl/en-pl-style.md` - sentence-level adaptation: aspect and voice,
+   actor verbs, verb choice, fixed idioms, hedged verdicts.
+4. `translations/en-pl/en-pl-<category>.md` - every glossary whose domain signals match
    the document, for example `translations/en-pl/en-pl-software.md`.
-4. `types/<type>.md` - when the document matches a known type, for its structural deltas.
-5. `conventions/` files - only when the source document's dialect requires them.
+5. `types/<type>.md` - when the document matches a known type, for its structural deltas.
+6. `conventions/` files - only when the source document's dialect requires them.
 
 The Polish baseline and this file together define the output style.
 
@@ -86,27 +88,34 @@ writing any flagged form - a form listed there is always wrong regardless of how
 natural it sounds in the source.
 
 Never join two independent Polish clauses with a bare comma - the English comma-splice
-habit does not transfer. Use a full stop, a colon, or a conjunction (`więc`,
-`natomiast`, `ponieważ`).
+habit does not transfer.
 
-Do not personify artifacts - files, sections, and branches do not act; persons and
-tools do. Render `the file removes X` as `plik usuwa X` only when the file is a
-program; otherwise use the passive or an action noun (`plik został usunięty`,
-`usunięcie X`).
+Use a full stop, a colon, or a conjunction (`więc`, `natomiast`, `ponieważ`).
+
+Do not personify artifacts - files, sections, and branches do not act - persons and
+tools do.
+
+Render `the file removes X` as `plik usuwa X` only when the file is a program.
+
+Otherwise use the passive or an action noun (`plik został usunięty`, `usunięcie X`).
 
 Expand abbreviations at first use and record them in the document's glossary -
 `merge request (MR)`, not a bare `MR`.
 
 Product and technology names keep their canonical spelling and decline normally -
-`Git`, `SemVer`, `w plikach Dockera`; filenames, commands, and identifiers never
+`Git`, `SemVer`, `w plikach Dockera` - filenames, commands, and identifiers never
 decline and take a generic noun (`plik AGENTS.md`, `system GitLab`).
 
 A verbatim foreign-language quotation stays in quotes with a Polish gloss beside it -
-never weave quoted English into Polish syntax. A translator's own rendering is marked
-as such or paraphrased without quotes.
+never weave quoted English into Polish syntax.
+
+A translator's own rendering is marked as such or paraphrased without quotes.
 
 Decline adjectives in gender agreement with the governed noun - `ważność WYSOKA`,
 `wpływ WYSOKI`, `ryzyko WYSOKIE`, `następstwa NEGATYWNE`.
+
+Render countable items with countable nouns - `wpisy .gitignore`, not
+`ignorowanie` - a nominalized verb names the mechanism, not the item.
 
 Use neuter gender for acronyms treated as nouns - `czyste PWA`, not `czysta PWA`.
 
@@ -138,7 +147,10 @@ Apply terms in this precedence order:
    in the report.
 2. The matching `translations/en-pl/en-pl-<category>.md` glossaries.
 3. The `pl.md` vocabulary table and this file's rules.
-4. A faithful literal rendering when no entry exists - never invent an equivalent.
+4. Established usage in authoritative Polish sources - translated standards such as
+   ISTQB and ISO, the Polish Scrum Guide, Polish Pro Git, and official vendor
+   documentation.
+5. A faithful literal rendering when no entry exists - never invent an equivalent.
 
 The Calque Traps tables and the `pl.md` "Zamiast / Używaj" table act as a veto at every
 precedence level - a form they forbid is never a candidate, even for a literal render.

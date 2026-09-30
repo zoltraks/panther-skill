@@ -19,10 +19,12 @@ Apply the rule files in this order:
    characters, vocabulary, and file naming.
 2. `translations/pl-en/pl-en-general.md` - this file: direction adaptation and
    terminology rules.
-3. `translations/pl-en/pl-en-<category>.md` - every glossary whose domain signals match
+3. `translations/pl-en/pl-en-style.md` - sentence-level adaptation: aspect and voice,
+   actor verbs, verb choice, fixed idioms, hedged verdicts.
+4. `translations/pl-en/pl-en-<category>.md` - every glossary whose domain signals match
    the document.
-4. `types/<type>.md` - when the document matches a known type, for its structural deltas.
-5. `conventions/` files - only when the source document's dialect requires them.
+5. `types/<type>.md` - when the document matches a known type, for its structural deltas.
+6. `conventions/` files - only when the source document's dialect requires them.
 
 The English baseline and this file together define the output style.
 

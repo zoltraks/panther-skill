@@ -85,11 +85,13 @@ Load the rule files in this order:
 1. `languages/<dst>.md` - the target baseline, mandatory for every translation.
 2. `translations/<pair>/<pair>-general.md` - the direction contract: style adaptation,
    locale conventions, untranslated set, terminology resolution, output conventions.
-3. `translations/<pair>/<pair>-<category>.md` - every matching industry glossary in the
+3. `translations/<pair>/<pair>-style.md` - the pair's sentence-level adaptation rules,
+   when the pair provides one.
+4. `translations/<pair>/<pair>-<category>.md` - every matching industry glossary in the
    same pair directory. Category slugs are stable across pair directories - `project`
    means project management in every pair.
-4. `types/<type>.md` - when the document matches a known type.
-5. `conventions/` files - only when the source dialect requires them.
+5. `types/<type>.md` - when the document matches a known type.
+6. `conventions/` files - only when the source dialect requires them.
 
 ## Translation Pass
 
@@ -151,7 +153,7 @@ Run the mechanical checks on the written file:
   column widths.
 - `scripts/validate-document.py` - on the written file, with `--payload-markdown` when the
   document embeds ` ```markdown ` blocks.
-- `scripts/lint-polish.py` - on `pl` output; every finding is fixed or reported.
+- `scripts/lint-polish.py` - on `pl` output - every finding is fixed or reported.
 
 Self-review against `process/document-checklist.md` plus the translation items:
 
@@ -168,6 +170,9 @@ Self-review against `process/document-checklist.md` plus the translation items:
   appears in the output.
 - No independent clauses are joined by a bare comma, and no file, section, or branch is
   personified as an actor.
+- Completed verdicts and report-register verbs follow the pair's `<pair>-style.md`
+  rules when the pair provides one - a finished evaluation renders per its aspect
+  rule, and conformance claims follow its verb-choice mapping.
 - Abbreviations are expanded at first use and a verbatim foreign-language quote carries
   a Polish gloss beside it.
 - Embedded example payloads follow the declared payload rule consistently.

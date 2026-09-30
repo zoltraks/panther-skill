@@ -3,8 +3,9 @@
 
 Reads forbidden-form tables ("Zamiast / Używaj" or "Instead of / Use") from the
 skill's rule files and reports each occurrence in the target document. Also runs
-heuristic checks: comma splices, "tylko, gdy", bare "per", typographic
-characters under the ASCII convention, and "w." as an abbreviation.
+heuristic checks: comma splices, "tylko, gdy", bare "per", a correlative
+"na tym" opened without a comma, typographic characters under the ASCII
+convention, and "w." as an abbreviation.
 
 Errors exit non-zero; warnings are advisory and never fail the run.
 
@@ -31,7 +32,16 @@ SOFT_STEMS = {
     "wykonawcz", "powierzchnia", "konsumowana", "zaadresować", "kosztuje",
     "przypięty", "celują", "rekursują", "serwujący", "strażnik", "zastany",
     "brama", "bramka", "bramy", "realna", "realne", "diff", "wyjątek",
-    "to jest", "skonsultowano", "rozdzielczy",
+    "to jest", "skonsultowano", "rozdzielczy", "podbicie", "trasa",
+    "narzędziowy", "narzędziowa", "narzędziowe", "mechanizm procesowy",
+}
+
+# Fixed Polish idioms that contain a calque-flagged stem - a match inside one of
+# these phrases is correct usage, not a calque.
+ALLOWED_PHRASES = {
+    "pod opieką", "pod kątem", "pod względem", "pod tym względem",
+    "pod warunkiem", "pod presją", "pod kontrolą", "pod adresem",
+    "pod hasłem", "pod nazwą", "pod postacią",
 }
 
 # Words that legitimately follow a comma (conjunctions, relatives,
@@ -131,8 +141,18 @@ def word_is_soft(forbidden):
     return base in SOFT_STEMS or stem(base) in SOFT_STEMS
 
 
+def allowed_spans(lowered):
+    """Spans of fixed idioms whose calque-flagged stems are correct usage."""
+    return [
+        hit.span()
+        for phrase in ALLOWED_PHRASES
+        for hit in re.finditer(re.escape(phrase), lowered)
+    ]
+
+
 def check_forbidden(lineno, text, pairs, findings):
     lowered = text.lower()
+    allowed = allowed_spans(lowered)
     for forbidden, replacement in pairs:
         if " " in forbidden:
             pattern = re.compile(r"\b" + re.escape(forbidden.lower()) + r"\w*")
@@ -143,6 +163,9 @@ def check_forbidden(lineno, text, pairs, findings):
             else:
                 pattern = re.compile(r"\b" + re.escape(root) + r"\w*")
         for match in pattern.finditer(lowered):
+            if any(start <= match.start() and match.end() <= end
+                   for start, end in allowed):
+                continue
             severity = "warn" if word_is_soft(forbidden) else "error"
             findings.append(
                 (severity, lineno,
@@ -153,6 +176,10 @@ def check_forbidden(lineno, text, pairs, findings):
 def check_mechanical(lineno, text, findings, splice=True):
     if "tylko, gdy" in text.lower():
         findings.append(("error", lineno, "'tylko, gdy' - write 'tylko wtedy, gdy'"))
+    if re.search(r"\bna tym\s+(że|gdzie|jak|czy|ile|w jakim)\b", text.lower()):
+        findings.append(
+            ("error", lineno,
+             "'na tym X' - the correlative clause needs a comma: 'na tym, X'"))
     if re.search(r"\bper\s+\w", text):
         findings.append(("error", lineno, "'per X' - write 'dla każdego X'"))
     if re.search(r"\bw\.\s*\d", text):
@@ -171,17 +198,28 @@ def check_mechanical(lineno, text, findings, splice=True):
 
     # Comma-splice heuristic: a comma followed by a word that opens neither a
     # subordinate clause nor a prepositional phrase. Tables and list items are
-    # skipped - their commas are usually enumerations.
+    # skipped - their commas are usually enumerations. Flagged commas inside a
+    # series closed by a conjunction ("X, Y i Z") are an enumeration, not a
+    # splice, and stay silent.
     if not splice:
         return
-    for match in re.finditer(r",\s+(\w+)", text.lower()):
+    lowered = text.lower()
+    enum_spans = [
+        m.span() for m in re.finditer(
+            r",\s*[^,.;:()]+?(?:\s*,\s*[^,.;:()]+?)*\s+"
+            r"(?:i|oraz|lub|albo)\s+[^,.;:()]+", lowered)
+    ]
+    for match in re.finditer(r",\s+(\w+)", lowered):
         word = match.group(1)
-        if word not in COMMA_OK and not word[0].isdigit():
-            findings.append(
-                ("warn", lineno,
-                 "possible spliced clause - ', %s' does not open a "
-                 "subordinate phrase" % word)
-            )
+        if word in COMMA_OK or word[0].isdigit():
+            continue
+        if any(start <= match.start() < end for start, end in enum_spans):
+            continue
+        findings.append(
+            ("warn", lineno,
+             "possible spliced clause - ', %s' does not open a "
+             "subordinate phrase" % word)
+        )
 
 
 def main():
@@ -197,7 +235,6 @@ def main():
         rules = [
             root / "languages" / "pl.md",
             root / "translations" / "en-pl" / "en-pl-software.md",
-            root / "translations" / "polish-language.md",
         ]
     pairs = load_forbidden(rules)
 

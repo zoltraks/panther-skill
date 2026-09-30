@@ -33,14 +33,17 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 |-------------------------------------------|--------------------------------|
 | agent AI                                  | AI agent                       |
 | agent kodujący                            | coding agent                   |
+| agent niestandardowy                      | custom agent                   |
 | agentowy                                  | agentic                        |
 | aplikacja                                 | application                    |
 | artefakt                                  | artifact                       |
 | artefakt wynikowy / artefakt wdrożeniowy  | build artifact                 |
 | asystent AI                               | AI assistant                   |
+| automatyczne wczytywanie                  | auto-loading                   |
 | backlog                                   | backlog                        |
 | baza                                      | baseline                       |
 | baza kodu                                 | codebase                       |
+| baza scalenia                             | merge base                     |
 | bezpieczeństwo                            | security                       |
 | biblioteka                                | library                        |
 | błąd                                      | bug                            |
@@ -49,6 +52,7 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | ciągłe wdrażanie                          | continuous deployment          |
 | cykl wytwarzania oprogramowania           | software development lifecycle |
 | człowiek w pętli                          | human in the loop              |
+| Definicja Ukończenia                      | Definition of Done             |
 | dług techniczny                           | technical debt                 |
 | dokumentacja                              | documentation                  |
 | dostępność                                | availability                   |
@@ -61,8 +65,10 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | historyjka użytkownika                    | user story                     |
 | idempotentny                              | idempotent                     |
 | infrastruktura                            | infrastructure                 |
+| inkrementacja                             | increment                      |
 | interesariusz                             | stakeholder                    |
 | kandydat do wydania                       | release candidate              |
+| kompromis                                 | trade-off                      |
 | konfiguracja                              | configuration                  |
 | kontekst                                  | context                        |
 | kontener                                  | container                      |
@@ -73,24 +79,32 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | licencja                                  | license                        |
 | łańcuch narzędzi                          | toolchain                      |
 | martwy kod                                | dead code                      |
+| macierz pokrycia                          | coverage matrix                |
+| magazyn obiektów                          | object store                   |
+| miejsce zdefiniowania                     | place of definition            |
 | menu wyboru                               | choice menu                    |
 | middleware / oprogramowanie pośredniczące | middleware                     |
 | migracja                                  | migration                      |
 | moduł                                     | module                         |
 | monitorowanie                             | monitoring                     |
 | nawigacja okruszkowa                      | breadcrumb                     |
+| niezmiennik                               | invariant                      |
 | obciążenie robocze                        | workload                       |
 | obserwowalność                            | observability                  |
 | obsługa błędów                            | error handling                 |
+| ocena / werdykt                           | verdict                        |
 | ograniczenie częstotliwości żądań         | rate limiting                  |
 | okno kontekstu                            | context window                 |
 | orkiestrator                              | orchestrator                   |
 | pamięć podręczna                          | cache                          |
 | panel                                     | dashboard                      |
 | plik blokady zależności                   | lockfile                       |
+| plik kierujący                            | routing file                   |
+| plik obszaru roboczego                    | workspace file                 |
 | podatność                                 | vulnerability                  |
 | podgląd                                   | preview                        |
 | podpowiedź                                | tooltip                        |
+| podstawa dowodowa                         | evidence base                  |
 | pokrycie testami                          | test coverage                  |
 | poprawka pilna                            | hotfix                         |
 | poświadczenia                             | credentials                    |
@@ -98,7 +112,9 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | problem / zgłoszenie                      | issue                          |
 | proces / proces CI / proces CI/CD         | pipeline / CI pipeline         |
 | proces budowania                          | build                          |
+| proces wytwarzania oprogramowania         | software process               |
 | prompt                                    | prompt                         |
+| przegląd                                  | review                         |
 | przegląd kodu                             | code review                    |
 | przepływ danych                           | data flow                      |
 | przepływ pracy / proces                   | workflow                       |
@@ -106,16 +122,20 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | przypadek użycia                          | use case                       |
 | pull request                              | pull request                   |
 | punkt decyzyjny                           | decision point                 |
+| punkt wejścia                             | entry point                    |
 | refaktoryzacja                            | refactoring                    |
+| referencja Git                            | Git reference                  |
 | rejestr decyzji architektonicznych        | architecture decision record   |
 | rejestrowanie zdarzeń / logowanie         | logging                        |
 | repozytorium                              | repository                     |
+| samoweryfikacja                           | self-verification              |
 | sesja                                     | session                        |
 | skalowalność                              | scalability                    |
 | specyfikacja                              | specification                  |
 | sprint                                    | sprint                         |
 | szablon                                   | template                       |
 | szablon promptu                           | prompt template                |
+| ślad audytowy                             | audit trail                    |
 | środowisko                                | environment                    |
 | środowisko produkcyjne                    | production                     |
 | środowisko przejściowe / staging          | staging                        |
@@ -125,13 +145,20 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | token                                     | token                          |
 | token dostępu                             | access token                   |
 | umiejętność agenta                        | agent skill                    |
+| ustalenie                                 | finding                        |
+| ustalenie audytowe                        | audit finding                  |
+| wada / usterka                            | defect                         |
 | utrzymywalność                            | maintainability                |
+| uzgodnienie                               | reconciliation                 |
+| uzgodnienie robocze                       | working agreement              |
 | wartość domyślna                          | default value                  |
 | wątek                                     | thread                         |
 | wdrażać / wdrożenie                       | deploy / deployment            |
 | wersjonowanie                             | versioning                     |
+| weryfikacja dynamiczna                    | dynamic verification           |
 | wkład / współpraca                        | contribution                   |
 | właściciel                                | owner                          |
+| wspólny przodek                           | merge base                     |
 | współbieżność                             | concurrency                    |
 | wycofanie / powrót do poprzedniej wersji  | rollback                       |
 | wycofany / przestarzały                   | deprecated                     |
@@ -142,6 +169,7 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | wyzwalacz                                 | trigger                        |
 | wzorzec projektowy                        | design pattern                 |
 | zabezpieczenie / guardrail                | guardrail                      |
+| zalecenie                                 | recommendation                 |
 | zależność                                 | dependency                     |
 | zamrożenie wersji                         | version pinning                |
 | zmiana niezgodna wstecz                   | breaking change                |
@@ -165,27 +193,41 @@ everywhere:
 - `prompt` renders `prompt` - a source mixing `prompt` and `polecenie` for AI
   instructions collapses to `prompt`.
   `polecenie` outside AI-instruction context renders `instruction` or `command`.
+- `wykazuje zgodność` renders `demonstrates conformance` or `is compliant with` -
+  never `registers compliance`.
+- `rejestruje` renders `records` or `registers` only for actual register and log
+  writes - `odnotowuje` renders `notes`.
+- `usterka` renders `defect` for a fault in the artifact - `ustalenie` renders
+  `finding` for a review's output.
+- `wada` is the ISTQB formal register for `defect` - `usterka` is colloquial.
+- `uzgodnienie` renders `agreement` for working agreements and `reconciliation`
+  for set reconciliation - `ustalenie` stays reserved for `finding`.
 
 ## Calque Traps
 
-| Instead of          | Use                   |
-|---------------------|-----------------------|
-| interested persons  | stakeholders          |
-| register of risks   | risk register         |
-| user history        | user story            |
-| code overview       | code review           |
-| diary of changes    | changelog             |
-| running environment | runtime environment   |
-| final point         | endpoint              |
-| demand              | requirement           |
-| work flow           | workflow              |
-| turn back           | rollback              |
-| reparation          | fix / hotfix          |
-| cover by tests      | test coverage         |
-| personalization     | customization         |
-| actualization       | update                |
-| implement (wdrażać) | deploy                |
-| programmer's note   | quick note / dev note |
+| Instead of           | Use                      |
+|----------------------|--------------------------|
+| interested persons   | stakeholders             |
+| register of risks    | risk register            |
+| user history         | user story               |
+| code overview        | code review              |
+| diary of changes     | changelog                |
+| running environment  | runtime environment      |
+| final point          | endpoint                 |
+| demand               | requirement              |
+| work flow            | workflow                 |
+| turn back            | rollback                 |
+| reparation           | fix / hotfix             |
+| cover by tests       | test coverage            |
+| personalization      | customization            |
+| actualization        | update                   |
+| implement (wdrażać)  | deploy                   |
+| programmer's note    | quick note / dev note    |
+| registers compliance | demonstrates conformance |
+| steering file        | routing file             |
+| common merge base    | merge base               |
+| auditable trail      | audit trail              |
+| execution check      | dynamic verification     |
 
 ## Untranslated
 

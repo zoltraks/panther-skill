@@ -33,9 +33,11 @@ Load the same rule set a translate task for the pair would have used, per
 
 1. `languages/<dst>.md` - the target baseline.
 2. `translations/<pair>/<pair>-general.md` - the direction contract.
-3. `translations/<pair>/<pair>-<category>.md` - every glossary the document's domain
+3. `translations/<pair>/<pair>-style.md` - the pair's sentence-level adaptation rules,
+   when the pair provides one.
+4. `translations/<pair>/<pair>-<category>.md` - every glossary the document's domain
    signals.
-4. `types/<type>.md` - when the source matches a known type.
+5. `types/<type>.md` - when the source matches a known type.
 
 The audited pair is judged against the rules that were in force for the translation -
 when the translation predates this skill, the current rules still supply the audit's
@@ -75,8 +77,10 @@ Run the checks in order and record each result for the report:
    applied consistently across the document.
 6. **Language naturalness** - run `scripts/lint-polish.py` for `pl` targets and review
    flagged lines. Scan for calques the pair's Calque Traps table names, clauses spliced
-   by a bare comma, personified files or branches, mixed quote or dash conventions, and
-   the same English term rendered by several Polish forms.
+   by a bare comma, personified files or branches, completed verdicts rendered against
+   the pair style file's aspect rule, report-register verbs mismatched to its
+   verb-choice mapping, mixed quote or dash conventions, and the same English term
+   rendered by several Polish forms.
 
 ## Findings
 

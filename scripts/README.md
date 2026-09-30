@@ -163,8 +163,16 @@ the loaded rule files (the `Zamiast`/`Używaj` table in `languages/pl.md` and th
 Traps tables of the matching glossaries).
 
 It reports calques, clauses spliced by a bare comma, `per X` constructions, `tylko, gdy`,
-typographic characters under the ASCII convention, and `w.` abbreviations with line-level
-findings; errors exit `1`, warnings are advisory and never fail the run.
+a correlative `na tym` clause opened without a comma, typographic characters under the
+ASCII convention, and `w.` abbreviations with line-level
+findings - errors exit `1`, warnings are advisory and never fail the run.
+
+Fixed idioms such as `pod kątem`, `pod względem`, or `pod opieką` are allowlisted - a
+calque-flagged stem inside one of them produces no finding.
+
+Flagged commas inside a series closed by a conjunction (`X, Y i Z`) count as an
+enumeration and raise no spliced-clause warning - the heuristic stays silent on
+conjunction-closed coordination, which is legal Polish.
 
 It targets Polish deliverable documents - the skill's own rule files contain the
 forbidden forms by definition and will report them.
@@ -222,6 +230,10 @@ and prefer leaving a questionable line packed over splitting it wrong.
 `reflow-prose.py --unwrap` joins a line when the accumulated text does not end with
 sentence-final punctuation, and treats a label line ending in `:` as a boundary - review
 the joins on documents that mix several layouts.
+
+`lint-polish.py` suppresses splice warnings inside conjunction-closed enumerations by
+design - a genuinely spliced pair of clauses that happens to end with `i`, `oraz`,
+`lub`, or `albo` can pass silently.
 
 Console output never fails on a legacy encoding - every script reconfigures `sys.stdout`
 and `sys.stderr` with `errors="backslashreplace"` under its `__main__` guard, so characters
