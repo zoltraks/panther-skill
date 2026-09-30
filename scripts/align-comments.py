@@ -8,6 +8,10 @@ When most comments already sit at one column the outliers align to it, otherwise
 the column is the longest entry plus a two-space gap. `--compact` forces the
 minimum column.
 
+A fenced block is skipped entirely when `<!-- align-comments: off -->` is the
+line before its opening fence, optionally separated from the fence by one
+blank line - intended for deliberate examples of misalignment.
+
 Copy this file into the working repository's `work/` directory (or the
 repository root when no `work/` exists) as `align-comments.tmp.py`, run it
 on the document file, verify the block, then remove the copy.
@@ -32,6 +36,7 @@ FENCE = re.compile(r"^\s*(`{3,})\s*(\w*)")
 COMMENT = re.compile(r"^(.*\S)( +)(#(?: .*)?)$")
 
 SHELL_TAGS = {"bash", "sh", "zsh", "shell", "console", "shellsession"}
+DISABLE_COMMENT = "<!-- align-comments: off -->"
 
 
 def decode(raw):
@@ -59,6 +64,7 @@ def align(lines, payload_markdown, compact):
     out = list(lines)
     fences = []
     block = []
+    disabled = False
     misaligned = []
 
     def flush():
@@ -83,10 +89,17 @@ def align(lines, payload_markdown, compact):
             if fences:
                 if marker >= fences[-1][0]:
                     fences.pop()
+                    if not fences:
+                        disabled = False
             else:
+                before = i - 1
+                if before >= 0 and not lines[before].strip():
+                    before -= 1
+                disabled = before >= 0 and \
+                    lines[before].strip() == DISABLE_COMMENT
                 fences.append((marker, fence.group(2)))
             continue
-        if not processable(fences, payload_markdown):
+        if disabled or not processable(fences, payload_markdown):
             continue
         stripped = line.rstrip()
         match = COMMENT.match(stripped)

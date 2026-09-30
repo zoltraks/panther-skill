@@ -59,7 +59,9 @@ Correct - one shared column, longest entry keeps a two-space gap:
     └── long-document-name.md     # Specification
 ```
 
-Incorrect - comments drift to different columns:
+Incorrect - comments drift to different columns (exempt via the opt-out marker):
+
+<!-- align-comments: off -->
 
 ```
 ├── src/                   # Application sources
@@ -80,6 +82,12 @@ A single-space `#` is assumed to be inline content such as a quoted string and s
 untouched.
 
 A `#` inside the comment text itself is part of the comment and never affects alignment.
+
+A block that must stay misaligned on purpose - such as the Incorrect example above - is exempted
+by placing `<!-- align-comments: off -->` before its opening fence, optionally with one blank
+line between the marker and the fence.
+
+The aligner skips a marked block entirely, in fix mode and in `--check` mode.
 
 ## Reformatting
 

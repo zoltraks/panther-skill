@@ -138,6 +138,10 @@ comments already share one, otherwise the longest entry plus two spaces.
 
 `--compact` moves the column to the minimum.
 
+A block whose opening fence is preceded by `<!-- align-comments: off -->` - optionally with one
+blank line between the marker and the fence - is skipped entirely, so the marker exempts
+deliberate examples of misalignment from both fixing and `--check`.
+
 The convention lives in `conventions/plain-text-comments.md`.
 
 `diff-content.py` compares the normalized token stream of a document against `git show HEAD`
@@ -164,7 +168,7 @@ Traps tables of the matching glossaries).
 
 It reports calques, clauses spliced by a bare comma, `per X` constructions, `tylko, gdy`,
 typographic characters under the ASCII convention, and `w.` abbreviations with line-level
-findings; errors exit `1`, warnings are advisory and never fail the run.
+findings - errors exit `1`, warnings are advisory and never fail the run.
 
 It targets Polish deliverable documents - the skill's own rule files contain the
 forbidden forms by definition and will report them.
