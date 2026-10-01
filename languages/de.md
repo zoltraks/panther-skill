@@ -792,6 +792,12 @@ Behandle eine Anfrage, die einer Phrase aus der Tabelle entspricht, wie ihre eng
 | ausführliche beschreibung             | detailed description                     |
 | beschreibe detailliert                | describe in detail                       |
 | vollständige beschreibung             | full description                         |
+| dokument-zusammenfassung erstellen    | summarize this document to a file        |
+| kurzfassung des dokuments             | write an abstract of this document       |
+| schreibe eine kurzfassung             | write a brief of this document           |
+| kürze dieses dokument                 | abridge this document                    |
+| schreibe eine ergänzung               | write a supplement                       |
+| ergänzung zum bericht                 | extend this report                       |
 | arbeite an panther                    | work on panther                          |
 | arbeite an dieser fähigkeit           | work on this skill                       |
 | repariere diese fähigkeit             | fix this skill                           |

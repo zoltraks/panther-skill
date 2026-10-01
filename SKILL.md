@@ -22,7 +22,7 @@ compatibility: >-
   Claude Desktop, Windsurf, Devin, and similar). Requires the ability to read
   and write text files. No network access required.
 metadata:
-  version: "1.0.4"
+  version: "1.0.5"
   author: Filip Golewski
 allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob Grep
 ---
@@ -40,20 +40,20 @@ allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob G
 | Three Modes             | 73   | Enable, document, and maintenance selection    |
 | Skill Update Check      | 85   | Once-per-session git freshness gate before use |
 | Trigger Keywords        | 108  | Activation phrases                             |
-| How To Use              | 162  | Progressive disclosure and mandatory reading   |
-| Parameter Configuration | 232  | Defaults and user-controlled document shape    |
-| Principles              | 254  | Authoring invariants                           |
-| Process                 | 260  | Workflow, checklist, and standalone procedures |
-| Document Types          | 288  | Per-type rule files                            |
-| Languages               | 343  | Per-language style baselines                   |
-| Translations            | 358  | Language pair rules and industry glossaries    |
-| Scopes                  | 378  | Per-project-layout organization rules          |
-| Conventions             | 406  | Encoding, dialect, and format contract rules   |
-| Templates               | 421  | Per-type, per-language skeletons               |
-| Scripts                 | 433  | Detection, formatting, and validation scripts  |
-| Evaluation Prompts      | 463  | Behavioral regression prompts                  |
-| Repository Files        | 473  | Housekeeping files governing this repository   |
-| File Handling Contract  | 486  | Byte-level guarantees                          |
+| How To Use              | 161  | Progressive disclosure and mandatory reading   |
+| Parameter Configuration | 238  | Defaults and user-controlled document shape    |
+| Principles              | 257  | Authoring invariants                           |
+| Process                 | 263  | Workflow, checklist, and standalone procedures |
+| Document Types          | 296  | Per-type rule files                            |
+| Languages               | 355  | Per-language style baselines                   |
+| Translations            | 368  | Language pair rules and industry glossaries    |
+| Scopes                  | 388  | Per-project-layout organization rules          |
+| Conventions             | 413  | Encoding, dialect, and format contract rules   |
+| Templates               | 427  | Per-type, per-language skeletons               |
+| Scripts                 | 439  | Detection, formatting, and validation scripts  |
+| Evaluation Prompts      | 469  | Behavioral regression prompts                  |
+| Repository Files        | 479  | Housekeeping files governing this repository   |
+| File Handling Contract  | 491  | Byte-level guarantees                          |
 
 You are a Document Authoring Agent.
 
@@ -133,11 +133,10 @@ The skill activates on any of these phrases, grouped by intent:
   this Docusaurus site, set the sidebar position, add a page to this VitePress site, add a
   page to this GitBook, update the summary file.
 - **Dialects**: edit this AsciiDoc file, preserve the frontmatter.
-- **PMBOK artifacts**: write a project charter, project charter, create a risk register,
-  update the issue log, stakeholder register, assumption log, change log, lessons learned,
-  write a status report, weekly status, meeting minutes, write the minutes, management
-  plan, risk management plan, work breakdown structure, create the WBS, project
-  management plan.
+- **PMBOK artifacts**: write a project charter, create a risk register, update the issue
+  log, stakeholder register, assumption log, change log, lessons learned, write a status
+  report, weekly status, meeting minutes, write the minutes, management plan, risk
+  management plan, work breakdown structure, create the WBS, project management plan.
 - **Layout discovery**: discover layout, detect document layout, what layout is this,
   analyze document structure, analyze this repository, analyse this codebase, audit the
   document layout, document census.
@@ -151,13 +150,14 @@ The skill activates on any of these phrases, grouped by intent:
 - **Describe and summarize**: describe, describe shortly, make a description, summarize,
   write a summary, give an overview, short description, long description, detailed
   description, describe in detail, full description.
+- **Derive documents**: summarize this document to a file, save a summary of this
+  document, write a document summary, write a brief of this document, write an abstract
+  of this document, abridge this document, write a supplement, extend this report, write
+  a continuation of this document.
 
-Requests may arrive in any supported language, not only English.
-
-Each `languages/<code>.md` file declares that language's activation phrases together with their
-English equivalents.
-
-Treat a request matching a declared phrase as its English equivalent.
+Requests may arrive in any supported language - each `languages/<code>.md` file declares that
+language's activation phrases with English equivalents, and a request matching a declared phrase
+is treated as its English equivalent.
 
 ## How To Use This Skill
 
@@ -177,6 +177,8 @@ Use progressive disclosure:
 - Follow `process/document-audit.md` when the request asks to audit a document.
 - Follow `process/describe-response.md` when the request asks to describe or summarize a
   subject inline.
+- Follow `process/derived-documents.md` when the request asks to produce a summary,
+  brief, or supplement document derived from an existing document.
 - Follow `process/translate-document.md` when the request asks to translate a document
   into another language.
 - Follow `process/translation-audit.md` when the request asks to audit, verify, or compare
@@ -188,21 +190,24 @@ This skill is self-contained. The section listings below catalog the rule materi
 on what exists at activation, but load a rule file only when the task needs it.
 
 When asked how this skill works, explain that Panther produces plain-text-readable Markdown
-documents - technical docs, specs, rules documents, articles, notes, READMEs, changelogs,
-decision records, RFCs, and PMBOK artifacts - in English, Polish, or German, with UTF-8
-output, for single files and organized collections such as agent skill repositories and
-Sphinx, MkDocs, Docusaurus, VitePress, or GitBook sites.
+documents - technical docs, specs, rules, articles, notes, READMEs, changelogs, decision
+records, RFCs, and PMBOK artifacts - in English, Polish, or German, with UTF-8 output and
+preserved encodings, for single files and organized collections such as agent skill
+repositories and Sphinx, MkDocs, Docusaurus, VitePress, or GitBook documentation sites.
 
-On request it also discovers a location's document layout - analyzing structure and document
-types, naming the best-matching scope, listing exceptions - and audits a document against
-its governing rules with an optional fix plan.
+On request it discovers a location's document layout - signals, best-matching scope,
+exceptions - and audits a document against its governing rules, reporting mechanical,
+structural, and content findings with an optional fix plan.
 
 On describe or summarize requests it produces consolidated inline descriptions - impersonal,
 compact, capped for "shortly" and floored at one hundred sentences for long requests.
 
-On translate requests it renders a document into the target language in a single pass,
-applying the pair's style rules and glossaries while preserving structure, code, and
-identifiers - an adapted translation may compress and reorder, with deltas reported.
+On derivation requests it produces documents derived from an existing one - summaries and
+briefs at declared compression tiers, supplements continuing the source's numbering.
+
+On translate requests it renders a document into the target language in a single pass with
+the pair's style adaptation and matching glossaries, preserving structure, code, and
+identifiers - an adapted translation may compress and reorder, with every delta reported.
 
 On translation-audit requests it maps a rendered document against its source - verifying the
 structure map, untranslated elements, and terminology concordance, then reporting a fidelity
@@ -216,11 +221,9 @@ AsciiDoc and reStructuredText files are edited minimally and never restyled.
 On "work on panther-skill" requests it maintains its own rule corpus - it reads the governing
 set and applies `docs/MAINTENANCE.md` instead of the document workflow.
 
-On bare activation requests - "use skill", "run panther", or a language equivalent with no
-task attached - it enables for editorial support: the update check runs and a compact
-readiness summary answers the request.
-
-The next task request enters document or maintenance mode normally.
+On bare activation - "use skill", "run panther", or an equivalent - it enables for editorial
+support: the update check runs, the router is the loaded state, and a compact capability list
+answers the request. The next task request enters document or maintenance mode normally.
 
 ## Mandatory Reading
 
@@ -233,9 +236,8 @@ Always load these two files before starting document work:
 ## Parameter Configuration
 
 When creating a new standalone document, the agent runs the Parameter Resolution step defined in
-`process/document-workflow.md`.
-
-The agent asks the user whether to accept the default parameters or configure the core parameters.
+`process/document-workflow.md` - it asks whether to accept the defaults or configure the core
+parameters.
 
 Defaults are:
 
@@ -272,6 +274,8 @@ minimal-diff rule provide the answers.
 - **`process/describe-response.md`** - The standalone describe procedure: consolidation,
   shortly caps and long-description floors, impersonal response style, and inline
   delivery.
+- **`process/derived-documents.md`** - The standalone derive procedure: derivation
+  contract, compression tiers, supplement continuation, naming, and freshness rules.
 - **`process/translate-document.md`** - The standalone translate procedure: pair
   resolution, industry glossaries, single-pass rendering, optional adapted fidelity, and
   output conventions.
@@ -340,13 +344,15 @@ Load the file matching the document type, it adds deltas on top of the language 
   thresholds, cadence, roles.
 - **`types/work-breakdown-structure.md`** - WBS and dictionaries: decimal-coded outline, work
   packages, RACI matrix.
+- **`types/summary-document.md`** - Summaries, briefs, and abstracts derived from an
+  existing document: declared source, compression tiers, carried verdict.
+- **`types/supplement-document.md`** - Supplements extending an existing document:
+  continued ID sequences, extended matrices, updated conclusions.
 
 ## `languages/` - Language Baselines
 
-Load exactly one file, matching the document language.
-
-These files are self-contained style baselines covering structure, headings, lists, tables,
-characters, vocabulary, and file naming:
+Load exactly one file, matching the document language - self-contained style baselines covering
+structure, headings, lists, tables, characters, vocabulary, and file naming:
 
 - **`languages/en.md`** - English documents: Title Case headings, vocabulary preferences.
 - **`languages/pl.md`** - Polish documents: sentence case headings, diacritics, calque
@@ -372,17 +378,16 @@ exists, then every matching `<pair>-<category>.md`:
 - Category slugs shared by every pair directory: `general`, `style`, `software`,
   `project`, `finance`, `legal`, `medical`, `electrical`, `construction`.
 
-A `<pair>-style.md` file carries sentence-level adaptation rules - aspect and voice,
-actor verbs, verb choice, fixed idioms, hedged verdicts - and loads between the
-direction contract and the industry glossaries.
+A `<pair>-style.md` file carries sentence-level adaptation rules - aspect, voice, actor verbs,
+verb choice, fixed idioms, hedged verdicts - and loads between the direction contract and the
+glossaries.
 
 ## `scopes/` - Project Layouts
 
 Load the file matching the detected or named document scope, it governs placement, naming, and
 registration inside an organized project:
 
-- **`scopes/unstructured-layout.md`** - The default scope: no defined organization, documents
-  land where the request puts them.
+- **`scopes/unstructured-layout.md`** - The default scope - documents land where requested.
 - **`scopes/agent-skill.md`** - Agent Skill repositories: the `SKILL.md` router contract,
   directory roles, and the registration procedure for adding or removing rule files.
 - **`scopes/sphinx-docs.md`** - Sphinx documentation projects authoring Markdown:
@@ -393,14 +398,12 @@ registration inside an organized project:
 - **`scopes/docs-collection.md`** - Documentation-only repositories: `docs/` as the payload,
   rule files versus content documents, `standard/` and `template/` directories, frozen
   `archive/` snapshots.
-- **`scopes/multi-project.md`** - Repositories holding several projects: per-directory scope
-  resolution, nearest governing `docs/` wins, sparse root.
+- **`scopes/multi-project.md`** - Several projects per repo - nearest governing `docs/` wins.
 - **`scopes/mkdocs-site.md`** - MkDocs documentation sites: `mkdocs.yml` nav registration,
   `index.md` homepage in `docs/`, kebab-case pages.
 - **`scopes/docusaurus-site.md`** - Docusaurus sites: autogenerated sidebars,
   `sidebar_position` frontmatter, underscore partials, MDX tolerance.
-- **`scopes/vitepress-site.md`** - VitePress sites: `.vitepress/` configuration, file-based
-  routing, `index.md` homepages, frontmatter layouts.
+- **`scopes/vitepress-site.md`** - VitePress sites: `.vitepress/` config, file-based routing.
 - **`scopes/gitbook-site.md`** - GitBook projects: `SUMMARY.md` outline as the table of
   contents, entry registration in reading order.
 
@@ -410,8 +413,7 @@ registration inside an organized project:
   (CP1250) preservation, conversion rules, line endings, composed diacritics.
 - **`conventions/markdown-dialects.md`** - Dialect catalog (ATX, setext, closed ATX, numbered
   chapters, export artifacts) with detection signals and preserve-on-edit rules.
-- **`conventions/rst-documents.md`** - reStructuredText dialect and the minimal-edit contract
-  for structural files such as Sphinx `index.rst` toctrees.
+- **`conventions/rst-documents.md`** - reStructuredText dialect and the minimal-edit contract.
 - **`conventions/asciidoc-documents.md`** - AsciiDoc dialect and the minimal-edit contract for
   `.adoc` files: title markers, admonitions, includes, opaque tables.
 - **`conventions/plain-text-comments.md`** - `#` comment alignment inside untagged fenced blocks
@@ -478,8 +480,7 @@ These files govern the skill repository itself rather than document production:
 - **`AGENTS.md`** - Agent-facing entry point for repository authoring and maintenance.
 - **`README.md`** - Human-facing overview, usage examples, and verification commands.
 - **`docs/STYLE.md`** - Style rules for the skill's own files.
-- **`docs/MAINTENANCE.md`** - Extension and restructuring rules: directory roles, file naming,
-  registration, and validation. Load when adding languages, types, templates, or tools.
+- **`docs/MAINTENANCE.md`** - Extension rules: directory roles, naming, registration, validation.
 - **`docs/VERSIONING.md`** - Version numbering and release conventions for the skill.
 - **`docs/CONTRIBUTING.md`** - Issue reporting, development setup, and pull-request rules.
 - **`docs/SECURITY.md`** - Vulnerability disclosure channel and update-path trust boundary.

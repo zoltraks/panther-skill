@@ -962,6 +962,12 @@ Traktuj żądanie pasujące do frazy z tabeli jako jej angielski odpowiednik.
 | szczegółowy opis                   | detailed description                     |
 | opisz szczegółowo                  | describe in detail                       |
 | pełny opis                         | full description                         |
+| podsumuj dokument do pliku         | summarize this document to a file        |
+| streszczenie dokumentu             | write an abstract of this document       |
+| napisz skrót dokumentu             | write a brief of this document           |
+| skróć ten dokument                 | abridge this document                    |
+| dopisz suplement                   | write a supplement                       |
+| suplement do raportu               | extend this report                       |
 | pracuj nad panther                 | work on panther                          |
 | pracuj nad tą umiejętnością        | work on this skill                       |
 | napraw tę umiejętność              | fix this skill                           |

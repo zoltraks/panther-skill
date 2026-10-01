@@ -36,7 +36,7 @@ question emits as the `mode-selection` `choice` parameter per `process/json-exch
 Open with one sentence confirming the skill is enabled for editorial support.
 
 Follow with a compact capability list - one short item per family: create, edit,
-reformat, translate, audit, describe, layout discovery, and skill maintenance.
+reformat, translate, audit, describe, derive, layout discovery, and skill maintenance.
 
 Keep the response compact - an opening sentence, one list, and a closing line inviting
 the task request.

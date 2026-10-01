@@ -22,7 +22,7 @@ language code - `guide-pl.md` pairs with `guide.md` - or the file the request na
 source.
 
 Ask when no source can be resolved - under JSON exchange this emits as the `source-resolution`
-`text` parameter with `open: true`.
+`text` parameter.
 
 Detect the direction from the pair - an English source and a Polish rendering is an
 `en-pl` audit - and report it.
