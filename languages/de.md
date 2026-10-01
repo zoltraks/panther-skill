@@ -34,13 +34,13 @@ Die unten beschriebenen Regeln gelten auch für dieses Dokument selbst.
 | Sonderzeichen                    | 247   | Rahmenzeichen und Emoji                         |
 | Deutscher Wortschatz             | 255   | Bevorzugte Begriffe und Übersetzungskalküle     |
 | Abschnittsnamen nach Dokumenttyp | 285   | Deutsche Abschnittsnamen und Elemente der Typen |
-| Dialektmerkmale                  | 542   | Kapitelnummerierung und Pseudo-Überschriften    |
-| Tabellen                         | 559   | Ausrichtung nach dem Quelltext                  |
-| Dateinamen                       | 671   | Benennung neuer Dokumentationsdateien           |
-| Beispiel                         | 681   | Richtiges und falsches Beispiel                 |
-| Dateipflege                      | 715   | Kodierung und Zeilenenden                       |
-| Aktualisierungsfrage             | 725   | Deutsche Formulierung der Aktualisierungsfrage  |
-| Aktivierungsphrasen              | 731   | Deutsche Phrasen und englische Entsprechungen   |
+| Dialektmerkmale                  | 555   | Kapitelnummerierung und Pseudo-Überschriften    |
+| Tabellen                         | 572   | Ausrichtung nach dem Quelltext                  |
+| Dateinamen                       | 684   | Benennung neuer Dokumentationsdateien           |
+| Beispiel                         | 694   | Richtiges und falsches Beispiel                 |
+| Dateipflege                      | 728   | Kodierung und Zeilenenden                       |
+| Aktualisierungsfrage             | 738   | Deutsche Formulierung der Aktualisierungsfrage  |
+| Aktivierungsphrasen              | 744   | Deutsche Phrasen und englische Entsprechungen   |
 
 ## Dokumentstruktur
 
@@ -504,6 +504,17 @@ Wähle den deutschen Abschnittsnamen passend zum Dokumenttyp aus der folgenden T
 | status-report            | Top Risks and Issues               | Wichtigste Risiken und Probleme         |
 | status-report            | Planned Next Period                | Plan für den nächsten Zeitraum          |
 | status-report            | Decisions Needed                   | Benötigte Entscheidungen                |
+| summary-document         | Purpose                            | Zweck                                   |
+| summary-document         | Abstract                           | Kurzfassung                             |
+| summary-document         | Summary                            | Zusammenfassung                         |
+| summary-document         | Detailed Abstract                  | Ausführliche Zusammenfassung            |
+| summary-document         | Omitted Material                   | Ausgelassenes Material                  |
+| supplement-document      | Document Information               | Dokumentinformationen                   |
+| supplement-document      | Purpose                            | Zweck                                   |
+| supplement-document      | Continuation Scope                 | Fortsetzungsumfang                      |
+| supplement-document      | Extended Content                   | Erweiterter Inhalt                      |
+| supplement-document      | Continued Entries                  | Fortgesetzte Einträge                   |
+| supplement-document      | Updated Conclusions                | Aktualisierte Schlussfolgerungen        |
 | technical-document       | Purpose                            | Zweck                                   |
 | technical-document       | Overview                           | Überblick                               |
 | technical-document       | Prerequisites                      | Voraussetzungen                         |
@@ -537,6 +548,8 @@ Einige Dokumenttypen legen auch deutsche Titel, Überschriftenmuster und Feldsch
 | project-document         | Mechanismenzeile des Anwendungsfalls | `**Verwendete Mechanismen:**`               |
 | project-document         | Schlüssel der Metadatentabelle       | `Projektname`, `Version`                    |
 | register-log             | H1-Titel des Risikoregisters         | `# Risikoregister`                          |
+| summary-document         | H1-Titelmuster                       | `# <Quelltitel> - Zusammenfassung`          |
+| supplement-document      | H1-Titelmuster                       | `# <Quelltitel> - Ergänzung`                |
 | work-breakdown-structure | Typname und Abkürzung                | `Projektstrukturplan` (PSP)                 |
 
 ## Dialektmerkmale
@@ -736,66 +749,72 @@ Die folgenden Phrasen aktivieren die Fähigkeit genauso wie ihre englischen Ents
 
 Behandle eine Anfrage, die einer Phrase aus der Tabelle entspricht, wie ihre englische Entsprechung.
 
-| Phrase                                | Englische Entsprechung       |
-|---------------------------------------|------------------------------|
-| erstelle ein dokument                 | create a document            |
-| schreibe ein dokument                 | create a document            |
-| spezifikation                         | draft a specification        |
-| lösungsentwurf                        | project document             |
-| technische dokumentation              | technical documentation      |
-| projektdokumentation                  | project documentation        |
-| artikel                               | write an article             |
-| notiz                                 | quick note                   |
-| tabelle korrigieren                   | fix this table               |
-| tabelle formatieren                   | format this table            |
-| dokument aktualisieren                | update this document         |
-| dokument übersetzen                   | translate this document      |
-| übersetze ins deutsche                | translate to German          |
-| übersetze ins englische               | translate to English         |
-| übersetze ins polnische               | translate to Polish          |
-| dokumentenübersetzung                 | translate this document      |
-| neues dokument im projekt             | new document in this project |
-| funktionsdokument                     | add a feature document       |
-| implementierungsplan                  | write an implementation plan |
-| schreibe einen adr                    | write an ADR                 |
-| entwurfsvorschlag                     | design proposal              |
-| projektauftrag                        | project charter              |
-| risikoregister                        | risk register                |
-| stakeholder-register                  | stakeholder register         |
-| statusbericht                         | status report                |
-| besprechungsprotokoll                 | meeting minutes              |
-| managementplan                        | management plan              |
-| projektstrukturplan                   | work breakdown structure     |
-| layout erkennen                       | detect document layout       |
-| dokumentstruktur analysieren          | analyze document structure   |
-| dokument-audit                        | audit this document          |
-| formatierung prüfen                   | check document formatting    |
-| korrekturen für feststellungen planen | plan fixes for findings      |
-| übersetzungs-audit                    | audit this translation       |
-| prüfe die übersetzung                 | check the translation        |
-| überprüfe die übersetzung             | verify the translation       |
-| adaptiv übersetzen                    | adapted translation          |
-| agenten-anweisungsdokument            | agent instruction document   |
-| vorbereitungsdokument                 | preparation document         |
-| contributing-leitfaden                | contributing guide           |
-| mitarbeitsleitfaden                   | contributing guide           |
-| beschreibe                            | describe                     |
-| beschreibe kurz                       | describe shortly             |
-| erstelle eine beschreibung            | make a description           |
-| fasse zusammen                        | summarize                    |
-| schreibe eine zusammenfassung         | write a summary              |
-| gib einen überblick                   | give an overview             |
-| kurzbeschreibung                      | short description            |
-| ausführliche beschreibung             | detailed description         |
-| beschreibe detailliert                | describe in detail           |
-| vollständige beschreibung             | full description             |
-| arbeite an panther                    | work on panther              |
-| arbeite an dieser fähigkeit           | work on this skill           |
-| repariere diese fähigkeit             | fix this skill               |
-| passe diese fähigkeit an              | adjust the skill             |
-| aktualisiere die fähigkeitsdokumente  | update the skill documents   |
-| starte panther                        | run panther                  |
-| verwende panther                      | use panther                  |
-| verwende die fähigkeit                | use skill                    |
-| verwende diese fähigkeit              | use this skill               |
-| aktiviere die fähigkeit               | activate the skill           |
+| Phrase                                | Englische Entsprechung             |
+|---------------------------------------|------------------------------------|
+| erstelle ein dokument                 | create a document                  |
+| schreibe ein dokument                 | create a document                  |
+| spezifikation                         | draft a specification              |
+| lösungsentwurf                        | project document                   |
+| technische dokumentation              | technical documentation            |
+| projektdokumentation                  | project documentation              |
+| artikel                               | write an article                   |
+| notiz                                 | quick note                         |
+| tabelle korrigieren                   | fix this table                     |
+| tabelle formatieren                   | format this table                  |
+| dokument aktualisieren                | update this document               |
+| dokument übersetzen                   | translate this document            |
+| übersetze ins deutsche                | translate to German                |
+| übersetze ins englische               | translate to English               |
+| übersetze ins polnische               | translate to Polish                |
+| dokumentenübersetzung                 | translate this document            |
+| neues dokument im projekt             | new document in this project       |
+| funktionsdokument                     | add a feature document             |
+| implementierungsplan                  | write an implementation plan       |
+| schreibe einen adr                    | write an ADR                       |
+| entwurfsvorschlag                     | design proposal                    |
+| projektauftrag                        | project charter                    |
+| risikoregister                        | risk register                      |
+| stakeholder-register                  | stakeholder register               |
+| statusbericht                         | status report                      |
+| besprechungsprotokoll                 | meeting minutes                    |
+| managementplan                        | management plan                    |
+| projektstrukturplan                   | work breakdown structure           |
+| layout erkennen                       | detect document layout             |
+| dokumentstruktur analysieren          | analyze document structure         |
+| dokument-audit                        | audit this document                |
+| formatierung prüfen                   | check document formatting          |
+| korrekturen für feststellungen planen | plan fixes for findings            |
+| übersetzungs-audit                    | audit this translation             |
+| prüfe die übersetzung                 | check the translation              |
+| überprüfe die übersetzung             | verify the translation             |
+| adaptiv übersetzen                    | adapted translation                |
+| agenten-anweisungsdokument            | agent instruction document         |
+| vorbereitungsdokument                 | preparation document               |
+| contributing-leitfaden                | contributing guide                 |
+| mitarbeitsleitfaden                   | contributing guide                 |
+| beschreibe                            | describe                           |
+| beschreibe kurz                       | describe shortly                   |
+| erstelle eine beschreibung            | make a description                 |
+| fasse zusammen                        | summarize                          |
+| schreibe eine zusammenfassung         | write a summary                    |
+| gib einen überblick                   | give an overview                   |
+| kurzbeschreibung                      | short description                  |
+| ausführliche beschreibung             | detailed description               |
+| beschreibe detailliert                | describe in detail                 |
+| vollständige beschreibung             | full description                   |
+| dokument-zusammenfassung erstellen    | summarize this document to a file  |
+| kurzfassung des dokuments             | write an abstract of this document |
+| schreibe eine kurzfassung             | write a brief of this document     |
+| kürze dieses dokument                 | abridge this document              |
+| schreibe eine ergänzung               | write a supplement                 |
+| ergänzung zum bericht                 | extend this report                 |
+| arbeite an panther                    | work on panther                    |
+| arbeite an dieser fähigkeit           | work on this skill                 |
+| repariere diese fähigkeit             | fix this skill                     |
+| passe diese fähigkeit an              | adjust the skill                   |
+| aktualisiere die fähigkeitsdokumente  | update the skill documents         |
+| starte panther                        | run panther                        |
+| verwende panther                      | use panther                        |
+| verwende die fähigkeit                | use skill                          |
+| verwende diese fähigkeit              | use this skill                     |
+| aktiviere die fähigkeit               | activate the skill                 |

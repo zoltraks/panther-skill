@@ -21,15 +21,16 @@ enable mode: follow `process/skill-activation.md` instead of this workflow.
 
 Classify the request into one primary task:
 
-| Task      | Trigger example                                    | Rule source                    |
-|-----------|----------------------------------------------------|--------------------------------|
-| Create    | "write a spec", "create a README", "draft a note"  | language file + type file      |
-| Edit      | "add a section", "update the glossary"             | document's own conventions win |
-| Reformat  | "fix this table", "unwrap the document"            | language file + convention set |
-| Translate | "translate this doc to Polish"                     | translate procedure            |
-| Discover  | "discover layout", "detect document layout"        | scope discovery procedure      |
-| Audit     | "audit this document", "check document formatting" | document audit procedure       |
-| Describe  | "describe this", "summarize the session"           | describe-response procedure    |
+| Task      | Trigger example                                         | Rule source                    |
+|-----------|---------------------------------------------------------|--------------------------------|
+| Create    | "write a spec", "create a README", "draft a note"       | language file + type file      |
+| Edit      | "add a section", "update the glossary"                  | document's own conventions win |
+| Reformat  | "fix this table", "unwrap the document"                 | language file + convention set |
+| Translate | "translate this doc to Polish"                          | translate procedure            |
+| Discover  | "discover layout", "detect document layout"             | scope discovery procedure      |
+| Audit     | "audit this document", "check document formatting"      | document audit procedure       |
+| Describe  | "describe this", "summarize the session"                | describe-response procedure    |
+| Derive    | "summarize this report to a file", "write a supplement" | derived-documents procedure    |
 
 A request may combine tasks.
 
@@ -37,8 +38,8 @@ Apply the union of the required rule files.
 
 An approved fix plan from an audit becomes an Edit task.
 
-A describe task produces an inline response, not a document - a file is written only when
-the request explicitly asks for one.
+A describe task produces an inline response, not a document - a request that names a file
+output or asks for a summary, brief, or supplement document is a Derive task instead.
 
 Identify the target file or the intended output location before writing anything.
 

@@ -895,7 +895,7 @@
       "files": [],
       "expectations": [
         "The document carries description, target, task, date, and time context fields plus an intake array, with task set to create.",
-        "Each parameter object keeps the fixed key order id, question, answer, description, type, menu, open, default, with default last.",
+        "Each parameter object keeps the fixed key order id, question, answer, description, type, menu, default, with default last.",
         "Pending surfaces emit with catalog ids such as parameters-acceptance, document-type, document-language, filename, encoding, line-endings, and delivery, with correct choice/selection/text types.",
         "The bypass options, such as accepting every remaining default, do not appear as menu entries; defaults are carried by the default key."
       ]
@@ -921,6 +921,55 @@
         "The empty encoding answer applies the parameter's default rather than failing.",
         "The unknown bogus-param id is ignored.",
         "Surfaces not answered in the document still run through their normal question flow."
+      ]
+    },
+    {
+      "id": 76,
+      "prompt": "Summarize docs/review-report.md to a file - an abstract plus a full summary tier.",
+      "expected_output": "A sibling file review-report-Summary.md derived per process/derived-documents.md, with a Purpose section declaring the source and the tier contract.",
+      "files": ["docs/review-report.md"],
+      "expectations": [
+        "The task classifies as Derive, not Describe - a file is written, no inline-only answer.",
+        "The output filename follows the role marker convention: <stem>-Summary.md next to the source.",
+        "The Purpose section names the source by its current filename and declares the tier contract with caps.",
+        "The Abstract tier stays at ten sentences or fewer, the Summary tier at fifty or fewer.",
+        "The source's verdict or recommendation appears in every written tier; identifiers copy verbatim."
+      ]
+    },
+    {
+      "id": 77,
+      "prompt": "Napisz skrót dokumentu docs/raport-statusu.md.",
+      "expected_output": "A Polish abstract-only summary file raport-statusu-Skrot.md (with the Skrót marker), derived per process/derived-documents.md.",
+      "files": ["docs/raport-statusu.md"],
+      "expectations": [
+        "The Polish phrase maps to the file-targeted derive task, not the inline describe path.",
+        "The output file carries the localized brief marker Skrót and Polish section names such as Przeznaczenie and Streszczenie.",
+        "Only the abstract tier is written - ten sentences or fewer.",
+        "The Purpose section declares the direct parent document."
+      ]
+    },
+    {
+      "id": 78,
+      "prompt": "Extend docs/audit-report.md with the new findings FND-040 through FND-043 as a supplement.",
+      "expected_output": "A sibling file audit-report-Supplement.md continuing the parent's finding IDs, with extended matrices and updated conclusions.",
+      "files": ["docs/audit-report.md"],
+      "expectations": [
+        "New finding IDs continue the parent's sequence with no restart or collision.",
+        "Parent claims restated in the supplement are marked declared or re-verified.",
+        "Matrices are extended by a row or column rather than rewritten.",
+        "An Updated Conclusions section states which parent conclusions change and which stand.",
+        "The Purpose section names the parent by its current filename."
+      ]
+    },
+    {
+      "id": 79,
+      "prompt": "What operations can this skill perform?",
+      "expected_output": "A capability list naming every family, including document derivation - summaries, briefs, and supplements - alongside create, edit, reformat, translate, audit, describe, layout discovery, and maintenance.",
+      "files": [],
+      "expectations": [
+        "The answer lists document derivation - summaries, briefs or abstracts, and supplements - as an available operation.",
+        "The other families still appear: create, edit, reformat, translate, audit, describe, layout discovery, skill maintenance.",
+        "Inline describe responses and file-producing derivation are distinguished, not conflated."
       ]
     }
   ]

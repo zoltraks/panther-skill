@@ -14,17 +14,17 @@
 |---------------------|------|--------------------------------------------|
 | Overview            | 29   | What Panther is and what it produces       |
 | What The Skill Does | 54   | Authoring purpose and workflow             |
-| Installation        | 169  | How to add Panther to an agent environment |
-| Usage               | 239  | How agents activate and run the skill      |
-| Example Prompts     | 253  | Phrases the skill activates on             |
-| Workflow Diagrams   | 299  | ASCII and Mermaid diagrams of the pipeline |
-| Core Principles     | 425  | Convention preservation and minimal diffs  |
-| When To Use         | 436  | Supported requests and exclusions          |
-| What's Inside       | 475  | Rule files, templates, tools, and evals    |
-| Specification       | 621  | Agent Skills specification conformance     |
-| Verification        | 637  | Skill-maintenance checks                   |
-| License             | 656  | License for the skill itself               |
-| Credits             | 662  | Methodology and example sources            |
+| Installation        | 185  | How to add Panther to an agent environment |
+| Usage               | 255  | How agents activate and run the skill      |
+| Example Prompts     | 269  | Phrases the skill activates on             |
+| Workflow Diagrams   | 321  | ASCII and Mermaid diagrams of the pipeline |
+| Core Principles     | 447  | Convention preservation and minimal diffs  |
+| When To Use         | 458  | Supported requests and exclusions          |
+| What's Inside       | 499  | Rule files, templates, tools, and evals    |
+| Specification       | 650  | Agent Skills specification conformance     |
+| Verification        | 666  | Skill-maintenance checks                   |
+| License             | 685  | License for the skill itself               |
+| Credits             | 691  | Methodology and example sources            |
 
 ## Overview
 
@@ -130,6 +130,22 @@ A "shortly" request caps the answer at ten sentences, twenty for large subjects,
 while a "long" or "detailed" request sets a floor of one hundred sentences.
 
 The description is delivered inline, and a file is written only when asked.
+
+**Derives documents**
+
+Separately, when you ask to "summarize this document to a file", "write a brief of this
+document", or "write a supplement", the agent follows `process/derived-documents.md`: it
+reads the source, declares it in the derived document's Purpose section, and writes a
+sibling file carrying a localized role marker - `<stem>-Summary.md`, `<stem>-Brief.md`,
+`<stem>-Supplement.md`.
+
+Summaries follow declared compression tiers - an abstract of at most ten sentences, a
+summary of at most fifty, or a detailed abstract mirroring the source's sections - and
+carry the source's verdict into every tier.
+
+A supplement continues the parent's numbering schemes, extends its matrices instead of
+rewriting them, marks restated claims as declared or re-verified, and updates conclusions
+explicitly.
 
 **Translates documents**
 
@@ -287,6 +303,12 @@ encoding and line endings.
 **Inline description**
 > Describe shortly what this skill does.
 
+**Derived summary**
+> Summarize docs/review-report.md to a file - an abstract plus a full summary tier.
+
+**Document supplement**
+> Extend the review report with the new findings as a supplement.
+
 **Document translation**
 > Translate this English project specification into Polish.
 
@@ -435,42 +457,44 @@ flowchart TD
 
 ## When To Use This Skill
 
-| Situation                                        | Use this skill?                          |
-|--------------------------------------------------|------------------------------------------|
-| "Write a spec for this service"                  | **Yes**                                  |
-| "Create a README for this repo"                  | **Yes**                                  |
-| "Draft a Polish article about sound design"      | **Yes**                                  |
-| "Update the glossary in this spec"               | **Yes** - preserves document conventions |
-| "Update this agent instruction document"         | **Yes** - dual-audience conventions      |
-| "Write a CONTRIBUTING.md"                        | **Yes** - contributor-guide conventions  |
-| "Fix the tables in this document"                | **Yes** - script-formatted tables        |
-| "Translate this document to Polish"              | **Yes** - pair rules + domain glossaries |
-| "Edit this CP1250-encoded document"              | **Yes** - encoding preserved             |
-| "Take a quick note"                              | **Yes** - minimal-structure note         |
-| "Add a page to this Sphinx docs project"         | **Yes** - toctree registration           |
-| "Add a page to this MkDocs site"                 | **Yes** - `nav` registration             |
-| "Add a page to this Docusaurus site"             | **Yes** - sidebar and frontmatter        |
-| "Add a page to this VitePress site"              | **Yes** - file-based routing             |
-| "Add a page to this GitBook project"             | **Yes** - `SUMMARY` outline registration |
-| "Write an ADR for this technology choice"        | **Yes** - status lifecycle, numbering    |
-| "Draft an RFC for the new service"               | **Yes** - review states, open questions  |
-| "Edit this AsciiDoc file"                        | **Yes** - minimal-edit contract          |
-| "Add a rule file to this skill repository"       | **Yes** - `SKILL.md` registration        |
-| "Write an implementation plan for this release"  | **Yes** - versioned `docs/plan/` entry   |
-| "Add a standard to this documentation repo"      | **Yes** - `docs/standard/` conventions   |
-| "Write the project charter for this initiative"  | **Yes** - SMART objectives, approval     |
-| "Create a risk register for this project"        | **Yes** - append-only entry table        |
-| "Write our weekly status report"                 | **Yes** - RAG ratings, decisions needed  |
-| "Write up the steering committee minutes"        | **Yes** - decisions and action items     |
-| "Create the WBS for phase one"                   | **Yes** - decimal codes, dictionary      |
-| "Draft the risk management plan"                 | **Yes** - thresholds and cadence         |
-| "What document layout does this repo use?"       | **Yes** - scope discovery report         |
-| "Audit this document"                            | **Yes** - findings and optional fix plan |
-| "Check this document's formatting"               | **Yes** - audit procedure                |
-| "Describe this repository shortly"               | **Yes** - consolidated inline response   |
-| "Use skill" or "run panther" with no task        | **Yes** - enables for editorial support  |
-| "Write code for this feature"                    | No - this skill writes documents         |
-| "Review this document for technical correctness" | No - authoring skill, not an auditor     |
+| Situation                                        | Use this skill?                           |
+|--------------------------------------------------|-------------------------------------------|
+| "Write a spec for this service"                  | **Yes**                                   |
+| "Create a README for this repo"                  | **Yes**                                   |
+| "Draft a Polish article about sound design"      | **Yes**                                   |
+| "Update the glossary in this spec"               | **Yes** - preserves document conventions  |
+| "Update this agent instruction document"         | **Yes** - dual-audience conventions       |
+| "Write a CONTRIBUTING.md"                        | **Yes** - contributor-guide conventions   |
+| "Fix the tables in this document"                | **Yes** - script-formatted tables         |
+| "Translate this document to Polish"              | **Yes** - pair rules + domain glossaries  |
+| "Edit this CP1250-encoded document"              | **Yes** - encoding preserved              |
+| "Take a quick note"                              | **Yes** - minimal-structure note          |
+| "Add a page to this Sphinx docs project"         | **Yes** - toctree registration            |
+| "Add a page to this MkDocs site"                 | **Yes** - `nav` registration              |
+| "Add a page to this Docusaurus site"             | **Yes** - sidebar and frontmatter         |
+| "Add a page to this VitePress site"              | **Yes** - file-based routing              |
+| "Add a page to this GitBook project"             | **Yes** - `SUMMARY` outline registration  |
+| "Write an ADR for this technology choice"        | **Yes** - status lifecycle, numbering     |
+| "Draft an RFC for the new service"               | **Yes** - review states, open questions   |
+| "Edit this AsciiDoc file"                        | **Yes** - minimal-edit contract           |
+| "Add a rule file to this skill repository"       | **Yes** - `SKILL.md` registration         |
+| "Write an implementation plan for this release"  | **Yes** - versioned `docs/plan/` entry    |
+| "Add a standard to this documentation repo"      | **Yes** - `docs/standard/` conventions    |
+| "Write the project charter for this initiative"  | **Yes** - SMART objectives, approval      |
+| "Create a risk register for this project"        | **Yes** - append-only entry table         |
+| "Write our weekly status report"                 | **Yes** - RAG ratings, decisions needed   |
+| "Write up the steering committee minutes"        | **Yes** - decisions and action items      |
+| "Create the WBS for phase one"                   | **Yes** - decimal codes, dictionary       |
+| "Draft the risk management plan"                 | **Yes** - thresholds and cadence          |
+| "What document layout does this repo use?"       | **Yes** - scope discovery report          |
+| "Audit this document"                            | **Yes** - findings and optional fix plan  |
+| "Check this document's formatting"               | **Yes** - audit procedure                 |
+| "Describe this repository shortly"               | **Yes** - consolidated inline response    |
+| "Summarize this report to a file"                | **Yes** - declared tiers, source contract |
+| "Write a supplement for this report"             | **Yes** - continued IDs, extended matrix  |
+| "Use skill" or "run panther" with no task        | **Yes** - enables for editorial support   |
+| "Write code for this feature"                    | No - this skill writes documents          |
+| "Review this document for technical correctness" | No - authoring skill, not an auditor      |
 
 ## What's Inside
 
@@ -492,6 +516,7 @@ panther-skill/
 │   ├── document-checklist.md          # Mechanical pre-delivery checklist
 │   ├── document-audit.md              # Standalone audit procedure: findings and fix plan
 │   ├── describe-response.md           # Standalone describe procedure: caps and floors
+│   ├── derived-documents.md           # Standalone derive procedure: summaries, briefs, supplements
 │   ├── json-exchange.md               # JSON parameter documents for pending questions
 │   ├── scope-discovery.md             # Standalone layout-discovery procedure and report format
 │   ├── skill-maintenance.md           # Maintenance-mode procedure for work on the skill itself
@@ -522,7 +547,9 @@ panther-skill/
 │   ├── status-report.md               # Status reports: RAG ratings, decisions needed
 │   ├── meeting-minutes.md             # Minutes: attendees, decisions, action items
 │   ├── management-plan.md             # Management plans: thresholds, cadence, roles
-│   └── work-breakdown-structure.md    # WBS: decimal outline, dictionary, RACI
+│   ├── work-breakdown-structure.md    # WBS: decimal outline, dictionary, RACI
+│   ├── summary-document.md            # Summaries, briefs, abstracts: declared source, tiers
+│   └── supplement-document.md         # Supplements: continued IDs, extended matrices
 ├── languages/
 │   ├── de.md                          # German baseline: style, section names, activation phrases
 │   ├── en.md                          # English baseline: Title Case, vocabulary
@@ -583,9 +610,9 @@ panther-skill/
 │   ├── plain-text-comments.md         # Trailing comment alignment in plain-text blocks
 │   └── ascii-diagrams.md              # Box-drawing flow diagram rules
 ├── templates/
-│   ├── de/                            # Twenty-four German skeletons, <type>-template-de.md
-│   ├── en/                            # Twenty-four English skeletons, <type>-template-en.md
-│   └── pl/                            # Twenty-four Polish skeletons, <type>-template-pl.md
+│   ├── de/                            # Twenty-six German skeletons, <type>-template-de.md
+│   ├── en/                            # Twenty-six English skeletons, <type>-template-en.md
+│   └── pl/                            # Twenty-six Polish skeletons, <type>-template-pl.md
 ├── scripts/
 │   ├── detect-encoding.py             # BOM, encoding, and line-ending detection
 │   ├── detect-scope.py                # Document-scope signal census

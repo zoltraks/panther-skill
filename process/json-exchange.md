@@ -50,18 +50,17 @@ The document carries a `description`, context fields (`target`, `task`, `date`, 
   `13:45:21 GMT+2`.
 
 Each parameter object keeps a fixed key order: `id`, `question`, `answer`, `description`, `type`,
-`menu`, `open`, `default` - the `default` key is always the last key of the object.
+`menu`, `default` - the `default` key is always the last key of the object.
 
 - `id` - a stable kebab-case identifier for the parameter.
 - `question` - the literal question wording presented to the answering side.
 - `answer` - emitted as an empty string, or an empty array for `selection`, to be filled by the
   answering side.
 - `description` - what the parameter controls and the detection evidence behind its default.
-- `type` - `choice` for a single-option answer, `selection` when multiple options may be chosen,
-  or `text` for free input.
+- `type` - `choice` for a single-option answer taken from `menu`, `selection` when multiple
+  options may be chosen, or `text` for free input.
 - `menu` - required for `choice` and `selection` types and omitted for `text`, letter-keyed (`A`,
   `B`, `C`, ...), and the recommended option label carries "(recommended)".
-- `open` - whether the answer is open to free text beyond the listed options.
 - `default` - the option letter or suggested text applied when the answer stays empty, and the
   array of pre-checked letters for `selection`.
 
@@ -87,7 +86,6 @@ them.
                 "A": "Accept defaults (recommended)",
                 "B": "Configure the core parameters"
             },
-            "open": false,
             "default": "A"
         },
         {
@@ -101,7 +99,6 @@ them.
                 "B": "readme-application",
                 "C": "readme-cli"
             },
-            "open": false,
             "default": "A"
         },
         {
@@ -110,7 +107,6 @@ them.
             "answer": "",
             "description": "Free input - the suggested default follows the language file naming rules.",
             "type": "text",
-            "open": true,
             "default": "project_specification.md"
         }
     ]
@@ -121,29 +117,31 @@ them.
 
 Every pending question surface emits with a stable kebab-case `id`:
 
-| Parameter                | Type        | Surface                                                                   |
-|--------------------------|-------------|---------------------------------------------------------------------------|
+| Parameter                | Type        | Surface                                                                     |
+|--------------------------|-------------|-----------------------------------------------------------------------------|
 | `parameters-acceptance`  | `choice`    | Accept defaults or configure in Parameter Resolution, document or translate |
-| `document-type`          | `choice`    | Ambiguous type inference - the menu lists the candidate types             |
-| `document-language`      | `choice`    | Language resolution when unclear - `en`, `pl`, or `de`                    |
-| `document-scope`         | `choice`    | Emitted only when scope detection leaves a genuine choice                 |
-| `filename`               | `text`      | Naming or output-path question - `open: true`                             |
-| `encoding`               | `choice`    | Encoding confirmation or ambiguity per `conventions/file-encoding.md`     |
-| `line-endings`           | `choice`    | LF, CRLF, or preserve the detected style                                  |
-| `delivery`               | `choice`    | Inline vs file for reports, descriptions, and translation output          |
-| `readme-variant`         | `choice`    | README variant selection per `process/document-workflow.md`               |
-| `source-language`        | `choice`    | Translate - ambiguous source language                                     |
-| `target-language`        | `choice`    | Translate - absent target language                                        |
-| `translation-industry`   | `selection` | Glossary selection when ambiguous - several glossaries may apply          |
-| `translation-fidelity`   | `choice`    | Faithful or adapted - emitted only when the request suggests adaptation   |
-| `unsupported-pair`       | `choice`    | Proceed with language baselines only or stop                              |
-| `overwrite-confirmation` | `choice`    | Whole-file overwrite and in-place translation overwrite                   |
-| `fix-plan-approval`      | `choice`    | Approve the audit fix plan - approval converts it to an Edit task         |
-| `mode-selection`         | `choice`    | Document vs maintenance ambiguity and activation vs task ambiguity        |
-| `source-resolution`      | `text`      | Translation audit with an unresolvable source - `open: true`              |
+| `document-type`          | `choice`    | Ambiguous type inference - the menu lists the candidate types               |
+| `document-language`      | `choice`    | Language resolution when unclear - `en`, `pl`, or `de`                      |
+| `document-scope`         | `choice`    | Emitted only when scope detection leaves a genuine choice                   |
+| `filename`               | `text`      | Naming or output-path question - free input                                 |
+| `encoding`               | `choice`    | Encoding confirmation or ambiguity per `conventions/file-encoding.md`       |
+| `line-endings`           | `choice`    | LF, CRLF, or preserve the detected style                                    |
+| `delivery`               | `choice`    | Inline vs file for reports, descriptions, and translation output            |
+| `readme-variant`         | `choice`    | README variant selection per `process/document-workflow.md`                 |
+| `source-language`        | `choice`    | Translate - ambiguous source language                                       |
+| `target-language`        | `choice`    | Translate - absent target language                                          |
+| `translation-industry`   | `selection` | Glossary selection when ambiguous - several glossaries may apply            |
+| `translation-fidelity`   | `choice`    | Faithful or adapted - emitted only when the request suggests adaptation     |
+| `unsupported-pair`       | `choice`    | Proceed with language baselines only or stop                                |
+| `derived-role`           | `choice`    | Derive - summary or supplement when the request leaves the role open        |
+| `summary-tiers`          | `selection` | Derive - compression tiers per `process/derived-documents.md`               |
+| `overwrite-confirmation` | `choice`    | Whole-file overwrite and in-place translation overwrite                     |
+| `fix-plan-approval`      | `choice`    | Approve the audit fix plan - approval converts it to an Edit task           |
+| `mode-selection`         | `choice`    | Document vs maintenance ambiguity and activation vs task ambiguity          |
+| `source-resolution`      | `text`      | Translation audit with an unresolvable source - free input                  |
 
-Thin-input clarifications emit as `text` or `choice` parameters as they arise, with `open: true`
-when free input is appropriate.
+Thin-input clarifications emit as `text` or `choice` parameters as they arise - `text` when free
+input is appropriate.
 
 The convention confirmations in `principles/authoring-rules.md`, such as the ` -- ` form, and the
 typography questions in `languages/` files emit through this catch-all.
