@@ -123,6 +123,20 @@ Keep one register per document - everyday Polish software-engineering usage is t
 formal standards-register spellings are applied only when the source or the request
 establishes them.
 
+Recognized industry terms stay in English with a Polish gloss at first use - `Promise`,
+`frontmatter`, `pull request`, `commit` - when a literal rendering would read as a
+calque.
+
+Never render them literally - `obietnica pływająca` is a calque, `obiekt Promise
+pozostawiony bez obsługi` is the rendering.
+
+Address the reader with lowercase second-person pronouns - `cię`, `tobie`, `twój` -
+or drop the pronoun, never `Cię` or `Twój` mid-sentence.
+
+Agent and people terms stay uniform per the glossary - `agent AI do programowania`,
+`agenci AI`, `opiekun projektu`, `osoby współtworzące projekt` - never mixed with
+`agenci kodowania`, `maintainerzy`, or `współpracownicy`.
+
 Do not decline English words with Polish endings when a natural Polish equivalent exists -
 `właściciele biznesowi`, not `ownerzy biznesowi`.
 
@@ -130,13 +144,30 @@ Do not decline English words with Polish endings when a natural Polish equivalen
 
 The following elements are copied verbatim:
 
-- Fenced and indented code blocks, including their comments.
+- Fenced and indented code blocks - code, commands, keys, and values. The comments and
+  natural-language strings inside them follow the Reader-Facing Text In Examples rule
+  below.
 - Inline code spans, file paths, URLs, commands, and configuration keys.
 - Identifiers - record IDs, requirement IDs, API names, version markers in HTML comments.
 - Proper nouns, product names, brand names, and architecture element names.
 - YAML frontmatter - keys and values stay verbatim as document metadata.
 - Machine markers `TBD` and `NOT SPECIFIED`.
 - `N/A` renders `N/D` in Polish prose and table cells.
+
+## Reader-Facing Text In Examples
+
+Text a reader reads gets translated even when it sits inside an example or a fenced
+block.
+
+Translate explanatory comments inside code blocks, example prompts and request
+payloads, and the natural-language values of fields such as `question` or
+`description`.
+
+In a menu or option label, translate the descriptive part and keep every required
+technical value verbatim.
+
+Never translate code, commands, configuration keys, file paths, protocol values, or
+the surrounding syntax - only the reader-facing prose they carry.
 
 ## Terminology Resolution
 
@@ -173,6 +204,10 @@ Map known-type section names through the `pl.md` table - `## Purpose` becomes
 A section name the table does not cover is rendered faithfully - `## Deployment Notes`
 becomes `## Uwagi wdrożeniowe`, not a forced table match.
 
+Prefer a short verb-noun heading that names what the section does - `## Ustalanie
+lokalizacji wytycznych` reads naturally where `## Strategie lokalizacji wytycznych`
+mirrors the English noun phrase.
+
 ## Output Conventions
 
 Write the translated document to a sibling file carrying the language code -
@@ -189,6 +224,14 @@ platform's slug convention - GitHub keeps Unicode letters, so `## Nazwy plików`
 
 Keep the document's own conventions where they exist - a numbered-chapter source produces
 a numbered-chapter Polish document.
+
+A localized marker stays coherent with the examples that reference it - when the header
+comment uses `Wersja:`, an example command searching for the marker searches `Wersja:`
+too, or the marker stays untranslated. A localized marker paired with an example that
+still greps the English form is a defect.
+
+Link text stays consistent with the translated heading it points at - when a heading is
+retranslated, its anchor link text follows.
 
 ## Limitations
 

@@ -167,7 +167,8 @@ the loaded rule files (the `Zamiast`/`Używaj` table in `languages/pl.md` and th
 Traps tables of the matching glossaries).
 
 It reports calques, clauses spliced by a bare comma, `per X` constructions, `tylko, gdy`,
-a correlative `na tym` clause opened without a comma, typographic characters under the
+a correlative `na tym` clause opened without a comma, a leading participial clause
+missing its closing comma, typographic characters under the
 ASCII convention, and `w.` abbreviations with line-level
 findings - errors exit `1`, warnings are advisory and never fail the run.
 
@@ -177,6 +178,11 @@ calque-flagged stem inside one of them produces no finding.
 Flagged commas inside a series closed by a conjunction (`X, Y i Z`) count as an
 enumeration and raise no spliced-clause warning - the heuristic stays silent on
 conjunction-closed coordination, which is legal Polish.
+
+A line opened by a subordinate or participial clause (`Gdy ...`, `Jeśli ...`,
+`Odwołując ...`) has its first flaggable comma exempt - it closes the opener clause -
+and a comma followed by an `-ąc`/`-wszy`/`-łszy` participle is an adverbial phrase,
+not a splice.
 
 It targets Polish deliverable documents - the skill's own rule files contain the
 forbidden forms by definition and will report them.
@@ -238,6 +244,10 @@ the joins on documents that mix several layouts.
 `lint-polish.py` suppresses splice warnings inside conjunction-closed enumerations by
 design - a genuinely spliced pair of clauses that happens to end with `i`, `oraz`,
 `lub`, or `albo` can pass silently.
+
+The leading-clause exemption and the participle exemption can likewise hide a real
+splice - a comma joining two clauses after an opener clause or before a participle
+stays silent.
 
 Console output never fails on a legacy encoding - every script reconfigures `sys.stdout`
 and `sys.stderr` with `errors="backslashreplace"` under its `__main__` guard, so characters

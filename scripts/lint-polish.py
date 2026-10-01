@@ -34,6 +34,20 @@ SOFT_STEMS = {
     "brama", "bramka", "bramy", "realna", "realne", "diff", "wyjątek",
     "to jest", "skonsultowano", "rozdzielczy", "podbicie", "trasa",
     "narzędziowy", "narzędziowa", "narzędziowe", "mechanizm procesowy",
+    "współpracownik", "atrybucja", "selekcja", "destylacja", "odtwarzalny",
+    "rozstrzygnięta", "wykonalne", "zaspokaja", "dopychany", "rządzi",
+    "orkiestruje", "wtóruje", "zagęszczona", "wyprodukuj", "nazwany po",
+    "wąska", "odchudzony",
+}
+
+# Words that open a leading subordinate or adverbial clause - the first comma on
+# such a line closes that clause, so it is not a splice.
+CLAUSE_OPENERS = {
+    "gdy", "jeśli", "jeżeli", "ponieważ", "chociaż", "choć", "aczkolwiek",
+    "albowiem", "kiedy", "zanim", "dopóki", "skoro", "gdyby", "aby", "żeby",
+    "jak", "nawet", "o", "w", "we", "po", "przy", "podczas", "dla", "przed",
+    "za", "na", "bez", "mimo", "oprócz", "zamiast", "dzięki", "wraz",
+    "według", "od", "z", "ze", "jednak", "następnie", "najpierw", "potem",
 }
 
 # Fixed Polish idioms that contain a calque-flagged stem - a match inside one of
@@ -60,6 +74,10 @@ COMMA_OK = {
     "dopóki", "skoro", "czy", "bądź", "nie", "tak", "tedy", "zatem", "toteż",
     "lecz", "czego", "czym", "kim", "podczas", "jako", "ponadto", "wobec",
     "nigdy", "zawsze", "stąd", "wszędzie", "gdziekolwiek", "gdyby",
+    "aż", "chyba", "którą", "którymi", "komu", "czemu", "czyj", "czyją",
+    "czyje", "ile", "skąd", "dokąd", "żebym", "żebyś", "żebyśmy", "żebyście",
+    "abym", "abyś", "abyśmy", "abyście", "gdybym", "gdybyś", "gdybyśmy",
+    "będąc",
 }
 
 TYPOGRAPHIC = {
@@ -173,6 +191,15 @@ def check_forbidden(lineno, text, pairs, findings):
             )
 
 
+def first_prose_word(text):
+    """First meaningful word of the line, after list/quote/heading markers."""
+    stripped = re.sub(r"^[#>\s]*", "", text)
+    stripped = re.sub(r"^[-*+]\s+|^\d+\.\s+|^-\s*\[[ x]\]\s*", "", stripped)
+    stripped = stripped.lstrip("*`_\"'")
+    match = re.match(r"\w+", stripped.lower())
+    return match.group(0) if match else ""
+
+
 def check_mechanical(lineno, text, findings, splice=True):
     if "tylko, gdy" in text.lower():
         findings.append(("error", lineno, "'tylko, gdy' - write 'tylko wtedy, gdy'"))
@@ -196,14 +223,27 @@ def check_mechanical(lineno, text, findings, splice=True):
     if ";" in text:
         findings.append(("error", lineno, "semicolon in prose"))
 
+    # Participial opener: a line opening with an adverbial participle clause
+    # ("Wnosząc...", "Zbadawszy...") needs a comma after that clause.
+    first = first_prose_word(text)
+    opens_participle = bool(first) and re.search(r"(ąc|wszy|łszy)$", first)
+    if (opens_participle and "," not in text
+            and not text.strip().startswith(("#", "|"))):
+        findings.append(
+            ("warn", lineno,
+             "participial opener - add a comma after the '-ąc/-wszy' clause"))
+
     # Comma-splice heuristic: a comma followed by a word that opens neither a
     # subordinate clause nor a prepositional phrase. Tables and list items are
     # skipped - their commas are usually enumerations. Flagged commas inside a
     # series closed by a conjunction ("X, Y i Z") are an enumeration, not a
-    # splice, and stay silent.
+    # splice, and stay silent. When the line opens with a subordinate or
+    # participial clause ("Gdy ...", "Jeśli ...", "Odwołując ..."), the first
+    # comma on the line closes that clause and is exempt.
     if not splice:
         return
     lowered = text.lower()
+    skip_first = first in CLAUSE_OPENERS or opens_participle
     enum_spans = [
         m.span() for m in re.finditer(
             r",\s*[^,.;:()]+?(?:\s*,\s*[^,.;:()]+?)*\s+"
@@ -213,7 +253,12 @@ def check_mechanical(lineno, text, findings, splice=True):
         word = match.group(1)
         if word in COMMA_OK or word[0].isdigit():
             continue
+        if re.search(r"(ąc|wszy|łszy)$", word):
+            continue
         if any(start <= match.start() < end for start, end in enum_spans):
+            continue
+        if skip_first:
+            skip_first = False
             continue
         findings.append(
             ("warn", lineno,

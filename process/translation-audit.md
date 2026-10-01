@@ -64,9 +64,11 @@ Run the checks in order and record each result for the report:
    source heading as `faithful`, `reworded`, `dropped`, `merged`, `reordered`, plus every
    target-only heading as `added` - a faithful translation yields only `faithful` and
    `reworded` classes.
-2. **Untranslated set** - verify byte-identity of code blocks, inline code spans, file
-   paths, URLs, commands, identifiers, frontmatter, and the `TBD` and `NOT SPECIFIED`
-   markers against the pair file's untranslated list.
+2. **Untranslated set** - verify byte-identity of code block content, inline code
+   spans, file paths, URLs, commands, identifiers, frontmatter, and the `TBD` and
+   `NOT SPECIFIED` markers against the pair file's untranslated list - comments and
+   natural-language string values inside examples follow the pair's reader-facing
+   rule and may differ.
 3. **Terminology concordance** - map every glossary-covered source term to its target
    rendering and flag a term rendered by several different forms (a split rendering), a
    glossary form ignored, an invented equivalent, and every calque the pair file or
@@ -78,10 +80,13 @@ Run the checks in order and record each result for the report:
    applied consistently across the document.
 6. **Language naturalness** - run `scripts/lint-polish.py` for `pl` targets and review
    flagged lines. Scan for calques the pair's Calque Traps table names, clauses spliced
-   by a bare comma, personified files or branches, completed verdicts rendered against
-   the pair style file's aspect rule, report-register verbs mismatched to its
-   verb-choice mapping, mixed quote or dash conventions, and the same English term
-   rendered by several Polish forms.
+   by a bare comma, a participial opener missing its comma, personified files or
+   branches, completed verdicts rendered against the pair style file's aspect rule,
+   report-register verbs mismatched to its verb-choice mapping, modality drift
+   (`must`/`should`/`may` strength altered), condition drift (`only`, `unless`,
+   `when`, `if`, `otherwise` blurred), mixed quote or dash conventions, mixed
+   second-person register, and the same English term rendered by several Polish
+   forms.
 
 ## Findings
 
@@ -94,7 +99,8 @@ Severity guidance:
 - `Critical` - content mistranslated so the meaning changed, or large untranslated blocks
   the rules required translated.
 - `Major` - a structural delta without a declared adaptation, untranslated-set corruption,
-  or a glossary term ignored document-wide.
+  a glossary term ignored document-wide, or a modality or condition drift that changes
+  the instruction's strength.
 - `Minor` - heading-case violations, inconsistent term renderings, style-adaptation
   misses, calques and unnatural phrasing that do not shift the meaning.
 - `Note` - evident adaptations worth surfacing, register choices, timing notes.
@@ -116,8 +122,8 @@ Structure it as:
 
 ## Non-Goals
 
-The audit never retranslates or fixes the target document - fixes are an Edit task the user
-must approve.
+The audit never retranslates or fixes the target document - applying its findings is a
+Revision task per `process/translation-revision.md`, run only when the user asks.
 
 It does not grade the source document's own quality.
 

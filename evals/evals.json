@@ -922,6 +922,49 @@
         "The unknown bogus-param id is ignored.",
         "Surfaces not answered in the document still run through their normal question flow."
       ]
+    },
+    {
+      "id": 76,
+      "prompt": "Here is a Polish file that was translated from the English original earlier - fix the passages where the translation is wrong or unnatural.",
+      "expectations": [
+        "The agent loaded SKILL.md, principles/authoring-rules.md, and process/document-workflow.md.",
+        "The task was classified as translation correction and process/translation-revision.md was loaded - not the fresh-translation procedure alone.",
+        "The agent resolved and read both the source and the target document before proposing changes.",
+        "Each proposed or applied correction identifies the target passage and the corresponding source passage.",
+        "The agent asked for or obtained correction scope approval before editing, or the request already granted it."
+      ]
+    },
+    {
+      "id": 77,
+      "prompt": "Correct this existing English-to-Polish translation: the user approved fixing terminology, grammar, and fidelity errors only - do not restructure the document.",
+      "expectations": [
+        "Every edit preserves structure, heading count, table shape, and code blocks unless the translation itself corrupted them.",
+        "Approved canonical terminology replaces obsolete forms, for example 'agent AI do programowania', 'opiekun projektu', 'osoba współtworząca projekt', 'tryb z udziałem człowieka', 'pętla weryfikacji', 'dokument nadrzędny', 'punkt kontrolny', 'zwiększenie numeru wersji', and 'wskazanie autorstwa'.",
+        "Modality, conditions, and exceptions are preserved - 'must not' stays a prohibition, 'only'/'unless'/'if' are not blurred.",
+        "Technical identifiers, file paths, commands, and machine values stay unchanged while reader-facing prose is corrected.",
+        "The correction report lists each change with target location, source location, old rendering, new rendering, and the rule or rationale.",
+        "The source document was not modified."
+      ]
+    },
+    {
+      "id": 78,
+      "prompt": "Translate this English document with embedded examples into Polish - it contains code blocks, a JSON structure with question and description fields, and Markdown payload blocks.",
+      "expectations": [
+        "Code, paths, commands, JSON and YAML keys, field names, and machine values stay unchanged.",
+        "Reader-facing prose inside examples is translated - comments where the language file allows, question and description field values, and Markdown payload interiors.",
+        "If the translated metadata uses a Polish marker such as 'Wersja:', any example that searches for the marker is adjusted consistently rather than left searching for 'Version:'.",
+        "Section-internal anchors were recomputed from the translated headings while real file paths stayed unchanged."
+      ]
+    },
+    {
+      "id": 79,
+      "prompt": "The Polish lint reports 'possible comma splice' warnings on this Polish translation - review the flagged lines and fix only the genuine problems.",
+      "expectations": [
+        "Commas after introductory 'Gdy'/'Jeśli'/'Po'/'Zanim'/'Ponieważ' clauses were recognized as mandatory Polish punctuation, not errors.",
+        "Adverbial participial phrases such as ', wprowadzając' or ', używając' were not rewritten as splices.",
+        "Relative-clause commas before 'który'/'która'/'które' forms and concessive 'choć'/'aż'/'chyba że' openers were left intact.",
+        "Only genuine independent-clause comma splices or real calques were corrected."
+      ]
     }
   ]
 }

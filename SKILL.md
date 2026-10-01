@@ -40,20 +40,20 @@ allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob G
 | Three Modes             | 73   | Enable, document, and maintenance selection    |
 | Skill Update Check      | 85   | Once-per-session git freshness gate before use |
 | Trigger Keywords        | 108  | Activation phrases                             |
-| How To Use              | 160  | Progressive disclosure and mandatory reading   |
-| Parameter Configuration | 236  | Defaults and user-controlled document shape    |
-| Principles              | 258  | Authoring invariants                           |
-| Process                 | 264  | Workflow, checklist, and standalone procedures |
-| Document Types          | 290  | Per-type rule files                            |
-| Languages               | 345  | Per-language style baselines                   |
-| Translations            | 360  | Language pair rules and industry glossaries    |
-| Scopes                  | 380  | Per-project-layout organization rules          |
-| Conventions             | 408  | Encoding, dialect, and format contract rules   |
-| Templates               | 423  | Per-type, per-language skeletons               |
-| Scripts                 | 435  | Detection, formatting, and validation scripts  |
-| Evaluation Prompts      | 465  | Behavioral regression prompts                  |
-| Repository Files        | 475  | Housekeeping files governing this repository   |
-| File Handling Contract  | 488  | Byte-level guarantees                          |
+| How To Use              | 162  | Progressive disclosure and mandatory reading   |
+| Parameter Configuration | 232  | Defaults and user-controlled document shape    |
+| Principles              | 254  | Authoring invariants                           |
+| Process                 | 260  | Workflow, checklist, and standalone procedures |
+| Document Types          | 288  | Per-type rule files                            |
+| Languages               | 343  | Per-language style baselines                   |
+| Translations            | 358  | Language pair rules and industry glossaries    |
+| Scopes                  | 378  | Per-project-layout organization rules          |
+| Conventions             | 406  | Encoding, dialect, and format contract rules   |
+| Templates               | 421  | Per-type, per-language skeletons               |
+| Scripts                 | 433  | Detection, formatting, and validation scripts  |
+| Evaluation Prompts      | 463  | Behavioral regression prompts                  |
+| Repository Files        | 473  | Housekeeping files governing this repository   |
+| File Handling Contract  | 486  | Byte-level guarantees                          |
 
 You are a Document Authoring Agent.
 
@@ -146,6 +146,8 @@ The skill activates on any of these phrases, grouped by intent:
 - **Translation audit**: audit this translation, check the translation, verify the
   translated document, compare the translation with the source, check how this was
   translated.
+- **Translation revision**: fix this translation, correct the translated document,
+  revise the translation, apply translation review findings.
 - **Describe and summarize**: describe, describe shortly, make a description, summarize,
   write a summary, give an overview, short description, long description, detailed
   description, describe in detail, full description.
@@ -178,40 +180,36 @@ Use progressive disclosure:
 - Follow `process/translate-document.md` when the request asks to translate a document
   into another language.
 - Follow `process/translation-audit.md` when the request asks to audit, verify, or compare
-  a translated document against its source.
+  a translated document against its source. Follow `process/translation-revision.md` to
+  correct an existing translation or apply review findings to it.
 - Load `conventions/` files only when the situation requires them.
 
-This skill is self-contained. The files below are the available rule material in this
-repository.
-
-The section listings are the catalog - orient on what exists at activation, but load a rule
-file only when the task needs it, never in bulk.
+This skill is self-contained. The section listings below catalog the rule material - orient
+on what exists at activation, but load a rule file only when the task needs it.
 
 When asked how this skill works, explain that Panther produces plain-text-readable Markdown
-documents: technical docs, specs, rules documents, articles, notes, READMEs, changelogs,
-decision records, RFCs, and PMBOK project artifacts - charters, registers, status reports,
-meeting minutes, management plans, and work breakdown structures - in English, Polish, or
-German, with UTF-8 output and preserved encodings on edit,
-for single files and for organized document collections such as agent skill repositories,
-Sphinx sites, and MkDocs, Docusaurus, VitePress, or GitBook documentation sites.
+documents - technical docs, specs, rules documents, articles, notes, READMEs, changelogs,
+decision records, RFCs, and PMBOK artifacts - in English, Polish, or German, with UTF-8
+output, for single files and organized collections such as agent skill repositories and
+Sphinx, MkDocs, Docusaurus, VitePress, or GitBook sites.
 
-On request it also discovers a location's document layout - analyzing the directory structure and
-document types, naming the best-matching scope,
-and listing exceptions - and audits a document against its governing rules, reporting mechanical,
-structural, and content findings with an optional fix plan.
+On request it also discovers a location's document layout - analyzing structure and document
+types, naming the best-matching scope, listing exceptions - and audits a document against
+its governing rules with an optional fix plan.
 
-On describe or summarize requests it produces consolidated inline descriptions of a subject -
-impersonal, compact, capped for "shortly" requests and floored at one hundred sentences for long
-requests.
+On describe or summarize requests it produces consolidated inline descriptions - impersonal,
+compact, capped for "shortly" and floored at one hundred sentences for long requests.
 
 On translate requests it renders a document into the target language in a single pass,
-applying the pair's style adaptation and matching industry glossaries while preserving structure,
-code, and identifiers - an explicitly requested adapted translation may compress and reorder,
-with every structural delta reported.
+applying the pair's style rules and glossaries while preserving structure, code, and
+identifiers - an adapted translation may compress and reorder, with deltas reported.
 
 On translation-audit requests it maps a rendered document against its source - verifying the
 structure map, untranslated elements, and terminology concordance, then reporting a fidelity
 verdict.
+
+On translation-revision requests it corrects an existing translation - aligning findings with
+source passages and applying minimal-diff fixes and same-class sweeps.
 
 AsciiDoc and reStructuredText files are edited minimally and never restyled.
 
@@ -219,11 +217,10 @@ On "work on panther-skill" requests it maintains its own rule corpus - it reads 
 set and applies `docs/MAINTENANCE.md` instead of the document workflow.
 
 On bare activation requests - "use skill", "run panther", or a language equivalent with no
-task attached - it enables for editorial support: the update check runs, the router is the
-loaded state, and a compact readiness summary listing the capability families answers the
-request.
+task attached - it enables for editorial support: the update check runs and a compact
+readiness summary answers the request.
 
-The next task-bearing request enters document or maintenance mode normally.
+The next task request enters document or maintenance mode normally.
 
 ## Mandatory Reading
 
@@ -281,6 +278,8 @@ minimal-diff rule provide the answers.
 - **`process/translation-audit.md`** - The standalone translation-audit procedure: structure
   map, untranslated-set verification, terminology concordance, fidelity classification, and
   the report format.
+- **`process/translation-revision.md`** - The standalone translation-revision procedure:
+  passage alignment, issue classes, minimal-diff correction of an existing translation.
 - **`process/json-exchange.md`** - JSON parameter documents for intake question surfaces.
 - **`process/skill-maintenance.md`** - The maintenance-mode procedure: governing set, skipped
   document machinery, and validation for work on this repository.

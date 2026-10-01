@@ -27,6 +27,7 @@ Classify the request into one primary task:
 | Edit      | "add a section", "update the glossary"             | document's own conventions win |
 | Reformat  | "fix this table", "unwrap the document"            | language file + convention set |
 | Translate | "translate this doc to Polish"                     | translate procedure            |
+| Revise    | "fix this translation", "apply the review"         | translation revision procedure |
 | Discover  | "discover layout", "detect document layout"        | scope discovery procedure      |
 | Audit     | "audit this document", "check document formatting" | document audit procedure       |
 | Describe  | "describe this", "summarize the session"           | describe-response procedure    |
@@ -35,7 +36,8 @@ A request may combine tasks.
 
 Apply the union of the required rule files.
 
-An approved fix plan from an audit becomes an Edit task.
+An approved fix plan from an audit becomes an Edit task - an approved translation
+audit or a supplied translation review becomes a Revise task.
 
 A describe task produces an inline response, not a document - a file is written only when
 the request explicitly asks for one.

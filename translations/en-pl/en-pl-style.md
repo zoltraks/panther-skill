@@ -5,7 +5,9 @@
 > **Scope:** Sentence-level adaptation rules for rendering a document from English into
 > Polish
 > **Key items:** aspect and voice, actor verbs, report-register verb choice, fixed
-> idioms, correlative frames, enumeration punctuation, hedged verdicts
+> idioms, correlative frames, enumeration punctuation, hedged verdicts, meaning over
+> word order, modality, conditions, imperative voice, verbs before nominalizations,
+> participial openers
 
 This file governs how English sentences reshape into natural Polish at the clause level.
 
@@ -46,6 +48,12 @@ do not act, persons and tools do.
 
 An artifact as subject carries only a state verb - `zawiera`, `obejmuje`, `wykazuje`,
 `wymaga`, `dostarcza`, `nazywa` - or the passive of a true action.
+
+Verbs that make an artifact an actor are always wrong - `reguły rządzą plikami`,
+`plik orkiestruje proces`, `dowody wygrywają`, `blok wtóruje nawigacji` -
+render them as `reguły obowiązują w tych plikach`, `plik określa przebieg procesu`,
+`pierwszeństwo mają informacje ustalone na podstawie repozytorium`, and
+`blok powtarza odnośniki nawigacyjne`.
 
 Report-register verbs map by meaning, not by word shape:
 
@@ -102,6 +110,76 @@ hedged claim is never upgraded into a plain claim.
 
 A comparative verdict keeps its comparative frame - `the fallback option` renders
 `wariant zapasowy` or `wariant awaryjny`, not `jedyny wariant`.
+
+## Meaning Over Word Order
+
+Translate the meaning of the whole sentence, not the English syntax.
+
+English word order carried into Polish produces calques like `rozstrzygnij rolę do
+ścieżki` or `nazwany po zapisie zmiany`.
+
+Render the intent instead - `przypisz rolę do rzeczywistej ścieżki`, `o nazwie
+odpowiadającej dokumentowi zmiany`.
+
+An English adjective is not a Polish adjective guarantee - `phases are revisitable`
+renders `do poszczególnych faz można powracać`, not `fazy są odtwarzalne`, and
+`stretched to target length` renders `nie wydłużaj pliku na siłę`, not
+`plik jest dopychany do docelowej długości`.
+
+## Modality
+
+Preserve the strength of normative language exactly:
+
+| English  | Polish            |
+|----------|-------------------|
+| must     | `musi` / `należy` |
+| must not | `nie wolno`       |
+| should   | `powinien`        |
+| may      | `może`            |
+
+Never upgrade a recommendation into an obligation, a permission into a requirement,
+or a ban into a suggestion.
+
+Word order follows Polish grammar, not the English model - `the document must not be
+used` renders `nie wolno wykorzystywać tego dokumentu`, not
+`dokument ten nie wolno wykorzystywać`.
+
+## Conditions And Exceptions
+
+Conditions and exceptions map one-to-one - `only` renders `tylko` or `wyłącznie`,
+`unless` renders `chyba że`, `when` renders `gdy`, `if` renders `jeśli`, and
+`otherwise` renders `w przeciwnym razie`.
+
+`chyba że` and `jeśli` are not interchangeable - `chyba że` introduces the sole
+exception that flips the rule, `jeśli` introduces a condition.
+
+## Imperative Voice
+
+Instruction sentences use the imperative mood consistently - `przeczytaj`,
+`utwórz`, `sprawdź`, `zapisz`.
+
+Description sentences use the indicative.
+
+Never alternate between the infinitive, the imperative, and impersonal constructions
+inside one instruction set.
+
+Second-person pronouns stay lowercase inside a sentence - `cię`, `tobie`, `twój`,
+never `Cię` or `Twój`.
+
+## Verbs Before Nominalizations
+
+Prefer a verb over a stacked nominalization - `ustal lokalizację`,
+`przypisz rolę`, `zapisz wynik`, `sprawdź zgodność`, not `dokonaj ustalenia
+lokalizacji` or `zestaw określony wstępnie przez wybory`.
+
+An English `the set determined by X` renders `zestaw wynikający z X`.
+
+## Participial Openers
+
+A clause opened by an adverbial participle takes a comma after it -
+`Wnosząc wkład, zgadzasz się`, `Odwołując się do standardu, utwórz sekcję`.
+
+The comma belongs after the participle clause, before the main clause verb.
 
 ## Example
 

@@ -27,6 +27,9 @@ table" - is an Edit task that applies the translation rules to the edited fragme
 A request to create a new document directly in a target language is a Create task - the
 language baseline alone covers it, no translation files load.
 
+A request to correct or fix an existing translation is a Revise task - follow
+`process/translation-revision.md` instead.
+
 ## Parameter Resolution
 
 Resolve these parameters before translating:
@@ -182,6 +185,19 @@ Self-review against `process/document-checklist.md` plus the translation items:
 - Completed verdicts and report-register verbs follow the pair's `<pair>-style.md`
   rules when the pair provides one - a finished evaluation renders per its aspect
   rule, and conformance claims follow its verb-choice mapping.
+- Normative strength survives - `must` renders `musi`/`należy`, `must not` renders
+  `nie wolno`, `should` renders `powinien`, `may` renders `może`.
+- Conditions and exceptions map one-to-one - `only`, `unless`, `when`, `if`,
+  `otherwise` - `chyba że` never stands in for `jeśli`.
+- Instructions use one imperative register throughout. Descriptions use the
+  indicative.
+- Gender, number, and case agree after every terminology substitution.
+- Second-person pronouns stay lowercase - `cię`, `tobie`, `twój`.
+- A localized marker stays coherent with the example commands that reference it.
+- Reader-facing text inside examples - comments, prompts, `question`/`description`
+  values - is translated while code, keys, and technical values stay verbatim.
+- The Polish output was proofread once without the source - every sentence reads
+  naturally on its own.
 - Abbreviations are expanded at first use and a verbatim foreign-language quote carries
   a Polish gloss beside it.
 - Embedded example payloads follow the declared payload rule consistently.

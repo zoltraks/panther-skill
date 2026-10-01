@@ -14,17 +14,17 @@
 |---------------------|------|--------------------------------------------|
 | Overview            | 29   | What Panther is and what it produces       |
 | What The Skill Does | 54   | Authoring purpose and workflow             |
-| Installation        | 169  | How to add Panther to an agent environment |
-| Usage               | 239  | How agents activate and run the skill      |
-| Example Prompts     | 253  | Phrases the skill activates on             |
-| Workflow Diagrams   | 299  | ASCII and Mermaid diagrams of the pipeline |
-| Core Principles     | 425  | Convention preservation and minimal diffs  |
-| When To Use         | 436  | Supported requests and exclusions          |
-| What's Inside       | 475  | Rule files, templates, tools, and evals    |
-| Specification       | 621  | Agent Skills specification conformance     |
-| Verification        | 637  | Skill-maintenance checks                   |
-| License             | 656  | License for the skill itself               |
-| Credits             | 662  | Methodology and example sources            |
+| Installation        | 173  | How to add Panther to an agent environment |
+| Usage               | 243  | How agents activate and run the skill      |
+| Example Prompts     | 257  | Phrases the skill activates on             |
+| Workflow Diagrams   | 303  | ASCII and Mermaid diagrams of the pipeline |
+| Core Principles     | 429  | Convention preservation and minimal diffs  |
+| When To Use         | 440  | Supported requests and exclusions          |
+| What's Inside       | 479  | Rule files, templates, tools, and evals    |
+| Specification       | 628  | Agent Skills specification conformance     |
+| Verification        | 644  | Skill-maintenance checks                   |
+| License             | 663  | License for the skill itself               |
+| Credits             | 669  | Methodology and example sources            |
 
 ## Overview
 
@@ -148,6 +148,10 @@ structural delta listed in the delivery report - faithful structure stays the de
 Asking to "audit this translation" or "check how this was translated" runs
 `process/translation-audit.md`: it maps the rendered document against its source and reports
 a fidelity verdict with findings.
+
+Asking to "fix this translation" or "apply the review findings" runs
+`process/translation-revision.md`: it aligns each finding with the source passage, applies
+minimal-diff corrections, and sweeps the document for the same class of issue.
 
 **Maintains itself**
 
@@ -497,7 +501,8 @@ panther-skill/
 │   ├── skill-maintenance.md           # Maintenance-mode procedure for work on the skill itself
 │   ├── skill-activation.md            # Enable-mode procedure for bare activation requests
 │   ├── translate-document.md          # Standalone translate procedure: pairs and glossaries
-│   └── translation-audit.md           # Standalone translation-audit procedure: fidelity verdict
+│   ├── translation-audit.md           # Standalone translation-audit procedure: fidelity verdict
+│   └── translation-revision.md        # Standalone correction procedure for existing translations
 ├── types/
 │   ├── technical-document.md          # Guides, architecture notes, reference material
 │   ├── project-document.md            # Specifications: version comment, glossary, requirement IDs
