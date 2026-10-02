@@ -14,17 +14,17 @@
 |---------------------|------|--------------------------------------------|
 | Overview            | 29   | What Panther is and what it produces       |
 | What The Skill Does | 54   | Authoring purpose and workflow             |
-| Installation        | 177  | How to add Panther to an agent environment |
-| Usage               | 247  | How agents activate and run the skill      |
-| Example Prompts     | 261  | Phrases the skill activates on             |
-| Workflow Diagrams   | 307  | ASCII and Mermaid diagrams of the pipeline |
-| Core Principles     | 433  | Convention preservation and minimal diffs  |
-| When To Use         | 444  | Supported requests and exclusions          |
-| What's Inside       | 483  | Rule files, templates, tools, and evals    |
-| Specification       | 632  | Agent Skills specification conformance     |
-| Verification        | 648  | Skill-maintenance checks                   |
-| License             | 667  | License for the skill itself               |
-| Credits             | 673  | Methodology and example sources            |
+| Installation        | 184  | How to add Panther to an agent environment |
+| Usage               | 254  | How agents activate and run the skill      |
+| Example Prompts     | 268  | Phrases the skill activates on             |
+| Workflow Diagrams   | 314  | ASCII and Mermaid diagrams of the pipeline |
+| Core Principles     | 450  | Convention preservation and minimal diffs  |
+| When To Use         | 461  | Supported requests and exclusions          |
+| What's Inside       | 500  | Rule files, templates, tools, and evals    |
+| Specification       | 655  | Agent Skills specification conformance     |
+| Verification        | 671  | Skill-maintenance checks                   |
+| License             | 690  | License for the skill itself               |
+| Credits             | 696  | Methodology and example sources            |
 
 ## Overview
 
@@ -68,6 +68,10 @@ Every question offers at most four answers - up to three options guessed from th
 evidence plus `Cancel`, which aborts the task - and format questions are asked before the
 document-type question, which is always its own surface.
 
+After the type resolves, a section-plan question chooses which required, recommended, and
+optional sections the document carries, and before writing, the agent describes the plan and
+asks to proceed, adjust, or cancel.
+
 A request for parameters in JSON emits a machine-readable intake document per
 `process/json-exchange.md`, and JSON answers are accepted in reply.
 
@@ -104,6 +108,9 @@ and each language carries its own terminology guidance.
 Tables are formatted by script, not by hand.
 
 A document validator checks structure, spacing, characters, and table alignment before delivery.
+
+A section checker compares a typed document's headings against its type's required,
+recommended, optional, and unusual section vocabulary, including localized section names.
 
 **Discovers document layouts**
 
@@ -380,6 +387,13 @@ follow `process/describe-response.md`.
                       │
                       ▼
   ┌───────────────────────────────────────┐
+  │      Section Plan + Plan Confirm      │
+  │ - required/recommended/optional picks │
+  │ - proceed, adjust, or cancel          │
+  └───────────────────┬───────────────────┘
+                      │
+                      ▼
+  ┌───────────────────────────────────────┐
   │            Draft Document             │
   │ - templates/<lang>/<type>-template.md │
   │ - minimal diff for edits              │
@@ -391,6 +405,7 @@ follow `process/describe-response.md`.
        │ scripts/format-table.py      │
        │ scripts/reflow-prose.py      │
        │ scripts/validate-document.py │
+       │ scripts/check-sections.py    │
        │ scripts/diff-content.py      │
        └──────────────┬─────────────┘
                       │
@@ -421,9 +436,11 @@ flowchart TD
 
     G --> H[Select Rule Set<br/>language baseline<br/>document type rules<br/>scope rules]
 
-    H --> I[Draft Document<br/>templates/<lang>/<type>-template.md<br/>minimal diff for edits]
+    H --> H2[Section Plan + Plan Gate<br/>required/recommended/optional picks<br/>proceed, adjust, or cancel]
 
-    I --> J[Mechanical Validation<br/>scripts/format-table.py<br/>scripts/reflow-prose.py<br/>scripts/validate-document.py<br/>scripts/diff-content.py]
+    H2 --> I[Draft Document<br/>templates/<lang>/<type>-template.md<br/>minimal diff for edits]
+
+    I --> J[Mechanical Validation<br/>scripts/format-table.py<br/>scripts/reflow-prose.py<br/>scripts/validate-document.py<br/>scripts/check-sections.py<br/>scripts/diff-content.py]
 
     J --> K[Delivery<br/>write file<br/>preserve encoding & line endings]
 
@@ -515,6 +532,8 @@ panther-skill/
 │   ├── format-specification.md        # Format specs: version history, field tables
 │   ├── article-text.md                # Prose documents: narrative, dialect tolerance
 │   ├── quick-note.md                  # Quick notes: minimal structure
+│   ├── message-document.md            # Announcements and memos: one clear ask
+│   ├── daily-plan.md                  # Daily plans: priorities, schedule, carry-over
 │   ├── readme-general.md              # Default repository README variant
 │   ├── readme-skill.md                # Agent skill repository READMEs
 │   ├── readme-application.md          # Software product READMEs
@@ -527,11 +546,14 @@ panther-skill/
 │   ├── decision-record.md             # ADRs: status lifecycle, numbered records
 │   ├── proposal-document.md           # RFCs: review states, open questions
 │   ├── project-charter.md             # Charters: SMART objectives, approval block
+│   ├── change-request.md              # Change requests: metadata, impact, approval block
 │   ├── register-log.md                # Registers and logs: entry tables, lifecycles
 │   ├── status-report.md               # Status reports: RAG ratings, decisions needed
 │   ├── meeting-minutes.md             # Minutes: attendees, decisions, action items
 │   ├── management-plan.md             # Management plans: thresholds, cadence, roles
-│   └── work-breakdown-structure.md    # WBS: decimal outline, dictionary, RACI
+│   ├── work-breakdown-structure.md    # WBS: decimal outline, dictionary, RACI
+│   ├── summary-document.md            # Summaries and briefs derived from a source
+│   └── supplement-document.md         # Supplements extending an existing document
 ├── languages/
 │   ├── de.md                          # German baseline: style, section names, activation phrases
 │   ├── en.md                          # English baseline: Title Case, vocabulary
@@ -592,13 +614,14 @@ panther-skill/
 │   ├── plain-text-comments.md         # Trailing comment alignment in plain-text blocks
 │   └── ascii-diagrams.md              # Box-drawing flow diagram rules
 ├── templates/
-│   ├── de/                            # Twenty-four German skeletons, <type>-template-de.md
-│   ├── en/                            # Twenty-four English skeletons, <type>-template-en.md
-│   └── pl/                            # Twenty-four Polish skeletons, <type>-template-pl.md
+│   ├── de/                            # Twenty-nine German skeletons, <type>-template-de.md
+│   ├── en/                            # Twenty-nine English skeletons, <type>-template-en.md
+│   └── pl/                            # Twenty-nine Polish skeletons, <type>-template-pl.md
 ├── scripts/
 │   ├── detect-encoding.py             # BOM, encoding, and line-ending detection
 │   ├── detect-scope.py                # Document-scope signal census
 │   ├── census-document.py             # Structural document census for audits
+│   ├── check-sections.py              # Section conformance check against a type's vocabulary
 │   ├── reflow-prose.py                # Bidirectional prose wrapper and unwrapper
 │   ├── wrap-prose.py                  # Deprecated split-only wrapper, use reflow-prose.py
 │   ├── split-sentences.py             # Sentence-per-line prose splitter

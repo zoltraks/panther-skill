@@ -51,14 +51,16 @@ Product breakdown structures follow the same shape.
 
 ## Section Names
 
-- Structure
-- Work Packages
-- WBS Dictionary
-- Acceptance Criteria
-- Owner
-- Estimate
-- Dependencies
-- RACI Matrix
-- Baseline
+| Section             | Requirement | Notes            |
+|---------------------|-------------|------------------|
+| Structure           | required    |                  |
+| Work Packages       | recommended |                  |
+| WBS Dictionary      | recommended |                  |
+| Acceptance Criteria | optional    | dictionary field |
+| Owner               | optional    | dictionary field |
+| Estimate            | optional    | dictionary field |
+| Dependencies        | optional    | dictionary field |
+| RACI Matrix         | optional    |                  |
+| Baseline            | optional    |                  |
 
 Section names for other languages are declared in the matching `languages/<code>.md` file.

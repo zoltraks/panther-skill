@@ -93,14 +93,16 @@ Preserve payload interiors on edit - reformat them only when the request covers 
 
 ## Section Names
 
-- Purpose
-- Audiences
-- Use Cases
-- Decision Points
-- Procedures
-- Validation
-- Example Content
-- Best Practices
-- References
+| Section         | Requirement |
+|-----------------|-------------|
+| Purpose         | required    |
+| Audiences       | recommended |
+| Use Cases       | recommended |
+| Decision Points | recommended |
+| Procedures      | required    |
+| Validation      | recommended |
+| Example Content | optional    |
+| Best Practices  | optional    |
+| References      | optional    |
 
 Section names for other languages are declared in the matching `languages/<code>.md` file.

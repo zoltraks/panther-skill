@@ -49,11 +49,16 @@ why it matters.
 
 ## Section Names
 
-- Changes
-- Version
-- Added
-- Improved
-- Fixed
-- Removed
+| Section  | Requirement |
+|----------|-------------|
+| Changes  | recommended |
+| Version  | recommended |
+| Added    | optional    |
+| Improved | optional    |
+| Fixed    | optional    |
+| Removed  | optional    |
+
+Version headings carry the release number (`## Version 1.2`) - the checker matches them by
+prefix.
 
 Section names for other languages are declared in the matching `languages/<code>.md` file.

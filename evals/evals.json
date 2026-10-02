@@ -1051,6 +1051,64 @@
         "No file is written and the abort is reported briefly.",
         "A returned Cancel menu letter on a choice parameter aborts the same way."
       ]
+    },
+    {
+      "id": 87,
+      "prompt": "Create a status report for this project - answer the intake questions, and when the structure question comes up, look at what is offered.",
+      "expected_output": "A section-plan question offering the recommended structure, individual section selection, and a free-text format answer, plus Cancel.",
+      "files": [],
+      "expectations": [
+        "The section-plan surface names the type's required sections and marks recommended and optional ones.",
+        "It offers at most four answers: accept the recommended structure, select sections, describe the format in text, or Cancel.",
+        "A section-selection surface pre-checks recommended sections and lists optional ones.",
+        "Cancel aborts the task without writing a file."
+      ]
+    },
+    {
+      "id": 88,
+      "prompt": "This change request document has no approval block or summary - fix the structure, ask me before writing.",
+      "expected_output": "A section check against types/change-request.md, then a section-add question listing the missing required and recommended sections to insert, plus Cancel.",
+      "files": [],
+      "expectations": [
+        "The agent reports missing required and recommended sections before editing.",
+        "Inserted sections use the type's canonical names and NOT SPECIFIED placeholders - no invented content.",
+        "Sections are inserted at their canonical positions in the type's structure, not appended at the end.",
+        "Answering Cancel aborts the edit without writing."
+      ]
+    },
+    {
+      "id": 89,
+      "prompt": "Write a message document announcing next Friday's maintenance window - plain, without sections.",
+      "expected_output": "The free-text format answer is honored: a title and plain body, no required-section scaffolding.",
+      "files": [],
+      "expectations": [
+        "The document carries no section headings beyond the title.",
+        "The agent does not insert sections the user excluded when the type marks none required.",
+        "The user-specified format is reflected in the plan confirmation before writing."
+      ]
+    },
+    {
+      "id": 90,
+      "prompt": "Draft a project charter in docs/ - but describe the plan and get my confirmation before you write the file.",
+      "expected_output": "Before writing, the agent describes the plan - task, type, language, target file, and section structure - and asks to proceed, adjust, or cancel.",
+      "files": [],
+      "expectations": [
+        "The plan description names the type, the target file, and the chosen sections.",
+        "The confirmation offers at most four answers including a Cancel that aborts without writes.",
+        "Choosing an adjust answer lets the user change part of the plan before execution.",
+        "No file is written before the user confirms."
+      ]
+    },
+    {
+      "id": 91,
+      "prompt": "Here is my JSON intake reply for the daily plan: {\"response\": {\"section-selection\": [\"Priorities\", \"Tasks\"], \"section-format\": \"cancel\"}} - wait, actually just take the selection.",
+      "expected_output": "The selection is honored - the document carries Priorities and Tasks - and any returned cancel value aborts instead.",
+      "files": [],
+      "expectations": [
+        "A section-selection answer includes only the selected sections plus any required ones.",
+        "A returned cancel value in any parameter aborts the task with no file written.",
+        "Ambiguous or contradictory answers trigger a clarifying question, not a guess."
+      ]
     }
   ]
 }

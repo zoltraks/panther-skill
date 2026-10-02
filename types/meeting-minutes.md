@@ -49,18 +49,19 @@ For informal scratch notes use `types/quick-note.md` instead.
 
 ## Section Names
 
-- Meeting Details
-- Attendees
-- Absentees
-- Agenda
-- Discussion
-- Decisions
-- Action Items
-- Open Questions
-- Next Meeting
-- Facilitator
-- Minute Taker
-- Due Date
-- Owner
+| Section         | Requirement |
+|-----------------|-------------|
+| Meeting Details | recommended |
+| Attendees       | recommended |
+| Absentees       | optional    |
+| Agenda          | recommended |
+| Discussion      | recommended |
+| Decisions       | required    |
+| Action Items    | required    |
+| Open Questions  | optional    |
+| Next Meeting    | optional    |
+
+The meeting details block carries `Facilitator`, `Minute Taker`, `Due Date`, and `Owner` as
+metadata fields, not sections.
 
 Section names for other languages are declared in the matching `languages/<code>.md` file.

@@ -52,12 +52,14 @@ contract, naming, and freshness.
 
 ## Section Names
 
-- Document Information
-- Purpose
-- Continuation Scope
-- Extended Content
-- Continued Entries
-- Updated Conclusions
+| Section              | Requirement |
+|----------------------|-------------|
+| Document Information | required    |
+| Purpose              | required    |
+| Continuation Scope   | recommended |
+| Extended Content     | required    |
+| Continued Entries    | optional    |
+| Updated Conclusions  | recommended |
 
 Section names for other languages are declared in the matching
 `languages/<code>.md` file.

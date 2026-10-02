@@ -18,8 +18,8 @@ They do not modify documents beyond the specific task each tool performs.
 
 Copy `detect-encoding.py`, `detect-scope.py`, `split-sentences.py`, `reflow-prose.py`,
 `wrap-prose.py`, `format-table.py`, `align-comments.py`, `validate-document.py`,
-`diff-content.py`, `census-document.py`, and `lint-polish.py` into the working
-repository's `work/` directory under a `.tmp.` name before use.
+`diff-content.py`, `census-document.py`, `check-sections.py`, and `lint-polish.py` into the
+working repository's `work/` directory under a `.tmp.` name before use.
 
 When `lint-polish.py` is copied out of the skill repository it cannot auto-discover its
 rule tables - pass them explicitly with `--rules <path>` pointing at the skill's
@@ -77,6 +77,7 @@ python align-comments.tmp.py <file.md> [--check] [--compact] [--payload-markdown
 python validate-document.tmp.py <file.md> [--width N] [--payload-markdown]
 python diff-content.tmp.py <file.md> [--baseline <file>]
 python census-document.tmp.py <file.md> [--width N] [--payload-markdown]
+python check-sections.tmp.py <file.md> --type <types/name.md> [--language <languages/code.md>]
 python lint-polish.tmp.py <file.md> [--rules <rulefile.md> ...]
 python scripts/validate-skill.py .
 python scripts/check-references.py .
@@ -129,8 +130,8 @@ frontmatter untouched.
 It stays in `scripts/` for compatibility with documents that already reference it.
 
 `--payload-markdown` extends `split-sentences.py`, `reflow-prose.py`, `wrap-prose.py`,
-`format-table.py`, `align-comments.py`, and `validate-document.py` into ` ```markdown `
-fenced blocks, all other fence languages stay opaque.
+`format-table.py`, `align-comments.py`, `validate-document.py`, and `check-sections.py`
+into ` ```markdown ` fenced blocks, all other fence languages stay opaque.
 
 `align-comments.py` aligns trailing `#` comments inside untagged fenced blocks and
 shell-tagged blocks to one shared column per block - the established column when most
@@ -161,6 +162,20 @@ specifications and configs, and `.gitignore`-declared directories that are absen
 markers, fenced blocks and ` ```markdown ` payloads, special characters, paragraph shape,
 tables, task markers, and internal links - and the agent maps counts to findings per
 `process/document-audit.md`.
+
+`check-sections.py` compares a document's headings against the `## Section Names` table of a
+`types/<name>.md` rule file - the table marks each section `required`, `recommended`,
+`optional`, or `unusual`.
+
+Missing `required` sections print `MISSING required` and fail the run.
+
+Missing `recommended` sections, `unusual` sections found in the document, and headings the
+type does not list print warnings or `NOTE` lines and stay advisory.
+
+A type file without a section table reports an open set and exits `0`.
+
+`--language` points at a `languages/<code>.md` file so localized headings match the
+canonical English names - a Polish `Decyzje` heading satisfies the `Decisions` section.
 
 `lint-polish.py` lints a Polish document against the forbidden-form tables declared in
 the loaded rule files (the `Zamiast`/`Używaj` table in `languages/pl.md` and the Calque
@@ -209,10 +224,12 @@ Run checks in this order:
 5. Align comments in plain-text blocks with `align-comments.py` when the document contains
    them.
 6. Validate the written document with `validate-document.py`.
-7. Lint Polish output with `lint-polish.py`.
-8. Verify formatting-only passes with `diff-content.py`.
-9. Run `git diff --check` when inside a repository.
-10. Remove temporary `.tmp.` copies from the working repository.
+7. Check sections against the type file with `check-sections.py` when the document has a
+   known type.
+8. Lint Polish output with `lint-polish.py`.
+9. Verify formatting-only passes with `diff-content.py`.
+10. Run `git diff --check` when inside a repository.
+11. Remove temporary `.tmp.` copies from the working repository.
 
 For skill maintenance, run `validate-skill.py`, `check-references.py`, and `check-contents.py`
 first.

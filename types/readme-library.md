@@ -57,11 +57,13 @@ The canonical skeleton, adjusted to the request:
 
 ## Section Names
 
-- Install
-- Usage
-- API Reference
-- Configuration
-- Contributing
-- License
+| Section       | Requirement |
+|---------------|-------------|
+| Install       | required    |
+| Usage         | required    |
+| API Reference | recommended |
+| Configuration | optional    |
+| Contributing  | optional    |
+| License       | recommended |
 
 Section names for other languages are declared in the matching `languages/<code>.md` file.

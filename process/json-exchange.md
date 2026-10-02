@@ -76,6 +76,9 @@ them.
 Format parameters such as `encoding` and `line-endings` emit before `document-type` in the
 `intake` array, matching the question order in `process/document-workflow.md`.
 
+`document-type` emits before `section-plan`, and `section-selection` or `section-format` follow
+its answer - `plan-confirmation` always emits last.
+
 ```json
 {
     "description": "Intake parameters for <target>",
@@ -138,6 +141,11 @@ Every pending question surface emits with a stable kebab-case `id`:
 | `line-endings`           | `choice`    | LF, CRLF, or preserve the detected style                                    |
 | `delivery`               | `choice`    | Inline vs file for reports, descriptions, and translation output            |
 | `readme-variant`         | `choice`    | README variant selection per `process/document-workflow.md`                 |
+| `section-plan`           | `choice`    | Accept the recommended structure, select sections, or describe a format     |
+| `section-selection`      | `selection` | Recommended and optional sections to include, recommended pre-checked       |
+| `section-format`         | `text`      | Free-form structure description such as "plain without sections"            |
+| `section-add`            | `selection` | Missing required or recommended sections to insert on a structure edit      |
+| `plan-confirmation`      | `choice`    | Proceed, adjust, or cancel the described plan before executing              |
 | `source-language`        | `choice`    | Translate - ambiguous source language                                       |
 | `target-language`        | `choice`    | Translate - absent target language                                          |
 | `translation-industry`   | `selection` | Glossary selection when ambiguous - several glossaries may apply            |

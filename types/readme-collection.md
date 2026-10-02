@@ -58,12 +58,14 @@ The canonical skeleton, adjusted to the request:
 
 ## Section Names
 
-- Overview
-- About This Repository
-- Contents
-- Usage
-- Notices
-- License
-- Credits
+| Section               | Requirement |
+|-----------------------|-------------|
+| Overview              | recommended |
+| About This Repository | optional    |
+| Contents              | recommended |
+| Usage                 | optional    |
+| Notices               | optional    |
+| License               | optional    |
+| Credits               | optional    |
 
 Section names for other languages are declared in the matching `languages/<code>.md` file.

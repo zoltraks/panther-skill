@@ -79,6 +79,16 @@ special characters, paragraph shape, tables, task markers, and internal links.
 
 Add `--payload-markdown` when the request covers payload interiors.
 
+When the document's type is known or declared, run the section check on top:
+
+```bash
+python check-sections.tmp.py <file> --type <path-to-panther>/types/<name>.md
+```
+
+It reports missing required and recommended sections, sections unusual for the type, and
+headings the type does not know - record them as findings and feed the missing set into the
+fix plan's `section-add` surface when fixes are approved.
+
 ## Convention Evaluation
 
 Compare the mechanical results and the census against the governing rules.

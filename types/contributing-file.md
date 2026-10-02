@@ -84,14 +84,18 @@ ban is valid, as long as the document states it unambiguously.
 
 ## Section Names
 
-- Purpose
-- Ways To Contribute
-- Reporting Issues
-- Development Setup
-- Pull Requests
-- AI-Assisted Contributions
-- License
-- Code Of Conduct
-- Getting Help
+| Section                   | Requirement |
+|---------------------------|-------------|
+| Purpose                   | optional    |
+| Ways To Contribute        | required    |
+| Reporting Issues          | recommended |
+| Development Setup         | recommended |
+| Pull Requests             | recommended |
+| AI-Assisted Contributions | recommended |
+| License                   | recommended |
+| Code Of Conduct           | optional    |
+| Getting Help              | optional    |
+
+The welcome paragraph is prose, not a heading - a `Purpose` section stays optional here.
 
 Section names for other languages are declared in the matching `languages/<code>.md` file.

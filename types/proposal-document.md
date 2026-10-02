@@ -81,14 +81,18 @@ afterward, record follow-up work in a `decision-record` or an implementation doc
 
 ## Section Names
 
-- Status
-- Summary
-- Background
-- Proposal
-- Alternatives Considered
-- Risks and Mitigations
-- Open Questions
-- Decision
-- Reviewers
+| Section                 | Requirement |
+|-------------------------|-------------|
+| Status                  | optional    |
+| Summary                 | required    |
+| Background              | recommended |
+| Proposal                | required    |
+| Alternatives Considered | recommended |
+| Risks and Mitigations   | recommended |
+| Open Questions          | recommended |
+| Decision                | recommended |
+| Reviewers               | optional    |
+
+`Status` and `Reviewers` live in the metadata block below the H1, not as sections.
 
 Section names for other languages are declared in the matching `languages/<code>.md` file.

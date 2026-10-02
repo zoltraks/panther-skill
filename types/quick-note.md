@@ -46,3 +46,13 @@ Subsections may use letters (`### A. Topic`) or plain names.
 ## Section Names
 
 No fixed vocabulary - keep whatever names the author used, matching the language of the note.
+
+The section set is open - only sections that do not fit a working note are marked:
+
+| Section              | Requirement |
+|----------------------|-------------|
+| Document Information | unusual     |
+| Version History      | unusual     |
+| Contents             | unusual     |
+
+Section names for other languages are declared in the matching `languages/<code>.md` file.

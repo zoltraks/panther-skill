@@ -62,9 +62,13 @@ type, how-to guides and reference pages land in the `technical-document` type.
 
 ## Section Names
 
-- Introduction
-- Summary
-- Further Reading
-- References
+| Section              | Requirement |
+|----------------------|-------------|
+| Introduction         | recommended |
+| Summary              | optional    |
+| Further Reading      | optional    |
+| References           | optional    |
+| Document Information | unusual     |
+| Version History      | unusual     |
 
 Section names for other languages are declared in the matching `languages/<code>.md` file.

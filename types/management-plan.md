@@ -55,16 +55,18 @@ A management plan describes how a project domain is governed - that is this type
 
 ## Section Names
 
-- Methodology
-- Roles and Responsibilities
-- Thresholds and Tolerances
-- Cadence
-- Process
-- Tools
-- Reporting
-- Related Plans
-- Related Registers
-- Change Control
-- Master Plan
+| Section                    | Requirement |
+|----------------------------|-------------|
+| Methodology                | recommended |
+| Roles and Responsibilities | recommended |
+| Thresholds and Tolerances  | recommended |
+| Cadence                    | optional    |
+| Process                    | optional    |
+| Tools                      | optional    |
+| Reporting                  | optional    |
+| Related Plans              | optional    |
+| Related Registers          | optional    |
+| Change Control             | optional    |
+| Master Plan                | optional    |
 
 Section names for other languages are declared in the matching `languages/<code>.md` file.

@@ -57,14 +57,16 @@ kind and follow the dominant style of that directory.
 
 ## Section Names
 
-- Purpose
-- Overview
-- Prerequisites
-- Configuration
-- Usage
-- Examples
-- Troubleshooting
-- Limitations
-- References
+| Section         | Requirement |
+|-----------------|-------------|
+| Purpose         | required    |
+| Overview        | recommended |
+| Prerequisites   | optional    |
+| Configuration   | optional    |
+| Usage           | recommended |
+| Examples        | recommended |
+| Troubleshooting | optional    |
+| Limitations     | optional    |
+| References      | optional    |
 
 Section names for other languages are declared in the matching `languages/<code>.md` file.

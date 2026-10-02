@@ -22,7 +22,7 @@ compatibility: >-
   Claude Desktop, Windsurf, Devin, and similar). Requires the ability to read
   and write text files. No network access required.
 metadata:
-  version: "1.0.6"
+  version: "1.0.7"
   author: Filip Golewski
 allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob Grep
 ---
@@ -42,18 +42,18 @@ allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob G
 | Trigger Keywords        | 108  | Activation phrases                             |
 | How To Use              | 161  | Progressive disclosure and mandatory reading   |
 | Parameter Configuration | 232  | Defaults and user-controlled document shape    |
-| Principles              | 257  | Authoring invariants                           |
-| Process                 | 263  | Workflow, checklist, and standalone procedures |
-| Document Types          | 296  | Per-type rule files                            |
-| Languages               | 355  | Per-language style baselines                   |
-| Translations            | 368  | Language pair rules and industry glossaries    |
-| Scopes                  | 388  | Per-project-layout organization rules          |
-| Conventions             | 413  | Encoding, dialect, and format contract rules   |
-| Templates               | 427  | Per-type, per-language skeletons               |
-| Scripts                 | 439  | Detection, formatting, and validation scripts  |
-| Evaluation Prompts      | 469  | Behavioral regression prompts                  |
-| Repository Files        | 479  | Housekeeping files governing this repository   |
-| File Handling Contract  | 491  | Byte-level guarantees                          |
+| Principles              | 260  | Authoring invariants                           |
+| Process                 | 266  | Workflow, checklist, and standalone procedures |
+| Document Types          | 292  | Per-type rule files                            |
+| Languages               | 353  | Per-language style baselines                   |
+| Translations            | 366  | Language pair rules and industry glossaries    |
+| Scopes                  | 386  | Per-project-layout organization rules          |
+| Conventions             | 411  | Encoding, dialect, and format contract rules   |
+| Templates               | 425  | Per-type, per-language skeletons               |
+| Scripts                 | 437  | Detection, formatting, and validation scripts  |
+| Evaluation Prompts      | 466  | Behavioral regression prompts                  |
+| Repository Files        | 476  | Housekeeping files governing this repository   |
+| File Handling Contract  | 488  | Byte-level guarantees                          |
 
 You are a Document Authoring Agent.
 
@@ -113,7 +113,7 @@ The skill activates on any of these phrases, grouped by intent:
   changelog, contributing guide, CONTRIBUTING.md, format specification, file format spec,
   guidelines document, coding standard document, style guide document, agent instruction
   document, preparation document, dual-audience document, write an article, quick note,
-  meeting notes.
+  daily plan, write a message, announcement, meeting notes.
 - **Edit and format**: edit this document, update this document, fix this table, format
   this table, align the table, align the comments, fix tree comments, reformat this
   markdown, unwrap this document, unwrap long lines, reflow the prose.
@@ -135,7 +135,7 @@ The skill activates on any of these phrases, grouped by intent:
 - **PMBOK artifacts**: write a project charter, create a risk register, update the issue
   log, stakeholder register, assumption log, change log, lessons learned, write a status
   report, weekly status, meeting minutes, write the minutes, management plan, risk
-  management plan, work breakdown structure, create the WBS, project management plan.
+  management plan, work breakdown structure, create the WBS, change request.
 - **Layout discovery**: discover layout, detect document layout, what layout is this,
   analyze document structure, analyze this repository, analyse this codebase, audit the
   document layout, document census.
@@ -251,8 +251,11 @@ evidence plus `Cancel`, which aborts the task.
 
 Format questions are asked before the document-type question, which is always its own surface.
 
-For edits to existing documents, the agent does not ask - the document's own conventions and the
-minimal-diff rule provide the answers.
+A section-plan question then selects the required, recommended, and optional sections.
+
+Before executing, the agent describes the plan and asks to proceed, adjust, or cancel.
+
+For edits to existing documents, the document's own conventions and the minimal-diff rule answer.
 
 ## `principles/` - Authoring Invariants
 
@@ -263,25 +266,21 @@ minimal-diff rule provide the answers.
 ## `process/` - Document Workflow
 
 - **`process/document-workflow.md`** - Intake, parameter resolution, detection, rule selection,
-  drafting, validation, and delivery.
+  section plan, plan confirmation, drafting, validation, and delivery.
 - **`process/document-checklist.md`** - The mechanical pre-delivery checklist: structure,
   spacing, characters, lists, tables, language, and file properties.
 - **`process/scope-discovery.md`** - The standalone layout-discovery procedure: signal census,
-  scope comparison, exception analysis, and the report format.
-- **`process/document-audit.md`** - The standalone document-audit procedure: mechanical
-  checks, structural census, convention evaluation, content review, findings, and the
-  optional fix plan.
+  scope comparison, exception analysis, report format.
+- **`process/document-audit.md`** - The standalone document-audit procedure: mechanical checks,
+  section check, convention evaluation, content review, findings, and the optional fix plan.
 - **`process/describe-response.md`** - The standalone describe procedure: consolidation,
-  shortly caps and long-description floors, impersonal response style, and inline
-  delivery.
+  shortly caps and long-description floors, impersonal response style, inline delivery.
 - **`process/derived-documents.md`** - The standalone derive procedure: derivation
   contract, compression tiers, supplement continuation, naming, and freshness rules.
 - **`process/translate-document.md`** - The standalone translate procedure: pair
-  resolution, industry glossaries, single-pass rendering, optional adapted fidelity, and
-  output conventions.
+  resolution, industry glossaries, single-pass rendering, adapted fidelity, output conventions.
 - **`process/translation-audit.md`** - The standalone translation-audit procedure: structure
-  map, untranslated-set verification, terminology concordance, fidelity classification, and
-  the report format.
+  map, untranslated-set verification, terminology concordance, fidelity class, report format.
 - **`process/translation-revision.md`** - The standalone translation-revision procedure:
   passage alignment, issue classes, minimal-diff correction of an existing translation.
 - **`process/json-exchange.md`** - JSON parameter documents for intake question surfaces.
@@ -307,8 +306,11 @@ Load the file matching the document type, it adds deltas on top of the language 
   information, version history, field tables, value enumerations.
 - **`types/article-text.md`** - Prose documents, tutorials, course material: narrative paragraphs,
   dialect tolerance, media references.
-- **`types/quick-note.md`** - Quick notes and drafts: minimal structure, optional H1, informal
-  lists.
+- **`types/quick-note.md`** - Quick notes and drafts: minimal structure, informal lists.
+- **`types/message-document.md`** - Announcements, memos, and single-issue messages:
+  subject-first title, minimal ceremony, one clear ask.
+- **`types/daily-plan.md`** - Single-day planning documents: date-first title, priorities,
+  scheduled blocks, carry-over.
 - **`types/readme-general.md`** - Repository and package READMEs, the default variant when no
   more specific type applies: entry-point structure, layout trees.
 - **`types/readme-skill.md`** - Agent Skill repository READMEs: activation contract,
@@ -317,10 +319,8 @@ Load the file matching the document type, it adds deltas on top of the language 
   features, technical stack, changelog pointer.
 - **`types/readme-library.md`** - Package and library READMEs: install command, minimal usage
   example, API pointer.
-- **`types/readme-cli.md`** - Command-line tool READMEs: commands and options tables,
-  copy-pasteable examples.
-- **`types/readme-docs.md`** - Documentation repository READMEs: document locations, governing
-  rules pointer.
+- **`types/readme-cli.md`** - Command-line tool READMEs: commands/options tables, examples.
+- **`types/readme-docs.md`** - Documentation-repo READMEs: document locations, rules pointer.
 - **`types/readme-collection.md`** - Collection and monorepo READMEs: entry catalog, per-entry
   pointers, notices.
 - **`types/changelog-file.md`** - Version-grouped change records: newest first, user-facing
@@ -334,14 +334,15 @@ Load the file matching the document type, it adds deltas on top of the language 
   considered, open questions, decision recorded on resolution.
 - **`types/project-charter.md`** - Project charters and briefs: SMART objectives, scope
   boundaries, PM authority, sponsor approval block.
+- **`types/change-request.md`** - Formal change requests to a governed baseline: request
+  metadata, justification, impact assessment, approval block.
 - **`types/register-log.md`** - Risk, issue, stakeholder, assumption, change, backlog, and
   lessons-learned registers: ID prefixes, status lifecycles, append-only entry tables.
 - **`types/status-report.md`** - Periodic status, variance, forecasting, and quality reports:
   RAG ratings, metrics, decisions needed.
 - **`types/meeting-minutes.md`** - Meeting minutes and agendas: attendees with roles,
   decisions, action items with owners.
-- **`types/management-plan.md`** - Project management plans and subsidiary plans: methodology,
-  thresholds, cadence, roles.
+- **`types/management-plan.md`** - Management and subsidiary plans: methodology, cadence, roles.
 - **`types/work-breakdown-structure.md`** - WBS and dictionaries: decimal-coded outline, work
   packages, RACI matrix.
 - **`types/summary-document.md`** - Summaries, briefs, and abstracts derived from an
@@ -442,21 +443,20 @@ See `scripts/README.md`.
 
 - **`scripts/detect-encoding.py`** - BOM, guessed encoding, line endings, trailing whitespace.
 - **`scripts/detect-scope.py`** - Document-scope signals and per-directory document counts.
-- **`scripts/census-document.py`** - Structural census: headings, lists, fences, characters,
-  paragraphs, tables, links.
-- **`scripts/split-sentences.py`** - Split packed sentences onto logical lines, or one sentence
-  per paragraph with `--paragraphs`, re-wrap to `--width N` in default mode.
-- **`scripts/reflow-prose.py`** - Bidirectional prose reflow: `--wrap` splits over-width lines
-  at whitespace, `--unwrap` joins wrapped continuations in paragraphs, list items, and
-  blockquotes back into logical lines.
+- **`scripts/census-document.py`** - Structural census: headings, lists, fences, paragraphs, tables.
+- **`scripts/split-sentences.py`** - Split packed sentences onto logical lines, or one
+  sentence per paragraph with `--paragraphs`, re-wrap to `--width N` in default mode.
+- **`scripts/reflow-prose.py`** - Bidirectional prose reflow: `--wrap` splits over-width
+  lines at whitespace, `--unwrap` joins wrapped continuations back into logical lines.
 - **`scripts/wrap-prose.py`** - Deprecated split-only wrapper, superseded by
   `reflow-prose.py --wrap`, kept for documents that already reference it.
 - **`scripts/format-table.py`** - Rebuild tables with source-width alignment.
 - **`scripts/align-comments.py`** - Align trailing `#` comments to one column per block.
 - **`scripts/validate-document.py`** - Mechanical checker for `process/document-checklist.md`.
 - **`scripts/diff-content.py`** - Prove a formatting-only pass changed no words vs `HEAD`.
-- **`scripts/validate-skill.py`** - Panther-repo frontmatter, disclosure, and root-reference
-  validator.
+- **`scripts/check-sections.py`** - Section conformance check against a type's required,
+  recommended, optional, and unusual vocabulary, localized aliases included.
+- **`scripts/validate-skill.py`** - Panther-repo frontmatter, disclosure, root-reference checks.
 - **`scripts/check-references.py`** - Panther-repo relative-reference integrity checker.
 - **`scripts/check-contents.py`** - Panther-repo `## Contents` line-number drift checker.
 - **`scripts/check-update.py`** - Git upstream self-update checker, once per session.

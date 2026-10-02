@@ -34,13 +34,13 @@ Die unten beschriebenen Regeln gelten auch für dieses Dokument selbst.
 | Sonderzeichen                    | 247   | Rahmenzeichen und Emoji                         |
 | Deutscher Wortschatz             | 255   | Bevorzugte Begriffe und Übersetzungskalküle     |
 | Abschnittsnamen nach Dokumenttyp | 285   | Deutsche Abschnittsnamen und Elemente der Typen |
-| Dialektmerkmale                  | 542   | Kapitelnummerierung und Pseudo-Überschriften    |
-| Tabellen                         | 559   | Ausrichtung nach dem Quelltext                  |
-| Dateinamen                       | 671   | Benennung neuer Dokumentationsdateien           |
-| Beispiel                         | 681   | Richtiges und falsches Beispiel                 |
-| Dateipflege                      | 715   | Kodierung und Zeilenenden                       |
-| Aktualisierungsfrage             | 725   | Deutsche Formulierung der Aktualisierungsfrage  |
-| Aktivierungsphrasen              | 731   | Deutsche Phrasen und englische Entsprechungen   |
+| Dialektmerkmale                  | 565   | Kapitelnummerierung und Pseudo-Überschriften    |
+| Tabellen                         | 582   | Ausrichtung nach dem Quelltext                  |
+| Dateinamen                       | 694   | Benennung neuer Dokumentationsdateien           |
+| Beispiel                         | 704   | Richtiges und falsches Beispiel                 |
+| Dateipflege                      | 738   | Kodierung und Zeilenenden                       |
+| Aktualisierungsfrage             | 748   | Deutsche Formulierung der Aktualisierungsfrage  |
+| Aktivierungsphrasen              | 754   | Deutsche Phrasen und englische Entsprechungen   |
 
 ## Dokumentstruktur
 
@@ -305,6 +305,13 @@ Wähle den deutschen Abschnittsnamen passend zum Dokumenttyp aus der folgenden T
 | article-text             | Summary                            | Zusammenfassung                         |
 | article-text             | Further Reading                    | Weiterführende Literatur                |
 | article-text             | References                         | Referenzen                              |
+| change-request           | Document Information               | Dokumentinformationen                   |
+| change-request           | Summary                            | Zusammenfassung                         |
+| change-request           | Description                        | Beschreibung                            |
+| change-request           | Justification                      | Begründung                              |
+| change-request           | Impact                             | Auswirkung                              |
+| change-request           | Alternatives                       | Alternativen                            |
+| change-request           | Approval                           | Genehmigung                             |
 | changelog-file           | Changes                            | Änderungen                              |
 | changelog-file           | Version                            | Version                                 |
 | changelog-file           | Added                              | Hinzugefügt                             |
@@ -320,6 +327,14 @@ Wähle den deutschen Abschnittsnamen passend zum Dokumenttyp aus der folgenden T
 | contributing-file        | License                            | Lizenz                                  |
 | contributing-file        | Code Of Conduct                    | Verhaltenskodex                         |
 | contributing-file        | Getting Help                       | Hilfe erhalten                          |
+| daily-plan               | Priorities                         | Prioritäten                             |
+| daily-plan               | Schedule                           | Zeitplan                                |
+| daily-plan               | Tasks                              | Aufgaben                                |
+| daily-plan               | Notes                              | Notizen                                 |
+| daily-plan               | Carry Over                         | Übertragen                              |
+| daily-plan               | Document Information               | Dokumentinformationen                   |
+| daily-plan               | Version History                    | Versionsverlauf                         |
+| daily-plan               | Contents                           | Inhaltsverzeichnis                      |
 | decision-record          | Status                             | Status                                  |
 | decision-record          | Context                            | Kontext                                 |
 | decision-record          | Decision Drivers                   | Entscheidungsfaktoren                   |
@@ -355,6 +370,14 @@ Wähle den deutschen Abschnittsnamen passend zum Dokumenttyp aus der folgenden T
 | meeting-minutes          | Minute Taker                       | Protokollführer                         |
 | meeting-minutes          | Due Date                           | Fälligkeitsdatum                        |
 | meeting-minutes          | Owner                              | Verantwortlicher                        |
+| message-document         | Background                         | Hintergrund                             |
+| message-document         | Details                            | Details                                 |
+| message-document         | Action Required                    | Erforderliche Aktion                    |
+| message-document         | Next Steps                         | Nächste Schritte                        |
+| message-document         | Contact                            | Kontakt                                 |
+| message-document         | Document Information               | Dokumentinformationen                   |
+| message-document         | Version History                    | Versionsverlauf                         |
+| message-document         | Contents                           | Inhaltsverzeichnis                      |
 | project-charter          | Purpose and Justification          | Zweck und Begründung                    |
 | project-charter          | Measurable Objectives              | Messbare Ziele                          |
 | project-charter          | Success Criteria                   | Erfolgskriterien                        |
@@ -766,6 +789,10 @@ Behandle eine Anfrage, die einer Phrase aus der Tabelle entspricht, wie ihre eng
 | besprechungsprotokoll                 | meeting minutes                          |
 | managementplan                        | management plan                          |
 | projektstrukturplan                   | work breakdown structure                 |
+| tagesplan                             | daily plan                               |
+| nachricht                             | write a message                          |
+| mitteilung                            | write a message                          |
+| änderungsantrag                       | change request                           |
 | layout erkennen                       | detect document layout                   |
 | dokumentstruktur analysieren          | analyze document structure               |
 | dokument-audit                        | audit this document                      |

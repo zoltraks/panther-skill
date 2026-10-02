@@ -67,16 +67,18 @@ The canonical skeleton, adjusted to the request:
 
 ## Section Names
 
-- Contents
-- Overview
-- What The Skill Does
-- Installation
-- Agent Environments
-- Usage
-- Example Prompts
-- What's Inside
-- Verification
-- License
-- Credits
+| Section             | Requirement |
+|---------------------|-------------|
+| Contents            | optional    |
+| Overview            | recommended |
+| What The Skill Does | recommended |
+| Installation        | recommended |
+| Agent Environments  | optional    |
+| Usage               | recommended |
+| Example Prompts     | recommended |
+| What's Inside       | recommended |
+| Verification        | recommended |
+| License             | recommended |
+| Credits             | optional    |
 
 Section names for other languages are declared in the matching `languages/<code>.md` file.

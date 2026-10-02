@@ -151,11 +151,16 @@ content that demonstrates the same point without depending on anything outside t
 ## Adding A Document Type
 
 1. Create `types/<name>.md` following the existing type-file shape: Purpose blockquote, When To
-   Use with a `**Templates**` list, Structure, Deltas From The Language Baseline, Section Names
-   table.
-2. Create `templates/en/<name>-template-en.md` and `templates/pl/<name>-template-pl.md`.
-3. Register the type in `SKILL.md` under `types/` and add trigger phrases when needed.
-4. Update the `README.md` directory tree.
+   Use with a `**Templates**` list, Structure, Deltas From The Language Baseline, and a
+   `## Section Names` requirement table marking each section `required`, `recommended`,
+   `optional`, or `unusual` - `scripts/check-sections.py` reads this table.
+2. Create `templates/<lang>/<name>-template-<lang>.md` for every language directory under
+   `templates/`.
+3. Register the type in `SKILL.md` under `types/` and add trigger phrases when needed - the
+   `languages/<code>.md` activation tables carry the localized equivalents.
+4. Add the type's localized section names to each `languages/<code>.md` section-name table so
+   `check-sections.py --language` can match localized headings.
+5. Update the `README.md` directory tree.
 
 ## Adding A Scope
 

@@ -22,6 +22,8 @@ Fix every failure, or report it to the user with a reason.
 - Optional sections (Document Information, Version History) were not added without a request.
 - A Contents table exists when required by the document's own convention or the skill's style
   rules.
+- For a known document type, `scripts/check-sections.py --type <types/name.md>` reports no
+  missing required sections.
 
 ## Spacing
 

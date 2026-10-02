@@ -78,3 +78,18 @@ Write multi-byte values with explicit endianness notes in prose under the table.
 - Binary diagrams may use box-drawing or ASCII art inside code blocks.
 - Precision beats brevity: a field description may run longer than one line when the semantics
   require it, keep the prose below the table instead.
+
+## Section Names
+
+| Section              | Requirement |
+|----------------------|-------------|
+| Document Information | required    |
+| Version History      | required    |
+| Quick Overview       | recommended |
+| Design Principles    | recommended |
+| Implementation Notes | optional    |
+
+One `Structure` section per structural element - names vary with the format and are never
+flagged as unexpected.
+
+Section names for other languages are declared in the matching `languages/<code>.md` file.

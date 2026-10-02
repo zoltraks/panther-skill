@@ -66,20 +66,22 @@ The canonical skeleton, adjusted to the request:
 
 ## Section Names
 
-- Contents
-- Overview
-- Download
-- Installation
-- Project Status
-- Technical Stack
-- Features
-- Quick Start
-- Usage
-- Configuration
-- Repository Structure
-- Documentation
-- Changelog
-- License
-- Credits
+| Section              | Requirement |
+|----------------------|-------------|
+| Contents             | optional    |
+| Overview             | recommended |
+| Download             | optional    |
+| Installation         | recommended |
+| Project Status       | optional    |
+| Technical Stack      | optional    |
+| Features             | recommended |
+| Quick Start          | recommended |
+| Usage                | recommended |
+| Configuration        | optional    |
+| Repository Structure | optional    |
+| Documentation        | optional    |
+| Changelog            | optional    |
+| License              | recommended |
+| Credits              | optional    |
 
 Section names for other languages are declared in the matching `languages/<code>.md` file.

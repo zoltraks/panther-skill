@@ -50,11 +50,15 @@ The request selects the tiers - a brief carries only the Abstract section.
 
 ## Section Names
 
-- Purpose
-- Abstract
-- Summary
-- Detailed Abstract
-- Omitted Material
+| Section           | Requirement |
+|-------------------|-------------|
+| Purpose           | required    |
+| Abstract          | required    |
+| Summary           | optional    |
+| Detailed Abstract | optional    |
+| Omitted Material  | optional    |
+
+The request selects the tiers - a brief carries only the `Abstract` section.
 
 Section names for other languages are declared in the matching
 `languages/<code>.md` file.

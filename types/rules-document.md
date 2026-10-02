@@ -95,15 +95,17 @@ Show the smallest example that demonstrates the rule.
 
 ## Section Names
 
-- Purpose
-- Sources Of Truth
-- Scope
-- General Rules
-- Exceptions
-- Correct
-- Incorrect
-- Example Content
-- File Maintenance
-- Verification
+| Section          | Requirement |
+|------------------|-------------|
+| Purpose          | required    |
+| Sources Of Truth | recommended |
+| Scope            | recommended |
+| General Rules    | recommended |
+| Exceptions       | optional    |
+| Correct          | optional    |
+| Incorrect        | optional    |
+| Example Content  | optional    |
+| File Maintenance | optional    |
+| Verification     | optional    |
 
 Section names for other languages are declared in the matching `languages/<code>.md` file.

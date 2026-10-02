@@ -34,14 +34,14 @@ Zasady opisane poniżej stosują się również do samego tego dokumentu.
 | Znaki specjalne                    | 288    | Znaki ramek, emoji i znaki specjalne          |
 | Słownictwo polskie                 | 306    | Preferowane terminy i kalki                   |
 | Nazwy sekcji według typu dokumentu | 442    | Polskie nazwy sekcji i elementy typów         |
-| Cechy dialektów                    | 699    | Numeracja rozdziałów i pseudo-nagłówki        |
-| Tabele                             | 716    | Wyrównanie według źródła                      |
-| Nazwy plików                       | 830    | Nazywanie nowych plików dokumentacji          |
-| Przykład                           | 840    | Przykład poprawny i niepoprawny               |
-| Kontrola przed dostarczeniem       | 874    | Kontrole językowe przed dostarczeniem         |
-| Utrzymanie plików                  | 884    | Kodowanie i złamania wierszy                  |
-| Pytanie o aktualizację             | 894    | Polskie brzmienie pytania o aktualizację      |
-| Frazy aktywujące                   | 900    | Polskie frazy i ich angielskie odpowiedniki   |
+| Cechy dialektów                    | 722    | Numeracja rozdziałów i pseudo-nagłówki        |
+| Tabele                             | 739    | Wyrównanie według źródła                      |
+| Nazwy plików                       | 853    | Nazywanie nowych plików dokumentacji          |
+| Przykład                           | 863    | Przykład poprawny i niepoprawny               |
+| Kontrola przed dostarczeniem       | 897    | Kontrole językowe przed dostarczeniem         |
+| Utrzymanie plików                  | 907    | Kodowanie i złamania wierszy                  |
+| Pytanie o aktualizację             | 917    | Polskie brzmienie pytania o aktualizację      |
+| Frazy aktywujące                   | 923    | Polskie frazy i ich angielskie odpowiedniki   |
 
 ## Struktura dokumentu
 
@@ -462,6 +462,13 @@ Dobieraj polską nazwę sekcji według typu dokumentu z poniższej tabeli.
 | article-text             | Summary                            | Podsumowanie                           |
 | article-text             | Further Reading                    | Dalsza lektura                         |
 | article-text             | References                         | Referencje                             |
+| change-request           | Document Information               | Informacje o dokumencie                |
+| change-request           | Summary                            | Podsumowanie                           |
+| change-request           | Description                        | Opis                                   |
+| change-request           | Justification                      | Uzasadnienie                           |
+| change-request           | Impact                             | Wpływ                                  |
+| change-request           | Alternatives                       | Alternatywy                            |
+| change-request           | Approval                           | Zatwierdzenie                          |
 | changelog-file           | Changes                            | Zmiany                                 |
 | changelog-file           | Version                            | Wersja                                 |
 | changelog-file           | Added                              | Dodane                                 |
@@ -477,6 +484,14 @@ Dobieraj polską nazwę sekcji według typu dokumentu z poniższej tabeli.
 | contributing-file        | License                            | Licencja                               |
 | contributing-file        | Code Of Conduct                    | Kodeks postępowania                    |
 | contributing-file        | Getting Help                       | Uzyskiwanie pomocy                     |
+| daily-plan               | Priorities                         | Priorytety                             |
+| daily-plan               | Schedule                           | Harmonogram                            |
+| daily-plan               | Tasks                              | Zadania                                |
+| daily-plan               | Notes                              | Notatki                                |
+| daily-plan               | Carry Over                         | Przeniesione                           |
+| daily-plan               | Document Information               | Informacje o dokumencie                |
+| daily-plan               | Version History                    | Historia wersji                        |
+| daily-plan               | Contents                           | Spis treści                            |
 | decision-record          | Status                             | Stan                                   |
 | decision-record          | Context                            | Kontekst                               |
 | decision-record          | Decision Drivers                   | Czynniki decyzyjne                     |
@@ -512,6 +527,14 @@ Dobieraj polską nazwę sekcji według typu dokumentu z poniższej tabeli.
 | meeting-minutes          | Minute Taker                       | Protokolant                            |
 | meeting-minutes          | Due Date                           | Termin                                 |
 | meeting-minutes          | Owner                              | Właściciel                             |
+| message-document         | Background                         | Tło                                    |
+| message-document         | Details                            | Szczegóły                              |
+| message-document         | Action Required                    | Wymagane działanie                     |
+| message-document         | Next Steps                         | Następne kroki                         |
+| message-document         | Contact                            | Kontakt                                |
+| message-document         | Document Information               | Informacje o dokumencie                |
+| message-document         | Version History                    | Historia wersji                        |
+| message-document         | Contents                           | Spis treści                            |
 | project-charter          | Purpose and Justification          | Uzasadnienie                           |
 | project-charter          | Measurable Objectives              | Mierzalne cele                         |
 | project-charter          | Success Criteria                   | Kryteria sukcesu                       |
@@ -934,6 +957,10 @@ Traktuj żądanie pasujące do frazy z tabeli jako jej angielski odpowiednik.
 | protokół zebrania                  | meeting minutes                          |
 | plan zarządzania                   | management plan                          |
 | struktura podziału pracy           | work breakdown structure                 |
+| plan dnia                          | daily plan                               |
+| wiadomość                          | write a message                          |
+| komunikat                          | write a message                          |
+| żądanie zmiany                     | change request                           |
 | wykryj układ                       | detect document layout                   |
 | rozpoznaj strukturę dokumentów     | analyze document structure               |
 | audyt dokumentu                    | audit this document                      |

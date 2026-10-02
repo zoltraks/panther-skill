@@ -21,10 +21,12 @@ a reformatting, or a translation.
 | Detection                  | 148  | Encoding, dialect, and convention detection        |
 | Scope Detection            | 192  | Project-layout signals and scope selection         |
 | Rule Selection             | 231  | Layered rule-file loading order                    |
-| Drafting And Editing       | 264  | Templates, minimal diff, and reformatting tools    |
-| Editing Governed Documents | 294  | Governed-set inventory and rename discipline       |
-| Validation                 | 319  | Mechanical checks before delivery                  |
-| Delivery                   | 339  | Confirmation gates and reporting                   |
+| Section Plan               | 264  | Type-driven structure, selection, and format       |
+| Plan Confirmation          | 290  | The pre-execution proceed/adjust/cancel gate       |
+| Drafting And Editing       | 308  | Templates, minimal diff, and reformatting tools    |
+| Editing Governed Documents | 338  | Governed-set inventory and rename discipline       |
+| Validation                 | 363  | Mechanical checks before delivery                  |
+| Delivery                   | 385  | Confirmation gates and reporting                   |
 
 ## Intake
 
@@ -143,7 +145,7 @@ answers and `Cancel`, not three artificial guesses.
 
 These rules apply to every surface the procedures raise: parameter questions on create, the
 encoding-ambiguity ask on edit, overwrite and fix-plan confirmations, translate and derive
-gates, and mode selection.
+gates, the plan-confirmation gate, and mode selection.
 
 ## Detection
 
@@ -261,6 +263,50 @@ For a simple document, the language file alone may suffice.
 Language files are self-contained baselines and stay the single source of truth for their
 language.
 
+## Section Plan
+
+When the document type resolves, the proposed structure derives from the type file's
+`## Section Names` table - `required` sections are always planned, `recommended` sections are
+pre-checked, `optional` sections are opt-in, and `unusual` sections are never offered.
+
+The `section-plan` choice asks how to structure the document: `Accept the recommended
+structure` (recommended), `Select sections individually`, or `Describe the format in text`.
+
+Selecting sections individually raises `section-selection`, a selection surface listing the
+recommended and optional sections with the recommended ones pre-checked.
+
+A free-text format answer replaces the table - "plain without sections" produces a document
+with no fixed sections when the type permits it.
+
+When a selection surface would exceed the four-answer limit, the question degrades to the
+`section-format` text surface or to grouped choices such as `All recommended` or `Required
+only` - the JSON emission keeps the full menu.
+
+On an Edit task the request may cover structure - "add the missing sections", "fix the
+structure" - then run `scripts/check-sections.py` against the resolved type and raise
+`section-add`, a selection of the missing `required` and `recommended` sections to insert.
+
+Inserted sections land at their canonical positions per the type's `## Structure` order and
+carry `NOT SPECIFIED` markers - no content is invented.
+
+## Plan Confirmation
+
+Before executing the operation, describe the plan and confirm it.
+
+The plan states the task, the target, the rule files loaded, the detected conventions, the
+sections to create or insert, and every file the operation writes.
+
+The `plan-confirmation` choice offers `Proceed` (recommended), `Adjust`, and `Cancel`.
+
+`Adjust` returns to the relevant question or accepts a free-text change to the plan.
+
+`Cancel` aborts the operation per `## Question Surfaces`.
+
+The gate runs on every document task - create, edit, reformat, translate, derive, and section
+adjustments.
+
+Maintenance-mode work is exempt - `docs/MAINTENANCE.md` already fixes those answers.
+
 ## Drafting And Editing
 
 For a new typed document, start from the matching `templates/<lang>/<type>-template-<lang>.md`
@@ -327,6 +373,8 @@ Before delivering, run the checks from `process/document-checklist.md`:
   comments.
 - `scripts/reflow-prose.py --wrap --check --width N` when the document follows a width
   convention, `scripts/reflow-prose.py --unwrap --check` when it keeps logical lines.
+- `scripts/check-sections.py` on the file when the document type is known - no missing required
+  sections, warnings reported in delivery.
 - `scripts/validate-document.py` on the file, with `--payload-markdown` when the document embeds
   ` ```markdown ` payload blocks.
 - `scripts/diff-content.py` after any formatting-only pass - the token stream must be identical

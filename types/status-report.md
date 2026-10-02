@@ -51,19 +51,23 @@ reports on a weekly, biweekly, or monthly cadence.
 
 ## Section Names
 
-- Reporting Period
-- Overall Status
-- Status by Area
-- Schedule
-- Budget
-- Scope
-- Risk
-- Summary
-- Accomplishments
-- Milestones
-- Metrics
-- Top Risks and Issues
-- Planned Next Period
-- Decisions Needed
+| Section              | Requirement | Notes          |
+|----------------------|-------------|----------------|
+| Reporting Period     | optional    | metadata block |
+| Overall Status       | required    |                |
+| Status by Area       | recommended |                |
+| Schedule             | optional    | area table row |
+| Budget               | optional    | area table row |
+| Scope                | optional    | area table row |
+| Risk                 | optional    | area table row |
+| Summary              | recommended |                |
+| Accomplishments      | recommended |                |
+| Milestones           | recommended |                |
+| Metrics              | optional    |                |
+| Top Risks and Issues | recommended |                |
+| Planned Next Period  | recommended |                |
+| Decisions Needed     | recommended |                |
+
+The structure stays fixed across periods - a report keeps these names and their order.
 
 Section names for other languages are declared in the matching `languages/<code>.md` file.

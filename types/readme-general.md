@@ -69,13 +69,15 @@ The canonical skeleton, adjusted to the request:
 
 ## Section Names
 
-- Contents
-- Overview
-- Installation
-- Usage
-- Project Layout
-- Documentation
-- License
-- Credits
+| Section        | Requirement |
+|----------------|-------------|
+| Contents       | optional    |
+| Overview       | recommended |
+| Installation   | recommended |
+| Usage          | recommended |
+| Project Layout | optional    |
+| Documentation  | optional    |
+| License        | recommended |
+| Credits        | optional    |
 
 Section names for other languages are declared in the matching `languages/<code>.md` file.

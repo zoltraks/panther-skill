@@ -54,10 +54,12 @@ The canonical skeleton, adjusted to the request:
 
 ## Section Names
 
-- Overview
-- Documentation
-- Project Guidelines
-- Repository Layout
-- License
+| Section            | Requirement |
+|--------------------|-------------|
+| Overview           | recommended |
+| Documentation      | required    |
+| Project Guidelines | recommended |
+| Repository Layout  | optional    |
+| License            | optional    |
 
 Section names for other languages are declared in the matching `languages/<code>.md` file.

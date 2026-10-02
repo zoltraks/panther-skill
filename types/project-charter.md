@@ -62,21 +62,23 @@ empowers the project manager.
 
 ## Section Names
 
-- Purpose and Justification
-- Measurable Objectives
-- Success Criteria
-- High-Level Requirements
-- Scope Boundaries
-- In Scope
-- Out of Scope
-- Deliverables
-- Milestones
-- High-Level Budget
-- Key Stakeholders
-- Project Manager Role and Authority
-- Assumptions and Constraints
-- High-Level Risks
-- Exit Criteria
-- Approval
+| Section                            | Requirement | Notes                   |
+|------------------------------------|-------------|-------------------------|
+| Purpose and Justification          | required    |                         |
+| Measurable Objectives              | recommended | SMART table             |
+| Success Criteria                   | optional    | part of objectives      |
+| High-Level Requirements            | recommended |                         |
+| Scope Boundaries                   | recommended |                         |
+| In Scope                           | optional    | inside Scope Boundaries |
+| Out of Scope                       | optional    | inside Scope Boundaries |
+| Deliverables                       | recommended |                         |
+| Milestones                         | recommended |                         |
+| High-Level Budget                  | optional    |                         |
+| Key Stakeholders                   | recommended |                         |
+| Project Manager Role and Authority | recommended |                         |
+| Assumptions and Constraints        | recommended |                         |
+| High-Level Risks                   | recommended |                         |
+| Exit Criteria                      | optional    |                         |
+| Approval                           | required    | sponsor sign-off block  |
 
 Section names for other languages are declared in the matching `languages/<code>.md` file.

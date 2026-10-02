@@ -77,27 +77,33 @@ The document's own conventions always win on edit.
 
 ## Section Names
 
-- Purpose
-- Scoring Definitions
-- Probability
-- Impact
-- Score
-- Response Strategy
-- Owner
-- Status
-- Review Date
-- Raised Date
-- Due Date
-- Resolution
-- Priority
-- Description
-- Category
-- Assumption
-- Constraint
-- Validated By
-- Submitted By
-- Decision
-- Authority
-- Recommendation
+| Section             | Requirement | Notes            |
+|---------------------|-------------|------------------|
+| Purpose             | recommended |                  |
+| Scoring Definitions | recommended | scored registers |
+| Notes               | optional    |                  |
+| Probability         | optional    | register column  |
+| Impact              | optional    | register column  |
+| Score               | optional    | register column  |
+| Response Strategy   | optional    | register column  |
+| Owner               | optional    | register column  |
+| Status              | optional    | register column  |
+| Review Date         | optional    | register column  |
+| Raised Date         | optional    | register column  |
+| Due Date            | optional    | register column  |
+| Resolution          | optional    | register column  |
+| Priority            | optional    | register column  |
+| Description         | optional    | register column  |
+| Category            | optional    | register column  |
+| Assumption          | optional    | register column  |
+| Constraint          | optional    | register column  |
+| Validated By        | optional    | register column  |
+| Submitted By        | optional    | register column  |
+| Decision            | optional    | register column  |
+| Authority           | optional    | register column  |
+| Recommendation      | optional    | register column  |
+
+The register table sits under a kind-named section - `Risks`, `Issues`, `Changes` - which is
+always correct for the kind and never flagged.
 
 Section names for other languages are declared in the matching `languages/<code>.md` file.

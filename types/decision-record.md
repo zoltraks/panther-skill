@@ -88,16 +88,20 @@ adjust the naming - the scope wins for placement.
 
 ## Section Names
 
-- Status
-- Context
-- Decision Drivers
-- Considered Options
-- Decision Outcome
-- Consequences
-- Positive Consequences
-- Negative Consequences
-- Pros and Cons of Options
-- Links
-- Supersedes
+| Section                  | Requirement |
+|--------------------------|-------------|
+| Status                   | optional    |
+| Context                  | recommended |
+| Decision Drivers         | recommended |
+| Considered Options       | recommended |
+| Decision Outcome         | required    |
+| Consequences             | recommended |
+| Positive Consequences    | optional    |
+| Negative Consequences    | optional    |
+| Pros and Cons of Options | optional    |
+| Links                    | optional    |
+| Supersedes               | unusual     |
+
+`Status` and `Supersedes` live in the metadata block below the H1, not as sections.
 
 Section names for other languages are declared in the matching `languages/<code>.md` file.
