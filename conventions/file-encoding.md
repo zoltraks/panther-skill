@@ -48,8 +48,12 @@ Detection order:
    code page. For Polish content, try CP1250 first, and for German and other Western
    European content, try CP1252 first.
 
-When detection is ambiguous, report the ambiguity and ask the user rather than guessing - under
-JSON exchange the question emits as the `encoding` `choice` parameter per
+When detection is ambiguous, report the ambiguity and ask the user rather than guessing - the
+question lists up to three candidates guessed from the file's detection report and the dominant
+encoding of its directory, plus `Cancel`, per the question-surface rules in
+`process/document-workflow.md`.
+
+Under JSON exchange the question emits as the `encoding` `choice` parameter per
 `process/json-exchange.md`.
 
 ## Conversion

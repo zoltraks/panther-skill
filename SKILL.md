@@ -22,7 +22,7 @@ compatibility: >-
   Claude Desktop, Windsurf, Devin, and similar). Requires the ability to read
   and write text files. No network access required.
 metadata:
-  version: "1.0.5"
+  version: "1.0.6"
   author: Filip Golewski
 allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob Grep
 ---
@@ -41,7 +41,7 @@ allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob G
 | Skill Update Check      | 85   | Once-per-session git freshness gate before use |
 | Trigger Keywords        | 108  | Activation phrases                             |
 | How To Use              | 161  | Progressive disclosure and mandatory reading   |
-| Parameter Configuration | 238  | Defaults and user-controlled document shape    |
+| Parameter Configuration | 232  | Defaults and user-controlled document shape    |
 | Principles              | 257  | Authoring invariants                           |
 | Process                 | 263  | Workflow, checklist, and standalone procedures |
 | Document Types          | 296  | Per-type rule files                            |
@@ -85,8 +85,7 @@ The update check below runs in every mode.
 ## Skill Update Check
 
 Before any other step, once per session, run `python <skill-root>/scripts/check-update.py`,
-where `<skill-root>` is the directory containing this `SKILL.md` - the skill's own repository,
-never the edited subject.
+where `<skill-root>` is the directory holding this `SKILL.md` - never the edited subject.
 
 Use `python3` when `python` is not on PATH.
 
@@ -172,15 +171,12 @@ Use progressive disclosure:
 - Load the matching `types/` file when the document is a known type.
 - Load the matching `scopes/` file when the task runs inside an organized document project, or
   when the request names a scope.
-- Follow `process/scope-discovery.md` when the request asks to discover or detect a document
-  layout.
+- Follow `process/scope-discovery.md` when the request asks to discover or detect layout.
 - Follow `process/document-audit.md` when the request asks to audit a document.
-- Follow `process/describe-response.md` when the request asks to describe or summarize a
-  subject inline.
+- Follow `process/describe-response.md` when the request asks to describe or summarize inline.
 - Follow `process/derived-documents.md` when the request asks to produce a summary,
   brief, or supplement document derived from an existing document.
-- Follow `process/translate-document.md` when the request asks to translate a document
-  into another language.
+- Follow `process/translate-document.md` when the request asks to translate a document.
 - Follow `process/translation-audit.md` when the request asks to audit, verify, or compare
   a translated document against its source. Follow `process/translation-revision.md` to
   correct an existing translation or apply review findings to it.
@@ -235,9 +231,8 @@ Always load these two files before starting document work:
 
 ## Parameter Configuration
 
-When creating a new standalone document, the agent runs the Parameter Resolution step defined in
-`process/document-workflow.md` - it asks whether to accept the defaults or configure the core
-parameters.
+When creating a new standalone document, the agent runs the Parameter Resolution step in
+`process/document-workflow.md` - it asks whether to accept or configure the core parameters.
 
 Defaults are:
 
@@ -250,6 +245,11 @@ Defaults are:
 | Encoding          | UTF-8 without BOM                                                   |
 | Line endings      | LF, or the dominant style of the target directory                   |
 | Delivery          | File in the location named by the request                           |
+
+Every question offers at most four answers - up to three candidates guessed from detection
+evidence plus `Cancel`, which aborts the task.
+
+Format questions are asked before the document-type question, which is always its own surface.
 
 For edits to existing documents, the agent does not ask - the document's own conventions and the
 minimal-diff rule provide the answers.

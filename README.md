@@ -14,17 +14,17 @@
 |---------------------|------|--------------------------------------------|
 | Overview            | 29   | What Panther is and what it produces       |
 | What The Skill Does | 54   | Authoring purpose and workflow             |
-| Installation        | 173  | How to add Panther to an agent environment |
-| Usage               | 243  | How agents activate and run the skill      |
-| Example Prompts     | 257  | Phrases the skill activates on             |
-| Workflow Diagrams   | 303  | ASCII and Mermaid diagrams of the pipeline |
-| Core Principles     | 429  | Convention preservation and minimal diffs  |
-| When To Use         | 440  | Supported requests and exclusions          |
-| What's Inside       | 479  | Rule files, templates, tools, and evals    |
-| Specification       | 628  | Agent Skills specification conformance     |
-| Verification        | 644  | Skill-maintenance checks                   |
-| License             | 663  | License for the skill itself               |
-| Credits             | 669  | Methodology and example sources            |
+| Installation        | 177  | How to add Panther to an agent environment |
+| Usage               | 247  | How agents activate and run the skill      |
+| Example Prompts     | 261  | Phrases the skill activates on             |
+| Workflow Diagrams   | 307  | ASCII and Mermaid diagrams of the pipeline |
+| Core Principles     | 433  | Convention preservation and minimal diffs  |
+| When To Use         | 444  | Supported requests and exclusions          |
+| What's Inside       | 483  | Rule files, templates, tools, and evals    |
+| Specification       | 632  | Agent Skills specification conformance     |
+| Verification        | 648  | Skill-maintenance checks                   |
+| License             | 667  | License for the skill itself               |
+| Credits             | 673  | Methodology and example sources            |
 
 ## Overview
 
@@ -63,6 +63,10 @@ to pull incoming commits before starting, when the skill lives in a git clone.
 **Resolves parameters**
 
 For a new document it confirms the type, language, filename, and encoding, with sensible defaults.
+
+Every question offers at most four answers - up to three options guessed from the detected
+evidence plus `Cancel`, which aborts the task - and format questions are asked before the
+document-type question, which is always its own surface.
 
 A request for parameters in JSON emits a machine-readable intake document per
 `process/json-exchange.md`, and JSON answers are accepted in reply.

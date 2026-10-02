@@ -11,6 +11,21 @@ This file defines the required workflow.
 Follow it for every document task, whether the result is a new file, an edit to an existing file,
 a reformatting, or a translation.
 
+## Contents
+
+| Section                    | Line | What it covers                                     |
+|----------------------------|------|----------------------------------------------------|
+| Intake                     | 29   | Task classification and mode routing               |
+| Parameter Resolution       | 65   | Defaults, acceptance gate, and parameter questions |
+| Question Surfaces          | 117  | Answer caps, guessed options, Cancel, ordering     |
+| Detection                  | 148  | Encoding, dialect, and convention detection        |
+| Scope Detection            | 192  | Project-layout signals and scope selection         |
+| Rule Selection             | 231  | Layered rule-file loading order                    |
+| Drafting And Editing       | 264  | Templates, minimal diff, and reformatting tools    |
+| Editing Governed Documents | 294  | Governed-set inventory and rename discipline       |
+| Validation                 | 319  | Mechanical checks before delivery                  |
+| Delivery                   | 339  | Confirmation gates and reporting                   |
+
 ## Intake
 
 A request whose target is the Panther repository itself is a maintenance task - follow
@@ -51,7 +66,8 @@ Read the whole target document when editing, conventions are detected from the d
 
 When creating a new standalone document, confirm the parameters before writing.
 
-Ask the user whether to accept the defaults or configure the core parameters.
+Ask the user whether to accept the defaults or configure the core parameters - the gate carries
+`Cancel` like every other surface.
 
 When the request asks for parameters in JSON or another machine-readable format, or names a
 diagnostic or verbose mode, apply `process/json-exchange.md` to every pending question surface.
@@ -71,7 +87,8 @@ exchange.
 
 If the user accepts the defaults or says "bypass", proceed immediately.
 
-If the user chooses to configure, ask only the unresolved parameter questions.
+If the user chooses to configure, ask only the unresolved parameter questions, each per
+`## Question Surfaces` below.
 
 Under JSON exchange each unresolved parameter emits with its catalog `id`: `document-type`,
 `document-language`, `document-scope`, `filename`, `encoding`, `line-endings`, or `delivery`.
@@ -88,11 +105,45 @@ For edits to existing documents, do not ask.
 
 The existing document's conventions and the minimal-diff rule provide the answers.
 
+Questions that still arise during an edit - encoding ambiguity, overwrite confirmation - follow
+`## Question Surfaces`.
+
 Type-conventional names such as `README.md`, `CHANGELOG.md`, `SPECIFICATION.md`,
 `CHARTER.md`, or `WBS.md` are allowed even though the default naming rule is
 lowercase with underscores.
 
 Conventional names in other languages are declared in the matching `languages/` file.
+
+## Question Surfaces
+
+Every question the workflow asks - parameter resolution, confirmations, and procedure gates -
+presents at most four answers.
+
+A choice question lists up to three candidate options guessed from the file's location,
+followed by `Cancel` as the last answer.
+
+Rank the guesses by location evidence: the target file's detected value first, then the dominant
+convention of the target directory, then the scope or language-file default, then the skill
+default.
+
+Mark the strongest candidate `(recommended)`.
+
+Free-text answers stay available through the host's own input path - they do not consume an
+option slot.
+
+`Cancel` stops the questioning and aborts the operation - write nothing, report the abort
+briefly, and wait for a new request.
+
+Ask format questions - encoding and line endings - before the document-type question.
+
+The document type is always its own surface, never bundled with a format question.
+
+A confirmation surface offers its genuine choices plus `Cancel` - a yes or no gate lists its two
+answers and `Cancel`, not three artificial guesses.
+
+These rules apply to every surface the procedures raise: parameter questions on create, the
+encoding-ambiguity ask on edit, overwrite and fix-plan confirmations, translate and derive
+gates, and mode selection.
 
 ## Detection
 

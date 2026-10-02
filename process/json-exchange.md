@@ -61,12 +61,20 @@ Each parameter object keeps a fixed key order: `id`, `question`, `answer`, `desc
   options may be chosen, or `text` for free input.
 - `menu` - required for `choice` and `selection` types and omitted for `text`, letter-keyed (`A`,
   `B`, `C`, ...), and the recommended option label carries "(recommended)".
+  A menu lists at most three candidate options plus a trailing `Cancel - abort the operation`
+  entry, so it never exceeds four letters, and `Cancel` is never the `default`.
 - `default` - the option letter or suggested text applied when the answer stays empty, and the
   array of pre-checked letters for `selection`.
 
 The bypass options of a parameter gate, such as accepting every remaining default, do not become
 `menu` entries - the `default` key and the returned document's "use defaults" semantics cover
 them.
+
+`Cancel` is a real menu entry, not a bypass - it emits at the last letter of every `choice` and
+`selection` menu.
+
+Format parameters such as `encoding` and `line-endings` emit before `document-type` in the
+`intake` array, matching the question order in `process/document-workflow.md`.
 
 ```json
 {
@@ -84,7 +92,8 @@ them.
             "type": "choice",
             "menu": {
                 "A": "Accept defaults (recommended)",
-                "B": "Configure the core parameters"
+                "B": "Configure the core parameters",
+                "C": "Cancel - abort the operation"
             },
             "default": "A"
         },
@@ -97,7 +106,8 @@ them.
             "menu": {
                 "A": "readme-general (recommended)",
                 "B": "readme-application",
-                "C": "readme-cli"
+                "C": "readme-cli",
+                "D": "Cancel - abort the operation"
             },
             "default": "A"
         },
@@ -164,6 +174,9 @@ parameter's `default`.
 Entries or keys with an unknown `id` are ignored.
 
 Answering "use defaults" or "bypass" applies every `default` value.
+
+A returned `answer` of `cancel` - the `Cancel` letter on a `choice` or `selection` parameter, or
+the literal string on any parameter - stops the questioning and aborts the operation.
 
 A returned document is accepted whenever it appears - on any question surface, on its own or
 embedded inside a natural-language reply.

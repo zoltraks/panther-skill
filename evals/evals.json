@@ -897,7 +897,9 @@
         "The document carries description, target, task, date, and time context fields plus an intake array, with task set to create.",
         "Each parameter object keeps the fixed key order id, question, answer, description, type, menu, default, with default last.",
         "Pending surfaces emit with catalog ids such as parameters-acceptance, document-type, document-language, filename, encoding, line-endings, and delivery, with correct choice/selection/text types.",
-        "The bypass options, such as accepting every remaining default, do not appear as menu entries; defaults are carried by the default key."
+        "The bypass options, such as accepting every remaining default, do not appear as menu entries; defaults are carried by the default key.",
+    "Every choice and selection menu ends with a Cancel - abort the operation entry and never exceeds four letters.",
+    "Format parameters such as encoding and line-endings emit before document-type in the intake array."
       ]
     },
     {
@@ -1013,6 +1015,41 @@
         "The answer lists document derivation - summaries, briefs or abstracts, and supplements - as an available operation.",
         "The other families still appear: create, edit, reformat, translate, audit, describe, layout discovery, skill maintenance.",
         "Inline describe responses and file-producing derivation are distinguished, not conflated."
+      ]
+    },
+    {
+      "id": 84,
+      "prompt": "Edit this document - encoding detection came back ambiguous between UTF-8 and a legacy code page, so confirm the assumed format before touching it.",
+      "expected_output": "A format question offering candidate encodings guessed from the file and its directory plus Cancel, aborting the edit on Cancel.",
+      "files": [],
+      "expectations": [
+        "The encoding question lists at most three candidate options ranked by location evidence, with the strongest marked recommended.",
+        "Cancel is offered as the last answer of the question.",
+        "Answering Cancel stops the questioning and aborts the edit without writing anything.",
+        "The question offers at most four answers in total."
+      ]
+    },
+    {
+      "id": 85,
+      "prompt": "Create a new document in this directory - the request leaves both the assumed encoding and the document type unresolved.",
+      "expected_output": "Sequenced questions: the encoding question first, the document-type question in a separate later surface, each capped at four answers with Cancel.",
+      "files": [],
+      "expectations": [
+        "The encoding question is asked before the document-type question.",
+        "The document-type question is its own surface, not bundled with the format question.",
+        "Every question offers at most four answers including a Cancel answer.",
+        "Answering Cancel on either surface aborts the whole task without writing a file."
+      ]
+    },
+    {
+      "id": 86,
+      "prompt": "Here are my intake answers in JSON: {\"response\": {\"encoding\": \"cancel\"}}",
+      "expected_output": "The reserved cancel value aborts the operation regardless of which parameter carries it.",
+      "files": [],
+      "expectations": [
+        "The returned cancel answer aborts the task even when attached to a regular parameter id.",
+        "No file is written and the abort is reported briefly.",
+        "A returned Cancel menu letter on a choice parameter aborts the same way."
       ]
     }
   ]
