@@ -20,6 +20,11 @@ by one empty line. Sentences are emitted verbatim as single logical lines and
 are never re-wrapped; apply `wrap-prose.py` separately when the document's
 dialect sets a width limit.
 
+In `--flow` mode the block's sentences pack onto shared logical lines instead:
+every sentence joins the current line when it still fits --width (default 80)
+and starts a new line otherwise - sentences are never split. This produces the
+`flowing` prose convention, the inverse of the default split.
+
 Only plain paragraph blocks are processed. List items and their continuation
 lines, headings, tables, blockquotes, fenced blocks, indented code, HTML
 comments, and frontmatter stay opaque - packed sentences inside list items are
@@ -30,14 +35,17 @@ Copy this file into the working repository's `work/` directory (or the
 repository root when no `work/` exists) as `split-sentences.tmp.py`, run it on
 the document file, then remove the copy.
 
-Usage: python split-sentences.py <file.md> [--check] [--paragraphs] [--width N]
-                                   [--payload-markdown]
+Usage: python split-sentences.py <file.md> [--check] [--paragraphs | --flow]
+                                   [--width N] [--payload-markdown]
 
-  --check              report lines or blocks needing a split, without
+  --check              report lines or blocks needing a change, without
                        writing, exit 1 when any exist
   --paragraphs         emit one sentence per paragraph, sentences separated
                        by one empty line; combines with --check
+  --flow               pack each block's sentences onto shared logical lines
+                       up to --width without splitting them
   --width N            re-wrap split sentences to this limit, default 100,
+                       or the packing limit in --flow mode, default 80;
                        ignored in --paragraphs mode
   --payload-markdown   also process prose inside ```markdown fenced blocks
                        (embedded payload documents); other fence languages
@@ -208,7 +216,23 @@ def block_sentences(block, lines):
     return units
 
 
-def main(path, width, payload_markdown, check_only, paragraphs):
+def flow_pack(units, width):
+    """Pack sentence units onto shared lines without splitting a unit."""
+    out, cur = [], ""
+    for unit in units:
+        if not cur:
+            cur = unit
+        elif len(cur) + 1 + len(unit) <= width:
+            cur += " " + unit
+        else:
+            out.append(cur)
+            cur = unit
+    if cur:
+        out.append(cur)
+    return out
+
+
+def main(path, width, payload_markdown, check_only, paragraphs, flow):
     raw = open(path, "rb").read()
     crlf = b"\r\n" in raw
     try:
@@ -288,6 +312,18 @@ def main(path, width, payload_markdown, check_only, paragraphs):
         blocks.append(cur_block)
 
     if check_only:
+        if flow:
+            found = [b[0] for b in blocks
+                     if flow_pack(block_sentences(b, lines), width)
+                     != [lines[n - 1] for n in b]]
+            for n in found:
+                print(f"line {n}: block does not follow the packed "
+                      f"sentence layout: {lines[n - 1].strip()[:60]}...")
+            if found:
+                print(f"{len(found)} block(s) would repack to {width}")
+                return 1
+            print(f"PASS {path}: every block follows the packed layout")
+            return 0
         if paragraphs:
             found = [b[0] for b in blocks if len(block_sentences(b, lines)) > 1]
             for n in found:
@@ -317,6 +353,13 @@ def main(path, width, payload_markdown, check_only, paragraphs):
     repl = {}
     split_count = 0
     for b in blocks:
+        if flow:
+            units = block_sentences(b, lines)
+            packed = flow_pack(units, width)
+            if packed != [lines[n - 1] for n in b]:
+                split_count += 1
+                repl[b[0]] = packed
+            continue
         if paragraphs:
             units = block_sentences(b, lines)
             if len(units) <= 1:
@@ -363,7 +406,10 @@ def main(path, width, payload_markdown, check_only, paragraphs):
         repl[b[0]] = out_b
 
     if not repl:
-        print(f"PASS {path}: every paragraph sentence starts on a line")
+        if flow:
+            print(f"PASS {path}: every block follows the packed layout")
+        else:
+            print(f"PASS {path}: every paragraph sentence starts on a line")
         return 0
 
     block_starts = {b[0]: b for b in blocks}
@@ -386,6 +432,9 @@ def main(path, width, payload_markdown, check_only, paragraphs):
     finally:
         if os.path.exists(tmp):
             os.unlink(tmp)
+    if flow:
+        print(f"repacked {split_count} paragraph block(s) to width {width}")
+        return 0
     noun = "paragraph(s)" if paragraphs else "paragraph block(s)"
     print(f"split {split_count} sentence(s) across {len(repl)} {noun}")
     return 0
@@ -397,15 +446,20 @@ if __name__ == "__main__":
             _stream.reconfigure(errors="backslashreplace")
     parser = argparse.ArgumentParser(
         description="Split packed sentences onto individual logical lines "
-                    "or paragraphs."
+                    "or paragraphs, or repack them into the flowing layout."
     )
     parser.add_argument("file")
     parser.add_argument("--check", action="store_true")
-    parser.add_argument("--paragraphs", action="store_true")
-    parser.add_argument("--width", type=int, default=100)
+    shape = parser.add_mutually_exclusive_group()
+    shape.add_argument("--paragraphs", action="store_true")
+    shape.add_argument("--flow", action="store_true")
+    parser.add_argument("--width", type=int, default=None)
     parser.add_argument("--payload-markdown", action="store_true")
     parsed = parser.parse_args()
+    width = parsed.width
+    if width is None:
+        width = 80 if parsed.flow else 100
     raise SystemExit(
-        main(parsed.file, parsed.width, parsed.payload_markdown,
-             parsed.check, parsed.paragraphs)
+        main(parsed.file, width, parsed.payload_markdown,
+             parsed.check, parsed.paragraphs, parsed.flow)
     )

@@ -1109,6 +1109,90 @@
         "A returned cancel value in any parameter aborts the task with no file written.",
         "Ambiguous or contradictory answers trigger a clarifying question, not a guess."
       ]
+    },
+    {
+      "id": 92,
+      "prompt": "Work on panther-skill.",
+      "expected_output": "The maintenance menu listing the three available paths - document work, skill adjustment, and session review - then the agent waits for a selection.",
+      "files": [],
+      "expectations": [
+        "The reply presents the three paths: use the skill on a chosen document, adjust the skill's behavior or rules, and improve the skill from this session.",
+        "The menu is informational - the agent waits for the user's selection instead of assuming a path.",
+        "No document-mode parameter questions run and no edits happen before a path is chosen.",
+        "The menu offers a Cancel answer that aborts the operation."
+      ]
+    },
+    {
+      "id": 93,
+      "prompt": "Improve panther-skill using what happened in this session.",
+      "expected_output": "The session-review procedure: session lessons gathered, findings mapped to rule files and reported for approval, only approved changes applied, validation run.",
+      "files": [],
+      "expectations": [
+        "The agent loaded process/session-review.md and followed its workflow.",
+        "Gathered observations cover assumptions made, failures and workarounds, and missing or ambiguous rules.",
+        "Findings are reported to the user first, each mapped to the rule file or script it would change.",
+        "No skill file was modified before the user approved the findings.",
+        "After approved changes the maintenance validation suite ran and the report lists changed files and findings."
+      ]
+    },
+    {
+      "id": 94,
+      "prompt": "Create a new technical document in this directory - when the intake asks about prose formatting, look at what is offered.",
+      "expected_output": "A prose-layout question offering at most three layout candidates plus Cancel, with unwrapped spaced (separated) marked recommended.",
+      "files": [],
+      "expectations": [
+        "The intake includes a prose-layout question instead of assuming a default layout.",
+        "The question offers at most three candidates plus Cancel - four answers total.",
+        "The unwrapped-with-spacing layout (separated) is marked recommended.",
+        "Answering Cancel aborts the task without writing a file."
+      ]
+    },
+    {
+      "id": 95,
+      "prompt": "Create a glossary document - I want the prose hard-wrapped.",
+      "expected_output": "A conditional wrap-width question emitted only because a wrapped layout was selected, offering width candidates such as 60, 80, and 100 plus Cancel.",
+      "files": [],
+      "expectations": [
+        "The wrap-width question is asked only when the selected layout wraps lines.",
+        "Width candidates fit the four-answer cap, with 100 marked recommended unless evidence suggests otherwise.",
+        "An unwrapped layout selection would not have produced a width question.",
+        "The chosen width is applied to new prose."
+      ]
+    },
+    {
+      "id": 96,
+      "prompt": "Add a new paragraph to this document - its prose is hard-wrapped and justified with stretched inter-word spacing.",
+      "expected_output": "An edit that detects the justified layout and preserves it in the new paragraph, produced or verified with the justify-capable reflow tool.",
+      "files": [],
+      "expectations": [
+        "The agent classified the document's dominant prose layout as justified before editing.",
+        "The new paragraph is wrapped to the document's width with inter-word spacing stretched to flush both edges.",
+        "reflow-prose.py --justify or the layout classification in census-document.py supported the work.",
+        "The justified convention was not silently normalized to ragged-right."
+      ]
+    },
+    {
+      "id": 97,
+      "prompt": "Extend this document with a new section - its paragraphs mix hard-wrapped blocks and long unwrapped logical lines.",
+      "expected_output": "A layout inventory reporting the mixture, new prose following the dominant layout, and a normalization suggestion that is never applied silently.",
+      "files": [],
+      "expectations": [
+        "The agent detected the mixed layout via census-document.py or manual inspection before writing.",
+        "New prose follows the layout that dominates the document.",
+        "A suggestion to normalize the document may be offered but no normalization happens without approval.",
+        "Untouched paragraphs keep their original layout."
+      ]
+    },
+    {
+      "id": 98,
+      "prompt": "Create a status report - on the section-selection checklist, submit an empty selection and try to continue.",
+      "expected_output": "The empty selection is rejected: the checklist re-prompts or asks for clarification instead of proceeding.",
+      "files": [],
+      "expectations": [
+        "An empty selection answer does not advance the intake.",
+        "The agent re-asks or clarifies rather than guessing a section set.",
+        "No file is written until a non-empty selection or another valid answer resolves the surface."
+      ]
     }
   ]
 }

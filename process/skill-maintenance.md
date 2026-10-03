@@ -34,6 +34,28 @@ mode instead.
 When the target is ambiguous, ask which mode applies - under JSON exchange the question emits as
 the `mode-selection` `choice` parameter per `process/json-exchange.md`.
 
+## Intake Menu
+
+Every "work on panther-skill" trigger opens the maintenance menu - an informational list of
+the three directions this mode offers:
+
+- **Document work** - use the skill to create or work on a document the user names.
+  The request then leaves maintenance mode and follows `process/document-workflow.md`, the
+  session update check already ran.
+- **Adjust the skill** - the user describes a behavior change or new rules. Continue under
+  this file: read the governing set in Intake, then apply the change.
+- **Improve the skill from this session** - review the session's conversation, gather the
+  lessons, and land them in the rule corpus. Follow `process/session-review.md`.
+
+The list is informational - present it, then wait for the user's pick.
+
+A task named in the same request counts as the selection: present the menu, then proceed
+treating the named task as the chosen direction - document work goes to option 1, skill
+changes to option 2.
+
+Under JSON exchange the menu emits as the `maintenance-action` `choice` parameter per
+`process/json-exchange.md`.
+
 ## Intake
 
 1. Run the once-per-session Skill Update Check from `SKILL.md` - the same gate applies in

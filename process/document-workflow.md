@@ -15,18 +15,18 @@ a reformatting, or a translation.
 
 | Section                    | Line | What it covers                                     |
 |----------------------------|------|----------------------------------------------------|
-| Intake                     | 29   | Task classification and mode routing               |
-| Parameter Resolution       | 65   | Defaults, acceptance gate, and parameter questions |
-| Question Surfaces          | 117  | Answer caps, guessed options, Cancel, ordering     |
-| Detection                  | 148  | Encoding, dialect, and convention detection        |
-| Scope Detection            | 192  | Project-layout signals and scope selection         |
-| Rule Selection             | 231  | Layered rule-file loading order                    |
-| Section Plan               | 264  | Type-driven structure, selection, and format       |
-| Plan Confirmation          | 290  | The pre-execution proceed/adjust/cancel gate       |
-| Drafting And Editing       | 308  | Templates, minimal diff, and reformatting tools    |
-| Editing Governed Documents | 338  | Governed-set inventory and rename discipline       |
-| Validation                 | 363  | Mechanical checks before delivery                  |
-| Delivery                   | 385  | Confirmation gates and reporting                   |
+| Intake                     | 31   | Task classification and mode routing               |
+| Parameter Resolution       | 67   | Defaults, acceptance gate, and parameter questions |
+| Question Surfaces          | 128  | Answer caps, guessed options, Cancel, ordering     |
+| Detection                  | 170  | Encoding, dialect, and convention detection        |
+| Scope Detection            | 222  | Project-layout signals and scope selection         |
+| Rule Selection             | 261  | Layered rule-file loading order                    |
+| Section Plan               | 297  | Type-driven structure, selection, and format       |
+| Plan Confirmation          | 323  | The pre-execution proceed/adjust/cancel gate       |
+| Drafting And Editing       | 341  | Templates, minimal diff, and reformatting tools    |
+| Editing Governed Documents | 371  | Governed-set inventory and rename discipline       |
+| Validation                 | 396  | Mechanical checks before delivery                  |
+| Delivery                   | 418  | Confirmation gates and reporting                   |
 
 ## Intake
 
@@ -85,7 +85,15 @@ exchange.
 | Filename          | Per the language file naming rules, or the scope's convention       |
 | Encoding          | UTF-8 without BOM                                                   |
 | Line endings      | LF, or the dominant style of the target directory                   |
+| Line wrapping     | None - unwrapped logical lines                                      |
+| Sentence spacing  | Separated - one blank line between sentences                        |
+| Wrap width        | 100 - asked only when line wrapping is selected                     |
 | Delivery          | File in the location named by the request                           |
+
+The three layout parameters together resolve the document's prose layout, one of the
+conventions defined in `conventions/prose-layout.md` - the defaults produce `separated`.
+
+The wrap-width question is asked only when the wrapping answer chooses a fixed width.
 
 If the user accepts the defaults or says "bypass", proceed immediately.
 
@@ -93,7 +101,8 @@ If the user chooses to configure, ask only the unresolved parameter questions, e
 `## Question Surfaces` below.
 
 Under JSON exchange each unresolved parameter emits with its catalog `id`: `document-type`,
-`document-language`, `document-scope`, `filename`, `encoding`, `line-endings`, or `delivery`.
+`document-language`, `document-scope`, `filename`, `encoding`, `line-endings`,
+`line-wrapping`, `sentence-spacing`, `wrap-width`, or `delivery`.
 
 README documents resolve their variant through the detected scope's Document Types table -
 `types/readme-general.md` is the fallback.
@@ -143,6 +152,17 @@ The document type is always its own surface, never bundled with a format questio
 A confirmation surface offers its genuine choices plus `Cancel` - a yes or no gate lists its two
 answers and `Cancel`, not three artificial guesses.
 
+A selection surface - a checklist where several options may be chosen - never advances on an
+empty answer: at least one option must be selected before the questioning moves on, and only
+`Cancel` closes the surface without a selection.
+
+When the candidate list exceeds the four-answer cap, split it with a group question: first ask
+which group the answer belongs to - at most three groups plus `Cancel` - then ask a follow-up
+listing only that group's options.
+
+The grouped form keeps every surface within the cap instead of handing the host one oversized
+menu it would split arbitrarily.
+
 These rules apply to every surface the procedures raise: parameter questions on create, the
 encoding-ambiguity ask on edit, overwrite and fix-plan confirmations, translate and derive
 gates, the plan-confirmation gate, and mode selection.
@@ -174,11 +194,18 @@ as the working set for the edit:
 
 - encoding, byte order mark, and line-ending style (from `detect-encoding.py`)
 - Markdown dialect, heading style, and section numbering
-- sentence layout - paragraph-per-sentence, sentence-per-line, or packed
-- wrap convention - unwrapped logical lines or a fixed width, with the dominant width
+- prose layout - one of the named conventions (`flowing`, `separated`, `bounded`,
+  `justified`) per `conventions/prose-layout.md`, detected per element type
 - quote and apostrophe style, list markers, table alignment
 - version markers or contents tables the document maintains
 - embedded payload regions and their own interior conventions
+
+Never assume a prose layout - detect it with `scripts/census-document.py` and a read of the
+document.
+
+A document that mixes layouts is inconsistent: report it, adopt the dominant and
+most-appropriate convention for the content the task touches, and suggest normalization -
+normalizing itself requires an explicit request.
 
 The document's own observed conventions are authoritative for edits.
 
@@ -188,8 +215,9 @@ files and break ties when the document is mixed or ambiguous.
 When the observed convention conflicts with a declared rule, report the conflict instead of
 silently normalizing the document.
 
-Converting between wrapped and logical-line layout is itself a convention change - apply it only
-when the request explicitly covers it, using `scripts/reflow-prose.py`.
+Converting between prose-layout conventions is itself a convention change - apply it only
+when the request explicitly covers it, using the tools in the `conventions/prose-layout.md`
+tooling map.
 
 ## Scope Detection
 
@@ -248,9 +276,12 @@ Load rule files in this order:
    result.
 5. **`conventions/markdown-dialects.md`** - load when the document uses a non-default dialect or
    when the request involves reformatting.
-6. **`conventions/rst-documents.md`** - load when the task touches an `.rst` file or when a scope
+6. **`conventions/prose-layout.md`** - load when the task involves prose formatting or a
+   layout conversion, when a layout parameter was configured on create, or when layout
+   detection is ambiguous.
+7. **`conventions/rst-documents.md`** - load when the task touches an `.rst` file or when a scope
    file delegates to it.
-7. **`conventions/asciidoc-documents.md`** - load when the task touches an `.adoc` file or when
+8. **`conventions/asciidoc-documents.md`** - load when the task touches an `.adoc` file or when
    a scope file delegates to it.
 
 On a Translate task the selection shifts: `languages/<lang>.md` is the target language,
@@ -279,8 +310,9 @@ A free-text format answer replaces the table - "plain without sections" produces
 with no fixed sections when the type permits it.
 
 When a selection surface would exceed the four-answer limit, the question degrades to the
-`section-format` text surface or to grouped choices such as `All recommended` or `Required
-only` - the JSON emission keeps the full menu.
+`section-format` text surface, to grouped choices such as `All recommended` or `Required
+only`, or to the group-question split in `## Question Surfaces` - the JSON emission keeps the
+full menu.
 
 On an Edit task the request may cover structure - "add the missing sections", "fix the
 structure" - then run `scripts/check-sections.py` against the resolved type and raise

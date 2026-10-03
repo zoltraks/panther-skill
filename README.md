@@ -14,17 +14,17 @@
 |---------------------|------|--------------------------------------------|
 | Overview            | 29   | What Panther is and what it produces       |
 | What The Skill Does | 54   | Authoring purpose and workflow             |
-| Installation        | 184  | How to add Panther to an agent environment |
-| Usage               | 254  | How agents activate and run the skill      |
-| Example Prompts     | 268  | Phrases the skill activates on             |
-| Workflow Diagrams   | 314  | ASCII and Mermaid diagrams of the pipeline |
-| Core Principles     | 450  | Convention preservation and minimal diffs  |
-| When To Use         | 461  | Supported requests and exclusions          |
-| What's Inside       | 500  | Rule files, templates, tools, and evals    |
-| Specification       | 655  | Agent Skills specification conformance     |
-| Verification        | 671  | Skill-maintenance checks                   |
-| License             | 690  | License for the skill itself               |
-| Credits             | 696  | Methodology and example sources            |
+| Installation        | 188  | How to add Panther to an agent environment |
+| Usage               | 258  | How agents activate and run the skill      |
+| Example Prompts     | 272  | Phrases the skill activates on             |
+| Workflow Diagrams   | 318  | ASCII and Mermaid diagrams of the pipeline |
+| Core Principles     | 454  | Convention preservation and minimal diffs  |
+| When To Use         | 465  | Supported requests and exclusions          |
+| What's Inside       | 504  | Rule files, templates, tools, and evals    |
+| Specification       | 661  | Agent Skills specification conformance     |
+| Verification        | 677  | Skill-maintenance checks                   |
+| License             | 696  | License for the skill itself               |
+| Credits             | 702  | Methodology and example sources            |
 
 ## Overview
 
@@ -166,10 +166,14 @@ minimal-diff corrections, and sweeps the document for the same class of issue.
 
 **Maintains itself**
 
-Separately, when you ask to "work on panther-skill" or "fix this skill", the agent enters
+Separately, when you ask to "work on panther-skill" or "fix this skill", the agent presents
+the maintenance menu - document work, skill adjustment, or a session review - and enters
 maintenance mode: it reads the skill's governing documents, applies `docs/MAINTENANCE.md` and
 `docs/STYLE.md`, and runs the skill's own validators - document-mode machinery does not apply
 to the skill's own files.
+
+The session-review path gathers the current session's lessons, reports findings for approval,
+and lands the approved changes in the rule corpus.
 
 **Enables on a bare request**
 
@@ -521,6 +525,7 @@ panther-skill/
 │   ├── scope-discovery.md             # Standalone layout-discovery procedure and report format
 │   ├── skill-maintenance.md           # Maintenance-mode procedure for work on the skill itself
 │   ├── skill-activation.md            # Enable-mode procedure for bare activation requests
+│   ├── session-review.md              # Session-review procedure: findings, approval, apply
 │   ├── translate-document.md          # Standalone translate procedure: pairs and glossaries
 │   ├── translation-audit.md           # Standalone translation-audit procedure: fidelity verdict
 │   └── translation-revision.md        # Standalone correction procedure for existing translations
@@ -612,7 +617,8 @@ panther-skill/
 │   ├── rst-documents.md               # reStructuredText minimal-edit contract
 │   ├── asciidoc-documents.md          # AsciiDoc minimal-edit contract
 │   ├── plain-text-comments.md         # Trailing comment alignment in plain-text blocks
-│   └── ascii-diagrams.md              # Box-drawing flow diagram rules
+│   ├── ascii-diagrams.md              # Box-drawing flow diagram rules
+│   └── prose-layout.md                # Prose-layout conventions and detection rules
 ├── templates/
 │   ├── de/                            # Twenty-nine German skeletons, <type>-template-de.md
 │   ├── en/                            # Twenty-nine English skeletons, <type>-template-en.md

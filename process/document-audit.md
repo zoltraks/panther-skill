@@ -93,6 +93,14 @@ fix plan's `section-add` surface when fixes are approved.
 
 Compare the mechanical results and the census against the governing rules.
 
+Classify the document's prose layout per `conventions/prose-layout.md` - the census
+`prose layout` lines report `separated`, `flowing`, `bounded`, `justified`, or `mixed`
+per element type.
+
+A `mixed` result or diverging layouts across element types is an inconsistency - report
+it as a `Minor` or `Note` finding naming the dominant convention, and put normalization
+into the fix plan only when the request asks for one.
+
 Distinguish a violation from an in-document convention.
 
 A rule broken once is a violation.

@@ -21,7 +21,8 @@ The Markdown source is the primary artifact, the rendered output is secondary.
 
 Use short sentences.
 
-Use one sentence per paragraph for technical descriptions.
+Use one sentence per paragraph for technical descriptions - the `separated` prose layout
+from `conventions/prose-layout.md`, which is the default for new documents.
 
 Separate every sentence with a blank line.
 
@@ -32,13 +33,15 @@ A sentence may contain several related clauses if they express a single thought.
 When editing an existing document, preserve its conventions.
 
 This covers the Markdown dialect, section numbering, heading style and depth, list style, table
-layout, line wrapping and sentence layout, character encoding, line-ending style, and file naming.
+layout, prose layout, character encoding, line-ending style, and file naming.
 
-The wrapping convention - fixed-width wrapped lines or unwrapped logical lines - comes from the
-document itself.
+The prose layout - `flowing`, `separated`, `bounded`, or `justified` - comes from the
+document itself, never from an assumption.
 
-Detect it before reformatting and never convert between the two layouts unless the request
+Detect it before reformatting and never convert between layouts unless the request
 explicitly covers the conversion.
+
+See `conventions/prose-layout.md` for the convention definitions and detection signals.
 
 Never normalize an existing document silently.
 

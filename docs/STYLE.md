@@ -10,7 +10,9 @@ It compiles rules from the [Agent Skills specification](https://agentskills.io/s
 
 Every document created or modified as part of this skill must follow the rules below.
 
-These rules govern the skill's own files, which wrap prose at 100 characters.
+These rules govern the skill's own files, which wrap prose at 100 characters - the `bounded`
+convention with `separated` sentences, per the layout taxonomy in
+`conventions/prose-layout.md`.
 
 Documents produced by the skill follow the matching `languages/` baseline instead, which keeps one
 sentence per paragraph and never hard-wraps.

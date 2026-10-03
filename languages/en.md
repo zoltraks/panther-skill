@@ -26,17 +26,17 @@ The rules described below apply to this document itself as well.
 | Table of Contents        | 103  | When to add a contents section      |
 | Paragraphs and Sentences | 117  | Sentence structure                  |
 | Line Wrapping            | 131  | Logical lines and hard breaks       |
-| Lists                    | 151  | Bullets, numbering, and spacing     |
-| Blank Lines and Spacing  | 173  | Whitespace rules                    |
-| Code Blocks              | 187  | Fences, tags, and inline code       |
-| Inline Formatting        | 201  | Quotes, bold, and italics           |
-| Semicolons               | 217  | Semicolon prohibition in prose      |
-| Special Characters       | 243  | Box-drawing and emoji               |
-| English Vocabulary       | 251  | Preferred terms and calques         |
-| Tables                   | 274  | Source-width alignment rules        |
-| File Names               | 387  | Naming new documentation files      |
-| Example                  | 397  | Correct and incorrect sample        |
-| File Maintenance         | 431  | Encoding and line-ending preserving |
+| Lists                    | 155  | Bullets, numbering, and spacing     |
+| Blank Lines and Spacing  | 177  | Whitespace rules                    |
+| Code Blocks              | 191  | Fences, tags, and inline code       |
+| Inline Formatting        | 205  | Quotes, bold, and italics           |
+| Semicolons               | 221  | Semicolon prohibition in prose      |
+| Special Characters       | 247  | Box-drawing and emoji               |
+| English Vocabulary       | 255  | Preferred terms and calques         |
+| Tables                   | 278  | Source-width alignment rules        |
+| File Names               | 391  | Naming new documentation files      |
+| Example                  | 401  | Correct and incorrect sample        |
+| File Maintenance         | 435  | Encoding and line-ending preserving |
 
 ## Document Structure
 
@@ -147,6 +147,10 @@ Repository rules such as a `STYLE.md` requiring lines no longer than 100 charact
 Use `scripts/reflow-prose.py --wrap --width N` to apply a fixed width and `scripts/reflow-prose.py --unwrap` to join wrapped continuations into logical lines.
 
 The wrap mode only splits lines, the unwrap mode only joins them, and both leave tables, code fences, and indented code blocks untouched.
+
+The layout of a produced document follows `conventions/prose-layout.md` - this baseline describes the `separated` convention, and the `line-wrapping`, `sentence-spacing`, and `wrap-width` intake parameters may select `flowing`, `bounded`, or `justified` on create.
+
+The detection of an existing document's layout follows `conventions/prose-layout.md` and never assumes a default.
 
 ## Lists
 

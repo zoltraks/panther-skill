@@ -38,19 +38,19 @@ allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob G
 | Section                 | Line | What it covers                                 |
 |-------------------------|------|------------------------------------------------|
 | Three Modes             | 73   | Enable, document, and maintenance selection    |
-| Skill Update Check      | 85   | Once-per-session git freshness gate before use |
+| Skill Update Check      | 86   | Once-per-session git freshness gate before use |
 | Trigger Keywords        | 108  | Activation phrases                             |
-| How To Use              | 161  | Progressive disclosure and mandatory reading   |
-| Parameter Configuration | 232  | Defaults and user-controlled document shape    |
-| Principles              | 260  | Authoring invariants                           |
-| Process                 | 266  | Workflow, checklist, and standalone procedures |
-| Document Types          | 292  | Per-type rule files                            |
-| Languages               | 353  | Per-language style baselines                   |
-| Translations            | 366  | Language pair rules and industry glossaries    |
-| Scopes                  | 386  | Per-project-layout organization rules          |
-| Conventions             | 411  | Encoding, dialect, and format contract rules   |
-| Templates               | 425  | Per-type, per-language skeletons               |
-| Scripts                 | 437  | Detection, formatting, and validation scripts  |
+| How To Use              | 162  | Progressive disclosure and rule loading        |
+| Parameter Configuration | 224  | Defaults and user-controlled document shape    |
+| Principles              | 252  | Authoring invariants                           |
+| Process                 | 258  | Workflow, checklist, and standalone procedures |
+| Document Types          | 286  | Per-type rule files                            |
+| Languages               | 347  | Per-language style baselines                   |
+| Translations            | 360  | Language pair rules and industry glossaries    |
+| Scopes                  | 380  | Per-project-layout organization rules          |
+| Conventions             | 405  | Encoding, dialect, and format contract rules   |
+| Templates               | 422  | Per-type, per-language skeletons               |
+| Scripts                 | 434  | Detection, formatting, and validation scripts  |
 | Evaluation Prompts      | 466  | Behavioral regression prompts                  |
 | Repository Files        | 476  | Housekeeping files governing this repository   |
 | File Handling Contract  | 488  | Byte-level guarantees                          |
@@ -78,7 +78,8 @@ You do not normalize a document that has its own conventions.
 - **Document mode** - the request targets a document to produce, edit, reformat, translate,
   audit, or describe. Follow the rest of this router and `process/document-workflow.md`.
 - **Maintenance mode** - the request targets this repository's own files. Follow
-  `process/skill-maintenance.md`, which reads the governing set before any edit.
+  `process/skill-maintenance.md`, which opens the maintenance menu - document work, skill
+  adjustment, or session review - and reads the governing set before any edit.
 
 The update check below runs in every mode.
 
@@ -186,10 +187,8 @@ This skill is self-contained. The section listings below catalog the rule materi
 on what exists at activation, but load a rule file only when the task needs it.
 
 When asked how this skill works, explain that Panther produces plain-text-readable Markdown
-documents - technical docs, specs, rules, articles, notes, READMEs, changelogs, decision
-records, RFCs, and PMBOK artifacts - in English, Polish, or German, with UTF-8 output and
-preserved encodings, for single files and organized collections such as agent skill
-repositories and Sphinx, MkDocs, Docusaurus, VitePress, or GitBook documentation sites.
+documents in English, Polish, or German - UTF-8 output, preserved encodings - for single
+files and organized collections such as skill repositories and documentation sites.
 
 On request it discovers a location's document layout - signals, best-matching scope,
 exceptions - and audits a document against its governing rules, reporting mechanical,
@@ -214,20 +213,13 @@ source passages and applying minimal-diff fixes and same-class sweeps.
 
 AsciiDoc and reStructuredText files are edited minimally and never restyled.
 
-On "work on panther-skill" requests it maintains its own rule corpus - it reads the governing
+On "work on panther-skill" requests it presents the maintenance menu - document work, skill
+adjustment, or session review - then maintains its own rule corpus: it reads the governing
 set and applies `docs/MAINTENANCE.md` instead of the document workflow.
 
 On bare activation - "use skill", "run panther", or an equivalent - it enables for editorial
 support: the update check runs, the router is the loaded state, and a compact capability list
 answers the request. The next task request enters document or maintenance mode normally.
-
-## Mandatory Reading
-
-Always load these two files before starting document work:
-
-- **`principles/authoring-rules.md`** - Plain-text-first writing, convention preservation,
-  minimal diffs, explicit unknowns, and default structure.
-- **`process/document-workflow.md`** - The end-to-end workflow from intake to delivery.
 
 ## Parameter Configuration
 
@@ -284,8 +276,10 @@ For edits to existing documents, the document's own conventions and the minimal-
 - **`process/translation-revision.md`** - The standalone translation-revision procedure:
   passage alignment, issue classes, minimal-diff correction of an existing translation.
 - **`process/json-exchange.md`** - JSON parameter documents for intake question surfaces.
-- **`process/skill-maintenance.md`** - The maintenance-mode procedure: governing set, skipped
-  document machinery, and validation for work on this repository.
+- **`process/skill-maintenance.md`** - The maintenance-mode procedure: the intake menu,
+  governing set, skipped document machinery, and validation for work on this repository.
+- **`process/session-review.md`** - The session-review procedure: gather the session's
+  lessons, report findings for approval, apply and validate approved rule changes.
 - **`process/skill-activation.md`** - The enable-mode procedure: bare-activation intake, the
   readiness response, and the hand-off to document or maintenance mode.
 
@@ -421,6 +415,9 @@ registration inside an organized project:
   and shell-tagged blocks: one shared column per block, longest entry plus two spaces.
 - **`conventions/ascii-diagrams.md`** - Box-drawing flow diagrams: one shared axis, centered
   boxes and prose lines, `┬`/`▼` vertical edges, gap-filling `▶` side branches.
+- **`conventions/prose-layout.md`** - Prose-layout conventions `flowing`, `separated`,
+  `bounded`, `justified`: detection signals, the no-assumed-default and mixed-document
+  rules, the `line-wrapping`/`sentence-spacing`/`wrap-width` parameters, and the tooling map.
 
 ## `templates/` - Skeletons
 
@@ -443,11 +440,14 @@ See `scripts/README.md`.
 
 - **`scripts/detect-encoding.py`** - BOM, guessed encoding, line endings, trailing whitespace.
 - **`scripts/detect-scope.py`** - Document-scope signals and per-directory document counts.
-- **`scripts/census-document.py`** - Structural census: headings, lists, fences, paragraphs, tables.
-- **`scripts/split-sentences.py`** - Split packed sentences onto logical lines, or one
-  sentence per paragraph with `--paragraphs`, re-wrap to `--width N` in default mode.
-- **`scripts/reflow-prose.py`** - Bidirectional prose reflow: `--wrap` splits over-width
-  lines at whitespace, `--unwrap` joins wrapped continuations back into logical lines.
+- **`scripts/census-document.py`** - Structural census: headings, lists, fences, paragraphs,
+  tables, and a per-element prose-layout classification.
+- **`scripts/split-sentences.py`** - Split packed sentences onto logical lines, one
+  sentence per paragraph with `--paragraphs`, or repack blocks into the `flowing`
+  layout with `--flow`, re-wrap to `--width N` in default mode.
+- **`scripts/reflow-prose.py`** - Prose reflow: `--wrap` splits over-width lines at
+  whitespace, `--unwrap` joins wrapped continuations into logical lines, `--justify`
+  stretches inter-word spacing to flush both edges of a block.
 - **`scripts/wrap-prose.py`** - Deprecated split-only wrapper, superseded by
   `reflow-prose.py --wrap`, kept for documents that already reference it.
 - **`scripts/format-table.py`** - Rebuild tables with source-width alignment.

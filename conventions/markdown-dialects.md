@@ -184,16 +184,14 @@ Nested fences never nest at the same marker length.
 
 ## Wrapping Conventions
 
-Two line-layout conventions exist for prose, and one document can mix them per element type.
+The wrap axis of the prose layout decides whether a sentence may break across lines.
 
 Fixed-width wrapping breaks prose at a character limit such as 80, 100, or 120, indenting
-continuation lines inside list items and repeating the marker inside blockquotes.
-
-Logical-line layout keeps every sentence or paragraph on a single line of any length and lets
-the reader wrap on display.
+continuation lines inside list items and repeating the marker inside blockquotes, while
+unwrapped layout keeps every sentence on one logical line of any length.
 
 Signals: in a wrapped document most prose lines cluster below one width and continuation lines
-are common, in a logical-line document prose lines vary in length and regularly run past the
+are common, in an unwrapped document prose lines vary in length and regularly run past the
 usual limits.
 
 The dominant pattern per element type is the convention - paragraphs, list items, and
@@ -202,8 +200,12 @@ blockquotes are evaluated separately.
 Rule: detect the wrap convention with the rest of the dialect census, preserve it on edit, and
 never convert between layouts unless the request covers the conversion.
 
+The full prose-layout model - the named `flowing`, `separated`, `bounded`, and `justified`
+conventions, their detection signals, and the mixed-document rule - lives in
+`conventions/prose-layout.md`.
+
 `scripts/reflow-prose.py --wrap` applies a fixed width, `--unwrap` joins wrapped continuations
-into logical lines.
+into logical lines, `--justify` produces the justified variant.
 
 ## Element-Level Conventions
 
@@ -218,16 +220,14 @@ separate conventions.
 Normalize one element type only when the request covers it, and never impose the paragraph
 convention on list items or vice versa.
 
-Within paragraphs, two sentence-layout dialects exist.
+Within paragraphs, the spacing axis of the prose layout decides how sentences separate.
 
-Paragraph-per-sentence puts every sentence in its own paragraph, separated from the next by
-one empty line - the house convention in `docs/STYLE.md` and the `languages/` baselines.
+`separated` puts every sentence in its own paragraph divided by one empty line - the house
+convention in `docs/STYLE.md` and the `languages/` baselines - while `flowing` keeps
+consecutive sentences inside one shared paragraph block.
 
-Sentence-per-line starts each sentence on its own logical line but keeps consecutive sentences
-inside one shared paragraph block.
-
-`split-sentences.py` defaults to sentence-per-line output, and `--paragraphs` produces
-paragraph-per-sentence.
+`split-sentences.py` defaults to sentence-per-line output, `--paragraphs` produces
+`separated`, and `--flow` produces `flowing`.
 
 ## Detection Procedure
 

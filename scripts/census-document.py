@@ -25,6 +25,7 @@ TABLE_ROW = re.compile(r"^\s*\|.*\|\s*$")
 LINK = re.compile(r"\[[^\]]*\]\(([^)\s]+)[^)]*\)")
 MARKER = re.compile(r"\b(TODO|FIXME|TBD|XXX)\b")
 SENTENCE_BOUNDARY = re.compile(r"[.!?]['\")]*[ \t]+[A-Z]")
+STRETCHED_GAP = re.compile(r"\S {2,}\S")
 SENT_END = re.compile(r"[.!?:][\"')\]`}*]*\s*$")
 RULE_LINE = re.compile(r"^\s*(={2,}|-{2,}|\*{3,}|_{3,})\s*$")
 ITEM_COL = re.compile(r"^\s*(?:[-*+]|\d+[.)])[ \t]+")
@@ -139,9 +140,23 @@ def main(argv: list[str]) -> int:
     prev_quote = False
     prev_kind = ""
     list_stack: list[int] = []
+    stretch_by_kind: dict[str, list[int]] = {}
+    multi_by_kind: dict[str, list[int]] = {}
+    wide_by_kind: dict[str, list[int]] = {}
+    packed_blocks = 0
+    para_run_units = 0
+    para_run_multi = False
+
+    def end_para_run() -> None:
+        nonlocal para_run_units, para_run_multi, packed_blocks
+        if para_run_units > 1 or para_run_multi:
+            packed_blocks += 1
+        para_run_units = 0
+        para_run_multi = False
 
     for i, line in enumerate(lines):
         if i not in scan:
+            end_para_run()
             blank_start = None
             prev_open = False
             if state[i] == "fence":
@@ -149,6 +164,7 @@ def main(argv: list[str]) -> int:
             continue
         stripped = CODE_SPAN.sub("", line)
         if not line.strip():
+            end_para_run()
             if blank_start is None:
                 blank_start = i + 1
             else:
@@ -160,7 +176,9 @@ def main(argv: list[str]) -> int:
         # wrap-convention census - same continuation model as reflow-prose.py
         indent = len(line) - len(line.lstrip())
         content = line.lstrip()
+        cur_kind = "other"
         if content.startswith(">"):
+            end_para_run()
             qtext = re.sub(r"^(?:>[ \t]*)+", "", content)
             if prev_open and prev_quote:
                 quote_frag.append(i + 1)
@@ -168,12 +186,15 @@ def main(argv: list[str]) -> int:
             prev_open = not SENT_END.search(qtext)
             prev_quote = True
             prev_kind = "quote"
+            cur_kind = "quote"
         elif content.startswith(("#", "<!--")) or RULE_LINE.match(content):
+            end_para_run()
             while list_stack and indent < list_stack[-1]:
                 list_stack.pop()
             prev_open = False
             prev_quote = False
         elif ITEM_COL.match(line):
+            end_para_run()
             content_col = ITEM_COL.match(line).end()
             while list_stack and list_stack[-1] > indent:
                 list_stack.pop()
@@ -183,7 +204,9 @@ def main(argv: list[str]) -> int:
             prev_min = content_col
             prev_quote = False
             prev_kind = "item"
+            cur_kind = "item"
         elif TABLE_ROW.match(line):
+            end_para_run()
             prev_open = False
             prev_quote = False
         else:
@@ -191,18 +214,31 @@ def main(argv: list[str]) -> int:
                 list_stack.pop()
             base = list_stack[-1] if list_stack else 0
             if indent >= base + 4:
+                end_para_run()
                 prev_open = False   # indented code block
             elif prev_open and not prev_quote and prev_min <= indent < prev_min + 4:
                 (list_frag if prev_kind == "item" else para_frag).append(i + 1)
                 prev_open = not SENT_END.search(stripped)
+                cur_kind = "item" if prev_kind == "item" else "para"
             else:
                 para_seen += 1
+                para_run_units += 1
                 prev_open = not SENT_END.search(content)
                 prev_min = indent
                 prev_quote = False
                 prev_kind = "para"
+                cur_kind = "para"
+        if cur_kind in ("para", "item", "quote"):
+            if SENTENCE_BOUNDARY.search(stripped):
+                multi_by_kind.setdefault(cur_kind, []).append(i + 1)
+                if cur_kind == "para":
+                    para_run_multi = True
+            if STRETCHED_GAP.search(content):
+                stretch_by_kind.setdefault(cur_kind, []).append(i + 1)
         if len(line) > width:
             wide.append(i + 1)
+            if cur_kind in ("para", "item", "quote"):
+                wide_by_kind.setdefault(cur_kind, []).append(i + 1)
         if SENTENCE_BOUNDARY.search(stripped):
             multi.append(i + 1)
         if ";" in stripped:
@@ -255,6 +291,8 @@ def main(argv: list[str]) -> int:
             target = url.split("#", 1)[0].split("?", 1)[0]
             if target and not (path.parent / target).resolve().exists():
                 missing.append(i + 1)
+
+    end_para_run()
 
     print(f"FILE {path}")
     print(f"  lines: {len(lines)}")
@@ -309,6 +347,28 @@ def main(argv: list[str]) -> int:
     for name, frag, seen in kinds:
         detail = f" (lines {refs(frag)})" if frag else ""
         print(f"    {name}: {seen} element(s), {len(frag)} continuation line(s){detail}")
+    print("  prose layout:")
+    key_of = {"paragraph": "para", "list item": "item", "blockquote": "quote"}
+    for name, frag, seen in kinds:
+        key = key_of[name]
+        stretched = stretch_by_kind.get(key, [])
+        packed = multi_by_kind.get(key, []) or (packed_blocks if key == "para" else 0)
+        if not seen:
+            layout = "none"
+        elif stretched:
+            layout = f"justified (stretched lines {refs(stretched)})"
+        elif frag:
+            wide_k = len(wide_by_kind.get(key, []))
+            if wide_k > len(frag):
+                layout = "mixed (wrapped continuations amid unwrapped lines)"
+            else:
+                layout = "bounded"
+        elif packed:
+            detail2 = refs(packed) if isinstance(packed, list) else f"{packed} block(s)"
+            layout = f"flowing (packed {detail2})"
+        else:
+            layout = "separated"
+        print(f"    {name}: {layout}")
     print("TABLES")
     print(f"  tables: {tables}")
     print("MARKERS")

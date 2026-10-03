@@ -32,6 +32,9 @@ Fix every failure, or report it to the user with a reason.
 - No line ends with a whitespace character.
 - No blank line sits as the first or last line inside a fenced code block.
 - No line carries a lone list marker without content.
+- **Existing:** the document's detected prose layout was preserved - `flowing`,
+  `separated`, `bounded`, or `justified` per `conventions/prose-layout.md`, with new
+  content matching the dominant convention when the document mixes layouts.
 - **Existing:** lines follow the document's detected wrap convention - verified with
   `scripts/reflow-prose.py --wrap --check --width N` for fixed-width documents and
   `scripts/reflow-prose.py --unwrap --check` for logical-line documents.

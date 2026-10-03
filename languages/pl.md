@@ -26,22 +26,22 @@ Zasady opisane poniżej stosują się również do samego tego dokumentu.
 | Zasady spisu treści                | 108    | Kiedy dodawać spis treści                     |
 | Akapity i zdania                   | 122    | Budowa akapitów i konstrukcja zdania          |
 | Zawijanie wierszy                  | 168    | Wiersze logiczne i twarde łamania             |
-| Listy                              | 188    | Punktory, numeracja i odstępy                 |
-| Puste wiersze i odstępy            | 210    | Zasady odstępów                               |
-| Bloki kodu                         | 224    | Ogrodzenia, znaczniki i kod liniowy           |
-| Formatowanie w treści              | 238    | Cudzysłowy, pogrubienia i kursywa             |
-| Średniki                           | 260    | Zakaz średników i zdań sklejonych przecinkiem |
-| Znaki specjalne                    | 288    | Znaki ramek, emoji i znaki specjalne          |
-| Słownictwo polskie                 | 306    | Preferowane terminy i kalki                   |
-| Nazwy sekcji według typu dokumentu | 442    | Polskie nazwy sekcji i elementy typów         |
-| Cechy dialektów                    | 722    | Numeracja rozdziałów i pseudo-nagłówki        |
-| Tabele                             | 739    | Wyrównanie według źródła                      |
-| Nazwy plików                       | 853    | Nazywanie nowych plików dokumentacji          |
-| Przykład                           | 863    | Przykład poprawny i niepoprawny               |
-| Kontrola przed dostarczeniem       | 897    | Kontrole językowe przed dostarczeniem         |
-| Utrzymanie plików                  | 907    | Kodowanie i złamania wierszy                  |
-| Pytanie o aktualizację             | 917    | Polskie brzmienie pytania o aktualizację      |
-| Frazy aktywujące                   | 923    | Polskie frazy i ich angielskie odpowiedniki   |
+| Listy                              | 192    | Punktory, numeracja i odstępy                 |
+| Puste wiersze i odstępy            | 214    | Zasady odstępów                               |
+| Bloki kodu                         | 228    | Ogrodzenia, znaczniki i kod liniowy           |
+| Formatowanie w treści              | 242    | Cudzysłowy, pogrubienia i kursywa             |
+| Średniki                           | 264    | Zakaz średników i zdań sklejonych przecinkiem |
+| Znaki specjalne                    | 292    | Znaki ramek, emoji i znaki specjalne          |
+| Słownictwo polskie                 | 310    | Preferowane terminy i kalki                   |
+| Nazwy sekcji według typu dokumentu | 446    | Polskie nazwy sekcji i elementy typów         |
+| Cechy dialektów                    | 726    | Numeracja rozdziałów i pseudo-nagłówki        |
+| Tabele                             | 743    | Wyrównanie według źródła                      |
+| Nazwy plików                       | 857    | Nazywanie nowych plików dokumentacji          |
+| Przykład                           | 867    | Przykład poprawny i niepoprawny               |
+| Kontrola przed dostarczeniem       | 901    | Kontrole językowe przed dostarczeniem         |
+| Utrzymanie plików                  | 911    | Kodowanie i złamania wierszy                  |
+| Pytanie o aktualizację             | 921    | Polskie brzmienie pytania o aktualizację      |
+| Frazy aktywujące                   | 927    | Polskie frazy i ich angielskie odpowiedniki   |
 
 ## Struktura dokumentu
 
@@ -184,6 +184,10 @@ Reguły repozytorium takie jak `STYLE.md` wymagający wierszy nie dłuższych ni
 Użyj `scripts/reflow-prose.py --wrap --width N`, aby zastosować stałą szerokość, i `scripts/reflow-prose.py --unwrap`, aby połączyć zawinięte wiersze w wiersze logiczne.
 
 Tryb zawijania tylko dzieli wiersze, tryb łączenia tylko je łączy, oba nie ruszają tabel, bloków kodu ani wciętych bloków kodu.
+
+Układ tworzonego dokumentu wynika z `conventions/prose-layout.md` - ta podstawa opisuje konwencję `separated`, a parametry wejściowe `line-wrapping`, `sentence-spacing` i `wrap-width` mogą wybrać `flowing`, `bounded` albo `justified` przy tworzeniu.
+
+Wykrywanie układu istniejącego dokumentu przebiega według `conventions/prose-layout.md` i nigdy nie zakłada domyślnej konwencji.
 
 ## Listy
 

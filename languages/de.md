@@ -26,21 +26,21 @@ Die unten beschriebenen Regeln gelten auch für dieses Dokument selbst.
 | Regeln zum Inhaltsverzeichnis    | 107   | Wann ein Inhaltsverzeichnis eingefügt wird      |
 | Absätze und Sätze                | 121   | Aufbau von Sätzen und Absätzen                  |
 | Zeilenumbruch                    | 135   | Logische Zeilen und harte Zeilenumbrüche        |
-| Listen                           | 155   | Aufzählungszeichen, Nummerierung und Abstände   |
-| Leerzeilen und Abstände          | 177   | Regeln für Abstände                             |
-| Codeblöcke                       | 191   | Zäune, Sprachkennzeichnungen und Inline-Code    |
-| Inline-Formatierung              | 205   | Anführungszeichen, Fettung und Kursivierung     |
-| Semikolons                       | 221   | Verbot des Semikolons im Fließtext              |
-| Sonderzeichen                    | 247   | Rahmenzeichen und Emoji                         |
-| Deutscher Wortschatz             | 255   | Bevorzugte Begriffe und Übersetzungskalküle     |
-| Abschnittsnamen nach Dokumenttyp | 285   | Deutsche Abschnittsnamen und Elemente der Typen |
-| Dialektmerkmale                  | 565   | Kapitelnummerierung und Pseudo-Überschriften    |
-| Tabellen                         | 582   | Ausrichtung nach dem Quelltext                  |
-| Dateinamen                       | 694   | Benennung neuer Dokumentationsdateien           |
-| Beispiel                         | 704   | Richtiges und falsches Beispiel                 |
-| Dateipflege                      | 738   | Kodierung und Zeilenenden                       |
-| Aktualisierungsfrage             | 748   | Deutsche Formulierung der Aktualisierungsfrage  |
-| Aktivierungsphrasen              | 754   | Deutsche Phrasen und englische Entsprechungen   |
+| Listen                           | 159   | Aufzählungszeichen, Nummerierung und Abstände   |
+| Leerzeilen und Abstände          | 181   | Regeln für Abstände                             |
+| Codeblöcke                       | 195   | Zäune, Sprachkennzeichnungen und Inline-Code    |
+| Inline-Formatierung              | 209   | Anführungszeichen, Fettung und Kursivierung     |
+| Semikolons                       | 225   | Verbot des Semikolons im Fließtext              |
+| Sonderzeichen                    | 251   | Rahmenzeichen und Emoji                         |
+| Deutscher Wortschatz             | 259   | Bevorzugte Begriffe und Übersetzungskalküle     |
+| Abschnittsnamen nach Dokumenttyp | 289   | Deutsche Abschnittsnamen und Elemente der Typen |
+| Dialektmerkmale                  | 569   | Kapitelnummerierung und Pseudo-Überschriften    |
+| Tabellen                         | 586   | Ausrichtung nach dem Quelltext                  |
+| Dateinamen                       | 698   | Benennung neuer Dokumentationsdateien           |
+| Beispiel                         | 708   | Richtiges und falsches Beispiel                 |
+| Dateipflege                      | 742   | Kodierung und Zeilenenden                       |
+| Aktualisierungsfrage             | 752   | Deutsche Formulierung der Aktualisierungsfrage  |
+| Aktivierungsphrasen              | 758   | Deutsche Phrasen und englische Entsprechungen   |
 
 ## Dokumentstruktur
 
@@ -151,6 +151,10 @@ Regeln des Repositorys wie ein `STYLE.md` mit Zeilen von höchstens 100 Zeichen 
 Verwende `scripts/reflow-prose.py --wrap --width N`, um eine feste Breite anzuwenden, und `scripts/reflow-prose.py --unwrap`, um umgebrochene Zeilen zu logischen Zeilen zu verbinden.
 
 Der Wrap-Modus teilt Zeilen nur, der Unwrap-Modus fügt sie nur zusammen, beide lassen Tabellen, Codeblöcke und eingezogene Codeblöcke unverändert.
+
+Das Layout eines erzeugten Dokuments folgt `conventions/prose-layout.md` - diese Grundlage beschreibt die Konvention `separated`, und die Aufnahmeparameter `line-wrapping`, `sentence-spacing` und `wrap-width` können bei der Erstellung `flowing`, `bounded` oder `justified` wählen.
+
+Die Erkennung des Layouts eines bestehenden Dokuments folgt `conventions/prose-layout.md` und nimmt niemals eine Vorgabe an.
 
 ## Listen
 

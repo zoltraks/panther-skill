@@ -123,7 +123,9 @@ markers `TBD` and `NOT SPECIFIED` - the pair file lists the complete untranslate
 Apply the pair file's style-adaptation table to every element - heading case, section-name
 mapping, quote and dash conventions, example headings.
 
-Keep one sentence per logical line in the output, same as the baselines require.
+Keep one sentence per logical line in the output, same as the baselines require - the
+`separated` prose layout from `conventions/prose-layout.md` applies unless the request
+names another layout.
 
 Apply the untranslated-set rules and the terminology precedence the pair file declares -
 project-established terms first, then glossaries, then the baseline, then a faithful

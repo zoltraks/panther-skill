@@ -69,8 +69,8 @@ The commands below use `python` - substitute `python3` when `python` is not on P
 ```bash
 python detect-encoding.tmp.py <file>
 python detect-scope.tmp.py <directory>
-python split-sentences.tmp.py <file.md> [--check] [--paragraphs] [--width N] [--payload-markdown]
-python reflow-prose.tmp.py <file.md> (--wrap | --unwrap) [--check] [--width N] [--payload-markdown]
+python split-sentences.tmp.py <file.md> [--check] [--paragraphs | --flow] [--width N] [--payload-markdown]
+python reflow-prose.tmp.py <file.md> (--wrap | --unwrap | --justify) [--check] [--width N] [--payload-markdown]
 python wrap-prose.tmp.py <file.md> [--check] [--width N] [--payload-markdown]
 python format-table.tmp.py <file.md> [--check] [--payload-markdown]
 python align-comments.tmp.py <file.md> [--check] [--compact] [--payload-markdown]
@@ -96,6 +96,12 @@ affected sentences to `--width N`.
 With `--paragraphs` it emits the house convention instead: every sentence becomes its own
 paragraph, separated by one empty line, and sentences are never re-wrapped.
 
+With `--flow` it repacks each paragraph block's sentences onto shared logical lines -
+a sentence joins the current line while it still fits `--width` (default 80 in this mode)
+or starts a new line when it does not, and sentences are never split.
+
+This produces the `flowing` layout from `conventions/prose-layout.md`.
+
 It leaves list items and their continuation lines opaque - a packed list item is an
 element-level convention, not a defect (see `conventions/markdown-dialects.md`).
 
@@ -104,8 +110,8 @@ Lines ending in `:` are treated as label lines and never absorb following senten
 Abbreviations such as `e.g.` and `etc.` and periods inside inline code spans do not count as
 boundaries.
 
-`reflow-prose.py` rewrites the file in place, `--check` only reports the lines the chosen
-direction would change.
+`reflow-prose.py` rewrites the file in place, `--check` only reports the lines or blocks
+the chosen direction would change.
 
 Its `--wrap` mode splits over-width lines at whitespace - the same algorithm as
 `wrap-prose.py`.
@@ -121,6 +127,13 @@ Unwrap joins a line only when the accumulated text does not end with sentence-fi
 punctuation or a label colon, so separate sentences sharing a paragraph block stay on
 their own lines - combine it with `split-sentences.py --paragraphs` when the task also asks
 for one sentence per paragraph.
+
+Its `--justify` mode wraps like `--wrap` and additionally stretches inter-word spacing on
+every line of a block except its last, so both edges sit flush - the `justified` layout
+from `conventions/prose-layout.md`.
+
+The marker prefix of a list item or blockquote stays fixed, and the mode is idempotent on
+an already justified document.
 
 Both directions leave tables, fenced code blocks, indented code blocks, HTML comments, and
 frontmatter untouched.
@@ -162,6 +175,10 @@ specifications and configs, and `.gitignore`-declared directories that are absen
 markers, fenced blocks and ` ```markdown ` payloads, special characters, paragraph shape,
 tables, task markers, and internal links - and the agent maps counts to findings per
 `process/document-audit.md`.
+
+Its paragraph report includes a prose-layout classification per element type -
+`separated`, `flowing`, `bounded`, `justified`, or `mixed` - following the conventions
+in `conventions/prose-layout.md`.
 
 `check-sections.py` compares a document's headings against the `## Section Names` table of a
 `types/<name>.md` rule file - the table marks each section `required`, `recommended`,
