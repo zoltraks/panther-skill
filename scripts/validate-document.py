@@ -2,7 +2,7 @@
 """Mechanical style checker for Markdown documents produced by this skill.
 
 Covers the scriptable items of process/document-checklist.md: structure,
-spacing, characters, lists, code fences, and table alignment.
+spacing, characters, lists, code fences, and table structure and alignment.
 
 Non-ASCII characters in prose (outside inline code spans) are reported as
 warnings, not failures - they may be a deliberate document convention.
@@ -38,8 +38,13 @@ TYPO_QUOTES = "“”‘’‚„«»"
 INLINE_CODE = re.compile(r"`[^`]*`")
 
 
-def is_sep(cells):
-    return len(cells) > 0 and all(set(c) <= set("-:") and "-" in c for c in cells)
+def sep_like(cells):
+    stripped = [c.strip() for c in cells]
+    return (
+        len(stripped) > 0
+        and all(set(c) <= set("-:") for c in stripped)
+        and any("-" in c for c in stripped)
+    )
 
 
 def parse_row(line):
@@ -84,11 +89,49 @@ def check_tables(lines, issues):
             i += 1
         rows = [raw_cells(l) for l in block]
         ncols = max(len(r) for r in rows)
+
+        for offset, line in enumerate(block):
+            if line.startswith("||"):
+                issues.append(
+                    f"line {start + offset + 1}: row starts with a double pipe"
+                )
+
+        sep_idx = next((k for k, r in enumerate(rows) if sep_like(r)), None)
+        if sep_idx is None:
+            issues.append(f"line {start + 1}: table has no separator row")
+        else:
+            if sep_idx != 1:
+                issues.append(
+                    f"line {start + sep_idx + 1}: separator row is not the "
+                    "second table row"
+                )
+            missing = [
+                str(j + 1) for j, c in enumerate(rows[sep_idx]) if "-" not in c
+            ]
+            if missing:
+                issues.append(
+                    f"line {start + sep_idx + 1}: separator cell(s) "
+                    + ", ".join(missing) + " lack(s) hyphens"
+                )
+
+        for j in range(ncols):
+            if all(
+                j >= len(r) or r[j].strip() == ""
+                for r in rows
+                if not sep_like(r)
+            ):
+                issues.append(
+                    f"line {start + 1}: column {j + 1} is empty in every row"
+                )
+
         widths = [0] * ncols
         for r in rows:
-            if is_sep([c.strip() for c in r]):
+            if sep_like(r):
                 for c in r:
-                    sep_styles.add("spaced" if c != c.strip() else "compact")
+                    if "-" in c:
+                        sep_styles.add(
+                            "spaced" if c != c.strip() else "compact"
+                        )
                 continue
             for j in range(ncols):
                 cell = r[j].strip() if j < len(r) else ""
@@ -97,7 +140,7 @@ def check_tables(lines, issues):
             if len(r) != ncols:
                 issues.append(f"line {start + offset + 1}: ragged table row")
                 continue
-            if is_sep([c.strip() for c in r]):
+            if sep_like(r):
                 for j, cell in enumerate(r):
                     if len(cell) != widths[j] + 2:
                         issues.append(

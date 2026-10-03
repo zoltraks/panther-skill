@@ -1193,6 +1193,19 @@
         "The agent re-asks or clarifies rather than guessing a section set.",
         "No file is written until a non-empty selection or another valid answer resolves the surface."
       ]
+    },
+    {
+      "id": 99,
+      "prompt": "Fix the tables in this report document - every row starts with `| |` and the separator rows have cells without hyphens.",
+      "expected_output": "The same document with the spurious empty columns removed, every separator-row cell carrying hyphens, and all tables compacted and aligned by source width.",
+      "files": [],
+      "expectations": [
+        "No table column is empty in every row - leading or trailing all-empty columns were removed.",
+        "Every separator-row cell contains at least one hyphen.",
+        "No table row starts with `||`.",
+        "Legitimate `| |` cells stay: a corner cell above a dashed separator cell and wrapped-cell continuation rows are preserved.",
+        "The repaired document passes validate-document.py with no table findings."
+      ]
     }
   ]
 }

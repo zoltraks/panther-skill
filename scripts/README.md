@@ -72,7 +72,7 @@ python detect-scope.tmp.py <directory>
 python split-sentences.tmp.py <file.md> [--check] [--paragraphs | --flow] [--width N] [--payload-markdown]
 python reflow-prose.tmp.py <file.md> (--wrap | --unwrap | --justify) [--check] [--width N] [--payload-markdown]
 python wrap-prose.tmp.py <file.md> [--check] [--width N] [--payload-markdown]
-python format-table.tmp.py <file.md> [--check] [--payload-markdown]
+python format-table.tmp.py <file.md> [--check] [--payload-markdown] [--drop-empty-columns]
 python align-comments.tmp.py <file.md> [--check] [--compact] [--payload-markdown]
 python validate-document.tmp.py <file.md> [--width N] [--payload-markdown]
 python diff-content.tmp.py <file.md> [--baseline <file>]
@@ -218,6 +218,17 @@ not a splice.
 
 It targets Polish deliverable documents - the skill's own rule files contain the
 forbidden forms by definition and will report them.
+
+`format-table.py` rebuilds tables with source-width alignment and normalizes every
+separator-row cell to the correct hyphen count - a separator cell without hyphens does not
+declare its column and is repaired, not preserved.
+
+It warns on rows starting with `||` and on columns empty in every non-separator row -
+`--drop-empty-columns` removes such columns instead of only warning.
+
+`validate-document.py` fails on a table without a separator row, a separator row that is not
+the second row, a separator cell lacking hyphens, a column empty in every row, and a row
+starting with `||`.
 
 The validators exit `0` when all checks pass and `1` when one or more checks fail.
 

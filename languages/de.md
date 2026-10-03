@@ -36,11 +36,11 @@ Die unten beschriebenen Regeln gelten auch für dieses Dokument selbst.
 | Abschnittsnamen nach Dokumenttyp | 289   | Deutsche Abschnittsnamen und Elemente der Typen |
 | Dialektmerkmale                  | 569   | Kapitelnummerierung und Pseudo-Überschriften    |
 | Tabellen                         | 586   | Ausrichtung nach dem Quelltext                  |
-| Dateinamen                       | 698   | Benennung neuer Dokumentationsdateien           |
-| Beispiel                         | 708   | Richtiges und falsches Beispiel                 |
-| Dateipflege                      | 742   | Kodierung und Zeilenenden                       |
-| Aktualisierungsfrage             | 752   | Deutsche Formulierung der Aktualisierungsfrage  |
-| Aktivierungsphrasen              | 758   | Deutsche Phrasen und englische Entsprechungen   |
+| Dateinamen                       | 707   | Benennung neuer Dokumentationsdateien           |
+| Beispiel                         | 717   | Richtiges und falsches Beispiel                 |
+| Dateipflege                      | 751   | Kodierung und Zeilenenden                       |
+| Aktualisierungsfrage             | 761   | Deutsche Formulierung der Aktualisierungsfrage  |
+| Aktivierungsphrasen              | 767   | Deutsche Phrasen und englische Entsprechungen   |
 
 ## Dokumentstruktur
 
@@ -605,11 +605,20 @@ Das Formatierungswerkzeug wandelt ihn dann in eine zusätzliche leere Spalte um,
 
 Schreibe eine absichtlich leere erste Zelle als `| |` und nur dann, wenn die Tabelle sie wirklich benötigt.
 
+Eine leere Zelle ist nur in einer Spalte erlaubt, die die Trennzeile deklariert - ihre
+Trennzelle muss mindestens einen Bindestrich enthalten.
+
+Eine Spalte, die in jeder Zeile einschließlich der Kopfzeile leer ist, ist nie erlaubt -
+entferne sie.
+
 ### Trennzeile
 
 Setze die Trennzeile unmittelbar hinter die Kopfzeile.
 
 Die Trennzeile enthält ausschließlich Bindestriche und senkrechte Striche.
+
+Jede Zelle der Trennzeile enthält mindestens einen Bindestrich - eine Zelle aus Leerzeichen
+deklariert die Spalte nicht.
 
 Die Bindestriche schließen ohne Leerzeichen an die senkrechten Striche an.
 

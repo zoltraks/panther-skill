@@ -400,7 +400,8 @@ Before delivering, run the checks from `process/document-checklist.md`:
 
 - Mechanical self-review of the written content.
 - `scripts/split-sentences.py --check` when the request covered packed sentences.
-- `scripts/format-table.py --check` on the file when it contains tables.
+- `scripts/format-table.py --check` on the file when it contains tables - its warnings on
+  `||` row starts or fully empty columns are resolved, not ignored.
 - `scripts/align-comments.py --check` when the document contains plain-text blocks with `#`
   comments.
 - `scripts/reflow-prose.py --wrap --check --width N` when the document follows a width

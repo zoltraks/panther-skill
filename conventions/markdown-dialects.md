@@ -112,6 +112,10 @@ Do not clean them up during an unrelated edit - the minimal-diff rule applies.
 
 Normalize them only when the request is about reformatting or cleanup.
 
+Unlike the artifacts above, a row starting with `||`, a column empty in every row, or a
+separator cell without hyphens is a structural defect, not a dialect convention - the column
+it leaves behind is spurious, and `format-table.py --drop-empty-columns` repairs it.
+
 ## YAML Frontmatter
 
 Many documents open with a metadata block between fence lines:

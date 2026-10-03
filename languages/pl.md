@@ -36,12 +36,12 @@ Zasady opisane poniżej stosują się również do samego tego dokumentu.
 | Nazwy sekcji według typu dokumentu | 446    | Polskie nazwy sekcji i elementy typów         |
 | Cechy dialektów                    | 726    | Numeracja rozdziałów i pseudo-nagłówki        |
 | Tabele                             | 743    | Wyrównanie według źródła                      |
-| Nazwy plików                       | 857    | Nazywanie nowych plików dokumentacji          |
-| Przykład                           | 867    | Przykład poprawny i niepoprawny               |
-| Kontrola przed dostarczeniem       | 901    | Kontrole językowe przed dostarczeniem         |
-| Utrzymanie plików                  | 911    | Kodowanie i złamania wierszy                  |
-| Pytanie o aktualizację             | 921    | Polskie brzmienie pytania o aktualizację      |
-| Frazy aktywujące                   | 927    | Polskie frazy i ich angielskie odpowiedniki   |
+| Nazwy plików                       | 865    | Nazywanie nowych plików dokumentacji          |
+| Przykład                           | 875    | Przykład poprawny i niepoprawny               |
+| Kontrola przed dostarczeniem       | 909    | Kontrole językowe przed dostarczeniem         |
+| Utrzymanie plików                  | 919    | Kodowanie i złamania wierszy                  |
+| Pytanie o aktualizację             | 929    | Polskie brzmienie pytania o aktualizację      |
+| Frazy aktywujące                   | 935    | Polskie frazy i ich angielskie odpowiedniki   |
 
 ## Struktura dokumentu
 
@@ -764,11 +764,19 @@ tabeli, a nie tylko ją rozjeżdża.
 Celowo pustą pierwszą komórkę zapisuj jako `| |` i tylko wtedy, gdy tabela jej rzeczywiście
 potrzebuje.
 
+Pustą komórkę wolno zapisać wyłącznie w kolumnie zadeklarowanej przez wiersz separatora -
+jej komórka separatora musi zawierać co najmniej jeden łącznik.
+
+Kolumna pusta w każdym wierszu, łącznie z nagłówkiem, nigdy nie jest dozwolona - usuń ją.
+
 ### Wiersz separatora
 
 Wiersz separatora umieszczaj bezpośrednio po wierszu nagłówka.
 
 Wiersz separatora zawiera wyłącznie łączniki i kreski pionowe.
+
+Każda komórka wiersza separatora zawiera co najmniej jeden łącznik - komórka złożona z
+samych odstępów nie deklaruje kolumny.
 
 Łączniki przylegają do kresek pionowych, bez odstępów między nimi.
 

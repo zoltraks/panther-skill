@@ -8,12 +8,20 @@ on the document file, verify that all `|` separators align vertically, then
 remove the copy.
 
 Usage: python format-table.py <document.md> [--check] [--payload-markdown]
+                                     [--drop-empty-columns]
 
   --check              report tables that would be reformatted and exit 1,
                        without writing the file
   --payload-markdown   also format tables inside ```markdown fenced blocks
                        (embedded payload documents); other fence languages
                        always stay opaque
+  --drop-empty-columns remove columns that are empty in every non-separator
+                       row (a spurious column, never a spacer); without the
+                       flag such columns are reported as warnings only
+
+Separator rows are normalized on every run: a separator-row cell that lacks
+hyphens is rebuilt with the correct hyphen count, since only a dashed cell
+declares its column.
 """
 
 import argparse
@@ -40,25 +48,72 @@ def is_sep(cells):
     return len(cells) > 0 and all(set(c) <= set("-:") and "-" in c for c in cells)
 
 
-def format_block(block):
+def sep_like(cells):
+    return (
+        len(cells) > 0
+        and all(set(c) <= set("-:") for c in cells)
+        and any("-" in c for c in cells)
+    )
+
+
+def format_block(block, start, drop_empty):
+    warnings = []
     rows = [parse_row(l) for l in block]
+    for k, line in enumerate(block):
+        if line.startswith("||"):
+            warnings.append(
+                f"line {start + k + 1}: row starts with '||' - "
+                "double pipe parses as an empty first cell"
+            )
+    for k, r in enumerate(rows):
+        if sep_like(r) and not is_sep(r):
+            warnings.append(
+                f"line {start + k + 1}: separator row cell(s) lacked hyphens - "
+                "normalized"
+            )
     ncols = max(len(r) for r in rows)
     rows = [r + [""] * (ncols - len(r)) for r in rows]
+    empty = [
+        j
+        for j in range(ncols)
+        if all(r[j] == "" for r in rows if not sep_like(r))
+    ]
+    if empty:
+        cols = ", ".join(str(j + 1) for j in empty)
+        if drop_empty and len(empty) < ncols:
+            drop = set(empty)
+            rows = [
+                [c for j, c in enumerate(r) if j not in drop] for r in rows
+            ]
+            ncols -= len(empty)
+            warnings.append(
+                f"line {start + 1}: dropped empty column(s) {cols}"
+            )
+        elif drop_empty:
+            warnings.append(
+                f"line {start + 1}: every column is empty - "
+                "table left unchanged"
+            )
+        else:
+            warnings.append(
+                f"line {start + 1}: column(s) {cols} empty in every row "
+                "(use --drop-empty-columns to remove)"
+            )
     widths = [1] * ncols
     for r in rows:
-        if is_sep(r):
+        if sep_like(r):
             continue
         for j, c in enumerate(r):
             widths[j] = max(widths[j], len(c))
     out = []
     for r in rows:
-        if is_sep(r):
+        if sep_like(r):
             out.append("|" + "|".join("-" * (w + 2) for w in widths) + "|")
         else:
             out.append(
                 "| " + " | ".join(c.ljust(widths[j]) for j, c in enumerate(r)) + " |"
             )
-    return out
+    return out, warnings
 
 
 def in_payload(fences, payload_markdown):
@@ -67,7 +122,7 @@ def in_payload(fences, payload_markdown):
     )
 
 
-def main(path, check_only, payload_markdown):
+def main(path, check_only, payload_markdown, drop_empty):
     raw = open(path, "rb").read()
     crlf = b"\r\n" in raw
     try:
@@ -101,7 +156,9 @@ def main(path, check_only, payload_markdown):
             while i < len(lines) and lines[i].startswith("|"):
                 block.append(lines[i])
                 i += 1
-            formatted = format_block(block)
+            formatted, warnings = format_block(block, start, drop_empty)
+            for message in warnings:
+                print(message)
             if formatted != block:
                 changed.append(start + 1)
             out.extend(formatted)
@@ -142,5 +199,9 @@ if __name__ == "__main__":
     parser.add_argument("file")
     parser.add_argument("--check", action="store_true")
     parser.add_argument("--payload-markdown", action="store_true")
+    parser.add_argument("--drop-empty-columns", action="store_true",
+                        help="remove columns that are empty in every "
+                             "non-separator row")
     parsed = parser.parse_args()
-    raise SystemExit(main(parsed.file, parsed.check, parsed.payload_markdown))
+    raise SystemExit(main(parsed.file, parsed.check, parsed.payload_markdown,
+                          parsed.drop_empty_columns))

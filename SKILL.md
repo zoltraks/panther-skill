@@ -450,7 +450,7 @@ See `scripts/README.md`.
   stretches inter-word spacing to flush both edges of a block.
 - **`scripts/wrap-prose.py`** - Deprecated split-only wrapper, superseded by
   `reflow-prose.py --wrap`, kept for documents that already reference it.
-- **`scripts/format-table.py`** - Rebuild tables with source-width alignment.
+- **`scripts/format-table.py`** - Rebuild tables with source-width alignment, `--drop-empty-columns` drops empty columns.
 - **`scripts/align-comments.py`** - Align trailing `#` comments to one column per block.
 - **`scripts/validate-document.py`** - Mechanical checker for `process/document-checklist.md`.
 - **`scripts/diff-content.py`** - Prove a formatting-only pass changed no words vs `HEAD`.

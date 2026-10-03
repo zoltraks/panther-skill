@@ -34,9 +34,9 @@ The rules described below apply to this document itself as well.
 | Special Characters       | 247  | Box-drawing and emoji               |
 | English Vocabulary       | 255  | Preferred terms and calques         |
 | Tables                   | 278  | Source-width alignment rules        |
-| File Names               | 391  | Naming new documentation files      |
-| Example                  | 401  | Correct and incorrect sample        |
-| File Maintenance         | 435  | Encoding and line-ending preserving |
+| File Names               | 399  | Naming new documentation files      |
+| Example                  | 409  | Correct and incorrect sample        |
+| File Maintenance         | 443  | Encoding and line-ending preserving |
 
 ## Document Structure
 
@@ -298,11 +298,19 @@ corrupts the table structure instead of only misaligning it.
 
 Write an intentionally empty first cell as `| |`, and only when the table truly needs one.
 
+An empty cell is legal only in a column the separator row declares - the separator cell in
+that column must contain at least one hyphen.
+
+A column that is empty in every row, including the header, is never legal - remove it.
+
 ### Separator Row
 
 Place the separator row directly after the header row.
 
 The separator row contains only hyphens and pipes.
+
+Every separator-row cell carries at least one hyphen - a spaces-only cell does not declare
+its column and leaves the table without a valid separator.
 
 Hyphens touch the pipes, with no spaces between them.
 

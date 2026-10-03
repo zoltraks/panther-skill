@@ -75,6 +75,11 @@ Fix every failure, or report it to the user with a reason.
 - Columns align in plain-text view, every cell is padded to the column width.
 - Every table row starts with a single pipe - a leading `||` produces a spurious empty first
   column.
+- Every separator-row cell contains at least one hyphen - a spaces-only cell leaves its
+  column undeclared.
+- No column is empty in every row - a fully empty column is a spurious column, never a
+  spacer.
+- An intentionally empty cell `| |` appears only in a column the separator row declares.
 - The separator row matches each column width plus two hyphens.
 - Column widths were measured on source text, including backticks and emphasis markers.
 - The table is compacted to the minimum widths that fit the widest cell per column.

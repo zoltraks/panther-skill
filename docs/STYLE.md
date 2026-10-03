@@ -29,10 +29,10 @@ is not wrapped to 100 characters.
 | Headings And Lists         | 126  | Heading depth, lists, and spacing               |
 | Code And Inline Formatting | 175  | Fences, code spans, and semicolons              |
 | Tables                     | 281  | Source-width alignment and automated formatting |
-| Characters And Language    | 456  | Box-drawing, emoji, and per-language rules      |
-| File References            | 482  | Relative paths and localised resources          |
-| Skill Requirements         | 510  | Frontmatter and progressive disclosure          |
-| Maintenance                | 571  | Pointer to the skill extension rules            |
+| Characters And Language    | 464  | Box-drawing, emoji, and per-language rules      |
+| File References            | 490  | Relative paths and localised resources          |
+| Skill Requirements         | 518  | Frontmatter and progressive disclosure          |
+| Maintenance                | 579  | Pointer to the skill extension rules            |
 
 ## Document Structure
 
@@ -306,11 +306,19 @@ corrupts the table structure instead of only misaligning it.
 
 Write an intentionally empty first cell as `| |`, and only when the table truly needs one.
 
+An empty cell is legal only in a column the separator line declares - the separator cell in
+that column must contain at least one hyphen.
+
+A column that is empty in every row, including the header, is never legal - remove it.
+
 ### Header Separator
 
 Place a separator line immediately after the header row.
 
 The separator line contains only hyphens and pipe characters.
+
+Every cell of the separator line carries at least one hyphen - a spaces-only cell does not
+declare its column.
 
 The hyphens in the separator row are contiguous with the pipe characters.
 

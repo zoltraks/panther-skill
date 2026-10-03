@@ -18,6 +18,7 @@ from __future__ import annotations
 import os
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -82,6 +83,58 @@ def run_case(script: str, args: list[str],
         return None
 
 
+DEFECT_TABLE = (
+    "|| A | B |\n"
+    "|  | --- | --- |\n"
+    "|  | 1  | 2   |\n"
+)
+
+CLEAN_TABLES = (
+    "|      | LOW |\n"
+    "|------|-----|\n"
+    "| CRIT | x   |\n"
+    "\n"
+    "| Option    | Description |\n"
+    "|-----------|-------------|\n"
+    "| `--top N` | Limit to N  |\n"
+    "|           | items.      |\n"
+)
+
+
+def table_defect_case() -> int:
+    """Exercise the table-structure checks against synthetic fixtures."""
+    failures = 0
+    label = "table-structure fixtures"
+    with tempfile.TemporaryDirectory() as tmp:
+        bad = Path(tmp) / "defect.md"
+        bad.write_text("# Fixture\n\n" + DEFECT_TABLE, encoding="utf-8")
+        result = run_case("validate-document.py", [str(bad)])
+        if result is None or result.returncode != 1 or not all(
+            token in result.stdout
+            for token in ("double pipe", "empty in every row",
+                          "lack(s) hyphens")
+        ):
+            print(f"FAIL {label} - defect fixture not reported as expected")
+            return 1
+        clean = Path(tmp) / "clean.md"
+        clean.write_text("# Fixture\n\n" + CLEAN_TABLES, encoding="utf-8")
+        result = run_case("validate-document.py", [str(clean)])
+        if result is None or result.returncode != 0:
+            print(f"FAIL {label} - corner/continuation tables must pass")
+            return 1
+        result = run_case("format-table.py", [str(bad), "--drop-empty-columns"])
+        if result is None or result.returncode != 0 \
+                or "dropped empty column" not in result.stdout:
+            print(f"FAIL {label} - repair run did not drop the empty column")
+            return 1
+        result = run_case("validate-document.py", [str(bad)])
+        if result is None or result.returncode != 0:
+            print(f"FAIL {label} - repaired fixture must validate clean")
+            return 1
+    print(f"PASS {label}")
+    return failures
+
+
 def main() -> int:
     failures = 0
     for script, args, exits, prefix, env_extra in CASES:
@@ -104,7 +157,8 @@ def main() -> int:
             failures += 1
             continue
         print(f"PASS {label} - exit {result.returncode}")
-    print(f"RESULT {len(CASES) - failures}/{len(CASES)} tools passed")
+    failures += table_defect_case()
+    print(f"RESULT {len(CASES) + 1 - failures}/{len(CASES) + 1} tools passed")
     return 1 if failures else 0
 
 
