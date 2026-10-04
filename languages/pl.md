@@ -33,15 +33,15 @@ Zasady opisane poniżej stosują się również do samego tego dokumentu.
 | Średniki                           | 264    | Zakaz średników i zdań sklejonych przecinkiem |
 | Znaki specjalne                    | 292    | Znaki ramek, emoji i znaki specjalne          |
 | Słownictwo polskie                 | 310    | Preferowane terminy i kalki                   |
-| Nazwy sekcji według typu dokumentu | 446    | Polskie nazwy sekcji i elementy typów         |
-| Cechy dialektów                    | 726    | Numeracja rozdziałów i pseudo-nagłówki        |
-| Tabele                             | 743    | Wyrównanie według źródła                      |
-| Nazwy plików                       | 865    | Nazywanie nowych plików dokumentacji          |
-| Przykład                           | 875    | Przykład poprawny i niepoprawny               |
-| Kontrola przed dostarczeniem       | 909    | Kontrole językowe przed dostarczeniem         |
-| Utrzymanie plików                  | 919    | Kodowanie i złamania wierszy                  |
-| Pytanie o aktualizację             | 929    | Polskie brzmienie pytania o aktualizację      |
-| Frazy aktywujące                   | 935    | Polskie frazy i ich angielskie odpowiedniki   |
+| Nazwy sekcji według typu dokumentu | 451    | Polskie nazwy sekcji i elementy typów         |
+| Cechy dialektów                    | 731    | Numeracja rozdziałów i pseudo-nagłówki        |
+| Tabele                             | 748    | Wyrównanie według źródła                      |
+| Nazwy plików                       | 870    | Nazywanie nowych plików dokumentacji          |
+| Przykład                           | 880    | Przykład poprawny i niepoprawny               |
+| Kontrola przed dostarczeniem       | 914    | Kontrole językowe przed dostarczeniem         |
+| Utrzymanie plików                  | 924    | Kodowanie i złamania wierszy                  |
+| Pytanie o aktualizację             | 934    | Polskie brzmienie pytania o aktualizację      |
+| Frazy aktywujące                   | 940    | Polskie frazy i ich angielskie odpowiedniki   |
 
 ## Struktura dokumentu
 
@@ -249,7 +249,7 @@ Stosuj prosty apostrof ASCII (`'`) zamiast apostrofu typograficznego.
 
 Stosuj łącznik z odstępami (` - `) jako znak wtrącenia zamiast półpausy lub pausy.
 
-Znaki typograficzne (cudzysłów „...", półpauza, strzałka `→`) są dozwolone tylko wtedy, gdy wynikają z wyraźnego żądania, konwencji istniejącego dokumentu albo charakteru przekładu.
+Znaki typograficzne (cudzysłów `„`...", półpauza, strzałka `→`) są dozwolone tylko wtedy, gdy wynikają z wyraźnego żądania, konwencji istniejącego dokumentu albo charakteru przekładu.
 
 Gdy żadne z tych źródeł nie rozstrzyga konwencji, pozostań przy ASCII albo spytaj zamawiającego.
 
@@ -380,6 +380,7 @@ Poniższa tabela jest źródłem prawdy dla mechanicznej kontroli - `scripts/lin
 | strażnik (guard)                                                                                                                                | mechanizm ochronny                        |
 | jednorazowa instancja                                                                                                                           | tymczasowa instancja                      |
 | zastany                                                                                                                                         | istniejący wcześniej / odziedziczony      |
+| pre-existing / preexisting                                                                                                                      | zastany / istniejący wcześniej            |
 | placeholder sekretu                                                                                                                             | wartość zastępcza sekretu                 |
 | realna baza                                                                                                                                     | rzeczywista baza danych                   |
 | serwujący                                                                                                                                       | udostępniający                            |
@@ -417,6 +418,10 @@ Wpis `pod` w tabeli dotyczy wyłącznie kalki opisu miejsca - `pod katalogiem` z
 Ustalone nazwy własne, nazwy produktów i nazwy elementów architektury zachowuj w formie oryginalnej, na przykład Microsoft Fabric, Lakehouse, Warehouse, Power BI, workspace.
 
 Nazwy techniczne pochodzące z systemu źródłowego zapisuj dokładnie tak, jak występują w systemie.
+
+Stałe etykiety definiowane przez szablon albo kontrakt dokumentu - wartości decyzji, statusy, nazwy opcji zapisane wielkimi literami - zachowuj w formie oryginalnej i nie tłumacz ich nawet pod presją wyników lintu.
+
+`lint-polish.py` traktuje token zapisany wyłącznie wielkimi literami jako taką etykietę i nie zgłasza w nim kalki.
 
 Nazwy produktów i narzędzi zachowują oficjalną pisownię i odmieniają się normalnie, na przykład Git, SemVer, "plików Dockera".
 

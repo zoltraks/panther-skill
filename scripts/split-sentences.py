@@ -31,6 +31,11 @@ comments, and frontmatter stay opaque - packed sentences inside list items are
 an element-level convention, not a defect (see
 conventions/markdown-dialects.md).
 
+Sentence detection is heuristic: a capitalized word after a period inside
+parentheses (for example "(np. Wartość)") still looks like a new sentence
+even when a recognized abbreviation precedes it. Review proposed splits
+before applying them.
+
 Copy this file into the working repository's `work/` directory (or the
 repository root when no `work/` exists) as `split-sentences.tmp.py`, run it on
 the document file, then remove the copy.

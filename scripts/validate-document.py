@@ -6,6 +6,8 @@ spacing, characters, lists, code fences, and table structure and alignment.
 
 Non-ASCII characters in prose (outside inline code spans) are reported as
 warnings, not failures - they may be a deliberate document convention.
+Letters (typically language diacritics) aggregate into a single summary
+warning, while non-ASCII punctuation and symbols still report per line.
 Box-drawing characters (U+2500-U+257F) are exempt.
 
 `text`/`txt` fence tags are warnings for the same reason - an existing
@@ -170,6 +172,7 @@ def main(path, width, payload_markdown):
     lines = text.replace("\r\n", "\n").split("\n")
     issues = []
     warnings = []
+    foreign_letters = {}
 
     h1 = 0
     fences = []
@@ -230,25 +233,40 @@ def main(path, width, payload_markdown):
                     issues.append(f"line {n}: heading ends with punctuation")
 
         if not payload:
-            if any(q in line for q in TYPO_QUOTES):
+            prose = INLINE_CODE.sub("", line)
+            if any(q in prose for q in TYPO_QUOTES):
                 issues.append(f"line {n}: typographic quote or apostrophe")
 
-            prose = INLINE_CODE.sub("", line)
             if ";" in prose:
                 issues.append(f"line {n}: semicolon in prose")
 
             if re.search(r"[\U0001F300-\U0001FAFF☀-➿⬀-⯿]", line):
                 issues.append(f"line {n}: emoji or pictograph")
 
+            prev_heading = HEADING.match(prev)
+            if prev_heading and not heading and line.strip() != "":
+                issues.append(f"line {n - 1}: no blank line after heading")
+            if (
+                heading
+                and prev.strip() != ""
+                and not prev_heading
+                and prev.strip() not in ("---", "+++")
+            ):
+                issues.append(f"line {n}: no blank line before heading")
+
             foreign = [
                 c for c in dict.fromkeys(prose)
                 if ord(c) > 127 and not 0x2500 <= ord(c) <= 0x257F
             ]
-            if foreign:
+            symbols = [c for c in foreign if not c.isalpha()]
+            if symbols:
                 warnings.append(
                     f"line {n}: non-ASCII character(s) in prose: "
-                    + " ".join(f"U+{ord(c):04X} '{c}'" for c in foreign)
+                    + " ".join(f"U+{ord(c):04X} '{c}'" for c in symbols)
                 )
+            for c in foreign:
+                if c.isalpha():
+                    foreign_letters[c] = foreign_letters.get(c, 0) + 1
 
         if width and not line.startswith("|") and len(line) > width:
             issues.append(f"line {n}: {len(line)} chars exceeds width {width}")
@@ -272,6 +290,13 @@ def main(path, width, payload_markdown):
             issues.append(f"line {n}: no blank line after list or table")
 
         prev = line
+
+    if foreign_letters:
+        warnings.append(
+            "non-ASCII letter(s) in prose (often diacritics - expected for "
+            "non-English documents): "
+            + " ".join(f"U+{ord(c):04X} '{c}'" for c in foreign_letters)
+        )
 
     if h1 == 0:
         warnings.append("document has no H1 title (allowed for notes, verify the type)")

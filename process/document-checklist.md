@@ -52,6 +52,8 @@ Fix every failure, or report it to the user with a reason.
   deliberately differs.
 - **Existing:** non-ASCII punctuation in prose (dashes, ellipsis, non-breaking spaces) was
   surfaced and checked against the document's convention.
+- Sanctioned character normalization ran through `scripts/normalize-chars.py` or an
+  equivalent deterministic tool - not through ad-hoc shell substitutions.
 
 ## Lists And Code
 
@@ -141,4 +143,5 @@ Fix every failure, or report it to the user with a reason.
 - `scripts/lint-polish.py` reports no findings on a Polish document.
 - `scripts/diff-content.py` reports an identical token stream after formatting-only passes.
 - `git diff --check` reports no whitespace errors when inside a repository.
-- Temporary `.tmp.` tool copies are removed from the working repository.
+- Temporary `.tmp.` tool copies and ad-hoc helpers are removed from the working
+  repository - no file the task did not request remains.

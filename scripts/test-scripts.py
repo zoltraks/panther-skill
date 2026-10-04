@@ -34,6 +34,7 @@ CASES: list[tuple[str, list[str], tuple[int, ...], str | None,
     ("detect-encoding.py", ["README.md"], (0,), None, None),
     ("detect-scope.py", ["."], (0,), None, None),
     ("census-document.py", ["README.md"], (0,), None, None),
+    ("normalize-chars.py", ["README.md", "--check"], (0, 1), None, None),
     ("split-sentences.py", ["README.md", "--check"], (0, 1), None, None),
     ("split-sentences.py", ["README.md", "--paragraphs", "--check"], (0,), None,
      None),
@@ -135,6 +136,69 @@ def table_defect_case() -> int:
     return failures
 
 
+def heuristic_regressions() -> int:
+    """Exercise lint and validator exemptions against synthetic fixtures."""
+    failures = 0
+    label = "heuristic-exemption fixtures"
+    with tempfile.TemporaryDirectory() as tmp:
+        tmp = Path(tmp)
+        enum_doc = tmp / "enum.md"
+        enum_doc.write_text(
+            "# Fixture\n\n"
+            "**REQUEST CHANGES**\n\n"
+            "Warunki: F-01, F-02, F-03 (przed zamknięciem przeglądu).\n",
+            encoding="utf-8")
+        result = run_case("lint-polish.py",
+                          [str(enum_doc), "--rules", "languages/pl.md"])
+        if (result is None or result.returncode != 0
+                or "calque" in result.stdout or "spliced" in result.stdout):
+            print(f"FAIL {label} - enum label or identifier list still flags")
+            failures += 1
+        splice_doc = tmp / "splice.md"
+        splice_doc.write_text(
+            "# Fixture\n\nKonfiguracja jest kompletna, wdrożenie ruszy.\n",
+            encoding="utf-8")
+        result = run_case("lint-polish.py",
+                          [str(splice_doc), "--rules", "languages/pl.md"])
+        if result is None or "possible spliced clause" not in result.stdout:
+            print(f"FAIL {label} - a real comma splice went silent")
+            failures += 1
+        heading_doc = tmp / "heading.md"
+        heading_doc.write_text("# T\n\n## Sekcja\nTekst bez blanka.\n",
+                               encoding="utf-8")
+        result = run_case("validate-document.py", [str(heading_doc)])
+        if result is None or "no blank line after heading" not in result.stdout:
+            print(f"FAIL {label} - missing blank line after heading passes")
+            failures += 1
+        diacritics = tmp / "diacritics.md"
+        diacritics.write_text("# Żółć\n\nŁąka ślimaka ę óą.\n\nŻółć łąka.\n",
+                              encoding="utf-8")
+        result = run_case("validate-document.py", [str(diacritics)])
+        if (result is None or result.returncode != 0
+                or result.stdout.count("non-ASCII letter(s)") != 1):
+            print(f"FAIL {label} - diacritics did not aggregate into one warn")
+            failures += 1
+        before = tmp / "before.md"
+        after = tmp / "after.md"
+        before.write_text("# T\n\nAla — ma kota.\n", encoding="utf-8")
+        after.write_text("# T\n\nAla - ma kota.\n", encoding="utf-8")
+        result = run_case("diff-content.py",
+                          [str(after), "--baseline", str(before),
+                           "--normalize-chars"])
+        if result is None or result.returncode != 0:
+            print(f"FAIL {label} - --normalize-chars still flags the dash swap")
+            failures += 1
+        norm_doc = tmp / "norm.md"
+        norm_doc.write_text("# T\n\nAla — ma kota…\n", encoding="utf-8")
+        result = run_case("normalize-chars.py", [str(norm_doc)])
+        if (result is None or result.returncode != 0
+                or "—" in norm_doc.read_text(encoding="utf-8")):
+            print(f"FAIL {label} - normalize-chars did not rewrite the file")
+            failures += 1
+    print(("PASS" if not failures else "FAIL") + f" {label}")
+    return failures
+
+
 def main() -> int:
     failures = 0
     for script, args, exits, prefix, env_extra in CASES:
@@ -158,7 +222,8 @@ def main() -> int:
             continue
         print(f"PASS {label} - exit {result.returncode}")
     failures += table_defect_case()
-    print(f"RESULT {len(CASES) + 1 - failures}/{len(CASES) + 1} tools passed")
+    failures += heuristic_regressions()
+    print(f"RESULT {len(CASES) + 2 - failures}/{len(CASES) + 2} tools passed")
     return 1 if failures else 0
 
 

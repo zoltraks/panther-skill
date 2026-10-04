@@ -630,6 +630,7 @@ panther-skill/
 │   ├── check-sections.py              # Section conformance check against a type's vocabulary
 │   ├── reflow-prose.py                # Bidirectional prose wrapper and unwrapper
 │   ├── wrap-prose.py                  # Deprecated split-only wrapper, use reflow-prose.py
+│   ├── normalize-chars.py             # Typographic-to-ASCII character normalization
 │   ├── split-sentences.py             # Sentence-per-line prose splitter
 │   ├── format-table.py                # Source-width table formatter
 │   ├── align-comments.py              # Plain-text block comment aligner

@@ -16,10 +16,11 @@ They do not modify documents beyond the specific task each tool performs.
 
 ### Document-Production Tools
 
-Copy `detect-encoding.py`, `detect-scope.py`, `split-sentences.py`, `reflow-prose.py`,
-`wrap-prose.py`, `format-table.py`, `align-comments.py`, `validate-document.py`,
-`diff-content.py`, `census-document.py`, `check-sections.py`, and `lint-polish.py` into the
-working repository's `work/` directory under a `.tmp.` name before use.
+Copy `detect-encoding.py`, `detect-scope.py`, `normalize-chars.py`, `split-sentences.py`,
+`reflow-prose.py`, `wrap-prose.py`, `format-table.py`, `align-comments.py`,
+`validate-document.py`, `diff-content.py`, `census-document.py`, `check-sections.py`, and
+`lint-polish.py` into the working repository's `work/` directory under a `.tmp.` name
+before use.
 
 When `lint-polish.py` is copied out of the skill repository it cannot auto-discover its
 rule tables - pass them explicitly with `--rules <path>` pointing at the skill's
@@ -35,7 +36,11 @@ Use the repository root only when no declared or existing temporary directory ap
 
 Run the copied scripts only against the document being created, edited, or audited.
 
-Remove every copied script after use.
+Ad-hoc helpers created during a session - such as a one-off normalization script - also
+carry the `.tmp.` infix inside that directory.
+
+Remove every copied script and every ad-hoc `.tmp.` helper after use, including on
+aborted runs - the working tree must end unchanged outside the target document.
 
 ### Skill-Maintenance Tools
 
@@ -69,13 +74,14 @@ The commands below use `python` - substitute `python3` when `python` is not on P
 ```bash
 python detect-encoding.tmp.py <file>
 python detect-scope.tmp.py <directory>
+python normalize-chars.tmp.py <file.md> [--check] [--payload-markdown]
 python split-sentences.tmp.py <file.md> [--check] [--paragraphs | --flow] [--width N] [--payload-markdown]
 python reflow-prose.tmp.py <file.md> (--wrap | --unwrap | --justify) [--check] [--width N] [--payload-markdown]
 python wrap-prose.tmp.py <file.md> [--check] [--width N] [--payload-markdown]
 python format-table.tmp.py <file.md> [--check] [--payload-markdown] [--drop-empty-columns]
 python align-comments.tmp.py <file.md> [--check] [--compact] [--payload-markdown]
 python validate-document.tmp.py <file.md> [--width N] [--payload-markdown]
-python diff-content.tmp.py <file.md> [--baseline <file>]
+python diff-content.tmp.py <file.md> [--baseline <file>] [--normalize-chars]
 python census-document.tmp.py <file.md> [--width N] [--payload-markdown]
 python check-sections.tmp.py <file.md> --type <types/name.md> [--language <languages/code.md>]
 python lint-polish.tmp.py <file.md> [--rules <rulefile.md> ...]
@@ -86,6 +92,14 @@ python scripts/check-update.py
 ```
 
 `detect-encoding.py` and `detect-scope.py` always exit `0` and print a report.
+
+`normalize-chars.py` rewrites typographic characters to ASCII equivalents - quotes,
+dashes, arrows, ellipsis, Unicode spaces, and the soft hyphen - and rewrites the file in
+place, `--check` only reports the lines that would change.
+
+Fences and frontmatter stay opaque while prose, inline code spans, table cells, and link
+targets are normalized - run it before sentence and table passes so those passes see the
+final characters.
 
 `split-sentences.py` rewrites the file in place, `--check` only reports lines or blocks that pack
 multiple sentences.
@@ -161,6 +175,13 @@ The convention lives in `conventions/plain-text-comments.md`.
 `diff-content.py` compares the normalized token stream of a document against `git show HEAD`
 or a `--baseline` file, identical tokens mean a pass changed formatting only.
 
+A document outside version control has no `git show HEAD` anchor - snapshot it to a
+`.tmp.` file before the first edit and pass that snapshot as `--baseline`.
+
+`--normalize-chars` maps both sides through the `normalize-chars.py` table first, so a
+sanctioned character-normalization pass reports no token differences while word-level
+edits still surface.
+
 It exits `0` for identical token streams and `1` when tokens differ.
 
 It prints `WARN` for possible merged lines - review those by hand.
@@ -211,10 +232,17 @@ Flagged commas inside a series closed by a conjunction (`X, Y i Z`) count as an
 enumeration and raise no spliced-clause warning - the heuristic stays silent on
 conjunction-closed coordination, which is legal Polish.
 
+Parentheses, brackets, and braces also close a series, so `F-01, F-02 (wymagane)` or
+`a, b (c, d)` raise no warning, and a comma before an identifier token such as `F-02` or
+`ADR-3` counts as a list separator.
+
 A line opened by a subordinate or participial clause (`Gdy ...`, `Jeśli ...`,
 `Odwołując ...`) has its first flaggable comma exempt - it closes the opener clause -
 and a comma followed by an `-ąc`/`-wszy`/`-łszy` participle is an adverbial phrase,
 not a splice.
+
+A calque stem inside an all-uppercase token - a status enum, an option name, an acronym -
+raises no error, because replacing it would break a fixed label the document does not own.
 
 It targets Polish deliverable documents - the skill's own rule files contain the
 forbidden forms by definition and will report them.
@@ -243,21 +271,27 @@ Run `detect-scope.py` on the target directory first when the task needs the docu
 Run checks in this order:
 
 1. Detect encoding before editing an existing file.
-2. Check packed sentences with `split-sentences.py --check` when the request covers
+2. Snapshot a `.tmp.` baseline for `diff-content.py` when the document is untracked and
+   `git show HEAD` has no version to compare against.
+3. Normalize typographic characters with `normalize-chars.py` when the document's
+   convention is ASCII.
+4. Check packed sentences with `split-sentences.py --check` when the request covers
    sentence separation.
-3. Check the wrap convention with `reflow-prose.py --wrap --check` for fixed-width
+5. Check the wrap convention with `reflow-prose.py --wrap --check` for fixed-width
    documents or `reflow-prose.py --unwrap --check` for logical-line documents, matching
    the detected convention.
-4. Format edited tables with `format-table.py`.
-5. Align comments in plain-text blocks with `align-comments.py` when the document contains
+6. Lint Polish output with `lint-polish.py` and apply every content fix it requires.
+7. Format edited tables with `format-table.py` - the last content-changing pass, so any
+   later text edit requires re-running it and re-validating.
+8. Align comments in plain-text blocks with `align-comments.py` when the document contains
    them.
-6. Validate the written document with `validate-document.py`.
-7. Check sections against the type file with `check-sections.py` when the document has a
-   known type.
-8. Lint Polish output with `lint-polish.py`.
-9. Verify formatting-only passes with `diff-content.py`.
-10. Run `git diff --check` when inside a repository.
-11. Remove temporary `.tmp.` copies from the working repository.
+9. Validate the written document with `validate-document.py`.
+10. Check sections against the type file with `check-sections.py` when the document has a
+    known type.
+11. Verify formatting-only passes with `diff-content.py` - add `--normalize-chars` when
+    step 3 ran so the sanctioned character map does not surface as token differences.
+12. Run `git diff --check` when inside a repository.
+13. Remove every temporary `.tmp.` copy and ad-hoc helper from the working repository.
 
 For skill maintenance, run `validate-skill.py`, `check-references.py`, and `check-contents.py`
 first.
@@ -279,8 +313,10 @@ trailing whitespace, consecutive blank lines, lone list markers, and line width.
 `diff-content.py` is a heuristic net, not a proof - its merged-line warnings require manual
 review, and a clean report still does not replace reading the diff.
 
-`split-sentences.py` detects boundaries heuristically - review its diff before accepting,
-and prefer leaving a questionable line packed over splitting it wrong.
+`split-sentences.py` detects boundaries heuristically - a capitalized word after a
+period inside parentheses, such as `(np. Wartość)`, can be split wrongly - review its
+diff before accepting, and prefer leaving a questionable line packed over splitting it
+wrong.
 
 `reflow-prose.py --unwrap` joins a line when the accumulated text does not end with
 sentence-final punctuation, and treats a label line ending in `:` as a boundary - review
@@ -290,9 +326,13 @@ the joins on documents that mix several layouts.
 design - a genuinely spliced pair of clauses that happens to end with `i`, `oraz`,
 `lub`, or `albo` can pass silently.
 
-The leading-clause exemption and the participle exemption can likewise hide a real
-splice - a comma joining two clauses after an opener clause or before a participle
-stays silent.
+The leading-clause, participle, parenthesized-series, and identifier-token exemptions
+can likewise hide a real splice - a comma joining two clauses under any of them stays
+silent.
+
+The all-uppercase calque exemption can hide a real calque inside a deliberately shouted
+word - uppercase warnings deserve a manual glance when the document uses emphasis
+capitals.
 
 Console output never fails on a legacy encoding - every script reconfigures `sys.stdout`
 and `sys.stderr` with `errors="backslashreplace"` under its `__main__` guard, so characters

@@ -421,13 +421,15 @@
     {
       "id": 35,
       "prompt": "This guidelines document uses em-dashes throughout its prose. Convert them to ASCII equivalents.",
-      "expected_output": "Every em-dash in prose replaced by the spaced single-minus form, with width conventions re-verified.",
+      "expected_output": "Every em-dash in prose replaced by the spaced single-minus form through the canonical character-normalization tool, with width conventions re-verified.",
       "files": [],
       "expectations": [
+        "The agent used normalize-chars.py rather than ad-hoc shell substitutions or one-off helper scripts.",
         "Em-dashes were replaced with ` - ` as the default ASCII substitution, not ` -- `.",
         "The double-minus form was used only when the document already used it or the user confirmed it after the repository style documents suggested it.",
         "Substitutions that lengthened lines were re-checked against the document's width convention.",
-        "Embedded payload documents were left untouched unless the request covered them."
+        "Embedded payload documents were left untouched unless the request covered them.",
+        "The token-stream verification ran with --normalize-chars so the sanctioned map did not surface as token differences."
       ]
     },
     {
@@ -1205,6 +1207,20 @@
         "No table row starts with `||`.",
         "Legitimate `| |` cells stay: a corner cell above a dashed separator cell and wrapped-cell continuation rows are preserved.",
         "The repaired document passes validate-document.py with no table findings."
+      ]
+    },
+    {
+      "id": 100,
+      "prompt": "Reformat this untracked Polish review document with a full conversion - split packed paragraphs to one sentence per logical line, normalize typographic characters to ASCII, and fix the lint findings.",
+      "expected_output": "A converted document verified against a pre-edit snapshot, with character normalization applied through the canonical tool, table formatting run as the last mutating pass, and the working directory left clean.",
+      "files": [],
+      "expectations": [
+        "The agent snapshotted a .tmp. baseline before the first edit because the untracked file has no git HEAD version, and passed it to diff-content.py as --baseline.",
+        "Character normalization ran through normalize-chars.py instead of ad-hoc substitutions.",
+        "Content-changing fixes - normalization, sentence splits, lint corrections - ran before format-table.py, which was the last mutating pass and was re-run after any later text edit.",
+        "Fixed English enum labels defined by the document's own contract, such as an all-uppercase decision value, were preserved verbatim - the lint exempts them and the agent did not translate them away.",
+        "diff-content.py ran with --normalize-chars, and every reported hunk was classified as intended or accidental.",
+        "No .tmp. copy, ad-hoc helper, or other unrequested file remained in the working directory, including after any failed step."
       ]
     }
   ]

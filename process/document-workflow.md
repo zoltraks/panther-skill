@@ -24,9 +24,9 @@ a reformatting, or a translation.
 | Section Plan               | 297  | Type-driven structure, selection, and format       |
 | Plan Confirmation          | 323  | The pre-execution proceed/adjust/cancel gate       |
 | Drafting And Editing       | 341  | Templates, minimal diff, and reformatting tools    |
-| Editing Governed Documents | 371  | Governed-set inventory and rename discipline       |
-| Validation                 | 396  | Mechanical checks before delivery                  |
-| Delivery                   | 418  | Confirmation gates and reporting                   |
+| Editing Governed Documents | 380  | Governed-set inventory and rename discipline       |
+| Validation                 | 405  | Mechanical checks before delivery                  |
+| Delivery                   | 432  | Confirmation gates and reporting                   |
 
 ## Intake
 
@@ -360,11 +360,19 @@ shape, vocabulary, and terminology still follow the language rules.
 
 For a requested reformatting, prefer the dedicated tools over hand edits:
 
+`scripts/normalize-chars.py` maps typographic characters to ASCII,
 `scripts/split-sentences.py` separates packed sentences onto individual logical lines,
 `scripts/reflow-prose.py --wrap --width N` wraps prose and `--unwrap` joins wrapped
 continuations back into logical lines,
 `scripts/format-table.py` realigns tables,
 `scripts/align-comments.py` aligns `#` comments inside plain-text and shell blocks.
+
+Order mutating passes so content-changing fixes come first - character normalization,
+sentence splits, and language-lint corrections - and `format-table.py` runs last, because
+any later text edit inside a cell re-breaks the source alignment.
+
+`scripts/lint-polish.py` therefore belongs in the fix phase, not only in the final
+validation sweep.
 
 Pass `--payload-markdown` to the payload-aware tools only when the request covers embedded
 payload documents - payload content stays opaque otherwise.
@@ -412,6 +420,10 @@ Before delivering, run the checks from `process/document-checklist.md`:
   ` ```markdown ` payload blocks.
 - `scripts/diff-content.py` after any formatting-only pass - the token stream must be identical
   to the pre-edit baseline, and every merged-line warning must be reviewed.
+- A file outside version control has no `git show HEAD` baseline - snapshot it to a `.tmp.`
+  copy before the first edit and pass it as `--baseline`.
+- When `normalize-chars.py` ran on the file, compare with `--normalize-chars` so the
+  sanctioned character map does not surface as token differences.
 - Legitimate sentence joins and deliberate reflows produce expected merged-line warnings.
 - `git diff --check` when working inside a repository.
 
@@ -429,4 +441,5 @@ In-place edits that follow the request do not need confirmation.
 When finished, report the file path, the scope detected, the conventions applied, every
 registration or index file updated, and any checks that were skipped or failed.
 
-Remove every copied `.tmp.` script from the working repository.
+Remove every copied `.tmp.` script and every ad-hoc `.tmp.` helper from the working
+repository, including after an aborted run.

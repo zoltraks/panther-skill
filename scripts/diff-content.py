@@ -11,11 +11,17 @@ repository root when no `work/` exists) as `diff-content.tmp.py`, run it on
 the edited file, then remove the copy.
 
 Usage: python diff-content.py <file.md> [--baseline <path>]
+                                      [--normalize-chars]
 
 Exit code 0 means the token streams are identical - only whitespace, blank
 lines, and table separators may differ. Exit 1 lists every token-level
 insert, delete, or replace hunk with context, plus warnings for lines that
 may have been merged together.
+
+With --normalize-chars both sides are first mapped through the same
+typographic-to-ASCII table that normalize-chars.py applies, so a pass that
+only converted dashes, arrows, quotes, and Unicode spaces reports a clean
+token stream while word-level edits still surface.
 """
 
 import argparse
@@ -26,6 +32,26 @@ import sys
 from pathlib import Path
 
 SEPARATOR_ROW = re.compile(r"^[|\-: ]+$")
+
+# Mirrors the mapping in normalize-chars.py - keep both in sync.
+REPLACEMENTS = {
+    "„": '"', "“": '"', "”": '"', "‚": '"',
+    "«": '"', "»": '"', "‹": "'", "›": "'",
+    "‘": "'", "’": "'", "‛": "'",
+    "‐": "-", "‑": "-", "–": "-", "—": "-", "−": "-", "―": "-",
+    "→": "->", "←": "<-", "↔": "<->", "⇒": "=>", "⇐": "<=",
+    "…": "...", "\u00ad": "",
+}
+SPACE_CHARS = {
+    " ", " ", " ", " ", " ", " ", " ", " ", " ",
+    " ", " ", " ", " ", " ", " ", "　",
+}
+
+
+def normalize(text):
+    return "".join(
+        REPLACEMENTS.get(ch, " " if ch in SPACE_CHARS else ch) for ch in text
+    )
 
 
 def tokens(text):
@@ -99,7 +125,7 @@ def merged_lines(before_text, after_text):
     return warnings
 
 
-def main(path, baseline_path):
+def main(path, baseline_path, normalize_chars=False):
     target = Path(path)
     after = target.read_text(encoding="utf-8")
 
@@ -111,6 +137,10 @@ def main(path, baseline_path):
             print(f"FAIL {path}: no git HEAD version found, "
                   "pass --baseline <path> with a pre-edit copy")
             return 1
+
+    if normalize_chars:
+        before = normalize(before)
+        after = normalize(after)
 
     warnings = merged_lines(before, after)
     for warning in warnings:
@@ -156,5 +186,9 @@ if __name__ == "__main__":
     parser.add_argument("file")
     parser.add_argument("--baseline", metavar="PATH",
                         help="pre-edit copy; defaults to git HEAD")
+    parser.add_argument("--normalize-chars", action="store_true",
+                        help="map typographic characters to ASCII before "
+                             "comparing, per normalize-chars.py")
     parsed = parser.parse_args()
-    raise SystemExit(main(parsed.file, parsed.baseline))
+    raise SystemExit(main(parsed.file, parsed.baseline,
+                          parsed.normalize_chars))

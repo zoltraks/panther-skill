@@ -22,7 +22,7 @@ compatibility: >-
   Claude Desktop, Windsurf, Devin, and similar). Requires the ability to read
   and write text files. No network access required.
 metadata:
-  version: "1.0.7"
+  version: "1.0.8"
   author: Filip Golewski
 allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob Grep
 ---
@@ -442,9 +442,9 @@ See `scripts/README.md`.
 - **`scripts/detect-scope.py`** - Document-scope signals and per-directory document counts.
 - **`scripts/census-document.py`** - Structural census: headings, lists, fences, paragraphs,
   tables, and a per-element prose-layout classification.
-- **`scripts/split-sentences.py`** - Split packed sentences onto logical lines, one
-  sentence per paragraph with `--paragraphs`, or repack blocks into the `flowing`
-  layout with `--flow`, re-wrap to `--width N` in default mode.
+- **`scripts/normalize-chars.py`** - Normalize typographic characters to ASCII.
+- **`scripts/split-sentences.py`** - Split packed sentences onto logical lines,
+  `--paragraphs` for one sentence per paragraph, `--flow` for the flowing layout.
 - **`scripts/reflow-prose.py`** - Prose reflow: `--wrap` splits over-width lines at
   whitespace, `--unwrap` joins wrapped continuations into logical lines, `--justify`
   stretches inter-word spacing to flush both edges of a block.
@@ -453,7 +453,7 @@ See `scripts/README.md`.
 - **`scripts/format-table.py`** - Rebuild tables with source-width alignment, `--drop-empty-columns` drops empty columns.
 - **`scripts/align-comments.py`** - Align trailing `#` comments to one column per block.
 - **`scripts/validate-document.py`** - Mechanical checker for `process/document-checklist.md`.
-- **`scripts/diff-content.py`** - Prove a formatting-only pass changed no words vs `HEAD`.
+- **`scripts/diff-content.py`** - Token-stream check that a pass changed formatting only.
 - **`scripts/check-sections.py`** - Section conformance check against a type's required,
   recommended, optional, and unusual vocabulary, localized aliases included.
 - **`scripts/validate-skill.py`** - Panther-repo frontmatter, disclosure, root-reference checks.
@@ -497,4 +497,4 @@ Never transcode a file unless the request explicitly asks for a target encoding.
 
 Never overwrite an existing document wholesale without the user's confirmation.
 
-Remove every `.tmp.` tool copy from the working repository when the task ends.
+Remove every `.tmp.` tool copy and ad-hoc helper from the working repository at task end.

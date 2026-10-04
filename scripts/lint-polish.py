@@ -7,6 +7,9 @@ heuristic checks: comma splices, "tylko, gdy", bare "per", a correlative
 "na tym" opened without a comma, typographic characters under the ASCII
 convention, and "w." as an abbreviation.
 
+Fully uppercase tokens (enum and verdict labels such as `REQUEST CHANGES`
+or `APPROVE`) are treated as constants, not prose calques, and are exempt.
+
 Errors exit non-zero; warnings are advisory and never fail the run.
 
 Usage:
@@ -184,6 +187,8 @@ def check_forbidden(lineno, text, pairs, findings):
             if any(start <= match.start() and match.end() <= end
                    for start, end in allowed):
                 continue
+            if text[match.start():match.end()].isupper():
+                continue
             severity = "warn" if word_is_soft(forbidden) else "error"
             findings.append(
                 (severity, lineno,
@@ -235,19 +240,27 @@ def check_mechanical(lineno, text, findings, splice=True):
 
     # Comma-splice heuristic: a comma followed by a word that opens neither a
     # subordinate clause nor a prepositional phrase. Tables and list items are
-    # skipped - their commas are usually enumerations. Flagged commas inside a
-    # series closed by a conjunction ("X, Y i Z") are an enumeration, not a
-    # splice, and stay silent. When the line opens with a subordinate or
-    # participial clause ("Gdy ...", "Jeśli ...", "Odwołując ..."), the first
-    # comma on the line closes that clause and is exempt.
+    # skipped - their commas are usually enumerations. Commas inside
+    # parentheses always sit inside a parenthetical phrase and are exempt.
+    # Flagged commas inside a series closed by a conjunction ("X, Y i Z") are
+    # an enumeration, not a splice, and stay silent - enumeration items may
+    # carry parenthesized references such as "(F-01)". When the line opens
+    # with a subordinate or participial clause ("Gdy ...", "Jeśli ...",
+    # "Odwołując ..."), the first comma on the line closes that clause and is
+    # exempt. A comma before an identifier token such as "F-02" or "ADR-3" is
+    # a list separator, not a splice.
     if not splice:
         return
     lowered = text.lower()
     skip_first = first in CLAUSE_OPENERS or opens_participle
+    item = r"(?:[^,.;:()]|\([^()]*\))+?"
     enum_spans = [
         m.span() for m in re.finditer(
-            r",\s*[^,.;:()]+?(?:\s*,\s*[^,.;:()]+?)*\s+"
-            r"(?:i|oraz|lub|albo)\s+[^,.;:()]+", lowered)
+            r",\s*" + item + r"(?:\s*,\s*" + item + r")*\s+"
+            r"(?:i|oraz|lub|albo)\s+" + item, lowered)
+    ]
+    paren_spans = [
+        m.span() for m in re.finditer(r"\([^()]*\)", lowered)
     ]
     for match in re.finditer(r",\s+(\w+)", lowered):
         word = match.group(1)
@@ -255,7 +268,11 @@ def check_mechanical(lineno, text, findings, splice=True):
             continue
         if re.search(r"(ąc|wszy|łszy)$", word):
             continue
+        if re.match(r"-\d", lowered[match.end():]):
+            continue
         if any(start <= match.start() < end for start, end in enum_spans):
+            continue
+        if any(start <= match.start() < end for start, end in paren_spans):
             continue
         if skip_first:
             skip_first = False
