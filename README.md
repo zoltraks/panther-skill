@@ -14,17 +14,17 @@
 |---------------------|------|--------------------------------------------|
 | Overview            | 29   | What Panther is and what it produces       |
 | What The Skill Does | 54   | Authoring purpose and workflow             |
-| Installation        | 188  | How to add Panther to an agent environment |
-| Usage               | 258  | How agents activate and run the skill      |
-| Example Prompts     | 272  | Phrases the skill activates on             |
-| Workflow Diagrams   | 318  | ASCII and Mermaid diagrams of the pipeline |
-| Core Principles     | 454  | Convention preservation and minimal diffs  |
-| When To Use         | 465  | Supported requests and exclusions          |
-| What's Inside       | 504  | Rule files, templates, tools, and evals    |
-| Specification       | 661  | Agent Skills specification conformance     |
-| Verification        | 677  | Skill-maintenance checks                   |
-| License             | 696  | License for the skill itself               |
-| Credits             | 702  | Methodology and example sources            |
+| Installation        | 191  | How to add Panther to an agent environment |
+| Usage               | 261  | How agents activate and run the skill      |
+| Example Prompts     | 275  | Phrases the skill activates on             |
+| Workflow Diagrams   | 321  | ASCII and Mermaid diagrams of the pipeline |
+| Core Principles     | 457  | Convention preservation and minimal diffs  |
+| When To Use         | 468  | Supported requests and exclusions          |
+| What's Inside       | 507  | Rule files, templates, tools, and evals    |
+| Specification       | 664  | Agent Skills specification conformance     |
+| Verification        | 680  | Skill-maintenance checks                   |
+| License             | 699  | License for the skill itself               |
+| Credits             | 705  | Methodology and example sources            |
 
 ## Overview
 
@@ -181,6 +181,9 @@ Separately, when you say "use skill" or "run panther" without naming a task, the
 `process/skill-activation.md`: it runs the session update check, treats the loaded router as the
 enabled state, and answers with a compact confirmation that the skill is enabled for editorial
 support - a short list of the capability families, then it waits.
+
+An activation that names a working repository or directory but no operation is the same
+standby scoped to that target - a minimal confirmation, then the wait.
 
 No parameter questions, task classification, or document machinery runs until a task request
 arrives.

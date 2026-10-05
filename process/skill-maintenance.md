@@ -34,6 +34,12 @@ mode instead.
 When the target is ambiguous, ask which mode applies - under JSON exchange the question emits as
 the `mode-selection` `choice` parameter per `process/json-exchange.md`.
 
+A request naming another repository or directory and no operation is not mode ambiguity - it is
+enable mode scoped to that target per `process/skill-activation.md`.
+
+The ask stays reserved for signals that genuinely conflict, such as a request that could read as
+document work on a file or as a change to this repository.
+
 ## Intake Menu
 
 Every "work on panther-skill" trigger opens the maintenance menu - an informational list of

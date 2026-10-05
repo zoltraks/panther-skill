@@ -18,15 +18,15 @@ a reformatting, or a translation.
 | Intake                     | 31   | Task classification and mode routing               |
 | Parameter Resolution       | 67   | Defaults, acceptance gate, and parameter questions |
 | Question Surfaces          | 128  | Answer caps, guessed options, Cancel, ordering     |
-| Detection                  | 170  | Encoding, dialect, and convention detection        |
-| Scope Detection            | 222  | Project-layout signals and scope selection         |
-| Rule Selection             | 261  | Layered rule-file loading order                    |
-| Section Plan               | 297  | Type-driven structure, selection, and format       |
-| Plan Confirmation          | 323  | The pre-execution proceed/adjust/cancel gate       |
-| Drafting And Editing       | 341  | Templates, minimal diff, and reformatting tools    |
-| Editing Governed Documents | 380  | Governed-set inventory and rename discipline       |
-| Validation                 | 405  | Mechanical checks before delivery                  |
-| Delivery                   | 432  | Confirmation gates and reporting                   |
+| Detection                  | 173  | Encoding, dialect, and convention detection        |
+| Scope Detection            | 225  | Project-layout signals and scope selection         |
+| Rule Selection             | 264  | Layered rule-file loading order                    |
+| Section Plan               | 300  | Type-driven structure, selection, and format       |
+| Plan Confirmation          | 326  | The pre-execution proceed/adjust/cancel gate       |
+| Drafting And Editing       | 344  | Templates, minimal diff, and reformatting tools    |
+| Editing Governed Documents | 383  | Governed-set inventory and rename discipline       |
+| Validation                 | 408  | Mechanical checks before delivery                  |
+| Delivery                   | 435  | Confirmation gates and reporting                   |
 
 ## Intake
 
@@ -129,6 +129,9 @@ Conventional names in other languages are declared in the matching `languages/` 
 
 Every question the workflow asks - parameter resolution, confirmations, and procedure gates -
 presents at most four answers.
+
+A surface exists only for a decision the request leaves open - never ask a question whose
+answer the request, the target's governing rules, or detection evidence already provides.
 
 A choice question lists up to three candidate options guessed from the file's location,
 followed by `Cancel` as the last answer.

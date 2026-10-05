@@ -17,11 +17,27 @@ panther", "use this skill", "activate the skill" - or an equivalent declared in 
 A bare activation names the skill and nothing else - no document to produce, edit,
 reformat, translate, audit, or describe, and no maintenance request.
 
+An activation may also name a working target - a repository, directory, or document
+collection - while still naming no operation: "use panther on the docs repository",
+"work on the project".
+
+Naming a target is not a task, so the request stays in enable mode with the target held
+as context for the next request.
+
 A request that combines activation with a task is a task request - "use panther, write a
 quick note" enters document mode directly and this procedure does not run.
 
-When the request is ambiguous between bare activation and a task, ask - under JSON exchange the
-question emits as the `mode-selection` `choice` parameter per `process/json-exchange.md`.
+Ambiguity asks are rare - `mode-selection` fires only when the request mixes genuinely
+conflicting signals, such as an activation phrase joined to an operation verb whose
+object is missing.
+
+A named target without a named operation resolves to standby, never to a question.
+
+A target whose own agent-facing rules define bare-request behavior confirms the same
+answer without any scan.
+
+Under JSON exchange a genuine ambiguity emits as the `mode-selection` `choice`
+parameter per `process/json-exchange.md`.
 
 ## Procedure
 
@@ -41,6 +57,10 @@ reformat, translate, audit, describe, derive, layout discovery, and skill mainte
 Keep the response compact - an opening sentence, one list, and a closing line inviting
 the task request.
 
+A target-scoped activation answers with a minimal standby instead: one or two lines
+confirming the skill is enabled on the named target, then the wait begins - no
+capability list, no scan, no questions.
+
 Write the response in the language of the request.
 
 ## What Does Not Apply
@@ -49,6 +69,9 @@ Write the response in the language of the request.
   runs - the request named no task.
 - No rule files load beyond the router and this file - progressive disclosure stays lazy,
   the next request selects its own rule set.
+- A diagnostic or verbose flag adds `process/json-exchange.md` to the loaded set and
+  nothing else - no scan of the target runs and no document-mode files load, and the
+  emitted parameter document covers only surfaces that are actually pending.
 - No file is written.
 
 ## Relation To The Modes

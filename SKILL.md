@@ -73,8 +73,8 @@ You do not normalize a document that has its own conventions.
 ## Three Modes
 
 - **Enable mode** - the request activates the skill without naming a task: "use skill",
-  "run panther", "activate the skill". Follow `process/skill-activation.md`, which confirms
-  readiness for editorial support and waits for the task request.
+  "run panther", "activate the skill", or "work on <project>" with no operation named.
+  Follow `process/skill-activation.md`, which confirms readiness and waits for a task.
 - **Document mode** - the request targets a document to produce, edit, reformat, translate,
   audit, or describe. Follow the rest of this router and `process/document-workflow.md`.
 - **Maintenance mode** - the request targets this repository's own files. Follow
