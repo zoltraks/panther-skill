@@ -1238,13 +1238,13 @@
     {
       "id": 102,
       "prompt": "Activate panther in diagnostic mode and work on the docs-portal repository.",
-      "expected_output": "The parameter document emits with context fields and an empty intake array, a text description notes no pending decisions, no question prompts run, and the reply ends in minimal standby.",
+      "expected_output": "No parameter document emits - a bare activation has no pending surface and an empty intake array is suppressed - and the reply confirms enablement in diagnostic mode on the named target, then waits.",
       "files": [],
       "expectations": [
         "process/json-exchange.md was loaded for the diagnostic flag and no document-mode rule files were loaded.",
-        "The emitted JSON document carries description, target, task, date, and time, with task empty and intake an empty array.",
+        "No JSON document emitted - an empty intake array suppresses the diagnostic emission unless the request explicitly asks for every response as JSON.",
         "No question was asked - diagnostics expose pending surfaces and never create one.",
-        "The reply confirms enablement on the named target and waits for a task."
+        "The reply confirms enablement in diagnostic mode on the named target and waits for a task."
       ]
     }
   ]

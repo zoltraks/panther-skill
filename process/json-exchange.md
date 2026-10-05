@@ -29,9 +29,11 @@ information, emit the parameter document for information purposes only.
 The document covers only surfaces that are actually pending - diagnostics expose the
 intake state and never create a question.
 
-When no surface is pending, the document still emits with its context fields and an
-empty `intake` array, the text description notes that no decisions are pending, and no
-question prompts follow.
+When no surface is pending, nothing emits - no parameter document, no pending-decisions
+note, and no question prompts.
+
+Only an explicit request to emit every response as JSON overrides the suppression - the
+document then emits with its context fields and an empty `intake` array.
 
 The emission order is fixed: the JSON document first, then a text description of the pending
 decisions, then the question prompts.

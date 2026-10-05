@@ -61,6 +61,9 @@ A target-scoped activation answers with a minimal standby instead: one or two li
 confirming the skill is enabled on the named target, then the wait begins - no
 capability list, no scan, no questions.
 
+A diagnostic flag folds into the opening sentence - "enabled in diagnostic mode" - and
+adds no intake-state preamble, since a bare activation has no pending surface to report.
+
 Write the response in the language of the request.
 
 ## What Does Not Apply
@@ -70,8 +73,8 @@ Write the response in the language of the request.
 - No rule files load beyond the router and this file - progressive disclosure stays lazy,
   the next request selects its own rule set.
 - A diagnostic or verbose flag adds `process/json-exchange.md` to the loaded set and
-  nothing else - no scan of the target runs and no document-mode files load, and the
-  emitted parameter document covers only surfaces that are actually pending.
+  nothing else - no scan of the target runs and no document-mode files load, and no
+  parameter document emits while no question surface is pending.
 - No file is written.
 
 ## Relation To The Modes
