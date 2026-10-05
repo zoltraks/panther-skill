@@ -9,6 +9,8 @@ convention, and "w." as an abbreviation.
 
 Fully uppercase tokens (enum and verdict labels such as `REQUEST CHANGES`
 or `APPROVE`) are treated as constants, not prose calques, and are exempt.
+Quoted verbatim spans are exempt, and a parenthesized qualifier on a banned
+form ("trasa (routing)") bounds the ban to that sense and reports a warning.
 
 Errors exit non-zero; warnings are advisory and never fail the run.
 
@@ -130,7 +132,11 @@ def stem(word):
 
 
 def load_forbidden(rules_paths):
-    """Parse forbidden-form tables. Returns [(forbidden, replacement)]."""
+    """Parse forbidden-form tables. Returns [(forbidden, replacement, qualifier)].
+
+    A parenthesized qualifier on the forbidden column ("trasa (routing)")
+    bounds the ban to that sense - hits report as warnings, not errors.
+    """
     pairs = []
     seen = set()
     for rules in rules_paths:
@@ -147,6 +153,7 @@ def load_forbidden(rules_paths):
                 if in_table:
                     if set(cells[1] + cells[2]) <= set("- "):
                         continue
+                    qualifier = ", ".join(re.findall(r"\((.*?)\)", cells[1]))
                     bad = re.sub(r"\(.*?\)", "", cells[1]).strip()
                     good = re.sub(r"\(.*?\)", "", cells[2]).strip()
                     if bad:
@@ -154,7 +161,7 @@ def load_forbidden(rules_paths):
                             form = form.strip().strip("`")
                             if form and form.lower() not in seen:
                                 seen.add(form.lower())
-                                pairs.append((form, good))
+                                pairs.append((form, good, qualifier))
             elif in_table:
                 in_table = False
     return pairs
@@ -174,10 +181,18 @@ def allowed_spans(lowered):
     ]
 
 
+def quoted_spans(lowered):
+    """Verbatim quoted spans - a cited foreign-language quote is legal content."""
+    return [
+        hit.span()
+        for hit in re.finditer(r"[\"„«][^\"”»]*[\"”»]", lowered)
+    ]
+
+
 def check_forbidden(lineno, text, pairs, findings):
     lowered = text.lower()
-    allowed = allowed_spans(lowered)
-    for forbidden, replacement in pairs:
+    allowed = allowed_spans(lowered) + quoted_spans(lowered)
+    for forbidden, replacement, qualifier in pairs:
         if " " in forbidden:
             pattern = re.compile(r"\b" + re.escape(forbidden.lower()) + r"\w*")
         else:
@@ -191,6 +206,13 @@ def check_forbidden(lineno, text, pairs, findings):
                    for start, end in allowed):
                 continue
             if text[match.start():match.end()].isupper():
+                continue
+            if qualifier:
+                findings.append(
+                    ("warn", lineno,
+                     "possible calque '%s' - the ban covers the (%s) sense; "
+                     "use '%s'" % (match.group(0), qualifier, replacement))
+                )
                 continue
             severity = "warn" if word_is_soft(forbidden) else "error"
             findings.append(

@@ -352,7 +352,8 @@ def main(argv: list[str]) -> int:
     for name, frag, seen in kinds:
         key = key_of[name]
         stretched = stretch_by_kind.get(key, [])
-        packed = multi_by_kind.get(key, []) or (packed_blocks if key == "para" else 0)
+        packed = multi_by_kind.get(key, [])
+        blocks = packed_blocks if key == "para" else 0
         if not seen:
             layout = "none"
         elif stretched:
@@ -363,9 +364,12 @@ def main(argv: list[str]) -> int:
                 layout = "mixed (wrapped continuations amid unwrapped lines)"
             else:
                 layout = "bounded"
-        elif packed:
-            detail2 = refs(packed) if isinstance(packed, list) else f"{packed} block(s)"
-            layout = f"flowing (packed {detail2})"
+        elif packed or blocks:
+            detail2 = refs(packed) if packed else f"{blocks} block(s)"
+            if max(len(packed), blocks) * 2 > seen:
+                layout = f"flowing (packed {detail2})"
+            else:
+                layout = f"separated (packed outlier(s): {detail2})"
         else:
             layout = "separated"
         print(f"    {name}: {layout}")

@@ -244,6 +244,13 @@ not a splice.
 A calque stem inside an all-uppercase token - a status enum, an option name, an acronym -
 raises no error, because replacing it would break a fixed label the document does not own.
 
+A quoted span - `"..."`, `„..."`, or `«...»` - is verbatim cited material and raises no
+calque finding, so quoted titles and foreign-language citations stay legal.
+
+A parenthesized qualifier on a banned form - `trasa (routing)`, `rozjazd (drift)` -
+bounds the ban to the named sense: every hit reports a warning naming that sense, never
+an error, because the form is legal outside it.
+
 It targets Polish deliverable documents - the skill's own rule files contain the
 forbidden forms by definition and will report them.
 

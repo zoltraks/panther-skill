@@ -279,11 +279,18 @@ def main(path, width, payload_markdown):
         prev_structural = BULLET.match(prev) or ORDERED.match(prev) or prev.startswith("|")
         continuation = line[:1] in (" ", "\t") and line.strip() != ""
         prev_continuation = prev[:1] in (" ", "\t") and prev.strip() != ""
-        if structural and prev.strip() != "" and not prev_structural and not prev_continuation:
+        if (
+            structural
+            and not payload
+            and prev.strip() != ""
+            and not prev_structural
+            and not prev_continuation
+        ):
             issues.append(f"line {n}: no blank line before list or table")
         if (
             prev_structural
             and not structural
+            and not payload
             and not continuation
             and line.strip() != ""
         ):

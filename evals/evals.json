@@ -10,7 +10,8 @@
         "The document contains a version HTML comment directly below the H1.",
         "Requirements are presented in tables with identifier columns.",
         "Every table is aligned by source-text width with separator width equal to column width plus two hyphens.",
-        "Prose uses one sentence per paragraph and straight ASCII quotes."
+        "Prose uses one sentence per paragraph and straight ASCII quotes.",
+        "Prose never joins two independent clauses with a spaced hyphen (` - `); asides and definitional separators remain legal."
       ]
     },
     {
@@ -659,7 +660,6 @@
         "Contents tables are renumbered and verified with check-contents.py after any section-moving edit."
       ]
     },
-
     {
       "id": 54,
       "prompt": "Translate this English construction durability specification into German.",
@@ -900,8 +900,8 @@
         "Each parameter object keeps the fixed key order id, question, answer, description, type, menu, default, with default last.",
         "Pending surfaces emit with catalog ids such as parameters-acceptance, document-type, document-language, filename, encoding, line-endings, and delivery, with correct choice/selection/text types.",
         "The bypass options, such as accepting every remaining default, do not appear as menu entries; defaults are carried by the default key.",
-    "Every choice and selection menu ends with a Cancel - abort the operation entry and never exceeds four letters.",
-    "Format parameters such as encoding and line-endings emit before document-type in the intake array."
+        "Every choice and selection menu ends with a Cancel - abort the operation entry and never exceeds four letters.",
+        "Format parameters such as encoding and line-endings emit before document-type in the intake array."
       ]
     },
     {
@@ -974,7 +974,9 @@
       "id": 80,
       "prompt": "Summarize docs/review-report.md to a file - an abstract plus a full summary tier.",
       "expected_output": "A sibling file review-report-Summary.md derived per process/derived-documents.md, with a Purpose section declaring the source and the tier contract.",
-      "files": ["docs/review-report.md"],
+      "files": [
+        "docs/review-report.md"
+      ],
       "expectations": [
         "The task classifies as Derive, not Describe - a file is written, no inline-only answer.",
         "The output filename follows the role marker convention: <stem>-Summary.md next to the source.",
@@ -987,7 +989,9 @@
       "id": 81,
       "prompt": "Napisz skrót dokumentu docs/raport-statusu.md.",
       "expected_output": "A Polish abstract-only summary file raport-statusu-Skrot.md (with the Skrót marker), derived per process/derived-documents.md.",
-      "files": ["docs/raport-statusu.md"],
+      "files": [
+        "docs/raport-statusu.md"
+      ],
       "expectations": [
         "The Polish phrase maps to the file-targeted derive task, not the inline describe path.",
         "The output file carries the localized brief marker Skrót and Polish section names such as Przeznaczenie and Streszczenie.",
@@ -999,7 +1003,9 @@
       "id": 82,
       "prompt": "Extend docs/audit-report.md with the new findings FND-040 through FND-043 as a supplement.",
       "expected_output": "A sibling file audit-report-Supplement.md continuing the parent's finding IDs, with extended matrices and updated conclusions.",
-      "files": ["docs/audit-report.md"],
+      "files": [
+        "docs/audit-report.md"
+      ],
       "expectations": [
         "New finding IDs continue the parent's sequence with no restart or collision.",
         "Parent claims restated in the supplement are marked declared or re-verified.",
@@ -1280,6 +1286,31 @@
         "Step labels took the nominal form while instruction sentences kept the imperative.",
         "Per-chunk source-span coverage was verified before concatenation and no section was dropped.",
         "Validation reported heading counts per depth, fence count, and backticked-span parity against the source."
+      ]
+    },
+    {
+      "id": 106,
+      "prompt": "Translate this English software-audit comparison report into Polish - it covers audit findings, an evidence ledger, verdicts, a remediation roadmap, readiness gates, and it cites English section names of the audited documents.",
+      "expected_output": "A Polish report using the audit-domain glossary (ustalenie, dyspozycja, gotowość, dojrzałość, śledzalność, uzgodnienie), settled loanwords declined grammatically, and cited English section names kept verbatim.",
+      "files": [],
+      "expectations": [
+        "Audit-domain terms rendered per glossary: finding as ustalenie, disposition as dyspozycja, readiness as gotowość, maturity as dojrzałość, traceability as śledzalność, reconciliation as uzgodnienie, acceptance as odbiór.",
+        "Settled loanwords (hook, scorecard, handler, typecheck, advisory, control plane, lockfile, timeout, runner, blocker) stayed verbatim and declined grammatically (hooka, scorecardy).",
+        "Cited English section names and field labels of referenced documents (Evidence Ledger, Finding Disposition, severity, likelihood) stayed verbatim in English.",
+        "Code spans, file paths, identifiers, and uppercase status labels stayed byte-identical.",
+        "Expert-register forms stayed legal where their sense matches (rozjazd for drift, trasa for URL routes, odtwarzalny for reproducible) while real calques (realne dane, document-owner właściciel) were avoided."
+      ]
+    },
+    {
+      "id": 107,
+      "prompt": "Translate this Polish audit-comparison report into English - it declines technical loanwords (hooka, scorecardy, niezacommitowany) and cites English section names inside quotes.",
+      "expected_output": "An English report restoring canonical glossary terms and canonical loanword forms, with quoted English names carried through unchanged.",
+      "files": [],
+      "expectations": [
+        "Glossary terms rendered back: ustalenie as finding, dyspozycja as disposition, gotowość as readiness, uzgodnienie as reconciliation, bramka as gate, przebieg as journey or run by sense, kontrola as check or control by sense.",
+        "Declined loanwords rendered back to canonical English forms: hooka as hook, scorecardy as scorecards, niezacommitowany as uncommitted.",
+        "Verbatim English quotes and cited section names passed through unchanged - they were not re-translated or normalized.",
+        "Field labels kept verbatim in the Polish source (severity, likelihood, coverage) stayed verbatim in English."
       ]
     }
   ]

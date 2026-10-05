@@ -140,6 +140,10 @@ Agent and people terms stay uniform per the glossary - `agent AI do programowani
 Do not decline English words with Polish endings when a natural Polish equivalent exists -
 `właściciele biznesowi`, not `ownerzy biznesowi`.
 
+Settled technical loanwords without a common Polish equivalent decline normally in
+expert register - `hooka`, `scorecardy`, `commitami`, `niezacommitowany` - the
+glossary's Untranslated list carries them.
+
 ## What Stays Untranslated
 
 The following elements are copied verbatim:
@@ -150,6 +154,9 @@ The following elements are copied verbatim:
 - Inline code spans, file paths, URLs, commands, and configuration keys.
 - Identifiers - record IDs, requirement IDs, API names, version markers in HTML comments.
 - Proper nouns, product names, brand names, and architecture element names.
+- Cited section names, field labels, and verdict vocabularies of referenced
+  documents and tools - `Evidence Ledger`, `Finding Disposition`, `Journey
+  Traces` stay verbatim wherever the prose cites them.
 - YAML frontmatter - keys and values stay verbatim as document metadata.
 - Machine markers `TBD` and `NOT SPECIFIED`.
 - Verdict, option, and status labels fixed as contract vocabulary - `CONFORMING`,

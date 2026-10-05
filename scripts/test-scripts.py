@@ -163,6 +163,23 @@ def heuristic_regressions() -> int:
         if result is None or "possible spliced clause" not in result.stdout:
             print(f"FAIL {label} - a real comma splice went silent")
             failures += 1
+        calque_doc = tmp / "calque.md"
+        calque_doc.write_text(
+            "# Fixture\n\n"
+            'Sekcja "request path" pozostaje cytatem.\n\n'
+            "Rozjazd kontraktu jest oczekiwany.\n\n"
+            "Musimy requestować zasób.\n",
+            encoding="utf-8")
+        result = run_case("lint-polish.py",
+                          [str(calque_doc), "--rules", "languages/pl.md",
+                           "--rules",
+                           "translations/en-pl/en-pl-software.md"])
+        if (result is None or result.returncode != 1
+                or "calque 'request'" in result.stdout
+                or "possible calque 'rozjazd'" not in result.stdout
+                or "[ERROR] calque 'requestować'" not in result.stdout):
+            print(f"FAIL {label} - qualifier or quote handling regressed")
+            failures += 1
         heading_doc = tmp / "heading.md"
         heading_doc.write_text("# T\n\n## Sekcja\nTekst bez blanka.\n",
                                encoding="utf-8")

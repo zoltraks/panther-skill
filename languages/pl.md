@@ -398,7 +398,7 @@ Poniższa tabela jest źródłem prawdy dla mechanicznej kontroli - `scripts/lin
 | wykonaniowy / wykonaniowa / wykonaniowe                                                                                                         | dynamiczny / wykonawczy                            |
 | podbicie                                                                                                                                        | inkrementacja                                      |
 | trasa (routing)                                                                                                                                 | routing                                            |
-| narzędziowy / narzędziowa / narzędziowe                                                                                                         | przez narzędzia / obsługiwane                      |
+| narzędziowy (tool-driven) / narzędziowa / narzędziowe                                                                                           | przez narzędzia / obsługiwane                      |
 | ustalenia robocze / ustalenie robocze / ustaleń roboczych                                                                                       | uzgodnienia robocze                                |
 | baza scalenia / bazę scalenia                                                                                                                   | wspólny przodek (merge base)                       |
 | mechanizm wytwarzania                                                                                                                           | proces wytwarzania                                 |

@@ -29,14 +29,15 @@ The rules described below apply to this document itself as well.
 | Lists                    | 155  | Bullets, numbering, and spacing     |
 | Blank Lines and Spacing  | 177  | Whitespace rules                    |
 | Code Blocks              | 191  | Fences, tags, and inline code       |
-| Inline Formatting        | 205  | Quotes, bold, and italics           |
-| Semicolons               | 221  | Semicolon prohibition in prose      |
-| Special Characters       | 247  | Box-drawing and emoji               |
-| English Vocabulary       | 255  | Preferred terms and calques         |
-| Tables                   | 278  | Source-width alignment rules        |
-| File Names               | 399  | Naming new documentation files      |
-| Example                  | 409  | Correct and incorrect sample        |
-| File Maintenance         | 443  | Encoding and line-ending preserving |
+| Inline Formatting        | 207  | Quotes, bold, and italics           |
+| Spaced Hyphens           | 223  | Asides; never joins clauses         |
+| Semicolons               | 247  | Semicolon prohibition in prose      |
+| Special Characters       | 273  | Box-drawing and emoji               |
+| English Vocabulary       | 281  | Preferred terms and calques         |
+| Tables                   | 304  | Source-width alignment rules        |
+| File Names               | 430  | Naming new documentation files      |
+| Example                  | 440  | Correct and incorrect sample        |
+| File Maintenance         | 474  | Encoding and line-ending preserving |
 
 ## Document Structure
 
@@ -194,7 +195,9 @@ Fence every code block with three backticks.
 
 Provide a language tag only when the block contains code in a programming, markup, or data language.
 
-Leave blocks that contain plain text, prompts, console or standard output, directory trees, diagrams, or tables untagged - a `text` or `txt` tag still counts as a tag, and a document that already uses such tags consistently keeps its convention.
+Leave blocks that contain plain text, prompts, console or standard output, directory trees, diagrams, or tables untagged.
+
+A `text` or `txt` tag still counts as a tag, and a document that already uses such tags consistently keeps its convention.
 
 Do not leave a blank line as the first or the last line inside the block.
 
@@ -217,6 +220,30 @@ Write term definitions with bold in the form **Term**: definition.
 Use italics sparingly.
 
 Do not overuse emphasis.
+
+## Spaced Hyphens
+
+Use the spaced hyphen (` - `) for asides, enumerations, and completions.
+
+A spaced hyphen never joins two independent clauses.
+
+Split such a pair into separate sentences.
+
+Structural uses are unaffected: definitional list entries such as `- term - description`, title-style pseudo-headers such as `**Step 1 - Name**`, titles inside quoted references, and inline code.
+
+### Correct
+
+```markdown
+The file list (required and recommended entries) follows the resolved selection.
+
+The file list follows the resolved selection. It contains required and recommended entries.
+```
+
+### Incorrect
+
+```markdown
+The file list follows the resolved selection - it contains required and recommended entries.
+```
 
 ## Semicolons
 
@@ -298,10 +325,13 @@ corrupts the table structure instead of only misaligning it.
 
 Write an intentionally empty first cell as `| |`, and only when the table truly needs one.
 
-An empty cell is legal only in a column the separator row declares - the separator cell in
-that column must contain at least one hyphen.
+An empty cell is legal only in a column the separator row declares.
 
-A column that is empty in every row, including the header, is never legal - remove it.
+The separator cell in that column must contain at least one hyphen.
+
+A column that is empty in every row, including the header, is never legal.
+
+Remove it.
 
 ### Separator Row
 
@@ -309,8 +339,10 @@ Place the separator row directly after the header row.
 
 The separator row contains only hyphens and pipes.
 
-Every separator-row cell carries at least one hyphen - a spaces-only cell does not declare
-its column and leaves the table without a valid separator.
+Every separator-row cell carries at least one hyphen.
+
+A spaces-only cell does not declare its column and leaves the table without a valid
+separator.
 
 Hyphens touch the pipes, with no spaces between them.
 
