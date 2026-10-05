@@ -17,9 +17,9 @@ Apply it for English to Polish translate tasks, per `process/translate-document.
 |----------------|------|-----------------------------------------------------|
 | Domain Signals | 24   | Activation conditions for this glossary             |
 | Terminology    | 36   | Recurring English terms and preferred Polish forms  |
-| Context Forms  | 260  | Context-dependent renderings                        |
-| Calque Traps   | 332  | Forbidden literal renderings and their replacements |
-| Untranslated   | 455  | Loanwords and identifiers kept in English form      |
+| Context Forms  | 280  | Context-dependent renderings                        |
+| Calque Traps   | 368  | Forbidden literal renderings and their replacements |
+| Untranslated   | 495  | Loanwords and identifiers kept in English form      |
 
 ## Domain Signals
 
@@ -44,6 +44,7 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | acceptance criteria            | kryteria akceptacji                                                   |
 | access token                   | token dostępu                                                         |
 | actionable                     | pozwalający podjąć działanie                                          |
+| agent entry point              | punkt wejścia dla agenta                                              |
 | agent skill                    | umiejętność agenta                                                    |
 | agentic                        | agentowy                                                              |
 | AI agent                       | agent AI                                                              |
@@ -55,7 +56,9 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | attack surface                 | powierzchnia ataku                                                    |
 | attribution                    | wskazanie autorstwa i źródła                                          |
 | audit finding                  | ustalenie audytowe                                                    |
+| audit log                      | zapis audytowy                                                        |
 | audit trail                    | ślad audytowy                                                         |
+| authoritative                  | wiążący                                                               |
 | auto-loading                   | automatyczne wczytywanie                                              |
 | availability                   | dostępność                                                            |
 | backlog                        | backlog                                                               |
@@ -70,16 +73,20 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | buildable                      | możliwy do zbudowania                                                 |
 | bus factor                     | bus factor (ryzyko koncentracji wiedzy)                               |
 | cache                          | pamięć podręczna                                                      |
+| calibration                    | kalibracja                                                            |
 | changelog                      | dziennik zmian                                                        |
 | characterisation tests         | testy utrwalające obecne zachowanie (testy charakteryzujące)          |
 | choice menu                    | menu wyboru                                                           |
+| chore                          | prace porządkowe                                                      |
 | clean build                    | budowanie zakończone bez błędów i ostrzeżeń                           |
 | code health                    | jakość i kondycja kodu                                                |
 | code review                    | przegląd kodu                                                         |
 | code smell                     | symptom problemu projektowego (code smell)                            |
 | codebase                       | baza kodu                                                             |
 | coding agent / AI coding agent | agent AI do programowania                                             |
+| coherent increment             | spójny przyrost                                                       |
 | concurrency                    | współbieżność                                                         |
+| conformant                     | zgodny                                                                |
 | community files                | pliki dotyczące współpracy przy projekcie                             |
 | configuration                  | konfiguracja                                                          |
 | container                      | kontener                                                              |
@@ -115,8 +122,10 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | documentation                  | dokumentacja                                                          |
 | end-to-end                     | od początku do końca / testy całościowe (E2E)                         |
 | endpoint                       | endpoint / punkt końcowy                                              |
+| entry file                     | plik wejściowy                                                        |
 | entry point                    | punkt wejścia                                                         |
 | environment                    | środowisko                                                            |
+| environment calibration        | kalibracja środowiska                                                 |
 | ephemeral                      | tymczasowy                                                            |
 | error handling                 | obsługa błędów                                                        |
 | evidence                       | dowód                                                                 |
@@ -126,6 +135,8 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | feature envy                   | metoda nadmiernie korzystająca z danych innego obiektu (Feature Envy) |
 | fail-fast                      | natychmiastowe przerwanie (fail-fast)                                 |
 | finding                        | ustalenie                                                             |
+| findings appendix              | załącznik ustaleń                                                     |
+| fix                            | poprawka                                                              |
 | fork                           | fork / rozwidlenie                                                    |
 | focused tests                  | testy dotyczące zmienionego zakresu                                   |
 | framework                      | framework / szkielet                                                  |
@@ -188,6 +199,7 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | pull request                   | pull request                                                          |
 | quality gate                   | punkt kontrolny / warunek przejścia                                   |
 | rate limiting                  | ograniczenie częstotliwości żądań                                     |
+| read order / reading order     | kolejność czytania                                                    |
 | recommendation                 | zalecenie                                                             |
 | reconciliation                 | uzgodnienie                                                           |
 | refactoring                    | refaktoryzacja                                                        |
@@ -202,7 +214,9 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | review                         | przegląd                                                              |
 | rollback                       | wycofanie wdrożenia / przywrócenie poprzedniej wersji                 |
 | routing                        | kierowanie / routing                                                  |
+| routing block                  | blok kierujący                                                        |
 | routing file                   | plik kierujący                                                        |
+| routing pointer                | odnośnik kierowania                                                   |
 | runtime                        | środowisko uruchomieniowe                                             |
 | sandbox                        | piaskownica                                                           |
 | scalability                    | skalowalność                                                          |
@@ -212,9 +226,12 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | security                       | bezpieczeństwo                                                        |
 | self-verification              | samoweryfikacja                                                       |
 | session                        | sesja                                                                 |
+| session review                 | przegląd sesji                                                        |
 | severity                       | waga / stopień istotności                                             |
 | sibling                        | pozostały / sąsiedni                                                  |
 | sidecar                        | kontener pomocniczy (sidecar)                                         |
+| skill package                  | pakiet umiejętności                                                   |
+| skill set                      | zestaw umiejętności                                                   |
 | smoke test / smoke check       | podstawowy test działania (smoke test)                                |
 | software development lifecycle | cykl wytwarzania oprogramowania                                       |
 | sources of truth               | źródła prawdy                                                         |
@@ -222,6 +239,7 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | sprint                         | sprint                                                                |
 | staging                        | środowisko przejściowe / staging                                      |
 | stakeholder                    | interesariusz                                                         |
+| standby                        | stan gotowości                                                        |
 | step granularity               | szczegółowość kroków                                                  |
 | subagent                       | subagent / agent podrzędny                                            |
 | tag                            | tag / znacznik                                                        |
@@ -238,11 +256,13 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | tooltip                        | podpowiedź                                                            |
 | topic owner                    | dokument nadrzędny dla danego zagadnienia                             |
 | topic ownership                | przypisanie zagadnień do dokumentów nadrzędnych                       |
+| topology                       | topologia                                                             |
 | trade-off                      | kompromis                                                             |
 | triage                         | przegląd i klasyfikacja                                               |
 | trigger                        | wyzwalacz                                                             |
 | use case                       | przypadek użycia                                                      |
 | user story                     | historyjka użytkownika                                                |
+| validation                     | walidacja                                                             |
 | vendored                       | dołączony do repozytorium                                             |
 | verdict                        | ocena / werdykt                                                       |
 | verification loop              | pętla weryfikacji                                                     |
@@ -328,6 +348,25 @@ Some English terms render differently by context - do not force one form everywh
 - `Promise` stays untranslated in code discussion - `obietnica` is a calque, and a
   `floating promise` renders `obiekt Promise pozostawiony bez obsługi`, never
   `obietnica pływająca`.
+- `candidate` renders `kandydat` for a person and `kandydat do wydania` for a release
+  candidate - a non-person item named by purpose takes `kandydat do <celu>`, as in
+  `kandydat do sprawdzenia` for a discovery item, and a document or build at its last
+  stage renders `końcowy etap`, never `końcowy kandydat`.
+- `wound` renders `dolegliwość` for the deliberate session-review metaphor - `rana`
+  stays reserved for a literal injury.
+- `standby` renders `stan gotowości` for a waiting state or the instruction that sets
+  it - `wstrzymanie` names an interruption, not the ready state.
+- `land` renders `trafia` or `umieścić` when a rule or finding lands in a document.
+- `validation` renders `walidacja` and `verification` renders `weryfikacja` - the pair
+  stays distinct inside one document even where the source uses lookalike stage names.
+- `pointer` renders `odnośnik` for a navigation reference to another document or a
+  routing pointer - `wskaźnik` stays reserved for a raw code pointer.
+- `skill package` renders `pakiet umiejętności` for a packaged unit and `skill set`
+  renders `zestaw umiejętności` for the collection itself - the two are not
+  interchangeable.
+- `load` renders `wczytać` for reading a file, resource, or context into memory -
+  when `load` names working out a sequence or resolving a set, render `określić` or
+  `ustalić`, as in `load the read order` becoming `określ kolejność czytania`.
 
 ## Calque Traps
 
@@ -417,6 +456,8 @@ Some English terms render differently by context - do not force one form everywh
 | wierność wyjścia                                                                                                                                | zgodność wyników                                                      |
 | od końca do końca                                                                                                                               | od początku do końca                                                  |
 | kandydat wydania                                                                                                                                | kandydat do wydania                                                   |
+| końcowy kandydat                                                                                                                                | końcowy etap                                                          |
+| kandydat rozpoznania / kandydaci rozpoznania                                                                                                    | kandydat do sprawdzenia / kandydaci do sprawdzenia                    |
 | inkrementacja wersji                                                                                                                            | zwiększenie numeru wersji                                             |
 | granularność                                                                                                                                    | szczegółowość                                                         |
 | zapach kodu                                                                                                                                     | symptom problemu projektowego (code smell)                            |
@@ -451,6 +492,8 @@ Some English terms render differently by context - do not force one form everywh
 | wyprodukuj (inwentaryzację)                                                                                                                     | sporządź wykaz                                                        |
 | nazwany po                                                                                                                                      | o nazwie odpowiadającej                                               |
 | wąska (definicja)                                                                                                                               | ograniczona do konkretnej roli                                        |
+| rany (wounds)                                                                                                                                   | dolegliwości                                                          |
+| wstrzymanie (standby)                                                                                                                           | stan gotowości                                                        |
 
 ## Untranslated
 

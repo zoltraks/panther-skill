@@ -152,6 +152,9 @@ The following elements are copied verbatim:
 - Proper nouns, product names, brand names, and architecture element names.
 - YAML frontmatter - keys and values stay verbatim as document metadata.
 - Machine markers `TBD` and `NOT SPECIFIED`.
+- Verdict, option, and status labels fixed as contract vocabulary - `CONFORMING`,
+  `GAP`, `DRIFT`, enumerated choice names such as `Adopt` or `Distributed` - stay
+  verbatim in prose and embedded payloads alike.
 - `N/A` renders `N/D` in Polish prose and table cells.
 
 ## Reader-Facing Text In Examples
@@ -165,6 +168,12 @@ payloads, and the natural-language values of fields such as `question` or
 
 In a menu or option label, translate the descriptive part and keep every required
 technical value verbatim.
+
+An example table that demonstrates a machine-readable contract keeps its fixed values
+verbatim - the cells show the output format, not reader prose.
+
+A prompt intended as executable input to an English-language tool may stay verbatim
+when the project convention shows it - record the choice in the report.
 
 Never translate code, commands, configuration keys, file paths, protocol values, or
 the surrounding syntax - only the reader-facing prose they carry.
@@ -207,6 +216,9 @@ becomes `## Uwagi wdrożeniowe`, not a forced table match.
 Prefer a short verb-noun heading that names what the section does - `## Ustalanie
 lokalizacji wytycznych` reads naturally where `## Strategie lokalizacji wytycznych`
 mirrors the English noun phrase.
+
+A heading also drops a qualifier the section body already states - `## Zestaw
+kanoniczny`, not `## Zestaw kanoniczny według profilu`.
 
 ## Output Conventions
 

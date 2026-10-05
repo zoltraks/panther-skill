@@ -102,6 +102,27 @@ A comma-separated enumeration of noun phrases is legal Polish - the bare-comma b
 An enumeration longer than four members or carrying nested items moves into a bullet
 list, per the same baseline.
 
+## Dash Splices
+
+A spaced hyphen joining two independent clauses in the English source does not
+transfer - split the pair into two sentences.
+
+`The file must exist - a missing file stops the run` splits into `Plik musi
+istnieć.` and `Brak pliku przerywa uruchomienie.` - never `Plik musi istnieć - brak
+pliku przerywa uruchomienie`.
+
+The same split applies when the second half is an imperative or an apposition the
+reader must act on - `check the marker - it carries the date` splits into `Sprawdź
+znacznik.` and `Znacznik zawiera datę.`
+
+The spaced hyphen stays legal for the functions `languages/pl.md` assigns it - an
+apposition or enumeration introducer, a paired parenthetical, a label definition in
+the `- **Term** - value` pattern, a cross-reference such as `- zobacz "Rozdział 4"`,
+and table cells.
+
+A standalone second clause after ` - ` is never one of those - when in doubt, read the
+right half aloud as a sentence and split on the period.
+
 ## Hedged Verdicts
 
 Preserve the hedging level of the source - `the strongest candidate` renders
@@ -159,6 +180,10 @@ Instruction sentences use the imperative mood consistently - `przeczytaj`,
 `utwórz`, `sprawdź`, `zapisz`.
 
 Description sentences use the indicative.
+
+A step or stage label names the step rather than instructing, so it takes the nominal
+form - `Spójny przyrost`, not `Zrealizuj spójny przyrost` - while the instruction
+sentences inside the step keep the imperative.
 
 Never alternate between the infinitive, the imperative, and impersonal constructions
 inside one instruction set.

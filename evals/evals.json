@@ -1246,6 +1246,41 @@
         "No question was asked - diagnostics expose pending surfaces and never create one.",
         "The reply confirms enablement in diagnostic mode on the named target and waits for a task."
       ]
+    },
+    {
+      "id": 103,
+      "prompt": "Translate this English procedure document into Polish - it joins independent clauses with a spaced hyphen, uses spaced-hyphen appositions and enumerations, and carries '- **Term** - value' label lines.",
+      "expected_output": "A Polish document where clause-joining spaced hyphens became full stops while appositions, enumerations, label definitions, and cross-references kept the spaced hyphen.",
+      "files": [],
+      "expectations": [
+        "Every spaced hyphen joining two independent clauses rendered as a full stop with the second clause as a new sentence.",
+        "Spaced hyphens introducing appositions, enumerations, paired parentheticals, '- **Term** - value' labels, and cross-references stayed unchanged.",
+        "The translation otherwise obeyed the en-pl pair rules - terminology, untranslated set, and structure preserved."
+      ]
+    },
+    {
+      "id": 104,
+      "prompt": "Translate this English rules document into Polish - it uses fixed option and verdict labels such as Adopt, Distributed, CONFORMING, and GAP in prose, an example table demonstrating the report format, and a ```markdown payload block.",
+      "expected_output": "A Polish document where contract-fixed labels stayed verbatim in prose and payloads, the contract-demonstrating table kept its fixed values, and the Markdown payload interior was translated.",
+      "files": [],
+      "expectations": [
+        "Verdict, option, and status labels fixed as contract vocabulary stayed verbatim in prose and inside the embedded payload.",
+        "The example table demonstrating the machine-readable contract kept its fixed values verbatim.",
+        "The ```markdown payload interior was translated while the surrounding code and syntax stayed unchanged.",
+        "Any N/A in prose or table cells rendered as N/D."
+      ]
+    },
+    {
+      "id": 105,
+      "prompt": "Translate this English workflow document into Polish - it names a final candidate, discovery candidates, and step labels written as imperative phrases, and it is long enough to require a chunked render.",
+      "expected_output": "A Polish document using końcowy etap, kandydaci do sprawdzenia, and nominal step labels, with the delivery report confirming heading, fence, and code-span parity against the source.",
+      "files": [],
+      "expectations": [
+        "The final candidate rendered as końcowy etap and the discovery candidates as kandydaci do sprawdzenia - no kandydat calques.",
+        "Step labels took the nominal form while instruction sentences kept the imperative.",
+        "Per-chunk source-span coverage was verified before concatenation and no section was dropped.",
+        "Validation reported heading counts per depth, fence count, and backticked-span parity against the source."
+      ]
     }
   ]
 }

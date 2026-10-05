@@ -59,6 +59,9 @@ ALLOWED_PHRASES = {
     "pod opieką", "pod kątem", "pod względem", "pod tym względem",
     "pod warunkiem", "pod presją", "pod kontrolą", "pod adresem",
     "pod hasłem", "pod nazwą", "pod postacią",
+    # `wskaźnik` flags the odnośnik calque - a raw code pointer is legitimate.
+    "surowy wskaźnik", "surowego wskaźnika", "surowym wskaźnikiem",
+    "surowe wskaźniki", "surowych wskaźników", "surowymi wskaźnikami",
 }
 
 # Words that legitimately follow a comma (conjunctions, relatives,

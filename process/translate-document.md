@@ -113,6 +113,12 @@ whole output.
 Preserve the structure one-to-one: heading depth, list shape and numbering, table geometry,
 fenced blocks, links, frontmatter, and comments.
 
+A document too long for one render pass is translated in chunks, each covering an
+assigned source span.
+
+Verify the chunk boundaries against the source before concatenation - a dropped or
+doubled span surfaces in the Validation parity checks.
+
 Translate the document title, every heading, prose, list items, table cell text, link
 text, and label text.
 
@@ -179,6 +185,11 @@ Self-review against `process/document-checklist.md` plus the translation items:
   or the ASCII default.
 - Internal `#anchor` links resolve against the translated headings.
 - Code, identifiers, and the untranslated set are byte-identical to the source.
+- Heading counts per depth match the source - a chunked render loses sections
+  silently.
+- The fence count and language-tag distribution match the source.
+- Every backticked span in the source appears unchanged in the output, and a label
+  fixed as contract vocabulary is identical in every occurrence.
 - One English term renders one Polish term consistently, except declared context forms.
 - No form forbidden by a Calque Traps table or the language file's vocabulary table
   appears in the output.
