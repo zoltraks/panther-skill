@@ -87,7 +87,8 @@ Run the checks in order and record each result for the report:
 5. **Embedded payloads** - ` ```markdown ` interiors are translated or declared verbatim,
    applied consistently across the document.
 6. **Language naturalness** - run `scripts/lint-polish.py` for `pl` targets and review
-   flagged lines. Scan for calques the pair's Calque Traps table names, clauses spliced
+   flagged lines, with `--payload-markdown` when the document embeds ` ```markdown `
+   blocks. Scan for calques the pair's Calque Traps table names, clauses spliced
    by a bare comma, a participial opener missing its comma, personified files or
    branches, completed verdicts rendered against the pair style file's aspect rule,
    report-register verbs mismatched to its verb-choice mapping, modality drift

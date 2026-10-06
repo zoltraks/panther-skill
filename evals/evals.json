@@ -1338,7 +1338,8 @@
         "Context-dependent terms resolved by sense: document owner as dokument nadrzędny or dokument źródłowy (not właściciel), build the app vs promote the build vs build artifact separated, findings as wykryte problemy in check output vs ustalenia in an audit report, standard library as biblioteka standardów for documentation.",
         "Metaphors resolved to function - clean seams as jasno określone punkty rozszerzeń, frame budget as czas jednej ramki, serves two audiences as jest przeznaczony dla.",
         "Named technical items kept canonical forms - God Class and Feature Envy glossed, Promise and await verbatim, non-null assertion as asercja wartości nie-null.",
-        "No invented obligations, recommendations, or resolutions - source ambiguities were reported in the delivery report."
+        "No invented obligations, recommendations, or resolutions - source ambiguities were reported in the delivery report.",
+        "Polish output was linted with `--payload-markdown` when the document embedded ` ```markdown ` payload blocks - a payload interior is translated prose and the same rules apply."
       ]
     }
   ]

@@ -96,7 +96,7 @@ python <skill-root>/scripts/check-parity.py <source.md> <target.md> [--terms <gl
 python <skill-root>/scripts/diff-content.py <file.md> [--baseline <file>] [--normalize-chars]
 python <skill-root>/scripts/census-document.py <file.md> [--width N] [--payload-markdown]
 python <skill-root>/scripts/check-sections.py <file.md> --type <slug-or-path> [--language <code-or-path>]
-python <skill-root>/scripts/lint-polish.py <file.md> [--rules <rulefile.md> ...] [--group-by-form]
+python <skill-root>/scripts/lint-polish.py <file.md> [--rules <rulefile.md> ...] [--group-by-form] [--payload-markdown]
 python scripts/validate-skill.py .
 python scripts/check-references.py .
 python scripts/check-contents.py .
@@ -283,6 +283,12 @@ findings - errors exit `1`, warnings are advisory and never fail the run.
 
 Fixed idioms such as `pod kątem`, `pod względem`, or `pod opieką` are allowlisted - a
 calque-flagged stem inside one of them produces no finding.
+
+Each word of a forbidden form matches by declinable stem, so inflected variants hit the
+form - `instrukcją wykonywalną` matches `instrukcja wykonywalna`.
+
+Pass `--payload-markdown` to lint prose inside ` ```markdown ` fenced payload blocks,
+whose interiors are translated text - other fence languages stay skipped.
 
 Flagged commas inside a series closed by a conjunction (`X, Y i Z`) count as an
 enumeration and raise no spliced-clause warning - the heuristic stays silent on

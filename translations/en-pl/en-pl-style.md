@@ -241,6 +241,13 @@ sentences inside the step keep the imperative.
 Never alternate between the infinitive, the imperative, and impersonal constructions
 inside one instruction set.
 
+Prefer verb-first imperative order, mirroring the English `verb + object` flow -
+`Zapisuj skonfigurowane szczegóły w dokumencie nadrzędnym` over the object-fronted
+`Skonfigurowane szczegóły zapisuj w dokumencie nadrzędnym`.
+
+Object fronting stays acceptable when it gives deliberate emphasis or marks a topic
+shift.
+
 Second-person pronouns stay lowercase inside a sentence - `cię`, `tobie`, `twój`,
 never `Cię` or `Twój`.
 
@@ -252,7 +259,12 @@ lokalizacji` or `zestaw określony wstępnie przez wybory`.
 
 An English `the set determined by X` renders `zestaw wynikający z X`.
 
-## Participial Openers
+The same preference covers copula nominalizations - `X is not proof that Y` renders
+`X nie dowodzi tego, że Y`, not `X nie jest dowodem, że Y`.
+
+Prefer explicit `nie` negation over a heavier negative adjective where both work -
+`weryfikacja nie jest potrzebna` reads cleaner than `weryfikacja jest zbędna` and keeps
+the source's negation visible.
 
 A clause opened by an adverbial participle takes a comma after it -
 `Wnosząc wkład, zgadzasz się`, `Odwołując się do standardu, utwórz sekcję`.

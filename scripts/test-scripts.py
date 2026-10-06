@@ -67,6 +67,7 @@ CASES: list[tuple[str, list[str], tuple[int, ...], str | None,
       "translations/en-pl/en-pl-software.md"], (0, 1), None, None),
     ("lint-polish.py", ["README.md"], (0, 1), None, None),
     ("lint-polish.py", ["README.md", "--group-by-form"], (0, 1), None, None),
+    ("lint-polish.py", ["README.md", "--payload-markdown"], (0, 1), None, None),
     ("check-document.py", ["README.md", "--parity", "SKILL.md"], (0, 1),
      "check-document:", None),
     ("census-document.py", ["README.md"], (0,), None,
@@ -191,6 +192,36 @@ def heuristic_regressions() -> int:
                 or "possible calque 'rozjazd'" not in result.stdout
                 or "[ERROR] calque 'requestować'" not in result.stdout):
             print(f"FAIL {label} - qualifier or quote handling regressed")
+            failures += 1
+        inflected_doc = tmp / "inflected.md"
+        inflected_doc.write_text(
+            "# Fixture\n\nTa instrukcja jest instrukcją wykonywalną.\n",
+            encoding="utf-8")
+        result = run_case("lint-polish.py",
+                          [str(inflected_doc), "--rules",
+                           "translations/en-pl/en-pl-software.md"])
+        if (result is None or result.returncode != 1
+                or "instrukcją wykonywalną" not in result.stdout):
+            print(f"FAIL {label} - inflected multi-word form went silent")
+            failures += 1
+        payload_doc = tmp / "payload.md"
+        payload_doc.write_text(
+            "# Fixture\n\n```markdown\nTen blok ma czyste szwy.\n```\n\n"
+            "```python\nvalue = 'czyste szwy'\n```\n",
+            encoding="utf-8")
+        result = run_case("lint-polish.py",
+                          [str(payload_doc), "--rules",
+                           "translations/en-pl/en-pl-software.md"])
+        if result is None or result.returncode != 0:
+            print(f"FAIL {label} - fenced content flags without the flag")
+            failures += 1
+        result = run_case("lint-polish.py",
+                          [str(payload_doc), "--rules",
+                           "translations/en-pl/en-pl-software.md",
+                           "--payload-markdown"])
+        if (result is None or result.returncode != 1
+                or result.stdout.count("czyste szwy") != 1):
+            print(f"FAIL {label} - --payload-markdown missed or over-flagged")
             failures += 1
         heading_doc = tmp / "heading.md"
         heading_doc.write_text("# T\n\n## Sekcja\nTekst bez blanka.\n",

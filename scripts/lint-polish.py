@@ -16,10 +16,17 @@ Errors exit non-zero; warnings are advisory and never fail the run.
 
 Usage:
     lint-polish.py <file.md> [--rules <rulefile.md> ...] [--group-by-form]
+                   [--payload-markdown]
 
 --group-by-form replaces the line-by-line output with one line per matched
 forbidden form or rule, listing hit count and line numbers - the form to fix
 in bulk. Run without the flag for the full per-line detail.
+
+--payload-markdown lints prose inside ```markdown fenced payload blocks -
+a payload interior is translated prose, so banned forms apply there too.
+Multi-word forbidden forms match each word by declinable stem, so inflected
+variants such as `instrukcją wykonywalną` hit the `instrukcja wykonywalna`
+form.
 
 When --rules is omitted, rule files are discovered relative to this script
 (<repo>/languages/pl.md and <repo>/translations/en-pl/en-pl-software.md).
@@ -68,6 +75,19 @@ ALLOWED_PHRASES = {
     # `wskaźnik` flags the odnośnik calque - a raw code pointer is legitimate.
     "surowy wskaźnik", "surowego wskaźnika", "surowym wskaźnikiem",
     "surowe wskaźniki", "surowych wskaźników", "surowymi wskaźnikami",
+    # Verbatim-kept English names whose stems collide with calque verbs -
+    # `requestować` stem-matches `Request`, `awaitować` matches `Await`.
+    "pull request", "pull requestów", "pull requesta", "pull requestem",
+    # Settled code-domain `walidacja` senses that the `validate` trap row would
+    # otherwise flag - input and data validation keep the loanword.
+    "walidacji wejścia", "walidacja wejścia", "walidacji danych",
+    "walidacja danych", "brakującej walidacji", "brakująca walidacja",
+    "powtórzoną walidację", "powtórzona walidacja", "powieloną walidację",
+    "powielona walidacja",
+    # The `równoważny` trap covers the document/mechanism sense of `equivalent` -
+    # `równoważność` as the abstract property (behavioral equivalence) is legal.
+    "równoważność", "równoważności",
+    "pull requesty", "merge request", "change request", "async/await",
 }
 
 # Words that legitimately follow a comma (conjunctions, relatives,
@@ -114,15 +134,25 @@ def strip_code(line):
     return re.sub(r"`[^`]*`", "", line)
 
 
-def iter_prose_lines(path):
-    """Yield (lineno, text) for lines outside fenced code blocks."""
-    in_fence = False
+def iter_prose_lines(path, payload_markdown=False):
+    """Yield (lineno, text) for prose lines outside fenced code blocks.
+
+    With payload_markdown, lines inside ```markdown fenced blocks are yielded
+    too - a payload interior is translated prose and needs the same checks.
+    """
+    fences = []
     for lineno, raw in enumerate(path.read_text(encoding="utf-8").split("\n"), 1):
         stripped = raw.strip()
-        if stripped.startswith("```") or stripped.startswith("~~~"):
-            in_fence = not in_fence
+        match = re.match(r"^(```+|~~~+)(.*)$", stripped)
+        if match:
+            if fences:
+                fences.pop()
+            else:
+                fences.append(match.group(2).strip().split(" ")[0])
             continue
-        if in_fence:
+        if fences and not (
+            payload_markdown and all(lang == "markdown" for lang in fences)
+        ):
             continue
         yield lineno, strip_code(raw)
 
@@ -133,6 +163,28 @@ def stem(word):
         if word.endswith(ending) and len(word) - len(ending) >= 3:
             return word[: -len(ending)]
     return word
+
+
+# Word endings that mark Polish declension - dropping one yields a stem that
+# prefix-matches the inflected variants of a form (`instrukcja` -> `instrukcj`
+# covers `instrukcją`, `instrukcji`, `instrukcję`).
+WEAK_ENDINGS = set("aeiouąęć")
+
+
+def word_pattern(word):
+    """Regex fragment matching one declined Polish word form.
+
+    Verb endings strip to the infinitive stem; a longer word ending in a weak
+    declinable vowel drops it so inflections match (`pojednani` covers
+    `pojednania`, `końcow` covers `końcowym`). Shorter roots keep a plain
+    prefix match so common stems like `bram-` do not over-flag `bramka`.
+    """
+    root = stem(word.lower())
+    if len(root) <= 3:
+        return r"\b" + re.escape(root) + r"\b"
+    if (len(root) >= 6 and root[-1] in WEAK_ENDINGS) or root.endswith("owy"):
+        return re.escape(root[:-1]) + r"\w*"
+    return re.escape(root) + r"\w*"
 
 
 def load_forbidden(rules_paths):
@@ -197,14 +249,8 @@ def check_forbidden(lineno, text, pairs, findings):
     lowered = text.lower()
     allowed = allowed_spans(lowered) + quoted_spans(lowered)
     for forbidden, replacement, qualifier in pairs:
-        if " " in forbidden:
-            pattern = re.compile(r"\b" + re.escape(forbidden.lower()) + r"\w*")
-        else:
-            root = stem(forbidden.lower())
-            if len(root) <= 3:
-                pattern = re.compile(r"\b" + re.escape(root) + r"\b")
-            else:
-                pattern = re.compile(r"\b" + re.escape(root) + r"\w*")
+        pieces = [word_pattern(w) for w in forbidden.lower().split(" ")]
+        pattern = re.compile(r"\b" + r"\s+".join(pieces))
         for match in pattern.finditer(lowered):
             if any(start <= match.start() and match.end() <= end
                    for start, end in allowed):
@@ -336,6 +382,9 @@ def main():
     parser.add_argument("--group-by-form", action="store_true",
                         help="group findings by matched form instead of "
                              "listing every line")
+    parser.add_argument("--payload-markdown", action="store_true",
+                        help="lint prose inside ```markdown fenced payload "
+                             "blocks, whose interiors are translated text")
     args = parser.parse_args()
 
     rules = args.rules
@@ -348,7 +397,7 @@ def main():
     pairs = load_forbidden(rules)
 
     findings = []
-    for lineno, text in iter_prose_lines(args.file):
+    for lineno, text in iter_prose_lines(args.file, args.payload_markdown):
         stripped = text.strip()
         if stripped.startswith("<!--"):
             continue

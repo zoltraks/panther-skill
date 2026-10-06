@@ -140,6 +140,9 @@ After writing a chunk, run `scripts/lint-polish.py` on the file-so-far for `pl` 
 systematic calque habit caught on the first chunk costs one fix instead of repeating in
 every remaining chunk.
 
+When the document embeds ` ```markdown ` payload blocks, pass `--payload-markdown` - a
+payload interior is translated prose and the same rules apply.
+
 Verify the chunk boundaries against the source before concatenation - a dropped or
 doubled span surfaces in the Validation parity checks.
 
@@ -210,7 +213,8 @@ payloads, `--parity <source.md>` to fold the parity run in):
   column widths.
 - `scripts/validate-document.py` - on the written file, with `--payload-markdown` when the
   document embeds ` ```markdown ` blocks.
-- `scripts/lint-polish.py` - on `pl` output - every finding is fixed or reported.
+- `scripts/lint-polish.py` - on `pl` output, with `--payload-markdown` when the document
+  embeds ` ```markdown ` blocks - every finding is fixed or reported.
 
 Self-review against `process/document-checklist.md` plus the translation items:
 
