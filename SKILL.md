@@ -435,29 +435,28 @@ A template is a starting point - adjust sections to the request and the content.
 
 Run document-production tools in place - `python <skill-root>/scripts/<tool>.py <file>` -
 and copy them under `.tmp.` names only when the skill root cannot be invoked, removing
-copies when done.
-
-See `scripts/README.md` for flags and the fallback convention.
+copies when done - `scripts/README.md` lists flags and the fallback convention.
 
 - **`scripts/detect-encoding.py`** - BOM, guessed encoding, line endings, trailing whitespace.
 - **`scripts/detect-scope.py`** - Document-scope signals and per-directory document counts.
 - **`scripts/census-document.py`** - Document census: headings, lists, fences, tables, prose layout.
 - **`scripts/normalize-chars.py`** - Normalize typographic characters to ASCII.
 - **`scripts/split-sentences.py`** - Split packed sentences onto lines - `--paragraphs` or `--flow`.
-- **`scripts/reflow-prose.py`** - Prose reflow: `--wrap` splits over-width lines at
-  whitespace, `--unwrap` joins wrapped continuations, `--justify` flushes both edges
-  (supersedes the deprecated `wrap-prose.py`).
+- **`scripts/reflow-prose.py`** - Prose reflow: `--wrap`/`--unwrap`/`--justify` -
+  supersedes the deprecated `wrap-prose.py`.
 - **`scripts/format-table.py`** - Rebuild tables with source-width alignment, `--drop-empty-columns` drops empty columns.
 - **`scripts/align-comments.py`** - Align trailing `#` comments to one column per block.
 - **`scripts/validate-document.py`** - Mechanical checker for `process/document-checklist.md`.
 - **`scripts/check-document.py`** - One-command non-mutating battery: encoding,
-  validation, table, comment, reflow, and optional lint/section/diff gates.
+  validation, table, comment, reflow, and optional lint/section/diff/parity gates.
 - **`scripts/diff-content.py`** - Token-stream check that a pass changed formatting only.
+- **`scripts/check-parity.py`** - Structural parity diff against the source document:
+  headings, fences, tables, code spans, anchors, and glossary concordance hints.
 - **`scripts/check-sections.py`** - Section conformance check against a type's required,
   recommended, optional, and unusual vocabulary, localized aliases included.
 - **`scripts/validate-skill.py`** - Panther-repo frontmatter, disclosure, root-reference checks.
-- **`scripts/check-references.py`** - Panther-repo relative-reference integrity checker.
-- **`scripts/check-contents.py`** - Panther-repo `## Contents` line-number drift checker.
+- **`scripts/check-references.py`** / **`check-contents.py`** - Panther-repo integrity:
+  relative references and `## Contents` line-number drift.
 - **`scripts/check-update.py`** - Git upstream self-update checker, once per session.
 - **`scripts/test-scripts.py`** - Smoke harness exercising every tool's non-mutating path.
 - **`scripts/README.md`** - Tool classes, commands, flags, validation order, limitations.
@@ -466,7 +465,7 @@ See `scripts/README.md` for flags and the fallback convention.
 
 - **`evals/evals.json`** - Skill-creator regression prompts covering document creation in
   all supported languages, convention-preserving edits, table reformatting, encoding edge
-  cases, the session update check, bare activation, and document audits.
+  cases, chunked translations, the session update check, bare activation, and audits.
 
 Run these as behavioral evaluations after structural changes.
 

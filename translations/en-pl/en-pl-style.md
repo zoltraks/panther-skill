@@ -6,8 +6,8 @@
 > Polish
 > **Key items:** aspect and voice, actor verbs, report-register verb choice, fixed
 > idioms, correlative frames, enumeration punctuation, hedged verdicts, meaning over
-> word order, modality, conditions, imperative voice, verbs before nominalizations,
-> participial openers
+> word order, metaphors resolved to function, modality, conditions, enumeration logic,
+> imperative voice, verbs before nominalizations, participial openers
 
 This file governs how English sentences reshape into natural Polish at the clause level.
 
@@ -72,6 +72,11 @@ Report-register verbs map by meaning, not by word shape:
 A claim of conformance or a reported result renders `wykazuje` - `the variant records
 conformance with the specification` becomes `wariant wykazuje zgodność ze
 specyfikacją`, never `rejestruje zgodność`, because nothing is entered into a register.
+
+A document's stated purpose renders as a function description, not a service verb -
+`this document serves two audiences` becomes `dokument jest przeznaczony dla dwóch
+grup odbiorców` or `dokument stanowi przewodnik dla`, never `dokument obsługuje
+odbiorców`.
 
 ## Fixed Idioms
 
@@ -147,6 +152,32 @@ renders `do poszczególnych faz można powracać`, not `fazy są odtwarzalne`, a
 `stretched to target length` renders `nie wydłużaj pliku na siłę`, not
 `plik jest dopychany do docelowej długości`.
 
+An English `for` does not always render `dla` - `rules for testing` renders `zasady
+testowania` or `reguły dotyczące testów`, matching the relation the noun carries.
+
+An English `with` resolves the same way - `complete the run with zero warnings`
+renders `zakończ przebieg bez ostrzeżeń`, not `z zerową liczbą ostrzeżeń`.
+
+After replacing a noun with a different Polish term, propagate gender, number, and
+case through the whole phrase - swapping `przyrost` for `partia` re-genders every
+adjective and pronoun that refers to it (`spójna partia`, not `spójny partia`).
+
+## Metaphors Translate By Function
+
+An English metaphor renders its Polish function, not its image - `clean seams` becomes
+`jasno określone punkty rozszerzeń`, `thin router` becomes `krótki plik kierujący
+do zasad`, and `frame budget` becomes `czas jednej ramki`.
+
+Where a metaphor names the result a check requires, take the criteria from the
+document's own instructions - `until the increment is clean` renders `aż dana partia
+zmian nie będzie powodowała błędów ani ostrzeżeń` when the document defines clean as
+zero errors and warnings - never invent criteria the source does not state.
+
+A named technical pattern keeps its canonical name with a Polish gloss - `god classes`
+renders `klasy skupiające zbyt wiele zadań (God Class)` and `feature envy` renders
+`metody nadmiernie korzystające z danych innych klas (Feature Envy)` - a literal image
+such as `klasy boskie` erases the recognized name.
+
 ## Modality
 
 Preserve the strength of normative language exactly:
@@ -173,6 +204,28 @@ Conditions and exceptions map one-to-one - `only` renders `tylko` or `wyłączni
 
 `chyba że` and `jeśli` are not interchangeable - `chyba że` introduces the sole
 exception that flips the rule, `jeśli` introduces a condition.
+
+## Enumeration Logic
+
+An `or` enumeration under no negation renders `lub` - `ani` is legal only where the
+source already negates the scope (`nie … ani`, `neither … nor`).
+
+`A source, configuration, test, or toolchain change invalidates the result` renders
+`zmiana kodu źródłowego, konfiguracji, testów lub zestawu narzędzi unieważnia wynik` -
+never `zmiana … testów, zależności ani łańcucha narzędzi`, where the stray `ani`
+reads as if the last item were exempted or the list were under negation.
+
+The Polish rendering never gains a negation the source lacks and never loses one the
+source carries - check every `nie` and `ani` in the output against the source's
+polarity.
+
+A named entity keeps its kind - a `file` renders `plik`, never `katalog`, and a
+`directory` renders `katalog`, never `plik` - substituting the container kind changes
+what the instruction tells the reader to produce or inspect.
+
+Quantifier scope is preserved - `each` and `every` render `każdy`, `all` renders
+`wszystkie`, `at least`/`at most` render `co najmniej`/`co najwyżej` - a dropped or
+weakened quantifier silently widens or narrows the rule.
 
 ## Imperative Voice
 

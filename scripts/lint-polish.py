@@ -15,7 +15,11 @@ form ("trasa (routing)") bounds the ban to that sense and reports a warning.
 Errors exit non-zero; warnings are advisory and never fail the run.
 
 Usage:
-    lint-polish.py <file.md> [--rules <rulefile.md> ...]
+    lint-polish.py <file.md> [--rules <rulefile.md> ...] [--group-by-form]
+
+--group-by-form replaces the line-by-line output with one line per matched
+forbidden form or rule, listing hit count and line numbers - the form to fix
+in bulk. Run without the flag for the full per-line detail.
 
 When --rules is omitted, rule files are discovered relative to this script
 (<repo>/languages/pl.md and <repo>/translations/en-pl/en-pl-software.md).
@@ -211,13 +215,15 @@ def check_forbidden(lineno, text, pairs, findings):
                 findings.append(
                     ("warn", lineno,
                      "possible calque '%s' - the ban covers the (%s) sense; "
-                     "use '%s'" % (match.group(0), qualifier, replacement))
+                     "use '%s'" % (match.group(0), qualifier, replacement),
+                     "calque: %s" % forbidden)
                 )
                 continue
             severity = "warn" if word_is_soft(forbidden) else "error"
             findings.append(
                 (severity, lineno,
-                 "calque '%s' - use '%s'" % (match.group(0), replacement))
+                 "calque '%s' - use '%s'" % (match.group(0), replacement),
+                 "calque: %s" % forbidden)
             )
 
 
@@ -232,26 +238,37 @@ def first_prose_word(text):
 
 def check_mechanical(lineno, text, findings, splice=True):
     if "tylko, gdy" in text.lower():
-        findings.append(("error", lineno, "'tylko, gdy' - write 'tylko wtedy, gdy'"))
+        findings.append(("error", lineno,
+                         "'tylko, gdy' - write 'tylko wtedy, gdy'",
+                         "tylko, gdy"))
     if re.search(r"\bna tym\s+(że|gdzie|jak|czy|ile|w jakim)\b", text.lower()):
         findings.append(
             ("error", lineno,
-             "'na tym X' - the correlative clause needs a comma: 'na tym, X'"))
+             "'na tym X' - the correlative clause needs a comma: 'na tym, X'",
+             "na tym clause"))
     if re.search(r"\bper\s+\w", text):
-        findings.append(("error", lineno, "'per X' - write 'dla każdego X'"))
+        findings.append(("error", lineno,
+                         "'per X' - write 'dla każdego X'", "per X"))
     if re.search(r"\bw\.\s*\d", text):
-        findings.append(("warn", lineno, "'w.' - do not abbreviate 'wierszy'"))
+        findings.append(("warn", lineno,
+                         "'w.' - do not abbreviate 'wierszy'", "w. abbrev"))
     if re.search(r"~\s*\d", text):
-        findings.append(("warn", lineno, "'~N' - write 'ok. N' or 'około N'"))
+        findings.append(("warn", lineno,
+                         "'~N' - write 'ok. N' or 'około N'", "~N"))
     if re.search(r"\bNiej\b", text):
-        findings.append(("warn", lineno, "'Niej' - possible misspelling of a negated adjective"))
+        findings.append(("warn", lineno,
+                         "'Niej' - possible misspelling of a negated "
+                         "adjective", "Niej"))
     if re.search(r"\bparitet\b", text.lower()):
-        findings.append(("error", lineno, "'paritet' - misspelling of 'parytet'"))
+        findings.append(("error", lineno,
+                         "'paritet' - misspelling of 'parytet'", "paritet"))
     for char, name in TYPOGRAPHIC.items():
         if char in text:
-            findings.append(("error", lineno, "typographic %s %r" % (name, char)))
+            findings.append(("error", lineno,
+                             "typographic %s %r" % (name, char),
+                             "typographic char"))
     if ";" in text:
-        findings.append(("error", lineno, "semicolon in prose"))
+        findings.append(("error", lineno, "semicolon in prose", "semicolon"))
 
     # Participial opener: a line opening with an adverbial participle clause
     # ("Wnosząc...", "Zbadawszy...") needs a comma after that clause.
@@ -261,7 +278,8 @@ def check_mechanical(lineno, text, findings, splice=True):
             and not text.strip().startswith(("#", "|"))):
         findings.append(
             ("warn", lineno,
-             "participial opener - add a comma after the '-ąc/-wszy' clause"))
+             "participial opener - add a comma after the '-ąc/-wszy' clause",
+             "participial opener"))
 
     # Comma-splice heuristic: a comma followed by a word that opens neither a
     # subordinate clause nor a prepositional phrase. Tables and list items are
@@ -305,7 +323,8 @@ def check_mechanical(lineno, text, findings, splice=True):
         findings.append(
             ("warn", lineno,
              "possible spliced clause - ', %s' does not open a "
-             "subordinate phrase" % word)
+             "subordinate phrase" % word,
+             "spliced clause")
         )
 
 
@@ -314,6 +333,9 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("file", type=Path)
     parser.add_argument("--rules", type=Path, action="append", default=[])
+    parser.add_argument("--group-by-form", action="store_true",
+                        help="group findings by matched form instead of "
+                             "listing every line")
     args = parser.parse_args()
 
     rules = args.rules
@@ -337,8 +359,23 @@ def main():
                          splice=not (is_table or is_list))
 
     errors = sum(1 for f in findings if f[0] == "error")
-    for severity, lineno, message in findings:
-        print("%s:%d: [%s] %s" % (args.file, lineno, severity.upper(), message))
+    if args.group_by_form:
+        groups = {}
+        for severity, lineno, message, key in findings:
+            groups.setdefault(key, []).append((severity, lineno, message))
+        for key, items in groups.items():
+            lines = ", ".join(str(ln) for _, ln, _ in items)
+            severities = {s for s, _, _ in items}
+            tag = "ERROR" if "error" in severities else "WARN"
+            hint = (items[0][2].split(" - ", 1)[-1]
+                    if key.startswith("calque:")
+                    else items[0][2].split(" - ", 1)[0])
+            print("[%s] %s: %d hit(s) at line(s) %s - %s"
+                  % (tag, key, len(items), lines, hint))
+    else:
+        for severity, lineno, message, _key in findings:
+            print("%s:%d: [%s] %s"
+                  % (args.file, lineno, severity.upper(), message))
     print("lint-polish: %d error(s), %d warning(s), %d forbidden forms loaded"
           % (errors, len(findings) - errors, len(pairs)))
     return 1 if errors else 0

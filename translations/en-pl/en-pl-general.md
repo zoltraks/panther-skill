@@ -99,6 +99,11 @@ Render `the file removes X` as `plik usuwa X` only when the file is a program.
 
 Otherwise use the passive or an action noun (`plik został usunięty`, `usunięcie X`).
 
+A rendering never adds or drops meaning - no invented negation, quantifier, condition,
+or exception, and no silently changed entity kind (`file` stays `plik`, never
+`katalog`) - and a source ambiguity or contradiction is reported in the delivery
+report, never silently resolved in the rendering.
+
 Expand abbreviations at first use and record them in the document's glossary -
 `merge request (MR)`, not a bare `MR`.
 

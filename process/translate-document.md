@@ -113,11 +113,38 @@ whole output.
 Preserve the structure one-to-one: heading depth, list shape and numbering, table geometry,
 fenced blocks, links, frontmatter, and comments.
 
+### Terminology Lock
+
+Before rendering the first chunk of a chunked document, fix the recurring vocabulary once:
+
+- Translate every heading text first - prose cross-references then have a fixed target
+  and section names do not drift between chunks.
+- Extract the repeated domain terms the loaded glossaries cover and pick one rendering per
+  term *per sense* - `owner` the person and `owner` the document carrying the governing
+  rules are different entries in the lock - a term rendered two ways across chunk
+  boundaries is a defect the parity check reports.
+
+The locked map may live in a `.tmp.` file inside the working repository's temporary
+directory, removed at delivery per the File Handling Contract.
+
+### Chunked Rendering
+
 A document too long for one render pass is translated in chunks, each covering an
-assigned source span.
+assigned source span bounded at heading boundaries.
+
+Render sequentially: for each chunk, read its source span immediately before writing the
+rendering, so the source text is in context while it is translated - never render a span
+recalled from earlier context, and re-read the span when in doubt.
+
+After writing a chunk, run `scripts/lint-polish.py` on the file-so-far for `pl` output - a
+systematic calque habit caught on the first chunk costs one fix instead of repeating in
+every remaining chunk.
 
 Verify the chunk boundaries against the source before concatenation - a dropped or
 doubled span surfaces in the Validation parity checks.
+
+Working notes, drafts, and meta-commentary never enter the output file - only translated
+document content is written.
 
 Translate the document title, every heading, prose, list items, table cell text, link
 text, and label text.
@@ -167,8 +194,17 @@ A silent compression or reordering is a defect, not an adaptation.
 
 ## Validation
 
-Run the mechanical checks on the written file - `scripts/check-document.py` covers them
-in one invocation (`--polish` on `pl` output, `--payload-markdown` on embedded payloads):
+Run `scripts/check-parity.py <source.md> <output.md>` first - it mechanically verifies
+the structural parity the faithful contract requires: heading level sequence, fence
+count and language tags, table geometry, list counts, HTML comments, inline-code spans,
+internal `#anchor` resolution, and file-level whitespace and byte conventions.
+
+With `--terms <glossary.md>` it also prints concordance hints - source terms whose
+preferred target variants never appear - for every glossary loaded in Rule Loading.
+
+Then run the mechanical checks on the written file - `scripts/check-document.py` covers
+them in one invocation (`--polish` on `pl` output, `--payload-markdown` on embedded
+payloads, `--parity <source.md>` to fold the parity run in):
 
 - `scripts/format-table.py` - mandatory on output with tables, translated cells change
   column widths.
@@ -184,14 +220,20 @@ Self-review against `process/document-checklist.md` plus the translation items:
 - No typographic quotes were introduced where the target baseline requires ASCII.
 - The resolved character convention is recorded - explicit request, source convention,
   or the ASCII default.
-- Internal `#anchor` links resolve against the translated headings.
+- Internal `#anchor` links resolve against the translated headings - `check-parity.py`
+  reports every unresolved one.
 - Code, identifiers, and the untranslated set are byte-identical to the source.
 - Heading counts per depth match the source - a chunked render loses sections
   silently.
 - The fence count and language-tag distribution match the source.
-- Every backticked span in the source appears unchanged in the output, and a label
+- Every backticked span in the source appears unchanged in the output - the
+  `check-parity.py` inline-code diff lists each missing technical span - and a label
   fixed as contract vocabulary is identical in every occurrence.
-- One English term renders one Polish term consistently, except declared context forms.
+- One English term renders one Polish term consistently, except declared context forms -
+  the terminology lock fixes renderings before the first chunk and the `--terms`
+  concordance hints surface terms the locked rendering missed.
+- No agent working notes, draft markers, or meta-commentary appear anywhere in the
+  output file.
 - No form forbidden by a Calque Traps table or the language file's vocabulary table
   appears in the output.
 - No independent clauses are joined by a bare comma, and no file, section, or branch is
@@ -203,6 +245,17 @@ Self-review against `process/document-checklist.md` plus the translation items:
   `nie wolno`, `should` renders `powinien`, `may` renders `może`.
 - Conditions and exceptions map one-to-one - `only`, `unless`, `when`, `if`,
   `otherwise` - `chyba że` never stands in for `jeśli`.
+- Enumeration logic matches the source - a positive `or` list renders `lub` and
+  `ani` appears only under a source negation, no quantifier, negation, condition,
+  or exception is added or dropped, and a named entity keeps its kind (`file`
+  renders `plik`, never `katalog`).
+- For every sentence carrying an obligation, prohibition, condition, or enumeration,
+  compare the meaning representation against the source - actor, action, object,
+  modality, negation, ordering, and quantity all match.
+- Metaphors and personifications render their Polish function, and named technical
+  patterns keep the canonical name with a gloss - `God Class`, never `klasa boska`.
+- Source ambiguities and contradictions are reported in the delivery report, never
+  silently resolved in the rendering.
 - Instructions use one imperative register throughout. Descriptions use the
   indicative.
 - Gender, number, and case agree after every terminology substitution.
@@ -225,7 +278,8 @@ languages, state the skip in the report.
 Write the output file at the resolved location - UTF-8 without BOM, LF line endings.
 
 Report inline: the source and target language, the glossaries applied, notable term
-choices and conflict resolutions, any literal renders, and every check run or skipped.
+choices and conflict resolutions, any literal renders, every source ambiguity or
+contradiction left as-is, and every check run or skipped.
 
 Remove every ad-hoc `.tmp.` helper and any `.tmp.` tool copies from the working
 repository.

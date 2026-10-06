@@ -14,6 +14,7 @@ replaces a run of each checker separately:
     lint-polish.py                runs only with --polish
     check-sections.py             runs only with --type
     diff-content.py               runs only with --baseline
+    check-parity.py               runs only with --parity <source.md>
 
 Sibling tools are located next to this script, else under ``--skill-root <dir>``
 or ``PANTHER_SKILL_ROOT`` - running from the skill tree needs no flag at all.
@@ -23,7 +24,7 @@ Usage:
     python check-document.py <file.md> [--width N] [--payload-markdown]
         [--layout wrap|unwrap] [--split] [--polish] [--type <slug-or-path>]
         [--language <code-or-path>] [--baseline <file>] [--normalize-chars]
-        [--skill-root <dir>]
+        [--parity <source.md>] [--terms <glossary.md> ...] [--skill-root <dir>]
 """
 
 from __future__ import annotations
@@ -121,6 +122,13 @@ def main(argv: list[str]) -> int:
                         help="baseline file for diff-content.py")
     parser.add_argument("--normalize-chars", action="store_true",
                         help="pass --normalize-chars to diff-content.py")
+    parser.add_argument("--parity", type=Path, default=None, metavar="SOURCE",
+                        help="source document for the check-parity.py "
+                             "structural diff")
+    parser.add_argument("--terms", type=Path, action="append", default=[],
+                        metavar="GLOSSARY",
+                        help="glossary file for check-parity concordance "
+                             "hints (repeatable)")
     parser.add_argument("--skill-root", type=Path, default=None)
     args = parser.parse_args(argv)
 
@@ -218,6 +226,17 @@ def main(argv: list[str]) -> int:
                 diff_args.append("--normalize-chars")
             code, output = run(script, diff_args, cwd)
             failures += report("diff-content", code, output, gated=True)
+
+    if args.parity:
+        script = resolve("check-parity.py", skill_root)
+        if script is None:
+            print("SKIP check-parity - tool not found")
+        else:
+            parity_args = [str(args.parity.resolve()), doc]
+            for glossary in args.terms:
+                parity_args += ["--terms", str(glossary)]
+            code, output = run(script, parity_args, cwd)
+            failures += report("check-parity", code, output, gated=True)
 
     print(f"check-document: {'PASS' if not failures else 'FAIL'} "
           f"({failures} gated check(s) reporting)")

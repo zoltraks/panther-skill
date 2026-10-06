@@ -58,17 +58,25 @@ A structural delta matching a declared or evident adaptation contract is reporte
 
 ## Audit Checks
 
+Run `scripts/check-parity.py <source.md> <target.md>` first - its structural diff
+mechanizes most of the map: heading level sequence, fence count and tags, table
+geometry, list counts, HTML comments, inline-code spans, and anchor resolution.
+
+With `--terms <glossary.md>` it also prints concordance hints for step 3 - source
+terms whose preferred target variants never appear.
+
 Run the checks in order and record each result for the report:
 
 1. **Structure map** - align the two documents heading by heading and classify every
    source heading as `faithful`, `reworded`, `dropped`, `merged`, `reordered`, plus every
    target-only heading as `added` - a faithful translation yields only `faithful` and
-   `reworded` classes.
+   `reworded` classes. Every `check-parity.py` DELTA line names a structural suspect.
 2. **Untranslated set** - verify byte-identity of code block content, inline code
    spans, file paths, URLs, commands, identifiers, frontmatter, and the `TBD` and
    `NOT SPECIFIED` markers against the pair file's untranslated list - comments and
    natural-language string values inside examples follow the pair's reader-facing
-   rule and may differ.
+   rule and may differ. The parity run's inline-code diff and `NOTE` lines list every
+   span that differs.
 3. **Terminology concordance** - map every glossary-covered source term to its target
    rendering and flag a term rendered by several different forms (a split rendering), a
    glossary form ignored, an invented equivalent, and every calque the pair file or
@@ -84,9 +92,11 @@ Run the checks in order and record each result for the report:
    branches, completed verdicts rendered against the pair style file's aspect rule,
    report-register verbs mismatched to its verb-choice mapping, modality drift
    (`must`/`should`/`may` strength altered), condition drift (`only`, `unless`,
-   `when`, `if`, `otherwise` blurred), mixed quote or dash conventions, mixed
-   second-person register, and the same English term rendered by several Polish
-   forms.
+   `when`, `if`, `otherwise` blurred), enumeration-logic drift (a positive `or` list
+   rendered with `ani`, a quantifier or negation added or dropped), entity-kind
+   substitution (a `file` rendered `katalog`, a `directory` rendered `plik`), mixed
+   quote or dash conventions, mixed second-person register, and the same English
+   term rendered by several Polish forms.
 
 ## Findings
 

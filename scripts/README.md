@@ -5,8 +5,8 @@
 > **Scope:** Document-production and skill-maintenance scripts
 > **Key items:** encoding detection, scope signals, sentence splitting, prose wrapping and
 > unwrapping, table formatting, comment alignment, document validation, content diffing,
-> document census, skill validation, reference integrity, contents-table drift, self-update
-> check
+> structural parity, document census, skill validation, reference integrity,
+> contents-table drift, self-update check
 
 These scripts support deterministic production of documents and maintenance of Panther itself.
 
@@ -19,7 +19,7 @@ They do not modify documents beyond the specific task each tool performs.
 Run `detect-encoding.py`, `detect-scope.py`, `normalize-chars.py`, `split-sentences.py`,
 `reflow-prose.py`, `wrap-prose.py`, `format-table.py`, `align-comments.py`,
 `validate-document.py`, `check-document.py`, `diff-content.py`, `census-document.py`,
-`check-sections.py`, and `lint-polish.py` in place from the skill repository:
+`check-sections.py`, `check-parity.py`, and `lint-polish.py` in place from the skill repository:
 
 `python <skill-root>/scripts/<tool>.py <file>`.
 
@@ -91,11 +91,12 @@ python <skill-root>/scripts/reflow-prose.py <file.md> (--wrap | --unwrap | --jus
 python <skill-root>/scripts/format-table.py <file.md> [--check] [--payload-markdown] [--drop-empty-columns]
 python <skill-root>/scripts/align-comments.py <file.md> [--check] [--compact] [--payload-markdown]
 python <skill-root>/scripts/validate-document.py <file.md> [--width N] [--payload-markdown]
-python <skill-root>/scripts/check-document.py <file.md> [--width N] [--payload-markdown] [--layout wrap|unwrap] [--split] [--polish] [--type <slug>] [--language <code>] [--baseline <file>] [--normalize-chars] [--skill-root <dir>]
+python <skill-root>/scripts/check-document.py <file.md> [--width N] [--payload-markdown] [--layout wrap|unwrap] [--split] [--polish] [--type <slug>] [--language <code>] [--baseline <file>] [--normalize-chars] [--parity <source.md>] [--terms <glossary.md> ...] [--skill-root <dir>]
+python <skill-root>/scripts/check-parity.py <source.md> <target.md> [--terms <glossary.md> ...]
 python <skill-root>/scripts/diff-content.py <file.md> [--baseline <file>] [--normalize-chars]
 python <skill-root>/scripts/census-document.py <file.md> [--width N] [--payload-markdown]
 python <skill-root>/scripts/check-sections.py <file.md> --type <slug-or-path> [--language <code-or-path>]
-python <skill-root>/scripts/lint-polish.py <file.md> [--rules <rulefile.md> ...]
+python <skill-root>/scripts/lint-polish.py <file.md> [--rules <rulefile.md> ...] [--group-by-form]
 python scripts/validate-skill.py .
 python scripts/check-references.py .
 python scripts/check-contents.py .
@@ -176,9 +177,14 @@ direction checks - and prints one verdict line per tool.
 verdict - without it both report as advisory, since the document's convention decides
 which applies.
 
-`--split`, `--polish`, `--type`, `--language`, and `--baseline` add the
-`split-sentences.py`, `lint-polish.py`, `check-sections.py`, and `diff-content.py`
-checks to the battery, and a missing sibling reports `SKIP` instead of failing.
+`--split`, `--polish`, `--type`, `--language`, `--baseline`, and `--parity` add the
+`split-sentences.py`, `lint-polish.py`, `check-sections.py`, `diff-content.py`, and
+`check-parity.py` checks to the battery, and a missing sibling reports `SKIP` instead
+of failing.
+
+`--parity <source.md>` compares the checked file's structure against its source
+document - the translate and revision validation gate - and `--terms <glossary.md>`
+(repeatable) forwards glossary files to the parity concordance report.
 
 The script exits `1` when a gated check reports findings and `0` otherwise.
 
@@ -198,6 +204,26 @@ blank line between the marker and the fence - is skipped entirely, so the marker
 deliberate examples of misalignment from both fixing and `--check`.
 
 The convention lives in `conventions/plain-text-comments.md`.
+
+`check-parity.py` diffs the structural fingerprint of a rendered document against its
+source - heading level sequence, fence count and language tags, table geometry, list
+counts, HTML comments, inline-code spans, internal `#anchor` resolution, and file-level
+whitespace and byte conventions - printing `PARITY`, `DELTA`, or `NOTE` lines and
+exiting `1` on any `DELTA`.
+
+Heading *text* is never compared - a faithful render legitimately rewords it.
+
+A missing inline-code span that looks like prose (multiple plain words) reports as a
+`NOTE` - translated label text is legal - while identifier- or path-like missing spans
+report as `DELTA`.
+
+`--terms <glossary.md>` (repeatable) cross-counts each glossary's Terminology table: an
+English term appearing at least twice in the source but whose Polish variants never
+appear in the target reports a `NOTE` concordance hint - context forms stay legal, so a
+hint is a review prompt, not a verdict.
+
+Target-side variants are matched by stem prefix, so inflected forms of a preferred
+rendering still count.
 
 `diff-content.py` compares the normalized token stream of a document against `git show HEAD`
 or a `--baseline` file, identical tokens mean a pass changed formatting only.
@@ -281,6 +307,11 @@ A parenthesized qualifier on a banned form - `trasa (routing)`, `rozjazd (drift)
 bounds the ban to the named sense: every hit reports a warning naming that sense, never
 an error, because the form is legal outside it.
 
+`--group-by-form` replaces the line-by-line output with one line per matched form or
+rule - hit count, line numbers, and the suggested replacement - the shape a bulk
+fix pass needs.
+Rerun without the flag for per-line detail.
+
 It targets Polish deliverable documents - the skill's own rule files contain the
 forbidden forms by definition and will report them.
 
@@ -335,6 +366,10 @@ Run checks in this order:
 wrap convention, `--polish` covers step 6, `--type` covers step 10, and `--baseline`
 covers step 11.
 
+For a translation or revision task, `check-parity.py <source.md> <output.md>` runs as an
+additional gate after the content-changing passes - `check-document.py --parity
+<source.md>` folds it into the battery.
+
 For skill maintenance, run `validate-skill.py`, `check-references.py`, and `check-contents.py`
 first.
 
@@ -354,6 +389,10 @@ trailing whitespace, consecutive blank lines, lone list markers, and line width.
 
 `diff-content.py` is a heuristic net, not a proof - its merged-line warnings require manual
 review, and a clean report still does not replace reading the diff.
+
+`check-parity.py` compares structure only - it cannot judge whether a target paragraph
+translates its source faithfully, and its `--terms` hints flag missing preferred
+variants, not wrong ones, so a hint can be a legitimate context form.
 
 `split-sentences.py` detects boundaries heuristically - a capitalized word after a
 period inside parentheses, such as `(np. Wartość)`, can be split wrongly - review its

@@ -1280,10 +1280,10 @@
     {
       "id": 105,
       "prompt": "Translate this English workflow document into Polish - it names a final candidate, discovery candidates, and step labels written as imperative phrases, and it is long enough to require a chunked render.",
-      "expected_output": "A Polish document using końcowy etap, kandydaci do sprawdzenia, and nominal step labels, with the delivery report confirming heading, fence, and code-span parity against the source.",
+      "expected_output": "A Polish document using ostateczna wersja zmian, kandydaci do sprawdzenia, and nominal step labels, with the delivery report confirming heading, fence, and code-span parity against the source.",
       "files": [],
       "expectations": [
-        "The final candidate rendered as końcowy etap and the discovery candidates as kandydaci do sprawdzenia - no kandydat calques.",
+        "The final candidate rendered as ostateczna wersja zmian or końcowa wersja and the discovery candidates as kandydaci do sprawdzenia - no kandydat calques and no końcowy etap misreading.",
         "Step labels took the nominal form while instruction sentences kept the imperative.",
         "Per-chunk source-span coverage was verified before concatenation and no section was dropped.",
         "Validation reported heading counts per depth, fence count, and backticked-span parity against the source."
@@ -1312,6 +1312,33 @@
         "Declined loanwords rendered back to canonical English forms: hooka as hook, scorecardy as scorecards, niezacommitowany as uncommitted.",
         "Verbatim English quotes and cited section names passed through unchanged - they were not re-translated or normalized.",
         "Field labels kept verbatim in the Polish source (severity, likelihood, coverage) stayed verbatim in English."
+      ]
+    },
+    {
+      "id": 108,
+      "prompt": "Translate this long English technical document (several thousand lines) into Polish.",
+      "expected_output": "A Polish sibling file rendered chunk by chunk under the chunked-render protocol, with a terminology lock applied, structural parity verified by check-parity.py, and a clean Polish lint.",
+      "files": [],
+      "expectations": [
+        "Each chunk was rendered only while its source span was freshly read - no span was reconstructed from memory.",
+        "Headings and repeated glossary terms were rendered once in a terminology lock and applied identically in every chunk, so prose cross-references match the translated headings.",
+        "scripts/check-parity.py ran against source and output (or via check-document.py --parity) and its DELTA categories were fixed or justified.",
+        "scripts/lint-polish.py ran on an early chunk and again on the final file, reporting zero errors.",
+        "Tables were reformatted with format-table.py and the output file contains no agent notes or draft markers."
+      ]
+    },
+    {
+      "id": 109,
+      "prompt": "Translate this English agent-instruction document into Polish - it contains an `or` enumeration of invalidation causes, context-dependent terms (document owner, build as process vs result, findings in check output vs audit, standard library of documents), metaphors (clean seams, frame budget), and named patterns (God Class, floating promises, non-null assertion).",
+      "expected_output": "A Polish rendering that preserves enumeration logic and entity kinds, resolves context-dependent terms by sense, translates metaphors by function, and keeps canonical technical names glossed.",
+      "files": [],
+      "expectations": [
+        "A positive `or` enumeration rendered with `lub` and never gained `ani` - negation polarity and quantifier scope match the source.",
+        "Entities kept their kind - `file` stayed `plik`, `directory` stayed `katalog` - and normative sentences were re-checked for actor, action, object, modality, and ordering.",
+        "Context-dependent terms resolved by sense: document owner as dokument nadrzędny or dokument źródłowy (not właściciel), build the app vs promote the build vs build artifact separated, findings as wykryte problemy in check output vs ustalenia in an audit report, standard library as biblioteka standardów for documentation.",
+        "Metaphors resolved to function - clean seams as jasno określone punkty rozszerzeń, frame budget as czas jednej ramki, serves two audiences as jest przeznaczony dla.",
+        "Named technical items kept canonical forms - God Class and Feature Envy glossed, Promise and await verbatim, non-null assertion as asercja wartości nie-null.",
+        "No invented obligations, recommendations, or resolutions - source ambiguities were reported in the delivery report."
       ]
     }
   ]

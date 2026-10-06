@@ -641,6 +641,7 @@ panther-skill/
 │   ├── validate-document.py           # Mechanical document checker
 │   ├── check-document.py              # One-command non-mutating check battery
 │   ├── diff-content.py                # Token-stream content-integrity diff
+│   ├── check-parity.py                # Structural parity diff between source and rendered doc
 │   ├── validate-skill.py              # Skill metadata and disclosure validator
 │   ├── check-references.py            # Root reference integrity checker
 │   ├── check-contents.py              # Contents-table line-number drift checker
