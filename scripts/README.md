@@ -16,15 +16,26 @@ They do not modify documents beyond the specific task each tool performs.
 
 ### Document-Production Tools
 
-Copy `detect-encoding.py`, `detect-scope.py`, `normalize-chars.py`, `split-sentences.py`,
+Run `detect-encoding.py`, `detect-scope.py`, `normalize-chars.py`, `split-sentences.py`,
 `reflow-prose.py`, `wrap-prose.py`, `format-table.py`, `align-comments.py`,
-`validate-document.py`, `diff-content.py`, `census-document.py`, `check-sections.py`, and
-`lint-polish.py` into the working repository's `work/` directory under a `.tmp.` name
-before use.
+`validate-document.py`, `check-document.py`, `diff-content.py`, `census-document.py`,
+`check-sections.py`, and `lint-polish.py` in place from the skill repository:
 
-When `lint-polish.py` is copied out of the skill repository it cannot auto-discover its
-rule tables - pass them explicitly with `--rules <path>` pointing at the skill's
-`languages/pl.md` and the matching glossary files.
+`python <skill-root>/scripts/<tool>.py <file>`.
+
+In-place invocation is the default - the tools are self-contained, write nothing to the
+skill repository, and resolve their rule resources relative to their own location, so
+`lint-polish.py` finds its rule tables without `--rules` and `check-sections.py` resolves
+bare type slugs and language codes.
+
+When the skill root cannot be invoked directly - for example the skill payload exists
+only as pasted content - copy the needed tools into the working repository's `work/`
+directory under a `.tmp.` name and remove them after use.
+
+In that mode `lint-polish.py` cannot auto-discover its rule tables - pass them
+explicitly with `--rules <path>` pointing at the skill's `languages/pl.md` and the
+matching glossary files, or set `PANTHER_SKILL_ROOT` so `check-document.py` locates
+siblings and rules.
 
 If `work/` does not exist, use an existing `temp` or `temporary` directory.
 
@@ -34,10 +45,10 @@ root.
 
 Use the repository root only when no declared or existing temporary directory applies.
 
-Run the copied scripts only against the document being created, edited, or audited.
+Run the tools only against the document being created, edited, or audited.
 
-Ad-hoc helpers created during a session - such as a one-off normalization script - also
-carry the `.tmp.` infix inside that directory.
+Ad-hoc helpers created during a session - such as a one-off normalization script - and
+baseline snapshots for `diff-content.py` carry the `.tmp.` infix inside that directory.
 
 Remove every copied script and every ad-hoc `.tmp.` helper after use, including on
 aborted runs - the working tree must end unchanged outside the target document.
@@ -72,19 +83,19 @@ They use the Python standard library and do not require PyYAML or a package mana
 The commands below use `python` - substitute `python3` when `python` is not on PATH.
 
 ```bash
-python detect-encoding.tmp.py <file>
-python detect-scope.tmp.py <directory>
-python normalize-chars.tmp.py <file.md> [--check] [--payload-markdown]
-python split-sentences.tmp.py <file.md> [--check] [--paragraphs | --flow] [--width N] [--payload-markdown]
-python reflow-prose.tmp.py <file.md> (--wrap | --unwrap | --justify) [--check] [--width N] [--payload-markdown]
-python wrap-prose.tmp.py <file.md> [--check] [--width N] [--payload-markdown]
-python format-table.tmp.py <file.md> [--check] [--payload-markdown] [--drop-empty-columns]
-python align-comments.tmp.py <file.md> [--check] [--compact] [--payload-markdown]
-python validate-document.tmp.py <file.md> [--width N] [--payload-markdown]
-python diff-content.tmp.py <file.md> [--baseline <file>] [--normalize-chars]
-python census-document.tmp.py <file.md> [--width N] [--payload-markdown]
-python check-sections.tmp.py <file.md> --type <types/name.md> [--language <languages/code.md>]
-python lint-polish.tmp.py <file.md> [--rules <rulefile.md> ...]
+python <skill-root>/scripts/detect-encoding.py <file>
+python <skill-root>/scripts/detect-scope.py <directory>
+python <skill-root>/scripts/normalize-chars.py <file.md> [--check] [--payload-markdown]
+python <skill-root>/scripts/split-sentences.py <file.md> [--check] [--paragraphs | --flow] [--width N] [--payload-markdown]
+python <skill-root>/scripts/reflow-prose.py <file.md> (--wrap | --unwrap | --justify) [--check] [--width N] [--payload-markdown]
+python <skill-root>/scripts/format-table.py <file.md> [--check] [--payload-markdown] [--drop-empty-columns]
+python <skill-root>/scripts/align-comments.py <file.md> [--check] [--compact] [--payload-markdown]
+python <skill-root>/scripts/validate-document.py <file.md> [--width N] [--payload-markdown]
+python <skill-root>/scripts/check-document.py <file.md> [--width N] [--payload-markdown] [--layout wrap|unwrap] [--split] [--polish] [--type <slug>] [--language <code>] [--baseline <file>] [--normalize-chars] [--skill-root <dir>]
+python <skill-root>/scripts/diff-content.py <file.md> [--baseline <file>] [--normalize-chars]
+python <skill-root>/scripts/census-document.py <file.md> [--width N] [--payload-markdown]
+python <skill-root>/scripts/check-sections.py <file.md> --type <slug-or-path> [--language <code-or-path>]
+python <skill-root>/scripts/lint-polish.py <file.md> [--rules <rulefile.md> ...]
 python scripts/validate-skill.py .
 python scripts/check-references.py .
 python scripts/check-contents.py .
@@ -156,9 +167,25 @@ frontmatter untouched.
 
 It stays in `scripts/` for compatibility with documents that already reference it.
 
+`check-document.py` runs the standard non-mutating battery against one file in a
+single invocation - `detect-encoding.py`, `validate-document.py`,
+`format-table.py --check`, `align-comments.py --check`, and both `reflow-prose.py`
+direction checks - and prints one verdict line per tool.
+
+`--layout wrap` or `--layout unwrap` promotes the matching reflow check to a gated
+verdict - without it both report as advisory, since the document's convention decides
+which applies.
+
+`--split`, `--polish`, `--type`, `--language`, and `--baseline` add the
+`split-sentences.py`, `lint-polish.py`, `check-sections.py`, and `diff-content.py`
+checks to the battery, and a missing sibling reports `SKIP` instead of failing.
+
+The script exits `1` when a gated check reports findings and `0` otherwise.
+
 `--payload-markdown` extends `split-sentences.py`, `reflow-prose.py`, `wrap-prose.py`,
-`format-table.py`, `align-comments.py`, `validate-document.py`, and `check-sections.py`
-into ` ```markdown ` fenced blocks, all other fence languages stay opaque.
+`format-table.py`, `align-comments.py`, `validate-document.py`, `check-document.py`,
+and `check-sections.py` into ` ```markdown ` fenced blocks, all other fence languages
+stay opaque.
 
 `align-comments.py` aligns trailing `#` comments inside untagged fenced blocks and
 shell-tagged blocks to one shared column per block - the established column when most
@@ -214,6 +241,9 @@ A type file without a section table reports an open set and exits `0`.
 
 `--language` points at a `languages/<code>.md` file so localized headings match the
 canonical English names - a Polish `Decyzje` heading satisfies the `Decisions` section.
+
+`--type` also accepts a bare type slug resolved against `types/`, and `--language` a bare
+language code resolved against `languages/`.
 
 `lint-polish.py` lints a Polish document against the forbidden-form tables declared in
 the loaded rule files (the `Zamiast`/`Używaj` table in `languages/pl.md` and the Calque
@@ -298,7 +328,12 @@ Run checks in this order:
 11. Verify formatting-only passes with `diff-content.py` - add `--normalize-chars` when
     step 3 ran so the sanctioned character map does not surface as token differences.
 12. Run `git diff --check` when inside a repository.
-13. Remove every temporary `.tmp.` copy and ad-hoc helper from the working repository.
+13. Remove every ad-hoc `.tmp.` helper and baseline snapshot - and any `.tmp.` tool
+    copies made under the fallback convention - from the working repository.
+
+`check-document.py` covers steps 4-5, 7-9, and 11 in one call - `--layout` selects the
+wrap convention, `--polish` covers step 6, `--type` covers step 10, and `--baseline`
+covers step 11.
 
 For skill maintenance, run `validate-skill.py`, `check-references.py`, and `check-contents.py`
 first.

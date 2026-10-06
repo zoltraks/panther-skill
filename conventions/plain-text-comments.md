@@ -93,8 +93,8 @@ The aligner skips a marked block entirely, in fix mode and in `--check` mode.
 
 Use `scripts/align-comments.py` to check and fix comment columns instead of counting by hand.
 
-Copy it into the working repository as `align-comments.tmp.py`, run it on the document, and
-remove the copy afterward - see `scripts/README.md`.
+Run it in place from the skill root - copy it under a `.tmp.` name only when the skill
+root cannot be invoked, and remove any copy afterward - see `scripts/README.md`.
 
 Run `--check` to report misaligned comments without writing.
 

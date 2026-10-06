@@ -26,7 +26,7 @@ a reformatting, or a translation.
 | Drafting And Editing       | 344  | Templates, minimal diff, and reformatting tools    |
 | Editing Governed Documents | 383  | Governed-set inventory and rename discipline       |
 | Validation                 | 408  | Mechanical checks before delivery                  |
-| Delivery                   | 435  | Confirmation gates and reporting                   |
+| Delivery                   | 441  | Confirmation gates and reporting                   |
 
 ## Intake
 
@@ -175,11 +175,11 @@ gates, the plan-confirmation gate, and mode selection.
 For every existing file involved in the task, run the detection tool before editing:
 
 ```bash
-python detect-encoding.tmp.py <file>
+python <skill-root>/scripts/detect-encoding.py <file>
 ```
 
-Copy `scripts/detect-encoding.py` into the working repository under a `.tmp.` name first, see
-`scripts/README.md`.
+Run document-production tools in place from the skill root - copy them under `.tmp.`
+names only when the skill root cannot be invoked, see `scripts/README.md`.
 
 The report gives the byte order mark, the guessed encoding, the line-ending style, and the
 trailing-whitespace count.
@@ -255,8 +255,9 @@ Load the matching `scopes/<scope>.md` file when a scope is detected or named.
 
 The `unstructured-layout` scope is the default and needs no signals.
 
-Run `python detect-scope.tmp.py <dir>` on the target when the layout is not obvious from the
-visible structure - the census reports every scope's signals at once, see `scripts/README.md`.
+Run `python <skill-root>/scripts/detect-scope.py <dir>` on the target when the layout is
+not obvious from the visible structure - the census reports every scope's signals at once,
+see `scripts/README.md`.
 
 When the request asks to discover or detect the document layout itself, follow
 `process/scope-discovery.md` - that procedure produces a full report, not just a scope name.
@@ -409,6 +410,10 @@ A verification search that finds no match confirms absence - it is not a failure
 
 Before delivering, run the checks from `process/document-checklist.md`:
 
+- `scripts/check-document.py` runs the mechanical battery below in one invocation -
+  `python <skill-root>/scripts/check-document.py <file>` with `--layout`,
+  `--polish`, `--type`, and `--baseline` selecting the optional gates - run the
+  individual checks instead when only a subset applies.
 - Mechanical self-review of the written content.
 - `scripts/split-sentences.py --check` when the request covered packed sentences.
 - `scripts/format-table.py --check` on the file when it contains tables - its warnings on
@@ -417,8 +422,9 @@ Before delivering, run the checks from `process/document-checklist.md`:
   comments.
 - `scripts/reflow-prose.py --wrap --check --width N` when the document follows a width
   convention, `scripts/reflow-prose.py --unwrap --check` when it keeps logical lines.
-- `scripts/check-sections.py` on the file when the document type is known - no missing required
-  sections, warnings reported in delivery.
+- `scripts/check-sections.py` on the file when the document type is known - a bare type
+  slug resolves against `types/` - no missing required sections, warnings reported in
+  delivery.
 - `scripts/validate-document.py` on the file, with `--payload-markdown` when the document embeds
   ` ```markdown ` payload blocks.
 - `scripts/diff-content.py` after any formatting-only pass - the token stream must be identical
@@ -444,5 +450,5 @@ In-place edits that follow the request do not need confirmation.
 When finished, report the file path, the scope detected, the conventions applied, every
 registration or index file updated, and any checks that were skipped or failed.
 
-Remove every copied `.tmp.` script and every ad-hoc `.tmp.` helper from the working
-repository, including after an aborted run.
+Remove every ad-hoc `.tmp.` helper - and any tool copies made under the fallback
+convention - from the working repository, including after an aborted run.

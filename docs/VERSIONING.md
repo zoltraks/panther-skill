@@ -17,18 +17,18 @@ changes.
 
 1. **Increment patch by 1** for each release.
 
-2. **Patch rolls at 9 without resetting**. When a release lands on a version whose patch is
-   already 9, increment the minor digit by 1 and keep the patch at 9.
+2. **Patch rolls at 9 and resets**. When a release lands on a version whose patch is
+   already 9, increment the minor digit by 1 and reset the patch to 0.
 
 3. **Minor and patch at 9 roll to major**. When both the minor digit and the patch digit
    are 9, increment the major digit by 1 and reset minor and patch to 0.
 
-   | Before | After  | Reason                                    |
-   |--------|--------|-------------------------------------------|
-   | 1.0.0  | 1.0.1  | patch + 1                                 |
-   | 1.0.9  | 1.1.9  | patch at ceiling - minor + 1, patch stays |
-   | 1.9.9  | 2.0.0  | both at ceiling - major + 1, lower reset  |
-   | 9.9.9  | 10.0.0 | both at ceiling - major + 1, lower reset  |
+   | Before | After  | Reason                                     |
+   |--------|--------|--------------------------------------------|
+   | 1.0.0  | 1.0.1  | patch + 1                                  |
+   | 1.0.9  | 1.1.0  | patch at ceiling - minor + 1, patch resets |
+   | 1.9.9  | 2.0.0  | both at ceiling - major + 1, lower reset   |
+   | 9.9.9  | 10.0.0 | both at ceiling - major + 1, lower reset   |
 
 ## When To Bump
 

@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 """Detect the encoding, byte order mark, and line-ending style of a document.
 
-Copy this file into the working repository's `work/` directory (or the
-repository root when no `work/` exists) as `detect-encoding.tmp.py`, run it
-on the target file before editing, then remove the copy.
+Run this file in place from the skill repository -
+`python <skill-root>/scripts/detect-encoding.py` - and run it on the
+target file before editing. Copy it under a `.tmp.` name into the
+working repository's `work/` directory (or the repository root when no
+`work/` exists) only when the skill root cannot be invoked, and remove
+the copy afterward.
 
 Usage: python detect-encoding.py <file>
 """

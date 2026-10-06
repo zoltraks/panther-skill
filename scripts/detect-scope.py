@@ -4,9 +4,11 @@
 Census only - the agent maps signals to a scope, see process/document-workflow.md
 and process/scope-discovery.md.
 
-Copy this file into the working repository's `work/` directory (or the
-repository root when no `work/` exists) as `detect-scope.tmp.py`, run it on the
-target directory, then remove the copy.
+Run this file in place from the skill repository -
+`python <skill-root>/scripts/detect-scope.py` - and run it on the target
+directory. Copy it under a `.tmp.` name into the working repository's
+`work/` directory (or the repository root when no `work/` exists) only
+when the skill root cannot be invoked, and remove the copy afterward.
 
 Usage: python detect-scope.py <directory>
 """

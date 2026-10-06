@@ -18,13 +18,13 @@
 | Usage               | 261  | How agents activate and run the skill      |
 | Example Prompts     | 275  | Phrases the skill activates on             |
 | Workflow Diagrams   | 321  | ASCII and Mermaid diagrams of the pipeline |
-| Core Principles     | 457  | Convention preservation and minimal diffs  |
-| When To Use         | 468  | Supported requests and exclusions          |
-| What's Inside       | 507  | Rule files, templates, tools, and evals    |
-| Specification       | 664  | Agent Skills specification conformance     |
-| Verification        | 680  | Skill-maintenance checks                   |
-| License             | 699  | License for the skill itself               |
-| Credits             | 705  | Methodology and example sources            |
+| Core Principles     | 458  | Convention preservation and minimal diffs  |
+| When To Use         | 469  | Supported requests and exclusions          |
+| What's Inside       | 508  | Rule files, templates, tools, and evals    |
+| Specification       | 668  | Agent Skills specification conformance     |
+| Verification        | 684  | Skill-maintenance checks                   |
+| License             | 703  | License for the skill itself               |
+| Credits             | 709  | Methodology and example sources            |
 
 ## Overview
 
@@ -409,6 +409,7 @@ follow `process/describe-response.md`.
                       ▼
        ┌────────────────────────────┐
        │   Mechanical Validation    │
+       │ scripts/check-document.py    │
        │ scripts/format-table.py      │
        │ scripts/reflow-prose.py      │
        │ scripts/validate-document.py │
@@ -638,6 +639,7 @@ panther-skill/
 │   ├── format-table.py                # Source-width table formatter
 │   ├── align-comments.py              # Plain-text block comment aligner
 │   ├── validate-document.py           # Mechanical document checker
+│   ├── check-document.py              # One-command non-mutating check battery
 │   ├── diff-content.py                # Token-stream content-integrity diff
 │   ├── validate-skill.py              # Skill metadata and disclosure validator
 │   ├── check-references.py            # Root reference integrity checker
@@ -649,8 +651,9 @@ panther-skill/
     └── evals.json                     # Behavioral regression prompts
 ```
 
-Document-production tools are copied into the working repository under a `.tmp.` name, run
-against the document, and removed afterward.
+Document-production tools run in place from this repository -
+`python <skill-root>/scripts/<tool>.py <file>` - and are copied under `.tmp.` names only
+when the skill root cannot be invoked, per `scripts/README.md`.
 
 Skill-maintenance tools run from this repository only.
 

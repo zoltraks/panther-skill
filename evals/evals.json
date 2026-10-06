@@ -400,7 +400,8 @@
       "files": [],
       "expectations": [
         "The agent identifies the repository's own governing rule documents and evaluates the file against them before applying skill defaults.",
-        "The agent copies the document-production tools and census-document.py into the working repository as .tmp. copies, runs them, and removes the copies when done.",
+        "The agent runs the document-production tools and census-document.py in place from the skill root, copying them as .tmp. copies only when the skill root cannot be invoked and removing any copies when done.",
+        "The agent runs the mechanical battery through scripts/check-document.py in one invocation - encoding, validate-document, format-table, align-comments, and both reflow directions - with the reflow check gated by --layout only when the document's wrap convention is known, or runs the equivalent individual checks when only a subset applies.",
         "Mechanical results, the structural census, findings, and content observations appear in the report's fixed section order.",
         "Findings carry FINDING-001 style IDs, a severity, and evidence with the rule source that judges them.",
         "A systematic in-document convention is reported as a convention with its diverging rule named, never silently normalized.",

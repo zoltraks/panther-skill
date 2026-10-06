@@ -175,7 +175,8 @@ fixed under an Edit task.
 
 ## Validation
 
-Run the mechanical checks on the written file:
+Run the mechanical checks on the written file - `scripts/check-document.py` covers them
+in one invocation (`--polish` on `pl` output, `--payload-markdown` on embedded payloads):
 
 - `scripts/format-table.py` - mandatory on output with tables.
 - `scripts/validate-document.py` - on the written file, with
@@ -202,7 +203,8 @@ endings.
 Report inline: the role, the tiers written, the source filename declared, any
 omitted material, and every check run or skipped.
 
-Remove every copied `.tmp.` script from the working repository.
+Remove every ad-hoc `.tmp.` helper and any `.tmp.` tool copies from the working
+repository.
 
 ## Non-Goals
 

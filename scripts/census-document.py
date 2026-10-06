@@ -3,9 +3,11 @@
 
 Census only - the agent maps counts to findings, see process/document-audit.md.
 
-Copy this file into the working repository's `work/` directory (or the
-repository root when no `work/` exists) as `census-document.tmp.py`, run it on
-the target file, then remove the copy.
+Run this file in place from the skill repository -
+`python <skill-root>/scripts/census-document.py` - and run it on the
+target file. Copy it under a `.tmp.` name into the working repository's
+`work/` directory (or the repository root when no `work/` exists) only
+when the skill root cannot be invoked, and remove the copy afterward.
 
 Usage: python census-document.py <file> [--width N] [--payload-markdown]
 """

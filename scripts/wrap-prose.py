@@ -11,9 +11,11 @@ is therefore a prefix of a source line, which makes the operation safe on
 documents mixing prose with opaque blocks such as tables, headings, fenced
 code, indented code blocks, frontmatter, and embedded payload documents.
 
-Copy this file into the working repository's `work/` directory (or the
-repository root when no `work/` exists) as `wrap-prose.tmp.py`, run it on
-the document file, then remove the copy.
+Run this file in place from the skill repository -
+`python <skill-root>/scripts/wrap-prose.py` - and run it on the document
+file. Copy it under a `.tmp.` name into the working repository's `work/`
+directory (or the repository root when no `work/` exists) only when the
+skill root cannot be invoked, and remove the copy afterward.
 
 Usage: python wrap-prose.py <file.md> [--width N] [--payload-markdown]
                                   [--check]

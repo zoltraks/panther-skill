@@ -6,9 +6,11 @@ version at git HEAD by default, or a file given with --baseline. Whitespace,
 blank lines, and table separator rows are ignored, so a pure formatting pass
 (wrapping, table alignment, spacing fixes) reports zero differences.
 
-Copy this file into the working repository's `work/` directory (or the
-repository root when no `work/` exists) as `diff-content.tmp.py`, run it on
-the edited file, then remove the copy.
+Run this file in place from the skill repository -
+`python <skill-root>/scripts/diff-content.py` - and run it on the edited
+file. Copy it under a `.tmp.` name into the working repository's `work/`
+directory (or the repository root when no `work/` exists) only when the
+skill root cannot be invoked, and remove the copy afterward.
 
 Usage: python diff-content.py <file.md> [--baseline <path>]
                                       [--normalize-chars]

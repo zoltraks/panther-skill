@@ -21,23 +21,20 @@ When the request names none, the target is the working directory or the reposito
 
 ## Signal Census
 
-Copy `scripts/detect-scope.py` into the working repository as `detect-scope.tmp.py`, see
-`scripts/README.md`.
-
-Run it on the target:
+Run `scripts/detect-scope.py` in place from the skill root - copy it under a `.tmp.` name
+only when the skill root cannot be invoked, see `scripts/README.md`.
 
 ```bash
-python detect-scope.tmp.py <target>
+python <skill-root>/scripts/detect-scope.py <target>
 ```
 
 The output lists which detection signals each scope expects and which are present, plus a
 document census of the location.
 
-When the target declares a temporary-file directory (for example `work/` in its guidelines or
-`.gitignore`) that does not exist yet, create it for the `.tmp.` copy instead of falling back
-to the repository root.
-
-Remove the `.tmp.` copy when the analysis is done.
+When the fallback copy is needed and the target declares a temporary-file directory (for
+example `work/` in its guidelines or `.gitignore`) that does not exist yet, create it for
+the `.tmp.` copy instead of falling back to the repository root, and remove the copy when
+the analysis is done.
 
 ## Scope Comparison
 

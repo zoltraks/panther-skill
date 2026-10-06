@@ -33,9 +33,12 @@ Run `--unwrap --check` on a logical-line document to find wrapped
 fragments, or `--wrap --check` on a wrapped document to find over-width
 lines.
 
-Copy this file into the working repository's `work/` directory (or the
-repository root when no `work/` exists) as `reflow-prose.tmp.py`, run it on
-the document file, then remove the copy.
+Run this file in place from the skill repository -
+`python <skill-root>/scripts/reflow-prose.py` - and run it on the
+document file. Copy it under a `.tmp.` name into the working
+repository's `work/` directory (or the repository root when no `work/`
+exists) only when the skill root cannot be invoked, and remove the copy
+afterward.
 
 Usage: python reflow-prose.py <file.md> (--wrap | --unwrap | --justify)
                                 [--width N] [--payload-markdown] [--check]

@@ -430,10 +430,13 @@ Use a script or automated tool to format tables instead of counting character wi
 
 Manual counting by an AI model is error-prone and leads to misaligned columns.
 
-Write a temporary script in JavaScript or Python that parses the table, calculates column widths
-from source text, and outputs the formatted table.
+Run `scripts/format-table.py` in place from the skill root when it is available.
 
-Name the script with a `.tmp.` infix, for example `format-table.tmp.js` or `format-table.tmp.py`.
+Otherwise write a temporary script in JavaScript or Python that parses the table, calculates
+column widths from source text, and outputs the formatted table.
+
+Name an ad-hoc script with a `.tmp.` infix, for example `format-table.tmp.js` or
+`format-table.tmp.py`.
 
 Place the script in a `work/` directory when one exists in the repository, otherwise place it in the
 repository root without creating a directory solely for it.

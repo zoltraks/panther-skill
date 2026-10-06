@@ -22,7 +22,7 @@ compatibility: >-
   Claude Desktop, Windsurf, Devin, and similar). Requires the ability to read
   and write text files. No network access required.
 metadata:
-  version: "1.0.9"
+  version: "1.1.0"
   author: Filip Golewski
 allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob Grep
 ---
@@ -433,26 +433,25 @@ A template is a starting point - adjust sections to the request and the content.
 
 ## `scripts/` - Canonical Scripts
 
-Copy document-production tools into the working repository's `work/` directory under a `.tmp.` name
-before use and remove them when done.
+Run document-production tools in place - `python <skill-root>/scripts/<tool>.py <file>` -
+and copy them under `.tmp.` names only when the skill root cannot be invoked, removing
+copies when done.
 
-See `scripts/README.md`.
+See `scripts/README.md` for flags and the fallback convention.
 
 - **`scripts/detect-encoding.py`** - BOM, guessed encoding, line endings, trailing whitespace.
 - **`scripts/detect-scope.py`** - Document-scope signals and per-directory document counts.
-- **`scripts/census-document.py`** - Structural census: headings, lists, fences, paragraphs,
-  tables, and a per-element prose-layout classification.
+- **`scripts/census-document.py`** - Document census: headings, lists, fences, tables, prose layout.
 - **`scripts/normalize-chars.py`** - Normalize typographic characters to ASCII.
-- **`scripts/split-sentences.py`** - Split packed sentences onto logical lines,
-  `--paragraphs` for one sentence per paragraph, `--flow` for the flowing layout.
+- **`scripts/split-sentences.py`** - Split packed sentences onto lines - `--paragraphs` or `--flow`.
 - **`scripts/reflow-prose.py`** - Prose reflow: `--wrap` splits over-width lines at
-  whitespace, `--unwrap` joins wrapped continuations into logical lines, `--justify`
-  stretches inter-word spacing to flush both edges of a block.
-- **`scripts/wrap-prose.py`** - Deprecated split-only wrapper, superseded by
-  `reflow-prose.py --wrap`, kept for documents that already reference it.
+  whitespace, `--unwrap` joins wrapped continuations, `--justify` flushes both edges
+  (supersedes the deprecated `wrap-prose.py`).
 - **`scripts/format-table.py`** - Rebuild tables with source-width alignment, `--drop-empty-columns` drops empty columns.
 - **`scripts/align-comments.py`** - Align trailing `#` comments to one column per block.
 - **`scripts/validate-document.py`** - Mechanical checker for `process/document-checklist.md`.
+- **`scripts/check-document.py`** - One-command non-mutating battery: encoding,
+  validation, table, comment, reflow, and optional lint/section/diff gates.
 - **`scripts/diff-content.py`** - Token-stream check that a pass changed formatting only.
 - **`scripts/check-sections.py`** - Section conformance check against a type's required,
   recommended, optional, and unusual vocabulary, localized aliases included.
@@ -497,4 +496,5 @@ Never transcode a file unless the request explicitly asks for a target encoding.
 
 Never overwrite an existing document wholesale without the user's confirmation.
 
-Remove every `.tmp.` tool copy and ad-hoc helper from the working repository at task end.
+Remove every ad-hoc `.tmp.` helper - and any tool copies made under the fallback
+convention - from the working repository at task end.

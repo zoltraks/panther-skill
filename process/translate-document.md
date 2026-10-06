@@ -167,7 +167,8 @@ A silent compression or reordering is a defect, not an adaptation.
 
 ## Validation
 
-Run the mechanical checks on the written file:
+Run the mechanical checks on the written file - `scripts/check-document.py` covers them
+in one invocation (`--polish` on `pl` output, `--payload-markdown` on embedded payloads):
 
 - `scripts/format-table.py` - mandatory on output with tables, translated cells change
   column widths.
@@ -226,7 +227,8 @@ Write the output file at the resolved location - UTF-8 without BOM, LF line endi
 Report inline: the source and target language, the glossaries applied, notable term
 choices and conflict resolutions, any literal renders, and every check run or skipped.
 
-Remove every copied `.tmp.` script from the working repository.
+Remove every ad-hoc `.tmp.` helper and any `.tmp.` tool copies from the working
+repository.
 
 ## Non-Goals
 

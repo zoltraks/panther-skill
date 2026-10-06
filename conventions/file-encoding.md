@@ -35,8 +35,8 @@ Mixing encodings inside one file is never allowed - an edited file keeps exactly
 
 Detect the encoding before editing an existing file.
 
-Copy `scripts/detect-encoding.py` into the working repository as `detect-encoding.tmp.py` and run it
-on the target file, see `scripts/README.md`.
+Run `scripts/detect-encoding.py` in place from the skill root on the target file - copy it
+under a `.tmp.` name only when the skill root cannot be invoked, see `scripts/README.md`.
 
 Detection order:
 

@@ -14,6 +14,10 @@ Usage:
     python check-sections.py <file.md> --type <types/name.md>
         [--language <languages/code.md>] [--payload-markdown]
 
+``--type`` also accepts a bare type slug (``agent-instruction``) resolved
+against the skill's ``types/`` directory, and ``--language`` a bare language
+code (``pl``) resolved against ``languages/``.
+
 ``--language`` accepts a language baseline file whose per-type section-name
 table maps English section names to localized ones; localized headings then
 match their canonical English names.
@@ -142,17 +146,31 @@ def matches(heading: str, name: str) -> bool:
     return False
 
 
+def resolve_rule(value: str, subdir: str) -> Path:
+    """Resolve a rule file argument: a bare slug looks under the skill's
+    ``<subdir>/<slug>.md`` first, then the value is used as a path."""
+    raw = Path(value)
+    if raw.is_file() or "/" in value or "\\" in value:
+        return raw
+    slug = value if value.endswith(".md") else f"{value}.md"
+    probe = Path(__file__).resolve().parent.parent / subdir / slug
+    return probe if probe.is_file() else raw
+
+
 def main(argv: list[str]) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("file", type=Path, help="document to check")
-    parser.add_argument("--type", dest="type_file", type=Path, required=True,
-                        help="path to the types/<name>.md rule file")
-    parser.add_argument("--language", type=Path, default=None,
-                        help="languages/<code>.md for localized section names")
+    parser.add_argument("--type", dest="type_file", required=True,
+                        help="types/<name>.md rule file, or a bare type slug")
+    parser.add_argument("--language", default=None,
+                        help="languages/<code>.md file, or a bare language code")
     parser.add_argument("--payload-markdown", action="store_true",
                         help="include headings inside ```markdown fences")
     args = parser.parse_args(argv)
 
+    args.type_file = resolve_rule(args.type_file, "types")
+    if args.language:
+        args.language = resolve_rule(args.language, "languages")
     if not args.file.is_file():
         print(f"ERROR document not found: {args.file}")
         return 1

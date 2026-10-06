@@ -14,9 +14,12 @@ Box-drawing characters (U+2500-U+257F) are exempt.
 document may carry them as its established convention, while new content
 defaults to untagged fences for plain text.
 
-Copy this file into the working repository's `work/` directory (or the
-repository root when no `work/` exists) as `validate-document.tmp.py`, run it
-on the document file, then remove the copy.
+Run this file in place from the skill repository -
+`python <skill-root>/scripts/validate-document.py` - and run it on the
+document file. Copy it under a `.tmp.` name into the working
+repository's `work/` directory (or the repository root when no `work/`
+exists) only when the skill root cannot be invoked, and remove the copy
+afterward.
 
 Usage: python validate-document.py <file.md> [--width N] [--payload-markdown]
 

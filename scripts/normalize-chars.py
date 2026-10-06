@@ -17,9 +17,12 @@ Fenced code blocks are opaque. Frontmatter (a `---`/`+++` block at the top of
 the file) is opaque. Inline code spans, table cells, link targets, and HTML
 comments are normalized like the rest of the prose.
 
-Copy this file into the working repository's `work/` directory (or the
-repository root when no `work/` exists) as `normalize-chars.tmp.py`, run it
-on the document file, then remove the copy.
+Run this file in place from the skill repository -
+`python <skill-root>/scripts/normalize-chars.py` - and run it on the
+document file. Copy it under a `.tmp.` name into the working
+repository's `work/` directory (or the repository root when no `work/`
+exists) only when the skill root cannot be invoked, and remove the copy
+afterward.
 
 Usage: python normalize-chars.py <file.md> [--check] [--payload-markdown]
 

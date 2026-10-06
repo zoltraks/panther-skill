@@ -22,7 +22,7 @@ Fix every failure, or report it to the user with a reason.
 - Optional sections (Document Information, Version History) were not added without a request.
 - A Contents table exists when required by the document's own convention or the skill's style
   rules.
-- For a known document type, `scripts/check-sections.py --type <types/name.md>` reports no
+- For a known document type, `scripts/check-sections.py --type <type-slug>` reports no
   missing required sections.
 
 ## Spacing
@@ -139,9 +139,11 @@ Fix every failure, or report it to the user with a reason.
 ## Final Pass
 
 - `scripts/validate-document.py` reports no failures on the written file, run with
-  `--payload-markdown` when the document embeds ` ```markdown ` blocks.
+  `--payload-markdown` when the document embeds ` ```markdown ` blocks - one
+  `scripts/check-document.py` invocation covers this with the table, comment, reflow,
+  and optional lint, section, and diff checks.
 - `scripts/lint-polish.py` reports no findings on a Polish document.
 - `scripts/diff-content.py` reports an identical token stream after formatting-only passes.
 - `git diff --check` reports no whitespace errors when inside a repository.
-- Temporary `.tmp.` tool copies and ad-hoc helpers are removed from the working
-  repository - no file the task did not request remains.
+- Ad-hoc `.tmp.` helpers and any tool copies made under the fallback convention are
+  removed from the working repository - no file the task did not request remains.

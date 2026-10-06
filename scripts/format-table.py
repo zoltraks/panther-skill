@@ -2,10 +2,12 @@
 """Canonical table formatter implementing the table rules in the language
 files (languages/en.md, languages/pl.md, languages/de.md).
 
-Copy this file into the working repository's `work/` directory (or the
-repository root when no `work/` exists) as `format-table.tmp.py`, run it
-on the document file, verify that all `|` separators align vertically, then
-remove the copy.
+Run this file in place from the skill repository -
+`python <skill-root>/scripts/format-table.py` - and run it on the document
+file, verifying that all `|` separators align vertically. Copy it under a
+`.tmp.` name into the working repository's `work/` directory (or the
+repository root when no `work/` exists) only when the skill root cannot be
+invoked, and remove the copy afterward.
 
 Usage: python format-table.py <document.md> [--check] [--payload-markdown]
                                      [--drop-empty-columns]

@@ -12,9 +12,12 @@ A fenced block is skipped entirely when `<!-- align-comments: off -->` is the
 line before its opening fence, optionally separated from the fence by one
 blank line - intended for deliberate examples of misalignment.
 
-Copy this file into the working repository's `work/` directory (or the
-repository root when no `work/` exists) as `align-comments.tmp.py`, run it
-on the document file, verify the block, then remove the copy.
+Run this file in place from the skill repository -
+`python <skill-root>/scripts/align-comments.py` - and run it on the
+document file, verify the block. Copy it under a `.tmp.` name into the
+working repository's `work/` directory (or the repository root when no
+`work/` exists) only when the skill root cannot be invoked, and remove
+the copy afterward.
 
 Usage: python align-comments.py <document.md> [--check] [--compact] [--payload-markdown]
 

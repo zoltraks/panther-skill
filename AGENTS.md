@@ -49,8 +49,9 @@ Keep each rule in its owning document and link to it instead of duplicating it.
 
 Research scratch and other local working artifacts live in the gitignored `work/` directory.
 
-Shipped skill files never depend on workspace content - document-production tools are copied
-into the working repository under a `.tmp.` infix and removed after use, per `scripts/README.md`.
+Shipped skill files never depend on workspace content - document-production tools run in
+place from `scripts/` and are copied under a `.tmp.` infix only when the skill root cannot
+be invoked, per `scripts/README.md`.
 
 ## Validation
 

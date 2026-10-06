@@ -90,8 +90,9 @@ so the same subject keeps the same filename across languages.
 Tools are named `scripts/<verb>-<object>.py`, for example `detect-encoding.py` or
 `format-table.py`.
 
-Document-production tools are copied into working repositories under a `.tmp.` infix before
-use.
+Document-production tools run in place - `python <skill-root>/scripts/<tool>.py <file>` -
+and are copied into working repositories under a `.tmp.` infix only when the skill root
+cannot be invoked.
 
 Repository files use uppercase conventional names: `README.md`, `AGENTS.md`, `LICENSE`, and the
 governance documents under `docs/` - `STYLE.md`, `VERSIONING.md`, `MAINTENANCE.md`,
@@ -175,13 +176,14 @@ content that demonstrates the same point without depending on anything outside t
 
 1. Create `scripts/<verb>-<object>.py`, standard library only unless the dependency is
    documented.
-2. Keep it a self-contained single file - document-production tools are copied into working
-   repositories under `.tmp.` names, where a shared helper module would not exist.
+2. Keep it a self-contained single file - the `.tmp.` fallback copies a
+   document-production tool alone into a working repository, where a shared helper
+   module would not exist.
 3. Under the `__main__` guard, reconfigure `sys.stdout` and `sys.stderr` with
    `errors="backslashreplace"`, and pass explicit `encoding=` and `errors=` to every
    `subprocess` text call - console and pipe output must survive legacy encodings.
-4. Classify it in `scripts/README.md` as document-production (copied as `.tmp.`) or
-   skill-maintenance (runs from this repository only).
+4. Classify it in `scripts/README.md` as document-production (runs in place, `.tmp.`
+   fallback) or skill-maintenance (runs from this repository only).
 5. Reference it from the `SKILL.md` `scripts/` section and from the workflow step where it runs.
 
 ## Adding A Translation Pair
@@ -230,13 +232,14 @@ Run the checkers over every Markdown file outside `work/`:
 
 - `python scripts/split-sentences.py <file> --paragraphs --check` - every sentence must be its
   own paragraph, per `docs/STYLE.md`.
-- `python scripts/wrap-prose.py <file> --check` - skill files wrap prose at 100 characters.
+- `python scripts/reflow-prose.py <file> --wrap --check` - skill files wrap prose at 100
+  characters.
 - `python scripts/format-table.py <file> --check`
 - `python scripts/align-comments.py <file> --check`
 - `python scripts/validate-document.py <file>`
 - `python scripts/check-contents.py .` - Contents tables still anchor to real headings.
 
-Skip `wrap-prose.py` on `languages/` and `templates/` files - produced documents never
+Skip the reflow check on `languages/` and `templates/` files - produced documents never
 hard-wrap.
 
 The intentional "Incorrect" example block in `conventions/plain-text-comments.md` carries the

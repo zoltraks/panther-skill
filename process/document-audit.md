@@ -42,36 +42,40 @@ names them - an `archive/` tree is the common case.
 
 ## Mechanical Checks
 
-Copy the document-production tools into the working repository as `.tmp.` copies, see
-`scripts/README.md` and the File Handling Contract in `principles/authoring-rules.md`.
+Run the document-production tools in place from the skill root - copy them under `.tmp.`
+names only when the skill root cannot be invoked, see `scripts/README.md` and the File
+Handling Contract in `SKILL.md`.
 
-Run them on the target:
+`check-document.py` runs the standard battery in one invocation - `--layout` promotes
+the reflow check matching the document's detected wrap convention (`wrap` for
+fixed-width documents, `unwrap` for logical-line documents):
 
 ```bash
-python detect-encoding.tmp.py <file>
-python validate-document.tmp.py <file>
-python reflow-prose.tmp.py <file> --wrap --check --width <convention>
-python reflow-prose.tmp.py <file> --unwrap --check
-python format-table.tmp.py <file> --check
+python <skill-root>/scripts/check-document.py <file> --width <convention> --layout <wrap-or-unwrap>
 ```
 
-Run the reflow check matching the document's detected wrap convention - `--wrap` for
-fixed-width documents, `--unwrap` for logical-line documents.
+Run the individual tools instead when only a subset applies:
+
+```bash
+python <skill-root>/scripts/detect-encoding.py <file>
+python <skill-root>/scripts/validate-document.py <file>
+python <skill-root>/scripts/reflow-prose.py <file> --wrap --check --width <convention>
+python <skill-root>/scripts/reflow-prose.py <file> --unwrap --check
+python <skill-root>/scripts/format-table.py <file> --check
+```
 
 The width comes from the document's convention, declared by the repository's rules or observed
 in the document itself - 100 when neither declares one.
 
-Add `--payload-markdown` to `validate-document.py`, `reflow-prose.py`, and `format-table.py`
+Add `--payload-markdown` to `check-document.py` or the individual payload-aware tools
 when the document carries ` ```markdown ` payload blocks.
 
-Record every `PASS`, `WARN`, and `FAIL` for the report.
+Record every `PASS`, `WARN`, `NOTE`, `SKIP`, and `FAIL` for the report.
 
 ## Structural Census
 
-Copy `scripts/census-document.py` as `census-document.tmp.py` and run it on the target.
-
 ```bash
-python census-document.tmp.py <file> --width <convention-or-100>
+python <skill-root>/scripts/census-document.py <file> --width <convention-or-100>
 ```
 
 The output lists heading counts and violations, list markers, fenced blocks and payloads,
@@ -82,7 +86,7 @@ Add `--payload-markdown` when the request covers payload interiors.
 When the document's type is known or declared, run the section check on top:
 
 ```bash
-python check-sections.tmp.py <file> --type <path-to-panther>/types/<name>.md
+python <skill-root>/scripts/check-sections.py <file> --type <name>
 ```
 
 It reports missing required and recommended sections, sections unusual for the type, and

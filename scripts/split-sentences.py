@@ -36,9 +36,12 @@ parentheses (for example "(np. Wartość)") still looks like a new sentence
 even when a recognized abbreviation precedes it. Review proposed splits
 before applying them.
 
-Copy this file into the working repository's `work/` directory (or the
-repository root when no `work/` exists) as `split-sentences.tmp.py`, run it on
-the document file, then remove the copy.
+Run this file in place from the skill repository -
+`python <skill-root>/scripts/split-sentences.py` - and run it on the
+document file. Copy it under a `.tmp.` name into the working
+repository's `work/` directory (or the repository root when no `work/`
+exists) only when the skill root cannot be invoked, and remove the copy
+afterward.
 
 Usage: python split-sentences.py <file.md> [--check] [--paragraphs | --flow]
                                    [--width N] [--payload-markdown]
