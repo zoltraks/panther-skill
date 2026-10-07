@@ -125,6 +125,8 @@ tables included.
   that drops the verdict is a defect.
 - Add nothing - every statement in the derived document must exist in the
   source.
+- Add no statement about the skill, rules, or procedure that rendered the derived
+  document - that is production metadata, not source content.
 - Name omitted material - a `detailed` tier that drops a source section lists
   the omission in an Omitted Material section.
 

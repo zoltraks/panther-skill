@@ -20,6 +20,9 @@ Fix every failure, or report it to the user with a reason.
 - Headings carry no parenthesized qualifiers and no trailing punctuation.
 - The purpose section is present and matches the document's actual content.
 - Optional sections (Document Information, Version History) were not added without a request.
+- No sentence, cell, or section states which skill, rules, or toolchain produced the
+  document - production metadata stays out of the document unless the request or the
+  document's subject requires it.
 - A Contents table exists when required by the document's own convention or the skill's style
   rules.
 - For a known document type, `scripts/check-sections.py --type <type-slug>` reports no

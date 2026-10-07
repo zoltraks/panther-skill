@@ -1341,6 +1341,17 @@
         "No invented obligations, recommendations, or resolutions - source ambiguities were reported in the delivery report.",
         "Polish output was linted with `--payload-markdown` when the document embedded ` ```markdown ` payload blocks - a payload interior is translated prose and the same rules apply."
       ]
+    },
+    {
+      "id": 110,
+      "prompt": "Translate this English report into Polish - it carries a Document Information table and a Rendering Method section describing how the source report itself was produced.",
+      "expected_output": "A faithful Polish rendering that translates the source's rendering-method content as ordinary content and adds no statement about which skill, rules, or procedure produced the translation.",
+      "files": [],
+      "expectations": [
+        "No sentence, cell, or section in the output attributes the rendering to a skill, tool, procedure, or rules file - production metadata stays out of the document.",
+        "The source's own statements about how the source document was produced are translated faithfully as content.",
+        "Production details such as applied glossaries appear only in the inline delivery report, not in the output file."
+      ]
     }
   ]
 }

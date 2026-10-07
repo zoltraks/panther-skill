@@ -146,8 +146,8 @@ payload interior is translated prose and the same rules apply.
 Verify the chunk boundaries against the source before concatenation - a dropped or
 doubled span surfaces in the Validation parity checks.
 
-Working notes, drafts, and meta-commentary never enter the output file - only translated
-document content is written.
+Working notes, drafts, meta-commentary, and statements about the producing skill or its
+rules never enter the output file - only translated document content is written.
 
 Translate the document title, every heading, prose, list items, table cell text, link
 text, and label text.
@@ -236,8 +236,8 @@ Self-review against `process/document-checklist.md` plus the translation items:
 - One English term renders one Polish term consistently, except declared context forms -
   the terminology lock fixes renderings before the first chunk and the `--terms`
   concordance hints surface terms the locked rendering missed.
-- No agent working notes, draft markers, or meta-commentary appear anywhere in the
-  output file.
+- No agent working notes, draft markers, meta-commentary, or statements about the
+  producing skill or its rules appear anywhere in the output file.
 - No form forbidden by a Calque Traps table or the language file's vocabulary table
   appears in the output.
 - No independent clauses are joined by a bare comma, and no file, section, or branch is

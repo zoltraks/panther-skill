@@ -59,6 +59,18 @@ request covers it.
 
 Every unrelated edit makes review harder and hides the real change.
 
+## No Production Metadata
+
+A produced document never states which skill, tool, procedure, or rules rendered it.
+
+Production metadata belongs to the delivery report, not to the document - a sentence,
+cell, or section attributing the rendering to this skill or its rules is added content
+the request did not cover.
+
+Such a statement appears only when the request explicitly requires it, or when the
+document's own subject covers it - a report comparing rendering methods names them as
+its subject.
+
 ## Explicit Unknowns
 
 Never invent content to fill a gap.
