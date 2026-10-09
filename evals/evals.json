@@ -1352,6 +1352,19 @@
         "The source's own statements about how the source document was produced are translated faithfully as content.",
         "Production details such as applied glossaries appear only in the inline delivery report, not in the output file."
       ]
+    },
+    {
+      "id": 111,
+      "prompt": "Create an engineering standard document for command-line tools written in Python, to be shared across projects.",
+      "expected_output": "A Markdown engineering standard with a version comment under the H1, scope, a precedence table, an agent intake protocol, pinned toolchain versions, an executable verification table, a definition of done, and a sources section.",
+      "files": [],
+      "expectations": [
+        "The document is classified as the engineering-standard type and follows its canonical structure.",
+        "A version HTML comment sits directly below the H1.",
+        "The precedence table orders wider rules before narrower layers that override them.",
+        "The verification table lists runnable commands rather than prose descriptions.",
+        "The document does not name or link sibling standard files - other layers are mentioned by role only."
+      ]
     }
   ]
 }

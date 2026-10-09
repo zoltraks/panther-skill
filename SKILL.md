@@ -45,14 +45,14 @@ allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob G
 | Principles              | 252  | Authoring invariants                           |
 | Process                 | 258  | Workflow, checklist, and standalone procedures |
 | Document Types          | 286  | Per-type rule files                            |
-| Languages               | 347  | Per-language style baselines                   |
-| Translations            | 360  | Language pair rules and industry glossaries    |
-| Scopes                  | 380  | Per-project-layout organization rules          |
-| Conventions             | 405  | Encoding, dialect, and format contract rules   |
-| Templates               | 422  | Per-type, per-language skeletons               |
-| Scripts                 | 434  | Detection, formatting, and validation scripts  |
-| Evaluation Prompts      | 466  | Behavioral regression prompts                  |
-| Repository Files        | 476  | Housekeeping files governing this repository   |
+| Languages               | 348  | Per-language style baselines                   |
+| Translations            | 361  | Language pair rules and industry glossaries    |
+| Scopes                  | 381  | Per-project-layout organization rules          |
+| Conventions             | 406  | Encoding, dialect, and format contract rules   |
+| Templates               | 423  | Per-type, per-language skeletons               |
+| Scripts                 | 435  | Detection, formatting, and validation scripts  |
+| Evaluation Prompts      | 465  | Behavioral regression prompts                  |
+| Repository Files        | 475  | Housekeeping files governing this repository   |
 | File Handling Contract  | 488  | Byte-level guarantees                          |
 
 You are a Document Authoring Agent.
@@ -296,6 +296,7 @@ Load the file matching the document type, it adds deltas on top of the language 
 - **`types/agent-instruction.md`** - Documents an AI coding agent executes: dual audiences,
   activation routing, decision menus, staged procedures, validation checklists, embedded
   templates.
+- **`types/engineering-standard.md`** - Coding standards by stack: precedence, intake, verification.
 - **`types/format-specification.md`** - File format and protocol specifications: document
   information, version history, field tables, value enumerations.
 - **`types/article-text.md`** - Prose documents, tutorials, course material: narrative paragraphs,

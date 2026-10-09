@@ -34,14 +34,14 @@ Zasady opisane poniżej stosują się również do samego tego dokumentu.
 | Znaki specjalne                    | 296    | Znaki ramek, emoji i znaki specjalne          |
 | Słownictwo polskie                 | 314    | Preferowane terminy i kalki                   |
 | Nazwy sekcji według typu dokumentu | 457    | Polskie nazwy sekcji i elementy typów         |
-| Cechy dialektów                    | 737    | Numeracja rozdziałów i pseudo-nagłówki        |
-| Tabele                             | 754    | Wyrównanie według źródła                      |
-| Nazwy plików                       | 876    | Nazywanie nowych plików dokumentacji          |
-| Przykład                           | 886    | Przykład poprawny i niepoprawny               |
-| Kontrola przed dostarczeniem       | 920    | Kontrole językowe przed dostarczeniem         |
-| Utrzymanie plików                  | 930    | Kodowanie i złamania wierszy                  |
-| Pytanie o aktualizację             | 940    | Polskie brzmienie pytania o aktualizację      |
-| Frazy aktywujące                   | 940    | Polskie frazy i ich angielskie odpowiedniki   |
+| Cechy dialektów                    | 770    | Numeracja rozdziałów i pseudo-nagłówki        |
+| Tabele                             | 787    | Wyrównanie według źródła                      |
+| Nazwy plików                       | 909    | Nazywanie nowych plików dokumentacji          |
+| Przykład                           | 919    | Przykład poprawny i niepoprawny               |
+| Kontrola przed dostarczeniem       | 953    | Kontrole językowe przed dostarczeniem         |
+| Utrzymanie plików                  | 963    | Kodowanie i złamania wierszy                  |
+| Pytanie o aktualizację             | 973    | Polskie brzmienie pytania o aktualizację      |
+| Frazy aktywujące                   | 979    | Polskie frazy i ich angielskie odpowiedniki   |
 
 ## Struktura dokumentu
 
@@ -518,6 +518,39 @@ Dobieraj polską nazwę sekcji według typu dokumentu z poniższej tabeli.
 | decision-record          | Pros and Cons of Options           | Zalety i wady opcji                    |
 | decision-record          | Links                              | Linki                                  |
 | decision-record          | Supersedes                         | Zastępuje                              |
+| engineering-standard     | Purpose                            | Przeznaczenie                          |
+| engineering-standard     | Scope                              | Zakres                                 |
+| engineering-standard     | How To Use This Standard           | Sposób użycia normy                    |
+| engineering-standard     | Order Of Operations                | Kolejność działań                      |
+| engineering-standard     | Precedence                         | Pierwszeństwo                          |
+| engineering-standard     | Non-Negotiable Rules               | Zasady nienegocjowalne                 |
+| engineering-standard     | Agent Intake Protocol              | Protokół startowy agenta               |
+| engineering-standard     | Detection First                    | Najpierw wykrywanie                    |
+| engineering-standard     | Existing Project                   | Istniejący projekt                     |
+| engineering-standard     | New Project                        | Nowy projekt                           |
+| engineering-standard     | Documentation                      | Dokumentacja                           |
+| engineering-standard     | Language Version                   | Wersja języka                          |
+| engineering-standard     | Core Technologies                  | Technologie podstawowe                 |
+| engineering-standard     | Project Structure                  | Struktura projektu                     |
+| engineering-standard     | Naming Conventions                 | Konwencje nazewnicze                   |
+| engineering-standard     | Code Conventions                   | Konwencje kodowe                       |
+| engineering-standard     | Formatting and Linting             | Formatowanie i lintowanie              |
+| engineering-standard     | Testing                            | Testowanie                             |
+| engineering-standard     | Build                              | Budowanie                              |
+| engineering-standard     | Dependencies                       | Zależności                             |
+| engineering-standard     | Security                           | Bezpieczeństwo                         |
+| engineering-standard     | Observability                      | Obserwowalność                         |
+| engineering-standard     | Logging                            | Logowanie                              |
+| engineering-standard     | Comments                           | Komentarze                             |
+| engineering-standard     | Error Handling                     | Obsługa błędów                         |
+| engineering-standard     | Verification                       | Weryfikacja                            |
+| engineering-standard     | Definition of Done                 | Definicja ukończenia                   |
+| engineering-standard     | Correctness                        | Poprawność                             |
+| engineering-standard     | Structure                          | Struktura                              |
+| engineering-standard     | Quality                            | Jakość                                 |
+| engineering-standard     | Hygiene                            | Higiena                                |
+| engineering-standard     | General Principles                 | Zasady ogólne                          |
+| engineering-standard     | Sources                            | Źródła                                 |
 | management-plan          | Methodology                        | Metodyka                               |
 | management-plan          | Roles and Responsibilities         | Role i odpowiedzialności               |
 | management-plan          | Thresholds and Tolerances          | Progi i tolerancje                     |

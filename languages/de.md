@@ -34,13 +34,13 @@ Die unten beschriebenen Regeln gelten auch für dieses Dokument selbst.
 | Sonderzeichen                    | 251   | Rahmenzeichen und Emoji                         |
 | Deutscher Wortschatz             | 259   | Bevorzugte Begriffe und Übersetzungskalküle     |
 | Abschnittsnamen nach Dokumenttyp | 289   | Deutsche Abschnittsnamen und Elemente der Typen |
-| Dialektmerkmale                  | 569   | Kapitelnummerierung und Pseudo-Überschriften    |
-| Tabellen                         | 586   | Ausrichtung nach dem Quelltext                  |
-| Dateinamen                       | 707   | Benennung neuer Dokumentationsdateien           |
-| Beispiel                         | 717   | Richtiges und falsches Beispiel                 |
-| Dateipflege                      | 751   | Kodierung und Zeilenenden                       |
-| Aktualisierungsfrage             | 761   | Deutsche Formulierung der Aktualisierungsfrage  |
-| Aktivierungsphrasen              | 767   | Deutsche Phrasen und englische Entsprechungen   |
+| Dialektmerkmale                  | 602   | Kapitelnummerierung und Pseudo-Überschriften    |
+| Tabellen                         | 619   | Ausrichtung nach dem Quelltext                  |
+| Dateinamen                       | 740   | Benennung neuer Dokumentationsdateien           |
+| Beispiel                         | 750   | Richtiges und falsches Beispiel                 |
+| Dateipflege                      | 784   | Kodierung und Zeilenenden                       |
+| Aktualisierungsfrage             | 794   | Deutsche Formulierung der Aktualisierungsfrage  |
+| Aktivierungsphrasen              | 800   | Deutsche Phrasen und englische Entsprechungen   |
 
 ## Dokumentstruktur
 
@@ -350,6 +350,39 @@ Wähle den deutschen Abschnittsnamen passend zum Dokumenttyp aus der folgenden T
 | decision-record          | Pros and Cons of Options           | Vor- und Nachteile der Optionen         |
 | decision-record          | Links                              | Verweise                                |
 | decision-record          | Supersedes                         | Ersetzt                                 |
+| engineering-standard     | Purpose                            | Zweck                                   |
+| engineering-standard     | Scope                              | Geltungsbereich                         |
+| engineering-standard     | How To Use This Standard           | Verwendung dieser Norm                  |
+| engineering-standard     | Order Of Operations                | Reihenfolge der Anwendung               |
+| engineering-standard     | Precedence                         | Rangfolge                               |
+| engineering-standard     | Non-Negotiable Rules               | Nicht verhandelbare Regeln              |
+| engineering-standard     | Agent Intake Protocol              | Aufnahmeprotokoll des Agenten           |
+| engineering-standard     | Detection First                    | Erkennung zuerst                        |
+| engineering-standard     | Existing Project                   | Bestehendes Projekt                     |
+| engineering-standard     | New Project                        | Neues Projekt                           |
+| engineering-standard     | Documentation                      | Dokumentation                           |
+| engineering-standard     | Language Version                   | Sprachversion                           |
+| engineering-standard     | Core Technologies                  | Kerntechnologien                        |
+| engineering-standard     | Project Structure                  | Projektstruktur                         |
+| engineering-standard     | Naming Conventions                 | Namenskonventionen                      |
+| engineering-standard     | Code Conventions                   | Codekonventionen                        |
+| engineering-standard     | Formatting and Linting             | Formatierung und Linting                |
+| engineering-standard     | Testing                            | Tests                                   |
+| engineering-standard     | Build                              | Build                                   |
+| engineering-standard     | Dependencies                       | Abhängigkeiten                          |
+| engineering-standard     | Security                           | Sicherheit                              |
+| engineering-standard     | Observability                      | Observability                           |
+| engineering-standard     | Logging                            | Protokollierung                         |
+| engineering-standard     | Comments                           | Kommentare                              |
+| engineering-standard     | Error Handling                     | Fehlerbehandlung                        |
+| engineering-standard     | Verification                       | Verifikation                            |
+| engineering-standard     | Definition of Done                 | Definition of Done                      |
+| engineering-standard     | Correctness                        | Korrektheit                             |
+| engineering-standard     | Structure                          | Struktur                                |
+| engineering-standard     | Quality                            | Qualität                                |
+| engineering-standard     | Hygiene                            | Hygiene                                 |
+| engineering-standard     | General Principles                 | Allgemeine Grundsätze                   |
+| engineering-standard     | Sources                            | Quellen                                 |
 | management-plan          | Methodology                        | Methodik                                |
 | management-plan          | Roles and Responsibilities         | Rollen und Verantwortlichkeiten         |
 | management-plan          | Thresholds and Tolerances          | Schwellenwerte und Toleranzen           |

@@ -21,10 +21,10 @@
 | Core Principles     | 458  | Convention preservation and minimal diffs  |
 | When To Use         | 469  | Supported requests and exclusions          |
 | What's Inside       | 508  | Rule files, templates, tools, and evals    |
-| Specification       | 668  | Agent Skills specification conformance     |
-| Verification        | 684  | Skill-maintenance checks                   |
-| License             | 703  | License for the skill itself               |
-| Credits             | 709  | Methodology and example sources            |
+| Specification       | 670  | Agent Skills specification conformance     |
+| Verification        | 686  | Skill-maintenance checks                   |
+| License             | 705  | License for the skill itself               |
+| Credits             | 711  | Methodology and example sources            |
 
 ## Overview
 
@@ -538,6 +538,7 @@ panther-skill/
 │   ├── project-document.md            # Specifications: version comment, glossary, requirement IDs
 │   ├── rules-document.md              # Guidelines and standards: imperative rules, examples
 │   ├── agent-instruction.md           # Agent-executable docs: dual audience, decision menus
+│   ├── engineering-standard.md        # Stacked coding standards: precedence, intake, verification
 │   ├── format-specification.md        # Format specs: version history, field tables
 │   ├── article-text.md                # Prose documents: narrative, dialect tolerance
 │   ├── quick-note.md                  # Quick notes: minimal structure
@@ -624,9 +625,9 @@ panther-skill/
 │   ├── ascii-diagrams.md              # Box-drawing flow diagram rules
 │   └── prose-layout.md                # Prose-layout conventions and detection rules
 ├── templates/
-│   ├── de/                            # Twenty-nine German skeletons, <type>-template-de.md
-│   ├── en/                            # Twenty-nine English skeletons, <type>-template-en.md
-│   └── pl/                            # Twenty-nine Polish skeletons, <type>-template-pl.md
+│   ├── de/                            # Thirty German skeletons, <type>-template-de.md
+│   ├── en/                            # Thirty English skeletons, <type>-template-en.md
+│   └── pl/                            # Thirty Polish skeletons, <type>-template-pl.md
 ├── scripts/
 │   ├── detect-encoding.py             # BOM, encoding, and line-ending detection
 │   ├── detect-scope.py                # Document-scope signal census
