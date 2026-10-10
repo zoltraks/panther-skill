@@ -12,6 +12,20 @@ This file defines the translate procedure.
 Follow it whenever the request asks to translate, render, or produce a document in
 another language.
 
+## Contents
+
+| Section              | Line | What it covers                                     |
+|----------------------|------|----------------------------------------------------|
+| When This Applies    | 29   | Task classification and neighbor tasks             |
+| Parameter Resolution | 47   | Translate parameters and the acceptance gate       |
+| Detection            | 84   | Language, type, industry, and format-contract scan |
+| Rule Loading         | 126  | Ordered rule and contract-mapping loading          |
+| Translation Pass     | 143  | Terminology lock, chunked rendering, pass rules    |
+| Adapted Translation  | 222  | Adapted-fidelity rules and reporting               |
+| Validation           | 243  | Parity, mechanical checks, and self-review         |
+| Delivery             | 331  | Output conventions and the delivery report         |
+| Non-Goals            | 343  | Out-of-scope behaviors                             |
+
 ## When This Applies
 
 The translate task activates on requests such as "translate this document", "translate to
@@ -90,6 +104,25 @@ Several glossaries may apply to one document.
 On a term conflict between glossaries, precedence runs request-named, then type-matched,
 then alphabetical - record the conflict in the delivery report.
 
+Identify whether the source document was produced under a governed format - a contract
+whose producer ships its own target-language rendering rules.
+
+Signals: the request names a contract or mapping file, document metadata names a
+generator or producing skill such as a `Skill Version` row, a `Generator` field, or
+frontmatter producer keys, or the document matches a known external format contract.
+
+Resolve the contract mapping in this order:
+
+1. A path or file the request names.
+2. The producer's own routing - an Agent Skill producer's `SKILL.md` routes to its
+   translation rules, other producers document their rendering contract where the
+   format is defined.
+3. No mapping resolved - proceed with the generic rule set and record the detected
+   contract as unresolved for the delivery report.
+
+A resolved contract mapping is a terminology source, not a rule file - it governs how
+covered elements render and changes nothing else in this procedure.
+
 ## Rule Loading
 
 Load the rule files in this order:
@@ -99,11 +132,13 @@ Load the rule files in this order:
    locale conventions, untranslated set, terminology resolution, output conventions.
 3. `translations/<pair>/<pair>-style.md` - the pair's sentence-level adaptation rules,
    when the pair provides one.
-4. `translations/<pair>/<pair>-<category>.md` - every matching industry glossary in the
+4. The resolved format-contract mapping - the producer's own target-language rendering
+   rules take precedence over every generic source for the elements they cover.
+5. `translations/<pair>/<pair>-<category>.md` - every matching industry glossary in the
    same pair directory. Category slugs are stable across pair directories - `project`
    means project management in every pair.
-5. `types/<type>.md` - when the document matches a known type.
-6. `conventions/` files - only when the source dialect requires them.
+6. `types/<type>.md` - when the document matches a known type.
+7. `conventions/` files - only when the source dialect requires them.
 
 ## Translation Pass
 
@@ -159,13 +194,23 @@ markers `TBD` and `NOT SPECIFIED` - the pair file lists the complete untranslate
 Apply the pair file's style-adaptation table to every element - heading case, section-name
 mapping, quote and dash conventions, example headings.
 
+Render every element the resolved contract mapping covers - section names, table
+headers, status and verdict vocabularies, fixed phrases and legends, glossary
+conventions, title and filename patterns - exactly as the contract renders them, and
+elements the contract does not cover follow the normal rule chain.
+
+A metadata row that describes the document itself - its language, its generation time -
+describes the rendering, not the source: the language value records the target
+language, and a duration or generation figure the translation cannot re-derive is
+annotated against the source value, never silently copied or silently replaced.
+
 Keep one sentence per logical line in the output, same as the baselines require - the
 `separated` prose layout from `conventions/prose-layout.md` applies unless the request
 names another layout.
 
 Apply the untranslated-set rules and the terminology precedence the pair file declares -
-project-established terms first, then glossaries, then the baseline, then a faithful
-literal render, never an invented equivalent.
+project-established terms first, then the resolved contract mapping, then glossaries,
+then the baseline, then a faithful literal render, never an invented equivalent.
 
 Treat ` ```markdown ` payload blocks as embedded documents - translate their interiors.
 
@@ -220,6 +265,12 @@ Self-review against `process/document-checklist.md` plus the translation items:
 
 - Heading capitalization follows the target language.
 - Section names map through the language file's type table when the type is known.
+- Every element a resolved format contract covers - section names, table headers,
+  status and verdict vocabularies, fixed phrases, glossary conventions - renders per
+  the contract, and contract vocabulary is not left in the source language when the
+  contract maps it.
+- Metadata rows describing the document itself record the rendering - the language row
+  names the target language.
 - Polish output carries full diacritics in composed form.
 - No typographic quotes were introduced where the target baseline requires ASCII.
 - The resolved character convention is recorded - explicit request, source convention,
@@ -281,9 +332,10 @@ languages, state the skip in the report.
 
 Write the output file at the resolved location - UTF-8 without BOM, LF line endings.
 
-Report inline: the source and target language, the glossaries applied, notable term
-choices and conflict resolutions, any literal renders, every source ambiguity or
-contradiction left as-is, and every check run or skipped.
+Report inline: the source and target language, the resolved format-contract mapping or
+a detected contract left unresolved, the glossaries applied, notable term choices and
+conflict resolutions, any literal renders, every source ambiguity or contradiction left
+as-is, and every check run or skipped.
 
 Remove every ad-hoc `.tmp.` helper and any `.tmp.` tool copies from the working
 repository.

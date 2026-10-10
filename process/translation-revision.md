@@ -41,8 +41,8 @@ names as the source.
 
 Detect the direction from the pair and load the rules that direction declares, per
 `process/translate-document.md` - the target-language baseline, the pair's
-`-general` file, its `-style` file when it exists, and every matching industry
-glossary.
+`-general` file, its `-style` file when it exists, the resolved format-contract
+mapping when the source is governed-format, and every matching industry glossary.
 
 When no source can be resolved, proceed in grammar-and-terminology mode: apply
 mechanical and glossary findings only, and state in the report that no source

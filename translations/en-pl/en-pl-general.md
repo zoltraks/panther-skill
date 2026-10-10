@@ -21,10 +21,12 @@ Apply the rule files in this order:
    terminology rules.
 3. `translations/en-pl/en-pl-style.md` - sentence-level adaptation: aspect and voice,
    actor verbs, verb choice, fixed idioms, hedged verdicts.
-4. `translations/en-pl/en-pl-<category>.md` - every glossary whose domain signals match
+4. The resolved format-contract mapping per `process/translate-document.md` - the
+   producer's own Polish rendering rules, when the source is a governed-format document.
+5. `translations/en-pl/en-pl-<category>.md` - every glossary whose domain signals match
    the document, for example `translations/en-pl/en-pl-software.md`.
-5. `types/<type>.md` - when the document matches a known type, for its structural deltas.
-6. `conventions/` files - only when the source document's dialect requires them.
+6. `types/<type>.md` - when the document matches a known type, for its structural deltas.
+7. `conventions/` files - only when the source document's dialect requires them.
 
 The Polish baseline and this file together define the output style.
 
@@ -32,18 +34,18 @@ A glossary supplies vocabulary only - it never overrides the baseline's structur
 
 ## Style Adaptation
 
-| Element                | English source                | Polish target                                          |
-|------------------------|-------------------------------|--------------------------------------------------------|
-| Heading capitalization | Title Case                    | sentence case                                          |
-| Section names          | type table names or free text | `pl.md` section-name mapping, faithful render          |
-| Example headings       | `Correct` / `Incorrect`       | `Poprawnie` / `Niepoprawnie`                           |
-| Example heading        | `Example Content`             | `Przykład zawartości`                                  |
-| Prose quotes           | straight ASCII `"`            | straight ASCII `"` - typographic quotes not introduced |
-| Prose dash             | ` - ` spaced hyphen           | ` - ` spaced hyphen                                    |
-| Semicolon in prose     | not used                      | not used                                               |
-| Definition pattern     | `**Term**: definition`        | `**Termin**: definicja`                                |
-| Numbered chapters      | `# 1`, `## 1.1` numbering     | numbering kept, caption translated                     |
-| Diacritics             | none                          | full Polish diacritics in composed form                |
+| Element                | English source                | Polish target                                                     |
+|------------------------|-------------------------------|-------------------------------------------------------------------|
+| Heading capitalization | Title Case                    | sentence case                                                     |
+| Section names          | type table names or free text | contract mapping first, then `pl.md` mapping or a faithful render |
+| Example headings       | `Correct` / `Incorrect`       | `Poprawnie` / `Niepoprawnie`                                      |
+| Example heading        | `Example Content`             | `Przykład zawartości`                                             |
+| Prose quotes           | straight ASCII `"`            | straight ASCII `"` - typographic quotes not introduced            |
+| Prose dash             | ` - ` spaced hyphen           | ` - ` spaced hyphen                                               |
+| Semicolon in prose     | not used                      | not used                                                          |
+| Definition pattern     | `**Term**: definition`        | `**Termin**: definicja`                                           |
+| Numbered chapters      | `# 1`, `## 1.1` numbering     | numbering kept, caption translated                                |
+| Diacritics             | none                          | full Polish diacritics in composed form                           |
 
 Headings keep their level, order, and numbering - only the text and case change.
 
@@ -166,7 +168,8 @@ The following elements are copied verbatim:
 - Machine markers `TBD` and `NOT SPECIFIED`.
 - Verdict, option, and status labels fixed as contract vocabulary - `CONFORMING`,
   `GAP`, `DRIFT`, enumerated choice names such as `Adopt` or `Distributed` - stay
-  verbatim in prose and embedded payloads alike.
+  verbatim in prose and embedded payloads alike, unless the producing contract maps
+  them: a resolved format contract's Polish forms apply instead.
 - `N/A` renders `N/D` in Polish prose and table cells.
 
 ## Reader-Facing Text In Examples
@@ -197,12 +200,14 @@ Apply terms in this precedence order:
 1. Terminology the document or the project already establishes - a glossary section, a
    sibling Polish document, or a project dictionary wins over every default and is recorded
    in the report.
-2. The matching `translations/en-pl/en-pl-<category>.md` glossaries.
-3. The `pl.md` vocabulary table and this file's rules.
-4. Established usage in authoritative Polish sources - translated standards such as
+2. The resolved format-contract mapping - the producer's own Polish renderings for every
+   element it covers.
+3. The matching `translations/en-pl/en-pl-<category>.md` glossaries.
+4. The `pl.md` vocabulary table and this file's rules.
+5. Established usage in authoritative Polish sources - translated standards such as
    ISTQB and ISO, the Polish Scrum Guide, Polish Pro Git, and official vendor
    documentation.
-5. A faithful literal rendering when no entry exists - never invent an equivalent.
+6. A faithful literal rendering when no entry exists - never invent an equivalent.
 
 The Calque Traps tables and the `pl.md` "Zamiast / Używaj" table act as a veto at every
 precedence level - a form they forbid is never a candidate, even for a literal render.

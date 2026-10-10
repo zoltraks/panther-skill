@@ -39,6 +39,9 @@ Load the same rule set a translate task for the pair would have used, per
 4. `translations/<pair>/<pair>-<category>.md` - every glossary the document's domain
    signals.
 5. `types/<type>.md` - when the source matches a known type.
+6. The resolved format-contract mapping per `process/translate-document.md` - when the
+   source is a governed-format document, the producer's own rendering rules supply the
+   expected vocabulary.
 
 The audited pair is judged against the rules that were in force for the translation -
 when the translation predates this skill, the current rules still supply the audit's
@@ -80,7 +83,9 @@ Run the checks in order and record each result for the report:
 3. **Terminology concordance** - map every glossary-covered source term to its target
    rendering and flag a term rendered by several different forms (a split rendering), a
    glossary form ignored, an invented equivalent, and every calque the pair file or
-   baseline names.
+   baseline names. When a format contract resolves, verify every element it covers -
+   section names, table headers, status vocabularies, fixed phrases - against the
+   contract mapping.
 4. **Style conformance** - heading capitalization per the target baseline, section names
    mapped through the type table, quote and dash conventions, diacritics completeness, and
    one register throughout.
@@ -110,8 +115,8 @@ Severity guidance:
 - `Critical` - content mistranslated so the meaning changed, or large untranslated blocks
   the rules required translated.
 - `Major` - a structural delta without a declared adaptation, untranslated-set corruption,
-  a glossary term ignored document-wide, or a modality or condition drift that changes
-  the instruction's strength.
+  a glossary term or a resolved contract mapping ignored document-wide, or a modality or
+  condition drift that changes the instruction's strength.
 - `Minor` - heading-case violations, inconsistent term renderings, style-adaptation
   misses, calques and unnatural phrasing that do not shift the meaning.
 - `Note` - evident adaptations worth surfacing, register choices, timing notes.

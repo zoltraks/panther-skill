@@ -22,7 +22,7 @@ compatibility: >-
   Claude Desktop, Windsurf, Devin, and similar). Requires the ability to read
   and write text files. No network access required.
 metadata:
-  version: "1.1.1"
+  version: "1.1.2"
   author: Filip Golewski
 allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob Grep
 ---
@@ -183,8 +183,8 @@ Use progressive disclosure:
   correct an existing translation or apply review findings to it.
 - Load `conventions/` files only when the situation requires them.
 
-This skill is self-contained. The section listings below catalog the rule material - orient
-on what exists at activation, but load a rule file only when the task needs it.
+This skill is self-contained - the listings below catalog the rule material, but load a
+rule file only when the task needs it.
 
 When asked how this skill works, explain that Panther produces plain-text-readable Markdown
 documents in English, Polish, or German - UTF-8 output, preserved encodings - for single
@@ -201,8 +201,9 @@ On derivation requests it produces documents derived from an existing one - summ
 briefs at declared compression tiers, supplements continuing the source's numbering.
 
 On translate requests it renders a document into the target language in a single pass with
-the pair's style adaptation and matching glossaries, preserving structure, code, and
-identifiers - an adapted translation may compress and reorder, with every delta reported.
+the pair's style adaptation and matching glossaries - a governed-format source's producer
+contract takes precedence - preserving structure, code, and identifiers, and an adapted
+translation may compress and reorder, with every delta reported.
 
 On translation-audit requests it maps a rendered document against its source - verifying the
 structure map, untranslated elements, and terminology concordance, then reporting a fidelity
@@ -214,8 +215,7 @@ source passages and applying minimal-diff fixes and same-class sweeps.
 AsciiDoc and reStructuredText files are edited minimally and never restyled.
 
 On "work on panther-skill" requests it presents the maintenance menu - document work, skill
-adjustment, or session review - then maintains its own rule corpus: it reads the governing
-set and applies `docs/MAINTENANCE.md` instead of the document workflow.
+adjustment, or session review - then reads the governing set and applies `docs/MAINTENANCE.md`.
 
 On bare activation - "use skill", "run panther", or an equivalent - it enables for editorial
 support: the update check runs, the router is the loaded state, and a compact capability list
