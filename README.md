@@ -14,17 +14,17 @@
 |---------------------|------|--------------------------------------------|
 | Overview            | 29   | What Panther is and what it produces       |
 | What The Skill Does | 54   | Authoring purpose and workflow             |
-| Installation        | 191  | How to add Panther to an agent environment |
-| Usage               | 261  | How agents activate and run the skill      |
-| Example Prompts     | 275  | Phrases the skill activates on             |
-| Workflow Diagrams   | 321  | ASCII and Mermaid diagrams of the pipeline |
-| Core Principles     | 458  | Convention preservation and minimal diffs  |
-| When To Use         | 469  | Supported requests and exclusions          |
-| What's Inside       | 508  | Rule files, templates, tools, and evals    |
-| Specification       | 670  | Agent Skills specification conformance     |
-| Verification        | 686  | Skill-maintenance checks                   |
-| License             | 705  | License for the skill itself               |
-| Credits             | 711  | Methodology and example sources            |
+| Installation        | 196  | How to add Panther to an agent environment |
+| Usage               | 266  | How agents activate and run the skill      |
+| Example Prompts     | 280  | Phrases the skill activates on             |
+| Workflow Diagrams   | 326  | ASCII and Mermaid diagrams of the pipeline |
+| Core Principles     | 463  | Convention preservation and minimal diffs  |
+| When To Use         | 474  | Supported requests and exclusions          |
+| What's Inside       | 513  | Rule files, templates, tools, and evals    |
+| Specification       | 678  | Agent Skills specification conformance     |
+| Verification        | 694  | Skill-maintenance checks                   |
+| License             | 713  | License for the skill itself               |
+| Credits             | 719  | Methodology and example sources            |
 
 ## Overview
 
@@ -167,7 +167,8 @@ minimal-diff corrections, and sweeps the document for the same class of issue.
 **Maintains itself**
 
 Separately, when you ask to "work on panther-skill" or "fix this skill", the agent presents
-the maintenance menu - document work, skill adjustment, or a session review - and enters
+the maintenance menu - document work, skill adjustment, or a session review - waits for a
+selection, and enters
 maintenance mode: it reads the skill's governing documents, applies `docs/MAINTENANCE.md` and
 `docs/STYLE.md`, and runs the skill's own validators - document-mode machinery does not apply
 to the skill's own files.
@@ -183,7 +184,11 @@ enabled state, and answers with a compact confirmation that the skill is enabled
 support - a short list of the capability families, then it waits.
 
 An activation that names a working repository or directory but no operation is the same
-standby scoped to that target - a minimal confirmation, then the wait.
+standby scoped to that target - a minimal confirmation that may add a brief read-only
+survey and proposed work, then the wait.
+
+A proposal never executes on its own - the skill changes files only on a request that
+names the operation and the target.
 
 No parameter questions, task classification, or document machinery runs until a task request
 arrives.

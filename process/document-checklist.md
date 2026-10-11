@@ -151,5 +151,7 @@ Fix every failure, or report it to the user with a reason.
 - `scripts/lint-polish.py` reports no findings on a Polish document.
 - `scripts/diff-content.py` reports an identical token stream after formatting-only passes.
 - `git diff --check` reports no whitespace errors when inside a repository.
+- The written changes trace to a named operation or a user-confirmed proposal - no
+  out-of-scope fix shipped silently.
 - Ad-hoc `.tmp.` helpers and any tool copies made under the fallback convention are
   removed from the working repository - no file the task did not request remains.

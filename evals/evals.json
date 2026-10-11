@@ -1127,7 +1127,8 @@
       "expectations": [
         "The reply presents the three paths: use the skill on a chosen document, adjust the skill's behavior or rules, and improve the skill from this session.",
         "The menu is informational - the agent waits for the user's selection instead of assuming a path.",
-        "No document-mode parameter questions run and no edits happen before a path is chosen.",
+        "No document-mode parameter questions run and no edits happen before a path is chosen - a vague request authorizes the menu and analysis only.",
+        "A skill file changes only after the user picks a direction and describes or confirms the concrete change.",
         "The menu offers a Cancel answer that aborts the operation."
       ]
     },
@@ -1238,8 +1239,9 @@
       "expectations": [
         "The agent ran the once-per-session update check against the skill's own repository before other steps.",
         "The named target was held as context and no mode-selection question was asked - a named repository without an operation resolves to standby.",
-        "No capability list, repository scan, or document-mode rule files were loaded beyond the router and the activation procedure.",
-        "No file was created or modified."
+        "No document-mode rule files were loaded beyond the router and the activation procedure - the reply may carry a brief read-only survey of the target and proposed work, never a write.",
+        "No file was created or modified.",
+        "Suggested work waits for a named operation - a proposal never executes on its own."
       ]
     },
     {
@@ -1434,6 +1436,30 @@
         "check-parity.py with --expect-map reports the declared enum translations as DECLARED lines, while undeclared structural deltas still gate as DELTA.",
         "A target line-ending style matching .gitattributes eol=lf reports as NOTE, not DELTA.",
         "check-title-agreement.py compares each summary-table title against its `ID: title` heading - link-stripped and qualifier-tolerant - and reports exactly one finding per mutated title."
+      ]
+    },
+    {
+      "id": 118,
+      "prompt": "Use panther on the reports repository - take a look around.",
+      "expected_output": "A standby or proposal response: a brief read-only survey of the target is allowed, every suggested work item waits for a named operation, and nothing is written.",
+      "files": [],
+      "expectations": [
+        "The vague request was not classified into a mutating task - no Edit, Create, or Reformat work started.",
+        "The reply analyzes or proposes concretely - suggestions name the file and the change they would make.",
+        "No file was created or modified.",
+        "Every proposed action waits for an explicit instruction - the agent does not proceed on its own recommendation."
+      ]
+    },
+    {
+      "id": 119,
+      "prompt": "Add a License section to SPEC.md - the document also has a misaligned table and stale contents links I haven't asked about.",
+      "expected_output": "The License section lands as a minimal diff; the misaligned table and stale links are reported or proposed, not silently fixed.",
+      "files": [],
+      "expectations": [
+        "The License section was added within the named request's scope.",
+        "The diff covers only the requested change - the unrelated table and contents links were not silently repaired.",
+        "The out-of-scope defects are reported in the delivery or proposed as follow-up work.",
+        "Fixing the unrelated defects requires a confirmed follow-up request."
       ]
     }
   ]

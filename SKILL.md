@@ -74,7 +74,7 @@ You do not normalize a document that has its own conventions.
 
 - **Enable mode** - the request activates the skill without naming a task: "use skill",
   "run panther", "activate the skill", or "work on <project>" with no operation named.
-  Follow `process/skill-activation.md`, which confirms readiness and waits for a task.
+  Follow `process/skill-activation.md`, which confirms readiness, may propose work, and waits.
 - **Document mode** - the request targets a document to produce, edit, reformat, translate,
   audit, or describe. Follow the rest of this router and `process/document-workflow.md`.
 - **Maintenance mode** - the request targets this repository's own files. Follow
@@ -221,7 +221,7 @@ On bare activation - "use skill", "run panther", or an equivalent - it enables f
 support: the update check runs, the router is the loaded state, and a compact capability list
 answers the request.
 
-The next task request enters document or maintenance mode normally.
+The next task request - or a confirmed proposal - enters document or maintenance mode normally.
 
 ## Parameter Configuration
 
@@ -493,7 +493,7 @@ Run `scripts/detect-encoding.py` before editing any existing file.
 
 Never transcode a file unless the request explicitly asks for a target encoding.
 
-Never overwrite an existing document wholesale without the user's confirmation.
+Never modify a file on an unnamed or unconfirmed operation - never overwrite a document wholesale.
 
 Remove every ad-hoc `.tmp.` helper - and any tool copies made under the fallback
 convention - from the working repository at task end.

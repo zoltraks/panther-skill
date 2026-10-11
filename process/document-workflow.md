@@ -16,17 +16,17 @@ a reformatting, or a translation.
 | Section                    | Line | What it covers                                     |
 |----------------------------|------|----------------------------------------------------|
 | Intake                     | 31   | Task classification and mode routing               |
-| Parameter Resolution       | 67   | Defaults, acceptance gate, and parameter questions |
-| Question Surfaces          | 128  | Answer caps, guessed options, Cancel, ordering     |
-| Detection                  | 173  | Encoding, dialect, and convention detection        |
-| Scope Detection            | 225  | Project-layout signals and scope selection         |
-| Rule Selection             | 264  | Layered rule-file loading order                    |
-| Section Plan               | 300  | Type-driven structure, selection, and format       |
-| Plan Confirmation          | 326  | The pre-execution proceed/adjust/cancel gate       |
-| Drafting And Editing       | 344  | Templates, minimal diff, and reformatting tools    |
-| Editing Governed Documents | 383  | Governed-set inventory and rename discipline       |
-| Validation                 | 408  | Mechanical checks before delivery                  |
-| Delivery                   | 441  | Confirmation gates and reporting                   |
+| Parameter Resolution       | 71   | Defaults, acceptance gate, and parameter questions |
+| Question Surfaces          | 132  | Answer caps, guessed options, Cancel, ordering     |
+| Detection                  | 177  | Encoding, dialect, and convention detection        |
+| Scope Detection            | 229  | Project-layout signals and scope selection         |
+| Rule Selection             | 269  | Layered rule-file loading order                    |
+| Section Plan               | 305  | Type-driven structure, selection, and format       |
+| Plan Confirmation          | 332  | The pre-execution proceed/adjust/cancel gate       |
+| Drafting And Editing       | 350  | Templates, minimal diff, and reformatting tools    |
+| Editing Governed Documents | 391  | Governed-set inventory and rename discipline       |
+| Validation                 | 416  | Mechanical checks before delivery                  |
+| Delivery                   | 448  | Confirmation gates and reporting                   |
 
 ## Intake
 
@@ -61,6 +61,10 @@ A describe task produces an inline response, not a document - a request that nam
 output or asks for a summary, brief, or supplement document is a Derive task instead.
 
 Identify the target file or the intended output location before writing anything.
+
+A request that names a target but leaves the operation vague - "look at this file",
+"work with this document" - authorizes analysis and a proposal only: report what the
+task could be, wait for the named operation, and write nothing.
 
 Read the whole target document when editing, conventions are detected from the document itself.
 
@@ -354,6 +358,9 @@ the content requires it.
 For an edit, work inside the document's existing conventions.
 
 Keep the minimal-diff rule: touch only what the request covers.
+
+A defect found outside the named scope is reported and proposed in the delivery - never
+folded into the diff.
 
 The detected scope decides the target directory for new documents, overrides the filename
 convention when it defines one, and lists the registration steps that follow adding, moving, or

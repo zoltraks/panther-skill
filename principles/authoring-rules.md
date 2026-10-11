@@ -3,8 +3,8 @@
 ## Purpose
 
 > **Scope:** Non-negotiable rules applied to every document created or edited with this skill
-> **Key items:** plain-text readability, one-sentence paragraphs, convention preservation, minimal
-> diffs, explicit unknowns
+> **Key items:** named-operation authorization, plain-text readability, one-sentence paragraphs,
+> convention preservation, minimal diffs, explicit unknowns
 
 These rules override stylistic preferences and convenience.
 
@@ -12,6 +12,20 @@ Apply them to every section of every document produced by this skill.
 
 If a requested change conflicts with these rules and the user has not explicitly overridden them,
 keep the rule and flag the conflict.
+
+## Named Operations
+
+A file changes only on a request that names the operation and the target - "align the
+tables in SPEC.md" instructs, "use the skill" does not.
+
+A request that names no operation, or names the work only in general terms - "work with
+the skill", "improve the docs" - authorizes analysis and a proposal, never a write.
+
+Analysis is free: read, inspect, and reason about whatever the request plausibly covers,
+then propose the concrete change and wait for confirmation.
+
+A defect noticed outside the request's scope - in a file or section the request did not
+cover - is reported and proposed, never fixed silently.
 
 ## Plain Text First
 

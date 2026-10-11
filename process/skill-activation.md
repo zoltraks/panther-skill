@@ -59,7 +59,10 @@ the task request.
 
 A target-scoped activation answers with a minimal standby instead: one or two lines
 confirming the skill is enabled on the named target, then the wait begins - no
-capability list, no scan, no questions.
+capability list and no questions.
+
+The standby may add a brief read-only survey of the target and proposed work - a
+proposal waits for a named operation and never executes on its own.
 
 A diagnostic flag folds into the opening sentence - "enabled in diagnostic mode" - and
 adds no intake-state preamble, since a bare activation has no pending surface to report.
@@ -75,7 +78,8 @@ Write the response in the language of the request.
 - A diagnostic or verbose flag adds `process/json-exchange.md` to the loaded set and
   nothing else - no scan of the target runs and no document-mode files load, and no
   parameter document emits while no question surface is pending.
-- No file is written.
+- No file is written - a proposed change waits for a request that names the operation
+  and confirms it.
 
 ## Relation To The Modes
 

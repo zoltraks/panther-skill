@@ -55,6 +55,10 @@ the three directions this mode offers:
 
 The list is informational - present it, then wait for the user's pick.
 
+A general request - "work on panther-skill", "use the skill" - authorizes the menu and
+analysis only: no skill file changes until the user picks a direction and describes or
+confirms the concrete change.
+
 A task named in the same request counts as the selection: present the menu, then proceed
 treating the named task as the chosen direction - document work goes to option 1, skill
 changes to option 2.
