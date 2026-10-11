@@ -13,12 +13,12 @@ on only one side reports MISSING-ROW or MISSING-HEADING. Exit code is 0
 when no findings exist, 1 otherwise.
 
 Run this file in place from the skill repository -
-`python <skill-root>/scripts/check-title-agreement.py` - and copy it under
+`python <skill-root>/scripts/check-titles.py` - and copy it under
 a `.tmp.` name into the working repository's `work/` directory only when
 the skill root cannot be invoked, removing the copy afterward.
 
 Usage:
-    python check-title-agreement.py <file.md> [--verbose]
+    python check-titles.py <file.md> [--verbose]
 """
 
 import argparse
@@ -146,7 +146,7 @@ def main():
         if title_idx < len(cells):
             rows.setdefault(doc_id, (i + 1, cells[title_idx]))
 
-    print(f"check-title-agreement: {args.file}")
+    print(f"check-titles: {args.file}")
     findings = 0
     for doc_id, (hline, htitle) in sorted(headings.items()):
         if doc_id not in rows:
@@ -169,7 +169,7 @@ def main():
                   f"('{rtitle[:60]}') has no `ID: title` heading")
             findings += 1
 
-    print(f"check-title-agreement: {len(headings)} heading(s) checked, "
+    print(f"check-titles: {len(headings)} heading(s) checked, "
           f"{findings} finding(s)")
     return 1 if findings else 0
 

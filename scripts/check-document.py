@@ -15,7 +15,7 @@ replaces a run of each checker separately:
     check-sections.py             runs only with --type
     diff-content.py               runs only with --baseline
     check-parity.py               runs only with --parity <source.md>
-    check-title-agreement.py      runs only with --title-agreement
+    check-titles.py      runs only with --title-agreement
 
 Sibling tools are located next to this script, else under ``--skill-root <dir>``
 or ``PANTHER_SKILL_ROOT`` - running from the skill tree needs no flag at all.
@@ -141,7 +141,7 @@ def main(argv: list[str]) -> int:
                         help="declared line-ending convention forwarded "
                              "to check-parity")
     parser.add_argument("--title-agreement", action="store_true",
-                        help="also run check-title-agreement.py for "
+                        help="also run check-titles.py for "
                              "summary-table/heading title parity")
     parser.add_argument("--skill-root", type=Path, default=None)
     args = parser.parse_args(argv)
@@ -257,12 +257,12 @@ def main(argv: list[str]) -> int:
             failures += report("check-parity", code, output, gated=True)
 
     if args.title_agreement:
-        script = resolve("check-title-agreement.py", skill_root)
+        script = resolve("check-titles.py", skill_root)
         if script is None:
-            print("SKIP check-title-agreement - tool not found")
+            print("SKIP check-titles - tool not found")
         else:
             code, output = run(script, [doc], cwd)
-            failures += report("check-title-agreement", code, output,
+            failures += report("check-titles", code, output,
                                gated=True)
 
     print(f"check-document: {'PASS' if not failures else 'FAIL'} "

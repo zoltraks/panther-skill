@@ -648,7 +648,7 @@ panther-skill/
 │   ├── check-document.py              # One-command non-mutating check battery
 │   ├── diff-content.py                # Token-stream content-integrity diff
 │   ├── check-parity.py                # Structural parity diff between source and rendered doc
-│   ├── check-title-agreement.py       # Summary-table vs `ID: title` heading agreement
+│   ├── check-titles.py       # Summary-table vs `ID: title` heading agreement
 │   ├── safe-replace.py                # Word-boundary find/replace with residue scan
 │   ├── lint-polish.py                 # Polish calque and prose linter
 │   ├── validate-skill.py              # Skill metadata and disclosure validator

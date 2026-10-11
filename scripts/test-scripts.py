@@ -75,7 +75,7 @@ CASES: list[tuple[str, list[str], tuple[int, ...], str | None,
     ("safe-replace.py",
      ["README.md", "zzz-not-present-zzz", "yyy", "--check"], (0,), None,
      None),
-    ("check-title-agreement.py", ["README.md"], (0,), None, None),
+    ("check-titles.py", ["README.md"], (0,), None, None),
     ("census-document.py", ["README.md"], (0,), None,
      {"PYTHONIOENCODING": "cp1252"}),
     ("validate-document.py", ["README.md"], (0, 1), None,
@@ -389,7 +389,7 @@ def improvement_regressions() -> int:
             "### F-01: Weak TLS setup\n\nBody.\n\n"
             "### F-02: Missing rate limiting\n\nBody.\n",
             encoding="utf-8")
-        result = run_case("check-title-agreement.py", [str(agree_doc)])
+        result = run_case("check-titles.py", [str(agree_doc)])
         if result is None or result.returncode != 0:
             print(f"FAIL {label} - clean title agreement flagged")
             failures += 1
@@ -398,7 +398,7 @@ def improvement_regressions() -> int:
                 "### F-02: Missing rate limiting",
                 "### F-02: Mutated title"),
             encoding="utf-8")
-        result = run_case("check-title-agreement.py", [str(agree_doc)])
+        result = run_case("check-titles.py", [str(agree_doc)])
         if (result is None or result.returncode != 1
                 or result.stdout.count("MISMATCH") != 1
                 or "F-02" not in result.stdout):

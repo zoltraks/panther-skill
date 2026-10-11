@@ -19,7 +19,7 @@ They do not modify documents beyond the specific task each tool performs.
 Run `detect-encoding.py`, `detect-scope.py`, `normalize-chars.py`, `split-sentences.py`,
 `reflow-prose.py`, `wrap-prose.py`, `format-table.py`, `align-comments.py`,
 `validate-document.py`, `check-document.py`, `diff-content.py`, `census-document.py`,
-`check-sections.py`, `check-parity.py`, `check-title-agreement.py`, `safe-replace.py`,
+`check-sections.py`, `check-parity.py`, `check-titles.py`, `safe-replace.py`,
 and `lint-polish.py` in place from the skill repository:
 
 `python <skill-root>/scripts/<tool>.py <file>`.
@@ -94,7 +94,7 @@ python <skill-root>/scripts/align-comments.py <file.md> [--check] [--compact] [-
 python <skill-root>/scripts/validate-document.py <file.md> [--width N] [--payload-markdown]
 python <skill-root>/scripts/check-document.py <file.md> [--width N] [--payload-markdown] [--layout wrap|unwrap] [--split] [--polish] [--type <slug>] [--language <code>] [--baseline <file>] [--normalize-chars] [--parity <source.md>] [--terms <glossary.md> ...] [--expect-map <file> ...] [--eol lf|crlf] [--title-agreement] [--skill-root <dir>]
 python <skill-root>/scripts/check-parity.py <source.md> <target.md> [--terms <glossary.md> ...] [--expect-map <file> ...] [--eol lf|crlf]
-python <skill-root>/scripts/check-title-agreement.py <file.md> [--verbose]
+python <skill-root>/scripts/check-titles.py <file.md> [--verbose]
 python <skill-root>/scripts/safe-replace.py <file.md> <old> <new> [--raw] [--check]
 python <skill-root>/scripts/diff-content.py <file.md> [--baseline <file>] [--normalize-chars]
 python <skill-root>/scripts/census-document.py <file.md> [--width N] [--payload-markdown]
@@ -183,7 +183,7 @@ which applies.
 `--split`, `--polish`, `--type`, `--language`, `--baseline`, `--parity`, and
 `--title-agreement` add the `split-sentences.py`, `lint-polish.py`,
 `check-sections.py`, `diff-content.py`, `check-parity.py`, and
-`check-title-agreement.py` checks to the battery, and a missing sibling reports
+`check-titles.py` checks to the battery, and a missing sibling reports
 `SKIP` instead of failing.
 
 `--parity <source.md>` compares the checked file's structure against its source
@@ -340,7 +340,7 @@ Rerun without the flag for per-line detail.
 It targets Polish deliverable documents - the skill's own rule files contain the
 forbidden forms by definition and will report them.
 
-`check-title-agreement.py` verifies that a document's `## ID: title` headings match the
+`check-titles.py` verifies that a document's `## ID: title` headings match the
 title their summary-table row declares - the ID anchors the row whichever column holds
 it, the title comes from the `Title`/`Tytuł` header column or the column after the ID,
 and the comparison strips links, backticks, and emphasis so a heading that omits the

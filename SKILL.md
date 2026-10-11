@@ -22,7 +22,7 @@ compatibility: >-
   Claude Desktop, Windsurf, Devin, and similar). Requires the ability to read
   and write text files. No network access required.
 metadata:
-  version: "1.1.2"
+  version: "1.1.3"
   author: Filip Golewski
 allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob Grep
 ---
@@ -453,7 +453,7 @@ copies when done - `scripts/README.md` lists flags and the fallback convention.
 - **`scripts/diff-content.py`** - Token-stream check that a pass changed formatting only.
 - **`scripts/check-parity.py`** - Structural parity diff: headings, fences, tables, code
   spans, anchors, glossary hints - `--expect-map`/`--eol` mark declared deltas.
-- **`scripts/check-title-agreement.py`** - `ID: title` headings vs summary-table titles.
+- **`scripts/check-titles.py`** - `ID: title` headings vs summary-table titles.
 - **`scripts/check-sections.py`** - Section vocabulary conformance, localized aliases included.
 - **`scripts/lint-polish.py`** - Polish calque and prose lint against forbidden-form tables.
 - **`scripts/validate-skill.py`** - Panther-repo frontmatter, disclosure, root-reference checks.

@@ -74,7 +74,7 @@ A `.tmp.` expect-map file passed with `--expect-map` extends that map with decla
 `DECLARED` notes and the audit concentrates on the deltas nothing declared.
 
 On a document whose `ID: title` headings pair with summary-table rows,
-`scripts/check-title-agreement.py` verifies each table title against its heading.
+`scripts/check-titles.py` verifies each table title against its heading.
 
 Run the checks in order and record each result for the report:
 

@@ -274,7 +274,7 @@ payloads, `--parity <source.md>` to fold the parity run in):
   document embeds ` ```markdown ` blocks.
 - `scripts/lint-polish.py` - on `pl` output, with `--payload-markdown` when the document
   embeds ` ```markdown ` blocks - every finding is fixed or reported.
-- `scripts/check-title-agreement.py` - when the document's `ID: title` headings pair with
+- `scripts/check-titles.py` - when the document's `ID: title` headings pair with
   summary-table rows, or via `check-document.py --title-agreement`.
 
 Self-review against `process/document-checklist.md` plus the translation items:

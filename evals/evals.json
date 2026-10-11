@@ -1435,7 +1435,7 @@
         "validate-document.py flags the literal pipe inside the table code span and suggests &#124; - the row is not silently miscounted.",
         "check-parity.py with --expect-map reports the declared enum translations as DECLARED lines, while undeclared structural deltas still gate as DELTA.",
         "A target line-ending style matching .gitattributes eol=lf reports as NOTE, not DELTA.",
-        "check-title-agreement.py compares each summary-table title against its `ID: title` heading - link-stripped and qualifier-tolerant - and reports exactly one finding per mutated title."
+        "check-titles.py compares each summary-table title against its `ID: title` heading - link-stripped and qualifier-tolerant - and reports exactly one finding per mutated title."
       ]
     },
     {
