@@ -25,11 +25,28 @@ is cross-counted: an English term appearing at least twice in the source but
 with none of its Polish variants present in the target is reported as a NOTE -
 a concordance hint, not a verdict, since context forms are legitimate.
 
-Each check prints one PARITY, DELTA, or NOTE line; DELTA details follow
-indented. Exit code is 0 when no DELTA was reported, 1 otherwise.
+Each check prints one PARITY, DELTA, DECLARED, or NOTE line; DELTA details
+follow indented. Exit code is 0 when no DELTA was reported, 1 otherwise.
+
+With --expect-map <file>, deltas the map declares report as DECLARED notes
+instead of DELTA failures. The file lists one `SRC -> TGT` pair per line -
+`#` comments and blank lines allowed, surrounding backticks stripped, and
+` / ` separates alternative targets - plus `link:#anchor -> -N` or `+N`
+lines declaring an expected change in that anchor's link count. Glossary
+files passed through --terms seed the same map: a source term's preferred
+variants are expected renderings, not losses.
+
+With --eol lf|crlf, or a `.gitattributes` `eol=` declaration found walking
+up from the target, a line-ending delta that matches the declared
+convention reports as NOTE instead of DELTA.
+
+Usage:
+    python check-parity.py <source.md> <target.md> [--terms <glossary.md> ...]
+        [--expect-map <file> ...] [--eol lf|crlf]
 """
 
 import argparse
+import fnmatch
 import re
 import sys
 from collections import Counter
@@ -145,13 +162,22 @@ def html_comments(text):
 
 
 def code_spans(lines, spans):
-    """Multiset of inline code spans outside fenced blocks."""
+    """Multiset of inline code spans outside fenced blocks, with line refs.
+
+    Returns (Counter of span text, {span text: [1-based line numbers]}).
+    Spans inside fenced blocks are excluded from both files - a fence that
+    opens or closes differently in the translation shifts spans between the
+    inline and fenced contexts and surfaces as a genuine count delta.
+    """
     found = []
+    locations = {}
     for i, line in enumerate(lines):
         if inside_spans(i, spans):
             continue
-        found.extend(INLINE_CODE.findall(line))
-    return Counter(found)
+        for span in INLINE_CODE.findall(line):
+            found.append(span)
+            locations.setdefault(span, []).append(i + 1)
+    return Counter(found), locations
 
 
 def load_terms(paths):
@@ -219,22 +245,143 @@ def looks_technical(span):
     return bool(re.search(r"[\dA-Z]", span))
 
 
-def code_diff(src_counter, tgt_counter, limit=10):
-    """Split the missing-spans diff into technical deltas and prose notes."""
+def code_diff(src_counter, tgt_counter, expected, src_loc, tgt_loc,
+              tgt_text_lower, limit=10):
+    """Split the missing-spans diff into declared, technical, prose groups.
+
+    `expected` maps lowercased source spans to lists of declared target
+    renderings. A missing span whose declared target occurs in the target
+    text reports as DECLARED, as does an extra span that is the declared
+    rendering of a missing source span.
+    """
     missing = src_counter - tgt_counter
     extra = tgt_counter - src_counter
-    deltas, notes = [], []
+    missing_srcs = {span.lower() for span in missing}
+    variant_src = {variant.lower(): src
+                   for src, variants in expected.items()
+                   for variant in variants}
+    declared, deltas, notes = [], [], []
+
+    def refs(loc, span):
+        lines = loc.get(span, [])[:6]
+        return (" at line(s) " + ",".join(str(n) for n in lines)
+                if lines else "")
+
     for span, n in list(missing.items()):
-        target = deltas if looks_technical(span) else notes
-        target.append(f"missing in target x{n}: `{span[:80]}`")
-    extra_list = [
-        f"extra in target x{n}: `{span[:80]}`" for span, n in extra.items()
-    ]
+        target_variants = expected.get(span.lower(), [])
+        hit = next((v for v in target_variants
+                    if count_term(tgt_text_lower, v) > 0), None)
+        if hit is not None:
+            declared.append(
+                f"missing in target x{n}: `{span[:80]}` renders as "
+                f"declared `{hit}`{refs(src_loc, span)}")
+            continue
+        detail = f"missing in target x{n}: `{span[:80]}`{refs(src_loc, span)}"
+        if target_variants:
+            detail += (" - declared target(s) "
+                       f"{', '.join(target_variants)[:60]} not found")
+        (deltas if looks_technical(span) else notes).append(detail)
+    extra_list = []
+    for span, n in extra.items():
+        src = variant_src.get(span.lower())
+        if src is not None and src in missing_srcs:
+            original = next(
+                s for s in missing if s.lower() == src)
+            declared.append(
+                f"extra in target x{n}: `{span[:80]}` is declared "
+                f"rendering of `{original[:80]}`{refs(tgt_loc, span)}")
+            continue
+        extra_list.append(f"extra in target x{n}: `{span[:80]}`"
+                          f"{refs(tgt_loc, span)}")
     if len(extra_list) > limit:
         extra_list = extra_list[:limit] + [
             f"... and {len(extra.items()) - limit} more"]
     notes.extend(extra_list)
-    return deltas[:limit], notes[:limit]
+    return declared[:limit], deltas[:limit], notes[:limit]
+
+
+def load_expect_map(paths):
+    """Parse declared `SRC -> TGT` pairs and `link:` directives.
+
+    File format: one `SRC -> TGT` pair per line, `#` comments and blank
+    lines allowed, surrounding backticks stripped, ` / ` separating
+    alternative targets. A `link:#anchor -> -N` or `+N` line declares an
+    expected change in that anchor's link count. Returns
+    ({src_lower: [targets]}, {anchor: signed delta}).
+    """
+    pairs = {}
+    links = {}
+    for path in paths:
+        p = Path(path)
+        if not p.exists():
+            continue
+        for raw in p.read_text(encoding="utf-8").split("\n"):
+            line = raw.strip()
+            if not line or line.startswith("#") or "->" not in line:
+                continue
+            left, right = [s.strip().strip("`").strip()
+                           for s in line.split("->", 1)]
+            if not left or not right:
+                continue
+            if left.lower().startswith("link:"):
+                anchor = left[5:].lstrip("#").strip()
+                try:
+                    links[anchor] = links.get(anchor, 0) + int(right)
+                except ValueError:
+                    pass
+                continue
+            variants = [v.strip() for v in re.split(r"\s+/\s+", right)
+                        if v.strip()]
+            if variants:
+                pairs.setdefault(left.lower(), []).extend(variants)
+    return pairs, links
+
+
+def declared_eol(target_path, override):
+    """Resolve the declared line-ending convention for the target file.
+
+    `--eol` wins; otherwise the nearest `.gitattributes` found walking up
+    from the target declares `eol=lf|crlf` (or `text`/`text=auto` as
+    "auto") for matching patterns. Returns 'lf', 'crlf', 'auto', or None.
+    """
+    if override:
+        return override
+    path = Path(target_path).resolve()
+    attrs_file = None
+    for directory in [path.parent, *path.parents]:
+        probe = directory / ".gitattributes"
+        if probe.is_file():
+            attrs_file = probe
+            break
+    if attrs_file is None:
+        return None
+    name = path.name
+    try:
+        rel = path.relative_to(attrs_file.parent).as_posix()
+    except ValueError:
+        rel = name
+    declared = None
+    for raw_line in attrs_file.read_text(
+            encoding="utf-8", errors="replace").split("\n"):
+        line = raw_line.strip()
+        if not line or line.startswith("#"):
+            continue
+        parts = line.split()
+        pattern = parts[0]
+        if "/" in pattern:
+            matched = fnmatch.fnmatch(rel, pattern.lstrip("/"))
+        else:
+            matched = fnmatch.fnmatch(name, pattern)
+        if not matched:
+            continue
+        for attr in parts[1:]:
+            if attr.startswith("eol="):
+                declared = attr[4:]
+            elif attr in ("text", "text=auto"):
+                declared = "auto"
+            elif attr in ("-text", "-eol"):
+                declared = None
+    return declared
 
 
 def report(deltas, label, ok_msg, details):
@@ -253,8 +400,18 @@ def main():
     parser.add_argument("target", type=Path)
     parser.add_argument("--terms", type=Path, action="append", default=[],
                         metavar="GLOSSARY",
-                        help="glossary file with a Terminology table for a "
-                             "concordance hint report")
+                        help="glossary file with a Terminology table - "
+                             "drives the concordance hint report and seeds "
+                             "the expected-translation map")
+    parser.add_argument("--expect-map", type=Path, action="append",
+                        default=[], metavar="FILE",
+                        help="file of declared SRC -> TGT pairs and "
+                             "link:#anchor -> +/-N directives - matching "
+                             "deltas report as DECLARED, not DELTA")
+    parser.add_argument("--eol", choices=["lf", "crlf"], default=None,
+                        help="declared line-ending convention for the "
+                             "target - a matching delta reports as NOTE "
+                             "(overrides .gitattributes)")
     args = parser.parse_args()
 
     src_lines, src_raw = read_doc(args.source)
@@ -264,6 +421,16 @@ def main():
     src_spans = fence_spans(src_lines)
     tgt_spans = fence_spans(tgt_lines)
     deltas = []
+    declared_total = 0
+
+    expected = {}
+    for eng, variants in load_terms(args.terms):
+        slot = expected.setdefault(eng.lower(), [])
+        slot.extend(v for v in variants if v not in slot)
+    map_pairs, link_deltas = load_expect_map(args.expect_map)
+    for src, variants in map_pairs.items():
+        slot = expected.setdefault(src, [])
+        slot.extend(v for v in variants if v not in slot)
 
     print(f"check-parity: {args.source} vs {args.target}")
 
@@ -364,32 +531,56 @@ def main():
            f"{len(src_com)} source / {len(tgt_com)} target", details)
 
     # Inline code spans: technical spans must survive byte-identical;
-    # prose-like spans may legitimately differ (translated label text)
-    src_code = code_spans(src_lines, src_spans)
-    tgt_code = code_spans(tgt_lines, tgt_spans)
-    code_deltas, code_notes = code_diff(src_code, tgt_code)
+    # prose-like spans may legitimately differ (translated label text);
+    # declared pairs report as DECLARED, not DELTA
+    src_code, src_loc = code_spans(src_lines, src_spans)
+    tgt_code, tgt_loc = code_spans(tgt_lines, tgt_spans)
+    code_declared, code_deltas, code_notes = code_diff(
+        src_code, tgt_code, expected, src_loc, tgt_loc, tgt_text.lower())
     report(deltas, "inline code",
            f"{sum(src_code.values())} source spans / "
            f"{sum(tgt_code.values())} target spans", code_deltas)
+    for line in code_declared:
+        print(f"DECLARED inline code - {line}")
+    declared_total += len(code_declared)
     for note in code_notes:
         print(f"NOTE inline code - {note}")
 
-    # Anchors: every #anchor link in target resolves against target headings
+    # Anchors: every #anchor link in target resolves against target
+    # headings, and per-anchor link counts match unless a link: directive
+    # declares the change
     tgt_anchors = ANCHOR_LINK.findall(tgt_text)
     src_anchors = ANCHOR_LINK.findall(src_text)
     tgt_slugs = {slugify(text) for _, _, text in tgt_heads}
     seen = set()
     details = []
+    anchor_declared = []
     for anchor in tgt_anchors:
         if anchor not in tgt_slugs and anchor not in seen:
             seen.add(anchor)
             details.append(f"unresolved anchor in target: '#{anchor}'")
-    if len(src_anchors) != len(tgt_anchors):
-        details.append(f"anchor links: source {len(src_anchors)}, "
-                       f"target {len(tgt_anchors)}")
+    src_by = Counter(src_anchors)
+    tgt_by = Counter(tgt_anchors)
+    for anchor in sorted(set(src_by) | set(tgt_by)):
+        diff = tgt_by.get(anchor, 0) - src_by.get(anchor, 0)
+        if diff == 0:
+            continue
+        declared_delta = link_deltas.get(anchor)
+        if declared_delta is not None and diff == declared_delta:
+            anchor_declared.append(
+                f"anchor '#{anchor}' link count "
+                f"{src_by.get(anchor, 0)} -> {tgt_by.get(anchor, 0)} "
+                "as declared")
+        else:
+            details.append(
+                f"anchor '#{anchor}' links: source "
+                f"{src_by.get(anchor, 0)}, target {tgt_by.get(anchor, 0)}")
     report(deltas, "anchors",
            f"{len(tgt_anchors)} links, {len(tgt_slugs)} target slugs",
            details)
+    for line in anchor_declared:
+        print(f"DECLARED anchors - {line}")
+    declared_total += len(anchor_declared)
 
     # Whitespace and byte conventions
     details = []
@@ -415,9 +606,22 @@ def main():
     src_crlf = b"\r\n" in src_raw
     tgt_crlf = b"\r\n" in tgt_raw
     if src_crlf != tgt_crlf:
-        details.append("line-ending style differs: source "
-                       + ("CRLF" if src_crlf else "LF") + ", target "
-                       + ("CRLF" if tgt_crlf else "LF"))
+        eol_detail = ("line-ending style differs: source "
+                      + ("CRLF" if src_crlf else "LF") + ", target "
+                      + ("CRLF" if tgt_crlf else "LF"))
+        declared = declared_eol(args.target, args.eol)
+        if declared == ("crlf" if tgt_crlf else "lf"):
+            print(f"NOTE whitespace/bytes - {eol_detail} - matches "
+                  f"declared eol={declared}")
+        elif declared == "auto":
+            print(f"NOTE whitespace/bytes - {eol_detail} - repository "
+                  "declares text normalization, on-disk style follows "
+                  "the checkout")
+        elif declared is not None:
+            details.append(eol_detail + f" - contradicts declared "
+                           f"eol={declared}")
+        else:
+            details.append(eol_detail)
     src_bom = src_raw.startswith(b"\xef\xbb\xbf")
     tgt_bom = tgt_raw.startswith(b"\xef\xbb\xbf")
     if src_bom != tgt_bom:
@@ -446,9 +650,12 @@ def main():
         print(f"PARITY terms ({terms_path.name}) - {len(pairs)} entries "
               f"scanned, {misses} hint(s)")
 
-    print(f"check-parity: {'FAIL' if deltas else 'PASS'} "
-          f"({len(deltas)} delta categor{'y' if len(deltas) == 1 else 'ies'}"
-          + (": " + ", ".join(deltas) if deltas else "") + ")")
+    verdict = (f"FAIL ({len(deltas)} delta categor"
+               f"{'y' if len(deltas) == 1 else 'ies'}: "
+               f"{', '.join(deltas)})" if deltas else "PASS")
+    if declared_total:
+        verdict += f" - {declared_total} declared delta(s)"
+    print(f"check-parity: {verdict}")
     return 1 if deltas else 0
 
 

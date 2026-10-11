@@ -494,7 +494,7 @@ Some English terms render differently by context - do not force one form everywh
   owner) - `dokument nadrzędny` is reserved for the document carrying the
   governing rules.
 - `tool-executed checks` renders `kontrole narzędziowe` in expert register.
-- `commit` renders `zatwierdzenie` and `zatwierdzić` in prose; the English form
+- `commit` renders `zatwierdzenie` and `zatwierdzić` in prose - the English form
   stays verbatim only inside commands and code such as `git commit`.
 - Settled technical loanwords decline normally in expert register - `hooka`,
   `guardów`, `scorecardy`, `handlery`, `timeoutu`, `runnera`, `blokery`,
@@ -541,158 +541,159 @@ Some English terms render differently by context - do not force one form everywh
 
 ## Calque Traps
 
-| Instead of                                                             | Use                                                                   |
-|------------------------------------------------------------------------|-----------------------------------------------------------------------|
-| deployować                                                             | wdrażać                                                               |
-| requestować                                                            | zgłaszać                                                              |
-| update'ować                                                            | aktualizować                                                          |
-| fixować                                                                | poprawiać                                                             |
-| kastomizacja                                                           | dostosowanie                                                          |
-| performance                                                            | wydajność                                                             |
-| paczka                                                                 | pakiet                                                                |
-| potok                                                                  | proces / proces CI                                                    |
-| triaż podatności                                                       | weryfikacja i klasyfikacja podatności                                 |
-| joiny                                                                  | łączenia                                                              |
-| lookupy                                                                | wyszukiwania                                                          |
-| brama                                                                  | warunek / kontrola                                                    |
-| bramy weryfikacji                                                      | warunki weryfikacyjne                                                 |
-| rozjazd (drift)                                                        | rozbieżność                                                           |
-| dryf dokumentacji                                                      | dezaktualizacja dokumentacji                                          |
-| designer wizualny                                                      | projektowanie wizualne                                                |
-| stakeholderzy                                                          | interesariusze                                                        |
-| ownerzy biznesowi                                                      | właściciele biznesowi                                                 |
-| status report                                                          | raport o statusie                                                     |
-| meeting minutes                                                        | protokół zebrania                                                     |
-| dane skrapane                                                          | dane skrapowane                                                       |
-| commitowany                                                            | zatwierdzony                                                          |
-| commit / commity / commitów / commitu                                  | zatwierdzenie                                                         |
-| commitować / commituj / zacommituj / zacommitowany / niezacommitowany  | zatwierdzić / zatwierdzony                                            |
-| multi-agentowy                                                         | wieloagentowy                                                         |
-| onboardowanie                                                          | wdrażanie nowych osób                                                 |
-| prozatorski                                                            | opisowy                                                               |
-| cykl wydawniczy                                                        | cykl wydaniowy                                                        |
-| siostrzana gałąź                                                       | pozostała gałąź                                                       |
-| parzystość                                                             | zgodność / równoważność                                               |
-| zmaterializowane ryzyko                                                | ryzyko się zrealizowało                                               |
-| re-audyt                                                               | ponowny audyt                                                         |
-| kontrola wykonawcza                                                    | kontrola dynamiczna                                                   |
-| strażnik                                                               | mechanizm ochronny                                                    |
-| serwujący                                                              | udostępniający                                                        |
-| zastany                                                                | odziedziczony / istniejący wcześniej                                  |
-| realna baza                                                            | rzeczywista baza danych                                               |
-| realne dane (real data)                                                | rzeczywiste dane                                                      |
-| konsumowane                                                            | obsługiwane / wykorzystywane                                          |
-| rekursują                                                              | są rozwijane rekurencyjnie                                            |
-| celują w                                                               | przyjmują jako cel                                                    |
-| kosztuje kontekst                                                      | zajmuje miejsce w oknie kontekstu                                     |
-| per endpoint                                                           | dla każdego endpointu                                                 |
-| progresywne ujawnianie                                                 | stopniowe ujawnianie                                                  |
-| rozdzielczy (rzeczownik)                                               | plik kierujący                                                        |
-| plus (jako spójnik)                                                    | oraz / wraz z                                                         |
-| niesie / niosą                                                         | zawiera / obejmuje                                                    |
-| dotyka                                                                 | zmienia / obejmuje                                                    |
-| zyskuje                                                                | otrzymuje                                                             |
-| lustro                                                                 | kopia struktury                                                       |
-| ładunek / ładunki                                                      | zawartość zmiany / zakres zmian                                       |
-| rejestruje zgodność                                                    | wykazuje zgodność / deklaruje zgodność                                |
-| zaadaptowany / zaadaptowana / zaadaptowane                             | dostosowany                                                           |
-| audytowalny / audytowalna / audytowalne                                | audytowy                                                              |
-| wykonaniowy / wykonaniowa / wykonaniowe                                | dynamiczny / wykonawczy                                               |
-| podbicie                                                               | inkrementacja                                                         |
-| trasa (routing)                                                        | kierowanie / ścieżka nawigacji                                        |
-| narzędziowy (tool-driven) / narzędziowa / narzędziowe                  | przez narzędzia / obsługiwane                                         |
-| ustalenia robocze / ustalenie robocze / ustaleń roboczych              | uzgodnienia robocze                                                   |
-| baza scalenia / bazę scalenia                                          | wspólny przodek (merge base)                                          |
-| mechanizm wytwarzania                                                  | proces wytwarzania                                                    |
-| mechanizm procesowy                                                    | proces                                                                |
-| agent kodujący AI / agent kodowania AI                                 | agent AI                                                              |
-| maintainer / maintainerzy                                              | opiekun projektu                                                      |
-| człowiek w pętli                                                       | tryb z udziałem człowieka                                             |
-| obietnica (Promise)                                                    | Promise                                                               |
-| obietnica pływająca                                                    | obiekt Promise pozostawiony bez obsługi                               |
-| miejsce zdefiniowania / miejsca zdefiniowania                          | dokument nadrzędny / wskazane źródło                                  |
-| miejscu zdefiniowania / miejsc zdefiniowania                           | dokument nadrzędny / wskazane źródło                                  |
-| miejscem zdefiniowania / miejscami zdefiniowania                       | dokument nadrzędny / wskazane źródło                                  |
-| inkrement / inkrementacja                                              | przyrost / zwiększenie                                                |
-| inkrementacyjny / inkrementacyjna / inkrementacyjne                    | przyrostowy                                                           |
-| pętla inkrementacyjna                                                  | pętla weryfikacji przyrostu                                           |
-| pętla weryfikacyjna                                                    | pętla weryfikacji                                                     |
-| rozmieszczanie zakresu                                                 | niekontrolowane rozszerzanie zakresu                                  |
-| testy ukierunkowane                                                    | testy dotyczące zmienionego zakresu                                   |
-| usuń diagnostykę                                                       | usuń błędy i ostrzeżenia zgłoszone przez narzędzia                    |
-| tymczasowa diagnostyka                                                 | tymczasowy kod diagnostyczny                                          |
-| powtarzaj do czystości                                                 | powtarzaj aż kontrole zakończą się bez błędów i ostrzeżeń             |
-| budowalny / budowalna / budowalne                                      | możliwy do zbudowania                                                 |
-| weryfikacja bazowa                                                     | weryfikacja stanu wyjściowego                                         |
-| znana dobra baza                                                       | sprawdzony stan wyjściowy                                             |
-| ostrzeżenia bazowe                                                     | ostrzeżenia występujące w stanie wyjściowym                           |
-| cienkie pokrycie                                                       | niewystarczające pokrycie testami                                     |
-| kontrola dymna                                                         | podstawowy test działania (smoke test)                                |
-| wierność wyjścia                                                       | zgodność wyników                                                      |
-| od końca do końca                                                      | od początku do końca                                                  |
-| walidacja / walidować / zwalidować / walidowany (validate)             | sprawdzenie poprawności / sprawdzić poprawność / potwierdzić          |
-| równoważny / równoważna / równoważnik (equivalent)                     | analogiczny / odpowiednik                                             |
-| kandydat wydania                                                       | kandydat do wydania                                                   |
-| końcowy kandydat / końcowym kandydacie                                 | ostateczna wersja zmian                                               |
-| końcowy etap (final candidate)                                         | ostateczna wersja zmian                                               |
-| kandydat rozpoznania / kandydaci rozpoznania                           | kandydat do sprawdzenia / kandydaci do sprawdzenia                    |
-| kandydat do odkrycia / kandydaci do odkrycia / kandydatami do odkrycia | kandydat do sprawdzenia / kandydaci do sprawdzenia                    |
-| inkrementacja wersji                                                   | zwiększenie numeru wersji                                             |
-| granularność                                                           | szczegółowość                                                         |
-| zapach kodu                                                            | symptom problemu projektowego (code smell)                            |
-| klasa boska                                                            | klasa o nadmiernej liczbie odpowiedzialności (God Class)              |
-| zazdrość funkcji                                                       | metoda nadmiernie korzystająca z danych innego obiektu (Feature Envy) |
-| grant open source                                                      | udzielenie uprawnień na zasadach licencji open source                 |
-| ziarno dokumentu                                                       | szablon wyjściowy dokumentu                                           |
-| pliki społecznościowe                                                  | pliki dotyczące współpracy przy projekcie                             |
-| oś ortogonalna / oś wielu implementacji                                | cecha niezależna / wielość implementacji                              |
-| zdrowie kodu                                                           | jakość i kondycja kodu                                                |
-| goły odnośnik                                                          | sam odnośnik                                                          |
-| postać zagęszczona                                                     | postać skrócona                                                       |
-| wolne wejście / wolny tekst                                            | odpowiedź w dowolnej formie tekstowej                                 |
-| pusta selekcja                                                         | brak wybranych opcji                                                  |
-| kontrole przechodzą                                                    | kontrole kończą się pomyślnie                                         |
-| krzyżowe skażenie                                                      | stosowanie reguł jednego projektu w innym                             |
-| przepływ pracy wytwarzania                                             | proces wytwarzania oprogramowania                                     |
-| trasa wejścia                                                          | ścieżka nawigacji                                                     |
-| współpracownik (contributor)                                           | osoba współtworząca projekt                                           |
-| atrybucja                                                              | przypisanie autorstwa                                                 |
-| selekcja                                                               | wybór                                                                 |
-| destylacja (dokumentacji)                                              | upraszczanie przez usuwanie powtórzeń                                 |
-| odtwarzalny (revisitable) / odtwarzalna / odtwarzalne                  | możliwy do powtórzenia / do powrotu                                   |
-| rozstrzygnięta lokalizacja                                             | ustalona lokalizacja                                                  |
-| wykonalne i użyteczne                                                  | użyteczne i wskazujące działania                                      |
-| zaspokaja rolę / zaspokoić rolę                                        | pełni rolę / spełnia wymagania roli                                   |
-| dopychany                                                              | wydłużany na siłę                                                     |
-| rządzi (reguły)                                                        | obowiązuje w                                                          |
-| orkiestruje proces                                                     | określa przebieg procesu                                              |
-| wtóruje                                                                | powtarza                                                              |
-| wyprodukuj (inwentaryzację)                                            | sporządź wykaz                                                        |
-| nazwany po                                                             | o nazwie odpowiadającej                                               |
-| wąska (definicja)                                                      | ograniczona do konkretnej roli                                        |
-| rany (wounds)                                                          | dolegliwości                                                          |
-| wstrzymanie (standby)                                                  | stan gotowości                                                        |
-| pływające obietnice / pływająca obietnica                              | obiekty Promise pozostawione bez oczekiwania na wynik                 |
-| awaituj / awaitować                                                    | używaj `await`                                                        |
-| asercja niepustości                                                    | asercja wartości nie-null                                             |
-| czyste szwy                                                            | jasno określone punkty rozszerzeń                                     |
-| budżet ramki / budżecie ramki                                          | czas jednej ramki                                                     |
-| oparte na pień / oparte na pniu                                        | oparte na głównej gałęzi (trunk-based)                                |
-| obsługuje odbiorców / obsługuje dwóch odbiorców                        | jest przeznaczony dla                                                 |
-| pojednanie (dokumentów) / pojednywanie (dokumentów)                    | uzgadnianie                                                           |
-| funkcjonalność zewnętrzna                                              | działanie widoczne z zewnątrz                                         |
-| zbiór bazowy integracji                                                | bazowa wersja integracyjna                                            |
-| rozstrzyga się do                                                      | jest przypisana do / wskazuje na                                      |
-| rozstrzyga się na                                                      | wskazuje na / odnosi się do                                           |
-| biblioteka standardowa (dokumentów)                                    | biblioteka standardów                                                 |
-| przyczyna źródłowa / przyczyny źródłowej (root cause)                  | pierwotna przyczyna                                                   |
-| instrukcja wykonywalna                                                 | instrukcja przeznaczona do wykonania                                  |
-| kontrola przechodzi                                                    | kontrola kończy się pomyślnie                                         |
-| wykonalne (actionable)                                                 | pozwalające podjąć działanie                                          |
-| zalążek (dokumentu) / zalążki (dokumentów)                             | szablon początkowy                                                    |
-| autorytet (zakres uprawnień)                                           | zakres uprawnień                                                      |
-| powierzchnia API                                                       | zakres publicznego API                                                |
-| kształty poleceń (command shapes)                                      | postać poleceń                                                        |
+| Instead of                                                                                                      | Use                                                                   |
+|-----------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------|
+| deployować                                                                                                      | wdrażać                                                               |
+| requestować                                                                                                     | zgłaszać                                                              |
+| update'ować                                                                                                     | aktualizować                                                          |
+| fixować                                                                                                         | poprawiać                                                             |
+| kastomizacja                                                                                                    | dostosowanie                                                          |
+| performance                                                                                                     | wydajność                                                             |
+| paczka                                                                                                          | pakiet                                                                |
+| potok                                                                                                           | proces / proces CI                                                    |
+| triaż podatności                                                                                                | weryfikacja i klasyfikacja podatności                                 |
+| joiny                                                                                                           | łączenia                                                              |
+| lookupy                                                                                                         | wyszukiwania                                                          |
+| brama / bramę / bramie / bramy / bramom / bramami / bramach / bramą / bramkujące / bramkowanie                  | warunek / kontrola                                                    |
+| bramy weryfikacji                                                                                               | warunki weryfikacyjne                                                 |
+| rozjazd (drift)                                                                                                 | rozbieżność                                                           |
+| dryf dokumentacji                                                                                               | dezaktualizacja dokumentacji                                          |
+| designer wizualny                                                                                               | projektowanie wizualne                                                |
+| stakeholderzy                                                                                                   | interesariusze                                                        |
+| ownerzy biznesowi                                                                                               | właściciele biznesowi                                                 |
+| status report                                                                                                   | raport o statusie                                                     |
+| meeting minutes                                                                                                 | protokół zebrania                                                     |
+| dane skrapane                                                                                                   | dane skrapowane                                                       |
+| commitowany                                                                                                     | zatwierdzony                                                          |
+| commit / commity / commitów / commitu                                                                           | zatwierdzenie                                                         |
+| commitować / commituj / zacommituj / zacommitowany / niezacommitowany                                           | zatwierdzić / zatwierdzony                                            |
+| multi-agentowy                                                                                                  | wieloagentowy                                                         |
+| onboardowanie                                                                                                   | wdrażanie nowych osób                                                 |
+| prozatorski                                                                                                     | opisowy                                                               |
+| cykl wydawniczy                                                                                                 | cykl wydaniowy                                                        |
+| siostrzana gałąź                                                                                                | pozostała gałąź                                                       |
+| parzystość                                                                                                      | zgodność / równoważność                                               |
+| zmaterializowane ryzyko                                                                                         | ryzyko się zrealizowało                                               |
+| re-audyt                                                                                                        | ponowny audyt                                                         |
+| kontrola wykonawcza                                                                                             | kontrola dynamiczna                                                   |
+| strażnik                                                                                                        | mechanizm ochronny                                                    |
+| serwujący                                                                                                       | udostępniający                                                        |
+| zastany                                                                                                         | odziedziczony / istniejący wcześniej                                  |
+| przypięty / przypięta / przypięte / przypięciem / przypięcia / przypiąć / przypinanie / przypinają / przypinany | ograniczony / przywiązany                                             |
+| realna baza                                                                                                     | rzeczywista baza danych                                               |
+| realne dane (real data)                                                                                         | rzeczywiste dane                                                      |
+| konsumowane                                                                                                     | obsługiwane / wykorzystywane                                          |
+| rekursują                                                                                                       | są rozwijane rekurencyjnie                                            |
+| celują w                                                                                                        | przyjmują jako cel                                                    |
+| kosztuje kontekst                                                                                               | zajmuje miejsce w oknie kontekstu                                     |
+| per endpoint                                                                                                    | dla każdego endpointu                                                 |
+| progresywne ujawnianie                                                                                          | stopniowe ujawnianie                                                  |
+| rozdzielczy (rzeczownik)                                                                                        | plik kierujący                                                        |
+| plus (jako spójnik)                                                                                             | oraz / wraz z                                                         |
+| niesie / niosą / niesione / niesiony / niesiona / niesiono / niósł                                              | zawiera / obejmuje                                                    |
+| dotyka                                                                                                          | zmienia / obejmuje                                                    |
+| zyskuje                                                                                                         | otrzymuje                                                             |
+| lustro                                                                                                          | kopia struktury                                                       |
+| ładunek / ładunki / ładunku / ładunka / ładunkiem / ładunków / ładunkami                                        | zawartość zmiany / zakres zmian                                       |
+| rejestruje zgodność                                                                                             | wykazuje zgodność / deklaruje zgodność                                |
+| zaadaptowany / zaadaptowana / zaadaptowane                                                                      | dostosowany                                                           |
+| audytowalny / audytowalna / audytowalne                                                                         | audytowy                                                              |
+| wykonaniowy / wykonaniowa / wykonaniowe                                                                         | dynamiczny / wykonawczy                                               |
+| podbicie                                                                                                        | inkrementacja                                                         |
+| trasa (routing)                                                                                                 | kierowanie / ścieżka nawigacji                                        |
+| narzędziowy (tool-driven) / narzędziowa / narzędziowe                                                           | przez narzędzia / obsługiwane                                         |
+| ustalenia robocze / ustalenie robocze / ustaleń roboczych                                                       | uzgodnienia robocze                                                   |
+| baza scalenia / bazę scalenia                                                                                   | wspólny przodek (merge base)                                          |
+| mechanizm wytwarzania                                                                                           | proces wytwarzania                                                    |
+| mechanizm procesowy                                                                                             | proces                                                                |
+| agent kodujący AI / agent kodowania AI                                                                          | agent AI                                                              |
+| maintainer / maintainerzy                                                                                       | opiekun projektu                                                      |
+| człowiek w pętli                                                                                                | tryb z udziałem człowieka                                             |
+| obietnica (Promise)                                                                                             | Promise                                                               |
+| obietnica pływająca                                                                                             | obiekt Promise pozostawiony bez obsługi                               |
+| miejsce zdefiniowania / miejsca zdefiniowania                                                                   | dokument nadrzędny / wskazane źródło                                  |
+| miejscu zdefiniowania / miejsc zdefiniowania                                                                    | dokument nadrzędny / wskazane źródło                                  |
+| miejscem zdefiniowania / miejscami zdefiniowania                                                                | dokument nadrzędny / wskazane źródło                                  |
+| inkrement / inkrementacja                                                                                       | przyrost / zwiększenie                                                |
+| inkrementacyjny / inkrementacyjna / inkrementacyjne                                                             | przyrostowy                                                           |
+| pętla inkrementacyjna                                                                                           | pętla weryfikacji przyrostu                                           |
+| pętla weryfikacyjna                                                                                             | pętla weryfikacji                                                     |
+| rozmieszczanie zakresu                                                                                          | niekontrolowane rozszerzanie zakresu                                  |
+| testy ukierunkowane                                                                                             | testy dotyczące zmienionego zakresu                                   |
+| usuń diagnostykę                                                                                                | usuń błędy i ostrzeżenia zgłoszone przez narzędzia                    |
+| tymczasowa diagnostyka                                                                                          | tymczasowy kod diagnostyczny                                          |
+| powtarzaj do czystości                                                                                          | powtarzaj aż kontrole zakończą się bez błędów i ostrzeżeń             |
+| budowalny / budowalna / budowalne                                                                               | możliwy do zbudowania                                                 |
+| weryfikacja bazowa                                                                                              | weryfikacja stanu wyjściowego                                         |
+| znana dobra baza                                                                                                | sprawdzony stan wyjściowy                                             |
+| ostrzeżenia bazowe                                                                                              | ostrzeżenia występujące w stanie wyjściowym                           |
+| cienkie pokrycie                                                                                                | niewystarczające pokrycie testami                                     |
+| kontrola dymna                                                                                                  | podstawowy test działania (smoke test)                                |
+| wierność wyjścia                                                                                                | zgodność wyników                                                      |
+| od końca do końca                                                                                               | od początku do końca                                                  |
+| walidacja / walidować / zwalidować / walidowany (validate)                                                      | sprawdzenie poprawności / sprawdzić poprawność / potwierdzić          |
+| równoważny / równoważna / równoważnik (equivalent)                                                              | analogiczny / odpowiednik                                             |
+| kandydat wydania                                                                                                | kandydat do wydania                                                   |
+| końcowy kandydat / końcowym kandydacie                                                                          | ostateczna wersja zmian                                               |
+| końcowy etap (final candidate)                                                                                  | ostateczna wersja zmian                                               |
+| kandydat rozpoznania / kandydaci rozpoznania                                                                    | kandydat do sprawdzenia / kandydaci do sprawdzenia                    |
+| kandydat do odkrycia / kandydaci do odkrycia / kandydatami do odkrycia                                          | kandydat do sprawdzenia / kandydaci do sprawdzenia                    |
+| inkrementacja wersji                                                                                            | zwiększenie numeru wersji                                             |
+| granularność                                                                                                    | szczegółowość                                                         |
+| zapach kodu                                                                                                     | symptom problemu projektowego (code smell)                            |
+| klasa boska                                                                                                     | klasa o nadmiernej liczbie odpowiedzialności (God Class)              |
+| zazdrość funkcji                                                                                                | metoda nadmiernie korzystająca z danych innego obiektu (Feature Envy) |
+| grant open source                                                                                               | udzielenie uprawnień na zasadach licencji open source                 |
+| ziarno dokumentu                                                                                                | szablon wyjściowy dokumentu                                           |
+| pliki społecznościowe                                                                                           | pliki dotyczące współpracy przy projekcie                             |
+| oś ortogonalna / oś wielu implementacji                                                                         | cecha niezależna / wielość implementacji                              |
+| zdrowie kodu                                                                                                    | jakość i kondycja kodu                                                |
+| goły odnośnik                                                                                                   | sam odnośnik                                                          |
+| postać zagęszczona                                                                                              | postać skrócona                                                       |
+| wolne wejście / wolny tekst                                                                                     | odpowiedź w dowolnej formie tekstowej                                 |
+| pusta selekcja                                                                                                  | brak wybranych opcji                                                  |
+| kontrole przechodzą                                                                                             | kontrole kończą się pomyślnie                                         |
+| krzyżowe skażenie                                                                                               | stosowanie reguł jednego projektu w innym                             |
+| przepływ pracy wytwarzania                                                                                      | proces wytwarzania oprogramowania                                     |
+| trasa wejścia                                                                                                   | ścieżka nawigacji                                                     |
+| współpracownik (contributor)                                                                                    | osoba współtworząca projekt                                           |
+| atrybucja                                                                                                       | przypisanie autorstwa                                                 |
+| selekcja                                                                                                        | wybór                                                                 |
+| destylacja (dokumentacji)                                                                                       | upraszczanie przez usuwanie powtórzeń                                 |
+| odtwarzalny (revisitable) / odtwarzalna / odtwarzalne                                                           | możliwy do powtórzenia / do powrotu                                   |
+| rozstrzygnięta lokalizacja                                                                                      | ustalona lokalizacja                                                  |
+| wykonalne i użyteczne                                                                                           | użyteczne i wskazujące działania                                      |
+| zaspokaja rolę / zaspokoić rolę                                                                                 | pełni rolę / spełnia wymagania roli                                   |
+| dopychany                                                                                                       | wydłużany na siłę                                                     |
+| rządzi (reguły)                                                                                                 | obowiązuje w                                                          |
+| orkiestruje proces                                                                                              | określa przebieg procesu                                              |
+| wtóruje                                                                                                         | powtarza                                                              |
+| wyprodukuj (inwentaryzację)                                                                                     | sporządź wykaz                                                        |
+| nazwany po                                                                                                      | o nazwie odpowiadającej                                               |
+| wąska (definicja) / wąską / wąskie / wąskiej                                                                    | ograniczona do konkretnej roli                                        |
+| rany (wounds)                                                                                                   | dolegliwości                                                          |
+| wstrzymanie (standby)                                                                                           | stan gotowości                                                        |
+| pływające obietnice / pływająca obietnica                                                                       | obiekty Promise pozostawione bez oczekiwania na wynik                 |
+| awaituj / awaitować                                                                                             | używaj `await`                                                        |
+| asercja niepustości                                                                                             | asercja wartości nie-null                                             |
+| czyste szwy                                                                                                     | jasno określone punkty rozszerzeń                                     |
+| budżet ramki / budżecie ramki                                                                                   | czas jednej ramki                                                     |
+| oparte na pień / oparte na pniu                                                                                 | oparte na głównej gałęzi (trunk-based)                                |
+| obsługuje odbiorców / obsługuje dwóch odbiorców                                                                 | jest przeznaczony dla                                                 |
+| pojednanie (dokumentów) / pojednywanie (dokumentów)                                                             | uzgadnianie                                                           |
+| funkcjonalność zewnętrzna                                                                                       | działanie widoczne z zewnątrz                                         |
+| zbiór bazowy integracji                                                                                         | bazowa wersja integracyjna                                            |
+| rozstrzyga się do                                                                                               | jest przypisana do / wskazuje na                                      |
+| rozstrzyga się na                                                                                               | wskazuje na / odnosi się do                                           |
+| biblioteka standardowa (dokumentów)                                                                             | biblioteka standardów                                                 |
+| przyczyna źródłowa / przyczyny źródłowej (root cause)                                                           | pierwotna przyczyna                                                   |
+| instrukcja wykonywalna                                                                                          | instrukcja przeznaczona do wykonania                                  |
+| kontrola przechodzi                                                                                             | kontrola kończy się pomyślnie                                         |
+| wykonalne (actionable)                                                                                          | pozwalające podjąć działanie                                          |
+| zalążek (dokumentu) / zalążki (dokumentów)                                                                      | szablon początkowy                                                    |
+| autorytet (zakres uprawnień)                                                                                    | zakres uprawnień                                                      |
+| powierzchnia API                                                                                                | zakres publicznego API                                                |
+| kształty poleceń (command shapes)                                                                               | postać poleceń                                                        |
 
 ## Untranslated
 

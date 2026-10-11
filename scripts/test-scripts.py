@@ -70,6 +70,12 @@ CASES: list[tuple[str, list[str], tuple[int, ...], str | None,
     ("lint-polish.py", ["README.md", "--payload-markdown"], (0, 1), None, None),
     ("check-document.py", ["README.md", "--parity", "SKILL.md"], (0, 1),
      "check-document:", None),
+    ("check-document.py", ["README.md", "--title-agreement"], (0, 1),
+     "check-document:", None),
+    ("safe-replace.py",
+     ["README.md", "zzz-not-present-zzz", "yyy", "--check"], (0,), None,
+     None),
+    ("check-title-agreement.py", ["README.md"], (0,), None, None),
     ("census-document.py", ["README.md"], (0,), None,
      {"PYTHONIOENCODING": "cp1252"}),
     ("validate-document.py", ["README.md"], (0, 1), None,
@@ -186,7 +192,8 @@ def heuristic_regressions() -> int:
         result = run_case("lint-polish.py",
                           [str(calque_doc), "--rules", "languages/pl.md",
                            "--rules",
-                           "translations/en-pl/en-pl-software.md"])
+                           "translations/en-pl/en-pl-software.md"],
+                          {"PYTHONIOENCODING": "utf-8"})
         if (result is None or result.returncode != 1
                 or "calque 'request'" in result.stdout
                 or "possible calque 'rozjazd'" not in result.stdout
@@ -199,7 +206,8 @@ def heuristic_regressions() -> int:
             encoding="utf-8")
         result = run_case("lint-polish.py",
                           [str(inflected_doc), "--rules",
-                           "translations/en-pl/en-pl-software.md"])
+                           "translations/en-pl/en-pl-software.md"],
+                          {"PYTHONIOENCODING": "utf-8"})
         if (result is None or result.returncode != 1
                 or "instrukcją wykonywalną" not in result.stdout):
             print(f"FAIL {label} - inflected multi-word form went silent")
@@ -259,6 +267,147 @@ def heuristic_regressions() -> int:
     return failures
 
 
+def improvement_regressions() -> int:
+    """Exercise the 2026-10 improvement fixes against synthetic fixtures."""
+    failures = 0
+    label = "improvement fixtures"
+    with tempfile.TemporaryDirectory() as tmp:
+        tmp = Path(tmp)
+
+        # I-1: word-boundary replace leaves containing words untouched
+        replace_doc = tmp / "replace.md"
+        replace_doc.write_text(
+            "# T\n\nSekcja niesie ryzyko.\n\nOdniesienia zostają.\n",
+            encoding="utf-8")
+        result = run_case("safe-replace.py",
+                          [str(replace_doc), "niesie", "wnosi"])
+        text = replace_doc.read_text(encoding="utf-8")
+        if (result is None or result.returncode != 0
+                or "wnosi" not in text or "Odniesienia" not in text
+                or "Odwnosinia" in text):
+            print(f"FAIL {label} - safe-replace corrupted containing words")
+            failures += 1
+        result = run_case("safe-replace.py",
+                          [str(replace_doc), "wnosi", "niesie", "--check"])
+        if result is None or result.returncode != 0:
+            print(f"FAIL {label} - safe-replace --check on a clean pattern")
+            failures += 1
+
+        # I-3: inflected calque forms flag, allowed words stay silent
+        inflect_doc = tmp / "inflect.md"
+        inflect_doc.write_text(
+            "# T\n\n"
+            "Funkcja jest przypięta i przypinana.\n\n"
+            "Trzeba ją przypiąć przed bramą.\n\n"
+            "Raport jest niesiony wraz z ładunku danych.\n\n"
+            "Muszę się zastanowić, co zastanawia zespół.\n",
+            encoding="utf-8")
+        result = run_case("lint-polish.py",
+                          [str(inflect_doc), "--rules",
+                           "languages/pl.md", "--rules",
+                           "translations/en-pl/en-pl-software.md"],
+                          {"PYTHONIOENCODING": "utf-8"})
+        if (result is None or result.returncode != 1
+                or not all(form in result.stdout for form in (
+                    "przypięta", "przypiąć", "bram", "niesiony"))
+                or "zastanowić" in result.stdout
+                or "zastanawia" in result.stdout):
+            print(f"FAIL {label} - inflected calque coverage regressed")
+            failures += 1
+
+        # I-4: literal pipe inside a table code span flags
+        pipe_doc = tmp / "pipe.md"
+        pipe_doc.write_text(
+            "# T\n\n| Cmd | Desc |\n|-----|------|\n"
+            "| `a | b` run | ok |\n",
+            encoding="utf-8")
+        result = run_case("validate-document.py", [str(pipe_doc)])
+        if (result is None or result.returncode != 1
+                or "literal pipe inside code span" not in result.stdout):
+            print(f"FAIL {label} - pipe inside table code span passes")
+            failures += 1
+
+        # I-5 + I-6: declared pairs report DECLARED, repeated spans match
+        parity_src = tmp / "src.md"
+        parity_tgt = tmp / "tgt.md"
+        parity_src.write_text(
+            "# T\n\n| S |\n|---|\n| `NOT SPECIFIED` |\n\n"
+            + " ".join(["`as unknown as`"] * 6) + "\n",
+            encoding="utf-8")
+        parity_tgt.write_text(
+            "# T\n\n| S |\n|---|\n| `Nieokreślony` |\n\n"
+            + " ".join(["`as unknown as`"] * 6) + "\n",
+            encoding="utf-8")
+        expect_map = tmp / "map.txt"
+        expect_map.write_text("NOT SPECIFIED -> Nieokreślony\n",
+                              encoding="utf-8")
+        result = run_case(
+            "check-parity.py",
+            [str(parity_src), str(parity_tgt), "--expect-map",
+             str(expect_map)])
+        if (result is None or result.returncode != 0
+                or "DECLARED inline code" not in result.stdout
+                or "as unknown as" in result.stdout):
+            print(f"FAIL {label} - expect-map or repeated-span parity")
+            failures += 1
+        result = run_case(
+            "check-parity.py",
+            [str(parity_src), str(parity_tgt)])
+        if (result is None or result.returncode != 1
+                or "DELTA inline code" not in result.stdout):
+            print(f"FAIL {label} - undeclared code delta must still gate")
+            failures += 1
+
+        # I-7: .gitattributes eol=lf downgrades the delta to a NOTE
+        (tmp / ".gitattributes").write_text("*.md eol=lf\n",
+                                           encoding="utf-8")
+        (tmp / "eol-src.md").write_bytes(b"# T\r\n\r\nline\r\n")
+        (tmp / "eol-tgt.md").write_bytes(b"# T\n\nline\n")
+        result = run_case(
+            "check-parity.py",
+            [str(tmp / "eol-src.md"), str(tmp / "eol-tgt.md")])
+        if (result is None or "matches declared eol=lf" not in result.stdout
+                or "DELTA whitespace" in result.stdout):
+            print(f"FAIL {label} - gitattributes eol not honored")
+            failures += 1
+        result = run_case(
+            "check-parity.py",
+            [str(tmp / "eol-src.md"), str(tmp / "eol-tgt.md"),
+             "--eol", "crlf"])
+        if (result is None or "contradicts declared eol=crlf"
+                not in result.stdout):
+            print(f"FAIL {label} - contradicting --eol must still gate")
+            failures += 1
+
+        # I-8: one mutated heading reports exactly one finding
+        agree_doc = tmp / "agree.md"
+        agree_doc.write_text(
+            "# T\n\n"
+            "| ID | Title |\n|----|-------|\n"
+            "| F-01 | Weak [TLS](g.md#tls) setup |\n"
+            "| F-02 | Missing rate limiting |\n\n"
+            "### F-01: Weak TLS setup\n\nBody.\n\n"
+            "### F-02: Missing rate limiting\n\nBody.\n",
+            encoding="utf-8")
+        result = run_case("check-title-agreement.py", [str(agree_doc)])
+        if result is None or result.returncode != 0:
+            print(f"FAIL {label} - clean title agreement flagged")
+            failures += 1
+        agree_doc.write_text(
+            agree_doc.read_text(encoding="utf-8").replace(
+                "### F-02: Missing rate limiting",
+                "### F-02: Mutated title"),
+            encoding="utf-8")
+        result = run_case("check-title-agreement.py", [str(agree_doc)])
+        if (result is None or result.returncode != 1
+                or result.stdout.count("MISMATCH") != 1
+                or "F-02" not in result.stdout):
+            print(f"FAIL {label} - mutated heading must give one finding")
+            failures += 1
+    print(("PASS" if not failures else "FAIL") + f" {label}")
+    return failures
+
+
 def main() -> int:
     failures = 0
     for script, args, exits, prefix, env_extra in CASES:
@@ -283,7 +432,8 @@ def main() -> int:
         print(f"PASS {label} - exit {result.returncode}")
     failures += table_defect_case()
     failures += heuristic_regressions()
-    print(f"RESULT {len(CASES) + 2 - failures}/{len(CASES) + 2} tools passed")
+    failures += improvement_regressions()
+    print(f"RESULT {len(CASES) + 3 - failures}/{len(CASES) + 3} tools passed")
     return 1 if failures else 0
 
 

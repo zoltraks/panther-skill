@@ -106,6 +106,9 @@ Fix every failure, or report it to the user with a reason.
 - Every enumeration of a governed set - canonical files, owners, options, steps - lists the
   same members wherever it appears in tables, menus, checklists, and examples.
 - No reference to a renamed or removed section, file, or owner remains.
+- Scripted bulk replacements ran through `scripts/safe-replace.py` or word-boundary
+  matching, and the residue scan was reviewed - per the Scripted Bulk Edits rule in
+  `principles/authoring-rules.md`.
 - Numbered lists renumber correctly after inserted or removed items.
 - A document serving both human readers and AI agents states each shared rule consistently
   for both audiences.

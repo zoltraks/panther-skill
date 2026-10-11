@@ -19,7 +19,8 @@ They do not modify documents beyond the specific task each tool performs.
 Run `detect-encoding.py`, `detect-scope.py`, `normalize-chars.py`, `split-sentences.py`,
 `reflow-prose.py`, `wrap-prose.py`, `format-table.py`, `align-comments.py`,
 `validate-document.py`, `check-document.py`, `diff-content.py`, `census-document.py`,
-`check-sections.py`, `check-parity.py`, and `lint-polish.py` in place from the skill repository:
+`check-sections.py`, `check-parity.py`, `check-title-agreement.py`, `safe-replace.py`,
+and `lint-polish.py` in place from the skill repository:
 
 `python <skill-root>/scripts/<tool>.py <file>`.
 
@@ -91,8 +92,10 @@ python <skill-root>/scripts/reflow-prose.py <file.md> (--wrap | --unwrap | --jus
 python <skill-root>/scripts/format-table.py <file.md> [--check] [--payload-markdown] [--drop-empty-columns]
 python <skill-root>/scripts/align-comments.py <file.md> [--check] [--compact] [--payload-markdown]
 python <skill-root>/scripts/validate-document.py <file.md> [--width N] [--payload-markdown]
-python <skill-root>/scripts/check-document.py <file.md> [--width N] [--payload-markdown] [--layout wrap|unwrap] [--split] [--polish] [--type <slug>] [--language <code>] [--baseline <file>] [--normalize-chars] [--parity <source.md>] [--terms <glossary.md> ...] [--skill-root <dir>]
-python <skill-root>/scripts/check-parity.py <source.md> <target.md> [--terms <glossary.md> ...]
+python <skill-root>/scripts/check-document.py <file.md> [--width N] [--payload-markdown] [--layout wrap|unwrap] [--split] [--polish] [--type <slug>] [--language <code>] [--baseline <file>] [--normalize-chars] [--parity <source.md>] [--terms <glossary.md> ...] [--expect-map <file> ...] [--eol lf|crlf] [--title-agreement] [--skill-root <dir>]
+python <skill-root>/scripts/check-parity.py <source.md> <target.md> [--terms <glossary.md> ...] [--expect-map <file> ...] [--eol lf|crlf]
+python <skill-root>/scripts/check-title-agreement.py <file.md> [--verbose]
+python <skill-root>/scripts/safe-replace.py <file.md> <old> <new> [--raw] [--check]
 python <skill-root>/scripts/diff-content.py <file.md> [--baseline <file>] [--normalize-chars]
 python <skill-root>/scripts/census-document.py <file.md> [--width N] [--payload-markdown]
 python <skill-root>/scripts/check-sections.py <file.md> --type <slug-or-path> [--language <code-or-path>]
@@ -177,14 +180,17 @@ direction checks - and prints one verdict line per tool.
 verdict - without it both report as advisory, since the document's convention decides
 which applies.
 
-`--split`, `--polish`, `--type`, `--language`, `--baseline`, and `--parity` add the
-`split-sentences.py`, `lint-polish.py`, `check-sections.py`, `diff-content.py`, and
-`check-parity.py` checks to the battery, and a missing sibling reports `SKIP` instead
-of failing.
+`--split`, `--polish`, `--type`, `--language`, `--baseline`, `--parity`, and
+`--title-agreement` add the `split-sentences.py`, `lint-polish.py`,
+`check-sections.py`, `diff-content.py`, `check-parity.py`, and
+`check-title-agreement.py` checks to the battery, and a missing sibling reports
+`SKIP` instead of failing.
 
 `--parity <source.md>` compares the checked file's structure against its source
 document - the translate and revision validation gate - and `--terms <glossary.md>`
-(repeatable) forwards glossary files to the parity concordance report.
+(repeatable) forwards glossary files to the parity concordance report and the
+expected-translation map, while `--expect-map <file>` and `--eol` forward to
+`check-parity.py`.
 
 The script exits `1` when a gated check reports findings and `0` otherwise.
 
@@ -208,22 +214,34 @@ The convention lives in `conventions/plain-text-comments.md`.
 `check-parity.py` diffs the structural fingerprint of a rendered document against its
 source - heading level sequence, fence count and language tags, table geometry, list
 counts, HTML comments, inline-code spans, internal `#anchor` resolution, and file-level
-whitespace and byte conventions - printing `PARITY`, `DELTA`, or `NOTE` lines and
-exiting `1` on any `DELTA`.
+whitespace and byte conventions - printing `PARITY`, `DELTA`, `DECLARED`, or `NOTE`
+lines and exiting `1` on any `DELTA`.
 
 Heading *text* is never compared - a faithful render legitimately rewords it.
 
 A missing inline-code span that looks like prose (multiple plain words) reports as a
 `NOTE` - translated label text is legal - while identifier- or path-like missing spans
-report as `DELTA`.
+report as `DELTA`, and each diff line names the source or target lines the span
+occupies.
+
+`--expect-map <file>` (repeatable) declares intentional source-to-target changes: each
+`SRC -> TGT` line - `#` comments and blank lines allowed, ` / ` separating alternative
+targets - downgrades a matching inline-code delta to a `DECLARED` line, and
+`link:#anchor -> -N` or `+N` declares an expected change in that anchor's link count.
 
 `--terms <glossary.md>` (repeatable) cross-counts each glossary's Terminology table: an
 English term appearing at least twice in the source but whose Polish variants never
 appear in the target reports a `NOTE` concordance hint - context forms stay legal, so a
-hint is a review prompt, not a verdict.
+hint is a review prompt, not a verdict - and the same pairs seed the expected map, so a
+span rendered as a declared variant reports `DECLARED`.
 
 Target-side variants are matched by stem prefix, so inflected forms of a preferred
 rendering still count.
+
+A line-ending delta that matches the convention declared by `--eol lf|crlf` - or by the
+nearest `.gitattributes` `eol=` attribute found walking up from the target - reports
+`NOTE` instead of `DELTA`, while a delta contradicting a declared convention still
+fails.
 
 `diff-content.py` compares the normalized token stream of a document against `git show HEAD`
 or a `--baseline` file, identical tokens mean a pass changed formatting only.
@@ -316,10 +334,29 @@ an error, because the form is legal outside it.
 `--group-by-form` replaces the line-by-line output with one line per matched form or
 rule - hit count, line numbers, and the suggested replacement - the shape a bulk
 fix pass needs.
+
 Rerun without the flag for per-line detail.
 
 It targets Polish deliverable documents - the skill's own rule files contain the
 forbidden forms by definition and will report them.
+
+`check-title-agreement.py` verifies that a document's `## ID: title` headings match the
+title their summary-table row declares - the ID anchors the row whichever column holds
+it, the title comes from the `Title`/`Tytuł` header column or the column after the ID,
+and the comparison strips links, backticks, and emphasis so a heading that omits the
+cell's glossary link still matches.
+
+It prints `MISMATCH`, `MISSING-ROW`, and `MISSING-HEADING` findings and exits `1` when
+any exist - `check-document.py --title-agreement` folds it into the battery.
+
+`safe-replace.py` replaces text with whole-word boundaries by default - `niesie` to
+`wnosi` never rewrites `odniesienia` into `odwnosinia` - and reports the residue after
+every run: words still containing the pattern as a fragment and words containing the
+replacement inside a longer token.
+
+`--raw` performs a deliberate substring replacement with the same residue report,
+`--check` is a dry run that exits `1` when the pattern also occurs inside longer words,
+and the file's encoding and line endings are preserved.
 
 `format-table.py` rebuilds tables with source-width alignment and normalizes every
 separator-row cell to the correct hyphen count - a separator cell without hyphens does not
@@ -329,8 +366,10 @@ It warns on rows starting with `||` and on columns empty in every non-separator 
 `--drop-empty-columns` removes such columns instead of only warning.
 
 `validate-document.py` fails on a table without a separator row, a separator row that is not
-the second row, a separator cell lacking hyphens, a column empty in every row, and a row
-starting with `||`.
+the second row, a separator cell lacking hyphens, a column empty in every row, a row
+starting with `||`, a literal `|` inside an inline code span, and an escaped `\|` in a
+table row - the last two silently inflate the column count, so the cell must use
+`&#124;` or a different layout.
 
 The validators exit `0` when all checks pass and `1` when one or more checks fail.
 
@@ -374,7 +413,9 @@ covers step 11.
 
 For a translation or revision task, `check-parity.py <source.md> <output.md>` runs as an
 additional gate after the content-changing passes - `check-document.py --parity
-<source.md>` folds it into the battery.
+<source.md>` folds it into the battery, `--expect-map` silences declared translation
+deltas, and `--title-agreement` adds the summary-table and heading title check for
+ID-keyed documents.
 
 For skill maintenance, run `validate-skill.py`, `check-references.py`, and `check-contents.py`
 first.
@@ -384,7 +425,8 @@ first.
 `format-table.py` and `validate-document.py` split table rows on every `|` character.
 
 Escaped `\|` sequences and pipes inside inline code spans are not supported, so table cells must
-not contain literal pipe characters.
+not contain literal pipe characters - `validate-document.py` fails both forms on sight so
+the miscount surfaces instead of passing silently.
 
 `validate-document.py` skips fenced code blocks when checking tables - example tables inside
 code fences, such as AsciiDoc samples, are payload, not Markdown tables.

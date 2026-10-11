@@ -88,6 +88,9 @@ ALLOWED_PHRASES = {
     # `równoważność` as the abstract property (behavioral equivalence) is legal.
     "równoważność", "równoważności",
     "pull requesty", "merge request", "change request", "async/await",
+    # The `zastany` (pre-existing) calque stem-prefixes the legitimate
+    # `zastanowić`/`zastanawiać` family - those senses stay legal.
+    "zastano", "zastanó", "zastanawia",
 }
 
 # Words that legitimately follow a comma (conjunctions, relatives,
@@ -167,8 +170,9 @@ def stem(word):
 
 # Word endings that mark Polish declension - dropping one yields a stem that
 # prefix-matches the inflected variants of a form (`instrukcja` -> `instrukcj`
-# covers `instrukcją`, `instrukcji`, `instrukcję`).
-WEAK_ENDINGS = set("aeiouąęć")
+# covers `instrukcją`, `instrukcji`, `instrukcję`; `przypięty` -> `przypięt`
+# covers `przypięta`, `przypięte`, `przypiętymi`).
+WEAK_ENDINGS = set("aeiouąęćy")
 
 
 def word_pattern(word):
@@ -176,8 +180,9 @@ def word_pattern(word):
 
     Verb endings strip to the infinitive stem; a longer word ending in a weak
     declinable vowel drops it so inflections match (`pojednani` covers
-    `pojednania`, `końcow` covers `końcowym`). Shorter roots keep a plain
-    prefix match so common stems like `bram-` do not over-flag `bramka`.
+    `pojednania`, `przypięt` covers `przypięta` and `przypiętymi`, `końcow`
+    covers `końcowym`). Shorter roots keep a plain prefix match so common
+    stems like `bram-` do not over-flag `bramka`.
     """
     root = stem(word.lower())
     if len(root) <= 3:
@@ -229,11 +234,17 @@ def word_is_soft(forbidden):
 
 
 def allowed_spans(lowered):
-    """Spans of fixed idioms whose calque-flagged stems are correct usage."""
+    """Spans of fixed idioms whose calque-flagged stems are correct usage.
+
+    Each literal phrase hit expands to the enclosing word boundaries, so a
+    stem entry like `zastano` exempts the whole `zastanowić` word form, not
+    only the characters of the phrase itself.
+    """
     return [
         hit.span()
         for phrase in ALLOWED_PHRASES
-        for hit in re.finditer(re.escape(phrase), lowered)
+        for hit in re.finditer(
+            r"\w*" + re.escape(phrase) + r"\w*", lowered)
     ]
 
 

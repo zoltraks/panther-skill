@@ -15,6 +15,7 @@ replaces a run of each checker separately:
     check-sections.py             runs only with --type
     diff-content.py               runs only with --baseline
     check-parity.py               runs only with --parity <source.md>
+    check-title-agreement.py      runs only with --title-agreement
 
 Sibling tools are located next to this script, else under ``--skill-root <dir>``
 or ``PANTHER_SKILL_ROOT`` - running from the skill tree needs no flag at all.
@@ -24,7 +25,9 @@ Usage:
     python check-document.py <file.md> [--width N] [--payload-markdown]
         [--layout wrap|unwrap] [--split] [--polish] [--type <slug-or-path>]
         [--language <code-or-path>] [--baseline <file>] [--normalize-chars]
-        [--parity <source.md>] [--terms <glossary.md> ...] [--skill-root <dir>]
+        [--parity <source.md>] [--terms <glossary.md> ...]
+        [--expect-map <file> ...] [--eol lf|crlf] [--title-agreement]
+        [--skill-root <dir>]
 """
 
 from __future__ import annotations
@@ -128,7 +131,18 @@ def main(argv: list[str]) -> int:
     parser.add_argument("--terms", type=Path, action="append", default=[],
                         metavar="GLOSSARY",
                         help="glossary file for check-parity concordance "
-                             "hints (repeatable)")
+                             "hints and expected-translation seeding "
+                             "(repeatable)")
+    parser.add_argument("--expect-map", type=Path, action="append",
+                        default=[], metavar="FILE",
+                        help="declared SRC -> TGT translation map for "
+                             "check-parity (repeatable)")
+    parser.add_argument("--eol", choices=("lf", "crlf"), default=None,
+                        help="declared line-ending convention forwarded "
+                             "to check-parity")
+    parser.add_argument("--title-agreement", action="store_true",
+                        help="also run check-title-agreement.py for "
+                             "summary-table/heading title parity")
     parser.add_argument("--skill-root", type=Path, default=None)
     args = parser.parse_args(argv)
 
@@ -235,8 +249,21 @@ def main(argv: list[str]) -> int:
             parity_args = [str(args.parity.resolve()), doc]
             for glossary in args.terms:
                 parity_args += ["--terms", str(glossary)]
+            for expect_map in args.expect_map:
+                parity_args += ["--expect-map", str(expect_map)]
+            if args.eol:
+                parity_args += ["--eol", args.eol]
             code, output = run(script, parity_args, cwd)
             failures += report("check-parity", code, output, gated=True)
+
+    if args.title_agreement:
+        script = resolve("check-title-agreement.py", skill_root)
+        if script is None:
+            print("SKIP check-title-agreement - tool not found")
+        else:
+            code, output = run(script, [doc], cwd)
+            failures += report("check-title-agreement", code, output,
+                               gated=True)
 
     print(f"check-document: {'PASS' if not failures else 'FAIL'} "
           f"({failures} gated check(s) reporting)")

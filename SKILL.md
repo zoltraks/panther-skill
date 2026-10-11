@@ -41,19 +41,19 @@ allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob G
 | Skill Update Check      | 86   | Once-per-session git freshness gate before use |
 | Trigger Keywords        | 108  | Activation phrases                             |
 | How To Use              | 162  | Progressive disclosure and rule loading        |
-| Parameter Configuration | 224  | Defaults and user-controlled document shape    |
-| Principles              | 252  | Authoring invariants                           |
-| Process                 | 258  | Workflow, checklist, and standalone procedures |
-| Document Types          | 286  | Per-type rule files                            |
-| Languages               | 348  | Per-language style baselines                   |
-| Translations            | 361  | Language pair rules and industry glossaries    |
-| Scopes                  | 381  | Per-project-layout organization rules          |
-| Conventions             | 406  | Encoding, dialect, and format contract rules   |
-| Templates               | 423  | Per-type, per-language skeletons               |
-| Scripts                 | 435  | Detection, formatting, and validation scripts  |
-| Evaluation Prompts      | 465  | Behavioral regression prompts                  |
-| Repository Files        | 475  | Housekeeping files governing this repository   |
-| File Handling Contract  | 488  | Byte-level guarantees                          |
+| Parameter Configuration | 226  | Defaults and user-controlled document shape    |
+| Principles              | 254  | Authoring invariants                           |
+| Process                 | 260  | Workflow, checklist, and standalone procedures |
+| Document Types          | 288  | Per-type rule files                            |
+| Languages               | 350  | Per-language style baselines                   |
+| Translations            | 363  | Language pair rules and industry glossaries    |
+| Scopes                  | 383  | Per-project-layout organization rules          |
+| Conventions             | 408  | Encoding, dialect, and format contract rules   |
+| Templates               | 425  | Per-type, per-language skeletons               |
+| Scripts                 | 437  | Detection, formatting, and validation scripts  |
+| Evaluation Prompts      | 464  | Behavioral regression prompts                  |
+| Repository Files        | 474  | Housekeeping files governing this repository   |
+| File Handling Contract  | 486  | Byte-level guarantees                          |
 
 You are a Document Authoring Agent.
 
@@ -219,7 +219,9 @@ adjustment, or session review - then reads the governing set and applies `docs/M
 
 On bare activation - "use skill", "run panther", or an equivalent - it enables for editorial
 support: the update check runs, the router is the loaded state, and a compact capability list
-answers the request. The next task request enters document or maintenance mode normally.
+answers the request.
+
+The next task request enters document or maintenance mode normally.
 
 ## Parameter Configuration
 
@@ -438,28 +440,25 @@ Run document-production tools in place - `python <skill-root>/scripts/<tool>.py 
 and copy them under `.tmp.` names only when the skill root cannot be invoked, removing
 copies when done - `scripts/README.md` lists flags and the fallback convention.
 
-- **`scripts/detect-encoding.py`** - BOM, guessed encoding, line endings, trailing whitespace.
-- **`scripts/detect-scope.py`** - Document-scope signals and per-directory document counts.
+- **`scripts/detect-encoding.py`** / **`detect-scope.py`** - Encoding probe and scope-signal census.
 - **`scripts/census-document.py`** - Document census: headings, lists, fences, tables, prose layout.
 - **`scripts/normalize-chars.py`** - Normalize typographic characters to ASCII.
 - **`scripts/split-sentences.py`** - Split packed sentences onto lines - `--paragraphs` or `--flow`.
-- **`scripts/reflow-prose.py`** - Prose reflow: `--wrap`/`--unwrap`/`--justify` -
-  supersedes the deprecated `wrap-prose.py`.
-- **`scripts/format-table.py`** - Rebuild tables with source-width alignment, `--drop-empty-columns` drops empty columns.
+- **`scripts/reflow-prose.py`** - `--wrap`/`--unwrap`/`--justify` - replaces `wrap-prose.py`.
+- **`scripts/format-table.py`** - Source-width table formatter - `--drop-empty-columns` repairs.
 - **`scripts/align-comments.py`** - Align trailing `#` comments to one column per block.
+- **`scripts/safe-replace.py`** - Word-boundary find/replace - `--raw` opt-in, `--check` dry-run.
 - **`scripts/validate-document.py`** - Mechanical checker for `process/document-checklist.md`.
-- **`scripts/check-document.py`** - One-command non-mutating battery: encoding,
-  validation, table, comment, reflow, and optional lint/section/diff/parity gates.
+- **`scripts/check-document.py`** - One-command check battery with optional gates.
 - **`scripts/diff-content.py`** - Token-stream check that a pass changed formatting only.
-- **`scripts/check-parity.py`** - Structural parity diff against the source document:
-  headings, fences, tables, code spans, anchors, and glossary concordance hints.
-- **`scripts/check-sections.py`** - Section conformance check against a type's required,
-  recommended, optional, and unusual vocabulary, localized aliases included.
+- **`scripts/check-parity.py`** - Structural parity diff: headings, fences, tables, code
+  spans, anchors, glossary hints - `--expect-map`/`--eol` mark declared deltas.
+- **`scripts/check-title-agreement.py`** - `ID: title` headings vs summary-table titles.
+- **`scripts/check-sections.py`** - Section vocabulary conformance, localized aliases included.
+- **`scripts/lint-polish.py`** - Polish calque and prose lint against forbidden-form tables.
 - **`scripts/validate-skill.py`** - Panther-repo frontmatter, disclosure, root-reference checks.
-- **`scripts/check-references.py`** / **`check-contents.py`** - Panther-repo integrity:
-  relative references and `## Contents` line-number drift.
-- **`scripts/check-update.py`** - Git upstream self-update checker, once per session.
-- **`scripts/test-scripts.py`** - Smoke harness exercising every tool's non-mutating path.
+- **`scripts/check-references.py`** / **`check-contents.py`** - Reference and contents integrity.
+- **`scripts/check-update.py`** / **`test-scripts.py`** - Self-update check and tool smoke harness.
 - **`scripts/README.md`** - Tool classes, commands, flags, validation order, limitations.
 
 ## Evaluation Prompts

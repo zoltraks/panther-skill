@@ -100,6 +100,17 @@ def check_tables(lines, issues):
                 issues.append(
                     f"line {start + offset + 1}: row starts with a double pipe"
                 )
+            piped = next(
+                (s for s in INLINE_CODE.findall(line) if "|" in s), None)
+            if piped is not None:
+                issues.append(
+                    f"line {start + offset + 1}: literal pipe inside "
+                    f"code span {piped[:40]} inflates the column count "
+                    "- use `&#124;` or a different layout")
+            if "\\|" in line:
+                issues.append(
+                    f"line {start + offset + 1}: escaped pipe \\| still "
+                    "splits the row on `|` - use `&#124;`")
 
         sep_idx = next((k for k, r in enumerate(rows) if sep_like(r)), None)
         if sep_idx is None:

@@ -21,10 +21,10 @@ another language.
 | Detection            | 84   | Language, type, industry, and format-contract scan |
 | Rule Loading         | 126  | Ordered rule and contract-mapping loading          |
 | Translation Pass     | 143  | Terminology lock, chunked rendering, pass rules    |
-| Adapted Translation  | 222  | Adapted-fidelity rules and reporting               |
-| Validation           | 243  | Parity, mechanical checks, and self-review         |
-| Delivery             | 331  | Output conventions and the delivery report         |
-| Non-Goals            | 343  | Out-of-scope behaviors                             |
+| Adapted Translation  | 229  | Adapted-fidelity rules and reporting               |
+| Validation           | 250  | Parity, mechanical checks, and self-review         |
+| Delivery             | 347  | Output conventions and the delivery report         |
+| Non-Goals            | 359  | Out-of-scope behaviors                             |
 
 ## When This Applies
 
@@ -171,9 +171,16 @@ Render sequentially: for each chunk, read its source span immediately before wri
 rendering, so the source text is in context while it is translated - never render a span
 recalled from earlier context, and re-read the span when in doubt.
 
-After writing a chunk, run `scripts/lint-polish.py` on the file-so-far for `pl` output - a
-systematic calque habit caught on the first chunk costs one fix instead of repeating in
-every remaining chunk.
+After writing each chunk, run `scripts/lint-polish.py` on it for `pl` output and resolve
+every error before rendering the next chunk - whether the chunks land in one growing file
+or in separate part files awaiting assembly.
+
+A systematic calque habit caught on the first chunk costs one fix instead of repeating in
+every remaining chunk, and a fix applied at assembly scale invites destructive bulk edits.
+
+When a lint finding needs a bulk fix, `scripts/lint-polish.py --group-by-form` summarizes
+the repeated forms, and the replacement pass follows the Scripted Bulk Edits rule in
+`principles/authoring-rules.md`.
 
 When the document embeds ` ```markdown ` payload blocks, pass `--payload-markdown` - a
 payload interior is translated prose and the same rules apply.
@@ -250,6 +257,13 @@ internal `#anchor` resolution, and file-level whitespace and byte conventions.
 With `--terms <glossary.md>` it also prints concordance hints - source terms whose
 preferred target variants never appear - for every glossary loaded in Rule Loading.
 
+Glossary terms also seed the declared-delta map - a source term's preferred variants are
+expected renderings, not losses.
+
+A resolved contract mapping's fixed vocabulary goes into a `.tmp.` expect-map file passed
+with `--expect-map <file>` - declared `source -> target` pairs and `link:` count
+adjustments report as `DECLARED` notes instead of `DELTA` failures.
+
 Then run the mechanical checks on the written file - `scripts/check-document.py` covers
 them in one invocation (`--polish` on `pl` output, `--payload-markdown` on embedded
 payloads, `--parity <source.md>` to fold the parity run in):
@@ -260,6 +274,8 @@ payloads, `--parity <source.md>` to fold the parity run in):
   document embeds ` ```markdown ` blocks.
 - `scripts/lint-polish.py` - on `pl` output, with `--payload-markdown` when the document
   embeds ` ```markdown ` blocks - every finding is fixed or reported.
+- `scripts/check-title-agreement.py` - when the document's `ID: title` headings pair with
+  summary-table rows, or via `check-document.py --title-agreement`.
 
 Self-review against `process/document-checklist.md` plus the translation items:
 
@@ -280,6 +296,8 @@ Self-review against `process/document-checklist.md` plus the translation items:
 - Code, identifiers, and the untranslated set are byte-identical to the source.
 - Heading counts per depth match the source - a chunked render loses sections
   silently.
+- Each chunk of a chunked render passed the language lint at write time, not only
+  after assembly.
 - The fence count and language-tag distribution match the source.
 - Every backticked span in the source appears unchanged in the output - the
   `check-parity.py` inline-code diff lists each missing technical span - and a label

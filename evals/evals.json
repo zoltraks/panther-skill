@@ -1323,7 +1323,7 @@
         "Each chunk was rendered only while its source span was freshly read - no span was reconstructed from memory.",
         "Headings and repeated glossary terms were rendered once in a terminology lock and applied identically in every chunk, so prose cross-references match the translated headings.",
         "scripts/check-parity.py ran against source and output (or via check-document.py --parity) and its DELTA categories were fixed or justified.",
-        "scripts/lint-polish.py ran on an early chunk and again on the final file, reporting zero errors.",
+        "scripts/lint-polish.py ran on every chunk immediately after rendering - findings were fixed before the next chunk rendered and before assembly - and again on the final file, reporting zero errors.",
         "Tables were reformatted with format-table.py and the output file contains no agent notes or draft markers."
       ]
     },
@@ -1399,6 +1399,41 @@
         "The audit loads the resolved contract mapping as part of its rule set.",
         "Contract-covered elements rendered with invented or generic forms are reported as findings, and a document-wide ignored contract lands as a Major finding.",
         "The report distinguishes contract violations from free-prose style issues."
+      ]
+    },
+    {
+      "id": 115,
+      "prompt": "The Polish lint on this translation reports the banned form 'niesie' - replace it with 'wnosi' across the whole document.",
+      "expected_output": "A document-wide replacement applied through word-boundary matching, with containing words such as odniesienia, przeniesienia, and podniesienia untouched.",
+      "files": [],
+      "expectations": [
+        "The bulk replacement ran through scripts/safe-replace.py or an equivalent word-boundary pattern - a bare substring replace was never used.",
+        "Words containing the pattern as a fragment - odniesienia, przeniesienia, podniesienia - are byte-identical after the pass.",
+        "The residue report was reviewed: remaining words containing the pattern and words containing the replacement inside a longer token were inspected before delivery.",
+        "The file's encoding and line-ending style are preserved."
+      ]
+    },
+    {
+      "id": 116,
+      "prompt": "Lint this Polish translation - it uses the forms przypięta, przypiąć, przypinana, bramą, niesiony, and ładunku, plus the legitimate verbs zastanowić and zastanawia.",
+      "expected_output": "A lint run flagging every inflected calque form while the zastanowić-family verbs stay silent.",
+      "files": [],
+      "expectations": [
+        "Inflected forms of banned stems flag - przypięta, przypiąć, przypinana, bramą, niesiony, and ładunku each produce a finding.",
+        "zastanowić and zastanawia produce no calque finding - the allowed-phrase boundary covers the whole word.",
+        "Findings report the matched form, the line, and the suggested replacement."
+      ]
+    },
+    {
+      "id": 117,
+      "prompt": "Validate this Polish audit-document translation against its English source - it contains a table row whose inline code holds a literal pipe, summary-table titles keyed to `ID: title` headings, declared enum translations such as NOT SPECIFIED to Nieokreślony, and the repository declares eol=lf.",
+      "expected_output": "A validation pass that fails the literal pipe in the table code span, verifies title agreement per ID, and reports declared deltas as DECLARED instead of failures.",
+      "files": [],
+      "expectations": [
+        "validate-document.py flags the literal pipe inside the table code span and suggests &#124; - the row is not silently miscounted.",
+        "check-parity.py with --expect-map reports the declared enum translations as DECLARED lines, while undeclared structural deltas still gate as DELTA.",
+        "A target line-ending style matching .gitattributes eol=lf reports as NOTE, not DELTA.",
+        "check-title-agreement.py compares each summary-table title against its `ID: title` heading - link-stripped and qualifier-tolerant - and reports exactly one finding per mutated title."
       ]
     }
   ]

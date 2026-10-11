@@ -101,6 +101,10 @@ the source uses it, so the document stays concordant.
 Fix a finding and sweep the document for the same class of issue - a review row is
 an example of the rule, not the whole of it.
 
+A scripted sweep follows the Scripted Bulk Edits rule in
+`principles/authoring-rules.md` - word-boundary matching through
+`scripts/safe-replace.py`, never a bare substring, and the residue is reviewed.
+
 Preserve the target document's own conventions - encoding, line endings, wrap,
 tables, and every structure element the source carries.
 

@@ -59,6 +59,18 @@ request covers it.
 
 Every unrelated edit makes review harder and hides the real change.
 
+## Scripted Bulk Edits
+
+Every scripted find/replace on prose uses word-boundary matching - `scripts/safe-replace.py`
+or an equivalent `(?<!\w)form(?!\w)` pattern - never a bare substring.
+
+A pattern inside a longer word is not the target word: replacing `niesie` must not rewrite
+`odniesienia` into `odwnosinia`.
+
+After every bulk replacement, review the residue - every word still containing the pattern
+and every word containing the replacement inside a longer token is inspected before
+delivery.
+
 ## No Production Metadata
 
 A produced document never states which skill, tool, procedure, or rules rendered it.

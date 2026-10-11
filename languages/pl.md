@@ -350,10 +350,10 @@ Poniższa tabela jest źródłem prawdy dla mechanicznej kontroli - `scripts/lin
 | per endpoint                                                                                                                                    | dla każdego endpointu                              |
 | per adres                                                                                                                                       | dla każdego adresu                                 |
 | pod (katalogiem)                                                                                                                                | w katalogu                                         |
-| chudy (plik, dokument)                                                                                                                          | zwięzły                                            |
+| chudy (plik, dokument) / chuda / chude / chudym / chudą / chudego / chudej / chudemu / chudych                                                  | mały / drobny                                      |
 | najcięższy (dokument)                                                                                                                           | najbardziej rozbudowany                            |
 | najlżejszy                                                                                                                                      | najbardziej zwięzły                                |
-| niesie / niosą                                                                                                                                  | zawiera / obejmuje                                 |
+| niesie / niosą / niesione / niesiony / niesiona / niesiono / niósł                                                                              | zawiera / obejmuje                                 |
 | dotyka                                                                                                                                          | zmienia / obejmuje                                 |
 | zakotwiczone w                                                                                                                                  | oparte na                                          |
 | wskaźnik (odnośnik)                                                                                                                             | odnośnik / odwołanie                               |
@@ -362,14 +362,14 @@ Poniższa tabela jest źródłem prawdy dla mechanicznej kontroli - `scripts/lin
 | właściciel (dokumentu)                                                                                                                          | dokument nadrzędny                                 |
 | mieszkają / żyje                                                                                                                                | znajdują się / jest zachowana                      |
 | lustro                                                                                                                                          | kopia struktury                                    |
-| ładunek                                                                                                                                         | zawartość zmiany / zakres zmian                    |
+| ładunek / ładunki / ładunku / ładunka / ładunkiem / ładunków / ładunkami                                                                        | zawartość zmiany / zakres zmian                    |
 | rekord zmiany                                                                                                                                   | zapis / wpis                                       |
 | zaadresować                                                                                                                                     | uwzględnić / usunąć                                |
 | konsumowana                                                                                                                                     | obsługiwana / wykorzystywana                       |
 | rekursują                                                                                                                                       | są rozwijane rekurencyjnie                         |
 | celują w                                                                                                                                        | przyjmują jako cel / zalecają                      |
 | kosztuje kontekst                                                                                                                               | zajmuje miejsce w oknie kontekstu                  |
-| przypięty (do trybu)                                                                                                                            | ograniczony do trybu                               |
+| przypięty (do trybu) / przypięta / przypięte / przypięciem / przypięcia / przypiąć / przypinanie / przypinają / przypinany                      | ograniczony do trybu                               |
 | rozdzielczy (rzeczownik)                                                                                                                        | plik kierujący                                     |
 | zestaw zarządzania                                                                                                                              | zestaw dokumentów regulujących                     |
 | autorytatywny                                                                                                                                   | wiążący / nadrzędny                                |
@@ -388,7 +388,7 @@ Poniższa tabela jest źródłem prawdy dla mechanicznej kontroli - `scripts/lin
 | placeholder sekretu                                                                                                                             | wartość zastępcza sekretu                          |
 | realna baza                                                                                                                                     | rzeczywista baza danych                            |
 | serwujący                                                                                                                                       | udostępniający                                     |
-| brama (quality gate)                                                                                                                            | kontrola blokująca / warunek jakości               |
+| brama (quality gate) / bramę / bramie / bramy / bramom / bramami / bramach / bramą / bramkujące / bramkowanie                                   | kontrola blokująca / warunek jakości               |
 | bramy raportowe                                                                                                                                 | kontrole nieblokujące                              |
 | powierzchnia kodu                                                                                                                               | zakres kodu                                        |
 | delta kodowa                                                                                                                                    | zakres zmian w kodzie                              |
@@ -405,7 +405,7 @@ Poniższa tabela jest źródłem prawdy dla mechanicznej kontroli - `scripts/lin
 | mechanizm procesowy                                                                                                                             | proces                                             |
 | miejsce zdefiniowania / miejsca zdefiniowania / miejscu zdefiniowania / miejsc zdefiniowania / miejscem zdefiniowania / miejscami zdefiniowania | dokument nadrzędny / wskazane źródło               |
 | dokumenty regulujące                                                                                                                            | dokumenty określające obowiązujące zasady          |
-| odchudzony (plik, dokument)                                                                                                                     | zwięzły                                            |
+| odchudzony (plik, dokument)                                                                                                                     | pomniejszony                                       |
 | zaspokaja rolę / zaspokoić rolę                                                                                                                 | pełni rolę / spełnia wymagania roli                |
 | wtóruje                                                                                                                                         | powtarza                                           |
 | rządzi (reguły)                                                                                                                                 | obowiązuje w                                       |

@@ -66,7 +66,15 @@ mechanizes most of the map: heading level sequence, fence count and tags, table
 geometry, list counts, HTML comments, inline-code spans, and anchor resolution.
 
 With `--terms <glossary.md>` it also prints concordance hints for step 3 - source
-terms whose preferred target variants never appear.
+terms whose preferred target variants never appear - and seeds the declared-delta
+map, so a span rendered as a declared variant reports `DECLARED` instead of `DELTA`.
+
+A `.tmp.` expect-map file passed with `--expect-map` extends that map with declared
+`source -> target` pairs and `link:` count adjustments - declared changes report as
+`DECLARED` notes and the audit concentrates on the deltas nothing declared.
+
+On a document whose `ID: title` headings pair with summary-table rows,
+`scripts/check-title-agreement.py` verifies each table title against its heading.
 
 Run the checks in order and record each result for the report:
 
