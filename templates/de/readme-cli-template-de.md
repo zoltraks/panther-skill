@@ -17,9 +17,9 @@ Installationsbefehl
 
 ## Optionen
 
-| Option      | Standard | Beschreibung          |
-|-------------|----------|-----------------------|
-| `--verbose` | false    | Ausführliche Ausgabe  |
+| Option      | Standard | Beschreibung         |
+|-------------|----------|----------------------|
+| `--verbose` | false    | Ausführliche Ausgabe |
 
 ## Beispiele
 

@@ -33,9 +33,9 @@
 
 ## Aufgaben
 
-| #    | Aufgabe                 | Verantwortlicher | Fälligkeitsdatum | Status |
-|------|-------------------------|------------------|------------------|--------|
-| A-01 | <was zu erledigen ist>  | <Name>           | JJJJ-MM-TT       | offen  |
+| #    | Aufgabe                | Verantwortlicher | Fälligkeitsdatum | Status |
+|------|------------------------|------------------|------------------|--------|
+| A-01 | <was zu erledigen ist> | <Name>           | JJJJ-MM-TT       | offen  |
 
 ## Offene Fragen
 

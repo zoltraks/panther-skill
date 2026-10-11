@@ -17,9 +17,9 @@ Status: draft | approved
 
 ## Messbare Ziele
 
-| Ziel    | Maßstab        | Zielwert    |
-|---------|----------------|-------------|
-| <ziel>  | <wie gemessen> | <Zielwert>  |
+| Ziel   | Maßstab        | Zielwert   |
+|--------|----------------|------------|
+| <ziel> | <wie gemessen> | <Zielwert> |
 
 ## Rahmenanforderungen
 

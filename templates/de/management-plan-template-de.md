@@ -18,9 +18,9 @@ Projektmanagementplan steht.>
 
 ## Rollen und Verantwortlichkeiten
 
-| Rolle   | Verantwortlichkeit                        |
-|---------|-------------------------------------------|
-| <rolle> | <was diese Rolle für diesen Bereich tut>  |
+| Rolle   | Verantwortlichkeit                       |
+|---------|------------------------------------------|
+| <rolle> | <was diese Rolle für diesen Bereich tut> |
 
 ## Schwellenwerte und Toleranzen
 

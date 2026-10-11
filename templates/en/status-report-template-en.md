@@ -11,7 +11,7 @@
 ## Status by Area
 
 | Area     | Status |       |      |
-| ---      | ---    |       |      |
+|----------|--------|-------|------|
 | Schedule | <Green | Amber | Red> |
 | Budget   | <Green | Amber | Red> |
 | Scope    | <Green | Amber | Red> |

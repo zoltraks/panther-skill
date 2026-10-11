@@ -30,9 +30,9 @@ Gesamtaufbau der Datei oder des Datenstroms.
 
 Ein Abschnitt pro Strukturelement.
 
-| Feld  | Offset | Typ    | Bedeutung |
-|-------|--------|--------|-----------|
-| `id`  | 0      | uint32 | Bedeutung |
+| Feld | Offset | Typ    | Bedeutung |
+|------|--------|--------|-----------|
+| `id` | 0      | uint32 | Bedeutung |
 
 ## Implementierungshinweise
 

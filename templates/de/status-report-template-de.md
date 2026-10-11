@@ -10,8 +10,8 @@
 
 ## Status nach Bereich
 
-| Bereich  | Status |      |     |
-| ---      | ---    |      |     |
+| Bereich  | Status |      |      |
+|----------|--------|------|------|
 | Zeitplan | <Grün  | Gelb | Rot> |
 | Budget   | <Grün  | Gelb | Rot> |
 | Umfang   | <Grün  | Gelb | Rot> |

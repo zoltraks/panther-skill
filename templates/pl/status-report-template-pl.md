@@ -11,7 +11,7 @@
 ## Status według obszaru
 
 | Obszar      | Status   |             |           |
-| ---         | ---      |             |           |
+|-------------|----------|-------------|-----------|
 | Harmonogram | <Zielony | Bursztynowy | Czerwony> |
 | Budżet      | <Zielony | Bursztynowy | Czerwony> |
 | Zakres      | <Zielony | Bursztynowy | Czerwony> |
