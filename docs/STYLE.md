@@ -257,6 +257,12 @@ A terminal box ends with a plain `└ ─ ┘` border, no tee.
 
 Connector rows end after their last glyph - no padding to the box width.
 
+Every row of a box shares the same left and right border columns - a side or border row
+shifted off its box is a defect, and a label never touches a border.
+
+A fan-out to side-by-side boxes draws a junction row `┌ ─ ┬ ┼ ┐` and an arrowhead row -
+every drop column lands on the center column of the box it feeds.
+
 The full convention for produced documents lives in `conventions/ascii-diagrams.md`.
 
 ## Inline Formatting

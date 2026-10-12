@@ -416,8 +416,9 @@ registration inside an organized project:
   `.adoc` files: title markers, admonitions, includes, opaque tables.
 - **`conventions/plain-text-comments.md`** - `#` comment alignment inside untagged fenced blocks
   and shell-tagged blocks: one shared column per block, longest entry plus two spaces.
-- **`conventions/ascii-diagrams.md`** - Box-drawing flow diagrams: one shared axis, centered
-  boxes and prose lines, `┬`/`▼` vertical edges, gap-filling `▶` side branches.
+- **`conventions/ascii-diagrams.md`** - Box-drawing node-and-edge diagrams: fixed border
+  columns per box, one shared axis, centered boxes and prose lines, `┬`/`▼` vertical
+  edges, gap-filling `▶` side branches, `┌`/`┬`/`┼`/`┐` fan-out junctions.
 - **`conventions/prose-layout.md`** - Prose-layout conventions `flowing`, `separated`,
   `bounded`, `justified`: detection signals, the no-assumed-default and mixed-document
   rules, the `line-wrapping`/`sentence-spacing`/`wrap-width` parameters, and the tooling map.

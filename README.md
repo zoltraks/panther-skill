@@ -627,7 +627,7 @@ panther-skill/
 │   ├── rst-documents.md               # reStructuredText minimal-edit contract
 │   ├── asciidoc-documents.md          # AsciiDoc minimal-edit contract
 │   ├── plain-text-comments.md         # Trailing comment alignment in plain-text blocks
-│   ├── ascii-diagrams.md              # Box-drawing flow diagram rules
+│   ├── ascii-diagrams.md              # Box-drawing node-and-edge diagram rules
 │   └── prose-layout.md                # Prose-layout conventions and detection rules
 ├── templates/
 │   ├── de/                            # Thirty German skeletons, <type>-template-de.md

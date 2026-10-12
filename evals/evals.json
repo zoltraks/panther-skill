@@ -1461,6 +1461,19 @@
         "The out-of-scope defects are reported in the delivery or proposed as follow-up work.",
         "Fixing the unrelated defects requires a confirmed follow-up request."
       ]
+    },
+    {
+      "id": 120,
+      "prompt": "Fix this box-drawing diagram in the supplied document: a label touches its frame border, one box's bottom border sits one column off, and the fan-out arrows do not line up with the boxes below.",
+      "expected_output": "The same diagram redrawn on the grid - frames widened where labels needed room, every border column aligned, and every junction drop and arrowhead landing on a box center.",
+      "files": [],
+      "expectations": [
+        "The diagram keeps its existing glyph convention - frame corners and arrowhead style are preserved.",
+        "Every row of a box shares identical left and right border columns.",
+        "Each frame's interior fits its longest label line with at least one space of padding on each side.",
+        "Horizontal edges fill the whole gap with dashes and the arrowhead touches the target border.",
+        "Every vertical drop and fan-out junction column lands on the center column of the box it feeds."
+      ]
     }
   ]
 }
