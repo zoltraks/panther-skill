@@ -1474,6 +1474,19 @@
         "Horizontal edges fill the whole gap with dashes and the arrowhead touches the target border.",
         "Every vertical drop and fan-out junction column lands on the center column of the box it feeds."
       ]
+    },
+    {
+      "id": 121,
+      "prompt": "Audit the Polish localization dictionary against its English source - a key-value message file and a question bank where every record carries a text field, numbered options, and an explanation field.",
+      "expected_output": "A translation audit treating the pair as a record set: key coverage mapped, fields paired per record, placeholders and numeric tokens checked for parity, findings reported in the document-audit format.",
+      "files": [],
+      "expectations": [
+        "The agent followed process/translation-audit.md and applied the Record-Oriented Sources section - the structure map ran as a key-coverage report.",
+        "Missing or extra keys are reported as structural findings, and every record's fields are paired - text, every numbered option, and explanation.",
+        "Interpolation placeholders such as {0} and numeric or unit tokens are verified for parity inside each paired field.",
+        "A source-word residue scan excludes tokens legal in the target language rather than reporting them as leftovers.",
+        "The report delivers a fidelity verdict and findings in the document-audit format."
+      ]
     }
   ]
 }

@@ -76,6 +76,10 @@ A `.tmp.` expect-map file passed with `--expect-map` extends that map with decla
 On a document whose `ID: title` headings pair with summary-table rows,
 `scripts/check-titles.py` verifies each table title against its heading.
 
+On a pair that is not a Markdown document - a localization dictionary, a message
+file, a record set - `check-parity.py` does not apply, and the coverage described
+under Record-Oriented Sources takes its place.
+
 Run the checks in order and record each result for the report:
 
 1. **Structure map** - align the two documents heading by heading and classify every
@@ -108,9 +112,49 @@ Run the checks in order and record each result for the report:
    (`must`/`should`/`may` strength altered), condition drift (`only`, `unless`,
    `when`, `if`, `otherwise` blurred), enumeration-logic drift (a positive `or` list
    rendered with `ani`, a quantifier or negation added or dropped), entity-kind
-   substitution (a `file` rendered `katalog`, a `directory` rendered `plik`), mixed
-   quote or dash conventions, mixed second-person register, and the same English
-   term rendered by several Polish forms.
+   substitution (a `file` rendered `katalog`, a `directory` rendered `plik`), token
+   drift (a number, unit, or threshold dropped or altered), referent-clause drift
+   (a named regulation, standard, or document the source cites dropped from the
+   rendering), voice inversion (an active rendering that swaps the source's actor
+   and recipient), mixed quote or dash conventions, mixed second-person register,
+   and the same English term rendered by several Polish forms.
+
+A banned-form or vocabulary hit is a finding only when its covered sense matches
+the document's domain - a `pod` warning on `pod napięciem` inside an electrical
+document is expected, not evidence, and every sense-scoped warning is verified
+against its context before it is counted.
+
+## Record-Oriented Sources
+
+The pair may be a record set - a localization dictionary, a message file, a
+question bank - rather than a prose document.
+
+Map the record format before comparing: the source may nest sections, group
+entries under keys, or carry several translatable fields per record, so the
+pairing follows the format's real shape.
+
+The structure map becomes a key-coverage report - every source key resolves in
+the target, every target key traces to a source record, and a missing or extra
+key is a structural finding.
+
+A record pairs field by field - a question entry aligns its text, every numbered
+option, and its explanation, not only its label.
+
+The untranslated set covers keys, identifiers, interpolation placeholders such as
+`{0}`, and machine tokens - the placeholder set inside each paired field must
+match, and a dropped or renamed placeholder is a structural finding.
+
+The mechanical passes adapt to fields the same way: numeric and unit token
+parity inside each pair, terminal-punctuation parity (a question keeps its
+question mark), a length-ratio pass per field, and a source-word residue scan
+that excludes tokens legal in the target language - short words shared across
+the pair otherwise report as noise.
+
+Terminology concordance runs per field and flags a source term rendered
+differently across records - split renderings hide inside repeated record types.
+
+The remaining checks - naturalness review, register, severity classification,
+and the report layout - run unchanged on the paired fields.
 
 ## Findings
 

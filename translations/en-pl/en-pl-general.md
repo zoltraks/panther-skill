@@ -161,6 +161,10 @@ The following elements are copied verbatim:
 - Inline code spans, file paths, URLs, commands, and configuration keys.
 - Identifiers - record IDs, requirement IDs, API names, version markers in HTML comments.
 - Proper nouns, product names, brand names, and architecture element names.
+- Official names of institutions, authorities, and courts - keep the official name
+  verbatim or render the established Polish equivalent such as `Trybunał
+  Konstytucyjny` - a word-for-word expansion of the name is a calque, never an
+  option.
 - Cited section names, field labels, and verdict vocabularies of referenced
   documents and tools - `Evidence Ledger`, `Finding Disposition`, `Journey
   Traces` stay verbatim wherever the prose cites them.

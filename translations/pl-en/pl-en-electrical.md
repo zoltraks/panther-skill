@@ -46,11 +46,14 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | gniazdo (wtyczkowe)                                       | socket outlet                         |
 | instalacja elektryczna                                    | wiring installation                   |
 | inspektor sanitarny                                       | environmental health officer          |
+| Inspektorat HSE                                           | HSE Inspectorate                      |
 | instruktaż przy stanowisku / pogadanka brygadowa          | toolbox talk                          |
+| inżynier rezydent                                         | resident engineer                     |
 | izolacja                                                  | insulation                            |
 | jednofazowy                                               | single-phase                          |
 | kabel / przewód                                           | cable                                 |
 | kabel zbrojony / przewód zbrojony                         | armoured cable                        |
+| kask lekki                                                | bump cap                              |
 | klamra wielozamkowa / łącznik kłódkowy                    | multi-lock hasp                       |
 | kłódka                                                    | padlock                               |
 | kompetencje / osoba kompetentna                           | competence / competent person         |
@@ -59,6 +62,7 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | lampa próbnicza / próbnik                                 | test lamp / proving lamp              |
 | licznik energii elektrycznej                              | electricity meter                     |
 | lokalizator przewodów                                     | cable avoidance tool (CAT)            |
+| lonża                                                     | lanyard                               |
 | materiały / uszczelnienia intumescencyjne                 | intumescent materials / seals         |
 | miernik rezystancji izolacji / megaomomierz               | insulation tester                     |
 | miliamper (mA)                                            | milliampere (mA)                      |
@@ -69,20 +73,26 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | napięcie                                                  | voltage                               |
 | napięcie znamionowe                                       | nominal voltage                       |
 | natężenie prądu / prąd                                    | current                               |
+| niebezpieczne zdarzenie                                   | dangerous occurrence                  |
 | niskie napięcie (nn)                                      | low voltage (LV)                      |
+| obwałowanie                                               | bund                                  |
 | obwód                                                     | circuit                               |
 | ocena ryzyka                                              | risk assessment                       |
 | odłącznik                                                 | isolator / disconnector               |
+| odpady niebezpieczne                                      | hazardous waste                       |
 | odpady nieniebezpieczne                                   | non-hazardous waste                   |
+| określony uraz                                            | specified injury                      |
 | oparzenie                                                 | burn                                  |
 | opis metody wykonania prac / procedura pracy              | method statement                      |
 | oprawka                                                   | lamp holder                           |
+| organ egzekwujący / organ nadzoru                         | enforcement authority                 |
 | pierwsza pomoc                                            | first aid                             |
 | piktogram                                                 | pictogram                             |
 | podnoszona platforma robocza                              | MEWP                                  |
 | połączenia wyrównawcze                                    | bonding / equipotential bonding       |
 | pomost roboczy                                            | working platform                      |
 | porażenie prądem elektrycznym                             | electric shock                        |
+| poręcz ochronna / barierka                                | guardrail                             |
 | praca na sprzęcie odłączonym od napięcia                  | dead working                          |
 | praca na wysokości                                        | work at height                        |
 | praca pod napięciem                                       | live working                          |
@@ -93,6 +103,7 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | przeciążenie                                              | overload                              |
 | przełącznik / wyłącznik                                   | switch                                |
 | przepis (w odniesieniach prawnych)                        | regulation (legal reference)          |
+| przestrzeń zamknięta                                      | confined space                        |
 | przewód / żyła                                            | conductor                             |
 | przewód czynny / część czynna                             | live conductor / live part            |
 | przewód giętki / linka                                    | flex / flexible cord                  |
@@ -104,16 +115,22 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | rozdzielnia mieszkaniowa / tablica bezpiecznikowa         | consumer unit                         |
 | rozdzielnica / tablica rozdzielcza                        | distribution board (DB)               |
 | rozłącznik                                                | switch disconnector                   |
+| roszczenie o odszkodowanie                                | compensation claim                    |
 | rurka osłonowa / peszel                                   | conduit                               |
 | rusztowanie                                               | scaffold                              |
 | sondy pomiarowe                                           | test probes                           |
+| sąd niższej instancji / sąd magistracki                   | Magistrates' court                    |
+| sąd wyższej instancji                                     | Crown Court                           |
 | specjalistyczna lampa testowa                             | proprietary test lamp                 |
 | strategia "pozostań na miejscu"                           | stay put policy                       |
+| strażak przeciwpożarowy                                   | fire marshal / fire warden            |
 | stwierdzenie braku napięcia                               | proving dead                          |
 | sytuacja potencjalnie wypadkowa / niemal wypadek          | near miss                             |
 | ŚOI (środki ochrony indywidualnej)                        | PPE (personal protective equipment)   |
 | światłowód / włókno optyczne                              | optical fibre                         |
+| szelki bezpieczeństwa / uprząż bezpieczeństwa             | safety harness                        |
 | szkolenie odświeżające                                    | refresher training                    |
+| taca ociekowa                                             | drip tray                             |
 | tabliczka ostrzegawcza / oznakowanie ostrzegawcze         | warning notice                        |
 | transformator                                             | transformer                           |
 | transformator obniżający                                  | step-down transformer                 |
@@ -121,18 +138,23 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | urządzenie blokujące                                      | lock-out device                       |
 | urządzenie przenośne                                      | portable appliance                    |
 | urządzenie różnicowoprądowe                               | residual current device (RCD)         |
+| uciążliwość ustawowa                                      | statutory nuisance                    |
+| ustawa o bezpieczeństwie i higienie pracy                 | Health and Safety at Work Act         |
 | usterka / awaria                                          | fault                                 |
 | uszczelniacz malarski                                     | decorators' sealant                   |
 | wartość znamionowa / obciążalność                         | rating (cable / current)              |
 | wibracyjna choroba białych palców                         | vibration white finger                |
+| wieża rusztowaniowa                                       | mobile scaffold tower                 |
 | wiązka (laserowa)                                         | laser beam                            |
 | wskaźnik napięcia / detektor napięcia                     | voltage detector                      |
 | wtyczka                                                   | plug                                  |
+| wykop                                                     | excavation                            |
 | wyłącznik automatyczny / wyłącznik                        | circuit breaker                       |
 | wyłącznik główny                                          | main switch                           |
 | wyłącznik różnicowoprądowy                                | residual current device (RCD)         |
 | wysokie napięcie (WN)                                     | high voltage (HV)                     |
 | wytyczna IET                                              | IET Guidance Note                     |
+| zabezpieczenie / uszczelnienie przeciwpożarowe            | fire stopping                         |
 | zadęcie w róg                                             | sound the horn                        |
 | zakład energetyczny / operator sieci dystrybucyjnej (OSD) | electricity distributor / DNO         |
 | zakopane / podziemne instalacje                           | buried / underground services         |
@@ -202,6 +224,11 @@ everywhere:
 | company test lamp                  | proprietary test lamp                 |
 | dangerous waste                    | non-hazardous waste                   |
 | pictocom                           | pictogram                             |
+| fireman                            | fire marshal / fire warden            |
+| residing engineer                  | resident engineer                     |
+| almost accident                    | near miss                             |
+| closed space                       | confined space                        |
+| high court                         | Crown Court                           |
 
 ## Untranslated
 

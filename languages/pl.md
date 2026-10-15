@@ -33,15 +33,15 @@ Zasady opisane poniżej stosują się również do samego tego dokumentu.
 | Średniki                           | 268    | Zakaz średników i zdań sklejonych przecinkiem |
 | Znaki specjalne                    | 296    | Znaki ramek, emoji i znaki specjalne          |
 | Słownictwo polskie                 | 314    | Preferowane terminy i kalki                   |
-| Nazwy sekcji według typu dokumentu | 457    | Polskie nazwy sekcji i elementy typów         |
-| Cechy dialektów                    | 770    | Numeracja rozdziałów i pseudo-nagłówki        |
-| Tabele                             | 787    | Wyrównanie według źródła                      |
-| Nazwy plików                       | 909    | Nazywanie nowych plików dokumentacji          |
-| Przykład                           | 919    | Przykład poprawny i niepoprawny               |
-| Kontrola przed dostarczeniem       | 953    | Kontrole językowe przed dostarczeniem         |
-| Utrzymanie plików                  | 963    | Kodowanie i złamania wierszy                  |
-| Pytanie o aktualizację             | 973    | Polskie brzmienie pytania o aktualizację      |
-| Frazy aktywujące                   | 979    | Polskie frazy i ich angielskie odpowiedniki   |
+| Nazwy sekcji według typu dokumentu | 468    | Polskie nazwy sekcji i elementy typów         |
+| Cechy dialektów                    | 781    | Numeracja rozdziałów i pseudo-nagłówki        |
+| Tabele                             | 798    | Wyrównanie według źródła                      |
+| Nazwy plików                       | 920    | Nazywanie nowych plików dokumentacji          |
+| Przykład                           | 930    | Przykład poprawny i niepoprawny               |
+| Kontrola przed dostarczeniem       | 964    | Kontrole językowe przed dostarczeniem         |
+| Utrzymanie plików                  | 974    | Kodowanie i złamania wierszy                  |
+| Pytanie o aktualizację             | 984    | Polskie brzmienie pytania o aktualizację      |
+| Frazy aktywujące                   | 990    | Polskie frazy i ich angielskie odpowiedniki   |
 
 ## Struktura dokumentu
 
@@ -418,8 +418,19 @@ Poniższa tabela jest źródłem prawdy dla mechanicznej kontroli - `scripts/lin
 | maintainer / maintainerzy                                                                                                                       | opiekun projektu                                   |
 | końcowy kandydat                                                                                                                                | końcowy etap                                       |
 | kandydat rozpoznania / kandydaci rozpoznania                                                                                                    | kandydat do sprawdzenia / kandydaci do sprawdzenia |
+| nie mycie                                                                                                                                       | niemycie                                           |
+| nie używanie                                                                                                                                    | nieużywanie                                        |
+| nie noszenie                                                                                                                                    | nienoszenie                                        |
+| nie zgłoszenie                                                                                                                                  | niezgłoszenie                                      |
+| szkolenie odnowieniowe                                                                                                                          | szkolenie odświeżające                             |
+| ważność (wypadku, zdarzenia)                                                                                                                    | powaga / nasilenie                                 |
+| kompromitować (bezpieczeństwa, integralności)                                                                                                   | naruszać / osłabiać                                |
+| ucieczka (substancji, gazu)                                                                                                                     | uwolnienie / wyciek                                |
+| dostać winę                                                                                                                                     | zostać obwinionym / ponieść winę                   |
 
 Wpis `pod` w tabeli dotyczy wyłącznie kalki opisu miejsca - `pod katalogiem` zamiast `w katalogu` - a stałe zwroty takie jak `pod kątem`, `pod względem` czy `pod opieką` są poprawne i nie podlegają zastąpieniu.
+
+Zaprzeczenie `nie` przed rzeczownikiem odczasownikowym zapisuje się łącznie - `niemycie`, `niezgłoszenie`, `nieużywanie` - bo rozdzielny zapis jest błędem ortograficznym.
 
 Ustalone nazwy własne, nazwy produktów i nazwy elementów architektury zachowuj w formie oryginalnej, na przykład Microsoft Fabric, Lakehouse, Warehouse, Power BI, workspace.
 

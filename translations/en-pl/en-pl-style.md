@@ -41,6 +41,10 @@ The same rule covers other completed outcomes the passive reports - `the file wa
 removed` and `the entry was added` render `plik został usunięty` and `wpis został
 dodany`.
 
+A source passive that assigns the informing or acting role stays passive in
+Polish - `you will be told X` renders `zostaniesz poinformowany o X`, never
+`powiesz X`, which swaps the actor and the recipient and changes the meaning.
+
 ## Actor And Verb Choice
 
 The personification rule in `translations/en-pl/en-pl-general.md` applies - artifacts
