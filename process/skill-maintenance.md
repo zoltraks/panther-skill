@@ -85,7 +85,7 @@ Read these files completely before starting maintenance work:
 2. `docs/MAINTENANCE.md` - directory roles, file naming, the registration contract, per-kind
    addition procedures, validation, encoding.
 3. `docs/STYLE.md` - prose and formatting rules for the skill's own files.
-4. `docs/VERSIONING.md` - the version field location and the bump-only-on-request policy.
+4. `docs/VERSIONING.md` - the version field location and the bump-per-change-set policy.
 5. `docs/CONTRIBUTING.md` - contribution rules, including AI-assisted contributions.
 6. `docs/SECURITY.md` - the update-path trust boundary and accepted postures.
 7. `README.md` - the human-facing overview and the directory tree that mirrors the layout.
@@ -118,9 +118,8 @@ file-encoding rules.
 
 Prose follows `docs/STYLE.md`.
 
-Bump the skill version only on explicit request, per `docs/VERSIONING.md` - when the change
-touched any skill document, propose the bump in the delivery report, naming the current
-and next version.
+Apply the version bump per `docs/VERSIONING.md` whenever the change set modified skill
+document contents - the delivery report names the previous and the new version.
 
 ## Validation
 

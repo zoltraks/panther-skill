@@ -24,6 +24,9 @@ collection - while still naming no operation: "use panther on the docs repositor
 Naming a target is not a task, so the request stays in enable mode with the target held
 as context for the next request.
 
+A purpose qualifier such as "for editorial purposes" is not a task either - it names a
+mode, not an operation, and the request stays in enable mode.
+
 A request that combines activation with a task is a task request - "use panther, write a
 quick note" enters document mode directly and this procedure does not run.
 
@@ -31,7 +34,8 @@ Ambiguity asks are rare - `mode-selection` fires only when the request mixes gen
 conflicting signals, such as an activation phrase joined to an operation verb whose
 object is missing.
 
-A named target without a named operation resolves to standby, never to a question.
+A named target without a named operation resolves to standby, never to a mode-selection
+question.
 
 A target whose own agent-facing rules define bare-request behavior confirms the same
 answer without any scan.
@@ -59,10 +63,16 @@ the task request.
 
 A target-scoped activation answers with a minimal standby instead: one or two lines
 confirming the skill is enabled on the named target, then the wait begins - no
-capability list and no questions.
+capability list.
 
-The standby may add a brief read-only survey of the target and proposed work - a
-proposal waits for a named operation and never executes on its own.
+The standby never scans or surveys the target to infer the intended task - guessing
+intent from the repository's state is analysis the request did not ask for.
+
+The reply confirms enablement and waits for the next request, or asks what to do.
+
+A read-only survey with proposed work belongs in the reply only when the request names
+that operation itself - "take a look around" asks for the survey, a purpose qualifier
+does not.
 
 A diagnostic flag folds into the opening sentence - "enabled in diagnostic mode" - and
 adds no intake-state preamble, since a bare activation has no pending surface to report.
@@ -73,6 +83,8 @@ Write the response in the language of the request.
 
 - No task classification, parameter resolution, scope detection, or encoding detection
   runs - the request named no task.
+- No read or scan of the named target runs - a bare activation does not open the target
+  to guess the task.
 - No rule files load beyond the router and this file - progressive disclosure stays lazy,
   the next request selects its own rule set.
 - A diagnostic or verbose flag adds `process/json-exchange.md` to the loaded set and

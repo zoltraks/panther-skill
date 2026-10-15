@@ -251,7 +251,7 @@ shipped file - an unmarked flag is a defect, not expected noise.
 The skill version lives in `SKILL.md` frontmatter under `metadata.version` and follows
 `docs/VERSIONING.md`.
 
-Bump it only on explicit user request, never as a side effect of a change.
+Bump it by one patch with every change set that modifies skill document contents.
 
 ## File Encoding
 

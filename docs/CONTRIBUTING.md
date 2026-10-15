@@ -40,7 +40,8 @@ The skill has no dependencies beyond `python3` and `git` - everything else is do
 - Follow [MAINTENANCE.md](./MAINTENANCE.md) for naming, registration, and layout rules.
 - Run `python3 scripts/test-scripts.py` before submitting - it covers all three validators.
 - The project runs no CI by design, so this local gate is the only regression check.
-- Bump the skill version only on request - `VERSIONING.md` reserves bumps for explicit asks.
+- Bump the skill version on every change to skill document contents - `VERSIONING.md`
+  defines the patch increment.
 - Review goes through the maintainer, with a second reviewer per `README.md`.
 - Keep `work/` research scratch out of tracked content - replace copied examples with links
   instead.

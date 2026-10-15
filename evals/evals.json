@@ -755,7 +755,8 @@
         "The agent read the governing set - SKILL.md, docs/MAINTENANCE.md, docs/STYLE.md, docs/VERSIONING.md, docs/CONTRIBUTING.md, docs/SECURITY.md, README.md, AGENTS.md, scripts/README.md - before planning the edit.",
         "No parameter-resolution questions were asked, and no languages/, types/, or templates/ files were loaded for the skill's own documents.",
         "Every enumeration of the changed component was updated in one pass - SKILL.md registry, README.md tree, and affected contents tables.",
-        "The agent ran validate-skill.py, check-references.py, and check-contents.py after the change."
+        "The agent ran validate-skill.py, check-references.py, and check-contents.py after the change.",
+        "The change set bumped metadata.version by one patch, and the delivery report named the previous and the new version."
       ]
     },
     {
@@ -1239,9 +1240,9 @@
       "expectations": [
         "The agent ran the once-per-session update check against the skill's own repository before other steps.",
         "The named target was held as context and no mode-selection question was asked - a named repository without an operation resolves to standby.",
-        "No document-mode rule files were loaded beyond the router and the activation procedure - the reply may carry a brief read-only survey of the target and proposed work, never a write.",
-        "No file was created or modified.",
-        "Suggested work waits for a named operation - a proposal never executes on its own."
+        "No document-mode rule files were loaded beyond the router and the activation procedure, and no files of the named target were read or surveyed to infer the task.",
+        "The reply confirms enablement and waits or asks what to do - no capability list and no proposed work items.",
+        "No file was created or modified."
       ]
     },
     {
@@ -1441,9 +1442,10 @@
     {
       "id": 118,
       "prompt": "Use panther on the reports repository - take a look around.",
-      "expected_output": "A standby or proposal response: a brief read-only survey of the target is allowed, every suggested work item waits for a named operation, and nothing is written.",
+      "expected_output": "A survey response: the request itself asks the agent to look around, so a brief read-only survey with proposed work is the named operation - every suggested work item waits for a follow-up instruction, and nothing is written.",
       "files": [],
       "expectations": [
+        "The request itself named the look-around operation, so a brief read-only survey of the target ran instead of a bare standby reply.",
         "The vague request was not classified into a mutating task - no Edit, Create, or Reformat work started.",
         "The reply analyzes or proposes concretely - suggestions name the file and the change they would make.",
         "No file was created or modified.",
@@ -1486,6 +1488,18 @@
         "Interpolation placeholders such as {0} and numeric or unit tokens are verified for parity inside each paired field.",
         "A source-word residue scan excludes tokens legal in the target language rather than reporting them as leftovers.",
         "The report delivers a fidelity verdict and findings in the document-audit format."
+      ]
+    },
+    {
+      "id": 122,
+      "prompt": "Work on the billing-service repository - use panther for editorial purposes.",
+      "expected_output": "A minimal standby reply: the update check runs, the skill confirms it is enabled on the named repository in one or two lines, then waits or asks what to do - no target survey and no inferred proposals.",
+      "files": [],
+      "expectations": [
+        "The purpose qualifier was treated as a mode, not an operation - the request stayed in enable mode.",
+        "No files of the named target were read, listed, or surveyed to guess the intended task.",
+        "The reply confirms enablement and waits for the next request or asks what to do - no capability list and no proposed work items.",
+        "No file was created or modified."
       ]
     }
   ]

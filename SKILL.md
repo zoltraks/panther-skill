@@ -22,7 +22,7 @@ compatibility: >-
   Claude Desktop, Windsurf, Devin, and similar). Requires the ability to read
   and write text files. No network access required.
 metadata:
-  version: "1.1.3"
+  version: "1.1.4"
   author: Filip Golewski
 allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob Grep
 ---
@@ -74,7 +74,7 @@ You do not normalize a document that has its own conventions.
 
 - **Enable mode** - the request activates the skill without naming a task: "use skill",
   "run panther", "activate the skill", or "work on <project>" with no operation named.
-  Follow `process/skill-activation.md`, which confirms readiness, may propose work, and waits.
+  Follow `process/skill-activation.md`, which confirms readiness and waits.
 - **Document mode** - the request targets a document to produce, edit, reformat, translate,
   audit, or describe. Follow the rest of this router and `process/document-workflow.md`.
 - **Maintenance mode** - the request targets this repository's own files. Follow

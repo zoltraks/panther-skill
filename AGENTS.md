@@ -40,8 +40,8 @@ Keep each rule in its owning document and link to it instead of duplicating it.
 - Never embed example files, paths, or project names supplied with a request - create
   anonymized skill-owned examples instead, per `docs/MAINTENANCE.md`.
 - Keep `evals/evals.json` in sync when a change alters skill behavior.
-- Never bump `metadata.version` as a side effect of a change - the skill version moves only
-  on an explicit request, per `docs/VERSIONING.md`.
+- Bump `metadata.version` by one patch with every change set that modifies skill document
+  contents, per `docs/VERSIONING.md` - a change set is the edits delivered together.
 - A request that names no concrete operation authorizes analysis and proposals only -
   files in this repository change on an explicit, confirmed instruction.
 - Do not claim validation that did not run.

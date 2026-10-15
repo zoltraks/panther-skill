@@ -32,14 +32,13 @@ changes.
 
 ## When To Bump
 
-A bump is applied when the user asks for it.
+Every change set that modifies skill document contents applies a bump - the version moves
+with each delivery, not only on request.
 
-Whenever maintenance changes any document that is part of the skill, propose a version
-bump in the delivery report - the proposal names the current version and the next version
-the increment rules produce.
+A change set is the group of edits committed or delivered together - it raises the
+version once, no matter how many files it touches.
 
-The bump itself happens only on an explicit request or an accepted proposal - never as an
-unannounced side effect.
+The delivery report names the previous version and the new version.
 
 ## Release Anchors
 

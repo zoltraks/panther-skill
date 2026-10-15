@@ -184,11 +184,13 @@ enabled state, and answers with a compact confirmation that the skill is enabled
 support - a short list of the capability families, then it waits.
 
 An activation that names a working repository or directory but no operation is the same
-standby scoped to that target - a minimal confirmation that may add a brief read-only
-survey and proposed work, then the wait.
+standby scoped to that target - a minimal confirmation, then the wait.
 
-A proposal never executes on its own - the skill changes files only on a request that
-names the operation and the target.
+The standby never surveys the target to infer the intended task - it waits for the next
+request or asks what to do, and a read-only survey with proposed work answers only a
+request that itself asks to look around.
+
+The skill changes files only on a request that names the operation and the target.
 
 No parameter questions, task classification, or document machinery runs until a task request
 arrives.
