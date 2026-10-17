@@ -12,6 +12,15 @@ These scripts support deterministic production of documents and maintenance of P
 
 They do not modify documents beyond the specific task each tool performs.
 
+## Contents
+
+| Section          | Line | What it covers                           |
+|------------------|------|------------------------------------------|
+| Tool Classes     | 24   | Tool groups and when to run them         |
+| Commands         | 91   | Per-tool usage, flags, and output        |
+| Validation Order | 393  | Recommended run sequence                 |
+| Limitations      | 436  | Known parsing limits and validator scope |
+
 ## Tool Classes
 
 ### Document-Production Tools
@@ -285,6 +294,10 @@ A type file without a section table reports an open set and exits `0`.
 
 `--language` points at a `languages/<code>.md` file so localized headings match the
 canonical English names - a Polish `Decyzje` heading satisfies the `Decisions` section.
+
+Headings match a canonical name by prefix when the remainder looks like a version or
+placeholder - `## Version 1.2` and `## Version X.Y.Z` satisfy `Version`, and the same
+prefix rule applies to localized names such as `## Wersja 1.2`.
 
 `--type` also accepts a bare type slug resolved against `types/`, and `--language` a bare
 language code resolved against `languages/`.

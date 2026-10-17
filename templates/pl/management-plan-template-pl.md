@@ -12,7 +12,7 @@ Status: szkic | zatwierdzony
 <Jakim obszarem zarządza ten plan i jaki ma związek z głównym planem
 zarządzania projektem.>
 
-## Metodyka
+## Metodyka i podejście
 
 <Jak obszar będzie zarządzany - podejście, techniki i standardy.>
 

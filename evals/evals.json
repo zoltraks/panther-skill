@@ -1527,6 +1527,31 @@
         "No enablement response, capability table, or maintenance menu appeared before the referent resolved.",
         "No file was created or modified."
       ]
+    },
+    {
+      "id": 125,
+      "prompt": "Add a page documenting the retry helpers to this VitePress site.",
+      "expected_output": "A lowercase kebab-case Markdown page under the site's source root with frontmatter matching the neighboring pages, and no .vitepress/config.* change because routing is file-based.",
+      "files": [],
+      "expectations": [
+        "The agent detected the vitepress-site scope before writing.",
+        "The page sits under the configured srcDir when the config sets one.",
+        "The page carries frontmatter consistent with the neighboring pages.",
+        "Nothing inside .vitepress/cache/ or .vitepress/dist/ was created or edited.",
+        "No navbar or sidebar entry was added unless the request asked for it."
+      ]
+    },
+    {
+      "id": 126,
+      "prompt": "Fix the typo in the second paragraph of this AsciiDoc document and leave everything else alone.",
+      "expected_output": "A minimal diff that changes only the misspelled word - AsciiDoc heading markers, table delimiters, and attribute lines stay untouched.",
+      "files": [],
+      "expectations": [
+        "The agent loaded conventions/asciidoc-documents.md before editing.",
+        "The diff touches only the requested spot - no reformatting, reflow, or normalization of untouched lines.",
+        "AsciiDoc syntax was preserved as AsciiDoc - no conversion to Markdown constructs.",
+        "The file's encoding and line endings were preserved."
+      ]
     }
   ]
 }

@@ -87,7 +87,7 @@ Translation changes the language of the document, never its data formats.
 ## Vocabulary And Register
 
 German loanwords in the source map back to their canonical English forms - `Commit`,
-`Pull Request`, `Merge`, `Deployment`, `Endpoint` stay English, never re-englised into
+`Pull Request`, `Merge`, `Deployment`, `Endpoint` stay English, never re-englized into
 coinages.
 
 German compounds resolve to the glossary's headword before rendering - `Risikoregister`

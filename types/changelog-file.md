@@ -51,7 +51,7 @@ why it matters.
 
 | Section  | Requirement |
 |----------|-------------|
-| Changes  | recommended |
+| Changes  | optional    |
 | Version  | recommended |
 | Added    | optional    |
 | Improved | optional    |

@@ -243,7 +243,8 @@ For a personal install across all projects, use `~/.claude/skills/panther-skill/
 
 **Other Agents**
 
-Agents that follow the shared skills convention load project skills from `.agents/skills/`:
+Agents that follow the shared skills convention - Antigravity, Cursor, Pi, and
+similar tools - load project skills from `.agents/skills/`:
 
 ```
 your-project/
@@ -267,7 +268,7 @@ The pull merges upstream content without cryptographic verification.
 The update verdict reports `tip_sha` and `tip_date` details for the upstream tip, so the new
 state can be reviewed and pinned to a specific commit before pulling.
 
-Approve only trusted upstreams, and review `git log @{u}..` diffs before pulling when unsure.
+Approve only trusted upstreams, and review `git log HEAD..@{u}` diffs before pulling when unsure.
 
 ## Usage
 
@@ -353,10 +354,10 @@ follow `process/describe-response.md`.
       └───────────────┬───────────────┘       └───────────────────────┘
                       │ Yes
                       ▼
-          ┌───────────────────────┐
-          │ Session Update Check  │
-          │ scripts/check-update.py │
-          └───────────┬───────────┘
+        ┌───────────────────────────┐
+        │   Session Update Check    │
+        │ scripts/check-update.py   │
+        └─────────────┬─────────────┘
                       │
                       ▼
       ┌───────────────────────────────┐
@@ -368,7 +369,8 @@ follow `process/describe-response.md`.
                       ▼
    ┌────────────────────────────────────┐
    │           Classify Task            │
-   │ create, edit, reformat, translate, │
+   │ create, edit, reformat,            │
+   │ translate, revise, derive,         │
    │ discover, audit, describe          │
    └──────────────────┬─────────────────┘
                       │
@@ -385,14 +387,14 @@ follow `process/describe-response.md`.
                       ▼
      ┌──────────────────────────────────┐
      │   Detect Document Conventions    │
-     │ scripts/detect-encoding.py         │
+     │ scripts/detect-encoding.py       │
      │ conventions/markdown-dialects.md │
      └────────────────┬─────────────────┘
                       │
                       ▼
       ┌───────────────────────────────┐
       │ Detect Project Layout (Scope) │
-      │ scripts/detect-scope.py         │
+      │ scripts/detect-scope.py       │
       │ scopes/<scope>.md             │
       └───────────────┬───────────────┘
                       │
@@ -419,15 +421,15 @@ follow `process/describe-response.md`.
   └───────────────────┬───────────────────┘
                       │
                       ▼
-       ┌────────────────────────────┐
-       │   Mechanical Validation    │
-       │ scripts/check-document.py    │
-       │ scripts/format-table.py      │
-       │ scripts/reflow-prose.py      │
-       │ scripts/validate-document.py │
-       │ scripts/check-sections.py    │
-       │ scripts/diff-content.py      │
-       └──────────────┬─────────────┘
+      ┌───────────────────────────────┐
+      │     Mechanical Validation     │
+      │ scripts/check-document.py     │
+      │ scripts/format-table.py       │
+      │ scripts/reflow-prose.py       │
+      │ scripts/validate-document.py  │
+      │ scripts/check-sections.py     │
+      │ scripts/diff-content.py       │
+      └───────────────┬───────────────┘
                       │
                       ▼
    ┌────────────────────────────────────┐
@@ -727,8 +729,6 @@ MIT - see [LICENSE](./LICENSE).
 ## Credits
 
 Built by Filip Golewski.
-
-If you use this skill in a project, a link back is appreciated but not required.
 
 Made at **KWAS #42**, a meeting at ATARI MUZEUM in Poznań, on 19 September 2026.
 

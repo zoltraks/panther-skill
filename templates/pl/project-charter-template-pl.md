@@ -11,7 +11,7 @@ Status: szkic | zatwierdzona
 **Kierownik projektu:** <nazwisko>
 **Data karty:** RRRR-MM-DD
 
-## Uzasadnienie
+## Cel i uzasadnienie
 
 <Dlaczego projekt powstaje i jaką potrzebę biznesową zaspokaja.>
 

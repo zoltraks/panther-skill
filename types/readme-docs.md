@@ -56,7 +56,7 @@ The canonical skeleton, adjusted to the request:
 
 | Section            | Requirement |
 |--------------------|-------------|
-| Overview           | recommended |
+| Overview           | optional    |
 | Documentation      | required    |
 | Project Guidelines | recommended |
 | Repository Layout  | optional    |

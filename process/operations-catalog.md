@@ -60,7 +60,7 @@ width when the request's language changes the cell text.
 | Create    | work breakdown structure | WBS outlines and dictionaries                                                   |
 | Edit      | document edit            | in-place edits honoring the document's own conventions                          |
 | Edit      | section insertion        | sections added at canonical positions per type                                  |
-| Edit      | translation revision     | minimal-diff corrections to an existing translation                             |
+| Revise    | translation revision     | minimal-diff corrections to an existing translation                             |
 | Reformat  | table formatting         | source-width table alignment                                                    |
 | Reformat  | comment alignment        | shared `#` comment column per plain-text block                                  |
 | Reformat  | sentence splitting       | one sentence per logical line                                                   |

@@ -88,7 +88,7 @@ Translation changes the language of the document, never its data formats.
 ## Vocabulary And Register
 
 Polish anglicisms in the source map back to their canonical English forms - `endpoint`,
-`commit`, `pull request`, `due diligence`, `roadmap` stay English, never re-englised into
+`commit`, `pull request`, `due diligence`, `roadmap` stay English, never re-englized into
 coinages.
 
 Declined Polish term forms resolve to the glossary's headword before rendering - `rejestru

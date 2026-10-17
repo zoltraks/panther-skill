@@ -120,8 +120,8 @@ the change log per `register-log`, and meeting decisions go to `meeting-minutes`
 | Quality Requirements  | optional    |
 | System Architecture   | recommended |
 | Component Diagram     | optional    |
-| Functional Reqs       | recommended |
-| Non-Functional Reqs   | optional    |
+| Functional Requirements      | recommended |
+| Non-Functional Requirements  | optional    |
 | Use Cases             | optional    |
 | Design Decisions      | recommended |
 | Implementation Phases | optional    |

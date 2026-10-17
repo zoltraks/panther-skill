@@ -22,7 +22,7 @@ compatibility: >-
   Claude Desktop, Windsurf, Devin, and similar). Requires the ability to read
   and write text files. No network access required.
 metadata:
-  version: "1.1.5"
+  version: "1.1.6"
   author: Filip Golewski
 allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob Grep
 ---
@@ -372,8 +372,8 @@ exists, then every matching `<pair>-<category>.md`:
 - **`translations/de-en/`** - German to English direction rules and glossaries.
 - **`translations/pl-de/`** - Polish to German direction rules and glossaries.
 - **`translations/de-pl/`** - German to Polish direction rules and glossaries.
-- Category slugs shared by every pair directory: `general`, `style`, `software`,
-  `project`, `finance`, `legal`, `medical`, `electrical`, `construction`.
+- `general`, `style`, `software`, `project`, `finance`, `legal`, `medical`,
+  `electrical`, `construction` - stable slugs, same subject across pairs.
 
 A `<pair>-style.md` file carries sentence-level adaptation rules - aspect, voice, actor verbs,
 verb choice, fixed idioms, hedged verdicts - and loads between the direction contract and the

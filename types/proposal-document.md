@@ -85,7 +85,8 @@ afterward, record follow-up work in a `decision-record` or an implementation doc
 |-------------------------|-------------|
 | Status                  | optional    |
 | Summary                 | required    |
-| Background              | recommended |
+| Background              | optional    |
+| Background and Context  | recommended |
 | Proposal                | required    |
 | Alternatives Considered | recommended |
 | Risks and Mitigations   | recommended |

@@ -73,7 +73,7 @@ code.
 
 Each language file carries YAML frontmatter with `code`, `name`, and `native-name` fields.
 
-Localised templates are named `templates/<code>/<type>-template-<code>.md` - the language code
+Localized templates are named `templates/<code>/<type>-template-<code>.md` - the language code
 in the filename makes the variant self-describing.
 
 Translation pair directories are named `translations/<pair>/` with ISO 639-1 codes
@@ -83,9 +83,9 @@ Translation files inside a pair directory are named `translations/<pair>/<pair>-
 
 Direction rules use `translations/<pair>/<pair>-general.md`.
 
-Glossaries use a stable category slug shared by every pair directory (`software`, `project`,
+Glossaries use a stable category slug per subject (`software`, `project`,
 `finance`, `legal`, `medical`, `electrical`, `construction`)
-so the same subject keeps the same filename across languages.
+so the same subject keeps the same filename in every pair directory that carries it.
 
 Tools are named `scripts/<verb>-<object>.py`, for example `detect-encoding.py` or
 `format-table.py`.
@@ -114,7 +114,7 @@ Register every new rule file in `SKILL.md` with a line saying what it covers and
 it, under the section matching its directory.
 
 List every new template pair in the matching `types/<type>.md` file as a `**Templates**` bullet
-list, see the Localised Resources rule in `docs/STYLE.md`.
+list, see the Localized Resources rule in `docs/STYLE.md`.
 
 Mirror every layout change in the `README.md` directory tree.
 

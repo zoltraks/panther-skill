@@ -51,7 +51,7 @@ For informal scratch notes use `types/quick-note.md` instead.
 
 | Section         | Requirement |
 |-----------------|-------------|
-| Meeting Details | recommended |
+| Meeting Details | unusual     |
 | Attendees       | recommended |
 | Absentees       | optional    |
 | Agenda          | recommended |

@@ -25,23 +25,23 @@ Zasady opisane poniżej stosują się również do samego tego dokumentu.
 | Numeracja sekcji                   | 96     | Zasady numerowania sekcji                     |
 | Zasady spisu treści                | 108    | Kiedy dodawać spis treści                     |
 | Akapity i zdania                   | 122    | Budowa akapitów i konstrukcja zdania          |
-| Zawijanie wierszy                  | 168    | Wiersze logiczne i twarde łamania             |
-| Listy                              | 192    | Punktory, numeracja i odstępy                 |
-| Puste wiersze i odstępy            | 214    | Zasady odstępów                               |
-| Bloki kodu                         | 228    | Ogrodzenia, znaczniki i kod liniowy           |
-| Formatowanie w treści              | 242    | Cudzysłowy, pogrubienia i kursywa             |
-| Średniki                           | 268    | Zakaz średników i zdań sklejonych przecinkiem |
-| Znaki specjalne                    | 296    | Znaki ramek, emoji i znaki specjalne          |
-| Słownictwo polskie                 | 314    | Preferowane terminy i kalki                   |
-| Nazwy sekcji według typu dokumentu | 468    | Polskie nazwy sekcji i elementy typów         |
-| Cechy dialektów                    | 781    | Numeracja rozdziałów i pseudo-nagłówki        |
-| Tabele                             | 798    | Wyrównanie według źródła                      |
-| Nazwy plików                       | 920    | Nazywanie nowych plików dokumentacji          |
-| Przykład                           | 930    | Przykład poprawny i niepoprawny               |
-| Kontrola przed dostarczeniem       | 964    | Kontrole językowe przed dostarczeniem         |
-| Utrzymanie plików                  | 974    | Kodowanie i złamania wierszy                  |
-| Pytanie o aktualizację             | 984    | Polskie brzmienie pytania o aktualizację      |
-| Frazy aktywujące                   | 990    | Polskie frazy i ich angielskie odpowiedniki   |
+| Zawijanie wierszy                  | 166    | Wiersze logiczne i twarde łamania             |
+| Listy                              | 190    | Punktory, numeracja i odstępy                 |
+| Puste wiersze i odstępy            | 212    | Zasady odstępów                               |
+| Bloki kodu                         | 226    | Ogrodzenia, znaczniki i kod liniowy           |
+| Formatowanie w treści              | 240    | Cudzysłowy, pogrubienia i kursywa             |
+| Średniki                           | 266    | Zakaz średników i zdań sklejonych przecinkiem |
+| Znaki specjalne                    | 294    | Znaki ramek, emoji i znaki specjalne          |
+| Słownictwo polskie                 | 312    | Preferowane terminy i kalki                   |
+| Nazwy sekcji według typu dokumentu | 465    | Polskie nazwy sekcji i elementy typów         |
+| Cechy dialektów                    | 799    | Numeracja rozdziałów i pseudo-nagłówki        |
+| Tabele                             | 816    | Wyrównanie według źródła                      |
+| Nazwy plików                       | 934    | Nazywanie nowych plików dokumentacji          |
+| Przykład                           | 944    | Przykład poprawny i niepoprawny               |
+| Kontrola przed dostarczeniem       | 978    | Kontrole językowe przed dostarczeniem         |
+| Utrzymanie plików                  | 988    | Kodowanie i złamania wierszy                  |
+| Pytanie o aktualizację             | 998    | Polskie brzmienie pytania o aktualizację      |
+| Frazy aktywujące                   | 1004   | Polskie frazy i ich angielskie odpowiedniki   |
 
 ## Struktura dokumentu
 
@@ -159,11 +159,9 @@ Wyliczenie dłuższe niż cztery człony lub zawierające zagnieżdżenie zapisu
 
 Nie zostawiaj w zdaniu elipsy - każdy człon wymagany przez sens ma być zapisany wprost.
 
-Korelatywne "to" otwierające zdanie podrzędne wymaga przecinka, na przykład "polega na
-tym, gdzie..." albo "sprowadza się do tego, że...".
+Korelatywne "to" otwierające zdanie podrzędne wymaga przecinka, na przykład "polega na tym, gdzie..." albo "sprowadza się do tego, że...".
 
-Stan opisuj czasownikiem niedokonanym, na przykład "jest sformalizowany", a formę
-dokonaną "został" zachowaj dla dokonanych wyników i zdarzeń.
+Stan opisuj czasownikiem niedokonanym, na przykład "jest sformalizowany", a formę dokonaną "został" zachowaj dla dokonanych wyników i zdarzeń.
 
 ## Zawijanie wierszy
 
@@ -450,8 +448,7 @@ Nie skracaj wyrazu "wierszy" do "w.".
 
 Jedno pojęcie opisuj jedną nazwą w całym dokumencie.
 
-Elementy policzalne nazywaj rzeczownikami policzalnymi, na przykład "wpisy
-.gitignore" - zodrębniała forma jak "ignorowanie" nazywa mechanizm, nie pozycję.
+Elementy policzalne nazywaj rzeczownikami policzalnymi, na przykład "wpisy .gitignore" - zodrębniała forma jak "ignorowanie" nazywa mechanizm, nie pozycję.
 
 Przy wyborze nazwy kolejność to: ustalony termin polski, utrwalony termin angielski w formie nieodmienianej z polskim opisem przy pierwszym użyciu, na końcu opis polski.
 
@@ -519,14 +516,14 @@ Dobieraj polską nazwę sekcji według typu dokumentu z poniższej tabeli.
 | daily-plan               | Version History                    | Historia wersji                        |
 | daily-plan               | Contents                           | Spis treści                            |
 | decision-record          | Status                             | Stan                                   |
-| decision-record          | Context                            | Kontekst                               |
+| decision-record          | Context and Problem Statement      | Kontekst i opis problemu               |
 | decision-record          | Decision Drivers                   | Czynniki decyzyjne                     |
 | decision-record          | Considered Options                 | Rozważane opcje                        |
 | decision-record          | Decision Outcome                   | Wynik decyzji                          |
 | decision-record          | Consequences                       | Konsekwencje                           |
 | decision-record          | Positive Consequences              | Konsekwencje pozytywne                 |
 | decision-record          | Negative Consequences              | Konsekwencje negatywne                 |
-| decision-record          | Pros and Cons of Options           | Zalety i wady opcji                    |
+| decision-record          | Pros and Cons of the Options       | Zalety i wady opcji                    |
 | decision-record          | Links                              | Linki                                  |
 | decision-record          | Supersedes                         | Zastępuje                              |
 | engineering-standard     | Purpose                            | Przeznaczenie                          |
@@ -562,15 +559,25 @@ Dobieraj polską nazwę sekcji według typu dokumentu z poniższej tabeli.
 | engineering-standard     | Hygiene                            | Higiena                                |
 | engineering-standard     | General Principles                 | Zasady ogólne                          |
 | engineering-standard     | Sources                            | Źródła                                 |
+| format-specification     | Document Information               | Informacje o dokumencie                |
+| format-specification     | Version History                    | Historia wersji                        |
+| format-specification     | Quick Overview                     | Krótki przegląd                        |
+| format-specification     | Design Principles                  | Zasady projektowe                      |
+| format-specification     | Structure                          | Struktura                              |
+| format-specification     | Implementation Notes               | Uwagi implementacyjne                  |
+| management-plan          | Purpose                            | Przeznaczenie                          |
 | management-plan          | Methodology                        | Metodyka                               |
+| management-plan          | Methodology and Approach           | Metodyka i podejście                   |
 | management-plan          | Roles and Responsibilities         | Role i odpowiedzialności               |
 | management-plan          | Thresholds and Tolerances          | Progi i tolerancje                     |
 | management-plan          | Cadence                            | Częstotliwość przeglądów               |
 | management-plan          | Process                            | Proces                                 |
+| management-plan          | Cadence and Process                | Częstotliwość przeglądów i proces      |
 | management-plan          | Tools                              | Narzędzia                              |
 | management-plan          | Reporting                          | Raportowanie                           |
 | management-plan          | Related Plans                      | Plany powiązane                        |
 | management-plan          | Related Registers                  | Powiązane rejestry                     |
+| management-plan          | Related Plans and Registers        | Plany i rejestry powiązane             |
 | management-plan          | Change Control                     | Kontrola zmian                         |
 | management-plan          | Master Plan                        | Plan główny                            |
 | meeting-minutes          | Meeting Details                    | Dane zebrania                          |
@@ -594,13 +601,14 @@ Dobieraj polską nazwę sekcji według typu dokumentu z poniższej tabeli.
 | message-document         | Document Information               | Informacje o dokumencie                |
 | message-document         | Version History                    | Historia wersji                        |
 | message-document         | Contents                           | Spis treści                            |
-| project-charter          | Purpose and Justification          | Uzasadnienie                           |
+| project-charter          | Purpose and Justification          | Cel i uzasadnienie                     |
 | project-charter          | Measurable Objectives              | Mierzalne cele                         |
 | project-charter          | Success Criteria                   | Kryteria sukcesu                       |
 | project-charter          | High-Level Requirements            | Wymagania ogólne                       |
 | project-charter          | Scope Boundaries                   | Granice zakresu                        |
 | project-charter          | In Scope                           | W zakresie                             |
 | project-charter          | Out of Scope                       | Poza zakresem                          |
+| project-charter          | Deliverables and Milestones        | Rezultaty i kamienie milowe            |
 | project-charter          | Deliverables                       | Rezultaty                              |
 | project-charter          | Milestones                         | Kamienie milowe                        |
 | project-charter          | High-Level Budget                  | Budżet                                 |
@@ -620,8 +628,8 @@ Dobieraj polską nazwę sekcji według typu dokumentu z poniższej tabeli.
 | project-document         | Quality Requirements               | Wymagania jakościowe                   |
 | project-document         | System Architecture                | Architektura systemu                   |
 | project-document         | Component Diagram                  | Diagram komponentów                    |
-| project-document         | Functional Reqs                    | Wymagania funkcjonalne                 |
-| project-document         | Non-Functional Reqs                | Wymagania niefunkcjonalne              |
+| project-document         | Functional Requirements            | Wymagania funkcjonalne                 |
+| project-document         | Non-Functional Requirements        | Wymagania niefunkcjonalne              |
 | project-document         | Use Cases                          | Przypadki użycia                       |
 | project-document         | Design Decisions                   | Decyzje architektoniczne               |
 | project-document         | Implementation Phases              | Fazy realizacji                        |
@@ -632,6 +640,7 @@ Dobieraj polską nazwę sekcji według typu dokumentu z poniższej tabeli.
 | proposal-document        | Status                             | Stan                                   |
 | proposal-document        | Summary                            | Podsumowanie                           |
 | proposal-document        | Background                         | Tło                                    |
+| proposal-document        | Background and Context             | Tło i kontekst                         |
 | proposal-document        | Proposal                           | Propozycja                             |
 | proposal-document        | Alternatives Considered            | Rozważane alternatywy                  |
 | proposal-document        | Risks and Mitigations              | Ryzyka i środki zaradcze               |
@@ -699,6 +708,8 @@ Dobieraj polską nazwę sekcji według typu dokumentu z poniższej tabeli.
 | readme-skill             | Credits                            | Autorzy                                |
 | register-log             | Purpose                            | Przeznaczenie                          |
 | register-log             | Scoring Definitions                | Definicje skali                        |
+| register-log             | Notes                              | Uwagi                                  |
+| register-log             | Register                           | Rejestr                                |
 | register-log             | Probability                        | Prawdopodobieństwo                     |
 | register-log             | Impact                             | Skutek                                 |
 | register-log             | Score                              | Wynik                                  |
@@ -743,6 +754,16 @@ Dobieraj polską nazwę sekcji według typu dokumentu z poniższej tabeli.
 | status-report            | Top Risks and Issues               | Najważniejsze ryzyka i problemy        |
 | status-report            | Planned Next Period                | Plan na kolejny okres                  |
 | status-report            | Decisions Needed                   | Wymagane decyzje                       |
+| summary-document         | Purpose                            | Przeznaczenie                          |
+| summary-document         | Abstract                           | Streszczenie                           |
+| summary-document         | Summary                            | Podsumowanie                           |
+| summary-document         | Detailed Abstract                  | Streszczenie szczegółowe               |
+| summary-document         | Omitted Material                   | Pominięty materiał                     |
+| supplement-document      | Purpose                            | Przeznaczenie                          |
+| supplement-document      | Continuation Scope                 | Zakres kontynuacji                     |
+| supplement-document      | Extended Content                   | Rozszerzona treść                      |
+| supplement-document      | Continued Entries                  | Kontynuowane pozycje                   |
+| supplement-document      | Updated Conclusions                | Zaktualizowane wnioski                 |
 | technical-document       | Purpose                            | Przeznaczenie                          |
 | technical-document       | Overview                           | Przegląd                               |
 | technical-document       | Prerequisites                      | Wymagania wstępne                      |
@@ -813,14 +834,11 @@ Rozpoczynaj każdy wiersz - nagłówek, separator i dane - pojedynczą kreską p
 
 Podwójna kreska na początku wiersza (`||`) jest interpretowana jako pusta pierwsza komórka.
 
-Narzędzie formatujące zamienia ją wtedy w dodatkową pustą kolumnę, co po cichu psuje strukturę
-tabeli, a nie tylko ją rozjeżdża.
+Narzędzie formatujące zamienia ją wtedy w dodatkową pustą kolumnę, co po cichu psuje strukturę tabeli, a nie tylko ją rozjeżdża.
 
-Celowo pustą pierwszą komórkę zapisuj jako `| |` i tylko wtedy, gdy tabela jej rzeczywiście
-potrzebuje.
+Celowo pustą pierwszą komórkę zapisuj jako `| |` i tylko wtedy, gdy tabela jej rzeczywiście potrzebuje.
 
-Pustą komórkę wolno zapisać wyłącznie w kolumnie zadeklarowanej przez wiersz separatora -
-jej komórka separatora musi zawierać co najmniej jeden łącznik.
+Pustą komórkę wolno zapisać wyłącznie w kolumnie zadeklarowanej przez wiersz separatora - jej komórka separatora musi zawierać co najmniej jeden łącznik.
 
 Kolumna pusta w każdym wierszu, łącznie z nagłówkiem, nigdy nie jest dozwolona - usuń ją.
 
@@ -830,8 +848,7 @@ Wiersz separatora umieszczaj bezpośrednio po wierszu nagłówka.
 
 Wiersz separatora zawiera wyłącznie łączniki i kreski pionowe.
 
-Każda komórka wiersza separatora zawiera co najmniej jeden łącznik - komórka złożona z
-samych odstępów nie deklaruje kolumny.
+Każda komórka wiersza separatora zawiera co najmniej jeden łącznik - komórka złożona z samych odstępów nie deklaruje kolumny.
 
 Łączniki przylegają do kresek pionowych, bez odstępów między nimi.
 

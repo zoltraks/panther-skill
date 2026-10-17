@@ -87,6 +87,7 @@ Write multi-byte values with explicit endianness notes in prose under the table.
 | Version History      | required    |
 | Quick Overview       | recommended |
 | Design Principles    | recommended |
+| Structure            | recommended |
 | Implementation Notes | optional    |
 
 One `Structure` section per structural element - names vary with the format and are never

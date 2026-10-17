@@ -88,19 +88,19 @@ adjust the naming - the scope wins for placement.
 
 ## Section Names
 
-| Section                  | Requirement |
-|--------------------------|-------------|
-| Status                   | optional    |
-| Context                  | recommended |
-| Decision Drivers         | recommended |
-| Considered Options       | recommended |
-| Decision Outcome         | required    |
-| Consequences             | recommended |
-| Positive Consequences    | optional    |
-| Negative Consequences    | optional    |
-| Pros and Cons of Options | optional    |
-| Links                    | optional    |
-| Supersedes               | unusual     |
+| Section                       | Requirement |
+|-------------------------------|-------------|
+| Status                        | optional    |
+| Context and Problem Statement | recommended |
+| Decision Drivers              | recommended |
+| Considered Options            | recommended |
+| Decision Outcome              | required    |
+| Consequences                  | recommended |
+| Positive Consequences         | optional    |
+| Negative Consequences         | optional    |
+| Pros and Cons of the Options  | optional    |
+| Links                         | optional    |
+| Supersedes                    | unusual     |
 
 `Status` and `Supersedes` live in the metadata block below the H1, not as sections.
 

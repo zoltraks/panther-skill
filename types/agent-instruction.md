@@ -96,7 +96,7 @@ Preserve payload interiors on edit - reformat them only when the request covers 
 | Section         | Requirement |
 |-----------------|-------------|
 | Purpose         | required    |
-| Audiences       | recommended |
+| Audiences       | optional    |
 | Use Cases       | recommended |
 | Decision Points | recommended |
 | Procedures      | required    |

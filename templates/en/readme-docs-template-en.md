@@ -2,6 +2,8 @@
 
 This repository hosts documents covering <topic>.
 
+## Documentation
+
 Documents are located in the `docs/` directory.
 
 ## Project Guidelines

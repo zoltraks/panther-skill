@@ -60,7 +60,7 @@ The canonical skeleton, adjusted to the request:
 
 | Section               | Requirement |
 |-----------------------|-------------|
-| Overview              | recommended |
+| Overview              | optional    |
 | About This Repository | optional    |
 | Contents              | recommended |
 | Usage                 | optional    |

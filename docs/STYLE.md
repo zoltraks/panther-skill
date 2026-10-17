@@ -30,7 +30,7 @@ is not wrapped to 100 characters.
 | Code And Inline Formatting | 175  | Fences, code spans, and semicolons              |
 | Tables                     | 281  | Source-width alignment and automated formatting |
 | Characters And Language    | 464  | Box-drawing, emoji, and per-language rules      |
-| File References            | 490  | Relative paths and localised resources          |
+| File References            | 490  | Relative paths and localized resources          |
 | Skill Requirements         | 518  | Frontmatter and progressive disclosure          |
 | Maintenance                | 579  | Pointer to the skill extension rules            |
 
@@ -512,7 +512,7 @@ Use backtick code spans around file paths in both prose and table cells.
 
 Examples: `languages/en.md`, `types/project-document.md`, `process/document-workflow.md`.
 
-### Localised Resources
+### Localized Resources
 
 Reference language-variant files as a bullet list under a bold `**Templates**` label, one file
 per line, never as inline "X and Y" prose:

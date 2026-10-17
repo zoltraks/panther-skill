@@ -27,15 +27,14 @@ The specification requires only `SKILL.md`.
 
 Optional directories seen in real skills:
 
-| Directory     | Role                                                     |
-|---------------|----------------------------------------------------------|
-| `scripts/`    | Executable code for deterministic or repetitive tasks    |
-| `references/` | Documentation loaded into context as needed              |
-| `assets/`     | Files used in output such as templates, icons, and fonts |
-| `agents/`     | Prompt files for delegated subagent roles                |
-| `evals/`      | Behavioral regression prompts, usually `evals.json`      |
-| `scripts/`    | Canonical scripts with their own `README.md`             |
-| `templates/`  | Skeletons for produced artifacts                         |
+| Directory     | Role                                                      |
+|---------------|-----------------------------------------------------------|
+| `scripts/`    | Canonical executable helpers, documented in a `README.md` |
+| `references/` | Documentation loaded into context as needed               |
+| `assets/`     | Files used in output such as templates, icons, and fonts  |
+| `agents/`     | Prompt files for delegated subagent roles                 |
+| `evals/`      | Behavioral regression prompts, usually `evals.json`       |
+| `templates/`  | Skeletons for produced artifacts                          |
 
 Skills may define their own taxonomy on top, for example `principles/`, `process/`, `types/`,
 `languages/`, `conventions/`, `scopes/`, `assessment/`, `synthesis/`, or `translation/`.

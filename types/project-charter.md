@@ -71,8 +71,9 @@ empowers the project manager.
 | Scope Boundaries                   | recommended |                         |
 | In Scope                           | optional    | inside Scope Boundaries |
 | Out of Scope                       | optional    | inside Scope Boundaries |
-| Deliverables                       | recommended |                         |
-| Milestones                         | recommended |                         |
+| Deliverables and Milestones        | recommended |                         |
+| Deliverables                       | optional    | split form              |
+| Milestones                         | optional    | split form              |
 | High-Level Budget                  | optional    |                         |
 | Key Stakeholders                   | recommended |                         |
 | Project Manager Role and Authority | recommended |                         |

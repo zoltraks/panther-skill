@@ -2,6 +2,8 @@
 
 To repozytorium zawiera dokumenty dotyczące <tematu>.
 
+## Dokumentacja
+
 Dokumenty znajdują się w katalogu `docs/`.
 
 ## Zasady projektu

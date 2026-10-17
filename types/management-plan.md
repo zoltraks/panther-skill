@@ -55,18 +55,25 @@ A management plan describes how a project domain is governed - that is this type
 
 ## Section Names
 
-| Section                    | Requirement |
-|----------------------------|-------------|
-| Methodology                | recommended |
-| Roles and Responsibilities | recommended |
-| Thresholds and Tolerances  | recommended |
-| Cadence                    | optional    |
-| Process                    | optional    |
-| Tools                      | optional    |
-| Reporting                  | optional    |
-| Related Plans              | optional    |
-| Related Registers          | optional    |
-| Change Control             | optional    |
-| Master Plan                | optional    |
+| Section                     | Requirement |
+|-----------------------------|-------------|
+| Purpose                     | required    |
+| Methodology                 | optional    |
+| Methodology and Approach    | recommended |
+| Roles and Responsibilities  | recommended |
+| Thresholds and Tolerances   | recommended |
+| Cadence                     | optional    |
+| Process                     | optional    |
+| Cadence and Process         | recommended |
+| Tools                       | optional    |
+| Reporting                   | optional    |
+| Related Plans               | optional    |
+| Related Registers           | optional    |
+| Related Plans and Registers | recommended |
+| Change Control              | optional    |
+| Master Plan                 | optional    |
+
+Merged forms satisfy their constituent entries - a plan may still split `Methodology and
+Approach` or `Related Plans and Registers` into separate sections.
 
 Section names for other languages are declared in the matching `languages/<code>.md` file.

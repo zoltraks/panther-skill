@@ -142,7 +142,7 @@ def matches(heading: str, name: str) -> bool:
         return True
     if heading_n.startswith(name_n + " "):
         remainder = heading_n[len(name_n) + 1 :]
-        return bool(re.match(r"^[\d(v\[]", remainder))
+        return bool(re.match(r"^[\d(vx\[]", remainder))
     return False
 
 
@@ -203,6 +203,9 @@ def main(argv: list[str]) -> int:
         alias = aliases.get(normalize(heading))
         if alias:
             return alias
+        for key, target in aliases.items():
+            if matches(heading, key):
+                return target
         return None
 
     matched = {canonical(h) for h in sections if canonical(h)}

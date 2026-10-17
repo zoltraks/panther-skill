@@ -79,8 +79,9 @@ The document's own conventions always win on edit.
 
 | Section             | Requirement | Notes            |
 |---------------------|-------------|------------------|
-| Purpose             | recommended |                  |
+| Purpose             | optional    |                  |
 | Scoring Definitions | recommended | scored registers |
+| Register            | optional    | generic exemplar |
 | Notes               | optional    |                  |
 | Probability         | optional    | register column  |
 | Impact              | optional    | register column  |

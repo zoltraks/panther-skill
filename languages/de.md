@@ -34,13 +34,13 @@ Die unten beschriebenen Regeln gelten auch für dieses Dokument selbst.
 | Sonderzeichen                    | 251   | Rahmenzeichen und Emoji                         |
 | Deutscher Wortschatz             | 259   | Bevorzugte Begriffe und Übersetzungskalküle     |
 | Abschnittsnamen nach Dokumenttyp | 289   | Deutsche Abschnittsnamen und Elemente der Typen |
-| Dialektmerkmale                  | 602   | Kapitelnummerierung und Pseudo-Überschriften    |
-| Tabellen                         | 619   | Ausrichtung nach dem Quelltext                  |
-| Dateinamen                       | 740   | Benennung neuer Dokumentationsdateien           |
-| Beispiel                         | 750   | Richtiges und falsches Beispiel                 |
-| Dateipflege                      | 784   | Kodierung und Zeilenenden                       |
-| Aktualisierungsfrage             | 794   | Deutsche Formulierung der Aktualisierungsfrage  |
-| Aktivierungsphrasen              | 800   | Deutsche Phrasen und englische Entsprechungen   |
+| Dialektmerkmale                  | 623   | Kapitelnummerierung und Pseudo-Überschriften    |
+| Tabellen                         | 640   | Ausrichtung nach dem Quelltext                  |
+| Dateinamen                       | 758   | Benennung neuer Dokumentationsdateien           |
+| Beispiel                         | 768   | Richtiges und falsches Beispiel                 |
+| Dateipflege                      | 802   | Kodierung und Zeilenenden                       |
+| Aktualisierungsfrage             | 812   | Deutsche Formulierung der Aktualisierungsfrage  |
+| Aktivierungsphrasen              | 818   | Deutsche Phrasen und englische Entsprechungen   |
 
 ## Dokumentstruktur
 
@@ -340,14 +340,14 @@ Wähle den deutschen Abschnittsnamen passend zum Dokumenttyp aus der folgenden T
 | daily-plan               | Version History                    | Versionsverlauf                         |
 | daily-plan               | Contents                           | Inhaltsverzeichnis                      |
 | decision-record          | Status                             | Status                                  |
-| decision-record          | Context                            | Kontext                                 |
+| decision-record          | Context and Problem Statement      | Kontext und Problembeschreibung         |
 | decision-record          | Decision Drivers                   | Entscheidungsfaktoren                   |
 | decision-record          | Considered Options                 | Betrachtete Optionen                    |
 | decision-record          | Decision Outcome                   | Entscheidungsergebnis                   |
 | decision-record          | Consequences                       | Konsequenzen                            |
 | decision-record          | Positive Consequences              | Positive Konsequenzen                   |
 | decision-record          | Negative Consequences              | Negative Konsequenzen                   |
-| decision-record          | Pros and Cons of Options           | Vor- und Nachteile der Optionen         |
+| decision-record          | Pros and Cons of the Options       | Vor- und Nachteile der Optionen         |
 | decision-record          | Links                              | Verweise                                |
 | decision-record          | Supersedes                         | Ersetzt                                 |
 | engineering-standard     | Purpose                            | Zweck                                   |
@@ -383,15 +383,25 @@ Wähle den deutschen Abschnittsnamen passend zum Dokumenttyp aus der folgenden T
 | engineering-standard     | Hygiene                            | Hygiene                                 |
 | engineering-standard     | General Principles                 | Allgemeine Grundsätze                   |
 | engineering-standard     | Sources                            | Quellen                                 |
+| format-specification     | Document Information               | Dokumentinformationen                   |
+| format-specification     | Version History                    | Versionsverlauf                         |
+| format-specification     | Quick Overview                     | Kurzüberblick                           |
+| format-specification     | Design Principles                  | Entwurfsprinzipien                      |
+| format-specification     | Structure                          | Struktur                                |
+| format-specification     | Implementation Notes               | Implementierungshinweise                |
+| management-plan          | Purpose                            | Zweck                                   |
 | management-plan          | Methodology                        | Methodik                                |
+| management-plan          | Methodology and Approach           | Methodik und Vorgehen                   |
 | management-plan          | Roles and Responsibilities         | Rollen und Verantwortlichkeiten         |
 | management-plan          | Thresholds and Tolerances          | Schwellenwerte und Toleranzen           |
 | management-plan          | Cadence                            | Prüfungsrhythmus                        |
 | management-plan          | Process                            | Prozess                                 |
+| management-plan          | Cadence and Process                | Prüfungsrhythmus und Prozess            |
 | management-plan          | Tools                              | Werkzeuge                               |
 | management-plan          | Reporting                          | Berichterstattung                       |
 | management-plan          | Related Plans                      | Verwandte Pläne                         |
 | management-plan          | Related Registers                  | Verwandte Register                      |
+| management-plan          | Related Plans and Registers        | Verwandte Pläne und Register            |
 | management-plan          | Change Control                     | Änderungskontrolle                      |
 | management-plan          | Master Plan                        | Masterplan                              |
 | meeting-minutes          | Meeting Details                    | Sitzungsdaten                           |
@@ -422,6 +432,7 @@ Wähle den deutschen Abschnittsnamen passend zum Dokumenttyp aus der folgenden T
 | project-charter          | Scope Boundaries                   | Grenzen des Projektumfangs              |
 | project-charter          | In Scope                           | Im Projektumfang                        |
 | project-charter          | Out of Scope                       | Außerhalb des Projektumfangs            |
+| project-charter          | Deliverables and Milestones        | Ergebnisse und Meilensteine             |
 | project-charter          | Deliverables                       | Ergebnisse                              |
 | project-charter          | Milestones                         | Meilensteine                            |
 | project-charter          | High-Level Budget                  | Budgetrahmen                            |
@@ -441,8 +452,8 @@ Wähle den deutschen Abschnittsnamen passend zum Dokumenttyp aus der folgenden T
 | project-document         | Quality Requirements               | Qualitätsanforderungen                  |
 | project-document         | System Architecture                | Systemarchitektur                       |
 | project-document         | Component Diagram                  | Komponentendiagramm                     |
-| project-document         | Functional Reqs                    | Funktionale Anforderungen               |
-| project-document         | Non-Functional Reqs                | Nichtfunktionale Anforderungen          |
+| project-document         | Functional Requirements            | Funktionale Anforderungen               |
+| project-document         | Non-Functional Requirements        | Nichtfunktionale Anforderungen          |
 | project-document         | Use Cases                          | Anwendungsfälle                         |
 | project-document         | Design Decisions                   | Entwurfsentscheidungen                  |
 | project-document         | Implementation Phases              | Umsetzungsphasen                        |
@@ -453,6 +464,7 @@ Wähle den deutschen Abschnittsnamen passend zum Dokumenttyp aus der folgenden T
 | proposal-document        | Status                             | Status                                  |
 | proposal-document        | Summary                            | Zusammenfassung                         |
 | proposal-document        | Background                         | Hintergrund                             |
+| proposal-document        | Background and Context             | Hintergrund und Kontext                 |
 | proposal-document        | Proposal                           | Vorschlag                               |
 | proposal-document        | Alternatives Considered            | Betrachtete Alternativen                |
 | proposal-document        | Risks and Mitigations              | Risiken und Gegenmaßnahmen              |
@@ -520,6 +532,8 @@ Wähle den deutschen Abschnittsnamen passend zum Dokumenttyp aus der folgenden T
 | readme-skill             | Credits                            | Mitwirkende                             |
 | register-log             | Purpose                            | Zweck                                   |
 | register-log             | Scoring Definitions                | Definitionen der Bewertungsskala        |
+| register-log             | Notes                              | Anmerkungen                             |
+| register-log             | Register                           | Register                                |
 | register-log             | Probability                        | Eintrittswahrscheinlichkeit             |
 | register-log             | Impact                             | Auswirkung                              |
 | register-log             | Score                              | Bewertung                               |
@@ -564,6 +578,16 @@ Wähle den deutschen Abschnittsnamen passend zum Dokumenttyp aus der folgenden T
 | status-report            | Top Risks and Issues               | Wichtigste Risiken und Probleme         |
 | status-report            | Planned Next Period                | Plan für den nächsten Zeitraum          |
 | status-report            | Decisions Needed                   | Benötigte Entscheidungen                |
+| summary-document         | Purpose                            | Zweck                                   |
+| summary-document         | Abstract                           | Kurzfassung                             |
+| summary-document         | Summary                            | Zusammenfassung                         |
+| summary-document         | Detailed Abstract                  | Ausführliche Zusammenfassung            |
+| summary-document         | Omitted Material                   | Ausgelassenes Material                  |
+| supplement-document      | Purpose                            | Zweck                                   |
+| supplement-document      | Continuation Scope                 | Fortsetzungsumfang                      |
+| supplement-document      | Extended Content                   | Erweiterter Inhalt                      |
+| supplement-document      | Continued Entries                  | Fortgesetzte Einträge                   |
+| supplement-document      | Updated Conclusions                | Aktualisierte Schlussfolgerungen        |
 | technical-document       | Purpose                            | Zweck                                   |
 | technical-document       | Overview                           | Überblick                               |
 | technical-document       | Prerequisites                      | Voraussetzungen                         |
@@ -638,11 +662,9 @@ Das Formatierungswerkzeug wandelt ihn dann in eine zusätzliche leere Spalte um,
 
 Schreibe eine absichtlich leere erste Zelle als `| |` und nur dann, wenn die Tabelle sie wirklich benötigt.
 
-Eine leere Zelle ist nur in einer Spalte erlaubt, die die Trennzeile deklariert - ihre
-Trennzelle muss mindestens einen Bindestrich enthalten.
+Eine leere Zelle ist nur in einer Spalte erlaubt, die die Trennzeile deklariert - ihre Trennzelle muss mindestens einen Bindestrich enthalten.
 
-Eine Spalte, die in jeder Zeile einschließlich der Kopfzeile leer ist, ist nie erlaubt -
-entferne sie.
+Eine Spalte, die in jeder Zeile einschließlich der Kopfzeile leer ist, ist nie erlaubt - entferne sie.
 
 ### Trennzeile
 
@@ -650,8 +672,7 @@ Setze die Trennzeile unmittelbar hinter die Kopfzeile.
 
 Die Trennzeile enthält ausschließlich Bindestriche und senkrechte Striche.
 
-Jede Zelle der Trennzeile enthält mindestens einen Bindestrich - eine Zelle aus Leerzeichen
-deklariert die Spalte nicht.
+Jede Zelle der Trennzeile enthält mindestens einen Bindestrich - eine Zelle aus Leerzeichen deklariert die Spalte nicht.
 
 Die Bindestriche schließen ohne Leerzeichen an die senkrechten Striche an.
 

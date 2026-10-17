@@ -64,7 +64,7 @@ type, how-to guides and reference pages land in the `technical-document` type.
 
 | Section              | Requirement |
 |----------------------|-------------|
-| Introduction         | recommended |
+| Introduction         | optional    |
 | Summary              | optional    |
 | Further Reading      | optional    |
 | References           | optional    |

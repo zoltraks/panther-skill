@@ -59,7 +59,7 @@ Do not use H4 headings or deeper.
 
 ## Headings
 
-Section and subsection names may use Title Case, in which each major word starts with a capital letter.
+Section and subsection names use Title Case, in which each major word starts with a capital letter.
 
 Keep the capitalization convention consistent within a document.
 
@@ -320,8 +320,7 @@ Start every row - header, separator, and data - with a single pipe.
 
 A leading double pipe (`||`) parses as an empty first cell.
 
-An automated formatter materializes that cell into a spurious empty column, which silently
-corrupts the table structure instead of only misaligning it.
+An automated formatter materializes that cell into a spurious empty column, which silently corrupts the table structure instead of only misaligning it.
 
 Write an intentionally empty first cell as `| |`, and only when the table truly needs one.
 
@@ -341,8 +340,7 @@ The separator row contains only hyphens and pipes.
 
 Every separator-row cell carries at least one hyphen.
 
-A spaces-only cell does not declare its column and leaves the table without a valid
-separator.
+A spaces-only cell does not declare its column and leaves the table without a valid separator.
 
 Hyphens touch the pipes, with no spaces between them.
 

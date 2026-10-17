@@ -54,12 +54,14 @@ contract, naming, and freshness.
 
 | Section              | Requirement |
 |----------------------|-------------|
-| Document Information | required    |
+| Document Information | unusual     |
 | Purpose              | required    |
 | Continuation Scope   | recommended |
 | Extended Content     | required    |
 | Continued Entries    | optional    |
 | Updated Conclusions  | recommended |
+
+`Document Information` lives in the metadata block below the H1, not as a section.
 
 Section names for other languages are declared in the matching
 `languages/<code>.md` file.

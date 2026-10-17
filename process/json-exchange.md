@@ -52,8 +52,8 @@ The document carries a `description`, context fields (`target`, `task`, `date`, 
 `intake` array.
 
 - `target` - the document or directory the task centers on.
-- `task` - the classified task: `create`, `edit`, `reformat`, `translate`, `discover`, `audit`,
-  or `describe`.
+- `task` - the classified task: `create`, `edit`, `reformat`, `translate`, `revise`,
+  `discover`, `audit`, `describe`, or `derive`.
 - `date` - the current day in `YYYY-MM-DD` format.
 - `time` - the local time in `hh:mm:ss` followed by the timezone offset, for example
   `13:45:21 GMT+2`.

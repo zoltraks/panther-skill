@@ -77,7 +77,7 @@ The canonical skeleton, adjusted to the request:
 | Usage               | recommended |
 | Example Prompts     | recommended |
 | What's Inside       | recommended |
-| Verification        | recommended |
+| Verification        | optional    |
 | License             | recommended |
 | Credits             | optional    |
 

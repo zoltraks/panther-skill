@@ -24,7 +24,7 @@ Before starting, the agent asks each mandatory question and waits for the answer
 - Second option
 - Let the user specify another answer."
 
-## Procedure
+## Procedures
 
 The steps the agent executes for each scenario.
 

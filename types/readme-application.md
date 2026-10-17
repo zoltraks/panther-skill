@@ -75,7 +75,7 @@ The canonical skeleton, adjusted to the request:
 | Project Status       | optional    |
 | Technical Stack      | optional    |
 | Features             | recommended |
-| Quick Start          | recommended |
+| Quick Start          | optional    |
 | Usage                | recommended |
 | Configuration        | optional    |
 | Repository Structure | optional    |

@@ -2,6 +2,8 @@
 
 Dieses Repository beherbergt Dokumente zu <Thema>.
 
+## Dokumentation
+
 Die Dokumente befinden sich im Verzeichnis `docs/`.
 
 ## Projektrichtlinien

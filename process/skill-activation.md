@@ -87,6 +87,7 @@ Follow with a compact operations table - one row per family, columns `Operation`
 | Edit               | Convention-preserving edits to existing documents         |
 | Reformat           | Table, prose, comment, and character normalization passes |
 | Translate          | Documents between English, Polish, and German             |
+| Revise             | Minimal-diff corrections to an existing translation       |
 | Audit              | Document and translation conformance checks               |
 | Describe           | Consolidated inline descriptions of a subject             |
 | Derive             | Summaries, briefs, and supplements from a source document |
