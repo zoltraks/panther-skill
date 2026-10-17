@@ -31,6 +31,10 @@ skill's documents - expect the following requests in the same session to stay in
 A request to extend another skill repository follows `scopes/agent-skill.md` through document
 mode instead.
 
+A generic maintenance phrase - "work on this skill", "adjust the skill" with no named
+target - resolves to this repository only when the context identifies it, per the
+referent rule in `process/skill-activation.md`.
+
 When the target is ambiguous, ask which mode applies - under JSON exchange the question emits as
 the `mode-selection` `choice` parameter per `process/json-exchange.md`.
 

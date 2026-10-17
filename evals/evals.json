@@ -812,13 +812,14 @@
     {
       "id": 66,
       "prompt": "Use skill.",
-      "expected_output": "An enablement response: the session update check runs, the router stays the only loaded rule material, and a compact confirmation lists the capability families - then the agent waits for a task.",
+      "expected_output": "An enablement response: the session update check runs, the router stays the only loaded rule material, and the reply confirms enablement with a one-sentence description, the skill version, a compact operations table, and a pointer to the full operations list - then the agent waits for a task.",
       "files": [],
       "expectations": [
         "The agent ran the once-per-session update check against the skill's own repository before other steps.",
         "No document task was classified and no parameter-resolution questions were asked.",
         "No rule files beyond SKILL.md and the activation procedure were loaded, and no file was created or modified.",
-        "The reply confirms the skill is enabled for editorial support and lists the capability families compactly.",
+        "The reply confirms the skill is enabled for editorial support, describes it in one sentence, names the version from metadata.version, and presents the operation families as a table.",
+        "The reply names the request - such as \"list all operations\" - that produces the full operations catalog.",
         "A following task-bearing request enters document or maintenance mode without repeating the update check."
       ]
     },
@@ -1019,12 +1020,13 @@
     {
       "id": 83,
       "prompt": "What operations can this skill perform?",
-      "expected_output": "A capability list naming every family, including document derivation - summaries, briefs, and supplements - alongside create, edit, reformat, translate, audit, describe, layout discovery, and maintenance.",
+      "expected_output": "The operations catalog: the full operations table from process/operations-catalog.md delivered inline, expanded past the family names into the concrete operations, with no file written.",
       "files": [],
       "expectations": [
-        "The answer lists document derivation - summaries, briefs or abstracts, and supplements - as an available operation.",
-        "The other families still appear: create, edit, reformat, translate, audit, describe, layout discovery, skill maintenance.",
-        "Inline describe responses and file-producing derivation are distinguished, not conflated."
+        "The agent loaded process/operations-catalog.md and answered with its canonical operations table inline.",
+        "The table expands the families into concrete operations - document types, translation directions, reformat passes - not only the family names.",
+        "Inline describe responses and file-producing derivation are distinguished, not conflated.",
+        "No file was created or modified."
       ]
     },
     {
@@ -1499,6 +1501,30 @@
         "The purpose qualifier was treated as a mode, not an operation - the request stayed in enable mode.",
         "No files of the named target were read, listed, or surveyed to guess the intended task.",
         "The reply confirms enablement and waits for the next request or asks what to do - no capability list and no proposed work items.",
+        "No file was created or modified."
+      ]
+    },
+    {
+      "id": 123,
+      "prompt": "List all operations.",
+      "expected_output": "The operations catalog from process/operations-catalog.md delivered inline as a table covering every family expanded into concrete operations, then a line inviting a task request.",
+      "files": [],
+      "expectations": [
+        "The agent loaded process/operations-catalog.md as the only additional rule file.",
+        "The reply reproduces the canonical operations table inline - every family and every concrete operation.",
+        "The response is delivered in the language of the request and no file is created or modified.",
+        "The reply closes by inviting a task request."
+      ]
+    },
+    {
+      "id": 124,
+      "prompt": "Use the skill on this document - the working repository is a different skill's checkout.",
+      "expected_output": "A referent check instead of the enablement response - the generic phrase asks which skill is meant when the context points at another skill, and waits for the answer.",
+      "files": [],
+      "expectations": [
+        "The generic activation phrase was not assumed to name panther - the referent resolved from context first.",
+        "When the context establishes another skill or leaves the referent ambiguous, the reply asks which skill is meant.",
+        "No enablement response, capability table, or maintenance menu appeared before the referent resolved.",
         "No file was created or modified."
       ]
     }

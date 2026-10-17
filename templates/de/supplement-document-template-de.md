@@ -7,11 +7,12 @@
 ## Zweck
 
 Dieses Dokument ergänzt `<übergeordnete Datei>` um neues Material.
+
 Fortsetzungsumfang: <was hinzukommt und was beim übergeordneten Dokument bleibt>.
 
 ## Fortsetzungsumfang
 
-<Umfang der Ergänzung. Unveränderte Abschnitte des übergeordneten Dokuments werden referenziert, nicht wiederholt.>
+<Umfang der Ergänzung - unveränderte Abschnitte des übergeordneten Dokuments werden referenziert, nicht wiederholt.>
 
 ## Erweiterter Inhalt
 

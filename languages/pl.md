@@ -1072,3 +1072,6 @@ Traktuj żądanie pasujące do frazy z tabeli jako jej angielski odpowiednik.
 | użyj umiejętności                  | use skill                                |
 | użyj tej umiejętności              | use this skill                           |
 | aktywuj umiejętność                | activate the skill                       |
+| pracuj z umiejętnością             | work with skill                          |
+| wymień wszystkie operacje          | list all operations                      |
+| pokaż wszystkie możliwości         | show all capabilities                    |

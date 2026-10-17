@@ -7,11 +7,12 @@
 ## Przeznaczenie
 
 Dokument uzupełnia `<plik nadrzędny>` o nowy materiał.
+
 Zakres kontynuacji: <co dodano, a co pozostaje w dokumencie nadrzędnym>.
 
 ## Zakres kontynuacji
 
-<Zakres suplementu. Niezmienione sekcje dokumentu nadrzędnego są przywoływane, nie powtarzane.>
+<Zakres suplementu - niezmienione sekcje dokumentu nadrzędnego są przywoływane, nie powtarzane.>
 
 ## Rozszerzona treść
 

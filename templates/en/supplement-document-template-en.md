@@ -7,11 +7,12 @@
 ## Purpose
 
 This document supplements `<parent file>` with new material.
+
 Continuation scope: <what is added and what stays with the parent>.
 
 ## Continuation Scope
 
-<What the supplement covers. Unchanged parent sections are referenced, not repeated.>
+<What the supplement covers - unchanged parent sections are referenced, not repeated.>
 
 ## Extended Content
 

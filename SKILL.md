@@ -22,7 +22,7 @@ compatibility: >-
   Claude Desktop, Windsurf, Devin, and similar). Requires the ability to read
   and write text files. No network access required.
 metadata:
-  version: "1.1.4"
+  version: "1.1.5"
   author: Filip Golewski
 allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob Grep
 ---
@@ -38,17 +38,17 @@ allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob G
 | Section                 | Line | What it covers                                 |
 |-------------------------|------|------------------------------------------------|
 | Three Modes             | 73   | Enable, document, and maintenance selection    |
-| Skill Update Check      | 86   | Once-per-session git freshness gate before use |
-| Trigger Keywords        | 108  | Activation phrases                             |
-| How To Use              | 162  | Progressive disclosure and rule loading        |
-| Parameter Configuration | 226  | Defaults and user-controlled document shape    |
-| Principles              | 254  | Authoring invariants                           |
-| Process                 | 260  | Workflow, checklist, and standalone procedures |
-| Document Types          | 288  | Per-type rule files                            |
-| Languages               | 350  | Per-language style baselines                   |
-| Translations            | 363  | Language pair rules and industry glossaries    |
-| Scopes                  | 383  | Per-project-layout organization rules          |
-| Conventions             | 408  | Encoding, dialect, and format contract rules   |
+| Skill Update Check      | 87   | Once-per-session git freshness gate before use |
+| Trigger Keywords        | 109  | Activation phrases                             |
+| How To Use              | 165  | Progressive disclosure and rule loading        |
+| Parameter Configuration | 224  | Defaults and user-controlled document shape    |
+| Principles              | 252  | Authoring invariants                           |
+| Process                 | 258  | Workflow, checklist, and standalone procedures |
+| Document Types          | 287  | Per-type rule files                            |
+| Languages               | 349  | Per-language style baselines                   |
+| Translations            | 362  | Language pair rules and industry glossaries    |
+| Scopes                  | 382  | Per-project-layout organization rules          |
+| Conventions             | 407  | Encoding, dialect, and format contract rules   |
 | Templates               | 425  | Per-type, per-language skeletons               |
 | Scripts                 | 437  | Detection, formatting, and validation scripts  |
 | Evaluation Prompts      | 464  | Behavioral regression prompts                  |
@@ -74,7 +74,8 @@ You do not normalize a document that has its own conventions.
 
 - **Enable mode** - the request activates the skill without naming a task: "use skill",
   "run panther", "activate the skill", or "work on <project>" with no operation named.
-  Follow `process/skill-activation.md`, which confirms readiness and waits.
+  Follow `process/skill-activation.md`, which confirms readiness and waits - a generic
+  phrase binds only when the context identifies this skill.
 - **Document mode** - the request targets a document to produce, edit, reformat, translate,
   audit, or describe. Follow the rest of this router and `process/document-workflow.md`.
 - **Maintenance mode** - the request targets this repository's own files. Follow
@@ -121,7 +122,9 @@ The skill activates on any of these phrases, grouped by intent:
 - **Translate**: translate this document, translate this file, translate to Polish,
   translate to English, translate to German, document in Polish, document in German,
   polish this document.
-- **Activate**: run panther, use panther, use skill, use this skill, activate the skill.
+- **Activate**: run panther, use panther, use skill, work with skill, use this skill,
+  activate the skill.
+- **Operations catalog**: list all operations, show all capabilities.
 - **Maintain the skill**: work on panther, work on panther-skill, work on this skill, fix
   this skill, adjust the skill, maintain this skill, update the skill documents.
 - **Extend and maintain**: add a page to the docs, documentation project, new document in
@@ -183,16 +186,13 @@ Use progressive disclosure:
   correct an existing translation or apply review findings to it.
 - Load `conventions/` files only when the situation requires them.
 
-This skill is self-contained - the listings below catalog the rule material, but load a
-rule file only when the task needs it.
+This skill is self-contained - load a rule file from the listings only when the task needs it.
 
 When asked how this skill works, explain that Panther produces plain-text-readable Markdown
-documents in English, Polish, or German - UTF-8 output, preserved encodings - for single
-files and organized collections such as skill repositories and documentation sites.
+in English, Polish, or German for single files and organized collections.
 
 On request it discovers a location's document layout - signals, best-matching scope,
-exceptions - and audits a document against its governing rules, reporting mechanical,
-structural, and content findings with an optional fix plan.
+exceptions - and audits a document against its governing rules with an optional fix plan.
 
 On describe or summarize requests it produces consolidated inline descriptions - impersonal,
 compact, capped for "shortly" and floored at one hundred sentences for long requests.
@@ -200,14 +200,12 @@ compact, capped for "shortly" and floored at one hundred sentences for long requ
 On derivation requests it produces documents derived from an existing one - summaries and
 briefs at declared compression tiers, supplements continuing the source's numbering.
 
-On translate requests it renders a document into the target language in a single pass with
-the pair's style adaptation and matching glossaries - a governed-format source's producer
-contract takes precedence - preserving structure, code, and identifiers, and an adapted
-translation may compress and reorder, with every delta reported.
+On translate requests it renders a document into the target language in one pass with the pair's
+style adaptation and glossaries, preserving structure, code, and identifiers - a governed source's
+producer contract wins, and adapted translations may compress and reorder, every delta reported.
 
-On translation-audit requests it maps a rendered document against its source - verifying the
-structure map, untranslated elements, and terminology concordance, then reporting a fidelity
-verdict.
+On translation-audit requests it maps a rendered document against its source - structure map,
+untranslated set, terminology concordance - then reports a fidelity verdict.
 
 On translation-revision requests it corrects an existing translation - aligning findings with
 source passages and applying minimal-diff fixes and same-class sweeps.
@@ -217,9 +215,9 @@ AsciiDoc and reStructuredText files are edited minimally and never restyled.
 On "work on panther-skill" requests it presents the maintenance menu - document work, skill
 adjustment, or session review - then reads the governing set and applies `docs/MAINTENANCE.md`.
 
-On bare activation - "use skill", "run panther", or an equivalent - it enables for editorial
-support: the update check runs, the router is the loaded state, and a compact capability list
-answers the request.
+On bare activation it enables for editorial support: the update check runs, the router is the
+loaded state, and the answer describes the skill, names its version, shows the operations
+table, and points at "list all operations" for the full catalog.
 
 The next task request - or a confirmed proposal - enters document or maintenance mode normally.
 
@@ -278,6 +276,7 @@ For edits to existing documents, the document's own conventions and the minimal-
 - **`process/translation-revision.md`** - The standalone translation-revision procedure:
   passage alignment, issue classes, minimal-diff correction of an existing translation.
 - **`process/json-exchange.md`** - JSON parameter documents for intake question surfaces.
+- **`process/operations-catalog.md`** - The catalog procedure for "list all operations" requests.
 - **`process/skill-maintenance.md`** - The maintenance-mode procedure: the intake menu,
   governing set, skipped document machinery, and validation for work on this repository.
 - **`process/session-review.md`** - The session-review procedure: gather the session's

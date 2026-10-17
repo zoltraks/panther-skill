@@ -881,3 +881,6 @@ Behandle eine Anfrage, die einer Phrase aus der Tabelle entspricht, wie ihre eng
 | verwende die fähigkeit                | use skill                                |
 | verwende diese fähigkeit              | use this skill                           |
 | aktiviere die fähigkeit               | activate the skill                       |
+| arbeite mit der fähigkeit             | work with skill                          |
+| liste alle operationen auf            | list all operations                      |
+| zeige alle fähigkeiten                | show all capabilities                    |

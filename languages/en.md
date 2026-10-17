@@ -30,7 +30,7 @@ The rules described below apply to this document itself as well.
 | Blank Lines and Spacing  | 177  | Whitespace rules                    |
 | Code Blocks              | 191  | Fences, tags, and inline code       |
 | Inline Formatting        | 207  | Quotes, bold, and italics           |
-| Spaced Hyphens           | 223  | Asides; never joins clauses         |
+| Spaced Hyphens           | 223  | Asides, never joins clauses         |
 | Semicolons               | 247  | Semicolon prohibition in prose      |
 | Special Characters       | 273  | Box-drawing and emoji               |
 | English Vocabulary       | 281  | Preferred terms and calques         |

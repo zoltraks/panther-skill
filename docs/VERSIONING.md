@@ -38,6 +38,9 @@ with each delivery, not only on request.
 A change set is the group of edits committed or delivered together - it raises the
 version once, no matter how many files it touches.
 
+While a change set remains uncommitted, further edits to skill documents join the open
+set and keep its already-bumped version - the version moves again only after the set lands.
+
 The delivery report names the previous version and the new version.
 
 ## Release Anchors

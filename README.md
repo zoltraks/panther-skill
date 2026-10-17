@@ -14,17 +14,17 @@
 |---------------------|------|--------------------------------------------|
 | Overview            | 29   | What Panther is and what it produces       |
 | What The Skill Does | 54   | Authoring purpose and workflow             |
-| Installation        | 196  | How to add Panther to an agent environment |
-| Usage               | 266  | How agents activate and run the skill      |
-| Example Prompts     | 280  | Phrases the skill activates on             |
-| Workflow Diagrams   | 326  | ASCII and Mermaid diagrams of the pipeline |
-| Core Principles     | 463  | Convention preservation and minimal diffs  |
-| When To Use         | 474  | Supported requests and exclusions          |
-| What's Inside       | 513  | Rule files, templates, tools, and evals    |
-| Specification       | 678  | Agent Skills specification conformance     |
-| Verification        | 694  | Skill-maintenance checks                   |
-| License             | 713  | License for the skill itself               |
-| Credits             | 719  | Methodology and example sources            |
+| Installation        | 202  | How to add Panther to an agent environment |
+| Usage               | 272  | How agents activate and run the skill      |
+| Example Prompts     | 287  | Phrases the skill activates on             |
+| Workflow Diagrams   | 333  | ASCII and Mermaid diagrams of the pipeline |
+| Core Principles     | 470  | Convention preservation and minimal diffs  |
+| When To Use         | 481  | Supported requests and exclusions          |
+| What's Inside       | 520  | Rule files, templates, tools, and evals    |
+| Specification       | 686  | Agent Skills specification conformance     |
+| Verification        | 702  | Skill-maintenance checks                   |
+| License             | 721  | License for the skill itself               |
+| Credits             | 727  | Methodology and example sources            |
 
 ## Overview
 
@@ -180,8 +180,12 @@ and lands the approved changes in the rule corpus.
 
 Separately, when you say "use skill" or "run panther" without naming a task, the agent follows
 `process/skill-activation.md`: it runs the session update check, treats the loaded router as the
-enabled state, and answers with a compact confirmation that the skill is enabled for editorial
-support - a short list of the capability families, then it waits.
+enabled state, and answers with a one-sentence description of the skill, the version from
+`metadata.version`, and a compact table of the operation families - with a pointer to "list all
+operations" for the full catalog - then it waits.
+
+A generic phrase such as "use skill" binds to Panther only when the context identifies this
+skill - an ambiguous referent asks which skill is meant.
 
 An activation that names a working repository or directory but no operation is the same
 standby scoped to that target - a minimal confirmation, then the wait.
@@ -273,7 +277,8 @@ Examples include "write a README", "draft a specification", "format this table",
 "write an ADR", "audit this document", and "run panther".
 
 A bare activation phrase such as "use skill" enables the skill for editorial support without
-starting a task.
+starting a task - the answer describes the skill, names its version, and shows the operation
+families table.
 
 The skill performs an update check, resolves parameters, detects conventions and scope, selects
 rule files, drafts the document, validates it mechanically, and delivers the file with preserved
@@ -508,7 +513,7 @@ flowchart TD
 | "Audit this document"                            | **Yes** - findings and optional fix plan |
 | "Check this document's formatting"               | **Yes** - audit procedure                |
 | "Describe this repository shortly"               | **Yes** - consolidated inline response   |
-| "Use skill" or "run panther" with no task        | **Yes** - enables for editorial support  |
+| "Use skill" or "run panther" with no task        | **Yes** - version and operations table   |
 | "Write code for this feature"                    | No - this skill writes documents         |
 | "Review this document for technical correctness" | No - authoring skill, not an auditor     |
 
@@ -533,6 +538,7 @@ panther-skill/
 │   ├── document-audit.md              # Standalone audit procedure: findings and fix plan
 │   ├── describe-response.md           # Standalone describe procedure: caps and floors
 │   ├── json-exchange.md               # JSON parameter documents for pending questions
+│   ├── operations-catalog.md          # Full operations table for "list all operations"
 │   ├── scope-discovery.md             # Standalone layout-discovery procedure and report format
 │   ├── skill-maintenance.md           # Maintenance-mode procedure for work on the skill itself
 │   ├── skill-activation.md            # Enable-mode procedure for bare activation requests
@@ -650,7 +656,7 @@ panther-skill/
 │   ├── check-document.py              # One-command non-mutating check battery
 │   ├── diff-content.py                # Token-stream content-integrity diff
 │   ├── check-parity.py                # Structural parity diff between source and rendered doc
-│   ├── check-titles.py       # Summary-table vs `ID: title` heading agreement
+│   ├── check-titles.py                # Summary-table vs `ID: title` heading agreement
 │   ├── safe-replace.py                # Word-boundary find/replace with residue scan
 │   ├── lint-polish.py                 # Polish calque and prose linter
 │   ├── validate-skill.py              # Skill metadata and disclosure validator

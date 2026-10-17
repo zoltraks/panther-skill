@@ -183,6 +183,7 @@ Every pending question surface emits with a stable kebab-case `id`:
 | `maintenance-action`      | `choice`    | The maintenance menu - document work, adjust the skill, or session review        |
 | `session-review-approval` | `choice`    | Approve the session-review findings report before applying changes               |
 | `mode-selection`          | `choice`    | Mode ambiguity no rule resolves - a named target without an operation is standby |
+| `skill-selection`         | `choice`    | Ambiguous generic activation phrase - which skill the request means              |
 | `source-resolution`       | `text`      | Translation audit with an unresolvable source - free input                       |
 
 Thin-input clarifications emit as `text` or `choice` parameters as they arise - `text` when free

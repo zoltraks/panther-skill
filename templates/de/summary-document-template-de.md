@@ -3,6 +3,7 @@
 ## Zweck
 
 Dieses Dokument fasst die Datei `<Quelldatei>` zusammen.
+
 Kompressionsvertrag: <geschriebene Stufen - Kurzfassung höchstens 10 Sätze, Zusammenfassung höchstens 50, Ausführliche Zusammenfassung spiegelt die Quellstruktur>.
 
 ## Kurzfassung

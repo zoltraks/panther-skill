@@ -4,7 +4,8 @@
 
 > **Scope:** Enablement procedure for requests that activate the skill without naming a
 > task
-> **Key items:** bare activation, session update check, enablement response, mode hand-off
+> **Key items:** bare activation, session update check, enablement response with
+> operations table, catalog pointer, mode hand-off
 
 This file defines the intake for a request that names the skill but no work.
 
@@ -13,6 +14,24 @@ panther", "use this skill", "activate the skill" - or an equivalent declared in 
 `languages/` files.
 
 ## When This Applies
+
+Resolve the referent of a generic phrase before treating the request as a Panther
+activation - "use skill", "work with skill", "use this skill", "activate the skill",
+and "work on this skill" name no skill by themselves.
+
+A phrase that names Panther - "use panther", "run panther", "work on panther-skill" -
+binds directly.
+
+A generic phrase binds to this skill only when the context identifies it - the
+panther-skill repository is the working target, the session already treats Panther
+as the skill in play, or no other skill competes for the referent.
+
+When another skill's repository is the working context, or several skills could
+equally be meant, the referent is ambiguous - ask which skill the request means and
+wait, instead of enabling Panther on assumption.
+
+Under JSON exchange the referent ask emits as the `skill-selection` `choice`
+parameter per `process/json-exchange.md`.
 
 A bare activation names the skill and nothing else - no document to produce, edit,
 reformat, translate, audit, or describe, and no maintenance request.
@@ -55,11 +74,27 @@ parameter per `process/json-exchange.md`.
 
 Open with one sentence confirming the skill is enabled for editorial support.
 
-Follow with a compact capability list - one short item per family: create, edit,
-reformat, translate, audit, describe, derive, layout discovery, and skill maintenance.
+Follow with one sentence describing the skill - it produces plain-text-readable
+Markdown documents in English, Polish, or German - and name the skill version read
+from `metadata.version` in the loaded `SKILL.md`.
 
-Keep the response compact - an opening sentence, one list, and a closing line inviting
-the task request.
+Follow with a compact operations table - one row per family, columns `Operation` and
+`What it covers`, aligned by source width:
+
+| Operation          | What it covers                                            |
+|--------------------|-----------------------------------------------------------|
+| Create             | New documents of every supported type                     |
+| Edit               | Convention-preserving edits to existing documents         |
+| Reformat           | Table, prose, comment, and character normalization passes |
+| Translate          | Documents between English, Polish, and German             |
+| Audit              | Document and translation conformance checks               |
+| Describe           | Consolidated inline descriptions of a subject             |
+| Derive             | Summaries, briefs, and supplements from a source document |
+| Discover layout    | Document-layout census and scope classification           |
+| Maintain the skill | Changes and session reviews of this skill repository      |
+
+Close with the catalog pointer - the full operations list answers "list all
+operations" or an equivalent - and a line inviting the task request.
 
 A target-scoped activation answers with a minimal standby instead: one or two lines
 confirming the skill is enabled on the named target, then the wait begins - no
