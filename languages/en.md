@@ -34,10 +34,11 @@ The rules described below apply to this document itself as well.
 | Semicolons               | 247  | Semicolon prohibition in prose      |
 | Special Characters       | 273  | Box-drawing and emoji               |
 | English Vocabulary       | 281  | Preferred terms and calques         |
-| Tables                   | 304  | Source-width alignment rules        |
-| File Names               | 430  | Naming new documentation files      |
-| Example                  | 440  | Correct and incorrect sample        |
-| File Maintenance         | 474  | Encoding and line-ending preserving |
+| Dialect Consistency      | 305  | One spelling dialect per document   |
+| Tables                   | 353  | Source-width alignment rules        |
+| File Names               | 477  | Naming new documentation files      |
+| Example                  | 487  | Correct and incorrect sample        |
+| File Maintenance         | 521  | Encoding and line-ending preserving |
 
 ## Document Structure
 
@@ -301,6 +302,54 @@ Keep established proper nouns, product names, and architecture element names in 
 Write technical names taken from a source system exactly as they appear in that system.
 
 In example headings, use English section names such as "Example Content", "Correct", and "Incorrect".
+
+## Dialect Consistency
+
+Use one English spelling dialect per document.
+
+American and British spellings must not mix within the same document, including splits inside a single word family, for example `synchronized` and `synchronised` side by side.
+
+An existing document's dominant dialect is its own convention and wins on edits - match the majority variant.
+
+Normalize the minority dialect only when the request covers the change, and report the mixed usage instead of fixing it silently.
+
+`scripts/lint-english.py` detects the dominant variant and reports minority forms as advisory findings.
+
+The pair table below lists representative variants the checker tracks - the suffix patterns the pairs illustrate cover forms beyond the listed rows.
+
+| American       | British        |
+|----------------|----------------|
+| behavior       | behaviour      |
+| behavioral     | behavioural    |
+| color          | colour         |
+| favor          | favour         |
+| labor          | labour         |
+| neighbor       | neighbour      |
+| authorized     | authorised     |
+| organized      | organised      |
+| recognized     | recognised     |
+| categorized    | categorised    |
+| specialized    | specialised    |
+| synchronized   | synchronised   |
+| prioritized    | prioritised    |
+| memorized      | memorised      |
+| initialized    | initialised    |
+| characterized  | characterised  |
+| finalized      | finalised      |
+| normalized     | normalised     |
+| customized     | customised     |
+| minimized      | minimised      |
+| optimization   | optimisation   |
+| prioritization | prioritisation |
+| analyze        | analyse        |
+| catalog        | catalogue      |
+| license        | licence        |
+| program        | programme      |
+| center         | centre         |
+| meter          | metre          |
+| defense        | defence        |
+| canceled       | cancelled      |
+| traveled       | travelled      |
 
 ## Tables
 

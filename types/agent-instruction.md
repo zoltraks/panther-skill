@@ -24,6 +24,10 @@ A document belongs to this type when it defines executable machinery - trigger p
 routing between procedures, decision menus, validation checklists, or embedded templates
 the agent must instantiate.
 
+A long guide that defines its own section vocabulary across multiple operating modes
+belongs to `types/procedure-manual.md` instead - its open heading set covers manuals
+that also instruct an agent but do not fit this type's fixed sections.
+
 **Templates**
 
 - `templates/en/agent-instruction-template-en.md`

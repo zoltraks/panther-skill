@@ -12,6 +12,8 @@ replaces a run of each checker separately:
     reflow-prose.py --wrap/--unwrap --check   advisory unless --layout picks a side
     split-sentences.py --check    runs only with --split
     lint-polish.py                runs only with --polish
+    lint-english.py               runs only with --english
+    check-consistency.py          runs only with --consistency
     check-sections.py             runs only with --type
     diff-content.py               runs only with --baseline
     check-parity.py               runs only with --parity <source.md>
@@ -23,7 +25,8 @@ A missing sibling reports SKIP and never gates.
 
 Usage:
     python check-document.py <file.md> [--width N] [--payload-markdown]
-        [--layout wrap|unwrap] [--split] [--polish] [--type <slug-or-path>]
+        [--layout wrap|unwrap] [--split] [--polish] [--english]
+        [--consistency] [--type <slug-or-path>]
         [--language <code-or-path>] [--baseline <file>] [--normalize-chars]
         [--parity <source.md>] [--terms <glossary.md> ...]
         [--expect-map <file> ...] [--eol lf|crlf] [--title-agreement]
@@ -39,6 +42,7 @@ import sys
 from pathlib import Path
 
 POLISH_RULES = ("languages/pl.md", "translations/en-pl/en-pl-software.md")
+ENGLISH_RULES = ("languages/en.md",)
 
 
 def reconfigure_stdio():
@@ -117,6 +121,12 @@ def main(argv: list[str]) -> int:
                         help="also run split-sentences --check")
     parser.add_argument("--polish", action="store_true",
                         help="also run lint-polish.py with skill rule tables")
+    parser.add_argument("--english", action="store_true",
+                        help="also run lint-english.py with the English "
+                             "rule tables")
+    parser.add_argument("--consistency", action="store_true",
+                        help="also run check-consistency.py for internal "
+                             "references and terminology drift")
     parser.add_argument("--type", dest="type_arg", default=None,
                         help="type slug or path for check-sections.py")
     parser.add_argument("--language", default=None,
@@ -218,6 +228,25 @@ def main(argv: list[str]) -> int:
             rule_args = [a for r in rules if r for a in ("--rules", str(r))]
             code, output = run(script, [doc, *rule_args], cwd)
             failures += report("lint-polish", code, output, gated=True)
+
+    if args.english:
+        script = resolve("lint-english.py", skill_root)
+        if script is None:
+            print("SKIP lint-english - tool not found")
+        else:
+            rules = [rule_path(r, skill_root) for r in ENGLISH_RULES]
+            rule_args = [a for r in rules if r for a in ("--rules", str(r))]
+            code, output = run(script, [doc, *rule_args, *payload], cwd)
+            failures += report("lint-english", code, output, gated=True)
+
+    if args.consistency:
+        script = resolve("check-consistency.py", skill_root)
+        if script is None:
+            print("SKIP check-consistency - tool not found")
+        else:
+            code, output = run(script, [doc, *payload], cwd)
+            failures += report("check-consistency", code, output,
+                               gated=True)
 
     if args.type_arg:
         script = resolve("check-sections.py", skill_root)

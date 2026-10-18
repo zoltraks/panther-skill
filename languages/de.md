@@ -34,13 +34,13 @@ Die unten beschriebenen Regeln gelten auch für dieses Dokument selbst.
 | Sonderzeichen                    | 251   | Rahmenzeichen und Emoji                         |
 | Deutscher Wortschatz             | 259   | Bevorzugte Begriffe und Übersetzungskalküle     |
 | Abschnittsnamen nach Dokumenttyp | 289   | Deutsche Abschnittsnamen und Elemente der Typen |
-| Dialektmerkmale                  | 623   | Kapitelnummerierung und Pseudo-Überschriften    |
-| Tabellen                         | 640   | Ausrichtung nach dem Quelltext                  |
-| Dateinamen                       | 758   | Benennung neuer Dokumentationsdateien           |
-| Beispiel                         | 768   | Richtiges und falsches Beispiel                 |
-| Dateipflege                      | 802   | Kodierung und Zeilenenden                       |
-| Aktualisierungsfrage             | 812   | Deutsche Formulierung der Aktualisierungsfrage  |
-| Aktivierungsphrasen              | 818   | Deutsche Phrasen und englische Entsprechungen   |
+| Dialektmerkmale                  | 636   | Kapitelnummerierung und Pseudo-Überschriften    |
+| Tabellen                         | 653   | Ausrichtung nach dem Quelltext                  |
+| Dateinamen                       | 771   | Benennung neuer Dokumentationsdateien           |
+| Beispiel                         | 781   | Richtiges und falsches Beispiel                 |
+| Dateipflege                      | 815   | Kodierung und Zeilenenden                       |
+| Aktualisierungsfrage             | 825   | Deutsche Formulierung der Aktualisierungsfrage  |
+| Aktivierungsphrasen              | 831   | Deutsche Phrasen und englische Entsprechungen   |
 
 ## Dokumentstruktur
 
@@ -471,6 +471,16 @@ Wähle den deutschen Abschnittsnamen passend zum Dokumenttyp aus der folgenden T
 | proposal-document        | Open Questions                     | Offene Fragen                           |
 | proposal-document        | Decision                           | Entscheidung                            |
 | proposal-document        | Reviewers                          | Prüfer                                  |
+| procedure-manual         | Purpose                            | Zweck                                   |
+| procedure-manual         | Audiences                          | Zielgruppen                             |
+| procedure-manual         | Operating Modes                    | Betriebsmodi                            |
+| procedure-manual         | Decision Points                    | Entscheidungspunkte                     |
+| procedure-manual         | Roles and Locations                | Rollen und Speicherorte                 |
+| procedure-manual         | Procedures                         | Verfahren                               |
+| procedure-manual         | Validation                         | Validierung                             |
+| procedure-manual         | Examples                           | Beispiele                               |
+| procedure-manual         | Template Library                   | Vorlagenbibliothek                      |
+| procedure-manual         | Appendix                           | Anhang                                  |
 | readme-application       | Contents                           | Inhaltsverzeichnis                      |
 | readme-application       | Overview                           | Überblick                               |
 | readme-application       | Download                           | Download                                |

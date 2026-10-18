@@ -34,14 +34,14 @@ Zasady opisane poniżej stosują się również do samego tego dokumentu.
 | Znaki specjalne                    | 294    | Znaki ramek, emoji i znaki specjalne          |
 | Słownictwo polskie                 | 312    | Preferowane terminy i kalki                   |
 | Nazwy sekcji według typu dokumentu | 465    | Polskie nazwy sekcji i elementy typów         |
-| Cechy dialektów                    | 799    | Numeracja rozdziałów i pseudo-nagłówki        |
-| Tabele                             | 816    | Wyrównanie według źródła                      |
-| Nazwy plików                       | 934    | Nazywanie nowych plików dokumentacji          |
-| Przykład                           | 944    | Przykład poprawny i niepoprawny               |
-| Kontrola przed dostarczeniem       | 978    | Kontrole językowe przed dostarczeniem         |
-| Utrzymanie plików                  | 988    | Kodowanie i złamania wierszy                  |
-| Pytanie o aktualizację             | 998    | Polskie brzmienie pytania o aktualizację      |
-| Frazy aktywujące                   | 1004   | Polskie frazy i ich angielskie odpowiedniki   |
+| Cechy dialektów                    | 812    | Numeracja rozdziałów i pseudo-nagłówki        |
+| Tabele                             | 829    | Wyrównanie według źródła                      |
+| Nazwy plików                       | 947    | Nazywanie nowych plików dokumentacji          |
+| Przykład                           | 957    | Przykład poprawny i niepoprawny               |
+| Kontrola przed dostarczeniem       | 991    | Kontrole językowe przed dostarczeniem         |
+| Utrzymanie plików                  | 1001   | Kodowanie i złamania wierszy                  |
+| Pytanie o aktualizację             | 1011   | Polskie brzmienie pytania o aktualizację      |
+| Frazy aktywujące                   | 1017   | Polskie frazy i ich angielskie odpowiedniki   |
 
 ## Struktura dokumentu
 
@@ -647,6 +647,16 @@ Dobieraj polską nazwę sekcji według typu dokumentu z poniższej tabeli.
 | proposal-document        | Open Questions                     | Otwarte pytania                        |
 | proposal-document        | Decision                           | Decyzja                                |
 | proposal-document        | Reviewers                          | Recenzenci                             |
+| procedure-manual         | Purpose                            | Przeznaczenie                          |
+| procedure-manual         | Audiences                          | Odbiorcy                               |
+| procedure-manual         | Operating Modes                    | Tryby działania                        |
+| procedure-manual         | Decision Points                    | Punkty decyzyjne                       |
+| procedure-manual         | Roles and Locations                | Role i lokalizacje                     |
+| procedure-manual         | Procedures                         | Procedury                              |
+| procedure-manual         | Validation                         | Weryfikacja                            |
+| procedure-manual         | Examples                           | Przykłady                              |
+| procedure-manual         | Template Library                   | Biblioteka szablonów                   |
+| procedure-manual         | Appendix                           | Dodatek                                |
 | readme-application       | Contents                           | Spis treści                            |
 | readme-application       | Overview                           | Przegląd                               |
 | readme-application       | Download                           | Pobieranie                             |

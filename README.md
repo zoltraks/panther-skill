@@ -21,10 +21,10 @@
 | Core Principles     | 470  | Convention preservation and minimal diffs  |
 | When To Use         | 481  | Supported requests and exclusions          |
 | What's Inside       | 520  | Rule files, templates, tools, and evals    |
-| Specification       | 686  | Agent Skills specification conformance     |
-| Verification        | 702  | Skill-maintenance checks                   |
-| License             | 721  | License for the skill itself               |
-| Credits             | 727  | Methodology and example sources            |
+| Specification       | 691  | Agent Skills specification conformance     |
+| Verification        | 707  | Skill-maintenance checks                   |
+| License             | 726  | License for the skill itself               |
+| Credits             | 732  | Methodology and example sources            |
 
 ## Overview
 
@@ -553,6 +553,7 @@ panther-skill/
 │   ├── project-document.md            # Specifications: version comment, glossary, requirement IDs
 │   ├── rules-document.md              # Guidelines and standards: imperative rules, examples
 │   ├── agent-instruction.md           # Agent-executable docs: dual audience, decision menus
+│   ├── procedure-manual.md            # Long procedural guides: modes, gates, open headings
 │   ├── engineering-standard.md        # Stacked coding standards: precedence, intake, verification
 │   ├── format-specification.md        # Format specs: version history, field tables
 │   ├── article-text.md                # Prose documents: narrative, dialect tolerance
@@ -581,7 +582,7 @@ panther-skill/
 │   └── supplement-document.md         # Supplements extending an existing document
 ├── languages/
 │   ├── de.md                          # German baseline: style, section names, activation phrases
-│   ├── en.md                          # English baseline: Title Case, vocabulary
+│   ├── en.md                          # English baseline: Title Case, vocabulary, dialect
 │   └── pl.md                          # Polish baseline: style, section names, activation phrases
 ├── translations/
 │   ├── de-en/                         # German-to-English direction rules and glossaries
@@ -640,9 +641,9 @@ panther-skill/
 │   ├── ascii-diagrams.md              # Box-drawing node-and-edge diagram rules
 │   └── prose-layout.md                # Prose-layout conventions and detection rules
 ├── templates/
-│   ├── de/                            # Thirty German skeletons, <type>-template-de.md
-│   ├── en/                            # Thirty English skeletons, <type>-template-en.md
-│   └── pl/                            # Thirty Polish skeletons, <type>-template-pl.md
+│   ├── de/                            # Thirty-one German skeletons, <type>-template-de.md
+│   ├── en/                            # Thirty-one English skeletons, <type>-template-en.md
+│   └── pl/                            # Thirty-one Polish skeletons, <type>-template-pl.md
 ├── scripts/
 │   ├── detect-encoding.py             # BOM, encoding, and line-ending detection
 │   ├── detect-scope.py                # Document-scope signal census
@@ -659,8 +660,10 @@ panther-skill/
 │   ├── diff-content.py                # Token-stream content-integrity diff
 │   ├── check-parity.py                # Structural parity diff between source and rendered doc
 │   ├── check-titles.py                # Summary-table vs `ID: title` heading agreement
+│   ├── check-consistency.py           # Internal reference and terminology checker
 │   ├── safe-replace.py                # Word-boundary find/replace with residue scan
 │   ├── lint-polish.py                 # Polish calque and prose linter
+│   ├── lint-english.py                # English vocabulary, grammar, and dialect linter
 │   ├── validate-skill.py              # Skill metadata and disclosure validator
 │   ├── check-references.py            # Root reference integrity checker
 │   ├── check-contents.py              # Contents-table line-number drift checker

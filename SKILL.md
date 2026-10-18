@@ -22,7 +22,7 @@ compatibility: >-
   Claude Desktop, Windsurf, Devin, and similar). Requires the ability to read
   and write text files. No network access required.
 metadata:
-  version: "1.1.6"
+  version: "1.1.7"
   author: Filip Golewski
 allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob Grep
 ---
@@ -45,12 +45,12 @@ allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob G
 | Principles              | 252  | Authoring invariants                           |
 | Process                 | 258  | Workflow, checklist, and standalone procedures |
 | Document Types          | 287  | Per-type rule files                            |
-| Languages               | 349  | Per-language style baselines                   |
-| Translations            | 362  | Language pair rules and industry glossaries    |
-| Scopes                  | 382  | Per-project-layout organization rules          |
-| Conventions             | 407  | Encoding, dialect, and format contract rules   |
-| Templates               | 425  | Per-type, per-language skeletons               |
-| Scripts                 | 437  | Detection, formatting, and validation scripts  |
+| Languages               | 347  | Per-language style baselines                   |
+| Translations            | 360  | Language pair rules and industry glossaries    |
+| Scopes                  | 380  | Per-project-layout organization rules          |
+| Conventions             | 405  | Encoding, dialect, and format contract rules   |
+| Templates               | 423  | Per-type, per-language skeletons               |
+| Scripts                 | 435  | Detection, formatting, and validation scripts  |
 | Evaluation Prompts      | 464  | Behavioral regression prompts                  |
 | Repository Files        | 474  | Housekeeping files governing this repository   |
 | File Handling Contract  | 486  | Byte-level guarantees                          |
@@ -297,6 +297,8 @@ Load the file matching the document type, it adds deltas on top of the language 
 - **`types/agent-instruction.md`** - Documents an AI coding agent executes: dual audiences,
   activation routing, decision menus, staged procedures, validation checklists, embedded
   templates.
+- **`types/procedure-manual.md`** - Long procedural guides with a self-defined section
+  vocabulary: operating modes, decision gates, role mappings, structure trees.
 - **`types/engineering-standard.md`** - Coding standards by stack: precedence, intake, verification.
 - **`types/format-specification.md`** - File format and protocol specifications: document
   information, version history, field tables, value enumerations.
@@ -319,15 +321,13 @@ Load the file matching the document type, it adds deltas on top of the language 
 - **`types/readme-docs.md`** - Documentation-repo READMEs: document locations, rules pointer.
 - **`types/readme-collection.md`** - Collection and monorepo READMEs: entry catalog, per-entry
   pointers, notices.
-- **`types/changelog-file.md`** - Version-grouped change records: newest first, user-facing
-  language.
+- **`types/changelog-file.md`** - Version-grouped change records: newest first, user-facing.
 - **`types/contributing-file.md`** - `CONTRIBUTING.md` contributor guides: ways to
   contribute, issue reporting, development setup, pull request rules, AI-assisted
   contributions, license.
 - **`types/decision-record.md`** - Architecture decision records: status lifecycle, numbered
   filenames, immutable once accepted, supersede chain.
-- **`types/proposal-document.md`** - RFC and design proposals: review states, alternatives
-  considered, open questions, decision recorded on resolution.
+- **`types/proposal-document.md`** - RFC and design proposals: review states, alternatives, open questions.
 - **`types/project-charter.md`** - Project charters and briefs: SMART objectives, scope
   boundaries, PM authority, sponsor approval block.
 - **`types/change-request.md`** - Formal change requests to a governed baseline: request
@@ -336,11 +336,9 @@ Load the file matching the document type, it adds deltas on top of the language 
   lessons-learned registers: ID prefixes, status lifecycles, append-only entry tables.
 - **`types/status-report.md`** - Periodic status, variance, forecasting, and quality reports:
   RAG ratings, metrics, decisions needed.
-- **`types/meeting-minutes.md`** - Meeting minutes and agendas: attendees with roles,
-  decisions, action items with owners.
+- **`types/meeting-minutes.md`** - Meeting minutes and agendas: attendees, decisions, action items.
 - **`types/management-plan.md`** - Management and subsidiary plans: methodology, cadence, roles.
-- **`types/work-breakdown-structure.md`** - WBS and dictionaries: decimal-coded outline, work
-  packages, RACI matrix.
+- **`types/work-breakdown-structure.md`** - WBS and dictionaries: decimal outline, work packages, RACI.
 - **`types/summary-document.md`** - Summaries, briefs, and abstracts derived from an
   existing document: declared source, compression tiers, carried verdict.
 - **`types/supplement-document.md`** - Supplements extending an existing document:
@@ -351,7 +349,7 @@ Load the file matching the document type, it adds deltas on top of the language 
 Load exactly one file, matching the document language - self-contained style baselines covering
 structure, headings, lists, tables, characters, vocabulary, and file naming:
 
-- **`languages/en.md`** - English documents: Title Case headings, vocabulary preferences.
+- **`languages/en.md`** - English documents: Title Case headings, vocabulary, dialect rules.
 - **`languages/pl.md`** - Polish documents: sentence case headings, diacritics, calque
   avoidance, terminology tables, per-type section names, and Polish activation phrases with
   English equivalents.
@@ -455,7 +453,9 @@ copies when done - `scripts/README.md` lists flags and the fallback convention.
   spans, anchors, glossary hints - `--expect-map`/`--eol` mark declared deltas.
 - **`scripts/check-titles.py`** - `ID: title` headings vs summary-table titles.
 - **`scripts/check-sections.py`** - Section vocabulary conformance, localized aliases included.
+- **`scripts/check-consistency.py`** - Internal reference resolution and terminology drift.
 - **`scripts/lint-polish.py`** - Polish calque and prose lint against forbidden-form tables.
+- **`scripts/lint-english.py`** - English vocabulary, grammar, spelling, and dialect lint.
 - **`scripts/validate-skill.py`** - Panther-repo frontmatter, disclosure, root-reference checks.
 - **`scripts/check-references.py`** / **`check-contents.py`** - Reference and contents integrity.
 - **`scripts/check-update.py`** / **`test-scripts.py`** - Self-update check and tool smoke harness.

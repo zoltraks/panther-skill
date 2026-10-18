@@ -68,10 +68,21 @@ CASES: list[tuple[str, list[str], tuple[int, ...], str | None,
     ("lint-polish.py", ["README.md"], (0, 1), None, None),
     ("lint-polish.py", ["README.md", "--group-by-form"], (0, 1), None, None),
     ("lint-polish.py", ["README.md", "--payload-markdown"], (0, 1), None, None),
+    ("lint-english.py", ["README.md"], (0, 1), None, None),
+    ("lint-english.py", ["README.md", "--group-by-form"], (0, 1), None, None),
+    ("lint-english.py", ["README.md", "--payload-markdown"], (0, 1), None,
+     None),
+    ("check-consistency.py", ["README.md"], (0, 1), None, None),
+    ("check-consistency.py", ["README.md", "--payload-markdown"], (0, 1),
+     None, None),
+    ("check-consistency.py", ["README.md", "--group-by-form"], (0, 1), None,
+     None),
     ("check-document.py", ["README.md", "--parity", "SKILL.md"], (0, 1),
      "check-document:", None),
     ("check-document.py", ["README.md", "--title-agreement"], (0, 1),
      "check-document:", None),
+    ("check-document.py", ["README.md", "--english", "--consistency"],
+     (0, 1), "check-document:", None),
     ("safe-replace.py",
      ["README.md", "zzz-not-present-zzz", "yyy", "--check"], (0,), None,
      None),
@@ -408,6 +419,86 @@ def improvement_regressions() -> int:
     return failures
 
 
+def english_consistency_regressions() -> int:
+    """Exercise lint-english and check-consistency on synthetic fixtures."""
+    failures = 0
+    label = "english-consistency fixtures"
+    with tempfile.TemporaryDirectory() as tmp:
+        tmp = Path(tmp)
+
+        # Errors gate: doubled word plus a banned vocabulary form.
+        dirty = tmp / "dirty.md"
+        dirty.write_text(
+            "# T\n\nThe the plan must utilize in order to finish.\n",
+            encoding="utf-8")
+        result = run_case("lint-english.py", [str(dirty)])
+        if (result is None or result.returncode != 1
+                or "doubled word" not in result.stdout
+                or "in order to" not in result.stdout):
+            print(f"FAIL {label} - errors did not gate")
+            failures += 1
+
+        # Code spans stand in as placeholders - "a `None` option" is not an
+        # article error, and "or `x` or" is not a doubled word.
+        code_doc = tmp / "code.md"
+        code_doc.write_text(
+            "# T\n\nPick a `None` option or `x/` or `y/` value.\n\n"
+            "An RFC and a README are fine.\n",
+            encoding="utf-8")
+        result = run_case("lint-english.py", [str(code_doc)])
+        if result is None or result.returncode != 0:
+            print(f"FAIL {label} - code-span placeholders still flag")
+            failures += 1
+
+        # Minority dialect warns but never gates.
+        dialect = tmp / "dialect.md"
+        dialect.write_text(
+            "# T\n\nThe behavior and color are right.\n\n"
+            "The behaviour is right.\n",
+            encoding="utf-8")
+        result = run_case("lint-english.py", [str(dialect)])
+        if (result is None or result.returncode != 0
+                or "minority dialect" not in result.stdout):
+            print(f"FAIL {label} - dialect warning lost or gated")
+            failures += 1
+
+        # Unresolved quoted reference gates; heading and bold-term anchors
+        # resolve; literals and weak-context single words stay silent.
+        ref_doc = tmp / "refs.md"
+        ref_doc.write_text(
+            "# T\n\n## Decision Points\n\nText.\n\n"
+            'See "Decision Points" and the "Missing Name" section.\n\n'
+            'Pick the "none" option or "a README" literal.\n\n'
+            "**Bold Term**\n\nDetails under \"Bold Term\".\n",
+            encoding="utf-8")
+        result = run_case("check-consistency.py", [str(ref_doc)])
+        if (result is None or result.returncode != 1
+                or result.stdout.count("UNRESOLVED") != 1
+                or "Missing Name" not in result.stdout):
+            print(f"FAIL {label} - reference resolution regressed")
+            failures += 1
+
+        # Heading-vs-heading parallel names never pair as variants, but a
+        # quoted drift term pairs with the heading it resembles.
+        drift = tmp / "drift.md"
+        drift.write_text(
+            "# T\n\n## Setup for New Projects\n\n## Setup for Old Projects\n\n"
+            "## Document and Agent-Entry Tree\n\n"
+            'See "Document and Agent Structure Tree".\n\n'
+            "The document and agent entry tree appears here.\n",
+            encoding="utf-8")
+        result = run_case("check-consistency.py", [str(drift)])
+        if (result is None or result.returncode != 1
+                or "Setup for New Projects" in result.stdout
+                or "UNRESOLVED" not in result.stdout
+                or "VARIANT" not in result.stdout
+                or "Document and Agent Structure Tree" not in result.stdout):
+            print(f"FAIL {label} - variant suppression or detection regressed")
+            failures += 1
+    print(("PASS" if not failures else "FAIL") + f" {label}")
+    return failures
+
+
 def main() -> int:
     failures = 0
     for script, args, exits, prefix, env_extra in CASES:
@@ -433,7 +524,8 @@ def main() -> int:
     failures += table_defect_case()
     failures += heuristic_regressions()
     failures += improvement_regressions()
-    print(f"RESULT {len(CASES) + 3 - failures}/{len(CASES) + 3} tools passed")
+    failures += english_consistency_regressions()
+    print(f"RESULT {len(CASES) + 4 - failures}/{len(CASES) + 4} tools passed")
     return 1 if failures else 0
 
 

@@ -27,6 +27,9 @@ Fix every failure, or report it to the user with a reason.
   rules.
 - For a known document type, `scripts/check-sections.py --type <type-slug>` reports no
   missing required sections.
+- For a type with an open section vocabulary such as `procedure-manual`, custom heading
+  names are valid - the check reports informational notes only, and generic section
+  names were never forced onto the document.
 
 ## Spacing
 
@@ -99,6 +102,11 @@ Fix every failure, or report it to the user with a reason.
 - Technical names and proper nouns keep their original spelling and decline normally.
   Filenames, commands, and identifiers keep a generic noun instead of an ending.
 - Independent clauses are never joined by a bare comma, and abbreviations expand at first use.
+- An English document passes `scripts/lint-english.py` - vocabulary violations,
+  misspellings, doubled words, and grammar errors are fixed, and advisory findings
+  (article and hyphen heuristics) were reviewed.
+- An English document keeps one spelling dialect - the dominant variant per the Dialect
+  Consistency table in `languages/en.md`, with deliberate exceptions quoted or named.
 - A Polish document passes `scripts/lint-polish.py` - calques, spliced clauses, and
   typographic violations are fixed or reported.
 
@@ -107,6 +115,9 @@ Fix every failure, or report it to the user with a reason.
 - Every enumeration of a governed set - canonical files, owners, options, steps - lists the
   same members wherever it appears in tables, menus, checklists, and examples.
 - No reference to a renamed or removed section, file, or owner remains.
+- Quoted section references resolve against the document's own headings and defined terms,
+  and managed names do not drift - `scripts/check-consistency.py` reports no unresolved
+  references and its variant warnings were reviewed.
 - Scripted bulk replacements ran through `scripts/safe-replace.py` or word-boundary
   matching, and the residue scan was reviewed - per the Scripted Bulk Edits rule in
   `principles/authoring-rules.md`.
@@ -150,6 +161,12 @@ Fix every failure, or report it to the user with a reason.
   `scripts/check-document.py` invocation covers this with the table, comment, reflow,
   and optional lint, section, and diff checks.
 - `scripts/lint-polish.py` reports no findings on a Polish document.
+- `scripts/lint-english.py` reports no errors on an English document.
+- `scripts/check-consistency.py` reports no unresolved references - on a long procedure
+  manual it runs together with the English lint as part of the structural validation.
+- A long procedure manual's final structural validation covers its own conventions:
+  open section vocabulary, quoted references, terminology, structure trees, and
+  embedded templates.
 - `scripts/diff-content.py` reports an identical token stream after formatting-only passes.
 - `git diff --check` reports no whitespace errors when inside a repository.
 - The written changes trace to a named operation or a user-confirmed proposal - no

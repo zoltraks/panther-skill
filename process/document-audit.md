@@ -62,7 +62,12 @@ python <skill-root>/scripts/validate-document.py <file>
 python <skill-root>/scripts/reflow-prose.py <file> --wrap --check --width <convention>
 python <skill-root>/scripts/reflow-prose.py <file> --unwrap --check
 python <skill-root>/scripts/format-table.py <file> --check
+python <skill-root>/scripts/lint-english.py <file>
+python <skill-root>/scripts/check-consistency.py <file>
 ```
+
+`check-document.py` flags `--english` and `--consistency` cover the last two in the
+standard battery, and `lint-english.py` runs only for English documents.
 
 The width comes from the document's convention, declared by the repository's rules or observed
 in the document itself - 100 when neither declares one.
@@ -92,6 +97,10 @@ python <skill-root>/scripts/check-sections.py <file> --type <name>
 It reports missing required and recommended sections, sections unusual for the type, and
 headings the type does not know - record them as findings and feed the missing set into the
 fix plan's `section-add` surface when fixes are approved.
+
+A document whose type defines an open section vocabulary - `procedure-manual`, or a
+vocabulary the repository's own rules declare - treats unknown-heading notes as
+informational, and the fix plan never forces generic section names onto custom headings.
 
 ## Convention Evaluation
 
@@ -125,7 +134,8 @@ Report only observations with line evidence - never taste judgments:
 - clarity - vague instructions, undefined terms on first use, ambiguous references
 - completeness - sections the document type expects but the document lacks, empty headings,
   unfilled placeholders
-- consistency - contradictory statements, version numbers that disagree between sections
+- consistency - contradictory statements, version numbers that disagree between sections,
+  quoted section references that resolve nowhere, and names that drift between variants
 - redundancy - the same statement repeated across sections
 
 The review is best-effort - report what surfaces, do not grade every sentence.

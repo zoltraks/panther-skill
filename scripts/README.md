@@ -18,8 +18,8 @@ They do not modify documents beyond the specific task each tool performs.
 |------------------|------|------------------------------------------|
 | Tool Classes     | 24   | Tool groups and when to run them         |
 | Commands         | 91   | Per-tool usage, flags, and output        |
-| Validation Order | 393  | Recommended run sequence                 |
-| Limitations      | 436  | Known parsing limits and validator scope |
+| Validation Order | 441  | Recommended run sequence                 |
+| Limitations      | 487  | Known parsing limits and validator scope |
 
 ## Tool Classes
 
@@ -29,23 +29,24 @@ Run `detect-encoding.py`, `detect-scope.py`, `normalize-chars.py`, `split-senten
 `reflow-prose.py`, `wrap-prose.py`, `format-table.py`, `align-comments.py`,
 `validate-document.py`, `check-document.py`, `diff-content.py`, `census-document.py`,
 `check-sections.py`, `check-parity.py`, `check-titles.py`, `safe-replace.py`,
-and `lint-polish.py` in place from the skill repository:
+`lint-polish.py`, `lint-english.py`, and `check-consistency.py` in place from the
+skill repository:
 
 `python <skill-root>/scripts/<tool>.py <file>`.
 
 In-place invocation is the default - the tools are self-contained, write nothing to the
 skill repository, and resolve their rule resources relative to their own location, so
-`lint-polish.py` finds its rule tables without `--rules` and `check-sections.py` resolves
-bare type slugs and language codes.
+`lint-polish.py` and `lint-english.py` find their rule tables without `--rules` and
+`check-sections.py` resolves bare type slugs and language codes.
 
 When the skill root cannot be invoked directly - for example the skill payload exists
 only as pasted content - copy the needed tools into the working repository's `work/`
 directory under a `.tmp.` name and remove them after use.
 
-In that mode `lint-polish.py` cannot auto-discover its rule tables - pass them
-explicitly with `--rules <path>` pointing at the skill's `languages/pl.md` and the
-matching glossary files, or set `PANTHER_SKILL_ROOT` so `check-document.py` locates
-siblings and rules.
+In that mode `lint-polish.py` and `lint-english.py` cannot auto-discover their rule
+tables - pass them explicitly with `--rules <path>` pointing at the skill's
+`languages/pl.md` or `languages/en.md` and the matching glossary files, or set
+`PANTHER_SKILL_ROOT` so `check-document.py` locates siblings and rules.
 
 If `work/` does not exist, use an existing `temp` or `temporary` directory.
 
@@ -101,7 +102,7 @@ python <skill-root>/scripts/reflow-prose.py <file.md> (--wrap | --unwrap | --jus
 python <skill-root>/scripts/format-table.py <file.md> [--check] [--payload-markdown] [--drop-empty-columns]
 python <skill-root>/scripts/align-comments.py <file.md> [--check] [--compact] [--payload-markdown]
 python <skill-root>/scripts/validate-document.py <file.md> [--width N] [--payload-markdown]
-python <skill-root>/scripts/check-document.py <file.md> [--width N] [--payload-markdown] [--layout wrap|unwrap] [--split] [--polish] [--type <slug>] [--language <code>] [--baseline <file>] [--normalize-chars] [--parity <source.md>] [--terms <glossary.md> ...] [--expect-map <file> ...] [--eol lf|crlf] [--title-agreement] [--skill-root <dir>]
+python <skill-root>/scripts/check-document.py <file.md> [--width N] [--payload-markdown] [--layout wrap|unwrap] [--split] [--polish] [--english] [--consistency] [--type <slug>] [--language <code>] [--baseline <file>] [--normalize-chars] [--parity <source.md>] [--terms <glossary.md> ...] [--expect-map <file> ...] [--eol lf|crlf] [--title-agreement] [--skill-root <dir>]
 python <skill-root>/scripts/check-parity.py <source.md> <target.md> [--terms <glossary.md> ...] [--expect-map <file> ...] [--eol lf|crlf]
 python <skill-root>/scripts/check-titles.py <file.md> [--verbose]
 python <skill-root>/scripts/safe-replace.py <file.md> <old> <new> [--raw] [--check]
@@ -109,6 +110,8 @@ python <skill-root>/scripts/diff-content.py <file.md> [--baseline <file>] [--nor
 python <skill-root>/scripts/census-document.py <file.md> [--width N] [--payload-markdown]
 python <skill-root>/scripts/check-sections.py <file.md> --type <slug-or-path> [--language <code-or-path>]
 python <skill-root>/scripts/lint-polish.py <file.md> [--rules <rulefile.md> ...] [--group-by-form] [--payload-markdown]
+python <skill-root>/scripts/lint-english.py <file.md> [--rules <rulefile.md> ...] [--group-by-form] [--payload-markdown]
+python <skill-root>/scripts/check-consistency.py <file.md> [--group-by-form] [--payload-markdown]
 python scripts/validate-skill.py .
 python scripts/check-references.py .
 python scripts/check-contents.py .
@@ -189,11 +192,11 @@ direction checks - and prints one verdict line per tool.
 verdict - without it both report as advisory, since the document's convention decides
 which applies.
 
-`--split`, `--polish`, `--type`, `--language`, `--baseline`, `--parity`, and
-`--title-agreement` add the `split-sentences.py`, `lint-polish.py`,
-`check-sections.py`, `diff-content.py`, `check-parity.py`, and
-`check-titles.py` checks to the battery, and a missing sibling reports
-`SKIP` instead of failing.
+`--split`, `--polish`, `--english`, `--consistency`, `--type`, `--language`,
+`--baseline`, `--parity`, and `--title-agreement` add the `split-sentences.py`,
+`lint-polish.py`, `lint-english.py`, `check-consistency.py`, `check-sections.py`,
+`diff-content.py`, `check-parity.py`, and `check-titles.py` checks to the battery,
+and a missing sibling reports `SKIP` instead of failing.
 
 `--parity <source.md>` compares the checked file's structure against its source
 document - the translate and revision validation gate - and `--terms <glossary.md>`
@@ -205,8 +208,8 @@ The script exits `1` when a gated check reports findings and `0` otherwise.
 
 `--payload-markdown` extends `split-sentences.py`, `reflow-prose.py`, `wrap-prose.py`,
 `format-table.py`, `align-comments.py`, `validate-document.py`, `check-document.py`,
-and `check-sections.py` into ` ```markdown ` fenced blocks, all other fence languages
-stay opaque.
+`check-sections.py`, `lint-english.py`, and `check-consistency.py` into ` ```markdown `
+fenced blocks, all other fence languages stay opaque.
 
 `align-comments.py` aligns trailing `#` comments inside untagged fenced blocks and
 shell-tagged blocks to one shared column per block - the established column when most
@@ -353,6 +356,51 @@ Rerun without the flag for per-line detail.
 It targets Polish deliverable documents - the skill's own rule files contain the
 forbidden forms by definition and will report them.
 
+`lint-english.py` lints an English document against the rule tables declared in
+`languages/en.md` - the "Instead of / Use" vocabulary table and the Dialect
+Consistency variant-pair table - plus built-in checks for common misspellings,
+doubled words, `then`/`than` misuse, and `its'` errors.
+
+Heuristic checks report warnings instead of errors: a/an agreement (with
+acronym and vowel-sound exceptions), spaced hyphens joining clauses, and
+dialect-minority spellings measured against the document's dominant variant -
+the document's own convention wins, so dialect findings never name a fixed
+dialect as mandatory.
+
+A vocabulary form qualified in its table entry - `leverage (as a verb)` -
+bounds the ban to the named sense and reports warnings, and a "verb + article +
+noun" form demotes to a warning when the noun modifies a following word
+("performs an update check").
+
+Fully uppercase tokens are treated as constants, quoted verbatim spans are
+exempt, and inline code spans stand in as placeholders so adjacent prose words
+do not collapse into phantom findings - errors exit `1`, warnings stay
+advisory.
+
+`--group-by-form` groups findings per matched form like `lint-polish.py`, and
+`--rules` overrides rule-table discovery, which defaults to the skill's
+`languages/en.md`.
+
+`check-consistency.py` verifies a document's internal references and managed
+terminology.
+
+A quoted Title-Case name in a reference context - a connector word like `in`,
+`see`, `per`, `the`, or `of` before the quote, or a noun like `section` after
+it - must resolve against the document's own anchors: every heading, plus
+`**Term**:` definition rows and bare `**Term**` pseudo-headings.
+
+Quoted literals are not references - names inside code spans, paths, and
+lowercase or single-word quotes without a strong connector stay ignored, and
+a path-qualified name like `"Appendix - Template Library"` resolves through its
+final segment.
+
+Unresolved references print `UNRESOLVED` and fail the run.
+
+Similar names that appear to denote one thing print `VARIANT` warnings -
+advisory only - detected by interior token gaps or a shared prefix and suffix.
+Two plain headings are deliberately parallel and never pair, and contiguous
+prefix or suffix extensions are legitimate scoping, not drift.
+
 `check-titles.py` verifies that a document's `## ID: title` headings match the
 title their summary-table row declares - the ID anchors the row whichever column holds
 it, the title comes from the `Title`/`Tytuł` header column or the column after the ID,
@@ -406,7 +454,8 @@ Run checks in this order:
 5. Check the wrap convention with `reflow-prose.py --wrap --check` for fixed-width
    documents or `reflow-prose.py --unwrap --check` for logical-line documents, matching
    the detected convention.
-6. Lint Polish output with `lint-polish.py` and apply every content fix it requires.
+6. Lint Polish output with `lint-polish.py` and apply every content fix it requires,
+   or lint English output with `lint-english.py` for an English document.
 7. Format edited tables with `format-table.py` - the last content-changing pass, so any
    later text edit requires re-running it and re-validating.
 8. Align comments in plain-text blocks with `align-comments.py` when the document contains
@@ -414,15 +463,17 @@ Run checks in this order:
 9. Validate the written document with `validate-document.py`.
 10. Check sections against the type file with `check-sections.py` when the document has a
     known type.
-11. Verify formatting-only passes with `diff-content.py` - add `--normalize-chars` when
+11. Check internal references and terminology with `check-consistency.py` when the
+    document names its own sections by quote or defines managed terms.
+12. Verify formatting-only passes with `diff-content.py` - add `--normalize-chars` when
     step 3 ran so the sanctioned character map does not surface as token differences.
-12. Run `git diff --check` when inside a repository.
-13. Remove every ad-hoc `.tmp.` helper and baseline snapshot - and any `.tmp.` tool
+13. Run `git diff --check` when inside a repository.
+14. Remove every ad-hoc `.tmp.` helper and baseline snapshot - and any `.tmp.` tool
     copies made under the fallback convention - from the working repository.
 
-`check-document.py` covers steps 4-5, 7-9, and 11 in one call - `--layout` selects the
-wrap convention, `--polish` covers step 6, `--type` covers step 10, and `--baseline`
-covers step 11.
+`check-document.py` covers steps 4-5, 7-9, and 12 in one call - `--layout` selects the
+wrap convention, `--polish` and `--english` cover step 6, `--type` covers step 10,
+`--consistency` covers step 11, and `--baseline` covers step 12.
 
 For a translation or revision task, `check-parity.py <source.md> <output.md>` runs as an
 additional gate after the content-changing passes - `check-document.py --parity
@@ -475,6 +526,21 @@ silent.
 The all-uppercase calque exemption can hide a real calque inside a deliberately shouted
 word - uppercase warnings deserve a manual glance when the document uses emphasis
 capitals.
+
+`lint-english.py` article and spaced-hyphen checks are heuristics by design - acronym
+pronunciation is decided by a curated letter-by-letter set, and a code span standing in
+as a placeholder can hide a genuine article error adjacent to it.
+
+Its dialect census measures surface forms only - a variant inside a quoted citation
+counts toward the minority, so deliberate quotes deserve a manual glance.
+
+`check-consistency.py` treats a quoted name as a reference only under connector-word
+context - a section named by bare quote without a connector stays unchecked, and a
+Title-Case literal under a weak connector can read as an `UNRESOLVED` reference.
+
+Its variant detection stays advisory - two names may be deliberately parallel even when
+one is not a heading, and a drift that never leaves the heading set stays invisible by
+design.
 
 Console output never fails on a legacy encoding - every script reconfigures `sys.stdout`
 and `sys.stderr` with `errors="backslashreplace"` under its `__main__` guard, so characters
