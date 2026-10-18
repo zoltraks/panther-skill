@@ -67,6 +67,10 @@ A task named in the same request counts as the selection: present the menu, then
 treating the named task as the chosen direction - document work goes to option 1, skill
 changes to option 2.
 
+A mode flag named in the same request - `autonomous`, `automatic`, `unattended`,
+`non-interactive`, or `verbose` - travels with the chosen direction and modifies that
+routine's gates per the Modes section of the target procedure file.
+
 Under JSON exchange the menu emits as the `maintenance-action` `choice` parameter per
 `process/json-exchange.md`.
 

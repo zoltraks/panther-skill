@@ -1600,6 +1600,31 @@
         "The tree is presented as a preview before the procedure's write steps, matching the manual's own convention.",
         "The addition follows the manual's section vocabulary and style rather than the generic template's."
       ]
+    },
+    {
+      "id": 131,
+      "prompt": "Improve panther-skill using what happened in this session - run the review autonomously.",
+      "expected_output": "The session-review procedure running unattended: findings mapped to rule files, the approval gate resolved to its recommended option without waiting, applied changes validated, and an inline decisions list reporting every resolved surface.",
+      "files": [],
+      "expectations": [
+        "The agent loaded process/session-review.md and followed its workflow in autonomous mode.",
+        "The approval gate resolved to Apply without a blocking question.",
+        "The completion report carries a decisions list naming each resolved surface and the option taken.",
+        "No commit was made, and the maintenance validation suite ran after the edits.",
+        "A session that yields no findings reports that and stops rather than inventing changes."
+      ]
+    },
+    {
+      "id": 132,
+      "prompt": "Improve panther-skill using what happened in this session, verbose.",
+      "expected_output": "The session-review procedure with expanded gate reporting: every offered option listed with its disposition and the rationale for the recommended choice before the gate waits for an answer.",
+      "files": [],
+      "expectations": [
+        "The agent loaded process/session-review.md and followed its workflow in verbose mode.",
+        "Each gate reports the full option list and the rationale for the recommended choice.",
+        "The approval gate still waits for the user's answer - verbose alone does not auto-resolve.",
+        "Under an additional autonomous flag the same detail is reported while the gate resolves without waiting."
+      ]
     }
   ]
 }

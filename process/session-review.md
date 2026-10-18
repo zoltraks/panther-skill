@@ -3,13 +3,30 @@
 ## Purpose
 
 > **Scope:** Procedure for improving the skill from the current session's history
-> **Key items:** session gather, findings, approval gate, rule-file application, validation
+> **Key items:** session gather, findings, approval gate, review modes, rule-file
+> application, validation
 
 This file defines the improvement path of maintenance mode: the agent reviews what happened
 in this conversation, extracts the lessons worth keeping, and lands them in the rule corpus.
 
 Follow it when the user picks the session-review option of the maintenance menu, or when the
 request explicitly asks to improve the skill from this session.
+
+## Modes
+
+Two optional flags named in the request modify how the review's question surfaces behave -
+"improve panther-skill from this session, autonomously".
+
+- **Autonomous** - `autonomous`, `automatic`, `unattended`, or `non-interactive`. Every gate
+  in this procedure resolves to its recommended option without waiting, and the completion
+  report carries a `Decisions:` list naming each resolved surface and the option taken.
+- **Verbose** - `verbose`. Every surface additionally reports the full option list and the
+  rationale for the recommended choice, whether the surface was asked or auto-resolved.
+
+The flags may stack - autonomous plus verbose resolves every gate and reports all options.
+
+Autonomous mode resolves only this procedure's own gates: it never commits, and a session
+that yields no findings still reports and stops rather than inventing changes.
 
 ## Procedure
 
@@ -50,6 +67,9 @@ The gate offers `Apply` (recommended), `Adjust`, and `Cancel`.
 
 `Adjust` accepts a free-text correction to the findings or the proposal and re-presents the
 report.
+
+Under autonomous mode the gate resolves to `Apply` without asking and the resolution is
+recorded in the decisions list, per Modes above.
 
 ### Apply
 

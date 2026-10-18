@@ -248,6 +248,18 @@ The same answers in the condensed form:
 }
 ```
 
+## Autonomous Surfaces
+
+A procedure that defines an autonomous mode - such as the session review's autonomous flag in
+`process/session-review.md` - resolves each of its pending surfaces to the recommended option
+without waiting.
+
+The document emits with the resolved value in `answer` instead of the empty string, and the
+resolution is reported in the reply like an answered question.
+
+A verbose flag additionally reports the full `menu` and the rationale behind each resolved
+default.
+
 ## Authority
 
 The JSON format is a presentation format, not an authority change.

@@ -173,7 +173,8 @@ maintenance mode: it reads the skill's governing documents, applies `docs/MAINTE
 `docs/STYLE.md`, and runs the skill's own validators - document-mode machinery does not apply
 to the skill's own files.
 
-The session-review path gathers the current session's lessons, reports findings for approval,
+The session-review path gathers the current session's lessons, reports findings for
+approval - autonomous and verbose modes resolve the gate unattended or fully explained -
 and lands the approved changes in the rule corpus.
 
 **Enables on a bare request**
@@ -544,7 +545,7 @@ panther-skill/
 │   ├── scope-discovery.md             # Standalone layout-discovery procedure and report format
 │   ├── skill-maintenance.md           # Maintenance-mode procedure for work on the skill itself
 │   ├── skill-activation.md            # Enable-mode procedure for bare activation requests
-│   ├── session-review.md              # Session-review procedure: findings, approval, apply
+│   ├── session-review.md              # Session-review procedure: findings, gate modes, apply
 │   ├── translate-document.md          # Standalone translate procedure: pairs and glossaries
 │   ├── translation-audit.md           # Standalone translation-audit procedure: fidelity verdict
 │   └── translation-revision.md        # Standalone correction procedure for existing translations

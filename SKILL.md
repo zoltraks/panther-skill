@@ -22,7 +22,7 @@ compatibility: >-
   Claude Desktop, Windsurf, Devin, and similar). Requires the ability to read
   and write text files. No network access required.
 metadata:
-  version: "1.1.7"
+  version: "1.1.8"
   author: Filip Golewski
 allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob Grep
 ---
@@ -279,8 +279,8 @@ For edits to existing documents, the document's own conventions and the minimal-
 - **`process/operations-catalog.md`** - The catalog procedure for "list all operations" requests.
 - **`process/skill-maintenance.md`** - The maintenance-mode procedure: the intake menu,
   governing set, skipped document machinery, and validation for work on this repository.
-- **`process/session-review.md`** - The session-review procedure: gather the session's
-  lessons, report findings for approval, apply and validate approved rule changes.
+- **`process/session-review.md`** - The session-review procedure: gather lessons, report
+  findings for approval - autonomous and verbose modes included - apply, validate.
 - **`process/skill-activation.md`** - The enable-mode procedure: bare-activation intake, the
   readiness response, and the hand-off to document or maintenance mode.
 
