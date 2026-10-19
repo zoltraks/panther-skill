@@ -23,7 +23,7 @@ compatibility: >-
   Claude Desktop, Windsurf, Devin, and similar). Requires the ability to read
   and write text files. No network access required.
 metadata:
-  version: "1.1.9"
+  version: "1.2.0"
   author: Filip Golewski
 allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob Grep
 ---
@@ -94,18 +94,19 @@ Use `python3` when `python` is not on PATH.
 
 - `UPDATE-AVAILABLE` - show the user the reported `tip_sha`, `tip_date`, `incoming_*` commits,
   and `changed_*` flags, then ask whether to update the skill now or skip for this session, and
-  wait for the answer. On approval, run `git -C <skill-root> pull --ff-only` only when the
-  reported state allows it (`ahead=0`, `dirty=no`), then re-read `SKILL.md` and any loaded rule
-  files. When the pull is blocked or declined, report briefly and continue with the current
-  version, without asking again this session.
+  wait for the answer. On approval, run `git -C <skill-root> merge --ff-only <tip_sha>` only
+  when the reported state allows it (`ahead=0`, `dirty=no`), then re-read `SKILL.md` and any
+  loaded rule files. When the merge is blocked or declined, report briefly and continue with
+  the current version, without asking again this session.
 - Any other status - proceed silently and do not mention the check.
 
-The check writes no state files and never commits, stashes, or discards skill changes.
+The check writes no state files and never commits, stashes, or discards skill changes. Its
+`git fetch` updates remote-tracking refs under `.git` but writes no files in the working tree.
 
-The pull merges upstream content without cryptographic verification.
+The merge applies upstream content without cryptographic verification.
 
-Approve only trusted upstreams, pin the reviewed state to the reported `tip_sha` commit,
-and review `git log HEAD..@{u}` diffs before approving when unsure.
+Approve only trusted upstreams, and review `git log HEAD..@{u}` diffs before approving when
+unsure. The merge fast-forwards to the reported `tip_sha`, never a later tip.
 
 ## Trigger Keywords
 

@@ -37,20 +37,20 @@ There is no guaranteed response SLA, but security reports take priority over fea
 
 ## Update-Path Trust Boundary
 
-The once-per-session update check in `SKILL.md` offers `git pull --ff-only` from the configured
-upstream.
+The once-per-session update check in `SKILL.md` offers `git merge --ff-only <tip_sha>` from the
+configured upstream.
 
-The pull path applies no cryptographic verification of merged content.
+The merge path applies no cryptographic verification of merged content.
 
 The `tip_sha` and `tip_date` details in the update verdicts identify the incoming upstream tip
-commit, which serves as the review anchor for deciding whether to pull.
+commit, which serves as the review anchor for deciding whether to merge.
 
 Approve updates only from upstreams you trust, and review `git log HEAD..@{u}` diffs before
-pulling when unsure.
+merging when unsure. The merge fast-forwards to the reported `tip_sha`, never a later tip.
 
 ## Accepted Posture
 
-The update path deliberately relies on `--ff-only` pulls, dirty-tree and diverged refusal, the
+The update path deliberately relies on `--ff-only` merges, dirty-tree and diverged refusal, the
 verdict's `incoming_*` and `changed_scripts`/`changed_skill` review payload, and explicit
 per-session user approval rather than signed commits or tags.
 
