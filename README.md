@@ -691,8 +691,9 @@ panther-skill/
 │   ├── check-references.py            # Root reference integrity checker
 │   ├── check-contents.py              # Contents-table line-number drift checker
 │   ├── check-update.py                # Git upstream self-update checker for the skill repo
-│   ├── test-scripts.py                # Smoke harness for all maintenance and production tools
 │   └── README.md                      # Tool classes, commands, and limits
+├── tests/
+│   └── test-scripts.py                # Smoke harness for all maintenance and production tools
 └── evals/
     └── evals.json                     # Behavioral regression prompts
 ```

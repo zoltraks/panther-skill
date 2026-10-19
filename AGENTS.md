@@ -64,7 +64,7 @@ Run the skill-maintenance suite from `docs/MAINTENANCE.md` after structural chan
 python scripts/validate-skill.py .
 python scripts/check-references.py .
 python scripts/check-contents.py .
-python scripts/test-scripts.py
+python tests/test-scripts.py
 git diff --check
 ```
 

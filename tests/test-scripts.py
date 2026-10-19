@@ -10,7 +10,7 @@ Check-mode tools may exit 0 or 1 - both are verdicts, not crashes.
 Prints a PASS or FAIL line per tool plus a summary, and exits 0 when all
 tools pass, 1 otherwise.
 
-Usage: python scripts/test-scripts.py
+Usage: python tests/test-scripts.py
 """
 
 from __future__ import annotations

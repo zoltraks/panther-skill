@@ -28,7 +28,7 @@ Do not file them in the public issue tracker.
 git clone git@github.com:zoltraks/panther-skill.git
 cd panther-skill
 python3 scripts/validate-skill.py .
-python3 scripts/test-scripts.py
+python3 tests/test-scripts.py
 ```
 
 The skill has no dependencies beyond `python3` and `git`.
@@ -40,7 +40,7 @@ Everything else is documentation.
 - Keep each pull request focused on a single change.
 - Follow [STYLE.md](./STYLE.md) for document and prose conventions.
 - Follow [MAINTENANCE.md](./MAINTENANCE.md) for naming, registration, and layout rules.
-- Run `python3 scripts/test-scripts.py` before submitting. It covers all three validators.
+- Run `python3 tests/test-scripts.py` before submitting. It covers all three validators.
 - The project runs no CI by design, so this local gate is the only regression check.
 - Bump the skill version on every change to skill document contents - `VERSIONING.md`
   defines the patch increment.

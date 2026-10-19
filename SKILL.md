@@ -23,7 +23,7 @@ compatibility: >-
   Claude Desktop, Windsurf, Devin, and similar). Requires the ability to read
   and write text files. No network access required.
 metadata:
-  version: "1.2.0"
+  version: "1.2.1"
   author: Filip Golewski
 allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob Grep
 ---
@@ -457,7 +457,8 @@ copies when done - `scripts/README.md` lists flags and the fallback convention.
 - **`scripts/lint-polish.py`** / **`lint-english.py`** - Polish calque, English vocabulary lints.
 - **`scripts/validate-skill.py`** / **`check-references.py`** / **`check-contents.py`** -
   Panther-repo checks.
-- **`scripts/check-update.py`** / **`test-scripts.py`** - Self-update check and tool smoke harness.
+- **`scripts/check-update.py`** / **`tests/test-scripts.py`** - Self-update check and tool smoke
+  harness.
 - **`scripts/README.md`** - Tool classes, commands, flags, validation order, limitations.
 
 ## Evaluation Prompts
