@@ -72,8 +72,9 @@ Record the stacking in a precedence table - wider rules first, narrower rules ov
 
 ## Writing Rules
 
-Write rules as imperative, checkable sentences - the agent must be able to obey or violate
-each one.
+Write rules as imperative, checkable sentences.
+
+The agent must be able to obey or violate each one.
 
 Keep each rule in exactly one place.
 

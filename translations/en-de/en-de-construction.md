@@ -99,7 +99,9 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 
 ## Context Forms
 
-Some English terms render differently by context - do not force one form everywhere:
+Some English terms render differently by context.
+
+Do not force one form everywhere:
 
 - `attack` renders `Angriff` in process names (`Chloridangriff`, `Sulfatangriff`) and
   `Einwirkung` in normative exposure descriptions (`chloridhaltige Einwirkung` for XD) -

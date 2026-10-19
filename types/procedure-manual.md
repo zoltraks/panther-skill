@@ -60,7 +60,7 @@ The canonical skeleton, adjusted to the request:
 
 ## Writing Rules
 
-Keep the manual self-contained - the operator should not need external files to
+Keep the manual self-contained. The operator should not need external files to
 execute a procedure.
 
 Give every decision gate literal wording in quotes, an explicit option list, a

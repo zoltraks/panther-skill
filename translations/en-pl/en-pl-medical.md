@@ -81,7 +81,9 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 
 ## Context Forms
 
-Some English terms render differently by context - do not force one form everywhere:
+Some English terms render differently by context.
+
+Do not force one form everywhere:
 
 - `study` renders `badanie` for a trial and `opracowanie` for a publication or review.
 - `subject` renders `uczestnik badania` in trial text and `temat` in document metadata.

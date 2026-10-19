@@ -8,7 +8,9 @@
 
 Discovery answers "which scope describes this location best".
 
-It is analysis only - it changes nothing in the analyzed location.
+It is analysis only.
+
+It changes nothing in the analyzed location.
 
 Use it when the request asks to discover, detect, or identify the document layout or scope of a
 location, or to analyze its document structure.
@@ -56,10 +58,14 @@ repository - run the census on each project directory that carries its own `docs
 Classify the observed documents against the `types/` files and the winning scope's Document
 Types map.
 
-Work from file names and the scope's map - do not read files under directories the target's
-rules mark as restricted, for example versioned artifact directories in a guided project.
+Work from file names and the scope's map.
 
-Note documents that no type covers - they are exceptions to report, not new types to invent.
+Do not read files under directories the target's rules mark as restricted,
+for example versioned artifact directories in a guided project.
+
+Note documents that no type covers.
+
+They are exceptions to report, not new types to invent.
 
 ## Declared Elements
 
@@ -79,7 +85,9 @@ Scan the visible document set for drift and report findings under Exceptions:
   `CHANGELOG.md`
 - stale absolute paths and contradictory figures between documents
 
-The scan is best-effort - report what surfaces, do not audit every file.
+The scan is best-effort.
+
+Report what surfaces, do not audit every file.
 
 ## Exception Analysis
 
@@ -95,8 +103,9 @@ Report deviations in both directions:
 
 Deliver the report inline unless the request asks for a file.
 
-A file goes to the location the request names - a conventional name such as `LAYOUT.md` is
-allowed.
+A file goes to the location the request names.
+
+A conventional name such as `LAYOUT.md` is allowed.
 
 Structure every report the same way:
 
@@ -111,6 +120,8 @@ Structure every report the same way:
 
 Discovery does not modify the analyzed location.
 
-It performs no registration or index updates - those belong to document tasks.
+It performs no registration or index updates.
+
+Those belong to document tasks.
 
 It does not validate or fix documents - report findings only.

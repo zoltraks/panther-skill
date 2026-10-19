@@ -284,8 +284,9 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 
 ## Context Forms
 
-Some Polish terms render differently to English by context - do not force one form
-everywhere:
+Some Polish terms render differently to English by context.
+
+Do not force one form everywhere:
 
 - `funkcja` renders `feature` in product documentation and `function` in code and API text.
 - `błąd` renders `bug` for a tracked defect and `error` for runtime and message text.

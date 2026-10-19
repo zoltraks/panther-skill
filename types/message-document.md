@@ -8,7 +8,7 @@
 
 A message document communicates one thing to its readers.
 
-It is written to be read, not maintained - a message carries no document ceremony.
+It is written to be read, not maintained. A message carries no document ceremony.
 
 Typical shape: a subject title, an optional sender and audience line, a short body, and an
 optional closing ask.
@@ -38,7 +38,7 @@ The canonical skeleton, adjusted to the request:
 
 ## Deltas From The Language Baseline
 
-- Write to the reader directly - first and second person are natural in messages.
+- Write to the reader directly. First and second person are natural in messages.
 - Keep the whole document short enough to read in one screen.
 - No metadata ceremony - a message does not carry a version or a document information block.
 - A message with a deadline or an ask puts it at the end, where the reader finishes.

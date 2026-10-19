@@ -18,14 +18,17 @@ keep the rule and flag the conflict.
 A file changes only on a request that names the operation and the target - "align the
 tables in SPEC.md" instructs, "use the skill" does not.
 
-A request that names no operation, or names the work only in general terms - "work with
-the skill", "improve the docs" - authorizes analysis and a proposal, never a write.
+A request that names no operation, or names the work only in general terms - "work with the skill",
+"improve the docs".
+
+Authorizes analysis and a proposal, never a write.
 
 Analysis is free: read, inspect, and reason about whatever the request plausibly covers,
 then propose the concrete change and wait for confirmation.
 
-A defect noticed outside the request's scope - in a file or section the request did not
-cover - is reported and proposed, never fixed silently.
+A defect noticed outside the request's scope.
+
+In a file or section the request did not cover is reported and proposed, never fixed silently.
 
 ## Plain Text First
 

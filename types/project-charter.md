@@ -49,7 +49,7 @@ empowers the project manager.
 
 - The charter stays short - one to five pages. Detail lives in plans and
   registers, the charter holds commitments.
-- Objectives are SMART - each row carries a metric and a measurable target.
+- Objectives are SMART. Each row carries a metric and a measurable target.
 - The project brief is the short variant - objectives, scope summary, timeline,
   budget estimate, and key stakeholders on one page.
 - After approval the charter changes only through change control. Update the

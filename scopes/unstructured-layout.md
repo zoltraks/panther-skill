@@ -11,14 +11,15 @@ This is the baseline scope.
 It applies when no other scope's detection signals match, or when the task names a single file
 or directory without a document structure.
 
-Loading this file changes nothing about the base workflow - it documents the default explicitly
-so every scope in `scopes/` is a file.
+Loading this file changes nothing about the base workflow.
+
+It documents the default explicitly so every scope in `scopes/` is a file.
 
 ## Detection
 
 This scope applies by default.
 
-No detection signals are required - it is the fallback when `SKILL.md` frontmatter, Sphinx build
+No detection signals are required. It is the fallback when `SKILL.md` frontmatter, Sphinx build
 files, and other project markers are absent.
 
 ## Rules
@@ -33,7 +34,7 @@ Name the file per the matching `languages/` file naming rules, type-conventional
 
 No registration, index, or navigation update follows a document change in this scope.
 
-Apply `types/` files per document as usual - the absence of project organization does not change
+Apply `types/` files per document as usual. The absence of project organization does not change
 how a single document is shaped.
 
 ## Document Types

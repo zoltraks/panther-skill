@@ -17,8 +17,9 @@
 
 A library README serves a reader evaluating whether to depend on the package.
 
-It leads with the install command and the smallest working example - everything else is
-secondary.
+It leads with the install command and the smallest working example.
+
+Everything else is secondary.
 
 ## When To Use
 
@@ -47,7 +48,7 @@ The canonical skeleton, adjusted to the request:
 
 ## Deltas From The Language Baseline
 
-- The Usage example must be real and runnable - an example that references functions that no
+- The Usage example must be real and runnable. An example that references functions that no
   longer exist is the most common library README failure.
 - Keep the README scannable, roughly 100 to 300 lines - move deep reference material into
   `docs/` and link to it.

@@ -39,8 +39,9 @@ The root level follows `scopes/unstructured-layout.md` unless it matches a scope
 
 ## Working Rules
 
-Never mix conventions across project boundaries - each project may follow its own document and
-code style, and the nearest one applies.
+Never mix conventions across project boundaries.
+
+Each project may follow its own document and code style, and the nearest one applies.
 
 Check for a guidelines document in the target subproject before writing, the same way a
 standalone project would be checked.

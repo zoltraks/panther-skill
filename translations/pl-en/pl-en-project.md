@@ -88,8 +88,9 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 
 ## Context Forms
 
-Some Polish terms render differently to English by context - do not force one form
-everywhere:
+Some Polish terms render differently to English by context.
+
+Do not force one form everywhere:
 
 - `zakres` renders `scope` for the work boundary, and `in scope` / `out of scope` for the
   section names `w zakresie` / `poza zakresem`.

@@ -27,8 +27,9 @@ Before starting, the operator resolves each decision and records the answer.
 
 ## Roles and Locations
 
-Logical roles map to concrete locations. Resolve each role independently and
-preserve conventions the target already established.
+Logical roles map to concrete locations.
+
+Resolve each role independently and preserve conventions the target already established.
 
 | Role         | Location             | Required           |
 |--------------|----------------------|--------------------|

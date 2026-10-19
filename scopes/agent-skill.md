@@ -2,7 +2,7 @@
 
 ## Purpose
 
-> **Scope:** Document work inside an Agent Skill repository - a directory that contains a
+> **Scope:** Document work inside an Agent Skill repository. A directory that contains a
 > `SKILL.md` router and bundled resource files
 > **Key items:** router contract, directory roles, registration procedure, kebab-case naming
 
@@ -118,8 +118,9 @@ keep them out of reference checks and audits.
 
 Use lowercase kebab-case for new rule files, for example `project-document.md`.
 
-Match the dominant word-count convention of the target directory - when most filenames use two
-words, a new file uses at least two words even when one would do.
+Match the dominant word-count convention of the target directory.
+
+When most filenames use two words, a new file uses at least two words even when one would do.
 
 This naming rule comes from the scope, it overrides the `languages/` file default for rule
 files inside the skill.

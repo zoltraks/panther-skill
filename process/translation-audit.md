@@ -8,7 +8,9 @@
 
 A translation audit answers "how faithfully does this rendering reproduce its source".
 
-It is analysis only - it changes nothing in either document.
+It is analysis only.
+
+It changes nothing in either document.
 
 Use it when the request asks to audit, verify, check, or compare a translation against its
 source, or asks how a document was translated.
@@ -21,11 +23,12 @@ When the request names only the translation, the source is the sibling file with
 language code - `guide-pl.md` pairs with `guide.md` - or the file the request names as the
 source.
 
-Ask when no source can be resolved - under JSON exchange this emits as the `source-resolution`
+Ask when no source can be resolved. Under JSON exchange this emits as the `source-resolution`
 `text` parameter.
 
-Detect the direction from the pair - an English source and a Polish rendering is an
-`en-pl` audit - and report it.
+Detect the direction from the pair.
+
+An English source and a Polish rendering is an `en-pl` audit - and report it.
 
 ## Rule Loading
 
@@ -84,7 +87,7 @@ Run the checks in order and record each result for the report:
 
 1. **Structure map** - align the two documents heading by heading and classify every
    source heading as `faithful`, `reworded`, `dropped`, `merged`, `reordered`, plus every
-   target-only heading as `added` - a faithful translation yields only `faithful` and
+   target-only heading as `added`. A faithful translation yields only `faithful` and
    `reworded` classes. Every `check-parity.py` DELTA line names a structural suspect.
 2. **Untranslated set** - verify byte-identity of code block content, inline code
    spans, file paths, URLs, commands, identifiers, frontmatter, and the `TBD` and
@@ -133,12 +136,14 @@ Map the record format before comparing: the source may nest sections, group
 entries under keys, or carry several translatable fields per record, so the
 pairing follows the format's real shape.
 
-The structure map becomes a key-coverage report - every source key resolves in
-the target, every target key traces to a source record, and a missing or extra
-key is a structural finding.
+The structure map becomes a key-coverage report.
 
-A record pairs field by field - a question entry aligns its text, every numbered
-option, and its explanation, not only its label.
+Every source key resolves in the target, every target key traces to a source record,
+and a missing or extra key is a structural finding.
+
+A record pairs field by field.
+
+A question entry aligns its text, every numbered option, and its explanation, not only its label.
 
 The untranslated set covers keys, identifiers, interpolation placeholders such as
 `{0}`, and machine tokens - the placeholder set inside each paired field must
@@ -190,10 +195,13 @@ Structure it as:
 
 ## Non-Goals
 
-The audit never retranslates or fixes the target document - applying its findings is a
-Revision task per `process/translation-revision.md`, run only when the user asks.
+The audit never retranslates or fixes the target document.
+
+Applying its findings is a Revision task per `process/translation-revision.md`,
+run only when the user asks.
 
 It does not grade the source document's own quality.
 
-It does not audit machine-translation output line by line - it verifies conformance to the
-pair's rules, not linguistic elegance.
+It does not audit machine-translation output line by line.
+
+It verifies conformance to the pair's rules, not linguistic elegance.

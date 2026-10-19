@@ -45,8 +45,9 @@ Author and edit content in the `.md` pages only.
 
 Page filenames use lowercase kebab-case, for example `base-text.md` or `attribute-command.md`.
 
-This naming convention comes from the scope - it overrides the `languages/` file default for
-pages inside the project.
+This naming convention comes from the scope.
+
+It overrides the `languages/` file default for pages inside the project.
 
 The dominant dialect is setext headings (`Title` underlined with `=`, sections with `-`), with
 closed ATX headings such as `### Name ###` appearing in some topic groups.

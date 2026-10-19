@@ -27,8 +27,9 @@ Przed rozpoczęciem operator rozstrzyga każdą decyzję i zapisuje odpowiedź.
 
 ## Role i lokalizacje
 
-Role logiczne są przypisane do konkretnych lokalizacji. Każdą rolę rozstrzygaj
-niezależnie i zachowaj konwencje już ustalone w obiekcie docelowym.
+Role logiczne są przypisane do konkretnych lokalizacji.
+
+Każdą rolę rozstrzygaj niezależnie i zachowaj konwencje już ustalone w obiekcie docelowym.
 
 | Rola       | Lokalizacja              | Wymagana          |
 |------------|--------------------------|-------------------|

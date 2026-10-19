@@ -123,7 +123,9 @@ AsciiDoc tables use delimited blocks:
 The `|===` lines open and close the table, `cols=` sets the column specification, and cells
 separate with `|`.
 
-Treat table blocks as opaque - do not realign cells, do not convert them to Markdown tables,
+Treat table blocks as opaque.
+
+Do not realign cells, do not convert them to Markdown tables,
 and do not run the table formatter on them.
 
 ## Inline Markup

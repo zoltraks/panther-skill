@@ -9,8 +9,10 @@
 
 An agent instruction document tells an AI coding agent what to do.
 
-It is written to be executed, not only read - it carries triggers, mandatory questions,
-staged procedures, and a done-condition the agent must satisfy.
+It is written to be executed, not only read.
+
+It carries triggers, mandatory questions, staged procedures,
+and a done-condition the agent must satisfy.
 
 Many such documents serve two audiences: human readers who review or maintain the document,
 and agents who execute it.
@@ -67,7 +69,7 @@ The canonical skeleton, adjusted to the request:
 Give every decision question literal wording in quotes, an explicit option list, a
 recommended default, and an escape hatch such as accepting all defaults.
 
-Keep the document self-contained - the agent should not need external files to execute it.
+Keep the document self-contained. The agent should not need external files to execute it.
 
 When the document defines a governed set - canonical files, directories, rule owners, or
 options - keep every enumeration of that set identical across tables, lists, menus,

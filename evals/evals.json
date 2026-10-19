@@ -1625,6 +1625,44 @@
         "The approval gate still waits for the user's answer - verbose alone does not auto-resolve.",
         "Under an additional autonomous flag the same detail is reported while the gate resolves without waiting."
       ]
+    },
+    {
+      "id": 133,
+      "prompt": "Correct this English document - it has a misaligned table, packed sentences, typos, and a missing required section for its type.",
+      "expected_output": "The same document corrected in place - table realigned by script, sentences split, typos fixed, missing section inserted with NOT SPECIFIED markers - followed by a corrections report.",
+      "files": [],
+      "expectations": [
+        "The agent followed process/correct-document.md and resolved the governing rules before editing.",
+        "The mechanical battery ran through scripts/check-document.py and scripted fixes ran in the mutating order with format-table.py last.",
+        "The missing section was inserted through the section-add surface carrying NOT SPECIFIED markers - no content was invented.",
+        "The document's own conventions, encoding, and line endings were preserved and the diff stayed minimal.",
+        "The report lists every applied fix with its class, location, old and new text, and rule source."
+      ]
+    },
+    {
+      "id": 134,
+      "prompt": "Popraw ten dokument - potrzebuje przejścia formatowania i języka.",
+      "expected_output": "The Polish document corrected in place - lint findings fixed or reported, overloaded sentences split by rewrite, conventions preserved - followed by a corrections report.",
+      "files": [],
+      "expectations": [
+        "The agent followed process/correct-document.md and loaded languages/pl.md as the baseline.",
+        "scripts/lint-polish.py findings were fixed or reported, and no form from the calque or vocabulary tables remains uncorrected.",
+        "Overloaded sentences were split by rewriting into two sentences, never by a mechanical reorder.",
+        "The document's own conventions were preserved and the diff stayed minimal."
+      ]
+    },
+    {
+      "id": 135,
+      "prompt": "Correct this document - it is the Polish rendering of the English guide.md sitting next to it.",
+      "expected_output": "In-place correction of the target's formatting, grammar, and typos, plus a proposals table of translation-fidelity findings aligned to source passages - none of them applied.",
+      "files": [],
+      "expectations": [
+        "The agent followed process/correct-document.md and resolved the source sibling, which turned on the translation-quality layer.",
+        "The quality layer ran check-parity.py with the loaded glossaries, the untranslated-set check, concordance, and the Calque Traps tables.",
+        "Formatting, structure, language, style, and consistency findings were applied minimal-diff; calques, modality, and meaning-drift findings were proposed with recommended renderings, never applied.",
+        "The source document was not modified.",
+        "The report separates Corrections from Proposals and each proposal names its aligned source passage."
+      ]
     }
   ]
 }

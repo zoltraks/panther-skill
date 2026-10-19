@@ -39,8 +39,9 @@ Typical chain: `README.md` points to `docs/GUIDELINES.md`, which names the autho
 specification and mandatory reads such as `COPYRIGHTS.md` or a pre-work checklist in
 `ALWAYS.md`.
 
-Project rules outrank the skill's defaults for that repository - a guidelines document may set
-its own changelog format, section conventions, or filename rules.
+Project rules outrank the skill's defaults for that repository.
+
+A guidelines document may set its own changelog format, section conventions, or filename rules.
 
 ## Directory Roles
 
@@ -60,7 +61,9 @@ its own changelog format, section conventions, or filename rules.
 | `docs/archive/`               | Frozen document snapshots - never edit                   |
 | `work/`                       | Temporary files, ignored by version control              |
 
-The exact directory set varies per project - the guidelines document is authoritative.
+The exact directory set varies per project.
+
+The guidelines document is authoritative.
 
 Projects may also carry payload collections outside `docs/`, for example a knowledge base under
 `example/data/` - those follow their own conventions, not this scope's.
@@ -69,9 +72,10 @@ Projects may also carry payload collections outside `docs/`, for example a knowl
 
 Read only what the task needs.
 
-Guided projects often restrict agent exploration - do not read files under versioned artifact
-directories such as `docs/feature/`, `docs/plan/`, `docs/refactoring/`, or `docs/report/`
-unless the task or the guidelines explicitly call for them.
+Guided projects often restrict agent exploration.
+
+Do not read files under versioned artifact directories such as `docs/feature/`, `docs/plan/`,
+`docs/refactoring/`, or `docs/report/` unless the task or the guidelines explicitly call for them.
 
 Place temporary scripts in the project's `work/` directory when it declares one.
 
@@ -99,8 +103,9 @@ Implementation plans carry the `-implementation` suffix, for example
 
 Refactoring artifacts come in `ASSESSMENT` and `PROPOSAL` pairs per version.
 
-These conventions come from the scope - they override the `languages/` file default inside this
-project.
+These conventions come from the scope.
+
+They override the `languages/` file default inside this project.
 
 ## Document Types In This Scope
 

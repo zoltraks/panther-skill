@@ -86,8 +86,9 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 
 ## Context Forms
 
-Some Polish terms render differently to German by context - do not force one form
-everywhere:
+Some Polish terms render differently to German by context.
+
+Do not force one form everywhere:
 
 - `błąd` renders `Fehler` for a tracked defect and `Fehlermeldung` for message text.
 - `funkcja` renders `Funktion` in product documentation and `Feature` only when the

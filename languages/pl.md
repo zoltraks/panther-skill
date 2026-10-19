@@ -1102,3 +1102,10 @@ Traktuj żądanie pasujące do frazy z tabeli jako jej angielski odpowiednik.
 | pracuj z umiejętnością             | work with skill                          |
 | wymień wszystkie operacje          | list all operations                      |
 | pokaż wszystkie możliwości         | show all capabilities                    |
+| popraw dokument                    | correct this document                    |
+| skoryguj dokument                  | correct this document                    |
+| korekta dokumentu                  | correct this document                    |
+| wykonaj korektę                    | proofread this document                  |
+| popraw błędy w dokumencie          | fix the errors in this document          |
+| popraw gramatykę                   | correct the grammar                      |
+| popraw literówki                   | fix the typos                            |

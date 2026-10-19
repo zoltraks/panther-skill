@@ -88,8 +88,9 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 
 ## Context Forms
 
-Some German terms render differently to English by context - do not force one form
-everywhere:
+Some German terms render differently to English by context.
+
+Do not force one form everywhere:
 
 - `Fehler` renders `bug` for a tracked defect and `error` for runtime and message text.
 - `Problem` renders `issue` for a tracked item and `problem` in prose.

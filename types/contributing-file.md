@@ -9,7 +9,7 @@
 
 A contributing file tells people how to participate in a project.
 
-It exists to be followed - every instruction must be concrete enough for a first-time
+It exists to be followed. Every instruction must be concrete enough for a first-time
 contributor to act on.
 
 Typical shape: a welcoming document at the repository root that explains how to report
@@ -46,7 +46,9 @@ The canonical skeleton, adjusted to the request:
 
 ## Writing Rules
 
-Address the contributor directly - second person and a welcoming tone are expected.
+Address the contributor directly.
+
+Second person and a welcoming tone are expected.
 
 State rules as checkable instructions, one per sentence.
 
@@ -76,7 +78,7 @@ ban is valid, as long as the document states it unambiguously.
 
 ## Deltas From The Language Baseline
 
-- The document addresses the reader as "you" - second person is acceptable.
+- The document addresses the reader as "you". Second person is acceptable.
 - Checklists for issue and pull request preparation may use `- [ ]` task items.
 - Links to external community resources - chat, forums, wikis - are expected.
 - The welcome paragraph may bend the one-sentence-per-paragraph rule into two sentences for

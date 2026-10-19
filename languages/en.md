@@ -20,25 +20,25 @@ The rules described below apply to this document itself as well.
 
 | Section                  | Line | What it covers                      |
 |--------------------------|------|-------------------------------------|
-| Document Structure       | 41   | Titles, purpose blocks, and layout  |
-| Headings                 | 59   | Capitalization and qualifiers       |
-| Section Numbering        | 91   | Numbered section policy             |
-| Table of Contents        | 103  | When to add a contents section      |
-| Paragraphs and Sentences | 117  | Sentence structure                  |
-| Line Wrapping            | 131  | Logical lines and hard breaks       |
-| Lists                    | 155  | Bullets, numbering, and spacing     |
-| Blank Lines and Spacing  | 177  | Whitespace rules                    |
-| Code Blocks              | 191  | Fences, tags, and inline code       |
-| Inline Formatting        | 207  | Quotes, bold, and italics           |
-| Spaced Hyphens           | 223  | Asides, never joins clauses         |
-| Semicolons               | 247  | Semicolon prohibition in prose      |
-| Special Characters       | 273  | Box-drawing and emoji               |
-| English Vocabulary       | 281  | Preferred terms and calques         |
-| Dialect Consistency      | 305  | One spelling dialect per document   |
-| Tables                   | 353  | Source-width alignment rules        |
-| File Names               | 477  | Naming new documentation files      |
-| Example                  | 487  | Correct and incorrect sample        |
-| File Maintenance         | 521  | Encoding and line-ending preserving |
+| Document Structure       | 43   | Titles, purpose blocks, and layout  |
+| Headings                 | 61   | Capitalization and qualifiers       |
+| Section Numbering        | 93   | Numbered section policy             |
+| Table of Contents        | 105  | When to add a contents section      |
+| Paragraphs and Sentences | 119  | Sentence structure                  |
+| Line Wrapping            | 133  | Logical lines and hard breaks       |
+| Lists                    | 159  | Bullets, numbering, and spacing     |
+| Blank Lines and Spacing  | 181  | Whitespace rules                    |
+| Code Blocks              | 195  | Fences, tags, and inline code       |
+| Inline Formatting        | 211  | Quotes, bold, and italics           |
+| Spaced Hyphens           | 227  | Asides, never joins clauses         |
+| Semicolons               | 251  | Semicolon prohibition in prose      |
+| Special Characters       | 277  | Box-drawing and emoji               |
+| English Vocabulary       | 285  | Preferred terms and calques         |
+| Dialect Consistency      | 308  | One spelling dialect per document   |
+| Tables                   | 356  | Source-width alignment rules        |
+| File Names               | 480  | Naming new documentation files      |
+| Example                  | 490  | Correct and incorrect sample        |
+| File Maintenance         | 524  | Encoding and line-ending preserving |
 
 ## Document Structure
 
@@ -150,7 +150,9 @@ Use `scripts/reflow-prose.py --wrap --width N` to apply a fixed width and `scrip
 
 The wrap mode only splits lines, the unwrap mode only joins them, and both leave tables, code fences, and indented code blocks untouched.
 
-The layout of a produced document follows `conventions/prose-layout.md` - this baseline describes the `separated` convention, and the `line-wrapping`, `sentence-spacing`, and `wrap-width` intake parameters may select `flowing`, `bounded`, or `justified` on create.
+The layout of a produced document follows `conventions/prose-layout.md`.
+
+This baseline describes the `separated` convention, and the `line-wrapping`, `sentence-spacing`, and `wrap-width` intake parameters may select `flowing`, `bounded`, or `justified` on create.
 
 The detection of an existing document's layout follows `conventions/prose-layout.md` and never assumes a default.
 

@@ -108,7 +108,9 @@ Seen in documents produced by converters or written outside the skill's conventi
 
 Rule: these artifacts are part of the document's conventions.
 
-Do not clean them up during an unrelated edit - the minimal-diff rule applies.
+Do not clean them up during an unrelated edit.
+
+The minimal-diff rule applies.
 
 Normalize them only when the request is about reformatting or cleanup.
 
@@ -138,7 +140,7 @@ Rule: the frontmatter belongs to the document's conventions.
 - Never remove or rename a key silently, report a key that seems wrong instead of fixing it.
 - Add or change a key only when the task requires it, for example `sidebar_position` when
   reordering pages.
-- The block is metadata, not prose - the sentence-per-paragraph and wrapping rules do not apply
+- The block is metadata, not prose. The sentence-per-paragraph and wrapping rules do not apply
   inside it.
 - Keep values in their existing scalar style, quoted or bare.
 - Common keys: `title`, `description`, `slug`, `sidebar_position`, `sidebar_label`, `layout`,
@@ -178,7 +180,7 @@ Inside a payload:
 - Payload content can carry real formatting defects (trailing whitespace, lone list markers,
   merged indented lines). Surface them with `scripts/validate-document.py --payload-markdown`.
 - Other fence languages (` ```bash `, ` ```python `, ` ```text `, bare ` ``` `) and indented
-  code blocks are always opaque - they may contain table-like `|` text or prose-like lines
+  code blocks are always opaque. They may contain table-like `|` text or prose-like lines
   that must never be reformatted.
 
 When a document embeds another fenced block inside a payload, the inner fence must use a
@@ -218,8 +220,9 @@ Conventions may differ between element types within one document.
 A document may place every paragraph sentence on its own logical line while its list items
 pack several sentences into a wrapped block, or the reverse.
 
-Detect the dominant pattern per element type - paragraphs, list items, and headings are
-separate conventions.
+Detect the dominant pattern per element type.
+
+Paragraphs, list items, and headings are separate conventions.
 
 Normalize one element type only when the request covers it, and never impose the paragraph
 convention on list items or vice versa.
@@ -227,8 +230,9 @@ convention on list items or vice versa.
 Within paragraphs, the spacing axis of the prose layout decides how sentences separate.
 
 `separated` puts every sentence in its own paragraph divided by one empty line - the house
-convention in `docs/STYLE.md` and the `languages/` baselines - while `flowing` keeps
-consecutive sentences inside one shared paragraph block.
+convention in `docs/STYLE.md` and the `languages/` baselines.
+
+While `flowing` keeps consecutive sentences inside one shared paragraph block.
 
 `split-sentences.py` defaults to sentence-per-line output, `--paragraphs` produces
 `separated`, and `--flow` produces `flowing`.

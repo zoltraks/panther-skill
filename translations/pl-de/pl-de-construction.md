@@ -98,7 +98,9 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 
 ## Context Forms
 
-Some Polish terms render differently by context - do not force one form everywhere:
+Some Polish terms render differently by context.
+
+Do not force one form everywhere:
 
 - `atak` renders `Angriff` in process names (`atak chlorkowy` - `Chloridangriff`), while
   `oddziaływanie` in formal class naming renders `Einwirkung` - `oddziaływanie chlorków`

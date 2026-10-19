@@ -18,13 +18,13 @@ another language.
 |----------------------|------|----------------------------------------------------|
 | When This Applies    | 29   | Task classification and neighbor tasks             |
 | Parameter Resolution | 47   | Translate parameters and the acceptance gate       |
-| Detection            | 84   | Language, type, industry, and format-contract scan |
-| Rule Loading         | 126  | Ordered rule and contract-mapping loading          |
-| Translation Pass     | 143  | Terminology lock, chunked rendering, pass rules    |
-| Adapted Translation  | 229  | Adapted-fidelity rules and reporting               |
-| Validation           | 250  | Parity, mechanical checks, and self-review         |
-| Delivery             | 347  | Output conventions and the delivery report         |
-| Non-Goals            | 359  | Out-of-scope behaviors                             |
+| Detection            | 85   | Language, type, industry, and format-contract scan |
+| Rule Loading         | 128  | Ordered rule and contract-mapping loading          |
+| Translation Pass     | 145  | Terminology lock, chunked rendering, pass rules    |
+| Adapted Translation  | 237  | Adapted-fidelity rules and reporting               |
+| Validation           | 258  | Parity, mechanical checks, and self-review         |
+| Delivery             | 359  | Output conventions and the delivery report         |
+| Non-Goals            | 371  | Out-of-scope behaviors                             |
 
 ## When This Applies
 
@@ -36,7 +36,7 @@ Classify the request as Translate when it asks for the same document in a differ
 language.
 
 A request that scopes the change to a fragment - "translate this section", "translate the
-table" - is an Edit task that applies the translation rules to the edited fragment only.
+table" is an Edit task that applies the translation rules to the edited fragment only.
 
 A request to create a new document directly in a target language is a Create task - the
 language baseline alone covers it, no translation files load.
@@ -65,9 +65,10 @@ Under JSON exchange the gate emits as `parameters-acceptance`, and the per-param
 `source-language`, `target-language`, `translation-industry`, `translation-fidelity`,
 `filename`, `encoding`, and `line-endings` per `process/json-exchange.md`.
 
-Fidelity resolves to `adapted` only when the request explicitly asks for an adapted,
-abridged, loose, or audience-adapted translation - it is never inferred from the source or
-the target audience.
+Fidelity resolves to `adapted` only when the request explicitly asks for an adapted, abridged,
+loose, or audience-adapted translation.
+
+It is never inferred from the source or the target audience.
 
 An in-place overwrite of the source file happens only when the request explicitly asks for
 it and the user confirms, per the File Handling Contract.
@@ -120,8 +121,9 @@ Resolve the contract mapping in this order:
 3. No mapping resolved - proceed with the generic rule set and record the detected
    contract as unresolved for the delivery report.
 
-A resolved contract mapping is a terminology source, not a rule file - it governs how
-covered elements render and changes nothing else in this procedure.
+A resolved contract mapping is a terminology source, not a rule file.
+
+It governs how covered elements render and changes nothing else in this procedure.
 
 ## Rule Loading
 
@@ -142,8 +144,9 @@ Load the rule files in this order:
 
 ## Translation Pass
 
-Render the document in a single pass - one terminology convention applies uniformly to the
-whole output.
+Render the document in a single pass.
+
+One terminology convention applies uniformly to the whole output.
 
 Preserve the structure one-to-one: heading depth, list shape and numbering, table geometry,
 fenced blocks, links, frontmatter, and comments.
@@ -152,7 +155,7 @@ fenced blocks, links, frontmatter, and comments.
 
 Before rendering the first chunk of a chunked document, fix the recurring vocabulary once:
 
-- Translate every heading text first - prose cross-references then have a fixed target
+- Translate every heading text first. Prose cross-references then have a fixed target
   and section names do not drift between chunks.
 - Extract the repeated domain terms the loaded glossaries cover and pick one rendering per
   term *per sense* - `owner` the person and `owner` the document carrying the governing
@@ -171,9 +174,10 @@ Render sequentially: for each chunk, read its source span immediately before wri
 rendering, so the source text is in context while it is translated - never render a span
 recalled from earlier context, and re-read the span when in doubt.
 
-After writing each chunk, run `scripts/lint-polish.py` on it for `pl` output and resolve
-every error before rendering the next chunk - whether the chunks land in one growing file
-or in separate part files awaiting assembly.
+After writing each chunk, run `scripts/lint-polish.py` on it for `pl` output and resolve every error
+before rendering the next chunk.
+
+Whether the chunks land in one growing file or in separate part files awaiting assembly.
 
 A systematic calque habit caught on the first chunk costs one fix instead of repeating in
 every remaining chunk, and a fix applied at assembly scale invites destructive bulk edits.
@@ -188,8 +192,10 @@ payload interior is translated prose and the same rules apply.
 Verify the chunk boundaries against the source before concatenation - a dropped or
 doubled span surfaces in the Validation parity checks.
 
-Working notes, drafts, meta-commentary, and statements about the producing skill or its
-rules never enter the output file - only translated document content is written.
+Working notes, drafts, meta-commentary, and statements about the producing skill or its rules never
+enter the output file.
+
+Only translated document content is written.
 
 Translate the document title, every heading, prose, list items, table cell text, link
 text, and label text.
@@ -201,10 +207,12 @@ markers `TBD` and `NOT SPECIFIED` - the pair file lists the complete untranslate
 Apply the pair file's style-adaptation table to every element - heading case, section-name
 mapping, quote and dash conventions, example headings.
 
-Render every element the resolved contract mapping covers - section names, table
-headers, status and verdict vocabularies, fixed phrases and legends, glossary
-conventions, title and filename patterns - exactly as the contract renders them, and
-elements the contract does not cover follow the normal rule chain.
+Render every element the resolved contract mapping covers - section names, table headers,
+status and verdict vocabularies, fixed phrases and legends, glossary conventions,
+title and filename patterns.
+
+Exactly as the contract renders them, and elements the contract does not cover follow the normal
+rule chain.
 
 A metadata row that describes the document itself - its language, its generation time -
 describes the rendering, not the source: the language value records the target
@@ -240,7 +248,7 @@ title adaptively.
 Retained content obeys every rule of this procedure - style adaptation, terminology
 precedence, and the untranslated set apply unchanged.
 
-Nothing may be invented - every retained statement must exist in the source document.
+Nothing may be invented. Every retained statement must exist in the source document.
 
 The delivery report must list every structural delta - dropped, merged, and reordered
 sections - so the adaptation is auditable.
@@ -249,16 +257,18 @@ A silent compression or reordering is a defect, not an adaptation.
 
 ## Validation
 
-Run `scripts/check-parity.py <source.md> <output.md>` first - it mechanically verifies
-the structural parity the faithful contract requires: heading level sequence, fence
-count and language tags, table geometry, list counts, HTML comments, inline-code spans,
-internal `#anchor` resolution, and file-level whitespace and byte conventions.
+Run `scripts/check-parity.py <source.md> <output.md>` first.
+
+It mechanically verifies the structural parity the faithful contract requires: heading level
+sequence, fence count and language tags, table geometry, list counts, HTML comments, inline-code
+spans, internal `#anchor` resolution, and file-level whitespace and byte conventions.
 
 With `--terms <glossary.md>` it also prints concordance hints - source terms whose
 preferred target variants never appear - for every glossary loaded in Rule Loading.
 
-Glossary terms also seed the declared-delta map - a source term's preferred variants are
-expected renderings, not losses.
+Glossary terms also seed the declared-delta map.
+
+A source term's preferred variants are expected renderings, not losses.
 
 A resolved contract mapping's fixed vocabulary goes into a `.tmp.` expect-map file passed
 with `--expect-map <file>` - declared `source -> target` pairs and `link:` count
@@ -273,7 +283,7 @@ payloads, `--parity <source.md>` to fold the parity run in):
 - `scripts/validate-document.py` - on the written file, with `--payload-markdown` when the
   document embeds ` ```markdown ` blocks.
 - `scripts/lint-polish.py` - on `pl` output, with `--payload-markdown` when the document
-  embeds ` ```markdown ` blocks - every finding is fixed or reported.
+  embeds ` ```markdown ` blocks. Every finding is fixed or reported.
 - `scripts/check-titles.py` - when the document's `ID: title` headings pair with
   summary-table rows, or via `check-document.py --title-agreement`.
 
@@ -282,7 +292,7 @@ Self-review against `process/document-checklist.md` plus the translation items:
 - Heading capitalization follows the target language.
 - Section names map through the language file's type table when the type is known.
 - Every element a resolved format contract covers - section names, table headers,
-  status and verdict vocabularies, fixed phrases, glossary conventions - renders per
+  status and verdict vocabularies, fixed phrases, glossary conventions. Renders per
   the contract, and contract vocabulary is not left in the source language when the
   contract maps it.
 - Metadata rows describing the document itself record the rendering - the language row
@@ -312,13 +322,13 @@ Self-review against `process/document-checklist.md` plus the translation items:
 - No independent clauses are joined by a bare comma, and no file, section, or branch is
   personified as an actor.
 - Completed verdicts and report-register verbs follow the pair's `<pair>-style.md`
-  rules when the pair provides one - a finished evaluation renders per its aspect
+  rules when the pair provides one. A finished evaluation renders per its aspect
   rule, and conformance claims follow its verb-choice mapping.
 - Normative strength survives - `must` renders `musi`/`należy`, `must not` renders
   `nie wolno`, `should` renders `powinien`, `may` renders `może`.
 - Conditions and exceptions map one-to-one - `only`, `unless`, `when`, `if`,
   `otherwise` - `chyba że` never stands in for `jeśli`.
-- Enumeration logic matches the source - a positive `or` list renders `lub` and
+- Enumeration logic matches the source. A positive `or` list renders `lub` and
   `ani` appears only under a source negation, no quantifier, negation, condition,
   or exception is added or dropped, and a named entity keeps its kind (`file`
   renders `plik`, never `katalog`).
@@ -335,7 +345,7 @@ Self-review against `process/document-checklist.md` plus the translation items:
 - Second-person pronouns stay lowercase - `cię`, `tobie`, `twój`.
 - A localized marker stays coherent with the example commands that reference it.
 - Reader-facing text inside examples - comments, prompts, `question`/`description`
-  values - is translated while code, keys, and technical values stay verbatim.
+  values is translated while code, keys, and technical values stay verbatim.
 - The Polish output was proofread once without the source - every sentence reads
   naturally on its own.
 - Abbreviations are expanded at first use and a verbatim foreign-language quote carries

@@ -16,8 +16,9 @@ document", "abridge this document".
 
 An inline summary without a file is a Describe response, not this type.
 
-The procedure is `process/derived-documents.md` - it governs derivation,
-tiers, naming, and freshness.
+The procedure is `process/derived-documents.md`.
+
+It governs derivation, tiers, naming, and freshness.
 
 **Templates**
 
@@ -38,15 +39,17 @@ tiers, naming, and freshness.
    depth, tables included.
 6. Omitted Material - the source sections consciously dropped, when any.
 
-The request selects the tiers - a brief carries only the Abstract section.
+The request selects the tiers.
+
+A brief carries only the Abstract section.
 
 ## Deltas From The Language Baseline
 
 - Identifiers, paths, versions, and verdicts copy verbatim from the source.
 - Every tier carries the source's conclusion - never compress it away.
-- Nothing is invented - each statement exists in the source.
+- Nothing is invented. Each statement exists in the source.
 - Impersonal narration, one sentence per paragraph.
-- The document is standalone - it reads correctly without opening the source.
+- The document is standalone. It reads correctly without opening the source.
 
 ## Section Names
 
@@ -58,7 +61,9 @@ The request selects the tiers - a brief carries only the Abstract section.
 | Detailed Abstract | optional    |
 | Omitted Material  | optional    |
 
-The request selects the tiers - a brief carries only the `Abstract` section.
+The request selects the tiers.
+
+A brief carries only the `Abstract` section.
 
 Section names for other languages are declared in the matching
 `languages/<code>.md` file.

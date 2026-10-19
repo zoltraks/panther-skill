@@ -7,7 +7,7 @@
 
 Run this checklist before delivering any created or edited document.
 
-Items marked **existing** apply only to documents being edited - they verify that the document's
+Items marked **existing** apply only to documents being edited. They verify that the document's
 own conventions were preserved rather than normalized.
 
 Fix every failure, or report it to the user with a reason.
@@ -71,7 +71,7 @@ Fix every failure, or report it to the user with a reason.
 - Fenced blocks carrying plain text, prompts, console or standard output, directory trees,
   diagrams, or tables have no language tag - a `text` or `txt` tag counts as a tag.
 - **Existing:** a document that already uses `text`, `txt`, `bash`, or other fence tags
-  consistently keeps its convention - do not normalize tags on edit.
+  consistently keeps its convention. Do not normalize tags on edit.
 - Trailing `#` comments inside a plain-text or shell-tagged block share one column - the
   established column, or the longest entry plus two spaces - aligned with
   `scripts/align-comments.py` or an equivalent script, not by hand.
@@ -82,11 +82,11 @@ Fix every failure, or report it to the user with a reason.
 ## Tables
 
 - Columns align in plain-text view, every cell is padded to the column width.
-- Every table row starts with a single pipe - a leading `||` produces a spurious empty first
+- Every table row starts with a single pipe. A leading `||` produces a spurious empty first
   column.
 - Every separator-row cell contains at least one hyphen - a spaces-only cell leaves its
   column undeclared.
-- No column is empty in every row - a fully empty column is a spurious column, never a
+- No column is empty in every row. A fully empty column is a spurious column, never a
   spacer.
 - An intentionally empty cell `| |` appears only in a column the separator row declares.
 - The separator row matches each column width plus two hyphens.
@@ -172,4 +172,4 @@ Fix every failure, or report it to the user with a reason.
 - The written changes trace to a named operation or a user-confirmed proposal - no
   out-of-scope fix shipped silently.
 - Ad-hoc `.tmp.` helpers and any tool copies made under the fallback convention are
-  removed from the working repository - no file the task did not request remains.
+  removed from the working repository. No file the task did not request remains.

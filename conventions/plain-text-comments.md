@@ -21,8 +21,9 @@ output, and other plain text.
 It also covers blocks tagged `bash`, `sh`, `zsh`, `shell`, `console`, or `shellsession`, where
 `#` is the comment character.
 
-Every other tagged code block stays opaque - the rule does not guess at comment syntax for
-programming or data languages.
+Every other tagged code block stays opaque.
+
+The rule does not guess at comment syntax for programming or data languages.
 
 ## The Rule
 

@@ -349,7 +349,9 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 
 ## Context Forms
 
-Some English terms render differently by context - do not force one form everywhere:
+Some English terms render differently by context.
+
+Do not force one form everywhere:
 
 - `weakness` renders `błąd bezpieczeństwa` or `podatność bezpieczeństwa` in security text.
 - `drift` renders `rozbieżność` for configuration, `narastająca rozbieżność` for
@@ -450,7 +452,7 @@ Some English terms render differently by context - do not force one form everywh
 - `pointer` renders `odnośnik` for a navigation reference to another document or a
   routing pointer - `wskaźnik` stays reserved for a raw code pointer.
 - `skill package` renders `pakiet umiejętności` for a packaged unit and `skill set`
-  renders `zestaw umiejętności` for the collection itself - the two are not
+  renders `zestaw umiejętności` for the collection itself. The two are not
   interchangeable.
 - `load` renders `wczytać` for reading a file, resource, or context into memory -
   when `load` names working out a sequence or resolving a set, render `określić` or

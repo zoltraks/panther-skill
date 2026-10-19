@@ -9,7 +9,9 @@
 
 An audit answers "how well does this document follow the rules that govern it".
 
-It is analysis only - it changes nothing in the audited location.
+It is analysis only.
+
+It changes nothing in the audited location.
 
 Use it when the request asks to audit, check, review, or assess a document's formatting,
 structure, conformance, or content quality.
@@ -119,7 +121,7 @@ Distinguish a violation from an in-document convention.
 A rule broken once is a violation.
 
 A rule broken systematically and consistently - em-dashes everywhere, paired short sentences
-throughout - is a convention the document adopted.
+throughout is a convention the document adopted.
 
 Report conventions as `Minor` or `Note` findings that name the diverging rule.
 
@@ -138,7 +140,9 @@ Report only observations with line evidence - never taste judgments:
   quoted section references that resolve nowhere, and names that drift between variants
 - redundancy - the same statement repeated across sections
 
-The review is best-effort - report what surfaces, do not grade every sentence.
+The review is best-effort.
+
+Report what surfaces, do not grade every sentence.
 
 ## Findings
 
@@ -181,7 +185,8 @@ Map every finding to a fix:
 
 Order the plan by severity - `Critical` first, `Note` last.
 
-Note explicitly that executing the plan is an Edit task the user must approve.
+Note explicitly that executing the plan is a Correct task per
+`process/correct-document.md` the user must approve.
 
 Under JSON exchange the approval question emits as the `fix-plan-approval` `choice` parameter.
 
@@ -210,9 +215,13 @@ Structure every report the same way:
 
 An audit does not modify the audited location.
 
-It performs no registration or index updates - those belong to document tasks.
+It performs no registration or index updates.
 
-It is not a security review, code audit, or production-readiness assessment - those belong to
-lens-skill.
+Those belong to document tasks.
 
-It does not re-ask after a declined fix plan, and it never applies the plan it writes.
+It is not a security review, code audit, or production-readiness assessment.
+
+Those belong to lens-skill.
+
+It does not re-ask after a declined fix plan, and it never applies the plan it writes -
+an approved plan executes through `process/correct-document.md`.

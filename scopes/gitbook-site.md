@@ -2,7 +2,7 @@
 
 ## Purpose
 
-> **Scope:** Document work inside a GitBook project - a documentation space whose pages are
+> **Scope:** Document work inside a GitBook project. A documentation space whose pages are
 > listed in a `SUMMARY.md` outline that defines the reading order
 > **Key items:** `SUMMARY.md` as the table of contents, `.gitbook.yaml` configuration, outline
 > registration, relative page links
@@ -56,8 +56,9 @@ Adding a page requires registering it in `SUMMARY.md`:
    new group, matching the outline's existing group style.
 4. Remove the entry when the page is removed.
 
-The outline order is the reading order - place the entry where the page belongs, never
-re-sort unrelated entries.
+The outline order is the reading order.
+
+Place the entry where the page belongs, never re-sort unrelated entries.
 
 A page missing from the outline still renders when visited directly, but stays invisible in
 navigation - report unlisted pages as exceptions when discovered.

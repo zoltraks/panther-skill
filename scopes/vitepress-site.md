@@ -20,7 +20,7 @@ A repository matches this scope when it contains all of the following:
 - a `.vitepress/` directory, typically inside `docs/` or at the repository root
 - a configuration file inside it, `config.js`, `config.ts`, or `config.mts`
 
-The `.vitepress/` directory is the strongest signal - when it is nested, for example
+The `.vitepress/` directory is the strongest signal. When it is nested, for example
 `docs/.vitepress/`, the containing directory is the site's project root.
 
 ## Directory Roles
@@ -58,12 +58,14 @@ Frontmatter keys the generator reads:
 - `layout: home` pages carry a `hero` block and a `features` list in frontmatter - treat both
   as metadata and edit values only, never restructure.
 
-Home pages are an exception to the prose rules - their visible content is generated from the
-frontmatter, so the template shape is the convention to follow.
+Home pages are an exception to the prose rules.
+
+Their visible content is generated from the frontmatter,
+so the template shape is the convention to follow.
 
 ## Registration
 
-No registration is needed - routing derives from the file tree, placing the file publishes the
+No registration is needed. Routing derives from the file tree, placing the file publishes the
 page.
 
 The navbar and sidebar are configured in the `theme` section of `.vitepress/config.*` - edit

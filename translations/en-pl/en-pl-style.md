@@ -14,6 +14,27 @@ This file governs how English sentences reshape into natural Polish at the claus
 `translations/en-pl/en-pl-general.md` covers document-level style adaptation - this
 file covers how a single sentence is built.
 
+## Contents
+
+| Section                         | Line | What it covers                           |
+|---------------------------------|------|------------------------------------------|
+| When To Load                    | 38   | Loading order inside translate and audit |
+| Aspect And Voice                | 47   | Resultative versus stative passive       |
+| Actor And Verb Choice           | 69   | Personification and actor verbs          |
+| Fixed Idioms                    | 106  | Idiom-to-phrase mappings                 |
+| Correlative Frames              | 119  | Paired conjunctions                      |
+| Enumeration Punctuation         | 127  | Comma use inside enumerations            |
+| Dash Splices                    | 135  | Clause splices that read as calques      |
+| Hedged Verdicts                 | 157  | Report hedging constructions             |
+| Meaning Over Word Order         | 166  | Meaning priority over surface order      |
+| Metaphors Translate By Function | 191  | Resolving metaphors to their function    |
+| Modality                        | 209  | Obligation, permission, recommendation   |
+| Conditions And Exceptions       | 227  | Conditional and exception markers        |
+| Enumeration Logic               | 236  | Shared-verdict enumeration rules         |
+| Imperative Voice                | 260  | Command mood rendering                   |
+| Verbs Before Nominalizations    | 284  | Verb preference over noun forms          |
+| Example                         | 304  | Correct and incorrect sample             |
+
 ## When To Load
 
 Load this file on every English to Polish translate task, after
@@ -129,8 +150,9 @@ apposition or enumeration introducer, a paired parenthetical, a label definition
 the `- **Term** - value` pattern, a cross-reference such as `- zobacz "Rozdział 4"`,
 and table cells.
 
-A standalone second clause after ` - ` is never one of those - when in doubt, read the
-right half aloud as a sentence and split on the period.
+A standalone second clause after ` - ` is never one of those.
+
+When in doubt, read the right half aloud as a sentence and split on the period.
 
 ## Hedged Verdicts
 
@@ -172,10 +194,12 @@ An English metaphor renders its Polish function, not its image - `clean seams` b
 `jasno określone punkty rozszerzeń`, `thin router` becomes `krótki plik kierujący
 do zasad`, and `frame budget` becomes `czas jednej ramki`.
 
-Where a metaphor names the result a check requires, take the criteria from the
-document's own instructions - `until the increment is clean` renders `aż dana partia
-zmian nie będzie powodowała błędów ani ostrzeżeń` when the document defines clean as
-zero errors and warnings - never invent criteria the source does not state.
+Where a metaphor names the result a check requires,
+take the criteria from the document's own instructions - `until the increment is clean` renders
+`aż dana partia zmian nie będzie powodowała błędów ani ostrzeżeń` when the document defines clean as
+zero errors and warnings.
+
+Never invent criteria the source does not state.
 
 A named technical pattern keeps its canonical name with a Polish gloss - `god classes`
 renders `klasy skupiające zbyt wiele zadań (God Class)` and `feature envy` renders
@@ -223,9 +247,11 @@ The Polish rendering never gains a negation the source lacks and never loses one
 source carries - check every `nie` and `ani` in the output against the source's
 polarity.
 
-A named entity keeps its kind - a `file` renders `plik`, never `katalog`, and a
-`directory` renders `katalog`, never `plik` - substituting the container kind changes
-what the instruction tells the reader to produce or inspect.
+A named entity keeps its kind.
+
+A `file` renders `plik`, never `katalog`, and a `directory` renders `katalog`,
+never `plik` - substituting the container kind changes what the instruction tells the reader to
+produce or inspect.
 
 Quantifier scope is preserved - `each` and `every` render `każdy`, `all` renders
 `wszystkie`, `at least`/`at most` render `co najmniej`/`co najwyżej` - a dropped or

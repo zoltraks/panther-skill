@@ -81,8 +81,9 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 
 ## Context Forms
 
-Some Polish terms render differently to English by context - do not force one form
-everywhere:
+Some Polish terms render differently to English by context.
+
+Do not force one form everywhere:
 
 - `badanie` renders `study` for a trial and `study` or `paper` for a publication or
   review - `opracowanie` renders `study` or `review`.

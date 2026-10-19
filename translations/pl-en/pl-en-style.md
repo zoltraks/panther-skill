@@ -60,8 +60,9 @@ wskazuje` renders `the report states` or `the report notes`.
 
 ## Fixed Idioms
 
-Fixed Polish idioms map to natural English phrases - they are never rendered word by
-word:
+Fixed Polish idioms map to natural English phrases.
+
+They are never rendered word by word:
 
 | Polish idiom    | English rendering             |
 |-----------------|-------------------------------|

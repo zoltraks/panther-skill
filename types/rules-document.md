@@ -8,7 +8,9 @@
 
 A rules document instructs the reader.
 
-It exists to be applied, not just read - every rule must be unambiguous and checkable.
+It exists to be applied, not just read.
+
+Every rule must be unambiguous and checkable.
 
 Typical shape: a document made of short imperative rules grouped by topic, with paired
 correct/incorrect examples - like this skill's own `docs/STYLE.md`.
@@ -18,9 +20,10 @@ correct/incorrect examples - like this skill's own `docs/STYLE.md`.
 Use for coding standards, documentation guidelines, workflow rules, review checklists, and agent
 instruction documents.
 
-When the document carries executable machinery - trigger routing, decision menus, staged
-procedures, validation checklists, or embedded templates - it follows the `agent-instruction`
-type instead.
+When the document carries executable machinery - trigger routing, decision menus, staged procedures,
+validation checklists, or embedded templates.
+
+It follows the `agent-instruction` type instead.
 
 **Templates**
 

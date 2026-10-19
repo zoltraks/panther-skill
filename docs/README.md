@@ -17,5 +17,6 @@ These documents govern the Panther repository itself, not the documents the skil
 
 `AGENTS.md` at the root is the agent-facing entry point and summarizes the same contract.
 
-Root `docs/` holds repository governance only - it is unrelated to the `docs/` trees the
-skill writes or audits inside subject repositories.
+Root `docs/` holds repository governance only.
+
+It is unrelated to the `docs/` trees the skill writes or audits inside subject repositories.

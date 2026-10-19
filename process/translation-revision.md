@@ -27,6 +27,9 @@ Three neighboring tasks stay distinct:
 - An analysis of translation quality without changes is a translation audit - follow
   `process/translation-audit.md`.
 - A content change unrelated to translation fidelity is an Edit task.
+- A monolingual correction, or a document-named "correct" request whose target
+  resolves a source, is a Correct task per `process/correct-document.md` -
+  approved fidelity proposals from that procedure arrive here as a Revise task.
 
 A request that combines analysis with correction is one Revision task - the audit's
 checks run internally, and the deliverable is the corrected document.
@@ -92,14 +95,18 @@ Classify each finding before correcting it:
 
 Apply the minimal edit that resolves the finding.
 
-A correction is never a wholesale retranslation - passages the review does not flag
-and the rules do not fail stay untouched.
+A correction is never a wholesale retranslation.
 
-One term keeps one form - a term corrected in one place is corrected in every place
-the source uses it, so the document stays concordant.
+Passages the review does not flag and the rules do not fail stay untouched.
 
-Fix a finding and sweep the document for the same class of issue - a review row is
-an example of the rule, not the whole of it.
+One term keeps one form.
+
+A term corrected in one place is corrected in every place the source uses it,
+so the document stays concordant.
+
+Fix a finding and sweep the document for the same class of issue.
+
+A review row is an example of the rule, not the whole of it.
 
 A scripted sweep follows the Scripted Bulk Edits rule in
 `principles/authoring-rules.md` - word-boundary matching through
@@ -147,8 +154,10 @@ Structure it as:
 
 The revision never edits the source document.
 
-It never silently retranslates the whole document - when the translation diverges
-pervasively rather than locally, recommend a fresh translation instead.
+It never silently retranslates the whole document.
+
+When the translation diverges pervasively rather than locally,
+recommend a fresh translation instead.
 
 It does not review the source document's own quality or restructure content the
 source does not carry.

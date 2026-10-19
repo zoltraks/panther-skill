@@ -19,7 +19,7 @@ Use for the project management plan and its subsidiary plans:
 
 An implementation plan that describes how to build a feature is a `types/technical-document.md`.
 
-A management plan describes how a project domain is governed - that is this type.
+A management plan describes how a project domain is governed. That is this type.
 
 **Templates**
 
@@ -73,7 +73,9 @@ A management plan describes how a project domain is governed - that is this type
 | Change Control              | optional    |
 | Master Plan                 | optional    |
 
-Merged forms satisfy their constituent entries - a plan may still split `Methodology and
-Approach` or `Related Plans and Registers` into separate sections.
+Merged forms satisfy their constituent entries.
+
+A plan may still split `Methodology and Approach` or `Related Plans and Registers` into separate
+sections.
 
 Section names for other languages are declared in the matching `languages/<code>.md` file.

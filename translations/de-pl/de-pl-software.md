@@ -87,8 +87,9 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 
 ## Context Forms
 
-Some German terms render differently to Polish by context - do not force one form
-everywhere:
+Some German terms render differently to Polish by context.
+
+Do not force one form everywhere:
 
 - `Fehler` renders `błąd` for a tracked defect and `komunikat błędu` for message text.
 - `Problem` renders `zgłoszenie` for a tracked item and `problem` in prose.

@@ -99,7 +99,9 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 
 ## Context Forms
 
-Some Polish terms render differently by context - do not force one form everywhere:
+Some Polish terms render differently by context.
+
+Do not force one form everywhere:
 
 - `atak` renders `attack` in process names (`atak chlorkowy` - `chloride attack`), while
   `oddziaływanie` in formal class naming renders `exposure` or `action` - `oddziaływanie
@@ -111,7 +113,7 @@ Some Polish terms render differently by context - do not force one form everywhe
 - `zbrojenie` renders `reinforcement` - `rebar` is acceptable when the source means
   individual bars (`pręty zbrojeniowe`).
 - `zużycie` renders `wear` for mechanical loss and `consumption` only when the context
-  is resource consumption - construction documents nearly always mean `wear`.
+  is resource consumption. Construction documents nearly always mean `wear`.
 - `nośność` renders `load-bearing capacity` - `capacity` alone is not enough in
   structural contexts.
 - `nieuszkodzony` and `nienaruszony` both render `intact` - `nieuszkodzony` for

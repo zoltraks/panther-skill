@@ -17,8 +17,9 @@ convention with `separated` sentences, per the layout taxonomy in
 Documents produced by the skill follow the matching `languages/` baseline instead, which keeps one
 sentence per paragraph and never hard-wraps.
 
-The `languages/` files themselves follow that baseline - they are dialect examples, so their prose
-is not wrapped to 100 characters.
+The `languages/` files themselves follow that baseline.
+
+They are dialect examples, so their prose is not wrapped to 100 characters.
 
 ## Contents
 
@@ -289,6 +290,14 @@ Split the clauses into separate sentences when they express separate thoughts.
 
 This rule does not apply to code blocks, inline code, or file paths.
 
+## Spaced Hyphen
+
+Prefer a comma or a period between clauses.
+
+A spaced hyphen (` - `) marks an aside or a definitional separator, never a clause join.
+
+When a comma or a period reads naturally, use it instead.
+
 ## Tables
 
 Tables must remain readable as plain text.
@@ -323,8 +332,9 @@ Place a separator line immediately after the header row.
 
 The separator line contains only hyphens and pipe characters.
 
-Every cell of the separator line carries at least one hyphen - a spaces-only cell does not
-declare its column.
+Every cell of the separator line carries at least one hyphen.
+
+A spaces-only cell does not declare its column.
 
 The hyphens in the separator row are contiguous with the pipe characters.
 

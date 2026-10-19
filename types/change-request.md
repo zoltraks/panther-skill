@@ -8,7 +8,9 @@
 
 A change request asks a decision maker to approve one change.
 
-It is a form, not an argument - each field exists so the approver can decide without a meeting.
+It is a form, not an argument.
+
+Each field exists so the approver can decide without a meeting.
 
 Typical shape: a request header, the description of the change, the reason, the impact on the
 baselines, and an approval block.
@@ -42,7 +44,7 @@ The canonical skeleton, adjusted to the request:
 
 ## Deltas From The Language Baseline
 
-- One change per request - split combined requests into separate documents linked by ID.
+- One change per request. Split combined requests into separate documents linked by ID.
 - The state moves through `submitted`, `approved`, `rejected`, `deferred` - record the state in
   Document Information, never rewrite a decided request's description.
 - Mark unknown fields `TBD` or `NOT SPECIFIED` - never invent impact figures.

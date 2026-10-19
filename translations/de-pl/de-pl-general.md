@@ -27,7 +27,9 @@ Apply the rule files in this order:
 
 The Polish baseline and this file together define the output style.
 
-A glossary supplies vocabulary only - it never overrides the baseline's structure rules.
+A glossary supplies vocabulary only.
+
+It never overrides the baseline's structure rules.
 
 ## Style Adaptation
 
@@ -95,9 +97,11 @@ Settled loanwords stay untranslated: `endpoint`, `frontend`, `backend`, `CI/CD`,
 Do not decline English words with Polish endings when a natural Polish equivalent exists -
 `właściciele biznesowi`, not `ownerzy biznesowi`.
 
-Keep one register per document - everyday Polish software-engineering usage is the
-default, formal standards-register spellings are applied only when the source or the
-request establishes them.
+Keep one register per document.
+
+Everyday Polish software-engineering usage is the default,
+formal standards-register spellings are applied only when the source or the request establishes
+them.
 
 ## What Stays Untranslated
 
@@ -154,8 +158,9 @@ Recompute internal `#anchor` links against the translated headings using the hos
 platform's slug convention - GitHub keeps Unicode letters, so `## Nazwy plików` anchors
 to `#nazwy-plików`.
 
-Keep the document's own conventions where they exist - a numbered-chapter source produces
-a numbered-chapter Polish document.
+Keep the document's own conventions where they exist.
+
+A numbered-chapter source produces a numbered-chapter Polish document.
 
 ## Limitations
 

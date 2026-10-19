@@ -31,7 +31,7 @@ instead.
 
 A note may start directly at H2 with no H1 title.
 
-Sections are optional - a note may be a single list.
+Sections are optional. A note may be a single list.
 
 Subsections may use letters (`### A. Topic`) or plain names.
 
@@ -47,7 +47,9 @@ Subsections may use letters (`### A. Topic`) or plain names.
 
 No fixed vocabulary - keep whatever names the author used, matching the language of the note.
 
-The section set is open - only sections that do not fit a working note are marked:
+The section set is open.
+
+Only sections that do not fit a working note are marked:
 
 | Section              | Requirement |
 |----------------------|-------------|

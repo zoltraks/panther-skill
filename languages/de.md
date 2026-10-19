@@ -915,3 +915,9 @@ Behandle eine Anfrage, die einer Phrase aus der Tabelle entspricht, wie ihre eng
 | arbeite mit der fähigkeit             | work with skill                          |
 | liste alle operationen auf            | list all operations                      |
 | zeige alle fähigkeiten                | show all capabilities                    |
+| korrigiere das dokument               | correct this document                    |
+| dokument korrigieren                  | correct this document                    |
+| korrektur lesen                       | proofread this document                  |
+| behebe die grammatik                  | correct the grammar                      |
+| rechtschreibfehler korrigieren        | fix the typos                            |
+| behebe die fehler im dokument         | fix the errors in this document          |

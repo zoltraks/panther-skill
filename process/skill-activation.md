@@ -43,8 +43,9 @@ collection - while still naming no operation: "use panther on the docs repositor
 Naming a target is not a task, so the request stays in enable mode with the target held
 as context for the next request.
 
-A purpose qualifier such as "for editorial purposes" is not a task either - it names a
-mode, not an operation, and the request stays in enable mode.
+A purpose qualifier such as "for editorial purposes" is not a task either.
+
+It names a mode, not an operation, and the request stays in enable mode.
 
 A request that combines activation with a task is a task request - "use panther, write a
 quick note" enters document mode directly and this procedure does not run.
@@ -74,9 +75,10 @@ parameter per `process/json-exchange.md`.
 
 Open with one sentence confirming the skill is enabled for editorial support.
 
-Follow with one sentence describing the skill - it produces plain-text-readable
-Markdown documents in English, Polish, or German - and name the skill version read
-from `metadata.version` in the loaded `SKILL.md`.
+Follow with one sentence describing the skill.
+
+It produces plain-text-readable Markdown documents in English, Polish, or German, and the
+answer names the skill version read from `metadata.version` in the loaded `SKILL.md`.
 
 Follow with a compact operations table - one row per family, columns `Operation` and
 `What it covers`, aligned by source width:
@@ -88,6 +90,7 @@ Follow with a compact operations table - one row per family, columns `Operation`
 | Reformat           | Table, prose, comment, and character normalization passes |
 | Translate          | Documents between English, Polish, and German             |
 | Revise             | Minimal-diff corrections to an existing translation       |
+| Correct            | In-place document correction with fidelity proposals      |
 | Audit              | Document and translation conformance checks               |
 | Describe           | Consolidated inline descriptions of a subject             |
 | Derive             | Summaries, briefs, and supplements from a source document |
@@ -119,19 +122,21 @@ Write the response in the language of the request.
 
 - No task classification, parameter resolution, scope detection, or encoding detection
   runs - the request named no task.
-- No read or scan of the named target runs - a bare activation does not open the target
+- No read or scan of the named target runs. A bare activation does not open the target
   to guess the task.
 - No rule files load beyond the router and this file - progressive disclosure stays lazy,
   the next request selects its own rule set.
 - A diagnostic or verbose flag adds `process/json-exchange.md` to the loaded set and
   nothing else - no scan of the target runs and no document-mode files load, and no
   parameter document emits while no question surface is pending.
-- No file is written - a proposed change waits for a request that names the operation
+- No file is written. A proposed change waits for a request that names the operation
   and confirms it.
 
 ## Relation To The Modes
 
-Enable mode is the standby state - it precedes document mode and maintenance mode.
+Enable mode is the standby state.
+
+It precedes document mode and maintenance mode.
 
 A task-bearing request that follows enters document mode or maintenance mode per the mode
 rules in `SKILL.md`, without repeating the update check this session.

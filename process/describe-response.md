@@ -73,7 +73,9 @@ honest description and state the shortfall explicitly at the end.
 
 ## Response Style
 
-Write in an impersonal voice - the subject or the work is the actor, never "I".
+Write in an impersonal voice.
+
+The subject or the work is the actor, never "I".
 
 Replace first-person phrasing such as "I created" or "I derived" with "session
 delivered", "work produced", or a passive form.
@@ -83,7 +85,9 @@ session created".
 
 Write short sentences, one sentence per paragraph, with a blank line between them.
 
-Join related clauses with a comma - do not use semicolons.
+Join related clauses with a comma.
+
+Do not use semicolons.
 
 Use a spaced hyphen (` - `) where prose needs a dash, never an em-dash or en-dash.
 
@@ -93,7 +97,9 @@ Do not use emoji.
 
 Write file paths, commands, tool names, and values in inline code.
 
-Use bold or italics sparingly - a bolded lead-in term on a list item is the common case.
+Use bold or italics sparingly.
+
+A bolded lead-in term on a list item is the common case.
 
 ## Lists
 
@@ -115,9 +121,10 @@ groups.
 
 Deliver the description as an inline response.
 
-Write a file only when the request explicitly asks for one - a requested file becomes a
-document task: the language baseline, filename rules, encoding contract, and delivery
-steps of `process/document-workflow.md` apply to it.
+Write a file only when the request explicitly asks for one.
+
+A requested file becomes a document task: the language baseline, filename rules, encoding contract,
+and delivery steps of `process/document-workflow.md` apply to it.
 
 Write the response in the language of the request.
 

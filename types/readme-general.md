@@ -38,8 +38,9 @@ back to this general type.
 - `templates/pl/readme-general-template-pl.md`
 - `templates/de/readme-general-template-de.md`
 
-The filename is always `README.md` - a type-conventional name that overrides the lowercase naming
-rule.
+The filename is always `README.md`.
+
+A type-conventional name that overrides the lowercase naming rule.
 
 ## Structure
 

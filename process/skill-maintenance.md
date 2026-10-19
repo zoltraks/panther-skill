@@ -25,8 +25,10 @@ A bare activation request has no target and takes enable mode.
 
 For every other request the target decides the mode, not the trigger phrase.
 
-"Work on panther-skill" phrasing signals the start of adjustment, extension, or fixing of the
-skill's documents - expect the following requests in the same session to stay in this mode.
+"Work on panther-skill" phrasing signals the start of adjustment, extension,
+or fixing of the skill's documents.
+
+Expect the following requests in the same session to stay in this mode.
 
 A request to extend another skill repository follows `scopes/agent-skill.md` through document
 mode instead.
@@ -35,11 +37,14 @@ A generic maintenance phrase - "work on this skill", "adjust the skill" with no 
 target - resolves to this repository only when the context identifies it, per the
 referent rule in `process/skill-activation.md`.
 
-When the target is ambiguous, ask which mode applies - under JSON exchange the question emits as
-the `mode-selection` `choice` parameter per `process/json-exchange.md`.
+When the target is ambiguous, ask which mode applies.
 
-A request naming another repository or directory and no operation is not mode ambiguity - it is
-enable mode scoped to that target per `process/skill-activation.md`.
+Under JSON exchange the question emits as the `mode-selection` `choice` parameter per
+`process/json-exchange.md`.
+
+A request naming another repository or directory and no operation is not mode ambiguity.
+
+It is enable mode scoped to that target per `process/skill-activation.md`.
 
 The ask stays reserved for signals that genuinely conflict, such as a request that could read as
 document work on a file or as a change to this repository.
@@ -139,7 +144,7 @@ After the change, run the suite from `docs/MAINTENANCE.md`:
 - `evals/evals.json` stays in sync with behavior changes.
 - `git diff --check` before reporting.
 
-The gate is manual - report every check that was skipped or failed.
+The gate is manual. Report every check that was skipped or failed.
 
 ## Relation To The Agent-Skill Scope
 

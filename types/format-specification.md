@@ -90,7 +90,8 @@ Write multi-byte values with explicit endianness notes in prose under the table.
 | Structure            | recommended |
 | Implementation Notes | optional    |
 
-One `Structure` section per structural element - names vary with the format and are never
-flagged as unexpected.
+One `Structure` section per structural element.
+
+Names vary with the format and are never flagged as unexpected.
 
 Section names for other languages are declared in the matching `languages/<code>.md` file.

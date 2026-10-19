@@ -38,7 +38,9 @@ document then emits with its context fields and an empty `intake` array.
 The emission order is fixed: the JSON document first, then a text description of the pending
 decisions, then the question prompts.
 
-The question prompts still run - the emitted document does not replace the question flow.
+The question prompts still run.
+
+The emitted document does not replace the question flow.
 
 Answers may still arrive as prompt selections, natural-language responses, or a returned document.
 
@@ -53,7 +55,7 @@ The document carries a `description`, context fields (`target`, `task`, `date`, 
 
 - `target` - the document or directory the task centers on.
 - `task` - the classified task: `create`, `edit`, `reformat`, `translate`, `revise`,
-  `discover`, `audit`, `describe`, or `derive`.
+  `discover`, `audit`, `describe`, `derive`, or `correct`.
 - `date` - the current day in `YYYY-MM-DD` format.
 - `time` - the local time in `hh:mm:ss` followed by the timezone offset, for example
   `13:45:21 GMT+2`.
@@ -152,39 +154,40 @@ its answer - `plan-confirmation` always emits last.
 
 Every pending question surface emits with a stable kebab-case `id`:
 
-| Parameter                 | Type        | Surface                                                                          |
-|---------------------------|-------------|----------------------------------------------------------------------------------|
-| `parameters-acceptance`   | `choice`    | Accept defaults or configure in Parameter Resolution, document or translate      |
-| `document-type`           | `choice`    | Ambiguous type inference - the menu lists the candidate types                    |
-| `document-language`       | `choice`    | Language resolution when unclear - `en`, `pl`, or `de`                           |
-| `document-scope`          | `choice`    | Emitted only when scope detection leaves a genuine choice                        |
-| `filename`                | `text`      | Naming or output-path question - free input                                      |
-| `encoding`                | `choice`    | Encoding confirmation or ambiguity per `conventions/file-encoding.md`            |
-| `line-endings`            | `choice`    | LF, CRLF, or preserve the detected style                                         |
-| `line-wrapping`           | `choice`    | Unwrapped logical lines or a fixed width per `conventions/prose-layout.md`       |
-| `sentence-spacing`        | `choice`    | Packed sentences or a blank line between them                                    |
-| `wrap-width`              | `choice`    | Fixed-width limit - 60, 80, or 100 - only when wrapping was selected             |
-| `delivery`                | `choice`    | Inline vs file for reports, descriptions, and translation output                 |
-| `readme-variant`          | `choice`    | README variant selection per `process/document-workflow.md`                      |
-| `section-plan`            | `choice`    | Accept the recommended structure, select sections, or describe a format          |
-| `section-selection`       | `selection` | Recommended and optional sections to include, recommended pre-checked            |
-| `section-format`          | `text`      | Free-form structure description such as "plain without sections"                 |
-| `section-add`             | `selection` | Missing required or recommended sections to insert on a structure edit           |
-| `plan-confirmation`       | `choice`    | Proceed, adjust, or cancel the described plan before executing                   |
-| `source-language`         | `choice`    | Translate - ambiguous source language                                            |
-| `target-language`         | `choice`    | Translate - absent target language                                               |
-| `translation-industry`    | `selection` | Glossary selection when ambiguous - several glossaries may apply                 |
-| `translation-fidelity`    | `choice`    | Faithful or adapted - emitted only when the request suggests adaptation          |
-| `unsupported-pair`        | `choice`    | Proceed with language baselines only or stop                                     |
-| `derived-role`            | `choice`    | Derive - summary or supplement when the request leaves the role open             |
-| `summary-tiers`           | `selection` | Derive - compression tiers per `process/derived-documents.md`                    |
-| `overwrite-confirmation`  | `choice`    | Whole-file overwrite and in-place translation overwrite                          |
-| `fix-plan-approval`       | `choice`    | Approve the audit fix plan - approval converts it to an Edit task                |
-| `maintenance-action`      | `choice`    | The maintenance menu - document work, adjust the skill, or session review        |
-| `session-review-approval` | `choice`    | Approve the session-review findings report before applying changes               |
-| `mode-selection`          | `choice`    | Mode ambiguity no rule resolves - a named target without an operation is standby |
-| `skill-selection`         | `choice`    | Ambiguous generic activation phrase - which skill the request means              |
-| `source-resolution`       | `text`      | Translation audit with an unresolvable source - free input                       |
+| Parameter                 | Type        | Surface                                                                         |
+|---------------------------|-------------|---------------------------------------------------------------------------------|
+| `parameters-acceptance`   | `choice`    | Accept defaults or configure in Parameter Resolution, document or translate     |
+| `document-type`           | `choice`    | Ambiguous type inference - the menu lists the candidate types                   |
+| `document-language`       | `choice`    | Language resolution when unclear - `en`, `pl`, or `de`                          |
+| `document-scope`          | `choice`    | Emitted only when scope detection leaves a genuine choice                       |
+| `filename`                | `text`      | Naming or output-path question - free input                                     |
+| `encoding`                | `choice`    | Encoding confirmation or ambiguity per `conventions/file-encoding.md`           |
+| `line-endings`            | `choice`    | LF, CRLF, or preserve the detected style                                        |
+| `line-wrapping`           | `choice`    | Unwrapped logical lines or a fixed width per `conventions/prose-layout.md`      |
+| `sentence-spacing`        | `choice`    | Packed sentences or a blank line between them                                   |
+| `wrap-width`              | `choice`    | Fixed-width limit - 60, 80, or 100 - only when wrapping was selected            |
+| `delivery`                | `choice`    | Inline vs file for reports, descriptions, and translation output                |
+| `readme-variant`          | `choice`    | README variant selection per `process/document-workflow.md`                     |
+| `section-plan`            | `choice`    | Accept the recommended structure, select sections, or describe a format         |
+| `section-selection`       | `selection` | Recommended and optional sections to include, recommended pre-checked           |
+| `section-format`          | `text`      | Free-form structure description such as "plain without sections"                |
+| `section-add`             | `selection` | Missing required or recommended sections to insert on a structure edit          |
+| `plan-confirmation`       | `choice`    | Proceed, adjust, or cancel the described plan before executing                  |
+| `source-language`         | `choice`    | Translate - ambiguous source language                                           |
+| `target-language`         | `choice`    | Translate - absent target language                                              |
+| `translation-industry`    | `selection` | Glossary selection when ambiguous - several glossaries may apply                |
+| `translation-fidelity`    | `choice`    | Faithful or adapted - emitted only when the request suggests adaptation         |
+| `unsupported-pair`        | `choice`    | Proceed with language baselines only or stop                                    |
+| `derived-role`            | `choice`    | Derive - summary or supplement when the request leaves the role open            |
+| `summary-tiers`           | `selection` | Derive - compression tiers per `process/derived-documents.md`                   |
+| `overwrite-confirmation`  | `choice`    | Whole-file overwrite and in-place translation overwrite                         |
+| `fix-plan-approval`       | `choice`    | Approve the audit fix plan - approval converts it to a Correct task             |
+| `fidelity-proposals`      | `choice`    | Approve proposed fidelity adjustments - approval converts to a Revise task      |
+| `maintenance-action`      | `choice`    | The maintenance menu - document work, adjust the skill, or session review       |
+| `session-review-approval` | `choice`    | Approve the session-review findings report before applying changes              |
+| `mode-selection`          | `choice`    | Mode ambiguity no rule resolves, a named target without an operation is standby |
+| `skill-selection`         | `choice`    | Ambiguous generic activation phrase - which skill the request means             |
+| `source-resolution`       | `text`      | Translation audit with an unresolvable source - free input                      |
 
 Thin-input clarifications emit as `text` or `choice` parameters as they arise - `text` when free
 input is appropriate.
@@ -268,8 +271,9 @@ Every gate still follows `process/document-workflow.md` and the matching procedu
 confirmation still waits for an answer, and returned documents answer the same questions the
 prompts would have asked.
 
-The once-per-session Skill Update Check is a session gate outside this exchange - it always asks
-in text and never emits a parameter.
+The once-per-session Skill Update Check is a session gate outside this exchange.
+
+It always asks in text and never emits a parameter.
 
 Maintenance mode emits little routine: `MAINTENANCE.md` and `STYLE.md` already fix its answers,
 so the scheduled surfaces are the `maintenance-action` menu and the `session-review-approval`

@@ -25,8 +25,9 @@ A project change-request register is a different document - use `types/register-
 - `templates/pl/changelog-file-template-pl.md`
 - `templates/de/changelog-file-template-de.md`
 
-The filename is `CHANGELOG.md` - a type-conventional name that overrides the lowercase naming
-rule.
+The filename is `CHANGELOG.md`.
+
+A type-conventional name that overrides the lowercase naming rule.
 
 ## Structure
 

@@ -98,7 +98,9 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 
 ## Context Forms
 
-Some English terms render differently by context - do not force one form everywhere:
+Some English terms render differently by context.
+
+Do not force one form everywhere:
 
 - `warranty` renders `rękojmia` for the statutory seller liability and `gwarancja` for the
   voluntary contractual guarantee - the distinction is material in Polish law.

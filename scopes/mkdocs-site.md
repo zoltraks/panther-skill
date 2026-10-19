@@ -22,7 +22,7 @@ A repository matches this scope when it contains all of the following:
 - a `site_name` key inside that configuration file
 - a `docs/` directory holding Markdown pages, with `docs/index.md` as the homepage
 
-The configuration file is the strongest signal - the other two may be missing in a partially
+The configuration file is the strongest signal. The other two may be missing in a partially
 set up project.
 
 When a software project with a `docs/GUIDELINES.md` tree also carries `mkdocs.yml`, this scope
@@ -49,8 +49,9 @@ Author and edit content in the `.md` pages.
 Page filenames use lowercase kebab-case, for example `retry-helpers.md` or
 `installation-guide.md`.
 
-This convention comes from the scope - the URL of a page derives from its file path, so hyphens
-in the filename keep the URLs clean.
+This convention comes from the scope.
+
+The URL of a page derives from its file path, so hyphens in the filename keep the URLs clean.
 
 `index.md` serves as the homepage of its directory.
 
@@ -66,7 +67,7 @@ When `mkdocs.yml` defines a `nav` key, adding a page requires registering it:
 3. Remove the entry when the page is removed.
 
 When no `nav` key is defined, navigation is generated from the directory structure and no
-registration is needed - placing the file is enough.
+registration is needed. Placing the file is enough.
 
 Never reorder unrelated `nav` entries, the nav order defines the site's reading order.
 

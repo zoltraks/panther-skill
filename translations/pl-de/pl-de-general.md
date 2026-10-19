@@ -27,7 +27,9 @@ Apply the rule files in this order:
 
 The German baseline and this file together define the output style.
 
-A glossary supplies vocabulary only - it never overrides the baseline's structure rules.
+A glossary supplies vocabulary only.
+
+It never overrides the baseline's structure rules.
 
 ## Style Adaptation
 
@@ -96,8 +98,10 @@ Settled loanwords stay untranslated: `Commit`, `Pull Request`, `Merge`, `Branch`
 Avoid Denglish calques the way `de.md` and the glossaries describe - `bereitstellen`, not
 `deployen`, `aktualisieren`, not `updaten`.
 
-Keep one register per document - everyday German technical usage is the default, the
-formal `Sie` register is applied only when the source or the request establishes it.
+Keep one register per document.
+
+Everyday German technical usage is the default,
+the formal `Sie` register is applied only when the source or the request establishes it.
 
 Direct instructions use the imperative - `Verwende`, `Schreibe` - matching the baseline
 files, unless the source's register calls for `Sie` forms.
@@ -158,8 +162,9 @@ Recompute internal `#anchor` links against the translated headings using the hos
 platform's slug convention - GitHub keeps Unicode letters, so `## Überschriften` anchors
 to `#überschriften`.
 
-Keep the document's own conventions where they exist - a numbered-chapter source produces
-a numbered-chapter German document.
+Keep the document's own conventions where they exist.
+
+A numbered-chapter source produces a numbered-chapter German document.
 
 ## Limitations
 

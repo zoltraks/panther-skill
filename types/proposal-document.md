@@ -26,8 +26,9 @@ recording.
 Use `types/project-document.md` instead when the document is the durable specification the
 implementation will follow.
 
-A business case is the benefits-focused variant of this type - each option carries measurable
-benefits, costs, and risks, and doing nothing is a valid option.
+A business case is the benefits-focused variant of this type.
+
+Each option carries measurable benefits, costs, and risks, and doing nothing is a valid option.
 
 **Templates**
 
@@ -61,8 +62,10 @@ A proposal moves through review states, recorded in the metadata block:
 - `rejected` - declined, with the reason recorded in the Decision section.
 - `superseded` - replaced by a newer proposal, linked from the Decision section.
 
-Accepted and rejected proposals are historical records - do not modify them substantially
-afterward, record follow-up work in a `decision-record` or an implementation document instead.
+Accepted and rejected proposals are historical records.
+
+Do not modify them substantially afterward,
+record follow-up work in a `decision-record` or an implementation document instead.
 
 ## Deltas From The Language Baseline
 

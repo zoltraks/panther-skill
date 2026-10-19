@@ -9,7 +9,7 @@
 > junctions
 
 This file defines how node-and-edge diagrams - process flows, pipelines, decision
-paths, and component layouts - are drawn with box-drawing characters.
+paths, and component layouts are drawn with box-drawing characters.
 
 Load it when a document contains or needs a diagram built from `┌ ─ ┐ │` and arrow
 characters, or when the request asks to draw, fix, or extend such a diagram.
@@ -73,7 +73,9 @@ side at minimum.
 Widen the box when a line does not fit - a label never touches, crowds, or overflows a
 border, and padding is never stolen to squeeze a long line in.
 
-Each box keeps its own width - do not stretch a narrow box to match a wider one.
+Each box keeps its own width.
+
+Do not stretch a narrow box to match a wider one.
 
 ## Content Alignment
 

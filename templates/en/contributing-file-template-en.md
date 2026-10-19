@@ -39,8 +39,9 @@ Run the project checks before opening a pull request.
 
 Disclose when a report or change was produced with AI assistance.
 
-Verify every AI-generated finding yourself before reporting it - do not paste raw AI output
-into an issue or pull request.
+Verify every AI-generated finding yourself before reporting it.
+
+Do not paste raw AI output into an issue or pull request.
 
 You must understand and own the code you submit - AI-assisted changes follow the same style,
 testing, and licensing requirements as any other contribution.

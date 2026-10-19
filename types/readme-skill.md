@@ -56,7 +56,7 @@ The canonical skeleton, adjusted to the request:
 - The Installation section names the concrete skills directory per agent environment, for
   example `.devin/skills/`, `.claude/skills/`, or `.agents/skills/`, plus a global or personal
   install path and a `git clone` command when the skill ships as a repository.
-- Example Prompts list real requests as blockquoted phrases - they double as activation
+- Example Prompts list real requests as blockquoted phrases. They double as activation
   examples and must stay in sync with the `SKILL.md` trigger phrases.
 - The What's Inside tree lists the skill's own resource directories - keep it in sync with the
   actual layout.

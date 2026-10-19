@@ -239,8 +239,9 @@ Run the checkers over every Markdown file outside `work/`:
 - `python scripts/validate-document.py <file>`
 - `python scripts/check-contents.py .` - Contents tables still anchor to real headings.
 
-Skip the reflow check on `languages/` and `templates/` files - produced documents never
-hard-wrap.
+Skip the reflow check on `languages/` and `templates/` files.
+
+Produced documents never hard-wrap.
 
 The intentional "Incorrect" example block in `conventions/plain-text-comments.md` carries the
 `<!-- align-comments: off -->` marker, so `align-comments.py --check` must pass clean on every

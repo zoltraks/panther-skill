@@ -51,7 +51,7 @@ The canonical skeleton, adjusted to the request:
 
 - The Contents catalog uses a list or table of entries with paths in inline code - one line
   per entry, never a prose paragraph per entry.
-- Per-entry detail lives in the entry's own README - the collection README links, it does not
+- Per-entry detail lives in the entry's own README. The collection README links, it does not
   repeat.
 - When entries carry different licenses or statuses, a Notices section states the split plainly.
 - Groups of entries may get their own subsection when the catalog has natural categories.

@@ -27,9 +27,9 @@ Vor Beginn entscheidet der Operator jeden Punkt und hält die Antwort fest.
 
 ## Rollen und Speicherorte
 
-Logische Rollen werden konkreten Speicherorten zugeordnet. Jede Rolle wird
-unabhängig aufgelöst, und im Ziel bereits etablierte Konventionen bleiben
-erhalten.
+Logische Rollen werden konkreten Speicherorten zugeordnet.
+
+Jede Rolle wird unabhängig aufgelöst, und im Ziel bereits etablierte Konventionen bleiben erhalten.
 
 | Rolle         | Speicherort             | Erforderlich    |
 |---------------|-------------------------|-----------------|

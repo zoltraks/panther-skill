@@ -41,7 +41,8 @@ Keep each rule in its owning document and link to it instead of duplicating it.
   anonymized skill-owned examples instead, per `docs/MAINTENANCE.md`.
 - Keep `evals/evals.json` in sync when a change alters skill behavior.
 - Bump `metadata.version` by one patch with every change set that modifies skill document
-  contents, per `docs/VERSIONING.md` - a change set is the edits delivered together.
+  contents, per `docs/VERSIONING.md` - a change set is the edits delivered together, and
+  the version moves at most once until the set is committed.
 - A request that names no concrete operation authorizes analysis and proposals only -
   files in this repository change on an explicit, confirmed instruction.
 - Do not claim validation that did not run.

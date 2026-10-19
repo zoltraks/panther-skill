@@ -61,6 +61,8 @@ width when the request's language changes the cell text.
 | Edit      | document edit            | in-place edits honoring the document's own conventions                          |
 | Edit      | section insertion        | sections added at canonical positions per type                                  |
 | Revise    | translation revision     | minimal-diff corrections to an existing translation                             |
+| Correct   | document correction      | in-place formatting, structure, grammar, style, and typo fixes                  |
+| Correct   | fidelity proposals       | translation-fidelity findings proposed for approval, never applied              |
 | Reformat  | table formatting         | source-width table alignment                                                    |
 | Reformat  | comment alignment        | shared `#` comment column per plain-text block                                  |
 | Reformat  | sentence splitting       | one sentence per logical line                                                   |
@@ -99,8 +101,8 @@ Close with one line inviting a task request.
 ## What Does Not Apply
 
 - No task classification or parameter resolution runs - the request named a query.
-- No rule files beyond the router and this file load - the catalog table is canonical
+- No rule files beyond the router and this file load. The catalog table is canonical
   and is not rebuilt by rescanning the repository.
-- The caps and floors of `process/describe-response.md` do not apply - the catalog is
+- The caps and floors of `process/describe-response.md` do not apply. The catalog is
   a table, not a consolidated description.
 - No file is written and no target is surveyed.

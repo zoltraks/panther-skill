@@ -60,7 +60,7 @@ The canonical skeleton, adjusted to the request:
 - A Download section may use a table mapping version, platform, and file.
 - A Configuration section may use a table mapping each parameter across its CLI flag,
   environment variable, config key, and default.
-- Point at `CHANGELOG.md`, manuals, and guidelines documents - do not duplicate their content.
+- Point at `CHANGELOG.md`, manuals, and guidelines documents. Do not duplicate their content.
 - An ASCII banner or badges appear only when the project's convention already uses them.
 - Keep run instructions copy-pasteable and ordered from prerequisites to first run.
 

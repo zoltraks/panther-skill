@@ -172,7 +172,9 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 
 ## Context Forms
 
-Some English terms render differently by context - do not force one form everywhere:
+Some English terms render differently by context.
+
+Do not force one form everywhere:
 
 - `live` renders `pod napięciem` for an energized state and `czynny` for the IEC sense of
   a live part - `live working` is `praca pod napięciem`, a `live conductor` is `przewód

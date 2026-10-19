@@ -89,7 +89,9 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 
 ## Context Forms
 
-Some English terms render differently by context - do not force one form everywhere:
+Some English terms render differently by context.
+
+Do not force one form everywhere:
 
 - `feature` renders `Funktion` in product documentation - the `Feature` loanword only
   when the project already uses it.

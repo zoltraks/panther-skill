@@ -16,17 +16,17 @@ a reformatting, or a translation.
 | Section                    | Line | What it covers                                     |
 |----------------------------|------|----------------------------------------------------|
 | Intake                     | 31   | Task classification and mode routing               |
-| Parameter Resolution       | 71   | Defaults, acceptance gate, and parameter questions |
-| Question Surfaces          | 132  | Answer caps, guessed options, Cancel, ordering     |
-| Detection                  | 177  | Encoding, dialect, and convention detection        |
-| Scope Detection            | 229  | Project-layout signals and scope selection         |
-| Rule Selection             | 269  | Layered rule-file loading order                    |
-| Section Plan               | 305  | Type-driven structure, selection, and format       |
-| Plan Confirmation          | 332  | The pre-execution proceed/adjust/cancel gate       |
-| Drafting And Editing       | 350  | Templates, minimal diff, and reformatting tools    |
-| Editing Governed Documents | 391  | Governed-set inventory and rename discipline       |
-| Validation                 | 416  | Mechanical checks before delivery                  |
-| Delivery                   | 448  | Confirmation gates and reporting                   |
+| Parameter Resolution       | 74   | Defaults, acceptance gate, and parameter questions |
+| Question Surfaces          | 136  | Answer caps, guessed options, Cancel, ordering     |
+| Detection                  | 182  | Encoding, dialect, and convention detection        |
+| Scope Detection            | 234  | Project-layout signals and scope selection         |
+| Rule Selection             | 275  | Layered rule-file loading order                    |
+| Section Plan               | 312  | Type-driven structure, selection, and format       |
+| Plan Confirmation          | 341  | The pre-execution proceed/adjust/cancel gate       |
+| Drafting And Editing       | 359  | Templates, minimal diff, and reformatting tools    |
+| Editing Governed Documents | 400  | Governed-set inventory and rename discipline       |
+| Validation                 | 429  | Mechanical checks before delivery                  |
+| Delivery                   | 461  | Confirmation gates and reporting                   |
 
 ## Intake
 
@@ -49,12 +49,13 @@ Classify the request into one primary task:
 | Audit     | "audit this document", "check document formatting"      | document audit procedure       |
 | Describe  | "describe this", "summarize the session"                | describe-response procedure    |
 | Derive    | "summarize this report to a file", "write a supplement" | derived-documents procedure    |
+| Correct   | "correct this document", "proofread this file"          | correct-document procedure     |
 
 A request may combine tasks.
 
 Apply the union of the required rule files.
 
-An approved fix plan from an audit becomes an Edit task - an approved translation
+An approved fix plan from an audit becomes a Correct task - an approved translation
 audit or a supplied translation review becomes a Revise task.
 
 A describe task produces an inline response, not a document - a request that names a file
@@ -63,8 +64,10 @@ output or asks for a summary, brief, or supplement document is a Derive task ins
 Identify the target file or the intended output location before writing anything.
 
 A request that names a target but leaves the operation vague - "look at this file",
-"work with this document" - authorizes analysis and a proposal only: report what the
-task could be, wait for the named operation, and write nothing.
+"work with this document".
+
+Authorizes analysis and a proposal only: report what the task could be,
+wait for the named operation, and write nothing.
 
 Read the whole target document when editing, conventions are detected from the document itself.
 
@@ -72,8 +75,9 @@ Read the whole target document when editing, conventions are detected from the d
 
 When creating a new standalone document, confirm the parameters before writing.
 
-Ask the user whether to accept the defaults or configure the core parameters - the gate carries
-`Cancel` like every other surface.
+Ask the user whether to accept the defaults or configure the core parameters.
+
+The gate carries `Cancel` like every other surface.
 
 When the request asks for parameters in JSON or another machine-readable format, or names a
 diagnostic or verbose mode, apply `process/json-exchange.md` to every pending question surface.
@@ -146,8 +150,9 @@ default.
 
 Mark the strongest candidate `(recommended)`.
 
-Free-text answers stay available through the host's own input path - they do not consume an
-option slot.
+Free-text answers stay available through the host's own input path.
+
+They do not consume an option slot.
 
 `Cancel` stops the questioning and aborts the operation - write nothing, report the abort
 briefly, and wait for a new request.
@@ -248,9 +253,10 @@ A site-generator configuration file is a stronger signal than `docs/GUIDELINES.m
 with both `mkdocs.yml` and `docs/GUIDELINES.md` follows the site scope for placement and
 registration, while the guidelines document still governs the project's own rules.
 
-The scope describes how documents are organized in the project - where new documents go, which
-naming convention applies, and which registration or index files must be updated when a document
-is added, moved, or removed.
+The scope describes how documents are organized in the project.
+
+Where new documents go, which naming convention applies,
+and which registration or index files must be updated when a document is added, moved, or removed.
 
 In a multi-project repository, detection runs per directory - the scope of the subproject that
 contains the target file applies.
@@ -293,9 +299,10 @@ Load rule files in this order:
    a scope file delegates to it.
 
 On a Translate task the selection shifts: `languages/<lang>.md` is the target language,
-and `process/translate-document.md` defines the procedure - it loads
-`translations/<pair>/<pair>-general.md` and the matching industry glossaries on top of
-the target baseline.
+and `process/translate-document.md` defines the procedure.
+
+It loads `translations/<pair>/<pair>-general.md` and the matching industry glossaries on top of the
+target baseline.
 
 For a simple document, the language file alone may suffice.
 
@@ -326,8 +333,10 @@ On an Edit task the request may cover structure - "add the missing sections", "f
 structure" - then run `scripts/check-sections.py` against the resolved type and raise
 `section-add`, a selection of the missing `required` and `recommended` sections to insert.
 
-Inserted sections land at their canonical positions per the type's `## Structure` order and
-carry `NOT SPECIFIED` markers - no content is invented.
+Inserted sections land at their canonical positions per the type's `## Structure` order and carry
+`NOT SPECIFIED` markers.
+
+No content is invented.
 
 ## Plan Confirmation
 
@@ -342,8 +351,8 @@ The `plan-confirmation` choice offers `Proceed` (recommended), `Adjust`, and `Ca
 
 `Cancel` aborts the operation per `## Question Surfaces`.
 
-The gate runs on every document task - create, edit, reformat, translate, derive, and section
-adjustments.
+The gate runs on every document task - create, edit, reformat, translate, derive, correct,
+and section adjustments.
 
 Maintenance-mode work is exempt - `docs/MAINTENANCE.md` already fixes those answers.
 
@@ -406,12 +415,16 @@ for the old name before and after the rename and update every reference.
 
 Renumber ordered lists after inserting or removing items.
 
-Apply edits that share anchor context sequentially - when an edit fails because the anchor
-text no longer matches, re-read the region and retry with the current text.
+Apply edits that share anchor context sequentially.
+
+When an edit fails because the anchor text no longer matches,
+re-read the region and retry with the current text.
 
 Keep embedded ` ```markdown ` templates consistent with the normative text they implement.
 
-A verification search that finds no match confirms absence - it is not a failure.
+A verification search that finds no match confirms absence.
+
+It is not a failure.
 
 ## Validation
 

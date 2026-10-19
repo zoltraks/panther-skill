@@ -24,11 +24,13 @@ new file derived from it.
 A request that names no file output - "summarize this", "give an overview" - is
 a Describe task producing an inline response per `process/describe-response.md`.
 
-A request to rework the source file itself is an Edit task - no derived file is
-created.
+A request to rework the source file itself is an Edit task.
 
-A rendering into another language is a Translate task - derivation compresses
-or extends within one language.
+No derived file is created.
+
+A rendering into another language is a Translate task.
+
+Derivation compresses or extends within one language.
 
 ## Derivation Roles
 
@@ -78,7 +80,7 @@ inherits.
 For a supplement, identify the source's numbering schemes - finding, risk,
 requirement, and entry IDs - and record the highest used value per scheme.
 
-A derivation chain is allowed - a brief may derive from a summary, which itself
+A derivation chain is allowed. A brief may derive from a summary, which itself
 derives from a report.
 
 The declared source is always the direct parent - a document derived from a
@@ -106,8 +108,9 @@ A summary document carries one or more tiers:
 | `summary`  | At most fifty sentences - conclusions plus reasoning  |
 | `detailed` | No fixed cap - mirrors the source's section structure |
 
-Tier selection is an intake parameter - under JSON exchange it emits as the
-`summary-tiers` `selection` parameter.
+Tier selection is an intake parameter.
+
+Under JSON exchange it emits as the `summary-tiers` `selection` parameter.
 
 A document carrying only the `abstract` tier is a brief - the naming rules give
 it the brief marker.
@@ -136,10 +139,10 @@ A supplement extends its parent without replacing it:
 
 - Continue every numbering scheme from the parent's highest used value - never
   restart or collide with parent IDs.
-- Extend matrices and registers by adding rows or columns - do not rewrite the
+- Extend matrices and registers by adding rows or columns. Do not rewrite the
   parent's entries.
 - Mark every restated parent claim as declared, not re-verified, unless the
-  supplement verifies it again - say which applies.
+  supplement verifies it again. Say which applies.
 - Update the parent's conclusions only in an Updated Conclusions section -
   state plainly which conclusions change and which stand.
 - Record the reference point - a supplement written against a new source
@@ -172,8 +175,9 @@ A derived document references the source by its current filename.
 When a request renames a source, offer to propagate the rename into the Purpose
 sections of its derived documents.
 
-A stale source reference in a delivered derived document is a defect - it is
-fixed under an Edit task.
+A stale source reference in a delivered derived document is a defect.
+
+It is fixed under an Edit task.
 
 ## Validation
 
@@ -216,6 +220,7 @@ adds claims.
 A supplement does not restate the parent - unchanged material stays in the
 parent and is referenced, not repeated.
 
-Derivation never translates - a language change is a Translate task, and a
-derived document in another language is two separate tasks, never blended
-silently.
+Derivation never translates.
+
+A language change is a Translate task, and a derived document in another language is two separate
+tasks, never blended silently.

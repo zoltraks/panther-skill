@@ -30,7 +30,9 @@ Apply the rule files in this order:
 
 The Polish baseline and this file together define the output style.
 
-A glossary supplies vocabulary only - it never overrides the baseline's structure rules.
+A glossary supplies vocabulary only.
+
+It never overrides the baseline's structure rules.
 
 ## Style Adaptation
 
@@ -85,9 +87,10 @@ or `runtime`, never `środowisko uruchomieniowe runtime`.
 Avoid literal calques the way `pl.md` and the glossaries describe - `rozbieżność`, not
 `rozjazd`, `zamrożenie wersji`, not `przypięcie wersji`.
 
-Check the loaded glossary's Calque Traps table and the `pl.md` vocabulary table before
-writing any flagged form - a form listed there is always wrong regardless of how
-natural it sounds in the source.
+Check the loaded glossary's Calque Traps table and the `pl.md` vocabulary table before writing any
+flagged form.
+
+A form listed there is always wrong regardless of how natural it sounds in the source.
 
 Never join two independent Polish clauses with a bare comma - the English comma-splice
 habit does not transfer.
@@ -126,9 +129,11 @@ Render countable items with countable nouns - `wpisy .gitignore`, not
 
 Use neuter gender for acronyms treated as nouns - `czyste PWA`, not `czysta PWA`.
 
-Keep one register per document - everyday Polish software-engineering usage is the default,
-formal standards-register spellings are applied only when the source or the request
-establishes them.
+Keep one register per document.
+
+Everyday Polish software-engineering usage is the default,
+formal standards-register spellings are applied only when the source or the request establishes
+them.
 
 Recognized industry terms stay in English with a Polish gloss at first use - `Promise`,
 `frontmatter`, `pull request`, `commit` - when a literal rendering would read as a
@@ -255,16 +260,20 @@ Recompute internal `#anchor` links against the translated headings using the hos
 platform's slug convention - GitHub keeps Unicode letters, so `## Nazwy plików` anchors to
 `#nazwy-plików`.
 
-Keep the document's own conventions where they exist - a numbered-chapter source produces
-a numbered-chapter Polish document.
+Keep the document's own conventions where they exist.
 
-A localized marker stays coherent with the examples that reference it - when the header
-comment uses `Wersja:`, an example command searching for the marker searches `Wersja:`
-too, or the marker stays untranslated. A localized marker paired with an example that
-still greps the English form is a defect.
+A numbered-chapter source produces a numbered-chapter Polish document.
 
-Link text stays consistent with the translated heading it points at - when a heading is
-retranslated, its anchor link text follows.
+A localized marker stays coherent with the examples that reference it.
+
+When the header comment uses `Wersja:`, an example command searching for the marker searches
+`Wersja:` too, or the marker stays untranslated.
+
+A localized marker paired with an example that still greps the English form is a defect.
+
+Link text stays consistent with the translated heading it points at.
+
+When a heading is retranslated, its anchor link text follows.
 
 ## Limitations
 

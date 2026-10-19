@@ -26,7 +26,9 @@ Apply the rule files in this order:
 
 The English baseline and this file together define the output style.
 
-A glossary supplies vocabulary only - it never overrides the baseline's structure rules.
+A glossary supplies vocabulary only.
+
+It never overrides the baseline's structure rules.
 
 ## Style Adaptation
 
@@ -96,8 +98,9 @@ renders `risk register`, not a per-word literal.
 Write plain English per `languages/en.md` - `use`, not `utilize`, `because`, not `due to
 the fact that`.
 
-Keep one register per document - the everyday software-engineering register is the
-default.
+Keep one register per document.
+
+The everyday software-engineering register is the default.
 
 ## What Stays Untranslated
 
@@ -153,8 +156,9 @@ they are internal heading anchors.
 Recompute internal `#anchor` links against the translated headings using the host
 platform's slug convention.
 
-Keep the document's own conventions where they exist - a numbered-chapter source produces
-a numbered-chapter English document.
+Keep the document's own conventions where they exist.
+
+A numbered-chapter source produces a numbered-chapter English document.
 
 New filenames drop diacritics and spaces per `languages/en.md` naming rules.
 

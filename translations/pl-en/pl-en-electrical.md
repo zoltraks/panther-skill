@@ -168,8 +168,9 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 
 ## Context Forms
 
-Some Polish terms render differently to English by context - do not force one form
-everywhere:
+Some Polish terms render differently to English by context.
+
+Do not force one form everywhere:
 
 - `pod napięciem` renders `live` for an energized state, while `czynny` renders `live`
   for the IEC sense of a live part - `praca pod napięciem` is `live working`, a

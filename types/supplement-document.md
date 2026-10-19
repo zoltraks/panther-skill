@@ -16,8 +16,9 @@ new data".
 
 A rewrite that replaces the source is an Edit task, not this type.
 
-The procedure is `process/derived-documents.md` - it governs the continuation
-contract, naming, and freshness.
+The procedure is `process/derived-documents.md`.
+
+It governs the continuation contract, naming, and freshness.
 
 **Templates**
 
@@ -47,7 +48,7 @@ contract, naming, and freshness.
 - The parent is referenced, never re-litigated - unchanged content stays in
   the parent.
 - Impersonal narration, one sentence per paragraph.
-- The supplement does not stand alone - it names the parent and depends on
+- The supplement does not stand alone. It names the parent and depends on
   it.
 
 ## Section Names

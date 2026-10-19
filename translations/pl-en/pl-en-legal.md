@@ -96,15 +96,16 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 
 ## Context Forms
 
-Some Polish terms render differently to English by context - do not force one form
-everywhere:
+Some Polish terms render differently to English by context.
+
+Do not force one form everywhere:
 
 - `rękojmia` renders `warranty` for statutory seller liability and `gwarancja` renders
   `warranty` or `guarantee` for voluntary contractual cover - keep the distinction.
 - `umowa` renders `agreement` or `contract` for binding text and `porozumienie` renders
   `arrangement` or `understanding` for looser instruments.
 - `odpowiedzialność` renders `liability` in legal prose and `obligation` where the
-  finance meaning is intended - the finance glossary governs accounting text.
+  finance meaning is intended. The finance glossary governs accounting text.
 - `postanowienie` renders `provision` in contract language and `clause` where the
   document numbers provisions as clauses.
 - `sąd` renders `court` generally and `tribunal` for EU or constitutional bodies.

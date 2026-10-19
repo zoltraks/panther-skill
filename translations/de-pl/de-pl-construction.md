@@ -101,7 +101,9 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 
 ## Context Forms
 
-Some German terms render differently by context - do not force one form everywhere:
+Some German terms render differently by context.
+
+Do not force one form everywhere:
 
 - `Angriff` renders `atak` in process names (`Chloridangriff` - `atak chlorkowy`), while
   `Einwirkung` in normative exposure descriptions renders `oddziaływanie` -

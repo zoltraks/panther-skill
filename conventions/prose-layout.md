@@ -2,7 +2,7 @@
 
 ## Purpose
 
-> **Scope:** The named prose-formatting conventions for Markdown documents - how sentences sit
+> **Scope:** The named prose-formatting conventions for Markdown documents. How sentences sit
 > on lines and how blank lines separate them - with detection signals, the no-assumed-default
 > rule, and the intake parameters that resolve the layout of a new document
 > **Key items:** flowing, separated, bounded, justified conventions, per-element detection,
@@ -13,8 +13,9 @@ Documents differ in how prose sits on lines.
 This file names the conventions the skill recognizes, defines how each is detected, and maps
 them to the tools and intake parameters that produce them.
 
-The core rule: never assume a layout - detect it on existing documents, resolve it through
-parameters on new ones.
+The core rule: never assume a layout.
+
+Detect it on existing documents, resolve it through parameters on new ones.
 
 ## The Conventions
 
@@ -41,7 +42,7 @@ Four named conventions cover the combinations seen in real documents:
 `bounded` is the convention the skill's own rule files use, wrapped at 100 characters.
 
 A plain wrapped paragraph - `fixed-width` lines, `packed` sentences, no blank lines between
-them - is a bounded variant written without sentence spacing.
+them is a bounded variant written without sentence spacing.
 
 Treat it as `bounded, packed`.
 
@@ -69,7 +70,9 @@ that delivery.
 
 Every sentence is its own paragraph, separated from the next by one blank line.
 
-Sentences are never broken across lines - the editor wraps on display.
+Sentences are never broken across lines.
+
+The editor wraps on display.
 
 ```markdown
 The service polls the queue.
@@ -118,9 +121,10 @@ lines per element type, multi-sentence lines, and blank-line runs.
 | `bounded`   | Lines cluster below a fixed width, continuation lines common, spaced sentence blocks |
 | `justified` | Lines at exactly one width, inter-word spacing varies to fill the right margin       |
 
-Evaluate each element type separately - paragraphs, list items, and blockquotes may follow
-different conventions inside one document, per the element-level rule in
-`conventions/markdown-dialects.md`.
+Evaluate each element type separately.
+
+Paragraphs, list items, and blockquotes may follow different conventions inside one document,
+per the element-level rule in `conventions/markdown-dialects.md`.
 
 A `bounded` document and a `justified` document can look alike at a glance.
 

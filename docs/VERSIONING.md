@@ -12,8 +12,9 @@ Versions use a three-part decimal format: `<major>.<minor>.<patch>`.
 
 ## Increment Rules
 
-Every release increments the version - no distinction is made between minor and major
-changes.
+Every release increments the version.
+
+No distinction is made between minor and major changes.
 
 1. **Increment patch by 1** for each release.
 
@@ -35,11 +36,18 @@ changes.
 Every change set that modifies skill document contents applies a bump - the version moves
 with each delivery, not only on request.
 
-A change set is the group of edits committed or delivered together - it raises the
-version once, no matter how many files it touches.
+A change set is the group of edits committed or delivered together.
 
-While a change set remains uncommitted, further edits to skill documents join the open
-set and keep its already-bumped version - the version moves again only after the set lands.
+It raises the version once, no matter how many files it touches.
+
+The version moves at most once between two commits.
+
+While the tree carries uncommitted changes,
+every further edit joins the open set and keeps its already-bumped version,
+no matter how many requests or edits arrive.
+
+A second bump before the commit is always wrong, even when the new edits feel like a
+separate change set - the set lands only when it is committed.
 
 The delivery report names the previous version and the new version.
 
@@ -47,8 +55,10 @@ The delivery report names the previous version and the new version.
 
 Panther does not tag releases.
 
-The commit that bumps `metadata.version` is the release anchor - its hash is the named state
-consumers pin or revert to, since the version alone lives only in frontmatter text.
+The commit that bumps `metadata.version` is the release anchor.
+
+Its hash is the named state consumers pin or revert to,
+since the version alone lives only in frontmatter text.
 
 Record the bump commit's short hash in release notes or issues when a consumer needs to pin a
 specific release.

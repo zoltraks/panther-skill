@@ -14,17 +14,17 @@
 |---------------------|------|--------------------------------------------|
 | Overview            | 29   | What Panther is and what it produces       |
 | What The Skill Does | 54   | Authoring purpose and workflow             |
-| Installation        | 202  | How to add Panther to an agent environment |
-| Usage               | 272  | How agents activate and run the skill      |
-| Example Prompts     | 287  | Phrases the skill activates on             |
-| Workflow Diagrams   | 333  | ASCII and Mermaid diagrams of the pipeline |
-| Core Principles     | 470  | Convention preservation and minimal diffs  |
-| When To Use         | 481  | Supported requests and exclusions          |
-| What's Inside       | 520  | Rule files, templates, tools, and evals    |
-| Specification       | 691  | Agent Skills specification conformance     |
-| Verification        | 707  | Skill-maintenance checks                   |
-| License             | 726  | License for the skill itself               |
-| Credits             | 732  | Methodology and example sources            |
+| Installation        | 219  | How to add Panther to an agent environment |
+| Usage               | 290  | How agents activate and run the skill      |
+| Example Prompts     | 305  | Phrases the skill activates on             |
+| Workflow Diagrams   | 354  | ASCII and Mermaid diagrams of the pipeline |
+| Core Principles     | 493  | Convention preservation and minimal diffs  |
+| When To Use         | 504  | Supported requests and exclusions          |
+| What's Inside       | 544  | Rule files, templates, tools, and evals    |
+| Specification       | 714  | Agent Skills specification conformance     |
+| Verification        | 730  | Skill-maintenance checks                   |
+| License             | 749  | License for the skill itself               |
+| Credits             | 755  | Methodology and example sources            |
 
 ## Overview
 
@@ -65,7 +65,7 @@ to pull incoming commits before starting, when the skill lives in a git clone.
 For a new document it confirms the type, language, filename, and encoding, with sensible defaults.
 
 Every question offers at most four answers - up to three options guessed from the detected
-evidence plus `Cancel`, which aborts the task - and format questions are asked before the
+evidence plus `Cancel`, which aborts the task, and format questions are asked before the
 document-type question, which is always its own surface.
 
 After the type resolves, a section-plan question chooses which required, recommended, and
@@ -129,7 +129,9 @@ the agent follows `process/document-audit.md`:
 it runs mechanical checks and a structural census with `scripts/census-document.py`,
 evaluates the document against its governing rules, and reports findings with an optional fix plan.
 
-An audit is analysis only - it changes nothing in the document.
+An audit is analysis only.
+
+It changes nothing in the document.
 
 **Describes subjects**
 
@@ -164,6 +166,17 @@ Asking to "fix this translation" or "apply the review findings" runs
 `process/translation-revision.md`: it aligns each finding with the source passage, applies
 minimal-diff corrections, and sweeps the document for the same class of issue.
 
+**Corrects documents**
+
+Separately, when you ask to "correct this document" or "proofread this file",
+the agent follows `process/correct-document.md`:
+
+it runs the audit's mechanical checks, then fixes formatting, structure, grammar, typos,
+and style in place with a minimal diff.
+
+When the target resolves to a translation source, fidelity findings - calques, modality
+drift, concordance breaks - are reported as proposals for approval, never applied silently.
+
 **Maintains itself**
 
 Separately, when you ask to "work on panther-skill" or "fix this skill", the agent presents
@@ -183,7 +196,9 @@ Separately, when you say "use skill" or "run panther" without naming a task, the
 `process/skill-activation.md`: it runs the session update check, treats the loaded router as the
 enabled state, and answers with a one-sentence description of the skill, the version from
 `metadata.version`, and a compact table of the operation families - with a pointer to "list all
-operations" for the full catalog - then it waits.
+operations" for the full catalog.
+
+Then it waits.
 
 A generic phrase such as "use skill" binds to Panther only when the context identifies this
 skill - an ambiguous referent asks which skill is meant.
@@ -191,9 +206,10 @@ skill - an ambiguous referent asks which skill is meant.
 An activation that names a working repository or directory but no operation is the same
 standby scoped to that target - a minimal confirmation, then the wait.
 
-The standby never surveys the target to infer the intended task - it waits for the next
-request or asks what to do, and a read-only survey with proposed work answers only a
-request that itself asks to look around.
+The standby never surveys the target to infer the intended task.
+
+It waits for the next request or asks what to do, and a read-only survey with proposed work
+answers only a request that itself asks to look around.
 
 The skill changes files only on a request that names the operation and the target.
 
@@ -329,6 +345,9 @@ encoding and line endings.
 **Translation audit**
 > Audit this Polish translation against the English source.
 
+**Document correction**
+> Correct this document - fix the tables, grammar, and typos.
+
 **Bare activation**
 > Use skill.
 
@@ -372,7 +391,8 @@ follow `process/describe-response.md`.
    │           Classify Task            │
    │ create, edit, reformat,            │
    │ translate, revise, derive,         │
-   │ discover, audit, describe          │
+   │ discover, audit, describe,         │
+   │ correct                            │
    └──────────────────┬─────────────────┘
                       │
                       ▼
@@ -449,7 +469,7 @@ flowchart TD
     B -->|Yes| C[Session Update Check<br/>scripts/check-update.py]
     C --> D[Load Mandatory Files<br/>principles/authoring-rules.md<br/>process/document-workflow.md]
 
-    D --> D2[Classify Task<br/>create, edit, reformat,<br/>translate, discover, audit,<br/>describe]
+    D --> D2[Classify Task<br/>create, edit, reformat,<br/>translate, discover, audit,<br/>describe, correct]
 
     D2 --> E[Parameter Resolution<br/>type, language, scope,<br/>filename, encoding, line endings]
 
@@ -515,6 +535,7 @@ flowchart TD
 | "What document layout does this repo use?"       | **Yes** - scope discovery report         |
 | "Audit this document"                            | **Yes** - findings and optional fix plan |
 | "Check this document's formatting"               | **Yes** - audit procedure                |
+| "Correct this document's grammar and tables"     | **Yes** - in-place minimal-diff fixes    |
 | "Describe this repository shortly"               | **Yes** - consolidated inline response   |
 | "Use skill" or "run panther" with no task        | **Yes** - version and operations table   |
 | "Write code for this feature"                    | No - this skill writes documents         |
@@ -539,6 +560,7 @@ panther-skill/
 │   ├── document-workflow.md           # Intake, detection, rule selection, validation, delivery
 │   ├── document-checklist.md          # Mechanical pre-delivery checklist
 │   ├── document-audit.md              # Standalone audit procedure: findings and fix plan
+│   ├── correct-document.md            # Standalone correction procedure: applied fixes, fidelity proposals
 │   ├── describe-response.md           # Standalone describe procedure: caps and floors
 │   ├── json-exchange.md               # JSON parameter documents for pending questions
 │   ├── operations-catalog.md          # Full operations table for "list all operations"

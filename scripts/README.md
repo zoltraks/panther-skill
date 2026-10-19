@@ -17,9 +17,9 @@ They do not modify documents beyond the specific task each tool performs.
 | Section          | Line | What it covers                           |
 |------------------|------|------------------------------------------|
 | Tool Classes     | 24   | Tool groups and when to run them         |
-| Commands         | 91   | Per-tool usage, flags, and output        |
-| Validation Order | 441  | Recommended run sequence                 |
-| Limitations      | 487  | Known parsing limits and validator scope |
+| Commands         | 95   | Per-tool usage, flags, and output        |
+| Validation Order | 453  | Recommended run sequence                 |
+| Limitations      | 499  | Known parsing limits and validator scope |
 
 ## Tool Classes
 
@@ -34,14 +34,17 @@ skill repository:
 
 `python <skill-root>/scripts/<tool>.py <file>`.
 
-In-place invocation is the default - the tools are self-contained, write nothing to the
-skill repository, and resolve their rule resources relative to their own location, so
-`lint-polish.py` and `lint-english.py` find their rule tables without `--rules` and
+In-place invocation is the default.
+
+The tools are self-contained, write nothing to the skill repository,
+and resolve their rule resources relative to their own location,
+so `lint-polish.py` and `lint-english.py` find their rule tables without `--rules` and
 `check-sections.py` resolves bare type slugs and language codes.
 
-When the skill root cannot be invoked directly - for example the skill payload exists
-only as pasted content - copy the needed tools into the working repository's `work/`
-directory under a `.tmp.` name and remove them after use.
+When the skill root cannot be invoked directly.
+
+For example the skill payload exists only as pasted content - copy the needed tools into the working
+repository's `work/` directory under a `.tmp.` name and remove them after use.
 
 In that mode `lint-polish.py` and `lint-english.py` cannot auto-discover their rule
 tables - pass them explicitly with `--rules <path>` pointing at the skill's
@@ -91,7 +94,9 @@ They use the Python standard library and do not require PyYAML or a package mana
 
 ## Commands
 
-The commands below use `python` - substitute `python3` when `python` is not on PATH.
+The commands below use `python`.
+
+Substitute `python3` when `python` is not on PATH.
 
 ```bash
 python <skill-root>/scripts/detect-encoding.py <file>
@@ -143,8 +148,10 @@ or starts a new line when it does not, and sentences are never split.
 
 This produces the `flowing` layout from `conventions/prose-layout.md`.
 
-It leaves list items and their continuation lines opaque - a packed list item is an
-element-level convention, not a defect (see `conventions/markdown-dialects.md`).
+It leaves list items and their continuation lines opaque.
+
+A packed list item is an element-level convention,
+not a defect (see `conventions/markdown-dialects.md`).
 
 Lines ending in `:` are treated as label lines and never absorb following sentences.
 
@@ -218,8 +225,10 @@ comments already share one, otherwise the longest entry plus two spaces.
 `--compact` moves the column to the minimum.
 
 A block whose opening fence is preceded by `<!-- align-comments: off -->` - optionally with one
-blank line between the marker and the fence - is skipped entirely, so the marker exempts
-deliberate examples of misalignment from both fixing and `--check`.
+blank line between the marker and the fence.
+
+Is skipped entirely, so the marker exempts deliberate examples of misalignment from both fixing and
+`--check`.
 
 The convention lives in `conventions/plain-text-comments.md`.
 
@@ -386,20 +395,22 @@ terminology.
 
 A quoted Title-Case name in a reference context - a connector word like `in`,
 `see`, `per`, `the`, or `of` before the quote, or a noun like `section` after
-it - must resolve against the document's own anchors: every heading, plus
+it must resolve against the document's own anchors: every heading, plus
 `**Term**:` definition rows and bare `**Term**` pseudo-headings.
 
-Quoted literals are not references - names inside code spans, paths, and
-lowercase or single-word quotes without a strong connector stay ignored, and
-a path-qualified name like `"Appendix - Template Library"` resolves through its
-final segment.
+Quoted literals are not references.
+
+Names inside code spans, paths, and lowercase or single-word quotes without a strong connector stay
+ignored, and a path-qualified name like `"Appendix - Template Library"` resolves through its final
+segment.
 
 Unresolved references print `UNRESOLVED` and fail the run.
 
-Similar names that appear to denote one thing print `VARIANT` warnings -
-advisory only - detected by interior token gaps or a shared prefix and suffix.
-Two plain headings are deliberately parallel and never pair, and contiguous
-prefix or suffix extensions are legitimate scoping, not drift.
+Similar names that appear to denote one thing print `VARIANT` warnings - advisory only - detected by
+interior token gaps or a shared prefix and suffix.
+
+Two plain headings are deliberately parallel and never pair,
+and contiguous prefix or suffix extensions are legitimate scoping, not drift.
 
 `check-titles.py` verifies that a document's `## ID: title` headings match the
 title their summary-table row declares - the ID anchors the row whichever column holds
@@ -419,9 +430,10 @@ replacement inside a longer token.
 `--check` is a dry run that exits `1` when the pattern also occurs inside longer words,
 and the file's encoding and line endings are preserved.
 
-`format-table.py` rebuilds tables with source-width alignment and normalizes every
-separator-row cell to the correct hyphen count - a separator cell without hyphens does not
-declare its column and is repaired, not preserved.
+`format-table.py` rebuilds tables with source-width alignment and normalizes every separator-row
+cell to the correct hyphen count.
+
+A separator cell without hyphens does not declare its column and is repaired, not preserved.
 
 It warns on rows starting with `||` and on columns empty in every non-separator row -
 `--drop-empty-columns` removes such columns instead of only warning.
@@ -538,9 +550,10 @@ counts toward the minority, so deliberate quotes deserve a manual glance.
 context - a section named by bare quote without a connector stays unchecked, and a
 Title-Case literal under a weak connector can read as an `UNRESOLVED` reference.
 
-Its variant detection stays advisory - two names may be deliberately parallel even when
-one is not a heading, and a drift that never leaves the heading set stays invisible by
-design.
+Its variant detection stays advisory.
+
+Two names may be deliberately parallel even when one is not a heading,
+and a drift that never leaves the heading set stays invisible by design.
 
 Console output never fails on a legacy encoding - every script reconfigures `sys.stdout`
 and `sys.stderr` with `errors="backslashreplace"` under its `__main__` guard, so characters

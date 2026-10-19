@@ -108,26 +108,26 @@ the change log per `register-log`, and meeting decisions go to `meeting-minutes`
 
 ## Section Names
 
-| Section               | Requirement |
-|-----------------------|-------------|
-| Document Purpose      | required    |
-| Document Navigation   | optional    |
-| Glossary              | recommended |
-| Abbreviations         | optional    |
-| Vision                | optional    |
-| Goals                 | recommended |
-| Non-Goals             | recommended |
-| Quality Requirements  | optional    |
-| System Architecture   | recommended |
-| Component Diagram     | optional    |
-| Functional Requirements      | recommended |
-| Non-Functional Requirements  | optional    |
-| Use Cases             | optional    |
-| Design Decisions      | recommended |
-| Implementation Phases | optional    |
-| Testing Strategy      | optional    |
-| Naming Conventions    | optional    |
-| Version Control       | optional    |
-| Documentation         | optional    |
+| Section                     | Requirement |
+|-----------------------------|-------------|
+| Document Purpose            | required    |
+| Document Navigation         | optional    |
+| Glossary                    | recommended |
+| Abbreviations               | optional    |
+| Vision                      | optional    |
+| Goals                       | recommended |
+| Non-Goals                   | recommended |
+| Quality Requirements        | optional    |
+| System Architecture         | recommended |
+| Component Diagram           | optional    |
+| Functional Requirements     | recommended |
+| Non-Functional Requirements | optional    |
+| Use Cases                   | optional    |
+| Design Decisions            | recommended |
+| Implementation Phases       | optional    |
+| Testing Strategy            | optional    |
+| Naming Conventions          | optional    |
+| Version Control             | optional    |
+| Documentation               | optional    |
 
 Section names for other languages are declared in the matching `languages/<code>.md` file.
