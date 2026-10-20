@@ -113,6 +113,9 @@ Files over 300 lines must also include a `## Contents` table.
 Register every new rule file in `SKILL.md` with a line saying what it covers and when to load
 it, under the section matching its directory.
 
+Keep registry lines single-line where the content allows - `SKILL.md` must stay under 500
+lines, and the detail belongs in the registered file anyway.
+
 List every new template pair in the matching `types/<type>.md` file as a `**Templates**` bullet
 list, see the Localized Resources rule in `docs/STYLE.md`.
 
@@ -122,6 +125,10 @@ Renumber every `## Contents` table affected by line shifts and verify the result
 `scripts/check-contents.py`.
 
 Keep `evals/evals.json` prompts in sync with capabilities that change.
+
+The file is two-space-indent JSON with literal UTF-8 and no `\u` escapes - patch it with a
+JSON-aware edit or a script that preserves indent, encoding, and the file's line endings,
+then check that `git diff` shows only the appended entries.
 
 ## External Examples
 

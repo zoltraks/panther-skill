@@ -270,7 +270,9 @@ def main(path, width, payload_markdown):
 
             foreign = [
                 c for c in dict.fromkeys(prose)
-                if ord(c) > 127 and not 0x2500 <= ord(c) <= 0x257F
+                if ord(c) > 127
+                and not 0x2500 <= ord(c) <= 0x257F  # box-drawing
+                and not 0x2190 <= ord(c) <= 0x21FF  # arrows
             ]
             symbols = [c for c in foreign if not c.isalpha()]
             if symbols:

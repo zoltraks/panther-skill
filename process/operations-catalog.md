@@ -70,6 +70,7 @@ width when the request's language changes the cell text.
 | Reformat  | character normalization  | typographic characters to ASCII                                                 |
 | Reformat  | safe replace             | word-boundary find and replace                                                  |
 | Reformat  | dialect edits            | AsciiDoc and reStructuredText minimal edits                                     |
+| Edit      | yaml documents           | `.yaml`/`.yml` files per `types/yaml-document.md`                               |
 | Translate | english to polish        | en-pl direction rules and glossaries                                            |
 | Translate | polish to english        | pl-en direction rules and glossaries                                            |
 | Translate | english to german        | en-de direction rules and glossaries                                            |

@@ -94,6 +94,13 @@ The service polls the queue and retries on failure. Each attempt is logged with 
 correlation id, its delay, and the final verdict for that delivery attempt outcome.
 ```
 
+When a wrap breaks a sentence at a spaced separator, keep the separator attached to its
+clause - a line never ends with a dangling ` - ` and a continuation line never starts
+with `- `.
+
+Reflow the sentence so the hyphen travels with the text before it, or reword to remove
+the separator.
+
 ## Justified
 
 Lines wrap at a width and inter-word spacing stretches so both edges of the block sit flush.

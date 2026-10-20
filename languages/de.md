@@ -846,6 +846,9 @@ Behandle eine Anfrage, die einer Phrase aus der Tabelle entspricht, wie ihre eng
 | projektdokumentation                  | project documentation                    |
 | artikel                               | write an article                         |
 | notiz                                 | quick note                               |
+| yaml-dokument                         | yaml document                            |
+| schreibe eine yaml-konfiguration      | write a yaml config                      |
+| yaml-datei bearbeiten                 | edit this yaml file                      |
 | tabelle korrigieren                   | fix this table                           |
 | tabelle formatieren                   | format this table                        |
 | dokument aktualisieren                | update this document                     |

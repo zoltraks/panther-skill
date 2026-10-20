@@ -13,18 +13,18 @@
 | Section             | Line | What it covers                             |
 |---------------------|------|--------------------------------------------|
 | Overview            | 29   | What Panther is and what it produces       |
-| What The Skill Does | 54   | Authoring purpose and workflow             |
-| Installation        | 219  | How to add Panther to an agent environment |
-| Usage               | 290  | How agents activate and run the skill      |
-| Example Prompts     | 305  | Phrases the skill activates on             |
-| Workflow Diagrams   | 354  | ASCII and Mermaid diagrams of the pipeline |
-| Core Principles     | 493  | Convention preservation and minimal diffs  |
-| When To Use         | 504  | Supported requests and exclusions          |
-| What's Inside       | 544  | Rule files, templates, tools, and evals    |
-| Specification       | 714  | Agent Skills specification conformance     |
-| Verification        | 730  | Skill-maintenance checks                   |
-| License             | 749  | License for the skill itself               |
-| Credits             | 755  | Methodology and example sources            |
+| What The Skill Does | 55   | Authoring purpose and workflow             |
+| Installation        | 220  | How to add Panther to an agent environment |
+| Usage               | 291  | How agents activate and run the skill      |
+| Example Prompts     | 306  | Phrases the skill activates on             |
+| Workflow Diagrams   | 355  | ASCII and Mermaid diagrams of the pipeline |
+| Core Principles     | 494  | Convention preservation and minimal diffs  |
+| When To Use         | 505  | Supported requests and exclusions          |
+| What's Inside       | 546  | Rule files, templates, tools, and evals    |
+| Specification       | 718  | Agent Skills specification conformance     |
+| Verification        | 734  | Skill-maintenance checks                   |
+| License             | 753  | License for the skill itself               |
+| Credits             | 759  | Methodology and example sources            |
 
 ## Overview
 
@@ -43,13 +43,14 @@ documents - a file in UTF-16 or a legacy code page stays that way after an edit.
 Supported types cover technical documentation, project specifications, rules documents, agent
 instruction documents, contributing guides, format specifications, articles, notes, READMEs,
 changelogs, decision records, RFCs, and PMBOK artifacts - charters, registers, status reports,
-meeting minutes, management plans, and work breakdown structures.
+meeting minutes, management plans, and work breakdown structures - plus YAML data files.
 
 Supported project layouts cover agent skill repositories, Sphinx, MkDocs, Docusaurus,
 VitePress, GitBook sites, guided projects, documentation collections, and multi-project
 repositories.
 
-AsciiDoc and reStructuredText documents follow a minimal-edit contract.
+AsciiDoc and reStructuredText documents follow a minimal-edit contract, and YAML files have
+their own document type.
 
 ## What The Skill Does
 
@@ -523,6 +524,7 @@ flowchart TD
 | "Write an ADR for this technology choice"        | **Yes** - status lifecycle, numbering    |
 | "Draft an RFC for the new service"               | **Yes** - review states, open questions  |
 | "Edit this AsciiDoc file"                        | **Yes** - minimal-edit contract          |
+| "Edit this YAML config file"                     | **Yes** - `types/yaml-document.md` rules |
 | "Add a rule file to this skill repository"       | **Yes** - `SKILL.md` registration        |
 | "Write an implementation plan for this release"  | **Yes** - versioned `docs/plan/` entry   |
 | "Add a standard to this documentation repo"      | **Yes** - `docs/standard/` conventions   |
@@ -602,7 +604,8 @@ panther-skill/
 │   ├── management-plan.md             # Management plans: thresholds, cadence, roles
 │   ├── work-breakdown-structure.md    # WBS: decimal outline, dictionary, RACI
 │   ├── summary-document.md            # Summaries and briefs derived from a source
-│   └── supplement-document.md         # Supplements extending an existing document
+│   ├── supplement-document.md         # Supplements extending an existing document
+│   └── yaml-document.md               # YAML data files: syntax, quoting, minimal-edit edits
 ├── languages/
 │   ├── de.md                          # German baseline: style, section names, activation phrases
 │   ├── en.md                          # English baseline: Title Case, vocabulary, dialect
@@ -664,9 +667,9 @@ panther-skill/
 │   ├── ascii-diagrams.md              # Box-drawing node-and-edge diagram rules
 │   └── prose-layout.md                # Prose-layout conventions and detection rules
 ├── templates/
-│   ├── de/                            # Thirty-one German skeletons, <type>-template-de.md
-│   ├── en/                            # Thirty-one English skeletons, <type>-template-en.md
-│   └── pl/                            # Thirty-one Polish skeletons, <type>-template-pl.md
+│   ├── de/                            # Thirty-two German skeletons, <type>-template-de.md
+│   ├── en/                            # Thirty-two English skeletons, <type>-template-en.md
+│   └── pl/                            # Thirty-two Polish skeletons, <type>-template-pl.md
 ├── scripts/
 │   ├── detect-encoding.py             # BOM, encoding, and line-ending detection
 │   ├── detect-scope.py                # Document-scope signal census

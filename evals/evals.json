@@ -1663,6 +1663,43 @@
         "The source document was not modified.",
         "The report separates Corrections from Proposals and each proposal names its aligned source passage."
       ]
+    },
+    {
+      "id": 136,
+      "prompt": "Edit the supplied service.yaml configuration file: add a second endpoint entry and change the retry count.",
+      "expected_output": "An in-place YAML edit that preserves indentation, quoting style, comments, key order, and blank-line grouping with a minimal diff.",
+      "files": [],
+      "expectations": [
+        "The agent loaded types/yaml-document.md as the document type.",
+        "The new sequence entry matches the file's indentation and key style.",
+        "Existing comments, anchors, and key order are preserved verbatim.",
+        "No re-indenting, re-sorting, or re-quoting of untouched content.",
+        "The file's original encoding and line-ending style are preserved."
+      ]
+    },
+    {
+      "id": 137,
+      "prompt": "Create a YAML configuration file for a small queue-worker service: service name and version, a settings block, and two endpoints.",
+      "expected_output": "A new .yaml file following the yaml-document type rules with two-space indentation, minimal quoting, canonical booleans, and explanatory comments only where needed.",
+      "files": [],
+      "expectations": [
+        "The file uses two-space indentation and no tabs.",
+        "Scalars are unquoted except where required - values that read as numbers or booleans are quoted.",
+        "Booleans are written as true/false, not yes/no/on/off.",
+        "The file ends with a single trailing newline and carries no trailing whitespace.",
+        "No invented values - missing configuration is left as an explicit placeholder."
+      ]
+    },
+    {
+      "id": 138,
+      "prompt": "A new member skill was just created by hand inside another skill collection - run an editorial pass on its documents and fix the mechanical findings.",
+      "expected_output": "The document-audit and correction procedures apply to the foreign skill repository: the editorial battery runs on the member's documents, mechanical findings (table padding, semicolons, wrap breaks) are fixed in place, and judgment findings are reported.",
+      "files": [],
+      "expectations": [
+        "The skill's scope is not limited to the astra collection - any repository containing documents qualifies.",
+        "The document's own conventions govern - a foreign collection's style rules are detected and honored.",
+        "Mechanical fixes use the sanctioned scripts (format-table.py, reflow-prose.py), not ad-hoc edits."
+      ]
     }
   ]
 }

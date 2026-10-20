@@ -297,6 +297,9 @@ Load rule files in this order:
    file delegates to it.
 8. **`conventions/asciidoc-documents.md`** - load when the task touches an `.adoc` file or when
    a scope file delegates to it.
+9. **`types/yaml-document.md`** - load when the task touches a `.yaml` or `.yml` file - it
+   resolves as the document type and replaces the language-baseline prose rules with YAML
+   syntax rules.
 
 On a Translate task the selection shifts: `languages/<lang>.md` is the target language,
 and `process/translate-document.md` defines the procedure.

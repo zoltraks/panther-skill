@@ -1032,6 +1032,9 @@ Traktuj żądanie pasujące do frazy z tabeli jako jej angielski odpowiednik.
 | dokumentacja projektu              | project documentation                    |
 | artykuł                            | write an article                         |
 | notatka                            | quick note                               |
+| plik yaml                          | yaml document                            |
+| napisz plik yaml                   | write a yaml config                      |
+| edytuj plik yaml                   | edit this yaml file                      |
 | popraw tabelę                      | fix this table                           |
 | sformatuj tabelę                   | format this table                        |
 | zaktualizuj dokument               | update this document                     |

@@ -11,7 +11,7 @@ description: >-
   Handles agent skill repositories, Sphinx, MkDocs, Docusaurus,
   VitePress, GitBook, guided projects, doc collections, multi-project
   repos - discovers layouts, audits documents, corrects documents,
-  describes subjects. AsciiDoc and reStructuredText minimal-edit. Use when
+  describes subjects. AsciiDoc and reStructuredText minimal-edit, YAML documents. Use when
   asked to write, edit, correct, reformat, or translate a document, README,
   changelog, charter,
   register, or report. Maintains its own rule corpus on "work on panther"
@@ -23,7 +23,7 @@ compatibility: >-
   Claude Desktop, Windsurf, Devin, and similar). Requires the ability to read
   and write text files. No network access required.
 metadata:
-  version: "1.2.1"
+  version: "1.2.3"
   author: Filip Golewski
 allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob Grep
 ---
@@ -40,21 +40,21 @@ allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob G
 |-------------------------|------|------------------------------------------------|
 | Three Modes             | 74   | Enable, document, and maintenance selection    |
 | Skill Update Check      | 88   | Once-per-session git freshness gate before use |
-| Trigger Keywords        | 110  | Activation phrases                             |
-| How To Use              | 170  | Progressive disclosure and rule loading        |
-| Parameter Configuration | 229  | Defaults and user-controlled document shape    |
-| Principles              | 257  | Authoring invariants                           |
-| Process                 | 263  | Workflow, checklist, and standalone procedures |
-| Document Types          | 295  | Per-type rule files                            |
-| Languages               | 351  | Per-language style baselines                   |
-| Translations            | 362  | Language pair rules and industry glossaries    |
-| Scopes                  | 380  | Per-project-layout organization rules          |
-| Conventions             | 404  | Encoding, dialect, and format contract rules   |
-| Templates               | 422  | Per-type, per-language skeletons               |
-| Scripts                 | 434  | Detection, formatting, and validation scripts  |
-| Evaluation Prompts      | 462  | Behavioral regression prompts                  |
-| Repository Files        | 472  | Housekeeping files governing this repository   |
-| File Handling Contract  | 484  | Byte-level guarantees                          |
+| Trigger Keywords        | 111  | Activation phrases                             |
+| How To Use              | 171  | Progressive disclosure and rule loading        |
+| Parameter Configuration | 230  | Defaults and user-controlled document shape    |
+| Principles              | 258  | Authoring invariants                           |
+| Process                 | 264  | Workflow, checklist, and standalone procedures |
+| Document Types          | 296  | Per-type rule files                            |
+| Languages               | 354  | Per-language style baselines                   |
+| Translations            | 365  | Language pair rules and industry glossaries    |
+| Scopes                  | 383  | Per-project-layout organization rules          |
+| Conventions             | 407  | Encoding, dialect, and format contract rules   |
+| Templates               | 425  | Per-type, per-language skeletons               |
+| Scripts                 | 437  | Detection, formatting, and validation scripts  |
+| Evaluation Prompts      | 466  | Behavioral regression prompts                  |
+| Repository Files        | 476  | Housekeeping files governing this repository   |
+| File Handling Contract  | 488  | Byte-level guarantees                          |
 
 You are a Document Authoring Agent.
 
@@ -100,13 +100,13 @@ Use `python3` when `python` is not on PATH.
   the current version, without asking again this session.
 - Any other status - proceed silently and do not mention the check.
 
-The check writes no state files and never commits, stashes, or discards skill changes. Its
-`git fetch` updates remote-tracking refs under `.git` but writes no files in the working tree.
+The check writes no state files and never commits, stashes, or discards skill changes, and
+its `git fetch` only updates remote-tracking refs under `.git`, never the working tree.
 
 The merge applies upstream content without cryptographic verification.
 
-Approve only trusted upstreams, and review `git log HEAD..@{u}` diffs before approving when
-unsure. The merge fast-forwards to the reported `tip_sha`, never a later tip.
+Approve only trusted upstreams and review `git log HEAD..@{u}` diffs before approving when
+unsure, since the merge fast-forwards to the reported `tip_sha`, never a later tip.
 
 ## Trigger Keywords
 
@@ -117,13 +117,15 @@ The skill activates on any of these phrases, grouped by intent:
   changelog, contributing guide, CONTRIBUTING.md, format specification, file format spec,
   guidelines document, coding standard document, style guide document, agent instruction
   document, preparation document, dual-audience document, write an article, quick note,
-  daily plan, write a message, announcement, meeting notes.
+  daily plan, write a message, announcement, meeting notes, yaml document.
 - **Edit and format**: edit this document, update this document, fix this table, format
   this table, align the table, align the comments, fix tree comments, reformat this
-  markdown, unwrap this document, unwrap long lines, reflow the prose.
+  markdown, unwrap this document, unwrap long lines, reflow the prose, edit this yaml file.
 - **Correct documents**: correct this document, fix the errors in this
   document, proofread this document, correct the grammar, fix the typos,
   copyedit this document.
+- **Editorial review**: editorial pass, run the editorial battery, check the
+  documents I just wrote, document check on <path>, check-document on the new files.
 - **Translate**: translate this document, translate this file, translate to Polish,
   translate to English, translate to German, document in Polish, document in German,
   polish this document.
@@ -348,6 +350,7 @@ Load the file matching the document type, it adds deltas on top of the language 
 - **`types/summary-document.md`** - Summaries, briefs, abstracts: declared source,
   compression tiers, carried verdict.
 - **`types/supplement-document.md`** - Supplements: continued ID sequences, extended matrices.
+- **`types/yaml-document.md`** - YAML data files: indentation, quoting, comments, minimal edits.
 
 ## `languages/` - Language Baselines
 
