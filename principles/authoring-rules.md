@@ -151,7 +151,7 @@ Do not use emoji unless explicitly requested.
 
 Extended characters beyond ASCII are allowed when they render correctly in plain HTML
 output and the edited document's own conventions use or permit them - arrow and anchor
-symbols such as `→`, box-drawing and frame characters, and typographic dashes.
+symbols such as `->`, box-drawing and frame characters, and typographic dashes.
 
 A document that already uses such characters keeps them, they are not normalized to
 ASCII substitutes.

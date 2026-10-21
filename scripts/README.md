@@ -349,7 +349,7 @@ not a splice.
 A calque stem inside an all-uppercase token - a status enum, an option name, an acronym -
 raises no error, because replacing it would break a fixed label the document does not own.
 
-A quoted span - `"..."`, `„..."`, or `«...»` - is verbatim cited material and raises no
+A quoted span - `"..."`, `"..."`, or `"..."` - is verbatim cited material and raises no
 calque finding, so quoted titles and foreign-language citations stay legal.
 
 A parenthesized qualifier on a banned form - `trasa (routing)`, `rozjazd (drift)` -

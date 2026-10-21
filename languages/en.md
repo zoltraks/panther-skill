@@ -10,7 +10,8 @@ native-name: English
 
 This document defines text style and formatting rules for Markdown documents written in English.
 
-It applies across all project documentation, including guidelines, standards, templates, notes, and reference materials.
+It applies across all project documentation, including guidelines, standards, templates, notes,
+and reference materials.
 
 It is intended for content-generating tools and AI agents, but must remain readable to humans.
 
@@ -20,25 +21,25 @@ The rules described below apply to this document itself as well.
 
 | Section                  | Line | What it covers                      |
 |--------------------------|------|-------------------------------------|
-| Document Structure       | 43   | Titles, purpose blocks, and layout  |
-| Headings                 | 61   | Capitalization and qualifiers       |
-| Section Numbering        | 93   | Numbered section policy             |
-| Table of Contents        | 105  | When to add a contents section      |
-| Paragraphs and Sentences | 119  | Sentence structure                  |
-| Line Wrapping            | 133  | Logical lines and hard breaks       |
-| Lists                    | 159  | Bullets, numbering, and spacing     |
-| Blank Lines and Spacing  | 181  | Whitespace rules                    |
-| Code Blocks              | 195  | Fences, tags, and inline code       |
-| Inline Formatting        | 211  | Quotes, bold, and italics           |
-| Spaced Hyphens           | 227  | Asides, never joins clauses         |
-| Semicolons               | 251  | Semicolon prohibition in prose      |
-| Special Characters       | 277  | Box-drawing and emoji               |
-| English Vocabulary       | 285  | Preferred terms and calques         |
-| Dialect Consistency      | 308  | One spelling dialect per document   |
-| Tables                   | 356  | Source-width alignment rules        |
-| File Names               | 480  | Naming new documentation files      |
-| Example                  | 490  | Correct and incorrect sample        |
-| File Maintenance         | 524  | Encoding and line-ending preserving |
+| Document Structure       | 44   | Titles, purpose blocks, and layout  |
+| Headings                 | 63   | Capitalization and qualifiers       |
+| Section Numbering        | 96   | Numbered section policy             |
+| Table of Contents        | 111  | When to add a contents section      |
+| Paragraphs and Sentences | 127  | Sentence structure                  |
+| Line Wrapping            | 141  | Logical lines and hard breaks       |
+| Lists                    | 174  | Bullets, numbering, and spacing     |
+| Blank Lines and Spacing  | 198  | Whitespace rules                    |
+| Code Blocks              | 212  | Fences, tags, and inline code       |
+| Inline Formatting        | 231  | Quotes, bold, and italics           |
+| Spaced Hyphens           | 247  | Asides, never joins clauses         |
+| Semicolons               | 273  | Semicolon prohibition in prose      |
+| Special Characters       | 299  | Box-drawing and emoji               |
+| English Vocabulary       | 307  | Preferred terms and calques         |
+| Dialect Consistency      | 332  | One spelling dialect per document   |
+| Tables                   | 385  | Source-width alignment rules        |
+| File Names               | 518  | Naming new documentation files      |
+| Example                  | 529  | Correct and incorrect sample        |
+| File Maintenance         | 563  | Encoding and line-ending preserving |
 
 ## Document Structure
 
@@ -52,7 +53,8 @@ The **Document Information** and **Version History** sections are optional.
 
 Do not add these sections to an existing document.
 
-Do not add them to a new document either, unless the request to create the document explicitly requires it.
+Do not add them to a new document either,
+unless the request to create the document explicitly requires it.
 
 If a document already contains them, update them with every content change.
 
@@ -64,7 +66,8 @@ Section and subsection names use Title Case, in which each major word starts wit
 
 Keep the capitalization convention consistent within a document.
 
-Proper nouns, abbreviations, and technology names keep their own spelling, for example "XML Formatting", "Integration with Microsoft Fabric", "Gold Layer in Lakehouse".
+Proper nouns, abbreviations, and technology names keep their own spelling,
+for example "XML Formatting", "Integration with Microsoft Fabric", "Gold Layer in Lakehouse".
 
 Keep section names short.
 
@@ -94,11 +97,14 @@ Do not end a heading with a punctuation mark.
 
 By default, do not number sections.
 
-The absence of numbering simplifies reorganizing the document, because moving a section does not require renumbering the others.
+The absence of numbering simplifies reorganizing the document,
+because moving a section does not require renumbering the others.
 
-If the document being edited already uses section numbering, keep it and maintain the correct sequence of numbers.
+If the document being edited already uses section numbering,
+keep it and maintain the correct sequence of numbers.
 
-After adding, removing, or moving a section, renumber the sections so that the numbers are continuous and follow the document order.
+After adding, removing, or moving a section,
+renumber the sections so that the numbers are continuous and follow the document order.
 
 Subsection numbering reflects the parent section number, for example `3.1.` inside section `3.`.
 
@@ -108,9 +114,11 @@ By default, do not add a table of contents.
 
 Add a table of contents only on request and only when the document sections are numbered.
 
-A reference file longer than 300 lines may include a contents table even when its sections are not numbered.
+A reference file longer than 300 lines may include a contents table even when its sections are not
+numbered.
 
-Place it at the beginning of the document, directly after the optional document information section and the optional version history section.
+Place it at the beginning of the document,
+directly after the optional document information section and the optional version history section.
 
 If those sections are absent, the table of contents is the first section after the H1 title.
 
@@ -138,23 +146,30 @@ Each sentence occupies one logical line.
 
 A sentence may be long when the thought is long, the editor or viewer wraps it on display.
 
-Insert a hard line break only when the source content itself requires it, for example in a code block or a diagram.
+Insert a hard line break only when the source content itself requires it,
+for example in a code block or a diagram.
 
 For an existing document, the document's own wrap convention wins over this default.
 
-Detect whether it wraps prose at a fixed width or keeps logical lines, keep that convention, and change it only when the request covers the conversion.
+Detect whether it wraps prose at a fixed width or keeps logical lines, keep that convention,
+and change it only when the request covers the conversion.
 
-Repository rules such as a `STYLE.md` requiring lines no longer than 100 characters declare the convention for new files and break ties when a document's wrapping is mixed or ambiguous.
+Repository rules such as a `STYLE.md` requiring lines no longer than 100 characters declare the
+convention for new files and break ties when a document's wrapping is mixed or ambiguous.
 
-Use `scripts/reflow-prose.py --wrap --width N` to apply a fixed width and `scripts/reflow-prose.py --unwrap` to join wrapped continuations into logical lines.
+Use `scripts/reflow-prose.py --wrap --width N` to apply a fixed width and
+`scripts/reflow-prose.py --unwrap` to join wrapped continuations into logical lines.
 
-The wrap mode only splits lines, the unwrap mode only joins them, and both leave tables, code fences, and indented code blocks untouched.
+The wrap mode only splits lines, the unwrap mode only joins them, and both leave tables,
+code fences, and indented code blocks untouched.
 
 The layout of a produced document follows `conventions/prose-layout.md`.
 
-This baseline describes the `separated` convention, and the `line-wrapping`, `sentence-spacing`, and `wrap-width` intake parameters may select `flowing`, `bounded`, or `justified` on create.
+This baseline describes the `separated` convention, and the `line-wrapping`, `sentence-spacing`,
+and `wrap-width` intake parameters may select `flowing`, `bounded`, or `justified` on create.
 
-The detection of an existing document's layout follows `conventions/prose-layout.md` and never assumes a default.
+The detection of an existing document's layout follows `conventions/prose-layout.md` and never
+assumes a default.
 
 ## Lists
 
@@ -162,7 +177,9 @@ Use a hyphen (`-`) for bullet items.
 
 By default, do not number list items.
 
-Use numbering for steps performed in sequence, when the edited document already uses it in a given list, or when the change request explicitly requires it.
+Use numbering for steps performed in sequence,
+when the edited document already uses it in a given list,
+or when the change request explicitly requires it.
 
 If a list is numbered, keep the numbers continuous after adding or removing items.
 
@@ -198,15 +215,18 @@ Fence every code block with three backticks.
 
 Provide a language tag only when the block contains code in a programming, markup, or data language.
 
-Leave blocks that contain plain text, prompts, console or standard output, directory trees, diagrams, or tables untagged.
+Leave blocks that contain plain text, prompts, console or standard output, directory trees,
+diagrams, or tables untagged.
 
-A `text` or `txt` tag still counts as a tag, and a document that already uses such tags consistently keeps its convention.
+A `text` or `txt` tag still counts as a tag,
+and a document that already uses such tags consistently keeps its convention.
 
 Do not leave a blank line as the first or the last line inside the block.
 
 Keep code blocks concise and related to the described topic.
 
-Write file names, directory names, commands, column names, and values in inline code, for example `docs/guidelines`, `SELECT`, `Fact_Sales`.
+Write file names, directory names, commands, column names, and values in inline code,
+for example `docs/guidelines`, `SELECT`, `Fact_Sales`.
 
 ## Inline Formatting
 
@@ -232,7 +252,9 @@ A spaced hyphen never joins two independent clauses.
 
 Split such a pair into separate sentences.
 
-Structural uses are unaffected: definitional list entries such as `- term - description`, title-style pseudo-headers such as `**Step 1 - Name**`, titles inside quoted references, and inline code.
+Structural uses are unaffected: definitional list entries such as `- term - description`,
+title-style pseudo-headers such as `**Step 1 - Name**`, titles inside quoted references,
+and inline code.
 
 ### Correct
 
@@ -299,25 +321,32 @@ Prefer plain, established terms over corporate jargon or ad-hoc coinages.
 | in the event that     | if      |
 | perform an update     | update  |
 
-Keep established proper nouns, product names, and architecture element names in their original form, for example Microsoft Fabric, Lakehouse, Warehouse, Power BI, workspace.
+Keep established proper nouns, product names, and architecture element names in their original form,
+for example Microsoft Fabric, Lakehouse, Warehouse, Power BI, workspace.
 
 Write technical names taken from a source system exactly as they appear in that system.
 
-In example headings, use English section names such as "Example Content", "Correct", and "Incorrect".
+In example headings, use English section names such as "Example Content", "Correct",
+and "Incorrect".
 
 ## Dialect Consistency
 
 Use one English spelling dialect per document.
 
-American and British spellings must not mix within the same document, including splits inside a single word family, for example `synchronized` and `synchronised` side by side.
+American and British spellings must not mix within the same document,
+including splits inside a single word family,
+for example `synchronized` and `synchronised` side by side.
 
-An existing document's dominant dialect is its own convention and wins on edits - match the majority variant.
+An existing document's dominant dialect is its own convention and wins on edits - match the majority
+variant.
 
-Normalize the minority dialect only when the request covers the change, and report the mixed usage instead of fixing it silently.
+Normalize the minority dialect only when the request covers the change,
+and report the mixed usage instead of fixing it silently.
+`scripts/lint-english.py` detects the dominant variant and reports minority forms as advisory
+findings.
 
-`scripts/lint-english.py` detects the dominant variant and reports minority forms as advisory findings.
-
-The pair table below lists representative variants the checker tracks - the suffix patterns the pairs illustrate cover forms beyond the listed rows.
+The pair table below lists representative variants the checker tracks - the suffix patterns the
+pairs illustrate cover forms beyond the listed rows.
 
 | American       | British        |
 |----------------|----------------|
@@ -371,7 +400,8 @@ Start every row - header, separator, and data - with a single pipe.
 
 A leading double pipe (`||`) parses as an empty first cell.
 
-An automated formatter materializes that cell into a spurious empty column, which silently corrupts the table structure instead of only misaligning it.
+An automated formatter materializes that cell into a spurious empty column,
+which silently corrupts the table structure instead of only misaligning it.
 
 Write an intentionally empty first cell as `| |`, and only when the table truly needs one.
 
@@ -415,7 +445,8 @@ Use left alignment in all cells.
 
 ### Column Widths
 
-The column width is the largest character count among all cells of that column, including the header cell.
+The column width is the largest character count among all cells of that column,
+including the header cell.
 
 Measure width as the length of the cell's **source** text, not the rendered text.
 
@@ -425,24 +456,31 @@ Count every character present in the Markdown source, including all formatting c
 
 Do not remove, interpret, or collapse any characters before measuring.
 
-A Markdown renderer hides backticks and asterisks, but those characters are still present in the source and must be counted.
+A Markdown renderer hides backticks and asterisks,
+but those characters are still present in the source and must be counted.
 
 The following elements are part of the cell content and enter the width measurement.
 
-- Backticks around inline code, for example the cell `` `db.table_name` `` has 15 characters, not 13.
-- Double backticks around values such as codes and numbers, for example the cell `` ``00`` `` has 6 characters, not 2.
+- Backticks around inline code, for example the cell `` ` db.table_name ` `` has 15 characters,
+  not 13.
+- Double backticks around values such as codes and numbers,
+  for example the cell `` `` 00 `` `` has 6 characters, not 2.
 - Emphasis asterisks, for example the cell `*italics*` has 9 characters, not 7.
 - Bold double asterisks, for example the cell `**bold text**` has 13 characters, not 9.
 - Emphasis underscores, for example the cell `_text_` has 6 characters, not 4.
 - Spaces, punctuation, and all other characters visible in the source.
 
-Diacritical letters count as one character each, for example the word `Częstotliwość` has 13 characters.
+Diacritical letters count as one character each,
+for example the word `Częstotliwość` has 13 characters.
 
-Write diacritical letters in composed form as a single Unicode character, so that the width measurement matches the number of characters visible in the text.
+Write diacritical letters in composed form as a single Unicode character,
+so that the width measurement matches the number of characters visible in the text.
 
-The most common formatting error is measuring the rendered text width instead of the source text width.
+The most common formatting error is measuring the rendered text width instead of the source text
+width.
 
-The cell `` `api/configuration` `` has 19 characters in the source, while the renderer displays only 17.
+The cell `` ` api/configuration ` `` has 19 characters in the source,
+while the renderer displays only 17.
 
 Using 17 instead of 19 produces a column that is too narrow and misaligned pipes in text view.
 
@@ -479,7 +517,8 @@ The column widths are 11, 7, and 17 characters.
 
 ## File Names
 
-Write names of new documentation files in lowercase, separating words with underscores, for example `user_guide.md`.
+Write names of new documentation files in lowercase, separating words with underscores,
+for example `user_guide.md`.
 
 Do not use diacritical letters or spaces in new file names.
 
@@ -527,6 +566,7 @@ Preserve the existing line-ending convention and encoding of the document you ed
 
 Create new files in UTF-8 encoding.
 
-Do not change an existing document's conventions for section numbering, list numbering, and optional sections, unless the change request covers it.
+Do not change an existing document's conventions for section numbering, list numbering,
+and optional sections, unless the change request covers it.
 
 When editing, limit changes to the scope resulting from the request.

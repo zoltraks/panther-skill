@@ -63,7 +63,7 @@ purpose or version block.
 The table maps top-level sections to their contents so a reader can locate a component without
 reading linearly.
 
-Use a `→` prefix in the section column for subsection rows.
+Use a `->` prefix in the section column for subsection rows.
 
 ## Requirements And Decision Tables
 

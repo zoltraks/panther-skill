@@ -40,7 +40,7 @@ It never overrides the baseline's structure rules.
 | Example headings       | `Richtig` / `Falsch`               | `Poprawnie` / `Niepoprawnie`                  |
 | Example heading        | `Beispielinhalt`                   | `Przykład zawartości`                         |
 | Typographic quotes     | low-high double quotes, guillemets | straight ASCII `"`                            |
-| Prose dash             | ` - ` or ` – `                     | ` - ` spaced hyphen                           |
+| Prose dash             | ` - ` or ` - `                     | ` - ` spaced hyphen                           |
 | Semicolon in prose     | not used                           | not used                                      |
 | Definition pattern     | `**Begriff**: Definition`          | `**Termin**: definicja`                       |
 | Numbered chapters      | `# 1`, `## 1.1` numbering          | numbering kept, caption translated            |

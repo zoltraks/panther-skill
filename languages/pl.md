@@ -8,11 +8,14 @@ native-name: polski
 
 ## Przeznaczenie
 
-Ten dokument definiuje styl tekstu oraz zasady formatowania dokumentów Markdown pisanych w języku polskim.
+Ten dokument definiuje styl tekstu oraz zasady formatowania dokumentów Markdown pisanych w języku
+polskim.
 
-Obowiązuje w całej dokumentacji projektu, w tym w wytycznych, standardach, szablonach, notatkach i materiałach referencyjnych.
+Obowiązuje w całej dokumentacji projektu, w tym w wytycznych, standardach, szablonach,
+notatkach i materiałach referencyjnych.
 
-Jest przeznaczony dla narzędzi generujących treść oraz agentów AI, ale ma pozostać czytelny dla człowieka.
+Jest przeznaczony dla narzędzi generujących treść oraz agentów AI,
+ale ma pozostać czytelny dla człowieka.
 
 Zasady opisane poniżej stosują się również do samego tego dokumentu.
 
@@ -20,28 +23,28 @@ Zasady opisane poniżej stosują się również do samego tego dokumentu.
 
 | Sekcja                             | Wiersz | Zakres                                        |
 |------------------------------------|--------|-----------------------------------------------|
-| Struktura dokumentu                | 46     | Tytuł, cel i układ dokumentu                  |
-| Nagłówki                           | 64     | Wielkość liter i kwalifikatory                |
-| Numeracja sekcji                   | 96     | Zasady numerowania sekcji                     |
-| Zasady spisu treści                | 108    | Kiedy dodawać spis treści                     |
-| Akapity i zdania                   | 122    | Budowa akapitów i konstrukcja zdania          |
-| Zawijanie wierszy                  | 166    | Wiersze logiczne i twarde łamania             |
-| Listy                              | 190    | Punktory, numeracja i odstępy                 |
-| Puste wiersze i odstępy            | 212    | Zasady odstępów                               |
-| Bloki kodu                         | 226    | Ogrodzenia, znaczniki i kod liniowy           |
-| Formatowanie w treści              | 240    | Cudzysłowy, pogrubienia i kursywa             |
-| Średniki                           | 266    | Zakaz średników i zdań sklejonych przecinkiem |
-| Znaki specjalne                    | 294    | Znaki ramek, emoji i znaki specjalne          |
-| Słownictwo polskie                 | 312    | Preferowane terminy i kalki                   |
-| Nazwy sekcji według typu dokumentu | 465    | Polskie nazwy sekcji i elementy typów         |
-| Cechy dialektów                    | 812    | Numeracja rozdziałów i pseudo-nagłówki        |
-| Tabele                             | 829    | Wyrównanie według źródła                      |
-| Nazwy plików                       | 947    | Nazywanie nowych plików dokumentacji          |
-| Przykład                           | 957    | Przykład poprawny i niepoprawny               |
-| Kontrola przed dostarczeniem       | 991    | Kontrole językowe przed dostarczeniem         |
-| Utrzymanie plików                  | 1001   | Kodowanie i złamania wierszy                  |
-| Pytanie o aktualizację             | 1011   | Polskie brzmienie pytania o aktualizację      |
-| Frazy aktywujące                   | 1017   | Polskie frazy i ich angielskie odpowiedniki   |
+| Struktura dokumentu                | 49     | Tytuł, cel i układ dokumentu                  |
+| Nagłówki                           | 68     | Wielkość liter i kwalifikatory                |
+| Numeracja sekcji                   | 101    | Zasady numerowania sekcji                     |
+| Zasady spisu treści                | 116    | Kiedy dodawać spis treści                     |
+| Akapity i zdania                   | 131    | Budowa akapitów i konstrukcja zdania          |
+| Zawijanie wierszy                  | 181    | Wiersze logiczne i twarde łamania             |
+| Listy                              | 214    | Punktory, numeracja i odstępy                 |
+| Puste wiersze i odstępy            | 237    | Zasady odstępów                               |
+| Bloki kodu                         | 251    | Ogrodzenia, znaczniki i kod liniowy           |
+| Formatowanie w treści              | 269    | Cudzysłowy, pogrubienia i kursywa             |
+| Średniki                           | 296    | Zakaz średników i zdań sklejonych przecinkiem |
+| Znaki specjalne                    | 325    | Znaki ramek, emoji i znaki specjalne          |
+| Słownictwo polskie                 | 346    | Preferowane terminy i kalki                   |
+| Nazwy sekcji według typu dokumentu | 517    | Polskie nazwy sekcji i elementy typów         |
+| Cechy dialektów                    | 864    | Numeracja rozdziałów i pseudo-nagłówki        |
+| Tabele                             | 884    | Wyrównanie według źródła                      |
+| Nazwy plików                       | 1015   | Nazywanie nowych plików dokumentacji          |
+| Przykład                           | 1027   | Przykład poprawny i niepoprawny               |
+| Kontrola przed dostarczeniem       | 1061   | Kontrole językowe przed dostarczeniem         |
+| Utrzymanie plików                  | 1073   | Kodowanie i złamania wierszy                  |
+| Pytanie o aktualizację             | 1084   | Polskie brzmienie pytania o aktualizację      |
+| Frazy aktywujące                   | 1092   | Polskie frazy i ich angielskie odpowiedniki   |
 
 ## Struktura dokumentu
 
@@ -55,7 +58,8 @@ Sekcje **Informacje o dokumencie** oraz **Historia wersji** są opcjonalne.
 
 Nie dodawaj tych sekcji do istniejącego dokumentu.
 
-Nie dodawaj ich także w nowym dokumencie, o ile żądanie utworzenia dokumentu wyraźnie tego nie wymaga.
+Nie dodawaj ich także w nowym dokumencie,
+o ile żądanie utworzenia dokumentu wyraźnie tego nie wymaga.
 
 Jeśli dokument już je zawiera, aktualizuj je przy każdej zmianie treści.
 
@@ -67,7 +71,8 @@ Nazwy sekcji i podsekcji pisz zwykłą wielką literą na początku, pozostałe 
 
 Nie stosuj angielskiego Stylu Tytułowego, w którym każdy wyraz zaczyna się wielką literą.
 
-Nazwy własne, skróty i nazwy technologii zachowują swoją pisownię, na przykład "Formatowanie XML", "Integracja z Microsoft Fabric", "Warstwa gold w Lakehouse".
+Nazwy własne, skróty i nazwy technologii zachowują swoją pisownię, na przykład "Formatowanie XML",
+"Integracja z Microsoft Fabric", "Warstwa gold w Lakehouse".
 
 Utrzymuj krótkie nazwy sekcji.
 
@@ -97,11 +102,14 @@ Nie kończ nagłówka znakiem interpunkcyjnym.
 
 Domyślnie nie numeruj sekcji.
 
-Brak numeracji upraszcza reorganizację dokumentu, ponieważ przeniesienie sekcji nie wymaga przenumerowania pozostałych.
+Brak numeracji upraszcza reorganizację dokumentu,
+ponieważ przeniesienie sekcji nie wymaga przenumerowania pozostałych.
 
-Jeśli redagowany dokument już zawiera numerację sekcji, zachowaj ją i utrzymaj prawidłową kolejność numerów.
+Jeśli redagowany dokument już zawiera numerację sekcji,
+zachowaj ją i utrzymaj prawidłową kolejność numerów.
 
-Po dodaniu, usunięciu lub przeniesieniu sekcji przenumeruj sekcje tak, aby numery były ciągłe i zgodne z kolejnością w dokumencie.
+Po dodaniu, usunięciu lub przeniesieniu sekcji przenumeruj sekcje tak,
+aby numery były ciągłe i zgodne z kolejnością w dokumencie.
 
 Numeracja podsekcji odzwierciedla numer sekcji nadrzędnej, na przykład `3.1.` w sekcji `3.`.
 
@@ -113,7 +121,8 @@ Spis treści dodawaj tylko na żądanie i tylko wtedy, gdy sekcje dokumentu są 
 
 Plik referencyjny dłuższy niż 300 wierszy może zawierać spis treści nawet bez numerowania sekcji.
 
-Umieszczaj go na początku dokumentu, bezpośrednio po opcjonalnej sekcji informacji o dokumencie i opcjonalnej sekcji historii wersji.
+Umieszczaj go na początku dokumentu, bezpośrednio po opcjonalnej sekcji informacji o dokumencie i
+opcjonalnej sekcji historii wersji.
 
 Jeśli tych sekcji nie ma, spis treści jest pierwszą sekcją po tytule H1.
 
@@ -143,15 +152,19 @@ Każde zdanie poza komórką tabeli ma jawnie wyrażone orzeczenie.
 
 Wykonawcą czynności w zdaniu jest osoba lub narzędzie, nie plik, sekcja czy gałąź.
 
-Stan repozytorium lub systemu opisuj stroną bierną albo rzeczownikiem czynności, na przykład "plik został usunięty" zamiast "plik usuwa".
+Stan repozytorium lub systemu opisuj stroną bierną albo rzeczownikiem czynności,
+na przykład "plik został usunięty" zamiast "plik usuwa".
 
-Imiesłów przysłówkowy stosuj tylko wtedy, gdy jego podmiot jest tym samym podmiotem co zdanie główne.
+Imiesłów przysłówkowy stosuj tylko wtedy,
+gdy jego podmiot jest tym samym podmiotem co zdanie główne.
 
-Człon zdania otwierany imiesłowem przysłówkowym kończy się przecinkiem, na przykład "Wnosząc wkład, zgadzasz się".
+Człon zdania otwierany imiesłowem przysłówkowym kończy się przecinkiem, na przykład "Wnosząc wkład,
+zgadzasz się".
 
 W razie wątpliwości zastąp go konstrukcją "co" z czasownikiem albo rozdziel zdanie na dwa.
 
-Człony wyliczenia zapisuj w tej samej formie gramatycznej, na przykład samych rzeczowników albo samych czasowników.
+Człony wyliczenia zapisuj w tej samej formie gramatycznej,
+na przykład samych rzeczowników albo samych czasowników.
 
 Wyliczenie dłuższe niż cztery człony lub zawierające zagnieżdżenie zapisuj jako listę punktowaną.
 
@@ -159,9 +172,11 @@ Wyliczenie dłuższe niż cztery człony lub zawierające zagnieżdżenie zapisu
 
 Nie zostawiaj w zdaniu elipsy - każdy człon wymagany przez sens ma być zapisany wprost.
 
-Korelatywne "to" otwierające zdanie podrzędne wymaga przecinka, na przykład "polega na tym, gdzie..." albo "sprowadza się do tego, że...".
+Korelatywne "to" otwierające zdanie podrzędne wymaga przecinka, na przykład "polega na tym,
+gdzie..." albo "sprowadza się do tego, że...".
 
-Stan opisuj czasownikiem niedokonanym, na przykład "jest sformalizowany", a formę dokonaną "został" zachowaj dla dokonanych wyników i zdarzeń.
+Stan opisuj czasownikiem niedokonanym, na przykład "jest sformalizowany",
+a formę dokonaną "został" zachowaj dla dokonanych wyników i zdarzeń.
 
 ## Zawijanie wierszy
 
@@ -169,23 +184,32 @@ Nie zawijaj tekstu na sztywno na ustalonej szerokości kolumny.
 
 Każde zdanie zajmuje jeden wiersz logiczny.
 
-Zdanie może być długie, gdy myśl jest długa, edytor lub przeglądarka zawinie tekst przy wyświetlaniu.
+Zdanie może być długie, gdy myśl jest długa,
+edytor lub przeglądarka zawinie tekst przy wyświetlaniu.
 
-Wstawiaj twarde złamanie wiersza tylko wtedy, gdy wymaga tego sama treść źródłowa, na przykład w bloku kodu lub w diagramie.
+Wstawiaj twarde złamanie wiersza tylko wtedy, gdy wymaga tego sama treść źródłowa,
+na przykład w bloku kodu lub w diagramie.
 
 Dla istniejącego dokumentu jego własna konwencja zawijania ma pierwszeństwo przed tą regułą.
 
-Wykryj, czy dokument zawija tekst przy stałej szerokości, czy utrzymuje wiersze logiczne, i zachowaj tę konwencję - zmieniaj ją tylko wtedy, gdy żądanie tego dotyczy.
+Wykryj, czy dokument zawija tekst przy stałej szerokości, czy utrzymuje wiersze logiczne,
+i zachowaj tę konwencję - zmieniaj ją tylko wtedy, gdy żądanie tego dotyczy.
 
-Reguły repozytorium takie jak `STYLE.md` wymagający wierszy nie dłuższych niż 100 znaków ustalają konwencję dla nowych plików i rozstrzygają przypadki niejednoznaczne.
+Reguły repozytorium takie jak `STYLE.md` wymagający wierszy nie dłuższych niż 100 znaków ustalają
+konwencję dla nowych plików i rozstrzygają przypadki niejednoznaczne.
 
-Użyj `scripts/reflow-prose.py --wrap --width N`, aby zastosować stałą szerokość, i `scripts/reflow-prose.py --unwrap`, aby połączyć zawinięte wiersze w wiersze logiczne.
+Użyj `scripts/reflow-prose.py --wrap --width N`, aby zastosować stałą szerokość,
+i `scripts/reflow-prose.py --unwrap`, aby połączyć zawinięte wiersze w wiersze logiczne.
 
-Tryb zawijania tylko dzieli wiersze, tryb łączenia tylko je łączy, oba nie ruszają tabel, bloków kodu ani wciętych bloków kodu.
+Tryb zawijania tylko dzieli wiersze, tryb łączenia tylko je łączy, oba nie ruszają tabel,
+bloków kodu ani wciętych bloków kodu.
 
-Układ tworzonego dokumentu wynika z `conventions/prose-layout.md` - ta podstawa opisuje konwencję `separated`, a parametry wejściowe `line-wrapping`, `sentence-spacing` i `wrap-width` mogą wybrać `flowing`, `bounded` albo `justified` przy tworzeniu.
+Układ tworzonego dokumentu wynika z `conventions/prose-layout.md` - ta podstawa opisuje konwencję
+`separated`, a parametry wejściowe `line-wrapping`,
+`sentence-spacing` i `wrap-width` mogą wybrać `flowing`, `bounded` albo `justified` przy tworzeniu.
 
-Wykrywanie układu istniejącego dokumentu przebiega według `conventions/prose-layout.md` i nigdy nie zakłada domyślnej konwencji.
+Wykrywanie układu istniejącego dokumentu przebiega według `conventions/prose-layout.md` i nigdy nie
+zakłada domyślnej konwencji.
 
 ## Listy
 
@@ -193,7 +217,8 @@ Stosuj myślnik (`-`) dla punktów wypunktowania.
 
 Domyślnie nie numeruj pozycji list.
 
-Numerację stosuj dla kroków wykonywanych po kolei, gdy redagowany dokument już ją stosuje w danej liście albo gdy żądanie zmiany wyraźnie tego wymaga.
+Numerację stosuj dla kroków wykonywanych po kolei,
+gdy redagowany dokument już ją stosuje w danej liście albo gdy żądanie zmiany wyraźnie tego wymaga.
 
 Jeśli lista jest numerowana, utrzymaj ciągłość numerów po dodaniu lub usunięciu pozycji.
 
@@ -227,15 +252,19 @@ Nie zostawiaj znaków odstępu na końcu wiersza.
 
 Każdy blok kodu ogradzaj trzema znakami odwróconego apostrofu.
 
-Podawaj znacznik języka tylko wtedy, gdy blok zawiera kod w języku programowania, znaczników lub danych.
+Podawaj znacznik języka tylko wtedy, gdy blok zawiera kod w języku programowania,
+znaczników lub danych.
 
-Bloki ze zwykłym tekstem, promptami, wynikami konsoli lub standardowego wyjścia, drzewami katalogów, diagramami lub tabelami pozostawiaj bez znacznika - `text` i `txt` też są znacznikami, a dokument, który już ich używa konsekwentnie, zachowuje swoją konwencję.
+Bloki ze zwykłym tekstem, promptami, wynikami konsoli lub standardowego wyjścia, drzewami katalogów,
+diagramami lub tabelami pozostawiaj bez znacznika - `text` i `txt` też są znacznikami, a dokument,
+który już ich używa konsekwentnie, zachowuje swoją konwencję.
 
 Nie zostawiaj pustego wiersza jako pierwszego ani jako ostatniego wiersza wewnątrz bloku.
 
 Utrzymuj bloki kodu zwięzłe i związane z opisywanym zagadnieniem.
 
-Nazwy plików, katalogów, polecenia, nazwy kolumn i wartości zapisuj w kodzie liniowym, na przykład `docs/wytyczne`, `SELECT`, `Fact_Sales`.
+Nazwy plików, katalogów, polecenia, nazwy kolumn i wartości zapisuj w kodzie liniowym,
+na przykład `docs/wytyczne`, `SELECT`, `Fact_Sales`.
 
 ## Formatowanie w treści
 
@@ -251,7 +280,8 @@ Stosuj łącznik z odstępami (` - `) jako znak wtrącenia zamiast półpausy lu
 
 Zdania samodzielne rozdzielaj kropką.
 
-Znaki typograficzne (cudzysłów `„`...", półpauza, strzałka `→`) są dozwolone tylko wtedy, gdy wynikają z wyraźnego żądania, konwencji istniejącego dokumentu albo charakteru przekładu.
+Znaki typograficzne (cudzysłów `"`...", półpauza, strzałka `->`) są dozwolone tylko wtedy,
+gdy wynikają z wyraźnego żądania, konwencji istniejącego dokumentu albo charakteru przekładu.
 
 Gdy żadne z tych źródeł nie rozstrzyga konwencji, pozostań przy ASCII albo spytaj zamawiającego.
 
@@ -267,7 +297,8 @@ Nie nadużywaj wyróżnień.
 
 Nie używaj znaku średnika w tekście ciągłym.
 
-Zdania samodzielne rozdzielaj kropką, dwukropkiem (gdy drugie zdanie objaśnia pierwsze) albo spójnikiem takim jak "więc", "natomiast" lub "ponieważ".
+Zdania samodzielne rozdzielaj kropką, dwukropkiem (gdy drugie zdanie objaśnia pierwsze)
+albo spójnikiem takim jak "więc", "natomiast" lub "ponieważ".
 
 Nie łącz zdań samodzielnych samym przecinkiem - taka konstrukcja jest błędem składniowym.
 
@@ -299,15 +330,18 @@ Nie zamieniaj znaków rysowania ramek na `+`, `-` ani na inne przybliżenia ASCI
 
 Nie używaj emoji, o ile nie zostało to wyraźnie zamówione.
 
-Strzałkę w tekście ciągłym zapisuj słowem, na przykład "przechodzi w" albo "skutkuje", a sekwencję `->` zachowaj tylko tam, gdy dokument już jej konsekwentnie używa.
+Strzałkę w tekście ciągłym zapisuj słowem, na przykład "przechodzi w" albo "skutkuje",
+a sekwencję `->` zachowaj tylko tam, gdy dokument już jej konsekwentnie używa.
 
 Przybliżenie `~` przed liczbą zamieniaj na "ok." albo "około".
 
-Ukośnik między pojedynczymi wyrazami zapisuj bez odstępów, na przykład `i/lub`, a między frazami z odstępami.
+Ukośnik między pojedynczymi wyrazami zapisuj bez odstępów, na przykład `i/lub`,
+a między frazami z odstępami.
 
 Zapis dostępu do źródła prowadź w formie `[dostęp: RRRR-MM-DD]`.
 
-Zasada sierotek - spacja niełamliwa po jednoliterowych spójnikach - obowiązuje przy eksporcie do PDF albo DOCX, w źródle Markdown pozostaje zaleceniem.
+Zasada sierotek - spacja niełamliwa po jednoliterowych spójnikach - obowiązuje przy eksporcie do PDF
+albo DOCX, w źródle Markdown pozostaje zaleceniem.
 
 ## Słownictwo polskie
 
@@ -315,7 +349,8 @@ Pisz poprawną polszczyzną i unikaj przypadkowych kalek z języka angielskiego.
 
 Nie odmieniaj angielskich wyrazów polskimi końcówkami, gdy istnieje naturalny polski odpowiednik.
 
-Poniższa tabela jest źródłem prawdy dla mechanicznej kontroli - `scripts/lint-polish.py` odczytuje z niej wzorce zabronione.
+Poniższa tabela jest źródłem prawdy dla mechanicznej kontroli - `scripts/lint-polish.py` odczytuje z
+niej wzorce zabronione.
 
 | Zamiast                                                                                                                                         | Używaj                                             |
 |-------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
@@ -426,41 +461,58 @@ Poniższa tabela jest źródłem prawdy dla mechanicznej kontroli - `scripts/lin
 | ucieczka (substancji, gazu)                                                                                                                     | uwolnienie / wyciek                                |
 | dostać winę                                                                                                                                     | zostać obwinionym / ponieść winę                   |
 
-Wpis `pod` w tabeli dotyczy wyłącznie kalki opisu miejsca - `pod katalogiem` zamiast `w katalogu` - a stałe zwroty takie jak `pod kątem`, `pod względem` czy `pod opieką` są poprawne i nie podlegają zastąpieniu.
+Wpis `pod` w tabeli dotyczy wyłącznie kalki opisu miejsca - `pod katalogiem` zamiast `w katalogu` -
+a stałe zwroty takie jak `pod kątem`, `pod względem` czy `pod opieką` są poprawne i nie podlegają
+zastąpieniu.
 
-Zaprzeczenie `nie` przed rzeczownikiem odczasownikowym zapisuje się łącznie - `niemycie`, `niezgłoszenie`, `nieużywanie` - bo rozdzielny zapis jest błędem ortograficznym.
+Zaprzeczenie `nie` przed rzeczownikiem odczasownikowym zapisuje się łącznie - `niemycie`,
+`niezgłoszenie`, `nieużywanie` - bo rozdzielny zapis jest błędem ortograficznym.
 
-Ustalone nazwy własne, nazwy produktów i nazwy elementów architektury zachowuj w formie oryginalnej, na przykład Microsoft Fabric, Lakehouse, Warehouse, Power BI, workspace.
+Ustalone nazwy własne, nazwy produktów i nazwy elementów architektury zachowuj w formie oryginalnej,
+na przykład Microsoft Fabric, Lakehouse, Warehouse, Power BI, workspace.
 
 Nazwy techniczne pochodzące z systemu źródłowego zapisuj dokładnie tak, jak występują w systemie.
 
-Stałe etykiety definiowane przez szablon albo kontrakt dokumentu - wartości decyzji, statusy, nazwy opcji zapisane wielkimi literami - zachowuj w formie oryginalnej i nie tłumacz ich nawet pod presją wyników lintu.
+Stałe etykiety definiowane przez szablon albo kontrakt dokumentu - wartości decyzji, statusy,
+nazwy opcji zapisane wielkimi literami - zachowuj w formie oryginalnej i nie tłumacz ich nawet pod
+presją wyników lintu.
+`lint-polish.py` traktuje token zapisany wyłącznie wielkimi literami jako taką etykietę i nie
+zgłasza w nim kalki.
 
-`lint-polish.py` traktuje token zapisany wyłącznie wielkimi literami jako taką etykietę i nie zgłasza w nim kalki.
+Nazwy produktów i narzędzi zachowują oficjalną pisownię i odmieniają się normalnie, na przykład Git,
+SemVer, "plików Dockera".
 
-Nazwy produktów i narzędzi zachowują oficjalną pisownię i odmieniają się normalnie, na przykład Git, SemVer, "plików Dockera".
+Nazw plików, katalogów i poleceń nie odmieniaj - poprzedzaj je rzeczownikiem rodzajowym,
+na przykład "plik `AGENTS.md`", "katalog `.agents/`" albo "system GitLab".
 
-Nazw plików, katalogów i poleceń nie odmieniaj - poprzedzaj je rzeczownikiem rodzajowym, na przykład "plik `AGENTS.md`", "katalog `.agents/`" albo "system GitLab".
-
-Skróty rozwijaj przy pierwszym użyciu i wpisuj do słownika dokumentu, na przykład "żądanie scalenia (merge request, MR)".
+Skróty rozwijaj przy pierwszym użyciu i wpisuj do słownika dokumentu,
+na przykład "żądanie scalenia (merge request, MR)".
 
 Nie skracaj wyrazu "wierszy" do "w.".
 
 Jedno pojęcie opisuj jedną nazwą w całym dokumencie.
 
-Elementy policzalne nazywaj rzeczownikami policzalnymi, na przykład "wpisy .gitignore" - zodrębniała forma jak "ignorowanie" nazywa mechanizm, nie pozycję.
+Elementy policzalne nazywaj rzeczownikami policzalnymi,
+na przykład "wpisy .gitignore" - zodrębniała forma jak "ignorowanie" nazywa mechanizm, nie pozycję.
 
-Przy wyborze nazwy kolejność to: ustalony termin polski, utrwalony termin angielski w formie nieodmienianej z polskim opisem przy pierwszym użyciu, na końcu opis polski.
+Przy wyborze nazwy kolejność to: ustalony termin polski,
+utrwalony termin angielski w formie nieodmienianej z polskim opisem przy pierwszym użyciu,
+na końcu opis polski.
 
-Cytat obcojęzyczny podawaj dosłownie w cudzysłowie z polskim omówieniem obok, bez wplatania go w polską składnię zdania.
+Cytat obcojęzyczny podawaj dosłownie w cudzysłowie z polskim omówieniem obok,
+bez wplatania go w polską składnię zdania.
 
 Własne tłumaczenie cudzego tekstu oznacz jako tłumaczenie albo podaj parafrazą bez cudzysłowu.
 
-Zwroty do czytelnika pisz małą literą - "cię", "tobie", "twój" - albo pomiń zaimki, i nigdy nie mieszaj "Cię" z "cię" w jednym dokumencie.
+Zwroty do czytelnika pisz małą literą - "cię", "tobie", "twój" - albo pomiń zaimki,
+i nigdy nie mieszaj "Cię" z "cię" w jednym dokumencie.
 
-W instrukcjach stosuj konsekwentnie tryb rozkazujący - "przeczytaj", "utwórz", "sprawdź" - a w opisach zdania oznajmujące, bez przechodzenia między bezokolicznikiem, rozkazem i konstrukcją bezosobową.
+W instrukcjach stosuj konsekwentnie tryb rozkazujący - "przeczytaj", "utwórz",
+"sprawdź" - a w opisach zdania oznajmujące, bez przechodzenia między bezokolicznikiem,
+rozkazem i konstrukcją bezosobową.
 
-W nagłówkach przykładów stosuj polskie nazwy sekcji, na przykład "Przykład zawartości", "Poprawnie" oraz "Niepoprawnie".
+W nagłówkach przykładów stosuj polskie nazwy sekcji, na przykład "Przykład zawartości",
+"Poprawnie" oraz "Niepoprawnie".
 
 ## Nazwy sekcji według typu dokumentu
 
@@ -811,11 +863,14 @@ Niektóre typy dokumentów określają także polskie tytuły, wzorce nagłówk�
 
 ## Cechy dialektów
 
-Polskie dokumenty formalne często numerują rozdziały i podrozdziały, na przykład `# 1 Podstawowe informacje` i `## 1.1 Cel`.
+Polskie dokumenty formalne często numerują rozdziały i podrozdziały,
+na przykład `# 1 Podstawowe informacje` i `## 1.1 Cel`.
 
-Mogą też stosować pogrubione pseudo-nagłówki takie jak `**Uwaga**`, `**Ważne**` albo `**Opis:**` zamiast nagłówków sekcji.
+Mogą też stosować pogrubione pseudo-nagłówki takie jak `**Uwaga**`,
+`**Ważne**` albo `**Opis:**` zamiast nagłówków sekcji.
 
-Tabela metadanych z pustym wierszem nagłówka może zastępować komentarz wersji w polskiej konwencji dokumentu projektowego.
+Tabela metadanych z pustym wierszem nagłówka może zastępować komentarz wersji w polskiej konwencji
+dokumentu projektowego.
 
 ```markdown
 |                |                          |
@@ -844,11 +899,14 @@ Rozpoczynaj każdy wiersz - nagłówek, separator i dane - pojedynczą kreską p
 
 Podwójna kreska na początku wiersza (`||`) jest interpretowana jako pusta pierwsza komórka.
 
-Narzędzie formatujące zamienia ją wtedy w dodatkową pustą kolumnę, co po cichu psuje strukturę tabeli, a nie tylko ją rozjeżdża.
+Narzędzie formatujące zamienia ją wtedy w dodatkową pustą kolumnę,
+co po cichu psuje strukturę tabeli, a nie tylko ją rozjeżdża.
 
-Celowo pustą pierwszą komórkę zapisuj jako `| |` i tylko wtedy, gdy tabela jej rzeczywiście potrzebuje.
+Celowo pustą pierwszą komórkę zapisuj jako `| |` i tylko wtedy,
+gdy tabela jej rzeczywiście potrzebuje.
 
-Pustą komórkę wolno zapisać wyłącznie w kolumnie zadeklarowanej przez wiersz separatora - jej komórka separatora musi zawierać co najmniej jeden łącznik.
+Pustą komórkę wolno zapisać wyłącznie w kolumnie zadeklarowanej przez wiersz separatora - jej
+komórka separatora musi zawierać co najmniej jeden łącznik.
 
 Kolumna pusta w każdym wierszu, łącznie z nagłówkiem, nigdy nie jest dozwolona - usuń ją.
 
@@ -858,7 +916,8 @@ Wiersz separatora umieszczaj bezpośrednio po wierszu nagłówka.
 
 Wiersz separatora zawiera wyłącznie łączniki i kreski pionowe.
 
-Każda komórka wiersza separatora zawiera co najmniej jeden łącznik - komórka złożona z samych odstępów nie deklaruje kolumny.
+Każda komórka wiersza separatora zawiera co najmniej jeden łącznik - komórka złożona z samych
+odstępów nie deklaruje kolumny.
 
 Łączniki przylegają do kresek pionowych, bez odstępów między nimi.
 
@@ -882,7 +941,8 @@ Stosuj wyrównanie do lewej we wszystkich komórkach.
 
 ### Szerokość kolumn
 
-Szerokość kolumny to największa liczba znaków wśród wszystkich komórek tej kolumny, łącznie z komórką nagłówka.
+Szerokość kolumny to największa liczba znaków wśród wszystkich komórek tej kolumny,
+łącznie z komórką nagłówka.
 
 Szerokość mierz jako długość tekstu **źródłowego** komórki, nie tekstu wyświetlanego.
 
@@ -892,26 +952,33 @@ Licz każdy znak obecny w źródle Markdown, w tym wszystkie znaki formatowania.
 
 Nie usuwaj, nie interpretuj i nie zwijaj żadnych znaków przed pomiarem.
 
-Przeglądarka Markdown ukrywa odwrócone apostrofy i gwiazdki, ale te znaki nadal są obecne w źródle i muszą być policzone.
+Przeglądarka Markdown ukrywa odwrócone apostrofy i gwiazdki,
+ale te znaki nadal są obecne w źródle i muszą być policzone.
 
 Poniższe elementy są częścią treści komórki i wchodzą do pomiaru szerokości.
 
-- Odwrócone apostrofy wokół kodu liniowego, na przykład komórka `` `nazwa.wartosc` `` ma 15 znaków, nie 13.
-- Podwójne odwrócone apostrofy wokół wartości takich jak kody i liczby, na przykład komórka `` ``00`` `` ma 6 znaków, nie 2.
+- Odwrócone apostrofy wokół kodu liniowego,
+  na przykład komórka `` ` nazwa.wartosc ` `` ma 15 znaków, nie 13.
+- Podwójne odwrócone apostrofy wokół wartości takich jak kody i liczby,
+  na przykład komórka `` `` 00 `` `` ma 6 znaków, nie 2.
 - Gwiazdki wyróżnienia, na przykład komórka `*kursywa*` ma 9 znaków, nie 7.
 - Podwójne gwiazdki pogrubienia, na przykład komórka `**pogrubienie**` ma 15 znaków, nie 11.
 - Podkreślenia wyróżnienia, na przykład komórka `_tekst_` ma 7 znaków, nie 5.
 - Odstępy, znaki interpunkcyjne i wszystkie pozostałe znaki widoczne w źródle.
 
-Polskie litery diakrytyczne liczą się jako jeden znak każda, na przykład wyraz `Częstotliwość` ma 13 znaków.
+Polskie litery diakrytyczne liczą się jako jeden znak każda,
+na przykład wyraz `Częstotliwość` ma 13 znaków.
 
-Zapisuj litery diakrytyczne w postaci złożonej z jednego znaku Unicode, aby pomiar szerokości był zgodny z liczbą znaków widocznych w tekście.
+Zapisuj litery diakrytyczne w postaci złożonej z jednego znaku Unicode,
+aby pomiar szerokości był zgodny z liczbą znaków widocznych w tekście.
 
-Najczęstszy błąd formatowania polega na zmierzeniu szerokości tekstu wyświetlanego zamiast szerokości tekstu źródłowego.
+Najczęstszy błąd formatowania polega na zmierzeniu szerokości tekstu wyświetlanego zamiast
+szerokości tekstu źródłowego.
 
 Komórka `` `api/konfiguracja` `` ma 18 znaków w źródle, a przeglądarka wyświetla tylko 16 znaków.
 
-Użycie wartości 16 zamiast 18 daje zbyt wąską kolumnę i rozjeżdżone kreski pionowe w widoku tekstowym.
+Użycie wartości 16 zamiast 18 daje zbyt wąską kolumnę i rozjeżdżone kreski pionowe w widoku
+tekstowym.
 
 ### Kompaktowanie
 
@@ -921,7 +988,8 @@ Usuwaj wypełnienie przekraczające najszerszą komórkę w danej kolumnie.
 
 Po skompaktowaniu przelicz wiersz separatora i wypełnienie wszystkich komórek.
 
-Tabela skompaktowana ma najmniejsze szerokości kolumn wystarczające do poprawnego wyświetlenia wszystkich komórek.
+Tabela skompaktowana ma najmniejsze szerokości kolumn wystarczające do poprawnego wyświetlenia
+wszystkich komórek.
 
 Wersja skompaktowana jest wersją poprawną.
 
@@ -946,11 +1014,13 @@ Szerokości kolumn wynoszą 12, 8 oraz 21 znaków.
 
 ## Nazwy plików
 
-Nazwy nowych plików dokumentacji zapisuj małymi literami, a wyrazy rozdzielaj podkreśleniem, na przykład `specyfikacja_techniczna.md`.
+Nazwy nowych plików dokumentacji zapisuj małymi literami, a wyrazy rozdzielaj podkreśleniem,
+na przykład `specyfikacja_techniczna.md`.
 
 Nie używaj liter diakrytycznych ani odstępów w nazwach nowych plików.
 
-Nazwy przyjęte umownie zachowuj w formie oryginalnej, na przykład `README.md`, `CHANGELOG.md` albo `SPECYFIKACJA.md`.
+Nazwy przyjęte umownie zachowuj w formie oryginalnej, na przykład `README.md`,
+`CHANGELOG.md` albo `SPECYFIKACJA.md`.
 
 Nazwa pliku ma odpowiadać tematowi dokumentu.
 
@@ -992,11 +1062,13 @@ Ten dokument opisuje planowane widoki danych w warstwie gold. Każde zdanie jest
 
 Przed dostarczeniem polskiego dokumentu wykonaj te kontrole.
 
-- Sprawdź pisownię narzędziem dla polszczyzny, na przykład LanguageTool albo Hunspell ze słownikiem polskim.
+- Sprawdź pisownię narzędziem dla polszczyzny,
+  na przykład LanguageTool albo Hunspell ze słownikiem polskim.
 - Uruchom `scripts/lint-polish.py`, aby wykryć kalki, sklejone zdania i naruszenia typografii.
 - Przejrzyj zdania dłuższe niż 35 wyrazów i rozważ ich podział.
 - Zestaw liczby i wartości w tekście z wartościami w tabelach tego dokumentu.
-- Sprawdź, czy jedno pojęcie ma jedną nazwę oraz czy wszystkie skróty są rozwinięte przy pierwszym użyciu.
+- Sprawdź, czy jedno pojęcie ma jedną nazwę oraz czy wszystkie skróty są rozwinięte przy pierwszym
+  użyciu.
 
 ## Utrzymanie plików
 
@@ -1004,13 +1076,16 @@ Zachowuj istniejący styl złamania wiersza oraz kodowanie dokumentu, który red
 
 Nowe pliki twórz w kodowaniu UTF-8.
 
-Nie zmieniaj konwencji istniejącego dokumentu w zakresie numeracji sekcji, numeracji list i sekcji opcjonalnych, o ile żądanie zmiany tego nie obejmuje.
+Nie zmieniaj konwencji istniejącego dokumentu w zakresie numeracji sekcji,
+numeracji list i sekcji opcjonalnych, o ile żądanie zmiany tego nie obejmuje.
 
 Przy redakcji ograniczaj zmiany do zakresu wynikającego z żądania.
 
 ## Pytanie o aktualizację
 
-Gdy repozytorium umiejętności ma nadchodzące zmiany do pobrania, pytanie o aktualizację brzmi `Dostępna jest aktualizacja umiejętności (<n> nowych commitów). Zaktualizować teraz czy pominąć w tej sesji?`.
+Gdy repozytorium umiejętności ma nadchodzące zmiany do pobrania,
+pytanie o aktualizację brzmi
+`Dostępna jest aktualizacja umiejętności (<n> nowych commitów). Zaktualizować teraz czy pominąć w tej sesji?`.
 
 Opcje odpowiedzi to `Zaktualizuj teraz` i `Pomiń w tej sesji`.
 
@@ -1018,7 +1093,8 @@ Opcje odpowiedzi to `Zaktualizuj teraz` i `Pomiń w tej sesji`.
 
 Żądania kierowane do tej umiejętności mogą być sformułowane po polsku.
 
-Poniższe frazy aktywują umiejętność tak samo jak ich angielskie odpowiedniki wymienione w `SKILL.md`.
+Poniższe frazy aktywują umiejętność tak samo jak ich angielskie odpowiedniki wymienione w
+`SKILL.md`.
 
 Traktuj żądanie pasujące do frazy z tabeli jako jej angielski odpowiednik.
 

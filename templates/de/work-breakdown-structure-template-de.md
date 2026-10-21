@@ -15,7 +15,8 @@
 
 Die unterste Ebene der Struktur.
 
-Jedes Paket ist einem Verantwortlichen zuweisbar, schätzbar und umfasst typischerweise acht bis achtzig Stunden Aufwand.
+Jedes Paket ist einem Verantwortlichen zuweisbar,
+schätzbar und umfasst typischerweise acht bis achtzig Stunden Aufwand.
 
 ## PSP-Verzeichnis
 

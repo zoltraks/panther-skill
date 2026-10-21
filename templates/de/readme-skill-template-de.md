@@ -25,7 +25,8 @@ git clone <repository-url> <skills-verzeichnis>/skill-name
 
 ## Verwendung
 
-Der Skill aktiviert sich, wenn eine Anfrage zu einem in `SKILL.md` deklarierten Auslöseschlüssel passt.
+Der Skill aktiviert sich, wenn eine Anfrage zu einem in `SKILL.md` deklarierten Auslöseschlüssel
+passt.
 
 ## Beispiel-Prompts
 

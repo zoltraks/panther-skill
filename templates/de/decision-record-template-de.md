@@ -11,7 +11,8 @@ Zwei oder drei Sätze beschreiben die Einflüsse und das Problem, das diese Ents
 ## Entscheidungsfaktoren
 
 * Erster Faktor - der Einfluss oder das Anliegen, das für die Wahl zählt.
-* Zweiter Faktor - ein weiterer Einfluss, zum Beispiel ein Qualitätsattribut oder eine Projektbeschränkung.
+* Zweiter Faktor - ein weiterer Einfluss,
+  zum Beispiel ein Qualitätsattribut oder eine Projektbeschränkung.
 
 ## Betrachtete Optionen
 

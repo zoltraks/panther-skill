@@ -42,7 +42,7 @@ It never overrides the baseline's structure rules.
 | Example heading        | `Przykład zawartości`            | `Example Content`                          |
 | Typographic quotes     | Polish double quotes, guillemets | straight ASCII `"`                         |
 | Typographic apostrophe | `'`                              | straight ASCII `'`                         |
-| Prose dash             | ` - ` or ` – `                   | ` - ` spaced hyphen                        |
+| Prose dash             | ` - ` or ` - `                   | ` - ` spaced hyphen                        |
 | Semicolon in prose     | not used                         | not used                                   |
 | Definition pattern     | `**Termin**: definicja`          | `**Term**: definition`                     |
 | Numbered chapters      | `# 1`, `## 1.1` numbering        | numbering kept, caption translated         |

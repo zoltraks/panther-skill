@@ -45,16 +45,17 @@ Fix every failure, or report it to the user with a reason.
   `scripts/reflow-prose.py --wrap --check --width N` for fixed-width documents and
   `scripts/reflow-prose.py --unwrap --check` for logical-line documents.
 - **Existing:** character substitutions that change line length were re-verified against the
-  document's wrap convention - for example `—` replaced by `--` adds one character per dash.
+  document's wrap convention - for example `-` replaced by `--` adds one character per dash.
 - No wrapped line ends with a dangling ` - ` separator and no continuation line starts
   with `- ` - the separator stays attached to the clause it belongs to.
 
 ## Characters
 
 - Prose uses straight ASCII double quotes (`"`) and apostrophes (`'`).
-- No semicolon appears in running prose outside code blocks, inline code, and file paths. Indented code blocks and table cells are not running prose.
+- No semicolon appears in running prose outside code blocks, inline code, and file paths.
+  Indented code blocks and table cells are not running prose.
 - No emoji appears unless explicitly requested.
-- Extended characters such as arrows (`→`) and box-drawing frames are allowed when they
+- Extended characters such as arrows (`->`) and box-drawing frames are allowed when they
   render correctly and match the document's conventions.
 - Box-drawing characters appear only inside code blocks, diagrams, and schematics.
 - Diacritics are written in composed form, one Unicode character per letter.

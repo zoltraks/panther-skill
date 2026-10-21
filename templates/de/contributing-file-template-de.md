@@ -2,7 +2,8 @@
 
 Danke für Ihr Interesse, zu <Projekt> beizutragen.
 
-Dieses Dokument erklärt, wie Probleme gemeldet, das Projekt eingerichtet und Änderungen eingereicht werden.
+Dieses Dokument erklärt, wie Probleme gemeldet,
+das Projekt eingerichtet und Änderungen eingereicht werden.
 
 ## Möglichkeiten zur Mitarbeit
 
@@ -14,7 +15,8 @@ Dieses Dokument erklärt, wie Probleme gemeldet, das Projekt eingerichtet und Ä
 
 Durchsuchen Sie die bestehenden Issues, bevor Sie ein neues öffnen.
 
-Melden Sie ein Issue pro Problem und geben Sie Version, Umgebung, reproduzierbare Schritte sowie erwartetes und tatsächliches Verhalten an.
+Melden Sie ein Issue pro Problem und geben Sie Version, Umgebung,
+reproduzierbare Schritte sowie erwartetes und tatsächliches Verhalten an.
 
 ## Entwicklungsumgebung einrichten
 
@@ -38,13 +40,16 @@ Führen Sie die Projektprüfungen aus, bevor Sie einen Pull Request öffnen.
 
 Legen Sie offen, wenn ein Bericht oder eine Änderung mit KI-Unterstützung erstellt wurde.
 
-Überprüfen Sie jedes KI-erzeugte Ergebnis selbst, bevor Sie es melden - fügen Sie keine rohe KI-Ausgabe in ein Issue oder einen Pull Request ein.
+Überprüfen Sie jedes KI-erzeugte Ergebnis selbst,
+bevor Sie es melden - fügen Sie keine rohe KI-Ausgabe in ein Issue oder einen Pull Request ein.
 
-Sie müssen den eingereichten Code verstehen und verantworten - KI-gestützte Änderungen folgen denselben Stil-, Test- und Lizenzanforderungen wie jeder andere Beitrag.
+Sie müssen den eingereichten Code verstehen und verantworten - KI-gestützte Änderungen folgen
+denselben Stil-, Test- und Lizenzanforderungen wie jeder andere Beitrag.
 
 ## Lizenz
 
-Mit Ihrem Beitrag stimmen Sie zu, dass Ihre Beiträge unter der Lizenz des Projekts lizenziert werden.
+Mit Ihrem Beitrag stimmen Sie zu, dass Ihre Beiträge unter der Lizenz des Projekts lizenziert
+werden.
 
 ## Verhaltenskodex
 

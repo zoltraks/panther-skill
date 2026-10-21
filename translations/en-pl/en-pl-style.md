@@ -236,11 +236,11 @@ exception that flips the rule, `jeśli` introduces a condition.
 ## Enumeration Logic
 
 An `or` enumeration under no negation renders `lub` - `ani` is legal only where the
-source already negates the scope (`nie … ani`, `neither … nor`).
+source already negates the scope (`nie ... ani`, `neither ... nor`).
 
 `A source, configuration, test, or toolchain change invalidates the result` renders
 `zmiana kodu źródłowego, konfiguracji, testów lub zestawu narzędzi unieważnia wynik` -
-never `zmiana … testów, zależności ani łańcucha narzędzi`, where the stray `ani`
+never `zmiana ... testów, zależności ani łańcucha narzędzi`, where the stray `ani`
 reads as if the last item were exempted or the list were under negation.
 
 The Polish rendering never gains a negation the source lacks and never loses one the

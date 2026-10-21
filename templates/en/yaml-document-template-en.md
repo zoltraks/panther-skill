@@ -1,5 +1,5 @@
-# Configuration skeleton for example-service.
-# Comments explain non-obvious values only.
+# Configuration skeleton for example-service
+# Comments explain non-obvious values only
 
 service:
   name: example-service
@@ -13,7 +13,9 @@ settings:
     when the consumer reads the value.
 
 endpoints:
+
   - name: primary
     url: https://api.example.local/v1
+
   - name: secondary
     url: https://backup.example.local/v1

@@ -12,7 +12,8 @@ Fortsetzungsumfang: <was hinzukommt und was beim übergeordneten Dokument bleibt
 
 ## Fortsetzungsumfang
 
-<Umfang der Ergänzung - unveränderte Abschnitte des übergeordneten Dokuments werden referenziert, nicht wiederholt.>
+<Umfang der Ergänzung - unveränderte Abschnitte des übergeordneten Dokuments werden referenziert,
+nicht wiederholt.>
 
 ## Erweiterter Inhalt
 
@@ -26,7 +27,8 @@ Fortsetzungsumfang: <was hinzukommt und was beim übergeordneten Dokument bleibt
 |----------|-----------|------------|
 | <ID-###> | <Eintrag> | <Nachweis> |
 
-<IDs setzen die Nummerierungen des übergeordneten Dokuments fort - kein Neustart, keine Kollisionen.>
+<IDs setzen die Nummerierungen des übergeordneten Dokuments fort - kein Neustart,
+keine Kollisionen.>
 
 ## Aktualisierte Schlussfolgerungen
 

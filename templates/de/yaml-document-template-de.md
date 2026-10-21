@@ -1,5 +1,5 @@
-# Konfigurationsskelett für example-service.
-# Kommentare erklären nur nicht offensichtliche Werte.
+# Konfigurationsskelett für example-service
+# Kommentare erklären nur nicht offensichtliche Werte
 
 service:
   name: example-service
@@ -13,7 +13,9 @@ settings:
     verbindet, wenn der Verbraucher den Wert liest.
 
 endpoints:
+
   - name: primary
     url: https://api.example.local/v1
+
   - name: secondary
     url: https://backup.example.local/v1

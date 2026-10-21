@@ -4,7 +4,8 @@
 
 Dokument jest podsumowaniem pliku `<plik źródłowy>`.
 
-Kontrakt kompresji: <wykonane poziomy - Streszczenie co najwyżej 10 zdań, Podsumowanie co najwyżej 50, Streszczenie szczegółowe odzwierciedla strukturę źródła>.
+Kontrakt kompresji: <wykonane poziomy - Streszczenie co najwyżej 10 zdań,
+Podsumowanie co najwyżej 50, Streszczenie szczegółowe odzwierciedla strukturę źródła>.
 
 ## Streszczenie
 

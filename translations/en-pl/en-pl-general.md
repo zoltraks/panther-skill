@@ -62,7 +62,7 @@ document's own conventions win over this table.
 The character convention is a per-task decision resolved in this order: an explicit
 request, the source document's own convention, then the nature of the deliverable -
 plain ASCII is the default for every output, and typographic quotes, pauza or półpauza
-dashes, and `→` arrows are used only when one of those sources establishes them.
+dashes, and `->` arrows are used only when one of those sources establishes them.
 
 ## Locale Conventions
 

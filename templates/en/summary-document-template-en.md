@@ -4,7 +4,8 @@
 
 This document is a summary of `<source file>`.
 
-Compression contract: <tiers written - Abstract at most 10 sentences, Summary at most 50, Detailed Abstract mirrors the source structure>.
+Compression contract: <tiers written - Abstract at most 10 sentences, Summary at most 50,
+Detailed Abstract mirrors the source structure>.
 
 ## Abstract
 
