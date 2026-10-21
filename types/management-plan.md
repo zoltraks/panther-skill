@@ -49,7 +49,8 @@ A management plan describes how a project domain is governed. That is this type.
   plan points at the risk register, it does not contain it.
 - Subsidiary plans may live as sections of one master plan. Follow the
   document's existing structure.
-- Update the version comment on every change.
+- Update the version comment on every change - three-part single-digit numbering that rolls
+  over at 9 unless the project declares a different scheme.
 - Placement - conventionally `docs/plan/` for subsidiary plans or an uppercase
   `docs/PLAN.md` master plan in guided projects.
 

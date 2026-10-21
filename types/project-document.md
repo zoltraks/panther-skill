@@ -45,6 +45,10 @@ Place an HTML comment with document metadata directly below the H1:
 
 Update the version and date on every content change.
 
+The version is the document's own counter, independent of the project version: three-part
+`<major>.<minor>.<patch>` with single-digit components that roll over at 9, unless the
+project declares a different scheme.
+
 ### Document Navigation
 
 For long documents, add a `Document Navigation` section after the

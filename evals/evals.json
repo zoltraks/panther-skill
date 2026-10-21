@@ -1700,6 +1700,18 @@
         "The document's own conventions govern - a foreign collection's style rules are detected and honored.",
         "Mechanical fixes use the sanctioned scripts (format-table.py, reflow-prose.py), not ad-hoc edits."
       ]
+    },
+    {
+      "id": 139,
+      "prompt": "Fix the outdated port number in the deployment notes document - the document carries an HTML version comment at 0.2.9 and the project declares no versioning scheme of its own.",
+      "expected_output": "A minimal edit that corrects the port and bumps the version comment to 0.3.0 with the current date - the document's version rolls over at 9 rather than reaching 0.2.10.",
+      "files": [],
+      "expectations": [
+        "The version comment is the document's own counter - it does not copy the project or repository version.",
+        "A patch component at 9 rolls into the minor digit: 0.2.9 becomes 0.3.0, never 0.2.10.",
+        "The date field in the version comment is updated alongside the version.",
+        "Only the requested content fix and the version comment change - no reformatting of untouched lines."
+      ]
     }
   ]
 }

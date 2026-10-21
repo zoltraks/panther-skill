@@ -95,7 +95,8 @@ Preserve payload interiors on edit - reformat them only when the request covers 
   preserve them on edit.
 - A document long enough to need navigation carries a Contents table.
 - A version marker such as an HTML version comment is updated only when the request or the
-  document's own versioning rule requires it.
+  document's own versioning rule requires it - the marker's numbering is three-part
+  single-digit rolling over at 9 unless the project declares a different scheme.
 
 ## Section Names
 

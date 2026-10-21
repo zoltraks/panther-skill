@@ -98,7 +98,9 @@ quality, and hygiene - written as checkable statements.
 
 ## Deltas From The Language Baseline
 
-- The version comment is required directly under the H1 and is bumped on every change.
+- The version comment is required directly under the H1 and is bumped on every change, using
+  three-part single-digit numbering that rolls over at 9 unless the project declares a
+  different scheme.
 - Imperative rules addressed to an executing agent are the norm, as in
   `types/agent-instruction.md`.
 - Verification commands and URLs may exceed the prose wrap width - never break them.

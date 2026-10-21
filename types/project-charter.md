@@ -53,7 +53,8 @@ empowers the project manager.
 - The project brief is the short variant - objectives, scope summary, timeline,
   budget estimate, and key stakeholders on one page.
 - After approval the charter changes only through change control. Update the
-  version comment on every approved change, never silently rewrite approved
+  version comment on every approved change (three-part single-digit numbering rolling over
+  at 9 unless the project declares a different scheme), never silently rewrite approved
   sections.
 - Reference registers for the maintained lists - the charter names the top
   risks, the risk register tracks them.

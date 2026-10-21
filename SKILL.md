@@ -23,7 +23,7 @@ compatibility: >-
   Claude Desktop, Windsurf, Devin, and similar). Requires the ability to read
   and write text files. No network access required.
 metadata:
-  version: "1.2.3"
+  version: "1.2.4"
   author: Filip Golewski
 allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob Grep
 ---
@@ -41,20 +41,20 @@ allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob G
 | Three Modes             | 74   | Enable, document, and maintenance selection    |
 | Skill Update Check      | 88   | Once-per-session git freshness gate before use |
 | Trigger Keywords        | 111  | Activation phrases                             |
-| How To Use              | 171  | Progressive disclosure and rule loading        |
-| Parameter Configuration | 230  | Defaults and user-controlled document shape    |
-| Principles              | 258  | Authoring invariants                           |
-| Process                 | 264  | Workflow, checklist, and standalone procedures |
-| Document Types          | 296  | Per-type rule files                            |
-| Languages               | 354  | Per-language style baselines                   |
-| Translations            | 365  | Language pair rules and industry glossaries    |
-| Scopes                  | 383  | Per-project-layout organization rules          |
-| Conventions             | 407  | Encoding, dialect, and format contract rules   |
-| Templates               | 425  | Per-type, per-language skeletons               |
-| Scripts                 | 437  | Detection, formatting, and validation scripts  |
-| Evaluation Prompts      | 466  | Behavioral regression prompts                  |
-| Repository Files        | 476  | Housekeeping files governing this repository   |
-| File Handling Contract  | 488  | Byte-level guarantees                          |
+| How To Use              | 174  | Progressive disclosure and rule loading        |
+| Parameter Configuration | 233  | Defaults and user-controlled document shape    |
+| Principles              | 261  | Authoring invariants                           |
+| Process                 | 267  | Workflow, checklist, and standalone procedures |
+| Document Types          | 299  | Per-type rule files                            |
+| Languages               | 356  | Per-language style baselines                   |
+| Translations            | 367  | Language pair rules and industry glossaries    |
+| Scopes                  | 385  | Per-project-layout organization rules          |
+| Conventions             | 409  | Encoding, dialect, and format contract rules   |
+| Templates               | 427  | Per-type, per-language skeletons               |
+| Scripts                 | 439  | Detection, formatting, and validation scripts  |
+| Evaluation Prompts      | 468  | Behavioral regression prompts                  |
+| Repository Files        | 478  | Housekeeping files governing this repository   |
+| File Handling Contract  | 490  | Byte-level guarantees                          |
 
 You are a Document Authoring Agent.
 

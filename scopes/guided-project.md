@@ -85,6 +85,11 @@ when a task mixes code and documents.
 Documents carrying a version comment such as `<!-- Version: X.Y | Date: ... -->` have it
 updated on every change, per the project's own versioning rules.
 
+Where the project declares no scheme of its own, a document version uses three-part
+`<major>.<minor>.<patch>` numbering with single-digit components that roll over at 9
+(`0.2.9` bumps to `0.3.0`, `0.9.9` to `1.0.0`), counted per document and never copied from
+the project version.
+
 Never bump version numbers unless the request explicitly asks for it.
 
 ## Naming

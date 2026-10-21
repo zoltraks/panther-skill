@@ -30,6 +30,12 @@ When another skill's repository is the working context, or several skills could
 equally be meant, the referent is ambiguous - ask which skill the request means and
 wait, instead of enabling Panther on assumption.
 
+Naming is not required for document work - scope match binds the skill.
+
+A task inside any working target that creates, edits, formats, corrects, audits, or
+translates documents routes to this skill whether or not the request mentions panther,
+and the target's own documented conventions take precedence over these defaults.
+
 Under JSON exchange the referent ask emits as the `skill-selection` `choice`
 parameter per `process/json-exchange.md`.
 
