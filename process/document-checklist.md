@@ -52,7 +52,7 @@ Fix every failure, or report it to the user with a reason.
 ## Characters
 
 - Prose uses straight ASCII double quotes (`"`) and apostrophes (`'`).
-- No semicolon appears in running prose outside code blocks, inline code, and file paths.
+- No semicolon appears in running prose outside code blocks, inline code, and file paths. Indented code blocks and table cells are not running prose.
 - No emoji appears unless explicitly requested.
 - Extended characters such as arrows (`→`) and box-drawing frames are allowed when they
   render correctly and match the document's conventions.

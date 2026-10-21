@@ -187,6 +187,8 @@ def main(path, check_only, payload_markdown, drop_empty):
     finally:
         if os.path.exists(tmp):
             os.unlink(tmp)
+    if crlf:
+        print("note: file uses CRLF line endings - preserved")
     print(f"formatted {tables} tables")
     return 0
 

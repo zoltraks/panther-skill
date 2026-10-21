@@ -49,6 +49,12 @@ The version is the document's own counter, independent of the project version: t
 `<major>.<minor>.<patch>` with single-digit components that roll over at 9, unless the
 project declares a different scheme.
 
+Keep the comment minimal - `Version` and `Date` are the durable fields, and a conventional
+extra such as `Author` appears only when the document's own convention calls for it.
+
+Never add decaying fields such as `Status`, especially to documents not meant for regular
+updates - a stale field misleads rather than informs.
+
 ### Document Navigation
 
 For long documents, add a `Document Navigation` section after the

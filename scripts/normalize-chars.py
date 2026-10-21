@@ -147,6 +147,8 @@ def main(path, check_only, payload_markdown):
     finally:
         if os.path.exists(tmp):
             os.unlink(tmp)
+    if crlf:
+        print("note: file uses CRLF line endings - preserved")
     print(f"normalized {len(changed)} line(s)")
     return 0
 

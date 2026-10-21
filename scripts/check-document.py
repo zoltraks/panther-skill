@@ -105,8 +105,11 @@ def report(label: str, code: int | None, output: str, gated: bool) -> int:
     verdict = "FAIL" if gated else "NOTE"
     print(f"{verdict} {label}" + (f" - {first}" if first else ""))
     if detail:
-        for line in detail.split("\n")[:12]:
+        detail_lines = detail.split("\n")
+        for line in detail_lines[:12]:
             print(f"    {line}")
+        if len(detail_lines) > 12:
+            print(f"    ... {len(detail_lines) - 12} more finding(s)")
     return 1 if gated else 0
 
 

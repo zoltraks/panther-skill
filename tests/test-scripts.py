@@ -415,6 +415,61 @@ def improvement_regressions() -> int:
                 or "F-02" not in result.stdout):
             print(f"FAIL {label} - mutated heading must give one finding")
             failures += 1
+
+        # I-9: indented code stays opaque, wrapped numbers are not lone
+        #      markers, table cells are not running prose
+        indent_doc = tmp / "indented.md"
+        indent_doc.write_text(
+            "# T\n\nIntro line.\n\n"
+            "    fn create(&self, x: i32) -> bool;\n"
+            "    // semicolons; belong; here\n\n"
+            "- A list item whose wrapped tail ends in\n"
+            "  403.\n\n"
+            "| Col | Desc        |\n"
+            "|-----|-------------|\n"
+            "| run | fast; twice |\n",
+            encoding="utf-8")
+        result = run_case("validate-document.py", [str(indent_doc)])
+        if (result is None or result.returncode != 0
+                or "semicolon" in result.stdout
+                or "lone list marker" in result.stdout):
+            print(f"FAIL {label} - opaque or scoped checks regressed")
+            failures += 1
+        semi_doc = tmp / "semi.md"
+        semi_doc.write_text("# T\n\nOne; two.\n\n3.\n",
+                            encoding="utf-8")
+        result = run_case("validate-document.py", [str(semi_doc)])
+        if (result is None or result.returncode != 1
+                or "semicolon in prose" not in result.stdout
+                or "lone list marker" not in result.stdout):
+            print(f"FAIL {label} - real findings must still gate")
+            failures += 1
+
+        # I-10: panther.json in an ancestor directory parameterizes checks
+        cfg_dir = tmp / "cfgroot"
+        cfg_dir.mkdir()
+        (cfg_dir / "panther.json").write_text(
+            '{"status": "draft", "width": 30,'
+            ' "findings": ["semicolon in prose"]}\n',
+            encoding="utf-8")
+        cfg_doc = cfg_dir / "doc.md"
+        cfg_doc.write_text(
+            "# T\n\nOne; two.\n\nA deliberately long prose line appears here.\n",
+            encoding="utf-8")
+        result = run_case("validate-document.py", [str(cfg_doc)])
+        if (result is None or result.returncode != 1
+                or "exceeds width 30" not in result.stdout
+                or "semicolon in prose" in result.stdout
+                or "suppressed by" not in result.stdout):
+            print(f"FAIL {label} - panther.json width or findings ignored")
+            failures += 1
+        (cfg_dir / "panther.json").unlink()
+        result = run_case("validate-document.py", [str(cfg_doc)])
+        if (result is None or result.returncode != 1
+                or "semicolon in prose" not in result.stdout
+                or "exceeds width" in result.stdout):
+            print(f"FAIL {label} - checks must resume without panther.json")
+            failures += 1
     print(("PASS" if not failures else "FAIL") + f" {label}")
     return failures
 

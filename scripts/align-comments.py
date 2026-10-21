@@ -150,6 +150,8 @@ def main(path, check_only, compact, payload_markdown):
         finally:
             if os.path.exists(tmp):
                 os.unlink(tmp)
+        if crlf:
+            print("note: file uses CRLF line endings - preserved")
     print(f"aligned {len(misaligned)} comment(s)")
     return 0
 

@@ -18,8 +18,8 @@ They do not modify documents beyond the specific task each tool performs.
 |------------------|------|------------------------------------------|
 | Tool Classes     | 24   | Tool groups and when to run them         |
 | Commands         | 95   | Per-tool usage, flags, and output        |
-| Validation Order | 453  | Recommended run sequence                 |
-| Limitations      | 499  | Known parsing limits and validator scope |
+| Validation Order | 471  | Recommended run sequence                 |
+| Limitations      | 517  | Known parsing limits and validator scope |
 
 ## Tool Classes
 
@@ -449,6 +449,24 @@ The validators exit `0` when all checks pass and `1` when one or more checks fai
 `validate-document.py` warns on `text` and `txt` fence tags - plain-text blocks default to
 untagged fences in new content, while an existing document may carry the tag as its own
 convention.
+
+`validate-document.py` treats CommonMark indented code blocks - four or more leading spaces
+after a blank line or continuing such a block - as opaque to prose checks, matching the
+markdown-dialects convention. Indented list continuations stay checked. It limits the
+lone-list-marker check to unordered markers and ordered markers at column 0, so a wrapped
+numeric tail like `  403.` is not misread. Semicolons inside table rows do not flag -
+table cells are not running prose.
+
+`check-document.py` prints at most twelve detail lines per failing check and appends the
+remaining count when more findings exist, so dense failures surface their full scale.
+
+`validate-document.py` discovers an optional `panther.json` in the document's directory or
+the nearest ancestor that carries one, and applies it as per-repository parametrization.
+The format is draft and uses single-word English keys - `width` supplies a line-width
+limit when `--width` is not passed, and `findings` lists issue substrings suppressed from
+the `FAIL` report with a `note:` count. Unknown keys are ignored, so a draft
+`panther.json` may carry `status`, `conventions`, or other project metadata without
+affecting checks.
 
 ## Validation Order
 

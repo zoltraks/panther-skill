@@ -440,6 +440,8 @@ def main(path, width, payload_markdown, check_only, paragraphs, flow):
     finally:
         if os.path.exists(tmp):
             os.unlink(tmp)
+    if crlf:
+        print("note: file uses CRLF line endings - preserved")
     if flow:
         print(f"repacked {split_count} paragraph block(s) to width {width}")
         return 0

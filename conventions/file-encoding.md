@@ -29,6 +29,10 @@ Never transcode a file as a side effect of an unrelated change.
 
 Never convert LF to CRLF or back as a side effect of an unrelated change.
 
+Mutating tools in `scripts/` preserve the detected line-ending style and print a `note:` when
+a file they rewrite uses CRLF, since a CRLF checkout of an LF-stored repository is common under
+`core.autocrlf` and merits a deliberate look.
+
 Mixing encodings inside one file is never allowed - an edited file keeps exactly one encoding.
 
 ## Detection

@@ -534,6 +534,8 @@ def main(path, mode, width, payload_markdown, check_only):
     finally:
         if os.path.exists(tmp):
             os.unlink(tmp)
+    if crlf:
+        print("note: file uses CRLF line endings - preserved")
     if mode == "wrap":
         print(f"wrapped {wrapped} lines to width {width}")
         for n, size, preview in unbreakable:

@@ -31,14 +31,17 @@ Usage: python validate-document.py <file.md> [--width N] [--payload-markdown]
 """
 
 import argparse
+import json
 import re
 import sys
+from pathlib import Path
 
 FENCE = re.compile(r"^\s*(`{3,})\s*(\w*)")
 HEADING = re.compile(r"^(#{1,6})\s")
 BULLET = re.compile(r"^\s*[-*+] ")
 ORDERED = re.compile(r"^\s*\d+\. ")
-LONE_ITEM = re.compile(r"^\s*([-*+]|\d+[.)])[ \t]*$")
+LONE_ITEM = re.compile(r"^\s*[-*+][ \t]*$")
+LONE_ORDERED = re.compile(r"^\d+[.)][ \t]*$")
 TYPO_QUOTES = "“”‘’‚„«»"
 INLINE_CODE = re.compile(r"`[^`]*`")
 
@@ -174,7 +177,31 @@ def check_tables(lines, issues):
         issues.append("document mixes spaced and compact table separators")
 
 
+def load_config(path):
+    """Find panther.json in the document's directory or an ancestor.
+
+    Returns (config dict, config path or None). Keys are single English
+    words; the format is draft: ``width`` overrides a missing --width and
+    ``findings`` lists issue substrings suppressed from the FAIL report.
+    """
+    directory = Path(path).resolve().parent
+    for candidate in (directory, *directory.parents):
+        cfg = candidate / "panther.json"
+        if cfg.is_file():
+            try:
+                data = json.loads(cfg.read_text(encoding="utf-8"))
+            except (json.JSONDecodeError, OSError):
+                return {}, cfg
+            return (data if isinstance(data, dict) else {}), cfg
+    return {}, None
+
+
 def main(path, width, payload_markdown):
+    config, config_path = load_config(path)
+    if not width and isinstance(config.get("width"), int):
+        width = config["width"]
+    suppress = config.get("findings")
+    suppress = suppress if isinstance(suppress, list) else []
     raw = open(path, "rb").read()
     try:
         text = raw.decode("utf-8")
@@ -191,6 +218,7 @@ def main(path, width, payload_markdown):
     h1 = 0
     fences = []
     fence_first = -1
+    in_indented = False
     prev = ""
     for i, line in enumerate(lines):
         n = i + 1
@@ -227,12 +255,23 @@ def main(path, width, payload_markdown):
             continue
 
         payload = in_payload(fences, payload_markdown)
-        indented_code = payload and (len(line) - len(line.lstrip())) >= 4
+        indent = len(line) - len(line.lstrip())
+        indented_code = indent >= 4 and (
+            payload
+            or (
+                not (BULLET.match(line) or ORDERED.match(line))
+                and (in_indented or prev.strip() == "")
+            )
+        )
+        if indented_code:
+            in_indented = True
+        elif line.strip():
+            in_indented = False
 
         if line.strip() == "" and prev.strip() == "":
             issues.append(f"line {n}: consecutive blank lines")
 
-        if LONE_ITEM.match(line):
+        if LONE_ITEM.match(line) or LONE_ORDERED.match(line):
             issues.append(f"line {n}: lone list marker")
 
         heading = HEADING.match(line)
@@ -246,12 +285,12 @@ def main(path, width, payload_markdown):
                 if line.rstrip().endswith((".", ",", ":", ";", "!", "?")):
                     issues.append(f"line {n}: heading ends with punctuation")
 
-        if not payload:
+        if not payload and not indented_code:
             prose = INLINE_CODE.sub("", line)
             if any(q in prose for q in TYPO_QUOTES):
                 issues.append(f"line {n}: typographic quote or apostrophe")
 
-            if ";" in prose:
+            if ";" in prose and not line.startswith("|"):
                 issues.append(f"line {n}: semicolon in prose")
 
             if re.search(r"[\U0001F300-\U0001FAFF☀-➿⬀-⯿]", line):
@@ -284,7 +323,8 @@ def main(path, width, payload_markdown):
                 if c.isalpha():
                     foreign_letters[c] = foreign_letters.get(c, 0) + 1
 
-        if width and not line.startswith("|") and len(line) > width:
+        if width and not line.startswith("|") and not indented_code \
+                and len(line) > width:
             issues.append(f"line {n}: {len(line)} chars exceeds width {width}")
 
         if indented_code:
@@ -327,6 +367,18 @@ def main(path, width, payload_markdown):
         warnings.append(f"document has {h1} H1 headings (verify numbered-chapter dialect)")
 
     check_tables(lines, issues)
+
+    if suppress:
+        kept = []
+        dropped = 0
+        for message in issues:
+            if any(str(entry) in message for entry in suppress):
+                dropped += 1
+            else:
+                kept.append(message)
+        issues = kept
+        if dropped:
+            print(f"note: {dropped} finding(s) suppressed by {config_path}")
 
     for message in warnings:
         print(f"WARN {path}:{message}")

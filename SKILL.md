@@ -23,7 +23,7 @@ compatibility: >-
   Claude Desktop, Windsurf, Devin, and similar). Requires the ability to read
   and write text files. No network access required.
 metadata:
-  version: "1.2.4"
+  version: "1.2.6"
   author: Filip Golewski
 allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob Grep
 ---
@@ -470,9 +470,8 @@ copies when done - `scripts/README.md` lists flags and the fallback convention.
   convention-preserving edits, reformatting, encodings, translations, corrections, the
   update check, bare activation, and audits.
 
-Run these as behavioral evaluations after structural changes.
-
-They do not replace independent review.
+Run these as behavioral evaluations after structural changes - they do not replace
+independent review.
 
 ## Repository Files
 
@@ -498,5 +497,4 @@ Never transcode a file unless the request explicitly asks for a target encoding.
 
 Never modify a file on an unnamed or unconfirmed operation - never overwrite a document wholesale.
 
-Remove every ad-hoc `.tmp.` helper - and any tool copies made under the fallback
-convention - from the working repository at task end.
+Remove every ad-hoc `.tmp.` helper and tool copies under the fallback convention at task end.
