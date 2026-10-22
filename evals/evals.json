@@ -1723,6 +1723,17 @@
         "The reply ends with a separate paragraph whose single sentence is the last sentence: '<description> operation took <m:ss>' - the description names the document operation and the time uses minutes:seconds.",
         "No timing line appears on a bare activation or standby reply - the rule covers named operations only."
       ]
+    },
+    {
+      "id": 141,
+      "prompt": "Write a quick note about the stand-up agenda, timing mode.",
+      "expected_output": "The document-mode intake runs and the response ends with a separate paragraph whose last sentence reports '<description> operation took <m:ss>' in minutes:seconds format.",
+      "files": [],
+      "expectations": [
+        "The agent loaded process/operation-timing.md for the timing flag - the diagnostic surface stays in process/json-exchange.md.",
+        "The reply ends with a separate paragraph whose single sentence is the last sentence: '<description> operation took <m:ss>' - the description names the document operation and the time uses minutes:seconds.",
+        "No timing line appears on a bare activation or standby reply - the rule covers named operations only."
+      ]
     }
   ]
 }

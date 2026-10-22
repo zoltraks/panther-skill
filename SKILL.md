@@ -23,7 +23,7 @@ compatibility: >-
   Claude Desktop, Windsurf, Devin, and similar). Requires the ability to read
   and write text files. No network access required.
 metadata:
-  version: "1.2.7"
+  version: "1.2.8"
   author: Filip Golewski
 allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob Grep
 ---
@@ -41,20 +41,20 @@ allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob G
 | Three Modes             | 74   | Enable, document, and maintenance selection    |
 | Skill Update Check      | 88   | Once-per-session git freshness gate before use |
 | Trigger Keywords        | 111  | Activation phrases                             |
-| How To Use              | 174  | Progressive disclosure and rule loading        |
+| How To Use              | 173  | Progressive disclosure and rule loading        |
 | Parameter Configuration | 233  | Defaults and user-controlled document shape    |
 | Principles              | 261  | Authoring invariants                           |
 | Process                 | 267  | Workflow, checklist, and standalone procedures |
-| Document Types          | 299  | Per-type rule files                            |
-| Languages               | 356  | Per-language style baselines                   |
-| Translations            | 367  | Language pair rules and industry glossaries    |
-| Scopes                  | 385  | Per-project-layout organization rules          |
-| Conventions             | 409  | Encoding, dialect, and format contract rules   |
-| Templates               | 427  | Per-type, per-language skeletons               |
-| Scripts                 | 439  | Detection, formatting, and validation scripts  |
+| Document Types          | 301  | Per-type rule files                            |
+| Languages               | 357  | Per-language style baselines                   |
+| Translations            | 368  | Language pair rules and industry glossaries    |
+| Scopes                  | 386  | Per-project-layout organization rules          |
+| Conventions             | 410  | Encoding, dialect, and format contract rules   |
+| Templates               | 428  | Per-type, per-language skeletons               |
+| Scripts                 | 440  | Detection, formatting, and validation scripts  |
 | Evaluation Prompts      | 468  | Behavioral regression prompts                  |
-| Repository Files        | 478  | Housekeeping files governing this repository   |
-| File Handling Contract  | 490  | Byte-level guarantees                          |
+| Repository Files        | 477  | Housekeeping files governing this repository   |
+| File Handling Contract  | 489  | Byte-level guarantees                          |
 
 You are a Document Authoring Agent.
 
@@ -190,8 +190,8 @@ Use progressive disclosure:
   a translated document against its source. Follow `process/translation-revision.md` to
   correct an existing translation or apply review findings to it.
 - Follow `process/correct-document.md` when the request asks to correct, fix, or proofread
-  a document, and `process/operation-timing.md` on a verbose, informational, or diagnostic
-  request.
+  a document, and `process/operation-timing.md` on a verbose, informational, diagnostic,
+  or timing request.
 - Load `conventions/` files only when required - AsciiDoc and reStructuredText stay minimal.
 
 This skill is self-contained - load a rule file from the listings only when the task needs it.
@@ -288,7 +288,8 @@ For edits to existing documents, the document's own conventions and the minimal-
 - **`process/translation-revision.md`** - The standalone translation-revision procedure:
   passage alignment, issue classes, minimal-diff correction of an existing translation.
 - **`process/json-exchange.md`** - JSON parameter documents for intake question surfaces.
-- **`process/operation-timing.md`** - Timing under verbose, informational, or diagnostic modes.
+- **`process/operation-timing.md`** - Timing under verbose, informational,
+  diagnostic, or timing modes.
 - **`process/operations-catalog.md`** - The catalog procedure for "list all operations" requests.
 - **`process/skill-maintenance.md`** - The maintenance-mode procedure: the intake menu,
   governing set, skipped document machinery, and validation for work on this repository.
