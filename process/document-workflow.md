@@ -184,7 +184,7 @@ gates, the plan-confirmation gate, and mode selection.
 For every existing file involved in the task, run the detection tool before editing:
 
 ```bash
-python <skill-root>/scripts/detect-encoding.py <file>
+python3 <skill-root>/scripts/detect-encoding.py <file>
 ```
 
 Run document-production tools in place from the skill root - copy them under `.tmp.`
@@ -265,7 +265,7 @@ Load the matching `scopes/<scope>.md` file when a scope is detected or named.
 
 The `unstructured-layout` scope is the default and needs no signals.
 
-Run `python <skill-root>/scripts/detect-scope.py <dir>` on the target when the layout is
+Run `python3 <skill-root>/scripts/detect-scope.py <dir>` on the target when the layout is
 not obvious from the visible structure - the census reports every scope's signals at once,
 see `scripts/README.md`.
 
@@ -434,7 +434,7 @@ It is not a failure.
 Before delivering, run the checks from `process/document-checklist.md`:
 
 - `scripts/check-document.py` runs the mechanical battery below in one invocation -
-  `python <skill-root>/scripts/check-document.py <file>` with `--layout`,
+  `python3 <skill-root>/scripts/check-document.py <file>` with `--layout`,
   `--polish`, `--type`, and `--baseline` selecting the optional gates - run the
   individual checks instead when only a subset applies.
 - Mechanical self-review of the written content.

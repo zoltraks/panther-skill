@@ -1,6 +1,6 @@
 # Specyfikacja projektu
 
-<!-- Version: 0.1.0 | Date: YYYY-MM-DD | Author: TBD -->
+<!-- Version: 0.1.0 | Date: YYYY-MM-DD -->
 
 ## Cel dokumentu
 

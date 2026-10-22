@@ -703,7 +703,7 @@ panther-skill/
 ```
 
 Document-production tools run in place from this repository -
-`python <skill-root>/scripts/<tool>.py <file>` - and are copied under `.tmp.` names only
+`python3 <skill-root>/scripts/<tool>.py <file>` - and are copied under `.tmp.` names only
 when the skill root cannot be invoked, per `scripts/README.md`.
 
 Skill-maintenance tools run from this repository only.
@@ -734,10 +734,10 @@ changes.
 
 ## Verification
 
-- Run `python scripts/validate-skill.py .`, `python scripts/check-references.py .`, and
-  `python scripts/check-contents.py .` after changing `SKILL.md`, `README.md`, or file layout.
+- Run `python3 scripts/validate-skill.py .`, `python3 scripts/check-references.py .`, and
+  `python3 scripts/check-contents.py .` after changing `SKILL.md`, `README.md`, or file layout.
 - Exercise the regression prompts in `evals/evals.json` after structural changes.
-- Run `python scripts/validate-document.py <file>` on any document the skill produces.
+- Run `python3 scripts/validate-document.py <file>` on any document the skill produces.
 
 The `docs/MAINTENANCE.md` registration contract, the three mechanical validators
 (`validate-skill.py`, `check-references.py`, `check-contents.py`), and the behavioral prompts in

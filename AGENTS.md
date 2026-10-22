@@ -62,15 +62,15 @@ be invoked, per `scripts/README.md`.
 Run the skill-maintenance suite from `docs/MAINTENANCE.md` after structural changes:
 
 ```
-python scripts/validate-skill.py .
-python scripts/check-references.py .
-python scripts/check-contents.py .
-python tests/test-scripts.py
+python3 scripts/validate-skill.py .
+python3 scripts/check-references.py .
+python3 scripts/check-contents.py .
+python3 tests/test-scripts.py
 git diff --check
 ```
 
-Run `python scripts/validate-document.py <file>` and the style self-audit checkers listed in
-`docs/MAINTENANCE.md` on every edited rule document, and `python scripts/format-table.py <file>`
+Run `python3 scripts/validate-document.py <file>` and the style self-audit checkers listed in
+`docs/MAINTENANCE.md` on every edited rule document, and `python3 scripts/format-table.py <file>`
 on every file whose tables were touched.
 
 Changes that alter skill behavior also exercise the regression prompts in `evals/evals.json`.

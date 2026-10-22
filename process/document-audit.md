@@ -53,19 +53,19 @@ the reflow check matching the document's detected wrap convention (`wrap` for
 fixed-width documents, `unwrap` for logical-line documents):
 
 ```bash
-python <skill-root>/scripts/check-document.py <file> --width <convention> --layout <wrap-or-unwrap>
+python3 <skill-root>/scripts/check-document.py <file> --width <convention> --layout <wrap-or-unwrap>
 ```
 
 Run the individual tools instead when only a subset applies:
 
 ```bash
-python <skill-root>/scripts/detect-encoding.py <file>
-python <skill-root>/scripts/validate-document.py <file>
-python <skill-root>/scripts/reflow-prose.py <file> --wrap --check --width <convention>
-python <skill-root>/scripts/reflow-prose.py <file> --unwrap --check
-python <skill-root>/scripts/format-table.py <file> --check
-python <skill-root>/scripts/lint-english.py <file>
-python <skill-root>/scripts/check-consistency.py <file>
+python3 <skill-root>/scripts/detect-encoding.py <file>
+python3 <skill-root>/scripts/validate-document.py <file>
+python3 <skill-root>/scripts/reflow-prose.py <file> --wrap --check --width <convention>
+python3 <skill-root>/scripts/reflow-prose.py <file> --unwrap --check
+python3 <skill-root>/scripts/format-table.py <file> --check
+python3 <skill-root>/scripts/lint-english.py <file>
+python3 <skill-root>/scripts/check-consistency.py <file>
 ```
 
 `check-document.py` flags `--english` and `--consistency` cover the last two in the
@@ -82,7 +82,7 @@ Record every `PASS`, `WARN`, `NOTE`, `SKIP`, and `FAIL` for the report.
 ## Structural Census
 
 ```bash
-python <skill-root>/scripts/census-document.py <file> --width <convention-or-100>
+python3 <skill-root>/scripts/census-document.py <file> --width <convention-or-100>
 ```
 
 The output lists heading counts and violations, list markers, fenced blocks and payloads,
@@ -93,7 +93,7 @@ Add `--payload-markdown` when the request covers payload interiors.
 When the document's type is known or declared, run the section check on top:
 
 ```bash
-python <skill-root>/scripts/check-sections.py <file> --type <name>
+python3 <skill-root>/scripts/check-sections.py <file> --type <name>
 ```
 
 It reports missing required and recommended sections, sections unusual for the type, and

@@ -116,7 +116,7 @@ Run the mechanical battery through `scripts/check-document.py`, exactly as the
 document audit does:
 
 ```bash
-python <skill-root>/scripts/check-document.py <file> --width <convention> --layout <wrap-or-unwrap>
+python3 <skill-root>/scripts/check-document.py <file> --width <convention> --layout <wrap-or-unwrap>
 ```
 
 Select the optional gates by target:

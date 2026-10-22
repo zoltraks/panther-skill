@@ -27,7 +27,7 @@ Run `scripts/detect-scope.py` in place from the skill root - copy it under a `.t
 only when the skill root cannot be invoked, see `scripts/README.md`.
 
 ```bash
-python <skill-root>/scripts/detect-scope.py <target>
+python3 <skill-root>/scripts/detect-scope.py <target>
 ```
 
 The output lists which detection signals each scope expects and which are present, plus a

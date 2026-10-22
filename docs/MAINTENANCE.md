@@ -90,7 +90,7 @@ so the same subject keeps the same filename in every pair directory that carries
 Tools are named `scripts/<verb>-<object>.py`, for example `detect-encoding.py` or
 `format-table.py`.
 
-Document-production tools run in place - `python <skill-root>/scripts/<tool>.py <file>` -
+Document-production tools run in place - `python3 <skill-root>/scripts/<tool>.py <file>` -
 and are copied into working repositories under a `.tmp.` infix only when the skill root
 cannot be invoked.
 
@@ -219,14 +219,14 @@ content that demonstrates the same point without depending on anything outside t
 Run the skill-maintenance tools after every structural change:
 
 ```bash
-python scripts/validate-skill.py .
-python scripts/check-references.py .
-python scripts/check-contents.py .
+python3 scripts/validate-skill.py .
+python3 scripts/check-references.py .
+python3 scripts/check-contents.py .
 ```
 
-Run `python scripts/format-table.py <file>` on every file whose tables were touched.
+Run `python3 scripts/format-table.py <file>` on every file whose tables were touched.
 
-Run `python scripts/validate-document.py <file>` on every edited rule document.
+Run `python3 scripts/validate-document.py <file>` on every edited rule document.
 
 Exercise the prompts in `evals/evals.json` after changes that alter behavior.
 
@@ -237,14 +237,14 @@ maintainer runs the full suite before each commit.
 
 Run the checkers over every Markdown file outside `work/`:
 
-- `python scripts/split-sentences.py <file> --paragraphs --check` - every sentence must be its
+- `python3 scripts/split-sentences.py <file> --paragraphs --check` - every sentence must be its
   own paragraph, per `docs/STYLE.md`.
-- `python scripts/reflow-prose.py <file> --wrap --check` - skill files wrap prose at 100
+- `python3 scripts/reflow-prose.py <file> --wrap --check` - skill files wrap prose at 100
   characters.
-- `python scripts/format-table.py <file> --check`
-- `python scripts/align-comments.py <file> --check`
-- `python scripts/validate-document.py <file>`
-- `python scripts/check-contents.py .` - Contents tables still anchor to real headings.
+- `python3 scripts/format-table.py <file> --check`
+- `python3 scripts/align-comments.py <file> --check`
+- `python3 scripts/validate-document.py <file>`
+- `python3 scripts/check-contents.py .` - Contents tables still anchor to real headings.
 
 Skip the reflow check on `languages/` and `templates/` files.
 
