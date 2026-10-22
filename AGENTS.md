@@ -46,7 +46,8 @@ Keep each rule in its owning document and link to it instead of duplicating it.
 - A request that names no concrete operation authorizes analysis and proposals only -
   files in this repository change on an explicit, confirmed instruction.
 - Do not claim validation that did not run.
-- Never commit automatically.
+- Never commit automatically, except a commit completing a user-approved upstream
+  merge - that commit may be made, while pushing always runs on a separate request.
 
 ## Local Workspace
 

@@ -23,7 +23,7 @@ compatibility: >-
   Claude Desktop, Windsurf, Devin, and similar). Requires the ability to read
   and write text files. No network access required.
 metadata:
-  version: "1.2.8"
+  version: "1.2.9"
   author: Filip Golewski
 allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob Grep
 ---
@@ -98,10 +98,13 @@ Use `python3` when `python` is not on PATH.
   when the reported state allows it (`ahead=0`, `dirty=no`), then re-read `SKILL.md` and any
   loaded rule files. When the merge is blocked or declined, report briefly and continue with
   the current version, without asking again this session.
+- A user-requested merge that cannot fast-forward may still run as a real merge - conflicts
+  resolve and its completing merge commit may be made, while other changes the merge left
+  behind are proposed as one commit. Pushing runs only on a separately named request.
 - Any other status - proceed silently and do not mention the check.
 
-The check writes no state files and never commits, stashes, or discards skill changes, and
-its `git fetch` only updates remote-tracking refs under `.git`, never the working tree.
+The check writes no state files and never stashes or discards skill changes, and its
+`git fetch` only updates remote-tracking refs under `.git`, never the working tree.
 
 The merge applies upstream content without cryptographic verification.
 
@@ -189,9 +192,8 @@ Use progressive disclosure:
 - Follow `process/translation-audit.md` when the request asks to audit, verify, or compare
   a translated document against its source. Follow `process/translation-revision.md` to
   correct an existing translation or apply review findings to it.
-- Follow `process/correct-document.md` when the request asks to correct, fix, or proofread
-  a document, and `process/operation-timing.md` on a verbose, informational, diagnostic,
-  or timing request.
+- Follow `process/correct-document.md` to correct, fix, or proofread a document, and
+  `process/operation-timing.md` on a verbose, informational, diagnostic, or timing request.
 - Load `conventions/` files only when required - AsciiDoc and reStructuredText stay minimal.
 
 This skill is self-contained - load a rule file from the listings only when the task needs it.
@@ -208,9 +210,9 @@ compact, with "shortly" caps and a hundred-sentence floor.
 On derivation requests it produces documents derived from an existing one - summaries and
 briefs at declared compression tiers, supplements continuing the source's numbering.
 
-On translate requests it renders a document into the target language in one pass with the
-pair's style adaptation and glossaries, preserving structure, code, and identifiers - every
-adaptation delta reported.
+On translate requests it renders into the target language in one pass with the pair's style
+adaptation and glossaries - structure, code, and identifiers preserved, every adaptation delta
+reported.
 
 On translation-audit requests it maps a rendered document against its source - structure map,
 untranslated set, terminology concordance - then reports a fidelity verdict.
@@ -221,9 +223,8 @@ source passages and applying minimal-diff fixes and same-class sweeps.
 On correction requests it repairs the document in place - formatting, structure, grammar, and
 typos - and surfaces fidelity findings as proposals on translation targets.
 
-On "work on panther-skill" requests it presents the maintenance menu - document work,
-skill adjustment, or session review - then reads the governing set and applies
-`docs/MAINTENANCE.md`.
+On "work on panther-skill" requests it presents the maintenance menu - document work, skill
+adjustment, or session review - then reads the governing set and applies `docs/MAINTENANCE.md`.
 
 On bare activation it enables for editorial support: the update check runs, and the answer
 describes the skill, names its version, and shows the operations table.
@@ -275,8 +276,7 @@ For edits to existing documents, the document's own conventions and the minimal-
 - **`process/document-audit.md`** - The standalone document-audit procedure: mechanical checks,
   section check, convention evaluation, content review, findings, and the optional fix plan.
 - **`process/correct-document.md`** - The standalone correction procedure: applied formatting,
-  structure, language, and style fixes, with proposed fidelity adjustments when the target
-  resolves to a translation source.
+  structure, language, and style fixes, with fidelity adjustments for translation-source targets.
 - **`process/describe-response.md`** - The standalone describe procedure: consolidation,
   shortly caps and long-description floors, impersonal response style, inline delivery.
 - **`process/derived-documents.md`** - The standalone derive procedure: derivation
@@ -288,8 +288,7 @@ For edits to existing documents, the document's own conventions and the minimal-
 - **`process/translation-revision.md`** - The standalone translation-revision procedure:
   passage alignment, issue classes, minimal-diff correction of an existing translation.
 - **`process/json-exchange.md`** - JSON parameter documents for intake question surfaces.
-- **`process/operation-timing.md`** - Timing under verbose, informational,
-  diagnostic, or timing modes.
+- **`process/operation-timing.md`** - Timing under the four mode keywords.
 - **`process/operations-catalog.md`** - The catalog procedure for "list all operations" requests.
 - **`process/skill-maintenance.md`** - The maintenance-mode procedure: the intake menu,
   governing set, skipped document machinery, and validation for work on this repository.
