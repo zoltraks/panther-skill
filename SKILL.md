@@ -23,7 +23,7 @@ compatibility: >-
   Claude Desktop, Windsurf, Devin, and similar). Requires the ability to read
   and write text files. No network access required.
 metadata:
-  version: "1.2.6"
+  version: "1.2.7"
   author: Filip Golewski
 allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob Grep
 ---
@@ -190,7 +190,8 @@ Use progressive disclosure:
   a translated document against its source. Follow `process/translation-revision.md` to
   correct an existing translation or apply review findings to it.
 - Follow `process/correct-document.md` when the request asks to correct, fix, or proofread
-  a document.
+  a document, and `process/operation-timing.md` on a verbose, informational, or diagnostic
+  request.
 - Load `conventions/` files only when required - AsciiDoc and reStructuredText stay minimal.
 
 This skill is self-contained - load a rule file from the listings only when the task needs it.
@@ -287,6 +288,7 @@ For edits to existing documents, the document's own conventions and the minimal-
 - **`process/translation-revision.md`** - The standalone translation-revision procedure:
   passage alignment, issue classes, minimal-diff correction of an existing translation.
 - **`process/json-exchange.md`** - JSON parameter documents for intake question surfaces.
+- **`process/operation-timing.md`** - Timing under verbose, informational, or diagnostic modes.
 - **`process/operations-catalog.md`** - The catalog procedure for "list all operations" requests.
 - **`process/skill-maintenance.md`** - The maintenance-mode procedure: the intake menu,
   governing set, skipped document machinery, and validation for work on this repository.
@@ -345,8 +347,7 @@ Load the file matching the document type, it adds deltas on top of the language 
 - **`types/status-report.md`** - Periodic status and quality reports: RAG ratings, metrics.
 - **`types/meeting-minutes.md`** - Meeting minutes and agendas: attendees, decisions, action items.
 - **`types/management-plan.md`** - Management and subsidiary plans: methodology, cadence, roles.
-- **`types/work-breakdown-structure.md`** - WBS and dictionaries: decimal outline, work packages,
-  RACI.
+- **`types/work-breakdown-structure.md`** - WBS and dictionaries: decimal outline, packages, RACI.
 - **`types/summary-document.md`** - Summaries, briefs, abstracts: declared source,
   compression tiers, carried verdict.
 - **`types/supplement-document.md`** - Supplements: continued ID sequences, extended matrices.
@@ -460,8 +461,7 @@ copies when done - `scripts/README.md` lists flags and the fallback convention.
 - **`scripts/lint-polish.py`** / **`lint-english.py`** - Polish calque, English vocabulary lints.
 - **`scripts/validate-skill.py`** / **`check-references.py`** / **`check-contents.py`** -
   Panther-repo checks.
-- **`scripts/check-update.py`** / **`tests/test-scripts.py`** - Self-update check and tool smoke
-  harness.
+- **`scripts/check-update.py`** / **`tests/test-scripts.py`** - Self-update check and smoke harness.
 - **`scripts/README.md`** - Tool classes, commands, flags, validation order, limitations.
 
 ## Evaluation Prompts

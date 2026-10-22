@@ -565,6 +565,7 @@ panther-skill/
 │   ├── correct-document.md            # Standalone correction procedure: applied fixes, fidelity proposals
 │   ├── describe-response.md           # Standalone describe procedure: caps and floors
 │   ├── json-exchange.md               # JSON parameter documents for pending questions
+│   ├── operation-timing.md            # Elapsed-time report for named operations
 │   ├── operations-catalog.md          # Full operations table for "list all operations"
 │   ├── scope-discovery.md             # Standalone layout-discovery procedure and report format
 │   ├── skill-maintenance.md           # Maintenance-mode procedure for work on the skill itself
