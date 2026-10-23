@@ -1094,7 +1094,7 @@ Opcje odpowiedzi to `Zaktualizuj teraz` i `Pomiń w tej sesji`.
 Żądania kierowane do tej umiejętności mogą być sformułowane po polsku.
 
 Poniższe frazy aktywują umiejętność tak samo jak ich angielskie odpowiedniki wymienione w
-`SKILL.md`.
+`languages/en.md`.
 
 Traktuj żądanie pasujące do frazy z tabeli jako jej angielski odpowiednik.
 

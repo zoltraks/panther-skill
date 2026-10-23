@@ -40,6 +40,7 @@ The rules described below apply to this document itself as well.
 | File Names               | 518  | Naming new documentation files      |
 | Example                  | 529  | Correct and incorrect sample        |
 | File Maintenance         | 563  | Encoding and line-ending preserving |
+| Activation Phrases       | 574  | English trigger phrases by intent   |
 
 ## Document Structure
 
@@ -570,3 +571,62 @@ Do not change an existing document's conventions for section numbering, list num
 and optional sections, unless the change request covers it.
 
 When editing, limit changes to the scope resulting from the request.
+
+## Activation Phrases
+
+Requests directed at this skill arrive in English or in another supported language.
+
+The following phrases activate the skill, grouped by intent:
+
+- **Create documents**: create a document, write documentation, draft a specification,
+  write a spec for, project document, technical documentation, write a README, write a
+  changelog, contributing guide, CONTRIBUTING.md, format specification, file format spec,
+  guidelines document, coding standard document, style guide document, agent instruction
+  document, preparation document, dual-audience document, write an article, quick note,
+  daily plan, write a message, announcement, meeting notes, yaml document.
+- **Edit and format**: edit this document, update this document, fix this table, format
+  this table, align the table, align the comments, fix tree comments, reformat this
+  markdown, unwrap this document, unwrap long lines, reflow the prose, edit this yaml file.
+- **Correct documents**: correct this document, fix the errors in this
+  document, proofread this document, correct the grammar, fix the typos,
+  copyedit this document.
+- **Editorial review**: editorial pass, run the editorial battery, check the
+  documents I just wrote, document check on <path>, check-document on the new files.
+- **Translate**: translate this document, translate this file, translate to Polish,
+  translate to English, translate to German, document in Polish, document in German,
+  polish this document.
+- **Activate**: run panther, use panther, use skill, work with skill, use this skill,
+  activate the skill.
+- **Operations catalog**: list all operations, show all capabilities.
+- **Maintain the skill**: work on panther, work on panther-skill, work on this skill, fix
+  this skill, adjust the skill, maintain this skill, update the skill documents.
+- **Extend and maintain**: add a page to the docs, documentation project, new document in
+  this project, extend this skill, add a rule file to this skill, update the toctree,
+  write an implementation plan, add a feature document, add a standards document.
+- **Decisions and proposals**: write an ADR, architecture decision record, supersede the
+  ADR, write an RFC, proposal document, design proposal.
+- **Documentation sites**: add a page to this MkDocs site, update the nav, add a page to
+  this Docusaurus site, set the sidebar position, add a page to this VitePress site, add a
+  page to this GitBook, update the summary file.
+- **Dialects**: edit this AsciiDoc file, preserve the frontmatter.
+- **PMBOK artifacts**: write a project charter, create a risk register, update the issue
+  log, stakeholder register, assumption log, change log, lessons learned, write a status
+  report, weekly status, meeting minutes, write the minutes, management plan, risk
+  management plan, work breakdown structure, create the WBS, change request.
+- **Layout discovery**: discover layout, detect document layout, what layout is this,
+  analyze document structure, analyze this repository, analyse this codebase, audit the
+  document layout, document census.
+- **Document audit**: audit this document, document audit, audit this file, check document
+  formatting, document conformance check, plan fixes for findings.
+- **Translation audit**: audit this translation, check the translation, verify the
+  translated document, compare the translation with the source, check how this was
+  translated.
+- **Translation revision**: fix this translation, correct the translated document,
+  revise the translation, apply translation review findings.
+- **Describe and summarize**: describe, describe shortly, make a description, summarize,
+  write a summary, give an overview, short description, long description, detailed
+  description, describe in detail, full description.
+- **Derive documents**: summarize this document to a file, save a summary of this
+  document, write a document summary, write a brief of this document, write an abstract
+  of this document, abridge this document, write a supplement, extend this report, write
+  a continuation of this document.

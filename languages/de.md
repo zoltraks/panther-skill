@@ -897,7 +897,7 @@ Die Antwortoptionen sind `Jetzt aktualisieren` und `In dieser Sitzung übersprin
 An diese Fähigkeit gerichtete Anfragen können auf Deutsch formuliert sein.
 
 Die folgenden Phrasen aktivieren die Fähigkeit genauso wie ihre englischen Entsprechungen in
-`SKILL.md`.
+`languages/en.md`.
 
 Behandle eine Anfrage, die einer Phrase aus der Tabelle entspricht, wie ihre englische Entsprechung.
 

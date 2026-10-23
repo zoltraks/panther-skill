@@ -176,7 +176,7 @@ Inside a payload:
   reformat tables inside payloads only on explicit request -
   `scripts/format-table.py --payload-markdown` exists for that case.
 - Wrap payload prose only when the host convention requires it or the user asks, via
-  `scripts/wrap-prose.py --payload-markdown`.
+  `scripts/reflow-prose.py --wrap --payload-markdown`.
 - Payload content can carry real formatting defects (trailing whitespace, lone list markers,
   merged indented lines). Surface them with `scripts/validate-document.py --payload-markdown`.
 - Other fence languages (` ```bash `, ` ```python `, ` ```text `, bare ` ``` `) and indented

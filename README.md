@@ -21,10 +21,10 @@
 | Core Principles     | 494  | Convention preservation and minimal diffs  |
 | When To Use         | 505  | Supported requests and exclusions          |
 | What's Inside       | 546  | Rule files, templates, tools, and evals    |
-| Specification       | 718  | Agent Skills specification conformance     |
-| Verification        | 734  | Skill-maintenance checks                   |
-| License             | 753  | License for the skill itself               |
-| Credits             | 759  | Methodology and example sources            |
+| Specification       | 725  | Agent Skills specification conformance     |
+| Verification        | 741  | Skill-maintenance checks                   |
+| License             | 760  | License for the skill itself               |
+| Credits             | 766  | Methodology and example sources            |
 
 ## Overview
 
@@ -561,12 +561,14 @@ panther-skill/
 ├── process/
 │   ├── document-workflow.md           # Intake, detection, rule selection, validation, delivery
 │   ├── document-checklist.md          # Mechanical pre-delivery checklist
+│   ├── decision-modes.md              # Interaction-mode matrix: interactive and autonomous
 │   ├── document-audit.md              # Standalone audit procedure: findings and fix plan
 │   ├── correct-document.md            # Standalone correction procedure: applied fixes, fidelity proposals
 │   ├── describe-response.md           # Standalone describe procedure: caps and floors
 │   ├── json-exchange.md               # JSON parameter documents for pending questions
 │   ├── operation-timing.md            # Elapsed-time report for named operations
 │   ├── operations-catalog.md          # Full operations table for "list all operations"
+│   ├── parameter-configuration.md     # Creation parameter surfaces, defaults, and question shapes
 │   ├── scope-discovery.md             # Standalone layout-discovery procedure and report format
 │   ├── skill-maintenance.md           # Maintenance-mode procedure for work on the skill itself
 │   ├── skill-activation.md            # Enable-mode procedure for bare activation requests
@@ -575,6 +577,7 @@ panther-skill/
 │   ├── translation-audit.md           # Standalone translation-audit procedure: fidelity verdict
 │   └── translation-revision.md        # Standalone correction procedure for existing translations
 ├── types/
+│   ├── README.md                      # Document-type index
 │   ├── technical-document.md          # Guides, architecture notes, reference material
 │   ├── project-document.md            # Specifications: version comment, glossary, requirement IDs
 │   ├── rules-document.md              # Guidelines and standards: imperative rules, examples
@@ -612,6 +615,7 @@ panther-skill/
 │   ├── en.md                          # English baseline: Title Case, vocabulary, dialect
 │   └── pl.md                          # Polish baseline: style, section names, activation phrases
 ├── translations/
+│   ├── README.md                      # Pair-directory index and loading order
 │   ├── de-en/                         # German-to-English direction rules and glossaries
 │   │   ├── de-en-general.md           # Direction contract: Title Case, abbreviations
 │   │   ├── de-en-software.md          # SDLC and software glossary
@@ -649,6 +653,7 @@ panther-skill/
 │       ├── pl-en-electrical.md        # Electrical and site-safety glossary
 │       └── pl-en-construction.md      # Construction and concrete glossary
 ├── scopes/
+│   ├── README.md                      # Scope index
 │   ├── unstructured-layout.md         # Default scope: no defined organization
 │   ├── agent-skill.md                 # Skill repositories: router contract, registration
 │   ├── sphinx-docs.md                 # Sphinx Markdown docs: toctree registration
@@ -660,6 +665,7 @@ panther-skill/
 │   ├── vitepress-site.md              # VitePress sites: file-based routing
 │   └── gitbook-site.md                # GitBook projects: SUMMARY.md registration
 ├── conventions/
+│   ├── README.md                      # Convention-file index
 │   ├── file-encoding.md               # UTF-8 default, UTF-16/UCS-2, code pages, line endings
 │   ├── markdown-dialects.md           # ATX, setext, numbered chapters, frontmatter, payloads
 │   ├── rst-documents.md               # reStructuredText minimal-edit contract

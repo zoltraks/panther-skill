@@ -60,7 +60,7 @@ Mirror layout changes in the `README.md` directory tree when one exists.
 
 Renumber every `## Contents` table affected by line shifts.
 
-Keep `evals/evals.json` prompts in sync with capabilities that change.
+Keep that skill's `evals/evals.json` prompts in sync with capabilities that change.
 
 ## Governing Files
 
