@@ -165,7 +165,12 @@ issue.
 Findings that can shift meaning - `calque`, `terminology`, `meaning drift`, `modality`,
 `identifier`, and `structure` fidelity - are never applied by this procedure.
 
-Each is written up as a proposal per `## Fidelity Proposals` below.
+Each is written up as a proposal per `When a corrected defect class appears in a generated or template-derived
+document, the same class is checked against the producing template and its
+sibling outputs, so the fix covers the source of the pattern, not only the file
+that surfaced it.
+
+## Fidelity Proposals` below.
 
 ## Plan Confirmation
 
