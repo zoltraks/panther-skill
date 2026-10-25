@@ -28,6 +28,7 @@ from pathlib import Path
 
 HEADING = re.compile(r"^(#{1,6})\s+(.*?)\s*#*\s*$")
 ID_TITLE = re.compile(r"^([A-Za-z][\w.-]*)\s*:\s*(.+?)\s*$")
+ID_SPACE = re.compile(r"^([A-Z][A-Z0-9]*(?:-[A-Z0-9]+)+)\s+(.+?)\s*$")
 FENCE = re.compile(r"^\s*(`{3,}|~{3,})")
 TITLE_HEADERS = {"title", "tytul", "tytuł", "name", "nazwa"}
 STRICT_ID = re.compile(r"^[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)+$")
@@ -77,9 +78,10 @@ def normalize_title(text, drop_links=False):
 
 def titles_match(table_title, heading_title):
     """Verbatim after normalization, under either link convention."""
-    return (normalize_title(table_title) == normalize_title(heading_title)
-            or normalize_title(table_title, drop_links=True)
-            == normalize_title(heading_title, drop_links=True))
+    return (normalize_title(table_title).lower()
+            == normalize_title(heading_title).lower()
+            or normalize_title(table_title, drop_links=True).lower()
+            == normalize_title(heading_title, drop_links=True).lower())
 
 
 def split_row(line):
@@ -107,7 +109,8 @@ def main():
         match = HEADING.match(line)
         if not match:
             continue
-        pair = ID_TITLE.match(match.group(2).replace("`", ""))
+        pair = (ID_TITLE.match(match.group(2).replace("`", ""))
+                or ID_SPACE.match(match.group(2).replace("`", "")))
         if pair:
             headings[pair.group(1)] = (i + 1, pair.group(2))
 
@@ -148,6 +151,9 @@ def main():
 
     print(f"check-titles: {args.file}")
     findings = 0
+    if not headings:
+        print("NOTE no `ID: title` headings found - pairing convention "
+              "not adopted, nothing to check")
     for doc_id, (hline, htitle) in sorted(headings.items()):
         if doc_id not in rows:
             print(f"MISSING-ROW {doc_id} - heading at line {hline} has no "
@@ -163,11 +169,15 @@ def main():
         elif args.verbose:
             print(f"OK {doc_id} - table line {rline}, "
                   f"heading line {hline}")
-    for doc_id, (rline, rtitle) in sorted(rows.items()):
-        if doc_id not in headings:
-            print(f"MISSING-HEADING {doc_id} - table row at line {rline} "
-                  f"('{rtitle[:60]}') has no `ID: title` heading")
-            findings += 1
+    prefixes = {re.match(r"[A-Z]+", doc_id).group(0)
+                for doc_id in headings if re.match(r"[A-Z]+", doc_id)}
+    if headings:
+        for doc_id, (rline, rtitle) in sorted(rows.items()):
+            prefix = re.match(r"[A-Z]+", doc_id)
+            if doc_id not in headings and prefix and prefix.group(0) in prefixes:
+                print(f"MISSING-HEADING {doc_id} - table row at line {rline} "
+                      f"('{rtitle[:60]}') has no `ID: title` heading")
+                findings += 1
 
     print(f"check-titles: {len(headings)} heading(s) checked, "
           f"{findings} finding(s)")

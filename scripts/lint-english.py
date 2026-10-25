@@ -154,6 +154,10 @@ CLAUSE_VERB = re.compile(
     r"[a-z]{3,} - [a-z]+ (is|are|was|were|has|have|had|can|will|would"
     r"|must|should|does|do|may|not|never|always)\b", re.IGNORECASE)
 
+# A list item shaped `- **Term** - description` uses the hyphen as a
+# definitional separator, which the Spaced Hyphens rule allows.
+DEFINITIONAL = re.compile(r"^\s*[-*] \*\*.+\*\*\s+- ")
+
 
 def reconfigure_stdio():
     for stream in (sys.stdout, sys.stderr):
@@ -408,6 +412,8 @@ def check_article(lineno, text, findings):
 
 
 def check_hyphen_join(lineno, text, findings):
+    if DEFINITIONAL.match(text):
+        return
     if CLAUSE_SUBJECT.search(text) or CLAUSE_VERB.search(text):
         findings.append(
             ("warn", lineno,

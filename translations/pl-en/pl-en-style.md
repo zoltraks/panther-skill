@@ -85,6 +85,14 @@ A Polish comma-separated enumeration keeps its commas in English, and the final
 conjunction renders per `languages/en.md` - `A, B i C` becomes `A, B and C` or
 `A, B, and C` per the document's own convention.
 
+## Clause Joins
+
+A Polish spaced hyphen joining two full clauses (`robi X - robi Y`) splits into
+separate English sentences or takes a comma or a period - never carried over as
+` - ` between clauses, per the Spaced Hyphen rule in `docs/STYLE.md`.
+
+The definitional `- term - description` separator and table cells are unaffected.
+
 ## Hedged Verdicts
 
 Preserve the hedging level of the source - `najmocniejszy wariant` renders `the

@@ -17,9 +17,9 @@ Apply it for Polish to English translate tasks, per `process/translate-document.
 |----------------|------|-----------------------------------------------------|
 | Domain Signals | 24   | Activation conditions for this glossary             |
 | Terminology    | 36   | Recurring Polish terms and preferred English forms  |
-| Context Forms  | 285  | Context-dependent renderings                        |
-| Calque Traps   | 328  | Forbidden literal renderings and their replacements |
-| Untranslated   | 354  | Loanwords and identifiers rendered back to English  |
+| Context Forms  | 291  | Context-dependent renderings                        |
+| Calque Traps   | 335  | Forbidden literal renderings and their replacements |
+| Untranslated   | 361  | Loanwords and identifiers rendered back to English  |
 
 ## Domain Signals
 
@@ -79,6 +79,7 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | dziennik zmian                                         | changelog                        |
 | ekspozycja                                             | exposure                         |
 | endpoint / punkt końcowy                               | endpoint                         |
+| ekstrakcja                                             | extraction                       |
 | eskalacja uprawnień                                    | privilege escalation             |
 | fork / rozwidlenie                                     | fork                             |
 | framework / szkielet                                   | framework                        |
@@ -93,6 +94,7 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | inkrementacja                                          | increment                        |
 | interesariusz                                          | stakeholder                      |
 | inwentarz                                              | inventory                        |
+| interpolacja                                           | interpolation                    |
 | jakość i kondycja kodu                                 | code health                      |
 | kandydat do wydania                                    | release candidate                |
 | kierowanie                                             | routing                          |
@@ -149,6 +151,7 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | pewność                                                | confidence                       |
 | pętla weryfikacji                                      | verification loop                |
 | pętla weryfikacji przyrostu                            | incremental loop                 |
+| plik dostępu                                           | access file                      |
 | pliki dotyczące współpracy przy projekcie              | community files                  |
 | plik blokady wersji zależności                         | lockfile                         |
 | plik kierujący                                         | routing file                     |
@@ -232,6 +235,7 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | testy dotyczące zmienionego zakresu                    | focused tests                    |
 | test penetracyjny                                      | penetration test                 |
 | token                                                  | token                            |
+| transformacja                                          | transformation                   |
 | token dostępu                                          | access token                     |
 | tryb w pełni automatyczny                              | fully automated                  |
 | tryb z udziałem człowieka                              | human-in-the-loop mode           |
@@ -281,6 +285,8 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | zrzut ekranu                                           | screenshot                       |
 | zwiększenie numeru wersji                              | version bump                     |
 | źródła prawdy                                          | sources of truth                 |
+| zasilanie (danych)                                     | loading                          |
+| zgłoszenie awarii                                      | failure report                   |
 
 ## Context Forms
 

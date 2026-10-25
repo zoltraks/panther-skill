@@ -1735,6 +1735,30 @@
         "The reply ends with a separate paragraph whose single sentence is the last sentence: '<description> operation took <m:ss>' - the description names the document operation and the time uses minutes:seconds.",
         "No timing line appears on a bare activation or standby reply - the rule covers named operations only."
       ]
+    },
+    {
+      "id": 142,
+      "prompt": "Run scripts/check-titles.py on a document whose requirement tables carry ID rows like `F-01` and `N-01` but no `ID: title` headings.",
+      "files": [],
+      "expectations": [
+        "The run reports an informational note that the pairing convention is not adopted and finishes with zero findings."
+      ]
+    },
+    {
+      "id": 143,
+      "prompt": "Run scripts/check-titles.py on a document that pairs `### C-01 Synchronization` headings with `| C-01 | Synchronization |` table rows while other ID tables carry no headings.",
+      "files": [],
+      "expectations": [
+        "C-01 pairs check OK case-insensitively and rows from unadopted ID families do not flood MISSING-HEADING findings."
+      ]
+    },
+    {
+      "id": 144,
+      "prompt": "Lint an English document containing a definitional list entry `- **Term** - description` with scripts/lint-english.py.",
+      "files": [],
+      "expectations": [
+        "The definitional separator raises no spaced-hyphen clause-join warning."
+      ]
     }
   ]
 }

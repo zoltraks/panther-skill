@@ -21,10 +21,10 @@ another language.
 | Detection            | 85   | Language, type, industry, and format-contract scan |
 | Rule Loading         | 128  | Ordered rule and contract-mapping loading          |
 | Translation Pass     | 145  | Terminology lock, chunked rendering, pass rules    |
-| Adapted Translation  | 237  | Adapted-fidelity rules and reporting               |
-| Validation           | 258  | Parity, mechanical checks, and self-review         |
-| Delivery             | 359  | Output conventions and the delivery report         |
-| Non-Goals            | 371  | Out-of-scope behaviors                             |
+| Adapted Translation  | 252  | Adapted-fidelity rules and reporting               |
+| Validation           | 273  | Parity, mechanical checks, and self-review         |
+| Delivery             | 384  | Output conventions and the delivery report         |
+| Non-Goals            | 396  | Out-of-scope behaviors                             |
 
 ## When This Applies
 
@@ -165,6 +165,20 @@ Before rendering the first chunk of a chunked document, fix the recurring vocabu
 The locked map may live in a `.tmp.` file inside the working repository's temporary
 directory, removed at delivery per the File Handling Contract.
 
+The same `.tmp.` expect-map file collects translator-declared renders for placeholder
+spans inside inline code - a source placeholder like `{NAZWA}` that legitimately
+renders as `{NAME}` is declared `SRC -> TGT` before the first parity run, so the
+inline-code delta reports `DECLARED` instead of `DELTA`.
+
+### Block Adjacency
+
+Separate every list, table, and fenced block from the element before it with one
+blank line.
+
+The target baseline's block rules apply to the rendered file even where the source
+omits the separation - parity counts elements, not whitespace, so a missing blank
+line in the source is not structure to preserve.
+
 ### Chunked Rendering
 
 A document too long for one render pass is translated in chunks, each covering an
@@ -174,7 +188,8 @@ Render sequentially: for each chunk, read its source span immediately before wri
 rendering, so the source text is in context while it is translated - never render a span
 recalled from earlier context, and re-read the span when in doubt.
 
-After writing each chunk, run `scripts/lint-polish.py` on it for `pl` output and resolve every error
+After writing each chunk, run `scripts/lint-polish.py` on `pl` output and
+`scripts/lint-english.py` on `en` output, resolving every error
 before rendering the next chunk.
 
 Whether the chunks land in one growing file or in separate part files awaiting assembly.
@@ -284,8 +299,18 @@ payloads, `--parity <source.md>` to fold the parity run in):
   document embeds ` ```markdown ` blocks.
 - `scripts/lint-polish.py` - on `pl` output, with `--payload-markdown` when the document
   embeds ` ```markdown ` blocks. Every finding is fixed or reported.
+- `scripts/lint-english.py` - on `en` output, with `--payload-markdown` when the
+  document embeds ` ```markdown ` blocks. Every finding is fixed or reported.
 - `scripts/check-titles.py` - when the document's `ID: title` headings pair with
   summary-table rows, or via `check-document.py --title-agreement`.
+
+Checkers also report source-inherited findings - H4 headings the source uses, missing
+blank lines, unpadded tables, or title registers that keep no per-ID headings.
+
+Run the same checker on the source document when in doubt.
+
+A finding identical on both sides is the document's own convention, reported as a
+declared deviation, never fixed by restructuring.
 
 Self-review against `process/document-checklist.md` plus the translation items:
 
