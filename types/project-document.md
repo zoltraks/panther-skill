@@ -141,3 +141,15 @@ the change log per `register-log`, and meeting decisions go to `meeting-minutes`
 | Documentation               | optional    |
 
 Section names for other languages are declared in the matching `languages/<code>.md` file.
+
+### Dialect Aliases
+
+Section-name aliases used by the numbered-chapter dialect (`# 1 Basic Information` and
+`## 1.1 Purpose` chapter/section numbering):
+
+| Alias                   | Maps To             |
+|-------------------------|---------------------|
+| Purpose                 | Document Purpose    |
+| Definitions             | Glossary            |
+| Solution Architecture   | System Architecture |
+| Architectural Decisions | Design Decisions    |

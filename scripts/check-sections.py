@@ -130,6 +130,32 @@ def parse_language_aliases(lang_file: Path, type_slug: str,
     return aliases
 
 
+def parse_dialect_aliases(type_file: Path, english_names: set[str]) -> dict[str, str]:
+    """Read the optional ``Dialect Aliases`` table of a type file.
+
+    Rows ``| Alias | Canonical Name |`` map a dialect's own section names to
+    canonical ones, for example ``Definitions`` for ``Glossary``.
+    """
+    aliases: dict[str, str] = {}
+    try:
+        text = type_file.read_text(encoding="utf-8", errors="replace")
+    except OSError:
+        return aliases
+    in_section = False
+    for line in text.splitlines():
+        if re.match(r"^##+ ", line):
+            in_section = "dialect aliases" in line.lower()
+            continue
+        if not in_section or not line.strip().startswith("|"):
+            continue
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        if len(cells) < 2 or cells[0].startswith("-") or cells[0].lower() == "alias":
+            continue
+        if cells[1] in english_names:
+            aliases[cells[0].lower()] = cells[1]
+    return aliases
+
+
 def normalize(name: str) -> str:
     """Lowercase and strip a leading numbered-chapter prefix like ``3.1. ``."""
     return re.sub(r"^\d+(?:\.\d+)*\.?\s+", "", name.strip()).lower()
@@ -142,7 +168,11 @@ def matches(heading: str, name: str) -> bool:
         return True
     if heading_n.startswith(name_n + " "):
         remainder = heading_n[len(name_n) + 1 :]
-        return bool(re.match(r"^[\d(vx\[]", remainder))
+        if re.match(r"^[\d(vx\[]", remainder):
+            return True
+    for part in re.split(r"\s+(?:and|&)\s+", heading_n):
+        if part == name_n:
+            return True
     return False
 
 
@@ -188,13 +218,18 @@ def main(argv: list[str]) -> int:
         args.file.read_text(encoding="utf-8", errors="replace"),
         args.payload_markdown,
     )
-    sections = [text for level, text in headings if not (H1_ONLY_TITLE and level == 1)]
+    chapters = {text for level, text in headings if level == 1}
+    sections = [
+        text
+        for level, text in headings
+        if not (H1_ONLY_TITLE and level == 1 and not re.match(r"^\d+\s", text))
+    ]
 
-    aliases: dict[str, str] = {}
+    aliases: dict[str, str] = parse_dialect_aliases(args.type_file, set(requirements))
     if args.language:
-        aliases = parse_language_aliases(
+        aliases.update(parse_language_aliases(
             args.language, type_slug, set(requirements)
-        )
+        ))
 
     def canonical(heading: str) -> str | None:
         for name in requirements:
@@ -209,6 +244,9 @@ def main(argv: list[str]) -> int:
         return None
 
     matched = {canonical(h) for h in sections if canonical(h)}
+    for name in requirements:
+        if name not in matched and any(matches(h, name) for h in sections):
+            matched.add(name)
     failures = warnings = 0
     for name, requirement in requirements.items():
         if name in matched:
@@ -223,7 +261,7 @@ def main(argv: list[str]) -> int:
             print(f"MISSING recommended {name}")
             warnings += 1
     for heading in sections:
-        if canonical(heading) is None:
+        if canonical(heading) is None and heading not in chapters:
             print(f"NOTE unexpected heading: {heading}")
     if not failures and not warnings:
         print(f"PASS {args.file}: sections conform to the {type_slug} type")

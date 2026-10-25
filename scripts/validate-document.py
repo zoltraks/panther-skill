@@ -216,6 +216,7 @@ def main(path, width, payload_markdown):
     foreign_letters = {}
 
     h1 = 0
+    h1_heads: list[str] = []
     fences = []
     fence_first = -1
     in_indented = False
@@ -280,6 +281,7 @@ def main(path, width, payload_markdown):
             if not payload:
                 if level == 1:
                     h1 += 1
+                    h1_heads.append(line.lstrip("#").strip())
                 if level >= 4:
                     issues.append(f"line {n}: heading deeper than H3")
                 if line.rstrip().endswith((".", ",", ":", ";", "!", "?")):
@@ -364,7 +366,18 @@ def main(path, width, payload_markdown):
     if h1 == 0:
         warnings.append("document has no H1 title (allowed for notes, verify the type)")
     if h1 > 1:
-        warnings.append(f"document has {h1} H1 headings (verify numbered-chapter dialect)")
+        chapter_numbers = []
+        for text in h1_heads[1:]:
+            match = re.match(r"^(\d+)[\s.:]", text)
+            if match:
+                chapter_numbers.append(int(match.group(1)))
+        if len(chapter_numbers) == h1 - 1:
+            if chapter_numbers != sorted(set(chapter_numbers)):
+                warnings.append(
+                    "numbered-chapter dialect: H1 chapter numbers are not strictly increasing"
+                )
+        else:
+            warnings.append(f"document has {h1} H1 headings (verify numbered-chapter dialect)")
 
     check_tables(lines, issues)
 
