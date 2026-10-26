@@ -42,6 +42,10 @@ parameter per `process/json-exchange.md`.
 A bare activation names the skill and nothing else - no document to produce, edit,
 reformat, translate, audit, or describe, and no maintenance request.
 
+An `"update panther-skill"` or context-resolved `"update the skill"` request is not
+a bare activation - it routes to `process/session-review.md`, the self-improvement
+routine, on every request without a separate "improve" keyword.
+
 An activation may also name a working target - a repository, directory, or document
 collection - while still naming no operation: "use panther on the docs repository",
 "work on the project".
