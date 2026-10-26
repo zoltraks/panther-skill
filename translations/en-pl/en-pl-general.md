@@ -180,6 +180,9 @@ The following elements are copied verbatim:
   verbatim in prose and embedded payloads alike, unless the producing contract maps
   them: a resolved format contract's Polish forms apply instead.
 - `N/A` renders `N/D` in Polish prose and table cells.
+- Enumerated flag values that are document vocabulary rather than contract labels -
+  `yes`, `record`, `no` in result tables - translate like ordinary prose; only the
+  fixed contract vocabulary stays verbatim.
 
 ## Reader-Facing Text In Examples
 

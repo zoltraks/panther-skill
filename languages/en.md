@@ -38,9 +38,9 @@ The rules described below apply to this document itself as well.
 | Dialect Consistency      | 332  | One spelling dialect per document   |
 | Tables                   | 385  | Source-width alignment rules        |
 | File Names               | 518  | Naming new documentation files      |
-| Example                  | 529  | Correct and incorrect sample        |
-| File Maintenance         | 563  | Encoding and line-ending preserving |
-| Activation Phrases       | 574  | English trigger phrases by intent   |
+| Example                  | 533  | Correct and incorrect sample        |
+| File Maintenance         | 567  | Encoding and line-ending preserving |
+| Activation Phrases       | 578  | English trigger phrases by intent   |
 
 ## Document Structure
 
@@ -524,6 +524,9 @@ for example `user_guide.md`.
 Do not use diacritical letters or spaces in new file names.
 
 Keep conventionally established names in their original form, for example `README.md`.
+
+Prefer full words over abbreviations the request did not use, for example
+`merge_review.md` rather than `mr_review.md`.
 
 The file name should match the document topic.
 

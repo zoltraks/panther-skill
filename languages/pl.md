@@ -1022,6 +1022,9 @@ Nie używaj liter diakrytycznych ani odstępów w nazwach nowych plików.
 Nazwy przyjęte umownie zachowuj w formie oryginalnej, na przykład `README.md`,
 `CHANGELOG.md` albo `SPECYFIKACJA.md`.
 
+Preferuj pełne wyrazy zamiast skrótów, których żądanie nie użyło, na przykład
+`przeglad_scalenia.md` zamiast `mr_przeglad.md`.
+
 Nazwa pliku ma odpowiadać tematowi dokumentu.
 
 ## Przykład

@@ -837,6 +837,9 @@ Verwende keine Umlaute und keine Leerzeichen in den Namen neuer Dateien.
 Behalte vereinbarte Namen in ihrer Originalform, zum Beispiel `README.md`,
 `CHANGELOG.md` oder `SPEZIFIKATION.md`.
 
+Bevorzuge vollständige Wörter gegenüber Abkürzungen, die die Anfrage nicht
+verwendet hat, zum Beispiel `merge_bericht.md` statt `mr_bericht.md`.
+
 Der Dateiname soll dem Thema des Dokuments entsprechen.
 
 ## Beispiel
