@@ -554,6 +554,74 @@ def english_consistency_regressions() -> int:
     return failures
 
 
+def reference_regressions() -> int:
+    """Exercise numeric-reference, empty-heading, and stranded-pipe checks."""
+    failures = 0
+    label = "reference fixtures"
+    with tempfile.TemporaryDirectory() as tmp:
+        tmp = Path(tmp)
+        dangling = tmp / "dangling.md"
+        dangling.write_text(
+            "# Fixture\n\n## 1 One\n\n## 2 Two\n\n"
+            "See section 9.9 for details.\n\n"
+            "See section 1 for basics.\n\n"
+            "| ID   | Name |\n"
+            "|------|------|\n"
+            "| F-01 | One  |\n"
+            "\n"
+            "Deferred to F-99 for now.\n",
+            encoding="utf-8")
+        result = run_case("check-consistency.py", [str(dangling)])
+        if (result is None or result.returncode != 1
+                or "section 9.9" not in result.stdout
+                or "F-99" not in result.stdout
+                or "section 1'" in result.stdout):
+            print(f"FAIL {label} - numeric/ID resolution regressed")
+            failures += 1
+        clean = tmp / "clean.md"
+        clean.write_text(
+            "# Fixture\n\n## 1 One\n\n## 2 Two\n\n"
+            "See section 1 and chapter 2.\n\n"
+            "| ID   | Name |\n"
+            "|------|------|\n"
+            "| F-01 | One  |\n"
+            "\n"
+            "F-01 is defined.\n",
+            encoding="utf-8")
+        result = run_case("check-consistency.py", [str(clean)])
+        if result is None or result.returncode != 0 or "UNRESOLVED" in result.stdout:
+            print(f"FAIL {label} - resolvable references flagged")
+            failures += 1
+        empty_doc = tmp / "empty.md"
+        empty_doc.write_text(
+            "# Fixture\n\n## Orphan\n\n## Next\n\nBody text.\n",
+            encoding="utf-8")
+        result = run_case("validate-document.py", [str(empty_doc)])
+        if result is None or "empty heading" not in result.stdout:
+            print(f"FAIL {label} - empty heading not reported")
+            failures += 1
+        stranded = tmp / "stranded.md"
+        stranded.write_text(
+            "# Fixture\n\nA prose line ending with a pipe.        |\n",
+            encoding="utf-8")
+        result = run_case("validate-document.py", [str(stranded)])
+        if result is None or "stranded table fragment" not in result.stdout:
+            print(f"FAIL {label} - stranded pipe not reported")
+            failures += 1
+        dialect = tmp / "dialect.md"
+        dialect.write_text(
+            "# Fixture\n\n"
+            "The acknowledgment arrives, the acknowledgement is stored. "
+            "Acknowledgment twice more.\n",
+            encoding="utf-8")
+        result = run_case("lint-english.py", [str(dialect)])
+        if result is None or "acknowledg" not in result.stdout:
+            print(f"FAIL {label} - dialect pair not tracked")
+            failures += 1
+    print(("PASS" if not failures else "FAIL") + f" {label}")
+    return failures
+
+
 def main() -> int:
     failures = 0
     for script, args, exits, prefix, env_extra in CASES:
@@ -580,7 +648,8 @@ def main() -> int:
     failures += heuristic_regressions()
     failures += improvement_regressions()
     failures += english_consistency_regressions()
-    print(f"RESULT {len(CASES) + 4 - failures}/{len(CASES) + 4} tools passed")
+    failures += reference_regressions()
+    print(f"RESULT {len(CASES) + 5 - failures}/{len(CASES) + 5} tools passed")
     return 1 if failures else 0
 
 

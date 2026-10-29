@@ -220,6 +220,8 @@ def main(path, width, payload_markdown):
     fences = []
     fence_first = -1
     in_indented = False
+    last_open_heading = -1
+    last_open_level = 0
     prev = ""
     for i, line in enumerate(lines):
         n = i + 1
@@ -278,6 +280,13 @@ def main(path, width, payload_markdown):
         heading = HEADING.match(line)
         if heading:
             level = len(heading.group(1))
+            if last_open_heading >= 0 and level <= last_open_level and all(
+                    lines[j].strip() == ""
+                    for j in range(last_open_heading + 1, i)):
+                warnings.append(
+                    f"line {last_open_heading + 1}: empty heading")
+            last_open_heading = i
+            last_open_level = level
             if not payload:
                 if level == 1:
                     h1 += 1
@@ -294,6 +303,12 @@ def main(path, width, payload_markdown):
 
             if ";" in prose and not line.startswith("|"):
                 issues.append(f"line {n}: semicolon in prose")
+
+            if not line.lstrip().startswith("|") \
+                    and line.rstrip().endswith("|"):
+                issues.append(
+                    f"line {n}: stranded table fragment - "
+                    "line ends with a bare pipe")
 
             if re.search(r"[\U0001F300-\U0001FAFF☀-➿⬀-⯿]", line):
                 issues.append(f"line {n}: emoji or pictograph")
@@ -355,6 +370,11 @@ def main(path, width, payload_markdown):
             issues.append(f"line {n}: no blank line after list or table")
 
         prev = line
+
+    if last_open_heading >= 0 and all(
+            line.strip() == ""
+            for line in lines[last_open_heading + 1:]):
+        warnings.append(f"line {last_open_heading + 1}: empty heading")
 
     if foreign_letters:
         warnings.append(

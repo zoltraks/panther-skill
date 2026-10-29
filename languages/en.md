@@ -36,11 +36,11 @@ The rules described below apply to this document itself as well.
 | Special Characters       | 299  | Box-drawing and emoji               |
 | English Vocabulary       | 307  | Preferred terms and calques         |
 | Dialect Consistency      | 332  | One spelling dialect per document   |
-| Tables                   | 385  | Source-width alignment rules        |
-| File Names               | 518  | Naming new documentation files      |
-| Example                  | 533  | Correct and incorrect sample        |
-| File Maintenance         | 567  | Encoding and line-ending preserving |
-| Activation Phrases       | 578  | English trigger phrases by intent   |
+| Tables                   | 391  | Source-width alignment rules        |
+| File Names               | 524  | Naming new documentation files      |
+| Example                  | 538  | Correct and incorrect sample        |
+| File Maintenance         | 572  | Encoding and line-ending preserving |
+| Activation Phrases       | 583  | English trigger phrases by intent   |
 
 ## Document Structure
 
@@ -349,39 +349,44 @@ findings.
 The pair table below lists representative variants the checker tracks - the suffix patterns the
 pairs illustrate cover forms beyond the listed rows.
 
-| American       | British        |
-|----------------|----------------|
-| behavior       | behaviour      |
-| behavioral     | behavioural    |
-| color          | colour         |
-| favor          | favour         |
-| labor          | labour         |
-| neighbor       | neighbour      |
-| authorized     | authorised     |
-| organized      | organised      |
-| recognized     | recognised     |
-| categorized    | categorised    |
-| specialized    | specialised    |
-| synchronized   | synchronised   |
-| prioritized    | prioritised    |
-| memorized      | memorised      |
-| initialized    | initialised    |
-| characterized  | characterised  |
-| finalized      | finalised      |
-| normalized     | normalised     |
-| customized     | customised     |
-| minimized      | minimised      |
-| optimization   | optimisation   |
-| prioritization | prioritisation |
-| analyze        | analyse        |
-| catalog        | catalogue      |
-| license        | licence        |
-| program        | programme      |
-| center         | centre         |
-| meter          | metre          |
-| defense        | defence        |
-| canceled       | cancelled      |
-| traveled       | travelled      |
+| American       | British         |
+|----------------|-----------------|
+| behavior       | behaviour       |
+| behavioral     | behavioural     |
+| color          | colour          |
+| favor          | favour          |
+| labor          | labour          |
+| neighbor       | neighbour       |
+| authorized     | authorised      |
+| organized      | organised       |
+| recognized     | recognised      |
+| categorized    | categorised     |
+| specialized    | specialised     |
+| synchronized   | synchronised    |
+| prioritized    | prioritised     |
+| memorized      | memorised       |
+| initialized    | initialised     |
+| characterized  | characterised   |
+| finalized      | finalised       |
+| normalized     | normalised      |
+| customized     | customised      |
+| minimized      | minimised       |
+| optimization   | optimisation    |
+| prioritization | prioritisation  |
+| analyze        | analyse         |
+| catalog        | catalogue       |
+| license        | licence         |
+| program        | programme       |
+| center         | centre          |
+| meter          | metre           |
+| defense        | defence         |
+| canceled       | cancelled       |
+| traveled       | travelled       |
+| acknowledgment | acknowledgement |
+| tunable        | tuneable        |
+
+Variant forms inside inline code spans, identifiers, and enum values are literals, not
+spelling - a state named `cancelled` in backticks keeps its spelling under either dialect.
 
 ## Tables
 

@@ -580,6 +580,19 @@ the console cannot encode print as `\uXXXX` escapes instead of raising.
 Subprocess text output decodes as UTF-8 with an explicit error handler - `surrogateescape`
 where byte fidelity matters, `replace` for display payloads.
 
+`format-table.py` may need a repeat run before `--check` reports PASS on a document that
+mixes several table conventions - one pass can leave residual misalignment, so rerun the
+formatter once and re-check before reporting conformance.
+
+`validate-document.py` does not flag an empty heading - a heading directly followed by
+another heading or by end of file - and it does not flag a stranded table fragment such as
+a prose line ending with a padded `|`, so both stay manual audit checks.
+
+`check-consistency.py` resolves `section X.Y` and `chapter N` mentions against numbered
+headings, and record-identifier citations such as `F-68` against identifiers defined as
+first table cells - a removed record cited deliberately, for example in a change log,
+still reports `UNRESOLVED` and is resolved by review, not by the checker.
+
 The validators are mechanical checks, not judgment.
 
 A passing validator does not prove that a document is well written or correct.

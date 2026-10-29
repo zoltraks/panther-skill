@@ -139,6 +139,9 @@ Report only observations with line evidence - never taste judgments:
 - consistency - contradictory statements, version numbers that disagree between sections,
   quoted section references that resolve nowhere, and names that drift between variants
 - redundancy - the same statement repeated across sections
+- structural residue - empty headings, stranded table fragments such as a prose line ending
+  in a bare `|`, and dangling numeric references (`section X.Y`, record identifiers) left
+  behind by a renumbering
 
 The review is best-effort.
 
@@ -187,6 +190,11 @@ Order the plan by severity - `Critical` first, `Note` last.
 
 Note explicitly that executing the plan is a Correct task per
 `process/correct-document.md` the user must approve.
+
+When the request asks to decide findings individually - "go through the findings
+interactively", "ask me about each one" - group the findings into approval rounds of at
+most four related findings per question, offer a fix or skip decision on each, and apply
+only the approved fixes through `process/correct-document.md`.
 
 Under JSON exchange the approval question emits as the `fix-plan-approval` `choice` parameter.
 

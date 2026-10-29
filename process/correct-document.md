@@ -94,7 +94,8 @@ Every issue the checks surface belongs to one class.
 | `formatting`           | applied  | table alignment, comment columns, spacing and blank lines,    |
 |                        |          | trailing whitespace, packed sentences, typographic characters |
 | `structure`            | applied  | missing required or recommended sections, heading depth and   |
-|                        |          | case, contents drift, dead internal anchors                   |
+|                        |          | case, contents drift, dead internal anchors, heading          |
+|                        |          | numbering drift and stale `section X.Y` references            |
 | `language`             | applied  | grammar, agreement, punctuation, typos, doubled words,        |
 |                        |          | misspellings, vocabulary-table violations                     |
 | `style`                | applied  | overloaded sentences, register drift, heading case,           |
@@ -165,12 +166,12 @@ issue.
 Findings that can shift meaning - `calque`, `terminology`, `meaning drift`, `modality`,
 `identifier`, and `structure` fidelity - are never applied by this procedure.
 
-Each is written up as a proposal per `When a corrected defect class appears in a generated or template-derived
+Each is written up as a proposal per `Fidelity Proposals` below.
+
+When a corrected defect class appears in a generated or template-derived
 document, the same class is checked against the producing template and its
 sibling outputs, so the fix covers the source of the pattern, not only the file
 that surfaced it.
-
-## Fidelity Proposals` below.
 
 ## Plan Confirmation
 
@@ -209,6 +210,10 @@ mechanical split that reorders the wording.
 A fix applied to one instance sweeps the document for the same class of issue,
 per `process/translation-revision.md` - scripted bulk replacements run through
 `scripts/safe-replace.py` word-boundary matching, never bare substrings.
+
+Bulk heading rewrites - renumbering, stripping, or flattening section numbers - anchor on
+the full heading pattern (`^#{1,6} `) and skip fenced code regions, so a `#` comment inside
+a code block is never mistaken for a heading.
 
 A systematic in-document convention stays untouched and is reported as a
 convention, per `process/document-audit.md` - the correction never normalizes a

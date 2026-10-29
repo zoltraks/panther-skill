@@ -1759,6 +1759,17 @@
       "expectations": [
         "The definitional separator raises no spaced-hyphen clause-join warning."
       ]
+    },
+    {
+      "id": 145,
+      "prompt": "Audit an English design document that contains an empty heading, a prose line ending with a bare pipe, a 'section 9.9' reference with no matching numbered heading, and a citation of record 'F-99' that no table defines.",
+      "files": [],
+      "expectations": [
+        "The audit reports the empty heading as a structural finding.",
+        "The audit reports the stranded pipe as a table-fragment finding.",
+        "check-consistency.py reports UNRESOLVED for 'section 9.9' and for 'F-99'.",
+        "Resolvable section and identifier references produce no findings."
+      ]
     }
   ]
 }

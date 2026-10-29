@@ -47,6 +47,12 @@ POST_NOUNS = ("section", "heading", "appendix", "subsection",
 
 QUOTE_RE = re.compile(r'"([A-Z][^"\n]{1,80})"')
 HEADING_RE = re.compile(r"^(#{1,6})\s+(.*?)\s*#*\s*$")
+NUMBERED_HEADING_RE = re.compile(r"^(\d+(?:\.\d+)*)\s")
+SECTION_REF_RE = re.compile(
+    r"\b(section|sections|chapter)\s+((?:\d+(?:\.\d+)*)(?:\s*[-,]\s*\d+(?:\.\d+)*)*)",
+    re.IGNORECASE)
+ID_RE = re.compile(r"\b([A-Z])-(\d{1,3})\b")
+ID_CELL_RE = re.compile(r"^\|\s*([A-Z]-\d{1,3})\s*\|")
 BOLD_DEF_RE = re.compile(
     r"^\s*(?:[-*+]|\d+[.)])\s+\*\*([^*]{1,80})\*\*\s*[:—–-]")
 BOLD_CELL_RE = re.compile(r"^\|\s*\*\*([^*]{1,80})\*\*\s*\|")
@@ -172,6 +178,60 @@ def collect_references(lines):
     return refs
 
 
+def numbered_headings(lines):
+    """Set of section numbers that real headings carry - "6", "6.5", "4.14"."""
+    numbers = set()
+    for _, raw in lines:
+        head = HEADING_RE.match(raw.strip())
+        if head:
+            num = NUMBERED_HEADING_RE.match(head.group(2).strip())
+            if num:
+                numbers.add(num.group(1).rstrip("."))
+    return numbers
+
+
+def defined_ids(lines):
+    """Record identifiers defined as the first cell of a table row.
+
+    ``| F-68 | ...`` defines ``F-68``; mentions elsewhere are citations.
+    """
+    ids = set()
+    for _, raw in lines:
+        match = ID_CELL_RE.match(raw.strip())
+        if match:
+            ids.add(match.group(1))
+    return ids
+
+
+def collect_numeric_refs(lines):
+    """``section X.Y`` / ``chapter N`` mentions -> [(lineno, number)]."""
+    refs = []
+    for lineno, raw in lines:
+        line = strip_code(raw)
+        stripped = line.strip()
+        if HEADING_RE.match(stripped):
+            continue
+        for match in SECTION_REF_RE.finditer(line):
+            kind = match.group(1).lower()
+            for num in re.findall(r"\d+(?:\.\d+)*", match.group(2)):
+                refs.append((lineno, "%s %s" % (kind, num.rstrip("."))))
+    return refs
+
+
+def collect_id_refs(lines):
+    """``X-nn`` tokens outside their own definition rows -> {prefix: [(ln, id)]}."""
+    refs = {}
+    for lineno, raw in lines:
+        line = strip_code(raw)
+        stripped = line.strip()
+        if HEADING_RE.match(stripped) or ID_CELL_RE.match(stripped):
+            continue
+        for match in ID_RE.finditer(line):
+            prefix = match.group(1)
+            refs.setdefault(prefix, []).append((lineno, match.group(0)))
+    return refs
+
+
 def count_occurrences(norm_lines, key):
     """How many prose lines contain the normalized name as a phrase."""
     if not key:
@@ -257,6 +317,33 @@ def main():
             ("error", lineno,
              "UNRESOLVED '\"%s\"' - no heading or defined term matches"
              % name, "unresolved"))
+
+    # Numeric section references resolve against numbered headings, and
+    # record-identifier citations resolve against identifiers defined as
+    # first table cells - a renumbered heading or a removed record leaves
+    # a dangling reference behind.
+    numbers = numbered_headings(lines)
+    if numbers:
+        for lineno, ref in collect_numeric_refs(lines):
+            num = ref.split(" ", 1)[1]
+            if num not in numbers:
+                findings.append(
+                    ("error", lineno,
+                     "UNRESOLVED '%s' - no numbered heading matches" % ref,
+                     "unresolved: %s" % ref))
+    ids = defined_ids(lines)
+    if ids:
+        known_prefixes = {i.split("-")[0] for i in ids}
+        for prefix, hits in collect_id_refs(lines).items():
+            if prefix not in known_prefixes:
+                continue
+            for lineno, ident in hits:
+                if ident not in ids:
+                    findings.append(
+                        ("error", lineno,
+                         "UNRESOLVED '%s' - no record with this identifier "
+                         "is defined" % ident,
+                         "unresolved: %s" % ident))
 
     # Terminology drift: every anchor plus every quoted name, deduplicated.
     terms = {}
