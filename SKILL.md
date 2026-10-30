@@ -17,7 +17,7 @@ compatibility: >-
   Claude Desktop, Windsurf, Devin, and similar). Requires the ability to read
   and write text files. No network access required.
 metadata:
-  version: "1.3.8"
+  version: "1.3.9"
   author: Filip Golewski
 allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob Grep
 ---
@@ -221,6 +221,17 @@ the parameter surfaces, defaults, and question shapes live in
 - **`process/skill-maintenance.md`** - The maintenance-mode procedure: the intake menu,
   governing set, skipped document machinery, and validation for work on this repository.
 - **`process/session-review.md`** - The session-review procedure: gather lessons, report
+- **`process/parallel-execution.md`** - The delegated scout model for large
+  work surfaces: applicability, contract, merge, fallback.
+- **`process/housekeeping.md`** - Self-repository upkeep: registration,
+  coverage, workspace, validation.
+- **`process/self-healing.md`** - The evidence-gated self-repair loop for this
+  skill.
+- **`process/development.md`** - Standby-for-specification mode for developing
+  this skill.
+
+Timing is armed by default on every operation - `no timing` opts out for that
+request.
   findings for approval - autonomous and verbose modes included - apply, validate.
 - **`process/skill-activation.md`** - The enable-mode procedure: bare-activation intake, the
   readiness response, and the hand-off to document or maintenance mode.

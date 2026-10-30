@@ -10,6 +10,19 @@
 This file defines how Panther exposes its intake questions as JSON and how it consumes JSON
 answers.
 
+## Contents
+
+| Section             | What it covers                                              |
+|---------------------|-------------------------------------------------------------|
+| When To Emit        | The JSON-request trigger and pending-only emission          |
+| Diagnostic Output   | Verbose and diagnostic emission for information only        |
+| Emitted Document    | Context fields, fixed key order, and parameter shapes       |
+| Parameter Catalog   | Stable parameter ids per pending surface                    |
+| Returned Document   | Answer formats and resolution rules                         |
+| Autonomous Surfaces | Auto-resolved gates emit as answered informational docs     |
+| Authority           | The exchange is presentation, not a change to gate control  |
+| What Does Not Apply | Boundaries of the operation                                 |
+
 ## When To Emit
 
 When the request asks for the questions, settings, or parameters "in JSON", "as JSON", or another
@@ -65,14 +78,19 @@ The document carries a `description`, context fields (`target`, `task`, `date`, 
 
 `task` emits as an empty string when no task is classified yet - enable mode has none.
 
-Each parameter object keeps a fixed key order: `id`, `question`, `answer`, `description`, `type`,
-`menu`, `default` - the `default` key is always the last key of the object.
+Each parameter object keeps a fixed key order: `id`, `question`, `answer`, `description`, optional `when`, `type`,
+`menu`, `open`, `default` - the `default` key is always the last key of the object.
 
 - `id` - a stable kebab-case identifier for the parameter.
 - `question` - the literal question wording presented to the answering side.
 - `answer` - emitted as an empty string, or an empty array for `selection`, to be filled by the
   answering side.
 - `description` - what the parameter controls and the detection evidence behind its default.
+- `when` - an optional condition under which the parameter is asked, written as
+  clauses such as `document-type is A` joined by `and` or `or` and grouped
+  with parentheses. A parameter whose `when` is unsatisfied is skipped - it is
+  not asked, applies no `default`, and ignores any returned answer. `when` may
+  reference only parameters listed earlier in `intake`.
 - `type` - `choice` for a single-option answer taken from `menu`, `selection` when multiple
   options may be chosen, or `text` for free input.
 - `menu` - required for `choice` and `selection` types and omitted for `text`, letter-keyed (`A`,
@@ -81,6 +99,7 @@ Each parameter object keeps a fixed key order: `id`, `question`, `answer`, `desc
   entry, so it never exceeds four letters, and `Cancel` is never the `default`.
 - `default` - the option letter or suggested text applied when the answer stays empty, and the
   array of pre-checked letters for `selection`.
+- `open` - whether the answer is open to free text beyond the listed options.
 
 The bypass options of a parameter gate, such as accepting every remaining default, do not become
 `menu` entries - the `default` key and the returned document's "use defaults" semantics cover
@@ -200,7 +219,12 @@ typography questions in `languages/` files emit through this catch-all.
 
 ## Returned Document
 
-The answering side returns a document keeping a `response` key - either an array of entry objects
+A returned JSON document answers the pending surfaces by `id`, in either of two
+forms.
+
+The first form is the emitted document itself with `answer` fields filled.
+
+The second form is returned by the answering side and returns a document keeping a `response` key - either an array of entry objects
 or a condensed object keyed by parameter `id`.
 
 Each array entry requires only `id` and `answer` - an option letter for `choice`, an array of
@@ -284,3 +308,9 @@ gate, plus genuine ambiguities such as `mode-selection`.
 
 An orchestrating agent may emit and consume these documents without human interaction, and every
 automated decision is still recorded as answered through the exchange.
+
+## What Does Not Apply
+
+- No parameter document emits while no question surface is pending.
+- The catalog is not a parameter surface - `process/operations-catalog.md`
+  answers inline and never emits JSON.

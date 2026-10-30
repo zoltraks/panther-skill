@@ -1793,6 +1793,51 @@
         "A global reconciliation pass re-runs sweep counts and invariant diffs after the merge.",
         "The reply reports the kinds of changes in at most ten bullets, style categories only."
       ]
+    },
+    {
+      "id": 148,
+      "prompt": "housekeep panther-skill",
+      "expected_output": "Runs process/housekeeping.md - registration reconciliation, coverage checks, workspace hygiene, validation, proposal report.",
+      "files": [],
+      "expectations": [
+        "runs process/housekeeping.md and reports findings as a proposal"
+      ]
+    },
+    {
+      "id": 149,
+      "prompt": "work on panther-skill development",
+      "expected_output": "Runs process/development.md - update check, readiness report, standby for a described change.",
+      "files": [],
+      "expectations": [
+        "runs process/development.md and stands by for a described change"
+      ]
+    },
+    {
+      "id": 150,
+      "prompt": "heal panther-skill - a workflow gate misfires",
+      "expected_output": "Runs process/self-healing.md - evaluate, patch, replay against the skill's own validators, promote only with evidence.",
+      "files": [],
+      "expectations": [
+        "runs process/self-healing.md and requires external-verifier evidence"
+      ]
+    },
+    {
+      "id": 151,
+      "prompt": "correct this document, no timing",
+      "expected_output": "The operation runs without the closing timing paragraph - the opt-out disarms timing for that request.",
+      "files": [],
+      "expectations": [
+        "omits the closing timing paragraph on the opt-out request"
+      ]
+    },
+    {
+      "id": 152,
+      "prompt": "answer the pending questions as JSON",
+      "expected_output": "Emits the parameter document per process/json-exchange.md and accepts both answer-filled and response-wrapper returns.",
+      "files": [],
+      "expectations": [
+        "emits the parameter document and accepts both return forms"
+      ]
     }
   ]
 }
