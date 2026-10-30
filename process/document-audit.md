@@ -173,6 +173,10 @@ Severity levels:
 - `Note` - an observation or usability gap, for example no Contents section in a very long
   document
 
+Findings the user deliberately accepts - an intentional dialect choice, a rule the
+document's own convention overrides, a check result that does not apply - are recorded
+with their acceptance reason so later passes do not re-flag them as new defects.
+
 ## Fix Plan
 
 Produce a Fix Plan section only when the request asks for one.

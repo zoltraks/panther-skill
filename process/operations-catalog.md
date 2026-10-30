@@ -63,6 +63,8 @@ width when the request's language changes the cell text.
 | Revise    | translation revision     | minimal-diff corrections to an existing translation                             |
 | Correct   | document correction      | in-place formatting, structure, grammar, style, and typo fixes                  |
 | Correct   | fidelity proposals       | translation-fidelity findings proposed for approval, never applied              |
+| Humanize  | voice rewrite            | fact-preserving revision so the document reads human-authored                   |
+| Humanize  | scout decomposition      | parallel region drafts merged serially for large documents                      |
 | Reformat  | table formatting         | source-width table alignment                                                    |
 | Reformat  | comment alignment        | shared `#` comment column per plain-text block                                  |
 | Reformat  | sentence splitting       | one sentence per logical line                                                   |

@@ -101,6 +101,7 @@ Follow with a compact operations table - one row per family, columns `Operation`
 | Translate          | Documents between English, Polish, and German             |
 | Revise             | Minimal-diff corrections to an existing translation       |
 | Correct            | In-place document correction with fidelity proposals      |
+| Humanize           | Fact-preserving voice rewrite, human-authored read        |
 | Audit              | Document and translation conformance checks               |
 | Describe           | Consolidated inline descriptions of a subject             |
 | Derive             | Summaries, briefs, and supplements from a source document |

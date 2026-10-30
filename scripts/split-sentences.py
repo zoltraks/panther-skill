@@ -31,10 +31,10 @@ comments, and frontmatter stay opaque - packed sentences inside list items are
 an element-level convention, not a defect (see
 conventions/markdown-dialects.md).
 
-Sentence detection is heuristic: a capitalized word after a period inside
-parentheses (for example "(np. Wartość)") still looks like a new sentence
-even when a recognized abbreviation precedes it. Review proposed splits
-before applying them.
+Sentence detection is heuristic: a boundary inside parentheses or a code
+span never splits, but an uncommon abbreviation not in the recognized list
+can still produce a false boundary. Review proposed splits before applying
+them.
 
 Run this file in place from the skill repository -
 `python <skill-root>/scripts/split-sentences.py` - and run it on the
@@ -163,6 +163,14 @@ def boundary_positions(line):
             continue
         if ABBR.search(line[: m.end()].rstrip()):
             continue
+        code_masked = list(line[: m.start()])
+        for s, e in spans:
+            for i in range(min(s, len(code_masked)),
+                           min(e, len(code_masked))):
+                code_masked[i] = " "
+        prefix = "".join(code_masked)
+        if prefix.count("(") - prefix.count(")") > 0:
+            continue                    # boundary inside parentheses stays
         out.append(m.end())
     return out
 

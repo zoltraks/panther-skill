@@ -564,6 +564,7 @@ panther-skill/
 │   ├── decision-modes.md              # Interaction-mode matrix: interactive and autonomous
 │   ├── document-audit.md              # Standalone audit procedure: findings and fix plan
 │   ├── correct-document.md            # Standalone correction procedure: applied fixes, fidelity proposals
+│   ├── humanize-document.md           # Standalone humanize procedure: fact-preserving voice rewrite
 │   ├── describe-response.md           # Standalone describe procedure: caps and floors
 │   ├── json-exchange.md               # JSON parameter documents for pending questions
 │   ├── operation-timing.md            # Elapsed-time report for named operations
@@ -691,10 +692,12 @@ panther-skill/
 │   ├── validate-document.py           # Mechanical document checker
 │   ├── check-document.py              # One-command non-mutating check battery
 │   ├── diff-content.py                # Token-stream content-integrity diff
+│   ├── diff-identifiers.py            # Identifier census and before/after diff
 │   ├── check-parity.py                # Structural parity diff between source and rendered doc
 │   ├── check-titles.py                # Summary-table vs `ID: title` heading agreement
 │   ├── check-consistency.py           # Internal reference and terminology checker
 │   ├── safe-replace.py                # Word-boundary find/replace with residue scan
+│   ├── apply-pairs.py                 # Explicit literal old->new pair replacement with count assertions
 │   ├── lint-polish.py                 # Polish calque and prose linter
 │   ├── lint-english.py                # English vocabulary, grammar, and dialect linter
 │   ├── validate-skill.py              # Skill metadata and disclosure validator

@@ -989,6 +989,9 @@ Behandle eine Anfrage, die einer Phrase aus der Tabelle entspricht, wie ihre eng
 | korrigiere das dokument               | correct this document                    |
 | dokument korrigieren                  | correct this document                    |
 | korrektur lesen                       | proofread this document                  |
+| dokument menschlich klingen lassen    | humanize this document                   |
+| als hätte ein mensch es geschrieben   | make it read like a person wrote it      |
+| stimme des dokuments umschreiben      | rewrite the voice                        |
 | behebe die grammatik                  | correct the grammar                      |
 | rechtschreibfehler korrigieren        | fix the typos                            |
 | behebe die fehler im dokument         | fix the errors in this document          |

@@ -598,6 +598,8 @@ The following phrases activate the skill, grouped by intent:
 - **Correct documents**: correct this document, fix the errors in this
   document, proofread this document, correct the grammar, fix the typos,
   copyedit this document.
+- **Humanize documents**: humanize this document, make it read like a person wrote
+  it, rewrite the voice, remove the generated voice, make this read human-authored.
 - **Editorial review**: editorial pass, run the editorial battery, check the
   documents I just wrote, document check on <path>, check-document on the new files.
 - **Translate**: translate this document, translate this file, translate to Polish,

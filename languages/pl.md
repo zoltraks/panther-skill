@@ -1188,6 +1188,9 @@ Traktuj żądanie pasujące do frazy z tabeli jako jej angielski odpowiednik.
 | skoryguj dokument                  | correct this document                    |
 | korekta dokumentu                  | correct this document                    |
 | wykonaj korektę                    | proofread this document                  |
+| upodobnij dokument do człowieka    | humanize this document                   |
+| spraw, by brzmiał po ludzku        | make it read like a person wrote it      |
+| przeredaguj głos dokumentu         | rewrite the voice                        |
 | popraw błędy w dokumencie          | fix the errors in this document          |
 | popraw gramatykę                   | correct the grammar                      |
 | popraw literówki                   | fix the typos                            |

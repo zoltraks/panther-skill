@@ -29,8 +29,8 @@ Run `detect-encoding.py`, `detect-scope.py`, `normalize-chars.py`, `split-senten
 `reflow-prose.py`, `wrap-prose.py`, `format-table.py`, `align-comments.py`,
 `validate-document.py`, `check-document.py`, `diff-content.py`, `census-document.py`,
 `check-sections.py`, `check-parity.py`, `check-titles.py`, `safe-replace.py`,
-`lint-polish.py`, `lint-english.py`, and `check-consistency.py` in place from the
-skill repository:
+`apply-pairs.py`, `diff-identifiers.py`, `lint-polish.py`, `lint-english.py`, and
+`check-consistency.py` in place from the skill repository:
 
 `python <skill-root>/scripts/<tool>.py <file>`.
 
@@ -111,7 +111,10 @@ python <skill-root>/scripts/check-document.py <file.md> [--width N] [--payload-m
 python <skill-root>/scripts/check-parity.py <source.md> <target.md> [--terms <glossary.md> ...] [--expect-map <file> ...] [--eol lf|crlf]
 python <skill-root>/scripts/check-titles.py <file.md> [--verbose]
 python <skill-root>/scripts/safe-replace.py <file.md> <old> <new> [--raw] [--check]
+python <skill-root>/scripts/apply-pairs.py <file.md> <pairs.txt> [--check] [--count N]
 python <skill-root>/scripts/diff-content.py <file.md> [--baseline <file>] [--normalize-chars]
+python <skill-root>/scripts/diff-identifiers.py <file.md>
+python <skill-root>/scripts/diff-identifiers.py --before <old.md> --after <new.md> [--check] [--pattern REGEX]
 python <skill-root>/scripts/census-document.py <file.md> [--width N] [--payload-markdown]
 python <skill-root>/scripts/check-sections.py <file.md> --type <slug-or-path> [--language <code-or-path>]
 python <skill-root>/scripts/lint-polish.py <file.md> [--rules <rulefile.md> ...] [--group-by-form] [--payload-markdown]

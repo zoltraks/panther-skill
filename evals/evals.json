@@ -1770,6 +1770,29 @@
         "check-consistency.py reports UNRESOLVED for 'section 9.9' and for 'F-99'.",
         "Resolvable section and identifier references produce no findings."
       ]
+    },
+    {
+      "id": 146,
+      "prompt": "Humanize the supplied English design document: make it read like a person wrote it over several weeks, while every requirement identifier, default, endpoint, and normative rule stays intact.",
+      "files": [],
+      "expectations": [
+        "Self-referential sections such as a change summary or an embedded self-audit checklist are deleted without placeholders.",
+        "Every F/N/A/P/R/C-xx identifier present before survives in the result.",
+        "No fact-table row content changes - requirement, decision, and error-code rows stay identical.",
+        "Normative must/should/may rules are reworded at most, never weakened or dropped.",
+        "The document contains no remark announcing that it was made more human, no fabricated provenance, and no jokes."
+      ]
+    },
+    {
+      "id": 147,
+      "prompt": "Humanize a large multi-chapter specification using parallel subagents for disjoint regions, then merge and reconcile.",
+      "files": [],
+      "expectations": [
+        "Regions split on top-level boundaries and scouts draft to scratch files rather than editing the live document concurrently.",
+        "A serial merge splices regions in document order with verified seams.",
+        "A global reconciliation pass re-runs sweep counts and invariant diffs after the merge.",
+        "The reply reports the kinds of changes in at most ten bullets, style categories only."
+      ]
     }
   ]
 }

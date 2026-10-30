@@ -17,7 +17,7 @@ compatibility: >-
   Claude Desktop, Windsurf, Devin, and similar). Requires the ability to read
   and write text files. No network access required.
 metadata:
-  version: "1.3.7"
+  version: "1.3.8"
   author: Filip Golewski
 allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob Grep
 ---
@@ -36,19 +36,19 @@ allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob G
 | Skill Update Check      | 82   | Once-per-session git freshness gate before use |
 | Trigger Keywords        | 108  | Activation phrases                             |
 | How To Use              | 116  | Progressive disclosure and rule loading        |
-| Parameter Configuration | 174  | Defaults and user-controlled document shape    |
-| Principles              | 181  | Authoring invariants                           |
-| Process                 | 187  | Workflow, checklist, and standalone procedures |
-| Document Types          | 223  | Per-type rule files                            |
-| Languages               | 228  | Per-language style baselines                   |
-| Translations            | 239  | Language pair rules and industry glossaries    |
-| Scopes                  | 245  | Per-project-layout organization rules          |
-| Conventions             | 250  | Encoding, dialect, and format contract rules   |
-| Templates               | 254  | Per-type, per-language skeletons               |
-| Scripts                 | 266  | Detection, formatting, and validation scripts  |
-| Evaluation Prompts      | 273  | Behavioral regression prompts                  |
-| Repository Files        | 282  | Housekeeping files governing this repository   |
-| File Handling Contract  | 294  | Byte-level guarantees                          |
+| Parameter Configuration | 176  | Defaults and user-controlled document shape    |
+| Principles              | 183  | Authoring invariants                           |
+| Process                 | 189  | Workflow, checklist, and standalone procedures |
+| Document Types          | 228  | Per-type rule files                            |
+| Languages               | 233  | Per-language style baselines                   |
+| Translations            | 244  | Language pair rules and industry glossaries    |
+| Scopes                  | 250  | Per-project-layout organization rules          |
+| Conventions             | 255  | Encoding, dialect, and format contract rules   |
+| Templates               | 259  | Per-type, per-language skeletons               |
+| Scripts                 | 271  | Detection, formatting, and validation scripts  |
+| Evaluation Prompts      | 278  | Behavioral regression prompts                  |
+| Repository Files        | 287  | Housekeeping files governing this repository   |
+| File Handling Contract  | 299  | Byte-level guarantees                          |
 
 You are a Document Authoring Agent.
 
@@ -134,6 +134,8 @@ Use progressive disclosure:
   correct an existing translation or apply review findings to it.
 - Follow `process/correct-document.md` to correct, fix, or proofread a document, and
   `process/operation-timing.md` on a verbose, informational, diagnostic, or timing request.
+- Follow `process/humanize-document.md` when the request asks to humanize a document or
+  rewrite its voice to read human-authored while preserving its facts.
 - Load `conventions/` files only when required - AsciiDoc and reStructuredText stay minimal.
 
 This skill is self-contained - load a rule file from the listings only when the task needs it.
@@ -200,6 +202,9 @@ the parameter surfaces, defaults, and question shapes live in
   section check, convention evaluation, content review, findings, and the optional fix plan.
 - **`process/correct-document.md`** - The standalone correction procedure: applied formatting,
   structure, language, and style fixes, with fidelity adjustments for translation-source targets.
+- **`process/humanize-document.md`** - The standalone humanize procedure: fact-preserving
+  voice rewrite - deletions, meta collapse, passage rewrites, voice sweeps, scout
+  decomposition for large documents.
 - **`process/describe-response.md`** - The standalone describe procedure: consolidation,
   shortly caps and long-description floors, impersonal response style, inline delivery.
 - **`process/derived-documents.md`** - The standalone derive procedure: derivation
