@@ -217,7 +217,10 @@ non-ASCII literals and silently corrupt the very forms the script was written to
 
 Persist the terminology lock and the chunk ledger to a `.tmp.` note for a chunked render -
 a context reset mid-render must not lose the locked vocabulary or which spans already
-rendered.
+rendered. A context window nearing exhaustion never truncates or simplifies the
+translation - the remaining work divides into further phases or tasks, transient state
+materializes in the working directory as `.tmp.` notes and partial artifacts, and
+independent phases spawn scout subagents that read their inputs from those files.
 
 When the document embeds ` ```markdown ` payload blocks, pass `--payload-markdown` - a
 payload interior is translated prose and the same rules apply.

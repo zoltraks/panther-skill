@@ -17,9 +17,9 @@ Apply it for English to Polish translate tasks, per `process/translate-document.
 |----------------|------|-----------------------------------------------------|
 | Domain Signals | 24   | Activation conditions for this glossary             |
 | Terminology    | 36   | Recurring English terms and preferred Polish forms  |
-| Context Forms  | 348  | Context-dependent renderings                        |
-| Calque Traps   | 542  | Forbidden literal renderings and their replacements |
-| Untranslated   | 697  | Loanwords and identifiers kept in English form      |
+| Context Forms  | 353  | Context-dependent renderings                        |
+| Calque Traps   | 547  | Forbidden literal renderings and their replacements |
+| Untranslated   | 703  | Loanwords and identifiers kept in English form      |
 
 ## Domain Signals
 
@@ -127,6 +127,9 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | deploy / deployment               | wdrażać / wdrożenie                                                   |
 | deprecated                        | wycofany / przestarzały                                               |
 | design pattern                    | wzorzec projektowy                                                    |
+| developer                         | programista                                                           |
+| software developer                | programista                                                           |
+| software engineer                 | inżynier oprogramowania                                               |
 | development workflow              | proces wytwarzania oprogramowania / przebieg prac                     |
 | diff                              | zestaw zmian (diff)                                                   |
 | disposition                       | dyspozycja                                                            |

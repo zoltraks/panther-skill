@@ -40,10 +40,10 @@ Zasady opisane poniżej stosują się również do samego tego dokumentu.
 | Cechy dialektów                    | 864    | Numeracja rozdziałów i pseudo-nagłówki        |
 | Tabele                             | 884    | Wyrównanie według źródła                      |
 | Nazwy plików                       | 1015   | Nazywanie nowych plików dokumentacji          |
-| Przykład                           | 1027   | Przykład poprawny i niepoprawny               |
-| Kontrola przed dostarczeniem       | 1061   | Kontrole językowe przed dostarczeniem         |
-| Utrzymanie plików                  | 1073   | Kodowanie i złamania wierszy                  |
-| Pytanie o aktualizację             | 1084   | Polskie brzmienie pytania o aktualizację      |
+| Przykład                           | 1032   | Przykład poprawny i niepoprawny               |
+| Kontrola przed dostarczeniem       | 1066   | Kontrole językowe przed dostarczeniem         |
+| Utrzymanie plików                  | 1078   | Kodowanie i złamania wierszy                  |
+| Pytanie o aktualizację             | 1089   | Polskie brzmienie pytania o aktualizację      |
 | Frazy aktywujące                   | 1092   | Polskie frazy i ich angielskie odpowiedniki   |
 
 ## Struktura dokumentu
@@ -352,114 +352,116 @@ Nie odmieniaj angielskich wyrazów polskimi końcówkami, gdy istnieje naturalny
 Poniższa tabela jest źródłem prawdy dla mechanicznej kontroli - `scripts/lint-polish.py` odczytuje z
 niej wzorce zabronione.
 
-| Zamiast                                                                                                                                         | Używaj                                             |
-|-------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
-| ownerzy biznesowi                                                                                                                               | właściciele biznesowi                              |
-| dane skrapane                                                                                                                                   | dane skrapowane                                    |
-| deployować                                                                                                                                      | wdrażać                                            |
-| requestować                                                                                                                                     | zgłaszać                                           |
-| update'ować                                                                                                                                     | aktualizować                                       |
-| fixować                                                                                                                                         | poprawiać                                          |
-| kastomizacja                                                                                                                                    | dostosowanie                                       |
-| performance                                                                                                                                     | wydajność                                          |
-| stakeholderzy                                                                                                                                   | interesariusze                                     |
-| status report                                                                                                                                   | raport o statusie                                  |
-| meeting minutes                                                                                                                                 | protokół zebrania                                  |
-| commitowany                                                                                                                                     | dodany do repozytorium                             |
-| niecommitowany                                                                                                                                  | nieobecny w repozytorium                           |
-| onboardowanie                                                                                                                                   | wdrażanie nowych osób                              |
-| multi-agentowy                                                                                                                                  | wieloagentowy                                      |
-| prozatorski                                                                                                                                     | opisowy                                            |
-| usankcjonować                                                                                                                                   | sankcjonować / formalizować                        |
-| dostawczone                                                                                                                                     | dostarczone                                        |
-| cykl wydawniczy                                                                                                                                 | cykl wydaniowy                                     |
-| bramka wydawnicza                                                                                                                               | bramka wydaniowa                                   |
-| siostrzana gałąź                                                                                                                                | pozostała gałąź                                    |
-| wielorazowy                                                                                                                                     | wielokrotnego użytku                               |
-| linkowany                                                                                                                                       | powiązany odnośnikami                              |
-| progresywne ujawnianie                                                                                                                          | stopniowe ujawnianie                               |
-| plus (jako spójnik)                                                                                                                             | oraz / wraz z                                      |
-| per pozycja                                                                                                                                     | dla każdej pozycji                                 |
-| per endpoint                                                                                                                                    | dla każdego endpointu                              |
-| per adres                                                                                                                                       | dla każdego adresu                                 |
-| pod (katalogiem)                                                                                                                                | w katalogu                                         |
-| chudy (plik, dokument) / chuda / chude / chudym / chudą / chudego / chudej / chudemu / chudych                                                  | mały / drobny                                      |
-| najcięższy (dokument)                                                                                                                           | najbardziej rozbudowany                            |
-| najlżejszy                                                                                                                                      | najbardziej zwięzły                                |
-| niesie / niosą / niesione / niesiony / niesiona / niesiono / niósł                                                                              | zawiera / obejmuje                                 |
-| dotyka                                                                                                                                          | zmienia / obejmuje                                 |
-| zakotwiczone w                                                                                                                                  | oparte na                                          |
-| wskaźnik (odnośnik)                                                                                                                             | odnośnik / odwołanie                               |
-| wyposażenie agentowe                                                                                                                            | konfiguracja narzędzi AI                           |
-| zyskuje                                                                                                                                         | otrzymuje                                          |
-| właściciel (dokumentu)                                                                                                                          | dokument nadrzędny                                 |
-| mieszkają / żyje                                                                                                                                | znajdują się / jest zachowana                      |
-| lustro                                                                                                                                          | kopia struktury                                    |
-| ładunek / ładunki / ładunku / ładunka / ładunkiem / ładunków / ładunkami                                                                        | zawartość zmiany / zakres zmian                    |
-| rekord zmiany                                                                                                                                   | zapis / wpis                                       |
-| zaadresować                                                                                                                                     | uwzględnić / usunąć                                |
-| konsumowana                                                                                                                                     | obsługiwana / wykorzystywana                       |
-| rekursują                                                                                                                                       | są rozwijane rekurencyjnie                         |
-| celują w                                                                                                                                        | przyjmują jako cel / zalecają                      |
-| kosztuje kontekst                                                                                                                               | zajmuje miejsce w oknie kontekstu                  |
-| przypięty (do trybu) / przypięta / przypięte / przypięciem / przypięcia / przypiąć / przypinanie / przypinają / przypinany                      | ograniczony do trybu                               |
-| rozdzielczy (rzeczownik)                                                                                                                        | plik kierujący                                     |
-| zestaw zarządzania                                                                                                                              | zestaw dokumentów regulujących                     |
-| autorytatywny                                                                                                                                   | wiążący / nadrzędny                                |
-| skonsultowano                                                                                                                                   | sprawdzono / przejrzano                            |
-| triaż                                                                                                                                           | przegląd i klasyfikacja                            |
-| dryf                                                                                                                                            | narastająca rozbieżność / odchylenie               |
-| parzystość (parity)                                                                                                                             | zgodność / równoważność                            |
-| baseline                                                                                                                                        | wartość bazowa / zbiór bazowy                      |
-| zmaterializowane ryzyko                                                                                                                         | ryzyko się zrealizowało                            |
-| re-audyt                                                                                                                                        | ponowny audyt                                      |
-| kontrola wykonawcza                                                                                                                             | kontrola dynamiczna                                |
-| strażnik (guard)                                                                                                                                | mechanizm ochronny                                 |
-| jednorazowa instancja                                                                                                                           | tymczasowa instancja                               |
-| zastany                                                                                                                                         | istniejący wcześniej / odziedziczony               |
-| pre-existing / preexisting                                                                                                                      | zastany / istniejący wcześniej                     |
-| placeholder sekretu                                                                                                                             | wartość zastępcza sekretu                          |
-| realna baza                                                                                                                                     | rzeczywista baza danych                            |
-| serwujący                                                                                                                                       | udostępniający                                     |
-| brama (quality gate) / bramę / bramie / bramy / bramom / bramami / bramach / bramą / bramkujące / bramkowanie                                   | kontrola blokująca / warunek jakości               |
-| bramy raportowe                                                                                                                                 | kontrole nieblokujące                              |
-| powierzchnia kodu                                                                                                                               | zakres kodu                                        |
-| delta kodowa                                                                                                                                    | zakres zmian w kodzie                              |
-| diff (rzeczownik)                                                                                                                               | zestaw zmian (diff)                                |
-| zaadaptowany / zaadaptowana / zaadaptowane                                                                                                      | dostosowany                                        |
-| audytowalny / audytowalna / audytowalne                                                                                                         | audytowy                                           |
-| wykonaniowy / wykonaniowa / wykonaniowe                                                                                                         | dynamiczny / wykonawczy                            |
-| podbicie                                                                                                                                        | inkrementacja                                      |
-| trasa (routing)                                                                                                                                 | routing                                            |
-| narzędziowy (tool-driven) / narzędziowa / narzędziowe                                                                                           | przez narzędzia / obsługiwane                      |
-| ustalenia robocze / ustalenie robocze / ustaleń roboczych                                                                                       | uzgodnienia robocze                                |
-| baza scalenia / bazę scalenia                                                                                                                   | wspólny przodek (merge base)                       |
-| mechanizm wytwarzania                                                                                                                           | proces wytwarzania                                 |
-| mechanizm procesowy                                                                                                                             | proces                                             |
-| miejsce zdefiniowania / miejsca zdefiniowania / miejscu zdefiniowania / miejsc zdefiniowania / miejscem zdefiniowania / miejscami zdefiniowania | dokument nadrzędny / wskazane źródło               |
-| dokumenty regulujące                                                                                                                            | dokumenty określające obowiązujące zasady          |
-| odchudzony (plik, dokument)                                                                                                                     | pomniejszony                                       |
-| zaspokaja rolę / zaspokoić rolę                                                                                                                 | pełni rolę / spełnia wymagania roli                |
-| wtóruje                                                                                                                                         | powtarza                                           |
-| rządzi (reguły)                                                                                                                                 | obowiązuje w                                       |
-| goły odnośnik                                                                                                                                   | sam odnośnik                                       |
-| postać zagęszczona                                                                                                                              | postać skrócona                                    |
-| wolne wejście / wolny tekst                                                                                                                     | odpowiedź w dowolnej formie tekstowej              |
-| pusta selekcja                                                                                                                                  | brak wybranych opcji                               |
-| kontrole przechodzą                                                                                                                             | kontrole kończą się pomyślnie                      |
-| człowiek w pętli                                                                                                                                | tryb z udziałem człowieka                          |
-| maintainer / maintainerzy                                                                                                                       | opiekun projektu                                   |
-| końcowy kandydat                                                                                                                                | końcowy etap                                       |
-| kandydat rozpoznania / kandydaci rozpoznania                                                                                                    | kandydat do sprawdzenia / kandydaci do sprawdzenia |
-| nie mycie                                                                                                                                       | niemycie                                           |
-| nie używanie                                                                                                                                    | nieużywanie                                        |
-| nie noszenie                                                                                                                                    | nienoszenie                                        |
-| nie zgłoszenie                                                                                                                                  | niezgłoszenie                                      |
-| szkolenie odnowieniowe                                                                                                                          | szkolenie odświeżające                             |
-| ważność (wypadku, zdarzenia)                                                                                                                    | powaga / nasilenie                                 |
-| kompromitować (bezpieczeństwa, integralności)                                                                                                   | naruszać / osłabiać                                |
-| ucieczka (substancji, gazu)                                                                                                                     | uwolnienie / wyciek                                |
-| dostać winę                                                                                                                                     | zostać obwinionym / ponieść winę                   |
+| Zamiast                                                                                                                                                        | Używaj                                             |
+|----------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
+| ownerzy biznesowi                                                                                                                                              | właściciele biznesowi                              |
+| dane skrapane                                                                                                                                                  | dane skrapowane                                    |
+| deployować                                                                                                                                                     | wdrażać                                            |
+| requestować                                                                                                                                                    | zgłaszać                                           |
+| update'ować                                                                                                                                                    | aktualizować                                       |
+| fixować                                                                                                                                                        | poprawiać                                          |
+| kastomizacja                                                                                                                                                   | dostosowanie                                       |
+| performance                                                                                                                                                    | wydajność                                          |
+| stakeholderzy                                                                                                                                                  | interesariusze                                     |
+| status report                                                                                                                                                  | raport o statusie                                  |
+| meeting minutes                                                                                                                                                | protokół zebrania                                  |
+| commitowany                                                                                                                                                    | dodany do repozytorium                             |
+| niecommitowany                                                                                                                                                 | nieobecny w repozytorium                           |
+| onboardowanie                                                                                                                                                  | wdrażanie nowych osób                              |
+| multi-agentowy                                                                                                                                                 | wieloagentowy                                      |
+| prozatorski                                                                                                                                                    | opisowy                                            |
+| usankcjonować                                                                                                                                                  | sankcjonować / formalizować                        |
+| dostawczone                                                                                                                                                    | dostarczone                                        |
+| cykl wydawniczy                                                                                                                                                | cykl wydaniowy                                     |
+| bramka wydawnicza                                                                                                                                              | bramka wydaniowa                                   |
+| siostrzana gałąź                                                                                                                                               | pozostała gałąź                                    |
+| wielorazowy                                                                                                                                                    | wielokrotnego użytku                               |
+| linkowany                                                                                                                                                      | powiązany odnośnikami                              |
+| progresywne ujawnianie                                                                                                                                         | stopniowe ujawnianie                               |
+| plus (jako spójnik)                                                                                                                                            | oraz / wraz z                                      |
+| per pozycja                                                                                                                                                    | dla każdej pozycji                                 |
+| per endpoint                                                                                                                                                   | dla każdego endpointu                              |
+| per adres                                                                                                                                                      | dla każdego adresu                                 |
+| pod (katalogiem)                                                                                                                                               | w katalogu                                         |
+| chudy (plik, dokument) / chuda / chude / chudym / chudą / chudego / chudej / chudemu / chudych                                                                 | mały / drobny                                      |
+| najcięższy (dokument)                                                                                                                                          | najbardziej rozbudowany                            |
+| najlżejszy                                                                                                                                                     | najbardziej zwięzły                                |
+| deweloper / dewelopera / deweloperze / deweloperem / deweloperów / deweloperze                                                                                 | programista /                                      |
+| deweloperski / deweloperska / deweloperskie / deweloperską / deweloperskiej / deweloperskich / deweloperskiego / deweloperskim / deweloperskimi / deweloperscy | programistyczny /                                  |
+| niesie / niosą / niesione / niesiony / niesiona / niesiono / niósł                                                                                             | zawiera / obejmuje                                 |
+| dotyka                                                                                                                                                         | zmienia / obejmuje                                 |
+| zakotwiczone w                                                                                                                                                 | oparte na                                          |
+| wskaźnik (odnośnik)                                                                                                                                            | odnośnik / odwołanie                               |
+| wyposażenie agentowe                                                                                                                                           | konfiguracja narzędzi AI                           |
+| zyskuje                                                                                                                                                        | otrzymuje                                          |
+| właściciel (dokumentu)                                                                                                                                         | dokument nadrzędny                                 |
+| mieszkają / żyje                                                                                                                                               | znajdują się / jest zachowana                      |
+| lustro                                                                                                                                                         | kopia struktury                                    |
+| ładunek / ładunki / ładunku / ładunka / ładunkiem / ładunków / ładunkami                                                                                       | zawartość zmiany / zakres zmian                    |
+| rekord zmiany                                                                                                                                                  | zapis / wpis                                       |
+| zaadresować                                                                                                                                                    | uwzględnić / usunąć                                |
+| konsumowana                                                                                                                                                    | obsługiwana / wykorzystywana                       |
+| rekursują                                                                                                                                                      | są rozwijane rekurencyjnie                         |
+| celują w                                                                                                                                                       | przyjmują jako cel / zalecają                      |
+| kosztuje kontekst                                                                                                                                              | zajmuje miejsce w oknie kontekstu                  |
+| przypięty (do trybu) / przypięta / przypięte / przypięciem / przypięcia / przypiąć / przypinanie / przypinają / przypinany                                     | ograniczony do trybu                               |
+| rozdzielczy (rzeczownik)                                                                                                                                       | plik kierujący                                     |
+| zestaw zarządzania                                                                                                                                             | zestaw dokumentów regulujących                     |
+| autorytatywny                                                                                                                                                  | wiążący / nadrzędny                                |
+| skonsultowano                                                                                                                                                  | sprawdzono / przejrzano                            |
+| triaż                                                                                                                                                          | przegląd i klasyfikacja                            |
+| dryf                                                                                                                                                           | narastająca rozbieżność / odchylenie               |
+| parzystość (parity)                                                                                                                                            | zgodność / równoważność                            |
+| baseline                                                                                                                                                       | wartość bazowa / zbiór bazowy                      |
+| zmaterializowane ryzyko                                                                                                                                        | ryzyko się zrealizowało                            |
+| re-audyt                                                                                                                                                       | ponowny audyt                                      |
+| kontrola wykonawcza                                                                                                                                            | kontrola dynamiczna                                |
+| strażnik (guard)                                                                                                                                               | mechanizm ochronny                                 |
+| jednorazowa instancja                                                                                                                                          | tymczasowa instancja                               |
+| zastany                                                                                                                                                        | istniejący wcześniej / odziedziczony               |
+| pre-existing / preexisting                                                                                                                                     | zastany / istniejący wcześniej                     |
+| placeholder sekretu                                                                                                                                            | wartość zastępcza sekretu                          |
+| realna baza                                                                                                                                                    | rzeczywista baza danych                            |
+| serwujący                                                                                                                                                      | udostępniający                                     |
+| brama (quality gate) / bramę / bramie / bramy / bramom / bramami / bramach / bramą / bramkujące / bramkowanie                                                  | kontrola blokująca / warunek jakości               |
+| bramy raportowe                                                                                                                                                | kontrole nieblokujące                              |
+| powierzchnia kodu                                                                                                                                              | zakres kodu                                        |
+| delta kodowa                                                                                                                                                   | zakres zmian w kodzie                              |
+| diff (rzeczownik)                                                                                                                                              | zestaw zmian (diff)                                |
+| zaadaptowany / zaadaptowana / zaadaptowane                                                                                                                     | dostosowany                                        |
+| audytowalny / audytowalna / audytowalne                                                                                                                        | audytowy                                           |
+| wykonaniowy / wykonaniowa / wykonaniowe                                                                                                                        | dynamiczny / wykonawczy                            |
+| podbicie                                                                                                                                                       | inkrementacja                                      |
+| trasa (routing)                                                                                                                                                | routing                                            |
+| narzędziowy (tool-driven) / narzędziowa / narzędziowe                                                                                                          | przez narzędzia / obsługiwane                      |
+| ustalenia robocze / ustalenie robocze / ustaleń roboczych                                                                                                      | uzgodnienia robocze                                |
+| baza scalenia / bazę scalenia                                                                                                                                  | wspólny przodek (merge base)                       |
+| mechanizm wytwarzania                                                                                                                                          | proces wytwarzania                                 |
+| mechanizm procesowy                                                                                                                                            | proces                                             |
+| miejsce zdefiniowania / miejsca zdefiniowania / miejscu zdefiniowania / miejsc zdefiniowania / miejscem zdefiniowania / miejscami zdefiniowania                | dokument nadrzędny / wskazane źródło               |
+| dokumenty regulujące                                                                                                                                           | dokumenty określające obowiązujące zasady          |
+| odchudzony (plik, dokument)                                                                                                                                    | pomniejszony                                       |
+| zaspokaja rolę / zaspokoić rolę                                                                                                                                | pełni rolę / spełnia wymagania roli                |
+| wtóruje                                                                                                                                                        | powtarza                                           |
+| rządzi (reguły)                                                                                                                                                | obowiązuje w                                       |
+| goły odnośnik                                                                                                                                                  | sam odnośnik                                       |
+| postać zagęszczona                                                                                                                                             | postać skrócona                                    |
+| wolne wejście / wolny tekst                                                                                                                                    | odpowiedź w dowolnej formie tekstowej              |
+| pusta selekcja                                                                                                                                                 | brak wybranych opcji                               |
+| kontrole przechodzą                                                                                                                                            | kontrole kończą się pomyślnie                      |
+| człowiek w pętli                                                                                                                                               | tryb z udziałem człowieka                          |
+| maintainer / maintainerzy                                                                                                                                      | opiekun projektu                                   |
+| końcowy kandydat                                                                                                                                               | końcowy etap                                       |
+| kandydat rozpoznania / kandydaci rozpoznania                                                                                                                   | kandydat do sprawdzenia / kandydaci do sprawdzenia |
+| nie mycie                                                                                                                                                      | niemycie                                           |
+| nie używanie                                                                                                                                                   | nieużywanie                                        |
+| nie noszenie                                                                                                                                                   | nienoszenie                                        |
+| nie zgłoszenie                                                                                                                                                 | niezgłoszenie                                      |
+| szkolenie odnowieniowe                                                                                                                                         | szkolenie odświeżające                             |
+| ważność (wypadku, zdarzenia)                                                                                                                                   | powaga / nasilenie                                 |
+| kompromitować (bezpieczeństwa, integralności)                                                                                                                  | naruszać / osłabiać                                |
+| ucieczka (substancji, gazu)                                                                                                                                    | uwolnienie / wyciek                                |
+| dostać winę                                                                                                                                                    | zostać obwinionym / ponieść winę                   |
 
 Wpis `pod` w tabeli dotyczy wyłącznie kalki opisu miejsca - `pod katalogiem` zamiast `w katalogu` -
 a stałe zwroty takie jak `pod kątem`, `pod względem` czy `pod opieką` są poprawne i nie podlegają
