@@ -1838,6 +1838,19 @@
       "expectations": [
         "emits the parameter document and accepts both return forms"
       ]
+    },
+    {
+      "id": 153,
+      "prompt": "Translate a long governed report with register headings (### FND-001: Title, ### RSK-001: Title) from English to Polish. The file has internal [ID](#anchor) links pointing at those headings.",
+      "expected_output": "A faithful Polish sibling whose register headings carry translated titles and whose internal links resolve against the recomputed slugs.",
+      "files": [],
+      "expectations": [
+        "Every `[text](#target)` link keeps both delimiters - no `]#` sequence appears outside a link target.",
+        "Every internal `#anchor` reference resolves to a heading in the translated file.",
+        "After any scripted anchor rewrite or heading-text bulk edit, anchor resolution was re-verified, not checked once at the start.",
+        "Each source heading inside a chunked span renders exactly once, including headings sitting at a chunk boundary.",
+        "A blank line precedes every `##` heading."
+      ]
     }
   ]
 }

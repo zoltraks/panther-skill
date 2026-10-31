@@ -21,10 +21,10 @@ another language.
 | Detection            | 85   | Language, type, industry, and format-contract scan |
 | Rule Loading         | 128  | Ordered rule and contract-mapping loading          |
 | Translation Pass     | 145  | Terminology lock, chunked rendering, pass rules    |
-| Adapted Translation  | 252  | Adapted-fidelity rules and reporting               |
-| Validation           | 273  | Parity, mechanical checks, and self-review         |
-| Delivery             | 384  | Output conventions and the delivery report         |
-| Non-Goals            | 396  | Out-of-scope behaviors                             |
+| Adapted Translation  | 265  | Adapted-fidelity rules and reporting               |
+| Validation           | 286  | Parity, mechanical checks, and self-review         |
+| Delivery             | 404  | Output conventions and the delivery report         |
+| Non-Goals            | 416  | Out-of-scope behaviors                             |
 
 ## When This Applies
 
@@ -201,11 +201,24 @@ When a lint finding needs a bulk fix, `scripts/lint-polish.py --group-by-form` s
 the repeated forms, and the replacement pass follows the Scripted Bulk Edits rule in
 `principles/authoring-rules.md`.
 
+A scripted rewrite of anchors or link targets operates inside the `[text](#target)`
+span only, then re-verifies the file it just wrote: every `](#` opener still pairs
+with a closing `)`, no `]#` sequence outside a link target exists, and every
+referenced anchor still resolves. A fixup that rewrites whole lines can eat the
+delimiters it was written to preserve - `[id]#anchor)` resolves nothing, and the
+post-pass check is the only guard against shipping it.
+
+A bulk edit that changes heading text - punctuation normalization, a calque fix - moves
+the heading's slug, so anchor resolution runs again after every such pass, never only
+once at the end.
+
 When the document embeds ` ```markdown ` payload blocks, pass `--payload-markdown` - a
 payload interior is translated prose and the same rules apply.
 
 Verify the chunk boundaries against the source before concatenation - a dropped or
-doubled span surfaces in the Validation parity checks.
+doubled span surfaces in the Validation parity checks, and a heading skipped at a
+join is checked by name, since a lost register heading leaves links resolving
+nowhere while every lint stays silent.
 
 Working notes, drafts, meta-commentary, and statements about the producing skill or its rules never
 enter the output file.
@@ -328,6 +341,13 @@ Self-review against `process/document-checklist.md` plus the translation items:
   or the ASCII default.
 - Internal `#anchor` links resolve against the translated headings - `check-parity.py`
   reports every unresolved one.
+- Every `](#` link opener pairs with its closing `)` - a `]#` sequence outside a link
+  target is a malformed link, never a style variant, and any scripted rewrite of
+  anchors was re-verified for both markup and resolution after it ran.
+- A bulk edit that changed heading text after anchors were checked re-ran anchor
+  resolution - a punctuation or calque fix moves the slug it normalizes.
+- Every source heading inside each chunk's span rendered exactly once, and the heading
+  at each span boundary was verified by name.
 - Code, identifiers, and the untranslated set are byte-identical to the source.
 - Heading counts per depth match the source - a chunked render loses sections
   silently.
