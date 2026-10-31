@@ -1851,6 +1851,19 @@
         "Each source heading inside a chunked span renders exactly once, including headings sitting at a chunk boundary.",
         "A blank line precedes every `##` heading."
       ]
+    },
+    {
+      "id": 154,
+      "prompt": "Translate a governed report with a contents list, coverage table, bold pseudo-headings, and cross-references to section names inside prose and table cells, from English to Polish.",
+      "expected_output": "A faithful Polish sibling where every surface class carries the translation - not just headings and labels.",
+      "files": [],
+      "expectations": [
+        "Contents/index link texts are translated, and their targets use Polish slugs.",
+        "Coverage and inventory row labels use the contract's Polish renderings.",
+        "Bold pseudo-headings and section-name references inside prose and cells are Polish.",
+        "The document title line is translated.",
+        "A residual source-language scan before delivery lists zero unhandled surface classes."
+      ]
     }
   ]
 }

@@ -23,8 +23,8 @@ another language.
 | Translation Pass     | 145  | Terminology lock, chunked rendering, pass rules    |
 | Adapted Translation  | 277  | Adapted-fidelity rules and reporting               |
 | Validation           | 298  | Parity, mechanical checks, and self-review         |
-| Delivery             | 418  | Output conventions and the delivery report         |
-| Non-Goals            | 430  | Out-of-scope behaviors                             |
+| Delivery             | 424  | Output conventions and the delivery report         |
+| Non-Goals            | 436  | Out-of-scope behaviors                             |
 
 ## When This Applies
 
@@ -362,6 +362,12 @@ Self-review against `process/document-checklist.md` plus the translation items:
   at each span boundary was verified by name.
 - The language lint reported a nonzero forbidden-forms count when `--rules` is required -
   zero forms loaded means the rules file did not resolve, never a clean file.
+- A residual source-language scan ran before delivery: every surface type carries the
+  translation, not just headings and labels - the document title, contents and index
+  link texts, bold pseudo-headings, section-name references inside prose and table
+  cells, and row labels in coverage and inventory tables. A transform that handles
+  only enumerated line types leaves each unhandled surface class in the source
+  language.
 - Code, identifiers, and the untranslated set are byte-identical to the source.
 - Heading counts per depth match the source - a chunked render loses sections
   silently.

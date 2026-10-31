@@ -406,6 +406,10 @@ def main():
             root / "translations" / "en-pl" / "en-pl-software.md",
         ]
     pairs = load_forbidden(rules)
+    if not pairs:
+        print("lint-polish: WARNING - 0 forbidden forms loaded; the rules "
+              "file did not resolve - this is not a clean pass",
+              file=sys.stderr)
 
     findings = []
     for lineno, text in iter_prose_lines(args.file, args.payload_markdown):

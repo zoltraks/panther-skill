@@ -546,6 +546,19 @@ def main():
     for note in code_notes:
         print(f"NOTE inline code - {note}")
 
+    # Link markup integrity: a `]#` starved of its `(`, or a `](` never
+    # closed, is a malformed link - the corruption class a scripted anchor
+    # rewrite produces when it eats delimiters. Checked before resolution so
+    # broken markup cannot masquerade as a missing anchor.
+    details = []
+    for bad in sorted(set(re.findall(r"\]#[^(]", tgt_text))):
+        details.append(f"malformed link markup in target: ']{bad[1:]}' without '('")
+    orphan = len(re.findall(r"\]\(", tgt_text)) - len(
+        re.findall(r"\]\([^)]*\)", tgt_text)
+    )
+    if orphan > 0:
+        details.append(f"malformed link markup in target: {orphan} ']( ' without closing ')'")
+
     # Anchors: every #anchor link in target resolves against target
     # headings, and per-anchor link counts match unless a link: directive
     # declares the change
@@ -553,7 +566,6 @@ def main():
     src_anchors = ANCHOR_LINK.findall(src_text)
     tgt_slugs = {slugify(text) for _, _, text in tgt_heads}
     seen = set()
-    details = []
     anchor_declared = []
     for anchor in tgt_anchors:
         if anchor not in tgt_slugs and anchor not in seen:
