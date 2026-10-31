@@ -302,6 +302,11 @@ A silent compression or reordering is a defect, not an adaptation.
 
 Run `scripts/check-parity.py <source.md> <output.md>` first.
 
+Parity mirroring yields to hard document rules: when the source itself violates a
+`validate-document.py` failure (consecutive blank lines, nonstandard EOF, trailing
+whitespace), render the clean form and record the delta instead of mirroring the
+violation.
+
 It mechanically verifies the structural parity the faithful contract requires: heading level
 sequence, fence count and language tags, table geometry, list counts, HTML comments, inline-code
 spans, internal `#anchor` resolution, and file-level whitespace and byte conventions.
