@@ -21,10 +21,10 @@ another language.
 | Detection            | 85   | Language, type, industry, and format-contract scan |
 | Rule Loading         | 128  | Ordered rule and contract-mapping loading          |
 | Translation Pass     | 145  | Terminology lock, chunked rendering, pass rules    |
-| Adapted Translation  | 265  | Adapted-fidelity rules and reporting               |
-| Validation           | 286  | Parity, mechanical checks, and self-review         |
-| Delivery             | 404  | Output conventions and the delivery report         |
-| Non-Goals            | 416  | Out-of-scope behaviors                             |
+| Adapted Translation  | 277  | Adapted-fidelity rules and reporting               |
+| Validation           | 298  | Parity, mechanical checks, and self-review         |
+| Delivery             | 418  | Output conventions and the delivery report         |
+| Non-Goals            | 430  | Out-of-scope behaviors                             |
 
 ## When This Applies
 
@@ -212,6 +212,13 @@ A bulk edit that changes heading text - punctuation normalization, a calque fix 
 the heading's slug, so anchor resolution runs again after every such pass, never only
 once at the end.
 
+Write the fix script with the file tools, not a shell heredoc - a heredoc can mangle
+non-ASCII literals and silently corrupt the very forms the script was written to repair.
+
+Persist the terminology lock and the chunk ledger to a `.tmp.` note for a chunked render -
+a context reset mid-render must not lose the locked vocabulary or which spans already
+rendered.
+
 When the document embeds ` ```markdown ` payload blocks, pass `--payload-markdown` - a
 payload interior is translated prose and the same rules apply.
 
@@ -241,6 +248,11 @@ title and filename patterns.
 
 Exactly as the contract renders them, and elements the contract does not cover follow the normal
 rule chain.
+
+Section names, field labels, row labels, table headers, and status vocabulary translate
+by default - source-language retention is the declared exception, never the rule: only
+surfaces the resolved contract explicitly keeps (register identifiers, governed tokens,
+acronym and register glossary subsections, code and identifiers) stay untranslated.
 
 A metadata row that describes the document itself - its language, its generation time -
 describes the rendering, not the source: the language value records the target
@@ -348,6 +360,8 @@ Self-review against `process/document-checklist.md` plus the translation items:
   resolution - a punctuation or calque fix moves the slug it normalizes.
 - Every source heading inside each chunk's span rendered exactly once, and the heading
   at each span boundary was verified by name.
+- The language lint reported a nonzero forbidden-forms count when `--rules` is required -
+  zero forms loaded means the rules file did not resolve, never a clean file.
 - Code, identifiers, and the untranslated set are byte-identical to the source.
 - Heading counts per depth match the source - a chunked render loses sections
   silently.

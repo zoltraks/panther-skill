@@ -12,16 +12,16 @@ answers.
 
 ## Contents
 
-| Section             | What it covers                                              |
-|---------------------|-------------------------------------------------------------|
-| When To Emit        | The JSON-request trigger and pending-only emission          |
-| Diagnostic Output   | Verbose and diagnostic emission for information only        |
-| Emitted Document    | Context fields, fixed key order, and parameter shapes       |
-| Parameter Catalog   | Stable parameter ids per pending surface                    |
-| Returned Document   | Answer formats and resolution rules                         |
-| Autonomous Surfaces | Auto-resolved gates emit as answered informational docs     |
-| Authority           | The exchange is presentation, not a change to gate control  |
-| What Does Not Apply | Boundaries of the operation                                 |
+| Section             | Line | What it covers                                        |
+|---------------------|------|-------------------------------------------------------|
+| When To Emit        | 26   | The JSON-request trigger and pending-only emission    |
+| Diagnostic Output   | 37   | Verbose and diagnostic emission for information only  |
+| Emitted Document    | 67   | Context fields, fixed key order, and parameter shapes |
+| Parameter Catalog   | 175  | Stable parameter ids per pending surface              |
+| Returned Document   | 220  | Answer formats and resolution rules                   |
+| Autonomous Surfaces | 281  | Auto-resolved gates emit as answered informational    |
+| Authority           | 293  | The exchange is presentation, not a change to gate    |
+| What Does Not Apply | 312  | Boundaries of the operation                           |
 
 ## When To Emit
 

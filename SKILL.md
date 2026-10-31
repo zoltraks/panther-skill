@@ -17,7 +17,7 @@ compatibility: >-
   Claude Desktop, Windsurf, Devin, and similar). Requires the ability to read
   and write text files. No network access required.
 metadata:
-  version: "1.4.0"
+  version: "1.4.1"
   author: Filip Golewski
 allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob Grep
 ---
@@ -39,14 +39,14 @@ allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob G
 | Parameter Configuration | 176  | Defaults and user-controlled document shape    |
 | Principles              | 183  | Authoring invariants                           |
 | Process                 | 189  | Workflow, checklist, and standalone procedures |
-| Document Types          | 228  | Per-type rule files                            |
-| Languages               | 233  | Per-language style baselines                   |
+| Document Types          | 239  | Per-type rule files                            |
+| Languages               | 244  | Per-language style baselines                   |
 | Translations            | 244  | Language pair rules and industry glossaries    |
-| Scopes                  | 250  | Per-project-layout organization rules          |
+| Scopes                  | 261  | Per-project-layout organization rules          |
 | Conventions             | 255  | Encoding, dialect, and format contract rules   |
 | Templates               | 259  | Per-type, per-language skeletons               |
 | Scripts                 | 271  | Detection, formatting, and validation scripts  |
-| Evaluation Prompts      | 278  | Behavioral regression prompts                  |
+| Evaluation Prompts      | 289  | Behavioral regression prompts                  |
 | Repository Files        | 287  | Housekeeping files governing this repository   |
 | File Handling Contract  | 299  | Byte-level guarantees                          |
 
