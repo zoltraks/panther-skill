@@ -101,6 +101,13 @@ with `- `.
 Reflow the sentence so the hyphen travels with the text before it, or reword to remove
 the separator.
 
+Do not break a wrap inside inline markup - a code span, a file path, a URL, or link
+markup must stay on one line, so place the break before or after it.
+
+A span that wraps across lines stops reading as code: each line checks as prose on its
+own, so `;` and `|` inside it flag as prose errors, and a reader of the plain text sees
+the marker split from its content.
+
 ## Justified
 
 Lines wrap at a width and inter-word spacing stretches so both edges of the block sit flush.

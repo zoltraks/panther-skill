@@ -1864,6 +1864,17 @@
         "The document title line is translated.",
         "A residual source-language scan before delivery lists zero unhandled surface classes."
       ]
+    },
+    {
+      "id": 155,
+      "prompt": "A document fails validation with only mechanical findings - a prose semicolon, a missing blank line around a list, and a literal pipe inside a code span in a table cell. Repair it.",
+      "expected_output": "The mechanical findings are repaired in place and the document re-validates clean.",
+      "files": [],
+      "expectations": [
+        "fix-document.py applies semicolon, blank-line, pipe-escape, and table repairs in one pass.",
+        "Findings outside the mechanical classes are reported and left untouched.",
+        "check-document.py passes on the repaired file."
+      ]
     }
   ]
 }

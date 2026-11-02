@@ -17,9 +17,9 @@ They do not modify documents beyond the specific task each tool performs.
 | Section          | Line | What it covers                           |
 |------------------|------|------------------------------------------|
 | Tool Classes     | 24   | Tool groups and when to run them         |
-| Commands         | 95   | Per-tool usage, flags, and output        |
-| Validation Order | 471  | Recommended run sequence                 |
-| Limitations      | 517  | Known parsing limits and validator scope |
+| Commands         | 96   | Per-tool usage, flags, and output        |
+| Validation Order | 495  | Recommended run sequence                 |
+| Limitations      | 545  | Known parsing limits and validator scope |
 
 ## Tool Classes
 
@@ -27,8 +27,9 @@ They do not modify documents beyond the specific task each tool performs.
 
 Run `detect-encoding.py`, `detect-scope.py`, `normalize-chars.py`, `split-sentences.py`,
 `reflow-prose.py`, `wrap-prose.py`, `format-table.py`, `align-comments.py`,
-`validate-document.py`, `check-document.py`, `diff-content.py`, `census-document.py`,
-`check-sections.py`, `check-parity.py`, `check-titles.py`, `safe-replace.py`,
+`validate-document.py`, `check-document.py`, `fix-document.py`, `diff-content.py`,
+`census-document.py`, `check-sections.py`, `check-parity.py`, `check-titles.py`,
+`safe-replace.py`,
 `apply-pairs.py`, `diff-identifiers.py`, `lint-polish.py`, `lint-english.py`, and
 `check-consistency.py` in place from the skill repository:
 
@@ -107,6 +108,7 @@ python <skill-root>/scripts/reflow-prose.py <file.md> (--wrap | --unwrap | --jus
 python <skill-root>/scripts/format-table.py <file.md> [--check] [--payload-markdown] [--drop-empty-columns]
 python <skill-root>/scripts/align-comments.py <file.md> [--check] [--compact] [--payload-markdown]
 python <skill-root>/scripts/validate-document.py <file.md> [--width N] [--payload-markdown]
+python <skill-root>/scripts/fix-document.py <file.md> [--check] [--passes N]
 python <skill-root>/scripts/check-document.py <file.md> [--width N] [--payload-markdown] [--layout wrap|unwrap] [--split] [--polish] [--english] [--consistency] [--type <slug>] [--language <code>] [--baseline <file>] [--normalize-chars] [--parity <source.md>] [--terms <glossary.md> ...] [--expect-map <file> ...] [--eol lf|crlf] [--title-agreement] [--skill-root <dir>]
 python <skill-root>/scripts/check-parity.py <source.md> <target.md> [--terms <glossary.md> ...] [--expect-map <file> ...] [--eol lf|crlf]
 python <skill-root>/scripts/check-titles.py <file.md> [--verbose]
@@ -213,6 +215,25 @@ document - the translate and revision validation gate - and `--terms <glossary.m
 (repeatable) forwards glossary files to the parity concordance report and the
 expected-translation map, while `--expect-map <file>` and `--eol` forward to
 `check-parity.py`.
+
+`validate-document.py` prints each finding as `FAIL <file>:line <n>: <reason>` on
+stdout and exits 1 when any exist - that line shape is the contract for wrappers
+that consume the findings.
+
+`fix-document.py` applies the safe mechanical repair classes in a fixed-point loop -
+it runs `format-table.py`, parses the `validate-document.py` findings, rewrites
+`semicolon in prose` to the aside separator, escapes `literal pipe inside code span`
+to `&#124;`, and inserts missing blank lines around lists and tables, repeating until
+the file is clean or the loop stops changing it.
+
+Pipe escapes run before the table pass, since a literal pipe left in a code span
+would otherwise inflate the table's column count.
+
+`--check` reports the repairable findings without writing and exits 1 when any
+remain - the dry run for a bulk hygiene sweep.
+
+Findings outside the mechanical classes - headings, fences, links, reflow notes -
+are structural or judgment calls and are reported as remaining, never touched.
 
 The script exits `1` when a gated check reports findings and `0` otherwise.
 
@@ -508,6 +529,10 @@ Run checks in this order:
 wrap convention, `--polish` and `--english` cover step 6, `--type` covers step 10,
 `--consistency` covers step 11, and `--baseline` covers step 12.
 
+When the checks name findings, `fix-document.py` applies the mechanical classes -
+table alignment, missing blank lines, prose semicolons, literal pipes - in one pass
+and the validation re-runs afterward.
+
 For a translation or revision task, `check-parity.py <source.md> <output.md>` runs as an
 additional gate after the content-changing passes - `check-document.py --parity
 <source.md>` folds it into the battery, `--expect-map` silences declared translation
@@ -527,6 +552,9 @@ the miscount surfaces instead of passing silently.
 
 `validate-document.py` skips fenced code blocks when checking tables - example tables inside
 code fences, such as AsciiDoc samples, are payload, not Markdown tables.
+
+`fix-document.py` repairs only the mechanical finding classes - heading, fence, link,
+and reflow findings are reported as remaining and left for a judgment pass.
 
 Pass `--payload-markdown` to apply a curated subset of checks inside ` ```markdown ` blocks:
 

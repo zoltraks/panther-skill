@@ -21,10 +21,10 @@ another language.
 | Detection            | 85   | Language, type, industry, and format-contract scan |
 | Rule Loading         | 128  | Ordered rule and contract-mapping loading          |
 | Translation Pass     | 145  | Terminology lock, chunked rendering, pass rules    |
-| Adapted Translation  | 277  | Adapted-fidelity rules and reporting               |
-| Validation           | 298  | Parity, mechanical checks, and self-review         |
-| Delivery             | 424  | Output conventions and the delivery report         |
-| Non-Goals            | 436  | Out-of-scope behaviors                             |
+| Adapted Translation  | 280  | Adapted-fidelity rules and reporting               |
+| Validation           | 301  | Parity, mechanical checks, and self-review         |
+| Delivery             | 432  | Output conventions and the delivery report         |
+| Non-Goals            | 444  | Out-of-scope behaviors                             |
 
 ## When This Applies
 
