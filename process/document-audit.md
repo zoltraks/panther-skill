@@ -233,7 +233,7 @@ Those belong to document tasks.
 
 It is not a security review, code audit, or production-readiness assessment.
 
-Those belong to lens-skill.
+Those belong to a dedicated engineering-audit capability, not to document work.
 
 It does not re-ask after a declined fix plan, and it never applies the plan it writes -
 an approved plan executes through `process/correct-document.md`.
