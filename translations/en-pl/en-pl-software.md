@@ -258,6 +258,7 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | release candidate                 | kandydat do wydania / wersja kandydująca do wydania                   |
 | release lifecycle                 | cykl wydaniowy                                                        |
 | remediation                       | naprawa / działania naprawcze                                         |
+| remediation roadmap               | Działania naprawcze (nazwa sekcji raportu)                            |
 | repository                        | repozytorium                                                          |
 | repository discovery              | rozpoznanie repozytorium                                              |
 | reproducibility                   | odtwarzalność                                                         |

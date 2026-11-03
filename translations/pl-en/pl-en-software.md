@@ -76,6 +76,7 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | dostępność                                             | availability                     |
 | dyspozycja                                             | disposition                      |
 | działania naprawcze                                    | remediation actions              |
+| Działania naprawcze (nazwa sekcji raportu)             | Remediation Roadmap              |
 | dziennik zmian                                         | changelog                        |
 | ekspozycja                                             | exposure                         |
 | endpoint / punkt końcowy                               | endpoint                         |
