@@ -140,6 +140,7 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | drift                             | narastająca rozbieżność / odchylenie                                  |
 | dynamic testing                   | testowanie dynamiczne                                                 |
 | dynamic verification              | weryfikacja dynamiczna                                                |
+| embedded repository               | dołączone repozytorium                                                |
 | end-to-end                        | od początku do końca / testy całościowe (E2E)                         |
 | endpoint                          | endpoint / punkt końcowy                                              |
 | entry file                        | plik wejściowy                                                        |
@@ -461,9 +462,9 @@ Do not force one form everywhere:
 - `load` renders `wczytać` for reading a file, resource, or context into memory -
   when `load` names working out a sequence or resolving a set, render `określić` or
   `ustalić`, as in `load the read order` becoming `określ kolejność czytania`.
-- `gate` renders `punkt kontrolny` or `warunek przejścia` in formal documents -
-  `bramka` is accepted in expert report register (`bramka gotowości`, `bramka
-  wydaniowa`); bare `brama` stays a calque.
+- `gate` renders `punkt kontrolny`, `warunek przejścia`, or `kontrola
+  blokująca` in formal documents - `bramka`/`bramki`/`bramkę` stay calques, and
+  bare `brama` stays a calque.
 - `check` renders `kontrola` for an executed check in an assessment or audit -
   `sprawdzenie` names the act of verifying - and `the check passes` renders
   `kontrola kończy się pomyślnie`, never `kontrola przechodzi` without naming what
@@ -580,7 +581,7 @@ Do not force one form everywhere:
 | siostrzana gałąź                                                                                                | pozostała gałąź                                                       |
 | parzystość                                                                                                      | zgodność / równoważność                                               |
 | zmaterializowane ryzyko                                                                                         | ryzyko się zrealizowało                                               |
-| re-audyt                                                                                                        | ponowny audyt                                                         |
+| re-audyt                                                                                                        | ponowny audyt / ponowny względem, gdy podmiotem jest już audyt        |
 | kontrola wykonawcza                                                                                             | kontrola dynamiczna                                                   |
 | strażnik                                                                                                        | mechanizm ochronny                                                    |
 | serwujący                                                                                                       | udostępniający                                                        |

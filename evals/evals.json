@@ -1875,6 +1875,17 @@
         "Findings outside the mechanical classes are reported and left untouched.",
         "check-document.py passes on the repaired file."
       ]
+    },
+    {
+      "id": 156,
+      "prompt": "Translate this English software document to Polish.",
+      "expected_output": "A Polish document using governed vocabulary without calques.",
+      "files": [],
+      "expectations": [
+        "`gate` renders `punkt kontrolny`, `warunek przejścia`, or `kontrola blokująca` - `bramka`/`bramki`/`bramkę` never appear, even in report-register phrasing.",
+        "`embedded repository` renders `dołączone repozytorium`, while embedded datastores and engines keep `osadzony`/`osadzona`.",
+        "`re-audit` renders `ponowny audyt`, shortened to `ponowny względem` where `audyt` already names the subject."
+      ]
     }
   ]
 }
