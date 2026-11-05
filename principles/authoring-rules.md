@@ -76,6 +76,19 @@ or fix unrelated typos unless the request covers it.
 
 Every unrelated edit makes review harder and hides the real change.
 
+## Intentional Variance
+
+Example and exhibit blocks may break the document's rules on purpose - a fenced example,
+a ` ``` markdown ` payload, or an exhibit showing the wrong form is a demonstration, not a defect.
+
+Never reformat the interior of such a block - its wrapping, tables, comments, quote style,
+or dialect - unless the request names the block or a force surface applies.
+
+Force surfaces are explicit: `--payload-markdown` for payload fences,
+an opt-in marker such as `<!-- align-comments: off -->`, or a request that names the example itself.
+
+An example that fails its own teaching point is a finding to report, never a silent fix.
+
 ## Scripted Bulk Edits
 
 Every scripted find/replace on prose uses word-boundary matching - `scripts/safe-replace.py` or an

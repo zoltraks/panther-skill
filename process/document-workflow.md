@@ -16,17 +16,17 @@ a reformatting, or a translation.
 | Section                    | Line | What it covers                                     |
 |----------------------------|------|----------------------------------------------------|
 | Intake                     | 31   | Task classification and mode routing               |
-| Parameter Resolution       | 74   | Defaults, acceptance gate, and parameter questions |
+| Parameter Resolution       | 75   | Defaults, acceptance gate, and parameter questions |
 | Question Surfaces          | 136  | Answer caps, guessed options, Cancel, ordering     |
 | Detection                  | 182  | Encoding, dialect, and convention detection        |
-| Scope Detection            | 234  | Project-layout signals and scope selection         |
-| Rule Selection             | 275  | Layered rule-file loading order                    |
-| Section Plan               | 312  | Type-driven structure, selection, and format       |
-| Plan Confirmation          | 341  | The pre-execution proceed/adjust/cancel gate       |
-| Drafting And Editing       | 359  | Templates, minimal diff, and reformatting tools    |
-| Editing Governed Documents | 400  | Governed-set inventory and rename discipline       |
-| Validation                 | 429  | Mechanical checks before delivery                  |
-| Delivery                   | 461  | Confirmation gates and reporting                   |
+| Scope Detection            | 236  | Project-layout signals and scope selection         |
+| Rule Selection             | 277  | Layered rule-file loading order                    |
+| Section Plan               | 315  | Type-driven structure, selection, and format       |
+| Plan Confirmation          | 347  | The pre-execution proceed/adjust/cancel gate       |
+| Drafting And Editing       | 365  | Templates, minimal diff, and reformatting tools    |
+| Editing Governed Documents | 404  | Governed-set inventory and rename discipline       |
+| Validation                 | 432  | Mechanical checks before delivery                  |
+| Delivery                   | 464  | Confirmation gates and reporting                   |
 
 ## Intake
 
@@ -200,6 +200,9 @@ and embedded HTML artifacts.
 
 Identify embedded payload documents the same way - ` ``` markdown ` fenced blocks that carry
 complete documents are separate dialect regions with their own conventions.
+
+Example and exhibit blocks follow the same rule - a deliberately incorrect exhibit breaks the host's
+conventions on purpose and stays opaque unless the request names it.
 
 Before planning changes, gather every convention the document currently follows and record them as
 the working set for the edit:

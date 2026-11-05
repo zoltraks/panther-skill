@@ -183,6 +183,13 @@ Inside a payload:
   and indented code blocks are always opaque.
   They may contain table-like `|` text or prose-like lines that must never be reformatted.
 
+The same opacity covers example exhibits - a fenced or indented block shown as the wrong way to
+write something breaks the host's rules on purpose and stays as written.
+
+Reformat the interior of an example or payload block only on explicit request or a force surface -
+`--payload-markdown` for payload fences, an opt-in marker such as `<!-- align-comments: off -->`,
+or a request that names the block itself.
+
 When a document embeds another fenced block inside a payload,
 the inner fence must use a longer marker than the outer one (four backticks inside a
 three-backtick fence).

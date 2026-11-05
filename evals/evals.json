@@ -1898,6 +1898,17 @@
         "The fix runs `reflow-prose.py --wrap --width 100`, which rewrites the flagged blocks and leaves correctly wrapped blocks untouched.",
         "Lines that cannot fit because of an unbreakable span such as a URL or code span are reported, never split."
       ]
+    },
+    {
+      "id": 158,
+      "prompt": "Reformat this document to the bounded convention at 100 characters.",
+      "expected_output": "Prose is rewrapped, while fenced example blocks and deliberately-incorrect exhibits keep their interiors unchanged.",
+      "files": [],
+      "expectations": [
+        "Example and exhibit blocks stay opaque - a fenced example, a ```markdown payload, or a deliberately incorrect exhibit is not reflowed, table-formatted, or comment-aligned.",
+        "Example-block interiors change only when the request names them or a force surface applies, such as `--payload-markdown` or an opt-in marker like `<!-- align-comments: off -->`.",
+        "An example that fails its own teaching point is reported as a finding, not silently fixed."
+      ]
     }
   ]
 }
