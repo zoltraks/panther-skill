@@ -21,8 +21,8 @@ They do not modify documents beyond the specific task each tool performs.
 |------------------|------|------------------------------------------|
 | Tool Classes     | 27   | Tool groups and when to run them         |
 | Commands         | 99   | Per-tool usage, flags, and output        |
-| Validation Order | 492  | Recommended run sequence                 |
-| Limitations      | 541  | Known parsing limits and validator scope |
+| Validation Order | 504  | Recommended run sequence                 |
+| Limitations      | 553  | Known parsing limits and validator scope |
 
 ## Tool Classes
 
@@ -107,8 +107,8 @@ python <skill-root>/scripts/detect-encoding.py <file>
 python <skill-root>/scripts/detect-scope.py <directory>
 python <skill-root>/scripts/normalize-chars.py <file.md> [--check] [--payload-markdown]
 python <skill-root>/scripts/split-sentences.py <file.md> [--check] [--paragraphs | --flow] [--width N] [--payload-markdown]
-python <skill-root>/scripts/reflow-prose.py <file.md> (--wrap | --unwrap | --justify) [--check] [--width N] [--payload-markdown]
-python <skill-root>/scripts/format-table.py <file.md> [--check] [--payload-markdown] [--drop-empty-columns]
+python <skill-root>/scripts/reflow-prose.py <file.md|dir> (--wrap | --unwrap | --justify) [--check] [--width N] [--payload-markdown] [--loose] [--convert] [--exclude NAME ...]
+python <skill-root>/scripts/format-table.py <file.md|dir> [--check] [--payload-markdown] [--drop-empty-columns] [--exclude NAME ...]
 python <skill-root>/scripts/align-comments.py <file.md> [--check] [--compact] [--payload-markdown]
 python <skill-root>/scripts/validate-document.py <file.md> [--width N] [--payload-markdown]
 python <skill-root>/scripts/fix-document.py <file.md> [--check] [--passes N]
@@ -193,6 +193,18 @@ with `split-sentences.py --paragraphs` when the task also asks for one sentence 
 Its `--justify` mode wraps like `--wrap` and additionally stretches inter-word spacing on every line
 of a block except its last, so both edges sit flush - the `justified` layout from
 `conventions/prose-layout.md`.
+
+A document that reads as unwrapped - over-width lines that open their own prose units with few
+continuation lines - is refused by `--wrap` and `--justify`: wrapping it would convert the layout,
+not fix wrapping. `--check` reports the file as an unwrapped layout and passes it; write mode asks
+for `--convert`, the explicit opt-in for layout conversions.
+
+`--loose` is the loose-wrap convention: only a multi-line block that contains an over-width line
+rewraps, so single over-width lines (unwrapped sentences) and already-wrapped blocks stay untouched.
+
+Directory mode accepts a directory instead of a file and processes every Markdown file under it,
+skipping `work/`, `.git/`, and every component named by a repeated `--exclude NAME` - produced
+documents such as `templates/` or `examples/` content stay excluded from corpus sweeps that way.
 
 The marker prefix of a list item or blockquote stays fixed,
 and the mode is idempotent on an already justified document.
