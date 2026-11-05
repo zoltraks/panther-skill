@@ -68,7 +68,7 @@ import os
 import re
 import sys
 
-FENCE = re.compile(r"^\s*(`{3,})\s*(\w*)")
+FENCE = re.compile(r"^\s*(`{3,}|~{3,})\s*(\w*)")
 ITEM = re.compile(r"^(\s*)([-*+]|\d+[.)])([ \t]+)(.*)$")
 LONE_ITEM = re.compile(r"^(\s*)([-*+]|\d+[.)])\s*$")
 QUOTE = re.compile(r"^(\s*)((?:>\s*)+)(.*)$")
@@ -367,10 +367,127 @@ def processable(fences, payload_markdown):
         return True
     if not payload_markdown:
         return False
-    return all(lang == "markdown" for _, lang in fences)
+    return all(lang == "markdown" for _, lang, *_ in fences)
 
 
-def main(path, mode, width, payload_markdown, check_only):
+def unwrapped_signature(lines, width, payload_markdown):
+    """Detect an unwrapped document layout.
+
+    Returns (prose, cont, over_starts): counts of processable prose lines,
+    continuation lines inside prose units, and over-width lines that open a
+    prose unit - a line that follows a block boundary rather than continuing
+    wrapped text. A bounded document wraps its long blocks into
+    continuations, so almost every long line is one; an unwrapped document
+    carries every sentence on its own line, so its lines almost never
+    continue anything.
+    """
+    fences = []
+    in_front = lines and lines[0].strip() == "---"
+    in_comment = False
+    list_stack = []
+    prose = 0
+    cont = 0
+    over_starts = 0
+    open_unit = False
+    unit_col = 0
+    for n, line in enumerate(lines, 1):
+        s = line.strip()
+        indent = len(line) - len(line.lstrip())
+        f = FENCE.match(line)
+        if f:
+            open_unit = False
+            ml, lang = len(f.group(1)), f.group(2)
+            if fences:
+                if ml >= fences[-1][0] and f.group(1)[0] == fences[-1][2]:
+                    fences.pop()
+                elif fences[-1][1] == "markdown":
+                    fences.append((ml, lang, f.group(1)[0]))
+            else:
+                fences.append((ml, lang, f.group(1)[0]))
+            list_stack = []
+            continue
+        if in_front:
+            open_unit = False
+            if n != 1 and s == "---":
+                in_front = False
+            continue
+        if in_comment:
+            open_unit = False
+            if "-->" in line:
+                in_comment = False
+            continue
+        if s.startswith("<!--") or ("<!--" in line and "-->" not in line):
+            open_unit = False
+            in_comment = "-->" not in line
+            continue
+        if fences and not processable(fences, payload_markdown):
+            continue
+        if fences:
+            continue
+        if not s:
+            open_unit = False
+            continue
+        item = ITEM.match(line)
+        if item or LONE_ITEM.match(line):
+            prose += 1
+            if len(line.rstrip()) > width:
+                over_starts += 1
+            open_unit = True
+            unit_col = (indent + len(item.group(2)) + len(item.group(3))
+                        if item else indent)
+            if item:
+                while list_stack and list_stack[-1] > indent:
+                    list_stack.pop()
+                list_stack.append(unit_col)
+            continue
+        if QUOTE.match(line):
+            prose += 1
+            if open_unit:
+                cont += 1
+            if len(line.rstrip()) > width and not open_unit:
+                over_starts += 1
+            open_unit = True
+            continue
+        if (s.startswith(("#", "|", "<")) or RULE_LINE.match(s)
+                or PSEUDO_HEAD.match(s)):
+            open_unit = False
+            while list_stack and indent < list_stack[-1]:
+                list_stack.pop()
+            continue
+        while list_stack and indent < list_stack[-1]:
+            list_stack.pop()
+        base = list_stack[-1] if list_stack else 0
+        if indent >= base + 4:
+            open_unit = False
+            continue
+        prose += 1
+        if open_unit:
+            cont += 1
+            continuation = True
+        else:
+            continuation = False
+        if len(line.rstrip()) > width and not continuation:
+            over_starts += 1
+        open_unit = True
+    return prose, cont, over_starts
+
+
+def main(path, mode, width, payload_markdown, check_only, convert=False,
+         excludes=None, loose=False):
+    if os.path.isdir(path):
+        from pathlib import Path
+        files = [str(p) for p in sorted(Path(path).rglob("*.md"))
+                 if not (({"work", ".git"} | set(excludes or ()))
+                 & set(p.parts))]
+        if not files:
+            print(f"PASS {path}: no markdown files")
+            return 0
+        worst = 0
+        for f in files:
+            worst = max(worst, main(f, mode, width, payload_markdown,
+                                    check_only, convert,
+                                    excludes, loose))
+        return worst
     raw = open(path, "rb").read()
     crlf = b"\r\n" in raw
     try:
@@ -380,6 +497,20 @@ def main(path, mode, width, payload_markdown, check_only):
               "check encoding first (see conventions/file-encoding.md)")
         return 1
     lines = text.replace("\r\n", "\n").split("\n")
+
+    if mode in ("wrap", "justify") and not convert:
+        prose, cont, over = unwrapped_signature(lines, width, payload_markdown)
+        if prose and over >= 1 and cont * 4 < prose:
+            print(f"note: {path} reads as unwrapped - {over} prose line(s) "
+                  f"exceed the {width} width but {cont} of {prose} prose "
+                  f"lines continue a unit, so --{mode} would convert the "
+                  "layout rather than fix wrapping; pass --convert to apply "
+                  "it anyway")
+            if check_only:
+                print(f"PASS {path}: unwrapped document layout, wrap check "
+                      "not applicable")
+                return 0
+            return 1
 
     out = []
     fences = []          # stack of (marker length, language)
@@ -410,7 +541,9 @@ def main(path, mode, width, payload_markdown, check_only):
                 justified.append((unit[0][0], unit[-1][0]))
         else:
             pieces = wrap_unit(body, width)
-            if pieces != body:
+            flagged = pieces != body and \
+                (not loose or any(len(l) > width for l in body))
+            if flagged:
                 wrapped += 1
                 rewrapped.append((unit[0][0], unit[-1][0]))
             for piece in pieces:
@@ -419,7 +552,7 @@ def main(path, mode, width, payload_markdown, check_only):
         if check_only:
             out.extend(ln for _, ln in unit)
         else:
-            out.extend(pieces)
+            out.extend(pieces if flagged or not loose else body)
         unit.clear()
 
     for n, line in enumerate(lines, 1):
@@ -431,10 +564,12 @@ def main(path, mode, width, payload_markdown, check_only):
             flush_unit()
             marker_len, lang = len(fence.group(1)), fence.group(2)
             if fences:
-                if marker_len >= fences[-1][0]:
+                if marker_len >= fences[-1][0] and fence.group(1)[0] == fences[-1][2]:
                     fences.pop()
+                elif fences[-1][1] == "markdown":
+                    fences.append((marker_len, lang, fence.group(1)[0]))
             else:
-                fences.append((marker_len, lang))
+                fences.append((marker_len, lang, fence.group(1)[0]))
             list_stack = []
             open_ok = False
             out.append(line)
@@ -587,14 +722,10 @@ def main(path, mode, width, payload_markdown, check_only):
                 span = f"{first}" if first == last else f"{first}-{last}"
                 print(f"lines {span}: block is not wrapped at {width}")
             for n, size, preview in unbreakable:
-                print(f"line {n}: {size} chars > {width}: {preview}...")
-            if rewrapped or unbreakable:
-                parts = []
-                if rewrapped:
-                    parts.append(f"{len(rewrapped)} block(s) would rewrap")
-                if unbreakable:
-                    parts.append(f"{len(unbreakable)} line(s) exceed {width}")
-                print(", ".join(parts))
+                print(f"note: line {n}: {size} chars > {width} "
+                      f"(unbreakable span): {preview}...")
+            if rewrapped:
+                print(f"{len(rewrapped)} block(s) would rewrap")
                 return 1
             print(f"PASS {path}: every block is wrapped at {width}")
             return 0
@@ -660,11 +791,20 @@ if __name__ == "__main__":
     direction.add_argument("--unwrap", action="store_true")
     direction.add_argument("--justify", action="store_true")
     parser.add_argument("--width", type=int, default=100)
+    parser.add_argument("--convert", action="store_true",
+                        help="apply --wrap or --justify even when the "
+                             "document reads as unwrapped (a layout "
+                             "conversion)")
     parser.add_argument("--payload-markdown", action="store_true")
     parser.add_argument("--check", action="store_true")
+    parser.add_argument("--loose", action="store_true",
+                        help="loose wrap convention: only reflow blocks "
+                        "that contain an over-width line (with --wrap)")
+    parser.add_argument("--exclude", action="append", default=[],
+                        metavar="NAME", help="skip files whose path contains a component with this name (repeatable, directory mode)")
     parsed = parser.parse_args()
     mode = "wrap" if parsed.wrap else "justify" if parsed.justify else "unwrap"
     raise SystemExit(
         main(parsed.file, mode, parsed.width, parsed.payload_markdown,
-             parsed.check)
+             parsed.check, parsed.convert, parsed.exclude, parsed.loose)
     )

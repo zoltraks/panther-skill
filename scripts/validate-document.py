@@ -36,7 +36,7 @@ import re
 import sys
 from pathlib import Path
 
-FENCE = re.compile(r"^\s*(`{3,})\s*(\w*)")
+FENCE = re.compile(r"^\s*(`{3,}|~{3,})\s*(\w*)")
 HEADING = re.compile(r"^(#{1,6})\s")
 BULLET = re.compile(r"^\s*[-*+] ")
 ORDERED = re.compile(r"^\s*\d+\. ")
@@ -68,7 +68,7 @@ def raw_cells(line):
 
 def in_payload(fences, payload_markdown):
     return payload_markdown and bool(fences) and all(
-        lang == "markdown" for _, lang in fences
+        lang == "markdown" for _, lang, *_ in fences
     )
 
 

@@ -35,7 +35,7 @@ import re
 import sys
 from collections import Counter
 
-FENCE = re.compile(r"^\s*(`{3,})\s*(\w*)")
+FENCE = re.compile(r"^\s*(`{3,}|~{3,})\s*(\w*)")
 COMMENT = re.compile(r"^(.*\S)( +)(#(?: .*)?)$")
 
 SHELL_TAGS = {"bash", "sh", "zsh", "shell", "console", "shellsession"}
@@ -58,7 +58,7 @@ def processable(fences, payload_markdown):
         return False
     outers = fences[:-1]
     return not outers or (payload_markdown and all(
-        lang == "markdown" for _, lang in outers))
+        lang == "markdown" for _, lang, *_ in outers))
 
 
 def align(lines, payload_markdown, compact):
@@ -90,17 +90,20 @@ def align(lines, payload_markdown, compact):
             flush()
             marker = len(fence.group(1))
             if fences:
-                if marker >= fences[-1][0]:
+                if marker >= fences[-1][0] and \
+                        fence.group(1)[0] == fences[-1][2]:
                     fences.pop()
                     if not fences:
                         disabled = False
+                elif fences[-1][1] == "markdown":
+                    fences.append((marker, fence.group(2), fence.group(1)[0]))
             else:
                 before = i - 1
                 if before >= 0 and not lines[before].strip():
                     before -= 1
                 disabled = before >= 0 and \
                     lines[before].strip() == DISABLE_COMMENT
-                fences.append((marker, fence.group(2)))
+                fences.append((marker, fence.group(2), fence.group(1)[0]))
             continue
         if disabled or not processable(fences, payload_markdown):
             continue

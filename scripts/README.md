@@ -170,10 +170,10 @@ count as boundaries.
 `--check` only reports the lines or blocks the chosen direction would change.
 
 Its `--wrap` mode re-derives the logical lines inside each prose unit - a paragraph run,
-a list item with its continuations, or a blockquote run - joining only wrapped continuations
-while separate sentences, `**Label:**` field lines, and list items keep their own lines,
-then re-wraps each logical line to the width, so re-wrapping already-wrapped text never
-fragments a paragraph.
+a list item with its continuations, or a blockquote run - joining only wrapped continuations while
+separate sentences, `**Label:**` field lines, and list items keep their own lines,
+then re-wraps each logical line to the width,
+so re-wrapping already-wrapped text never fragments a paragraph.
 A final line shorter than 20 characters pulls words back from the line before it.
 
 `--check` reports every unit that would rewrap as `block is not wrapped at <width>` and every line

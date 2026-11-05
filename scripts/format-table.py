@@ -31,7 +31,7 @@ import os
 import re
 import sys
 
-FENCE = re.compile(r"^\s*(`{3,})\s*(\w*)")
+FENCE = re.compile(r"^\s*(`{3,}|~{3,})\s*(\w*)")
 
 
 def decode(raw):
@@ -120,11 +120,25 @@ def format_block(block, start, drop_empty):
 
 def in_payload(fences, payload_markdown):
     return payload_markdown and bool(fences) and all(
-        lang == "markdown" for _, lang in fences
+        lang == "markdown" for _, lang, *_ in fences
     )
 
 
-def main(path, check_only, payload_markdown, drop_empty):
+def main(path, check_only, payload_markdown, drop_empty, excludes=None):
+    if os.path.isdir(path):
+        from pathlib import Path
+        files = [str(p) for p in sorted(Path(path).rglob("*.md"))
+                 if not (({"work", ".git"} | set(excludes or ()))
+                 & set(p.parts))]
+        if not files:
+            print(f"PASS {path}: no markdown files")
+            return 0
+        worst = 0
+        for f in files:
+            worst = max(worst, main(f, check_only, payload_markdown,
+                                    drop_empty,
+                                    excludes))
+        return worst
     raw = open(path, "rb").read()
     crlf = b"\r\n" in raw
     try:
@@ -144,10 +158,12 @@ def main(path, check_only, payload_markdown, drop_empty):
         if fence:
             marker = len(fence.group(1))
             if fences:
-                if marker >= fences[-1][0]:
+                if marker >= fences[-1][0] and fence.group(1)[0] == fences[-1][2]:
                     fences.pop()
+                elif fences[-1][1] == "markdown":
+                    fences.append((marker, fence.group(2), fence.group(1)[0]))
             else:
-                fences.append((marker, fence.group(2)))
+                fences.append((marker, fence.group(2), fence.group(1)[0]))
             out.append(line)
             i += 1
             continue
@@ -202,10 +218,12 @@ if __name__ == "__main__":
     )
     parser.add_argument("file")
     parser.add_argument("--check", action="store_true")
+    parser.add_argument("--exclude", action="append", default=[],
+                        metavar="NAME", help="skip files whose path contains a component with this name (repeatable, directory mode)")
     parser.add_argument("--payload-markdown", action="store_true")
     parser.add_argument("--drop-empty-columns", action="store_true",
                         help="remove columns that are empty in every "
                              "non-separator row")
     parsed = parser.parse_args()
     raise SystemExit(main(parsed.file, parsed.check, parsed.payload_markdown,
-                          parsed.drop_empty_columns))
+                          parsed.drop_empty_columns, parsed.exclude))

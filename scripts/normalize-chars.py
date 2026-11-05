@@ -38,7 +38,7 @@ import os
 import re
 import sys
 
-FENCE = re.compile(r"^\s*(`{3,})\s*(\w*)")
+FENCE = re.compile(r"^\s*(`{3,}|~{3,})\s*(\w*)")
 FRONTMATTER = re.compile(r"^\s*(---|\+\+\+)\s*$")
 
 REPLACEMENTS = {
@@ -78,7 +78,7 @@ def normalize(text):
 
 def in_payload(fences, payload_markdown):
     return payload_markdown and bool(fences) and all(
-        lang == "markdown" for _, lang in fences
+        lang == "markdown" for _, lang, *_ in fences
     )
 
 
@@ -108,10 +108,12 @@ def main(path, check_only, payload_markdown):
         if fence:
             marker = len(fence.group(1))
             if fences:
-                if marker >= fences[-1][0]:
+                if marker >= fences[-1][0] and fence.group(1)[0] == fences[-1][2]:
                     fences.pop()
+                elif fences[-1][1] == "markdown":
+                    fences.append((marker, fence.group(2), fence.group(1)[0]))
             else:
-                fences.append((marker, fence.group(2)))
+                fences.append((marker, fence.group(2), fence.group(1)[0]))
             out.append(line)
             continue
         if fences and not in_payload(fences, payload_markdown):

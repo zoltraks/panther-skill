@@ -65,7 +65,7 @@ import os
 import re
 import sys
 
-FENCE = re.compile(r"^\s*(`{3,})\s*(\w*)")
+FENCE = re.compile(r"^\s*(`{3,}|~{3,})\s*(\w*)")
 ITEM = re.compile(r"^(\s*)([-*+]|\d+[.)])([ \t]+)(.*)$")
 LONE_ITEM = re.compile(r"^(\s*)([-*+]|\d+[.)])\s*$")
 QUOTE = re.compile(r"^(\s*)((?:>\s*)+)(.*)$")
@@ -195,7 +195,7 @@ def processable(fences, payload_markdown):
         return True
     if not payload_markdown:
         return False
-    return all(lang == "markdown" for _, lang in fences)
+    return all(lang == "markdown" for _, lang, *_ in fences)
 
 
 def paragraph_line(line, list_stack):
