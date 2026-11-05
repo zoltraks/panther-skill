@@ -16,14 +16,15 @@ partition.
 1. Run `scripts/check-update.py` once and report upstream state.
 2. Reconcile `SKILL.md` against `languages/`, `types/`, `scopes/`, `conventions/`,
    `templates/`, `translations/`, `principles/`, `process/`, `scripts/`,
-   `tests/`, `docs/`, and `evals/` - every shipped resource must be registered in `SKILL.md` and
-   mirrored in `README.md`.
+   `tests/`, `docs/`, and `evals/` - every shipped resource must be registered
+   in its directory's `README.md` index and mirrored in `README.md`.
 3. Check `evals/evals.json` covers every operation in `operations-catalog.md`.
 4. Verify `metadata.version` moved for shipped changes since the last commit.
 5. Clean `work/` entries older than the session, and confirm no shipped file
    references `work/` or names another skill package.
 6. Validate: `scripts/validate-skill.py .`, the checks and tests it ships, and
-   `git diff --check`, plus an editorial Markdown battery on edited documents where the host provides one.
+   `git diff --check`, plus an editorial Markdown battery on edited documents
+   where the host provides one.
 7. Report findings as a proposal - housekeeping never commits.
 
 ## What Does Not Apply

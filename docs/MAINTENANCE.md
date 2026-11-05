@@ -110,7 +110,7 @@ Files over 300 lines must also include a `## Contents` table.
 
 ## Registration Contract
 
-Register every new rule file in `SKILL.md` with a line saying what it covers and when to load
+Register every new rule file in its directory's `README.md` index with a line saying what it
 it, under the section matching its directory.
 
 Keep registry lines single-line where the content allows - `SKILL.md` must stay under 500
@@ -149,7 +149,7 @@ content that demonstrates the same point without depending on anything outside t
 1. Create `languages/<code>.md` with frontmatter (`code`, `name`, `native-name`) and a full
    style baseline modeled on `languages/en.md`.
 2. Create `templates/<code>/` with one `<type>-template-<code>.md` per document type.
-3. Register both in `SKILL.md` under the `languages/` and `templates/` sections.
+3. Register both in the `languages/README.md` and `templates/README.md` indexes.
 4. Extend the `**Templates**` list in every file under `types/`.
 5. Declare the language's activation phrases with their English equivalents and its per-type
    section names inside `languages/<code>.md` - keep `SKILL.md` and the other rule files in
@@ -164,7 +164,7 @@ content that demonstrates the same point without depending on anything outside t
    `optional`, or `unusual` - `scripts/check-sections.py` reads this table.
 2. Create `templates/<lang>/<name>-template-<lang>.md` for every language directory under
    `templates/`.
-3. Register the type in `SKILL.md` under `types/` and add trigger phrases when needed - the
+3. Register the type in `types/README.md` and add trigger phrases when needed - the
    `languages/<code>.md` activation tables carry the localized equivalents.
 4. Add the type's localized section names to each `languages/<code>.md` section-name table so
    `check-sections.py --language` can match localized headings.
@@ -174,7 +174,7 @@ content that demonstrates the same point without depending on anything outside t
 
 1. Create `scopes/<name>.md` following the scope-file shape: Purpose blockquote, Detection,
    Directory Roles or layout table, Conventions, Document Types In This Scope.
-2. Register the scope in `SKILL.md` under the `scopes/` section and add trigger phrases when
+2. Register the scope in `scopes/README.md` and add trigger phrases when
    needed.
 3. Extend the Scope Detection table in `process/document-workflow.md` with the scope's signals.
 4. Update the `README.md` directory tree.
@@ -191,7 +191,7 @@ content that demonstrates the same point without depending on anything outside t
    `subprocess` text call - console and pipe output must survive legacy encodings.
 4. Classify it in `scripts/README.md` as document-production (runs in place, `.tmp.`
    fallback) or skill-maintenance (runs from this repository only).
-5. Reference it from the `SKILL.md` `scripts/` section and from the workflow step where it runs.
+5. Register it in `scripts/README.md` and reference it from the workflow step where it runs.
 
 ## Adding A Translation Pair
 
@@ -200,7 +200,7 @@ content that demonstrates the same point without depending on anything outside t
    And Register, What Stays Untranslated, Terminology Resolution, Output Conventions.
 2. Create the reverse pair directory `translations/<reverse-pair>/` with its own
    directional `general` file.
-3. Register both pair directories in `SKILL.md` under the `translations/` section.
+3. Register both pair directories in `translations/README.md`.
 4. Update the `README.md` directory tree.
 
 ## Adding A Translation Glossary
@@ -211,7 +211,7 @@ content that demonstrates the same point without depending on anything outside t
    other pair directory.
 2. Create the matching `translations/<reverse-pair>/<reverse-pair>-<category>.md` with
    its own directional tables and calque traps.
-3. Register the category slug in `SKILL.md` under the `translations/` section.
+3. Register the category slug in `translations/README.md`.
 4. Update the `README.md` directory tree.
 
 ## Validation After Changes

@@ -1,5 +1,8 @@
 # Panther Tooling
 
+This index is long - read it by section: grep the tool or section you need instead of
+loading the whole file.
+
 ## Purpose
 
 > **Scope:** Document-production and skill-maintenance scripts

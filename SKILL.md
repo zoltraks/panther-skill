@@ -17,7 +17,7 @@ compatibility: >-
   Claude Desktop, Windsurf, Devin, and similar). Requires the ability to read
   and write text files. No network access required.
 metadata:
-  version: "1.4.6"
+  version: "1.4.7"
   author: Filip Golewski
 allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob Grep
 ---
@@ -27,28 +27,6 @@ allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob G
 > **Type:** Root router and taxonomy
 > **Purpose:** Route document creation and editing requests to the smallest useful rule file and
 > enforce plain-text-readable Markdown output.
-
-## Contents
-
-| Section                 | Line | What it covers                                 |
-|-------------------------|------|------------------------------------------------|
-| Three Modes             | 68   | Enable, document, and maintenance selection    |
-| Skill Update Check      | 82   | Once-per-session git freshness gate before use |
-| Trigger Keywords        | 108  | Activation phrases                             |
-| How To Use              | 116  | Progressive disclosure and rule loading        |
-| Parameter Configuration | 176  | Defaults and user-controlled document shape    |
-| Principles              | 183  | Authoring invariants                           |
-| Process                 | 189  | Workflow, checklist, and standalone procedures |
-| Document Types          | 239  | Per-type rule files                            |
-| Languages               | 244  | Per-language style baselines                   |
-| Translations            | 244  | Language pair rules and industry glossaries    |
-| Scopes                  | 261  | Per-project-layout organization rules          |
-| Conventions             | 255  | Encoding, dialect, and format contract rules   |
-| Templates               | 259  | Per-type, per-language skeletons               |
-| Scripts                 | 271  | Detection, formatting, and validation scripts  |
-| Evaluation Prompts      | 289  | Behavioral regression prompts                  |
-| Repository Files        | 287  | Housekeeping files governing this repository   |
-| File Handling Contract  | 299  | Byte-level guarantees                          |
 
 You are a Document Authoring Agent.
 
@@ -124,54 +102,19 @@ Use progressive disclosure:
 - Load the matching `languages/` file for the document language.
 - Load the matching `types/` file when the document is a known type.
 - Load the matching `scopes/` file when the task runs in an organized project or names a scope.
-- Follow `process/scope-discovery.md` when the request asks to discover or detect layout.
-- Follow `process/document-audit.md` when the request asks to audit a document.
-- Follow `process/describe-response.md` when the request asks to describe or summarize inline.
-- Follow `process/derived-documents.md` when the request asks for a summary, brief, or supplement.
-- Follow `process/translate-document.md` when the request asks to translate a document.
-- Follow `process/translation-audit.md` when the request asks to audit, verify, or compare
-  a translated document against its source. Follow `process/translation-revision.md` to
-  correct an existing translation or apply review findings to it.
-- Follow `process/correct-document.md` to correct, fix, or proofread a document, and
-  `process/operation-timing.md` on a verbose, informational, diagnostic, or timing request.
-- Follow `process/humanize-document.md` when the request asks to humanize a document or
-  rewrite its voice to read human-authored while preserving its facts.
 - Load `conventions/` files only when required - AsciiDoc and reStructuredText stay minimal.
+- Follow the routed `process/` file the task names - the index is `process/README.md`, and
+  only the file a route names plus the files it names in turn load.
 
 This skill is self-contained - load a rule file from the listings only when the task needs it.
 
 When asked how this skill works, explain that Panther produces plain-text-readable Markdown
 in English, Polish, or German for single files and organized collections.
 
-On request it discovers a location's document layout - signals, best-matching scope,
-exceptions - and audits a document against its governing rules with an optional fix plan.
+The per-operation behavior summary lives in `process/README.md`.
 
-On describe or summarize requests it produces consolidated inline descriptions - impersonal,
-compact, with "shortly" caps and a hundred-sentence floor.
-
-On derivation requests it produces documents derived from an existing one - summaries and
-briefs at declared compression tiers, supplements continuing the source's numbering.
-
-On translate requests it renders into the target language in one pass with the pair's style
-adaptation and glossaries - structure, code, and identifiers preserved, every adaptation delta
-reported.
-
-On translation-audit requests it maps a rendered document against its source - structure map,
-untranslated set, terminology concordance - then reports a fidelity verdict.
-
-On translation-revision requests it corrects an existing translation - aligning findings with
-source passages and applying minimal-diff fixes and same-class sweeps.
-
-On correction requests it repairs the document in place - formatting, structure, grammar, and
-typos - and surfaces fidelity findings as proposals on translation targets.
-
-On "work on panther-skill" requests it presents the maintenance menu - document work, skill
-adjustment, or session review - then reads the governing set and applies `docs/MAINTENANCE.md`.
-
-On bare activation it enables for editorial support: the update check runs, and the answer
-describes the skill, names its version, and shows the operations table.
-
-The next task request - or a confirmed proposal - enters document or maintenance mode normally.
+Timing is armed by default on every operation - `no timing` opts out for that
+request.
 
 ## Parameter Configuration
 
@@ -180,132 +123,30 @@ When creating a new standalone document, the agent runs the Parameter Resolution
 the parameter surfaces, defaults, and question shapes live in
 `process/parameter-configuration.md`.
 
-## `principles/` - Authoring Invariants
+## Resource Map
 
-- **`principles/authoring-rules.md`** - Non-negotiable rules for every document: plain-text
-  readability, the document's own conventions win, minimal diff, explicit unknowns, default
-  structure, character and encoding rules.
+Each resource directory carries a `README.md` index naming every file with its
+load trigger - consult the index when a route or procedure needs a name, never
+bulk-read a directory.
 
-## `process/` - Document Workflow
+| Path            | Index                    | Contents                                        |
+|-----------------|--------------------------|-------------------------------------------------|
+| `principles/`   | `principles/README.md`   | Authoring invariants, mandatory every task      |
+| `process/`      | `process/README.md`      | Workflow, standalone procedures, mode contracts |
+| `types/`        | `types/README.md`        | Per-document-type deltas on the language base   |
+| `languages/`    | `languages/README.md`    | Per-language self-contained style baselines     |
+| `translations/` | `translations/README.md` | Language pairs, glossaries, loading order       |
+| `scopes/`       | `scopes/README.md`       | Per-project-layout organization rules           |
+| `conventions/`  | `conventions/README.md`  | Encoding, dialect, and format contract rules    |
+| `templates/`    | `templates/README.md`    | Per-type, per-language document skeletons       |
+| `scripts/`      | `scripts/README.md`      | Detection, formatting, and validation tools     |
+| `evals/`        | `evals/README.md`        | Behavioral regression prompts                   |
+| `docs/`         | `docs/README.md`         | Repository governance                           |
+| `tests/`        | `tests/README.md`        | Deterministic script tests                      |
+| `work/`         | -                        | Gitignored research scratch, never shipped      |
 
-- **`process/document-workflow.md`** - Intake, parameter resolution, detection, rule selection,
-  section plan, plan confirmation, drafting, validation, and delivery.
-- **`process/document-checklist.md`** - The mechanical pre-delivery checklist: structure,
-  spacing, characters, lists, tables, language, and file properties.
-- **`process/decision-modes.md`** - The interaction-mode matrix: interactive and autonomous
-  resolution, reporting flags.
-- **`process/parameter-configuration.md`** - Creation parameter surfaces, defaults, and
-  question shapes.
-- **`process/scope-discovery.md`** - The standalone layout-discovery procedure: signal census,
-  scope comparison, exception analysis, report format.
-- **`process/document-audit.md`** - The standalone document-audit procedure: mechanical checks,
-  section check, convention evaluation, content review, findings, and the optional fix plan.
-- **`process/correct-document.md`** - The standalone correction procedure: applied formatting,
-  structure, language, and style fixes, with fidelity adjustments for translation-source targets.
-- **`process/humanize-document.md`** - The standalone humanize procedure: fact-preserving
-  voice rewrite - deletions, meta collapse, passage rewrites, voice sweeps, scout
-  decomposition for large documents.
-- **`process/describe-response.md`** - The standalone describe procedure: consolidation,
-  shortly caps and long-description floors, impersonal response style, inline delivery.
-- **`process/derived-documents.md`** - The standalone derive procedure: derivation
-  contract, compression tiers, supplement continuation, naming, and freshness rules.
-- **`process/translate-document.md`** - The standalone translate procedure: pair
-  resolution, industry glossaries, single-pass rendering, adapted fidelity, output conventions.
-- **`process/translation-audit.md`** - The standalone translation-audit procedure: structure
-  map, untranslated-set verification, terminology concordance, fidelity class, report format.
-- **`process/translation-revision.md`** - The standalone translation-revision procedure:
-  passage alignment, issue classes, minimal-diff correction of an existing translation.
-- **`process/json-exchange.md`** - JSON parameter documents for intake question surfaces.
-- **`process/operation-timing.md`** - Timing under the four mode keywords.
-- **`process/operations-catalog.md`** - The catalog procedure for "list all operations" requests.
-- **`process/skill-maintenance.md`** - The maintenance-mode procedure: the intake menu,
-  governing set, skipped document machinery, and validation for work on this repository.
-- **`process/session-review.md`** - The session-review procedure: gather lessons, report
-- **`process/parallel-execution.md`** - The delegated scout model for large
-  work surfaces: applicability, contract, merge, fallback.
-- **`process/housekeeping.md`** - Self-repository upkeep: registration,
-  coverage, workspace, validation.
-- **`process/self-healing.md`** - The evidence-gated self-repair loop for this
-  skill.
-- **`process/development.md`** - Standby-for-specification mode for developing
-  this skill.
-
-Timing is armed by default on every operation - `no timing` opts out for that
-request.
-  findings for approval - autonomous and verbose modes included - apply, validate.
-- **`process/skill-activation.md`** - The enable-mode procedure: bare-activation intake, the
-  readiness response, and the hand-off to document or maintenance mode.
-
-## `types/` - Document Type Rules
-
-Load the file matching the document type, it adds deltas on top of the language baseline -
-the index of all types is `types/README.md`.
-
-## `languages/` - Language Baselines
-
-Load exactly one file, matching the document language - self-contained style baselines covering
-structure, headings, lists, tables, characters, vocabulary, and file naming:
-
-- **`languages/en.md`** - English documents: Title Case headings, vocabulary, dialect rules.
-- **`languages/pl.md`** - Polish documents: sentence case, diacritics, calque avoidance,
-  section names, and Polish activation phrases with English equivalents.
-- **`languages/de.md`** - German documents: sentence case with noun capitalization,
-  umlauts, Denglish calque avoidance, section names, German activation phrases.
-
-## `translations/` - Language Pairs And Glossaries
-
-Load on translate tasks per `process/translate-document.md` and on translation-audit tasks
-per `process/translation-audit.md` - the pair directories, glossary slugs, and loading order
-live in `translations/README.md`.
-
-## `scopes/` - Project Layouts
-
-Load the file matching the detected or named scope - it governs placement, naming,
-registration, and the index of all scopes is `scopes/README.md`.
-
-## `conventions/` - Encoding And Dialects
-
-Load a convention file only when the task requires it - the index is `conventions/README.md`.
-
-## `templates/` - Skeletons
-
-Starting skeletons for new typed documents, organized by language directory.
-
-Template filenames carry the language code: `<type>-template-<code>.md`.
-
-- `templates/en/` - English skeletons, one per document type, named `<type>-template-en.md`.
-- `templates/pl/` - Polish skeletons, one per document type, named `<type>-template-pl.md`.
-- `templates/de/` - German skeletons, one per document type, named `<type>-template-de.md`.
-
-A template is a starting point - adjust sections to the request and the content.
-
-## `scripts/` - Canonical Scripts
-
-Run document-production tools in place - `python <skill-root>/scripts/<tool>.py <file>` -
-and copy them under `.tmp.` names only when the skill root cannot be invoked, removing
-copies when done. The per-tool command surface lives in `scripts/README.md` - tool classes,
-commands, flags, the validation order, and the limitations.
-
-## Evaluation Prompts
-
-- **`evals/evals.json`** - Regression prompts covering creation in all languages,
-  convention-preserving edits, reformatting, encodings, translations, corrections, the
-  update check, bare activation, and audits.
-
-Run these as behavioral evaluations after structural changes - they do not replace
-independent review.
-
-## Repository Files
-
-These files govern the skill repository itself rather than document production:
-
-- **`AGENTS.md`** - Agent-facing entry point for repository authoring and maintenance.
-- **`README.md`** - Human-facing overview, usage examples, and verification commands.
-- **`docs/STYLE.md`** - Style rules for the skill's own files.
-- **`docs/MAINTENANCE.md`** - Extension rules: directory roles, naming, registration, validation.
-- **`docs/VERSIONING.md`** - Version numbering and release conventions for the skill.
-- **`docs/CONTRIBUTING.md`** - Issue reporting, development setup, and pull-request rules.
-- **`docs/SECURITY.md`** - Vulnerability disclosure channel and update-path trust boundary.
+Repository files: `AGENTS.md` (agent-facing maintenance entry), `README.md`
+(human overview and verification), `LICENSE` (MIT).
 
 ## File Handling Contract
 

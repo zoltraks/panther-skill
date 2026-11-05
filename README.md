@@ -736,7 +736,7 @@ named directories, and progressive disclosure keeping the router under 500 lines
 The corpus intentionally uses domain-named directories (`types/`, `scopes/`, `conventions/`,
 `languages/`, `translations/`, `templates/`) instead of a single `references/` directory.
 
-Every file is registered in `SKILL.md` under progressive disclosure.
+Every file is indexed in its directory's `README.md` under progressive disclosure.
 
 Run the conformance validators listed in [Verification](#verification) after structural
 changes.

@@ -88,7 +88,7 @@
     {
       "id": 8,
       "prompt": "Add a new rule file covering glossary conventions to this agent skill repository and register it.",
-      "expected_output": "A kebab-case rule file in the correct directory, registered in SKILL.md under the matching directory section, with Contents and README kept in sync.",
+      "expected_output": "A kebab-case rule file in the correct directory, registered in the matching directory's README.md index, with the README tree kept in sync.",
       "files": [],
       "expectations": [
         "The agent detected the agent-skill scope before writing.",
@@ -512,7 +512,7 @@
       "files": [],
       "expectations": [
         "The skill's governing files were read first: SKILL.md, then its maintenance, style, and versioning documents.",
-        "The new file is registered in SKILL.md under the matching directory section and mirrored in the README.md directory tree.",
+        "The new file is registered in the directory's README.md index and mirrored in the README.md directory tree.",
         "Every contents table listing line numbers was renumbered against actual heading positions.",
         "The skill's own validators ran after the structural change, including a contents-table check when the skill provides one."
       ]
