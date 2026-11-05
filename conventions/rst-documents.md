@@ -3,13 +3,13 @@
 ## Purpose
 
 > **Scope:** Handling of reStructuredText files encountered inside projects the skill works on
-> **Key items:** heading underlines, directives, toctrees, indentation sensitivity, minimal-edit
-> contract
+> **Key items:** heading underlines, directives, toctrees, indentation sensitivity,
+> minimal-edit contract
 
 The skill authors Markdown.
 
-Some projects keep structural files in reStructuredText while content lives in Markdown, for
-example Sphinx documentation projects.
+Some projects keep structural files in reStructuredText while content lives in Markdown,
+for example Sphinx documentation projects.
 
 This file defines how to read and minimally edit `.rst` files in that situation.
 
@@ -19,11 +19,11 @@ Load it when the task touches an `.rst` file, or when a scope file delegates to 
 
 Author document content in Markdown files only.
 
-Edit an `.rst` file only for structural changes the task requires, such as adding or removing an
-entry in a `toctree` directive.
+Edit an `.rst` file only for structural changes the task requires,
+such as adding or removing an entry in a `toctree` directive.
 
-Never convert an `.rst` file to Markdown or a Markdown file to `.rst` as a side effect of a
-document task.
+Never convert an `.rst` file to Markdown or a Markdown file to `.rst` as a side
+effect of a document task.
 
 Never reformat, restyle, or normalize an `.rst` file.
 
@@ -45,8 +45,8 @@ Subsection
 ~~~~~~~~~
 ```
 
-The character chooses the level: `=` for the document title, `-` for sections, `~` or `^` for
-deeper levels.
+The character chooses the level: `=` for the document title, `-` for sections,
+`~` or `^` for deeper levels.
 
 The underline must be at least as long as the title text.
 
@@ -83,13 +83,13 @@ Common directives in documentation projects: `toctree` (navigation), `image`, `r
 
 ## Toctree Entries
 
-A `toctree` lists document names without file extension, one per line, relative to the file that
-contains the directive.
+A `toctree` lists document names without file extension, one per line,
+relative to the file that contains the directive.
 
 Entries may point into subdirectories, for example `standard/index`.
 
-Add a new entry in the position the document structure suggests - toctree order defines the
-reading order of the built documentation.
+Add a new entry in the position the document structure suggests - toctree order defines the reading
+order of the built documentation.
 
 Remove the entry when its document is removed.
 
@@ -106,8 +106,9 @@ Treat all of it as opaque content - preserve it exactly when editing.
 
 ## Detection Signals
 
-A file is likely reStructuredText when it has an `.rst` extension, or when it contains `.. `
-directives, underline-only headings, or directive options such as `:maxdepth:`.
+A file is likely reStructuredText when it has an `.rst` extension,
+or when it contains `.. ` directives, underline-only headings,
+or directive options such as `:maxdepth:`.
 
-A `.txt` file may also contain reStructuredText inside a documentation project, check the
-project's build configuration when unsure.
+A `.txt` file may also contain reStructuredText inside a documentation project,
+check the project's build configuration when unsure.

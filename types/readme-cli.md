@@ -2,8 +2,8 @@
 
 ## Purpose
 
-> **Scope:** Conventions for the `README.md` of a command-line tool. A utility whose value is
-> invoked through commands, subcommands, and flags
+> **Scope:** Conventions for the `README.md` of a command-line tool.
+> A utility whose value is invoked through commands, subcommands, and flags
 > **Key items:** install, commands table, options table, copy-pasteable examples
 
 | Out of scope                    | See instead                   |
@@ -21,11 +21,11 @@ It leads with install, then the command surface, then real invocations.
 
 ## When To Use
 
-Use for the root `README.md` of a command-line application, script, or developer tool whose
-primary interface is a shell command.
+Use for the root `README.md` of a command-line application, script,
+or developer tool whose primary interface is a shell command.
 
-For a larger product that also ships a CLI among other interfaces, prefer
-`types/readme-application.md`.
+For a larger product that also ships a CLI among other interfaces,
+prefer `types/readme-application.md`.
 
 **Templates**
 
@@ -50,10 +50,10 @@ The canonical skeleton, adjusted to the request:
 
 - Commands and Options use tables - command names and flags in inline code.
 - Show the primary command first, then the rest.
-- Examples are copy-pasteable and produce visible output - include expected output when it
-  clarifies.
-- A short demo (as text output or a linked recording) fits after the description when the
-  project convention uses one.
+- Examples are copy-pasteable and produce visible output - include expected
+  output when it clarifies.
+- A short demo (as text output or a linked recording)
+  fits after the description when the project convention uses one.
 
 ## Section Names
 

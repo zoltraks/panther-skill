@@ -18,11 +18,11 @@ No distinction is made between minor and major changes.
 
 1. **Increment patch by 1** for each release.
 
-2. **Patch rolls at 9 and resets**. When a release lands on a version whose patch is
-   already 9, increment the minor digit by 1 and reset the patch to 0.
+2. **Patch rolls at 9 and resets**. When a release lands on a version whose patch is already 9,
+   increment the minor digit by 1 and reset the patch to 0.
 
-3. **Minor and patch at 9 roll to major**. When both the minor digit and the patch digit
-   are 9, increment the major digit by 1 and reset minor and patch to 0.
+3. **Minor and patch at 9 roll to major**. When both the minor digit and the patch digit are 9,
+   increment the major digit by 1 and reset minor and patch to 0.
 
    | Before | After  | Reason                                     |
    |--------|--------|--------------------------------------------|
@@ -33,8 +33,8 @@ No distinction is made between minor and major changes.
 
 ## When To Bump
 
-Every change set that modifies skill document contents applies a bump - the version moves
-with each delivery, not only on request.
+Every change set that modifies skill document contents applies a bump - the version moves with each
+delivery, not only on request.
 
 A change set is the group of edits committed or delivered together.
 
@@ -46,8 +46,8 @@ While the tree carries uncommitted changes,
 every further edit joins the open set and keeps its already-bumped version,
 no matter how many requests or edits arrive.
 
-A second bump before the commit is always wrong, even when the new edits feel like a
-separate change set - the set lands only when it is committed.
+A second bump before the commit is always wrong,
+even when the new edits feel like a separate change set - the set lands only when it is committed.
 
 The delivery report names the previous version and the new version.
 
@@ -60,16 +60,15 @@ The commit that bumps `metadata.version` is the release anchor.
 Its hash is the named state consumers pin or revert to,
 since the version alone lives only in frontmatter text.
 
-Record the bump commit's short hash in release notes or issues when a consumer needs to pin a
-specific release.
+Record the bump commit's short hash in release notes or issues when a consumer needs to
+pin a specific release.
 
-If the skill gains a `CHANGELOG.md`, its sections carry `## [<version>] - <date>` headings
-only, opened together with the set's bump - never an `Unreleased` placeholder.
+If the skill gains a `CHANGELOG.md`, its sections carry `## [<version>] - <date>` headings only,
+opened together with the set's bump - never an `Unreleased` placeholder.
 
 ## Terminology
 
-The word `version` in this file always means the skill version recorded in `SKILL.md`
-frontmatter.
+The word `version` in this file always means the skill version recorded in `SKILL.md` frontmatter.
 
 Documents produced by the skill may carry their own version markers,
 such as a version comment or a Version History section, defined by the matching `types/` file.
@@ -88,5 +87,6 @@ metadata:
 ---
 ```
 
-This follows the [Agent Skills specification](https://agentskills.io/specification) `metadata` field
-convention, keeping the skill compatible with Anthropic Claude and other spec-compliant agents.
+This follows the [Agent Skills specification](https://agentskills.io/specification)
+`metadata` field convention, keeping the skill compatible with Anthropic Claude and other
+spec-compliant agents.

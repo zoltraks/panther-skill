@@ -2,8 +2,8 @@
 
 ## Purpose
 
-> **Scope:** Conventions for general technical documentation - guides, how-tos, architecture
-> notes, API descriptions, and reference material
+> **Scope:** Conventions for general technical documentation - guides, how-tos, architecture notes,
+> API descriptions, and reference material
 > **Key items:** purpose-first structure, progressive detail, example blocks
 
 A technical document explains a system, a feature, or a procedure to a technical reader.
@@ -12,8 +12,8 @@ This is the default type for documentation that does not match a more specific t
 
 ## When To Use
 
-Use for developer guides, architecture overviews, setup instructions, API documentation, and
-reference material.
+Use for developer guides, architecture overviews, setup instructions, API documentation,
+and reference material.
 
 **Templates**
 
@@ -34,11 +34,11 @@ The canonical skeleton, adjusted to the request:
 ## Deltas From The Language Baseline
 
 - Order sections from what the reader needs first to what they need last.
-- Put commands, file paths, and identifiers in inline code, put runnable commands in fenced
-  `bash` blocks.
+- Put commands, file paths, and identifiers in inline code,
+  put runnable commands in fenced `bash` blocks.
 - Prefer a table for enumerations of options, parameters, or fields.
-- Keep each section self-contained enough to be found by search, do not rely on pronouns that
-  resolve only in earlier sections.
+- Keep each section self-contained enough to be found by search,
+  do not rely on pronouns that resolve only in earlier sections.
 
 ## Diataxis Mapping
 
@@ -52,8 +52,8 @@ Documentation organized per the Diataxis framework maps onto this skill's types:
 | Explanation - understanding-oriented, discursive | `technical-document` overview or `article-text` |
 
 When a project organizes docs into Diataxis quadrants - `docs/tutorials/`, `docs/how-to/`,
-`docs/reference/`, `docs/explanation/` - place a new document in the directory matching its
-kind and follow the dominant style of that directory.
+`docs/reference/`, `docs/explanation/` - place a new document in the directory matching its kind and
+follow the dominant style of that directory.
 
 ## Section Names
 

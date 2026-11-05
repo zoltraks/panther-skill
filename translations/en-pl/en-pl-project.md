@@ -3,8 +3,7 @@
 ## Purpose
 
 > **Scope:** English-Polish terminology for project management and PMBOK artifacts
-> **Key items:** domain signals, terminology table, context forms, calque traps,
-> untranslated terms
+> **Key items:** domain signals, terminology table, context forms, calque traps, untranslated terms
 
 Load this glossary for translate tasks on project management subjects.
 
@@ -17,8 +16,8 @@ Apply this glossary when:
 - The request names a project management, PMBOK, or delivery-governance subject.
 - The document type is project charter, register log, status report, meeting minutes,
   management plan, or work breakdown structure.
-- The document's terminology is dominated by scope, schedule, risk, stakeholder, or
-  deliverable vocabulary.
+- The document's terminology is dominated by scope, schedule, risk, stakeholder,
+  or deliverable vocabulary.
 
 ## Terminology
 
@@ -91,13 +90,13 @@ Some English terms render differently by context.
 
 Do not force one form everywhere:
 
-- `scope` renders `zakres` for the work boundary and `zakres` for the register column, and
-  `w zakresie` / `poza zakresem` for the in/out-of-scope section names.
+- `scope` renders `zakres` for the work boundary and `zakres` for the register column,
+  and `w zakresie` / `poza zakresem` for the in/out-of-scope section names.
 - `impact` renders `wpływ` for a scored dimension and `skutek` for a register column name.
-- `severity` renders `ważność` in report contexts - adjective forms agree with the
-  governed noun, `WYSOKA` for `ważność`, `WYSOKI` for `wpływ`, `WYSOKIE` for `ryzyko`.
-- `status` renders `stan` for register and record fields, `status` where the source names
-  a report section or RAG rating.
+- `severity` renders `ważność` in report contexts - adjective forms agree with the governed noun,
+  `WYSOKA` for `ważność`, `WYSOKI` for `wpływ`, `WYSOKIE` for `ryzyko`.
+- `status` renders `stan` for register and record fields,
+  `status` where the source names a report section or RAG rating.
 - `register` renders `rejestr` for every register type - `rejestr ryzyk`,
   `rejestr interesariuszy`, `rejestr założeń`.
 
@@ -118,7 +117,7 @@ Do not force one form everywhere:
 
 Settled terms stay in English form in Polish output:
 
-- `PMBOK`, `PMI`, `PMP`, `PRINCE2`, `RACI`, `KPI`, `RAG`, `SMART`, `WBS` spelled out once
-  as `struktura podziału pracy (SPP)`
-- `agile`, `scrum`, `sprint`, `kanban`, `standup`, `retro` when the document's method
-  vocabulary uses them
+- `PMBOK`, `PMI`, `PMP`, `PRINCE2`, `RACI`, `KPI`, `RAG`, `SMART`,
+  `WBS` spelled out once as `struktura podziału pracy (SPP)`
+- `agile`, `scrum`, `sprint`, `kanban`, `standup`,
+  `retro` when the document's method vocabulary uses them

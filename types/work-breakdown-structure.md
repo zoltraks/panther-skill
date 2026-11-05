@@ -2,9 +2,7 @@
 
 ## Purpose
 
-> **Scope:** Hierarchical decompositions of project scope - the WBS and its
-> dictionary.
->
+> **Scope:** Hierarchical decompositions of project scope - the WBS and its dictionary.
 > **Key items:** Decimal-coded outline, work packages, WBS dictionary, 100
 > percent rule, RACI matrix.
 
@@ -28,25 +26,23 @@ Product breakdown structures follow the same shape.
    - level 1 is the project
    - level 2 carries phases or major deliverables
    - work packages sit at the lowest level
-4. Work Packages - the rules the lowest level must satisfy: assignable to one
-   owner, estimable, typically eight to eighty hours of effort.
-5. WBS Dictionary - one H3 per work package carrying the code, name,
-   description, acceptance criteria, owner, estimate, and dependencies.
+4. Work Packages - the rules the lowest level must satisfy: assignable to one owner, estimable,
+   typically eight to eighty hours of effort.
+5. WBS Dictionary - one H3 per work package carrying the code, name, description,
+   acceptance criteria, owner, estimate, and dependencies.
 6. RACI Matrix - an optional table mapping work packages to team members.
 7. Baseline note - which version forms the scope baseline.
 
 ## Deltas From The Language Baseline
 
-- Renumber codes continuously after adding, removing, or moving elements - the
-  numbered-chapter rule applies.
-- The 100 percent rule: the structure covers all project work and no element
-  appears in two places.
-- A new WBS uses a numbered outline list. On edit, preserve an existing
-  fenced-block or table layout.
-- Dictionary entries reference codes, not titles - codes survive renumbering,
-  titles do not.
-- The scope baseline - scope statement, WBS, and dictionary - is frozen once
-  approved. Changes go through change control only.
+- Renumber codes continuously after adding, removing,
+  or moving elements - the numbered-chapter rule applies.
+- The 100 percent rule: the structure covers all project work and no element appears in two places.
+- A new WBS uses a numbered outline list. On edit,
+  preserve an existing fenced-block or table layout.
+- Dictionary entries reference codes, not titles - codes survive renumbering, titles do not.
+- The scope baseline - scope statement, WBS, and dictionary - is frozen once approved.
+  Changes go through change control only.
 - Placement - conventionally `docs/WBS.md`.
 
 ## Section Names

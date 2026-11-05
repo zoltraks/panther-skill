@@ -2,16 +2,16 @@
 
 ## Purpose
 
-> **Scope:** The named prose-formatting conventions for Markdown documents. How sentences sit
-> on lines and how blank lines separate them - with detection signals, the no-assumed-default
-> rule, and the intake parameters that resolve the layout of a new document
+> **Scope:** The named prose-formatting conventions for Markdown documents.
+> How sentences sit on lines and how blank lines separate them - with detection signals,
+> the no-assumed-default rule, and the intake parameters that resolve the layout of a new document
 > **Key items:** flowing, separated, bounded, justified conventions, per-element detection,
 > mixed-document handling, layout parameters, tooling map
 
 Documents differ in how prose sits on lines.
 
-This file names the conventions the skill recognizes, defines how each is detected, and maps
-them to the tools and intake parameters that produce them.
+This file names the conventions the skill recognizes, defines how each is detected,
+and maps them to the tools and intake parameters that produce them.
 
 The core rule: never assume a layout.
 
@@ -21,9 +21,9 @@ Detect it on existing documents, resolve it through parameters on new ones.
 
 The layout model has two axes.
 
-The wrap axis decides whether a sentence may break across lines: `unwrapped` sentences never
-break, `fixed-width` sentences break at a character limit, `justified` breaks like fixed-width
-but stretches inter-word spacing to flush the right margin.
+The wrap axis decides whether a sentence may break across lines: `unwrapped` sentences never break,
+`fixed-width` sentences break at a character limit,
+`justified` breaks like fixed-width but stretches inter-word spacing to flush the right margin.
 
 The spacing axis decides how sentences separate: `packed` sentences share one paragraph block,
 `separated` sentences carry one blank line between them.
@@ -41,13 +41,13 @@ Four named conventions cover the combinations seen in real documents:
 
 `bounded` is the convention the skill's own rule files use, wrapped at 100 characters.
 
-A plain wrapped paragraph - `fixed-width` lines, `packed` sentences, no blank lines between
-them is a bounded variant written without sentence spacing.
+A plain wrapped paragraph - `fixed-width` lines, `packed` sentences,
+no blank lines between them is a bounded variant written without sentence spacing.
 
 Treat it as `bounded, packed`.
 
-`justified` is rare: the source reads like typeset text, every line except the last of a block
-padded to the same width.
+`justified` is rare: the source reads like typeset text,
+every line except the last of a block padded to the same width.
 
 ## Flowing
 
@@ -94,19 +94,19 @@ The service polls the queue and retries on failure. Each attempt is logged with 
 correlation id, its delay, and the final verdict for that delivery attempt outcome.
 ```
 
-When a wrap breaks a sentence at a spaced separator, keep the separator attached to its
-clause - a line never ends with a dangling ` - ` and a continuation line never starts
-with `- `.
+When a wrap breaks a sentence at a spaced separator,
+keep the separator attached to its clause - a line never ends with a dangling ` - ` and a
+continuation line never starts with `- `.
 
-Reflow the sentence so the hyphen travels with the text before it, or reword to remove
-the separator.
+Reflow the sentence so the hyphen travels with the text before it,
+or reword to remove the separator.
 
-Do not break a wrap inside inline markup - a code span, a file path, a URL, or link
-markup must stay on one line, so place the break before or after it.
+Do not break a wrap inside inline markup - a code span, a file path, a URL,
+or link markup must stay on one line, so place the break before or after it.
 
-A span that wraps across lines stops reading as code: each line checks as prose on its
-own, so `;` and `|` inside it flag as prose errors, and a reader of the plain text sees
-the marker split from its content.
+A span that wraps across lines stops reading as code: each line checks as prose on its own,
+so `;` and `|` inside it flag as prose errors,
+and a reader of the plain text sees the marker split from its content.
 
 ## Justified
 
@@ -125,8 +125,9 @@ with  its  correlation  id,  its  delay,  and  the  final  verdict  for  the  de
 
 Detect the layout before editing an existing document - never assume one.
 
-`scripts/census-document.py` reports the raw signals: the wrap convention and continuation
-lines per element type, multi-sentence lines, and blank-line runs.
+`scripts/census-document.py` reports the raw signals:
+the wrap convention and continuation lines per element type, multi-sentence lines,
+and blank-line runs.
 
 | Convention  | Signals                                                                              |
 |-------------|--------------------------------------------------------------------------------------|
@@ -151,8 +152,8 @@ When a document mixes conventions, report the inconsistency.
 Adopt the dominant convention - the one used more often and most appropriate to the document's
 content - for the content the task adds or touches.
 
-Suggest normalizing the document to one convention, but normalize only when the request
-explicitly covers the conversion.
+Suggest normalizing the document to one convention,
+but normalize only when the request explicitly covers the conversion.
 
 ## New Documents
 
@@ -161,18 +162,19 @@ The layout of a new document resolves through the intake parameters in
 
 The recommended answer produces `separated`, matching the `languages/` baselines.
 
-A scope rule document or a request may also name the layout directly - an explicit request
-overrides the parameter defaults.
+A scope rule document or a request may also name the layout directly - an explicit request overrides
+the parameter defaults.
 
 ## Tooling Map
 
 - `scripts/split-sentences.py` - separates packed sentences onto individual logical lines:
   `--paragraphs` produces `separated`, `--flow` produces `flowing`.
-- `scripts/reflow-prose.py --wrap --width N` - produces the `bounded` wrap axis, and
-  `--unwrap` joins wrapped continuations back to unwrapped lines.
+- `scripts/reflow-prose.py --wrap --width N` - produces the `bounded` wrap axis:
+  each prose unit re-derives its logical lines before re-wrapping them,
+  and `--unwrap` joins wrapped continuation lines back to unwrapped lines.
 - `scripts/reflow-prose.py --justify --width N` - produces `justified`.
-- `scripts/census-document.py` - reports the detection signals above, including a prose-layout
-  classification per element type.
+- `scripts/census-document.py` - reports the detection signals above,
+  including a prose-layout classification per element type.
 
 Conversion between conventions runs only on explicit request.
 

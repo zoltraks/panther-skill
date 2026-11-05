@@ -2,10 +2,9 @@
 
 ## Purpose
 
-> **Scope:** English-Polish terminology for construction, civil engineering, and
-> concrete-durability subjects
-> **Key items:** domain signals, terminology table, context forms, calque traps,
-> untranslated terms
+> **Scope:** English-Polish terminology for construction, civil engineering,
+> and concrete-durability subjects
+> **Key items:** domain signals, terminology table, context forms, calque traps, untranslated terms
 
 Load this glossary for translate tasks on construction and building-materials subjects.
 
@@ -18,8 +17,8 @@ Apply this glossary when:
 - The request names a construction, civil-engineering, or building-materials subject.
 - The document covers exposure classes, corrosion processes, reinforcement, durability,
   or concrete structures.
-- The document's terminology is dominated by material-degradation vocabulary -
-  carbonation, chlorides, freeze-thaw cycles, sulfate attack, abrasion.
+- The document's terminology is dominated by material-degradation vocabulary - carbonation,
+  chlorides, freeze-thaw cycles, sulfate attack, abrasion.
 
 ## Terminology
 
@@ -103,21 +102,20 @@ Some English terms render differently by context.
 
 Do not force one form everywhere:
 
-- `attack` renders `atak` in process names (`atak chlorkowy`, `atak siarczanowy`) and
-  `oddziaływanie` in formal exposure-class naming (`oddziaływanie chlorków` for XD) -
-  standards-aligned prose prefers `oddziaływanie`.
-- `cracking` renders `rysowanie` for fine surface cracking and `pękanie` for structural
-  cracking driven by internal stresses.
-- `concrete cover` renders `otulina` - never `pokrywa betonu` or `osłona`, which are
-  calques.
-- `wear` renders `zużycie` for the resulting material loss and `ścieranie` for the
-  abrasion mechanism.
-- `scaling` renders `odpryski powierzchniowe` - glossing the English term in parentheses
-  on first use is acceptable in documents that already do so.
+- `attack` renders `atak` in process names (`atak chlorkowy`, `atak siarczanowy`)
+  and `oddziaływanie` in formal exposure-class naming (`oddziaływanie chlorków` for XD)
+  - standards-aligned prose prefers `oddziaływanie`.
+- `cracking` renders `rysowanie` for fine surface cracking and `pękanie` for structural cracking
+  driven by internal stresses.
+- `concrete cover` renders `otulina` - never `pokrywa betonu` or `osłona`, which are calques.
+- `wear` renders `zużycie` for the resulting material loss and `ścieranie` for
+  the abrasion mechanism.
+- `scaling` renders `odpryski powierzchniowe` - glossing the English term in parentheses on first
+  use is acceptable in documents that already do so.
 - `exposed reinforcement` renders `odsłonięte zbrojenie` when the cover is lost and
   `zbrojenie odsłonięte` in compact labels - both orderings appear in technical prose.
-- `intact` renders `nieuszkodzony` for elements and surfaces and `nienaruszony` for
-  layers, coatings, and matrices.
+- `intact` renders `nieuszkodzony` for elements and surfaces and `nienaruszony` for layers,
+  coatings, and matrices.
 - `structure` renders `konstrukcja` for load-bearing systems and `struktura` for the
   material's internal build.
 
@@ -142,15 +140,14 @@ Do not force one form everywhere:
 
 Settled terms stay in their canonical form in Polish output:
 
-- Exposure-class codes `X0`, `XC`, `XD`, `XS`, `XF`, `XA`, `XM` and their subdivisions
-  (`XC1`-`XC4`, `XD1`-`XD3`, `XS1`-`XS3`, `XF1`-`XF4`, `XA1`-`XA3`, `XM1`-`XM3`) stay
-  verbatim.
-- Chemical formulas and ions `CO₂`, `Ca(OH)₂`, `CaCO₃`, `H₂O`, `NaCl`, `MgCl₂`,
-  `SO₄²⁻`, `H⁺`, `Cl⁻` stay verbatim.
-- Strength classes `C20/25`, `C35/45` and the German ratio shorthand `w/z` stay verbatim -
-  gloss `w/z` as `współczynnik w/c` on first use when the audience needs it.
+- Exposure-class codes `X0`, `XC`, `XD`, `XS`, `XF`, `XA`,
+  `XM` and their subdivisions (`XC1` - `XC4`, `XD1` - `XD3`, `XS1` - `XS3`, `XF1` - `XF4`,
+  `XA1` - `XA3`, `XM1` - `XM3`) stay verbatim.
+- Chemical formulas and ions `CO₂`, `Ca(OH)₂`, `CaCO₃`, `H₂O`, `NaCl`, `MgCl₂`, `SO₄²⁻`, `H⁺`,
+  `Cl⁻` stay verbatim.
+- Strength classes `C20/25`, `C35/45` and the German ratio shorthand `w/z` stay verbatim - gloss
+  `w/z` as `współczynnik w/c` on first use when the audience needs it.
 - `pH`, `√t`, and the formula `x_c(t) ∝ √t` stay verbatim.
-- Standard names `DIN EN 206`, `DIN 1045-2`, `DIN EN 1992-1-1` (`Eurocode 2`),
-  `DIN 4030-1`, `DIN 1100`, `BAW-Merkblatt`, and `DAfStb-Heft` stay verbatim - the
-  nearest Polish counterparts (`PN-EN 206`) may be named as equivalents, never as
-  substitutes.
+- Standard names `DIN EN 206`, `DIN 1045-2`, `DIN EN 1992-1-1` (`Eurocode 2`), `DIN 4030-1`,
+  `DIN 1100`, `BAW-Merkblatt`, and `DAfStb-Heft` stay verbatim - the nearest Polish counterparts
+  (`PN-EN 206`) may be named as equivalents, never as substitutes.

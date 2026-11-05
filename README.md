@@ -1,56 +1,54 @@
 # Panther - Document Authoring Skill
 
 > Plain-text-readable Markdown documents - technical documentation, project specifications,
-> rules documents, format specifications, articles, notes, READMEs, and changelogs, in English,
-> Polish, or German.
->
+> rules documents, format specifications, articles, notes, READMEs, and changelogs, in
+> English, Polish, or German.
 > Structured per the [Agent Skills specification](https://agentskills.io/specification).
->
 > [Versioning Policy](./docs/VERSIONING.md)
 
 ## Contents
 
 | Section             | Line | What it covers                             |
 |---------------------|------|--------------------------------------------|
-| Overview            | 29   | What Panther is and what it produces       |
-| What The Skill Does | 55   | Authoring purpose and workflow             |
+| Overview            | 27   | What Panther is and what it produces       |
+| What The Skill Does | 53   | Authoring purpose and workflow             |
 | Installation        | 220  | How to add Panther to an agent environment |
 | Usage               | 291  | How agents activate and run the skill      |
 | Example Prompts     | 306  | Phrases the skill activates on             |
-| Workflow Diagrams   | 355  | ASCII and Mermaid diagrams of the pipeline |
-| Core Principles     | 494  | Convention preservation and minimal diffs  |
-| When To Use         | 505  | Supported requests and exclusions          |
-| What's Inside       | 546  | Rule files, templates, tools, and evals    |
-| Specification       | 725  | Agent Skills specification conformance     |
-| Verification        | 741  | Skill-maintenance checks                   |
-| License             | 760  | License for the skill itself               |
-| Credits             | 766  | Methodology and example sources            |
+| Workflow Diagrams   | 354  | ASCII and Mermaid diagrams of the pipeline |
+| Core Principles     | 493  | Convention preservation and minimal diffs  |
+| When To Use         | 503  | Supported requests and exclusions          |
+| What's Inside       | 544  | Rule files, templates, tools, and evals    |
+| Specification       | 726  | Agent Skills specification conformance     |
+| Verification        | 743  | Skill-maintenance checks                   |
+| License             | 764  | License for the skill itself               |
+| Credits             | 770  | Methodology and example sources            |
 
 ## Overview
 
 Panther is a document authoring process packaged as an agent skill.
 
 It guides an AI coding agent through creating or editing a Markdown document with consistent,
-plain-text-readable conventions: one sentence per paragraph, source-width-aligned tables, and
-language-appropriate style rules.
+plain-text-readable conventions: one sentence per paragraph, source-width-aligned tables,
+and language-appropriate style rules.
 
-Documents are written in English by default, with full Polish and German support, and new
-files use UTF-8.
+Documents are written in English by default, with full Polish and German support,
+and new files use UTF-8.
 
-The skill detects and preserves the encoding, line endings, and Markdown dialect of existing
-documents - a file in UTF-16 or a legacy code page stays that way after an edit.
+The skill detects and preserves the encoding, line endings,
+and Markdown dialect of existing documents - a file in UTF-16 or a legacy code page stays
+that way after an edit.
 
-Supported types cover technical documentation, project specifications, rules documents, agent
-instruction documents, contributing guides, format specifications, articles, notes, READMEs,
+Supported types cover technical documentation, project specifications, rules documents,
+agent instruction documents, contributing guides, format specifications, articles, notes, READMEs,
 changelogs, decision records, RFCs, and PMBOK artifacts - charters, registers, status reports,
 meeting minutes, management plans, and work breakdown structures - plus YAML data files.
 
-Supported project layouts cover agent skill repositories, Sphinx, MkDocs, Docusaurus,
-VitePress, GitBook sites, guided projects, documentation collections, and multi-project
-repositories.
+Supported project layouts cover agent skill repositories, Sphinx, MkDocs, Docusaurus, VitePress,
+GitBook sites, guided projects, documentation collections, and multi-project repositories.
 
-AsciiDoc and reStructuredText documents follow a minimal-edit contract, and YAML files have
-their own document type.
+AsciiDoc and reStructuredText documents follow a minimal-edit contract,
+and YAML files have their own document type.
 
 ## What The Skill Does
 
@@ -58,20 +56,20 @@ When you ask for a document, the agent loads the skill and performs the followin
 
 **Checks for updates**
 
-Once per session, the agent runs a git self-update check on the skill's own repository and offers
-to pull incoming commits before starting, when the skill lives in a git clone.
+Once per session, the agent runs a git self-update check on the skill's own repository and offers to
+pull incoming commits before starting, when the skill lives in a git clone.
 
 **Resolves parameters**
 
 For a new document it confirms the type, language, filename, and encoding, with sensible defaults.
 
-Every question offers at most four answers - up to three options guessed from the detected
-evidence plus `Cancel`, which aborts the task, and format questions are asked before the
-document-type question, which is always its own surface.
+Every question offers at most four answers - up to three options guessed from the detected evidence
+plus `Cancel`, which aborts the task, and format questions are asked before the document-type
+question, which is always its own surface.
 
-After the type resolves, a section-plan question chooses which required, recommended, and
-optional sections the document carries, and before writing, the agent describes the plan and
-asks to proceed, adjust, or cancel.
+After the type resolves, a section-plan question chooses which required, recommended,
+and optional sections the document carries, and before writing,
+the agent describes the plan and asks to proceed, adjust, or cancel.
 
 A request for parameters in JSON emits a machine-readable intake document per
 `process/json-exchange.md`, and JSON answers are accepted in reply.
@@ -80,26 +78,26 @@ For an edit it skips the questions and follows the document's own conventions.
 
 **Detects the document's conventions**
 
-Encoding, byte order mark, line-ending style, and Markdown dialect (standard ATX, setext
-headings, numbered chapters, export artifacts) are detected before any write.
+Encoding, byte order mark, line-ending style, and Markdown dialect (standard ATX, setext headings,
+numbered chapters, export artifacts) are detected before any write.
 
 **Detects the document scope**
 
-When the task runs inside a project, its document layout is classified - an agent skill
-repository, a Sphinx documentation project, or the unstructured default - and the matching
-scope file governs where new documents go, how they are named, and which index files are
-updated.
+When the task runs inside a project, its document layout is classified - an agent skill repository,
+a Sphinx documentation project, or the unstructured default - and the matching scope file governs
+where new documents go, how they are named, and which index files are updated.
 
 **Selects the smallest rule set**
 
-One language baseline plus one document-type file, loaded only when the document is a known
-type, plus a scope file when the project layout is organized. A simple note needs far less
-machinery than a project specification.
+One language baseline plus one document-type file, loaded only when the document is a known type,
+plus a scope file when the project layout is organized.
+
+A simple note needs far less machinery than a project specification.
 
 **Writes to the baseline**
 
-Every language file covers structure, headings, lists, characters, tables, vocabulary,
-and file naming.
+Every language file covers structure, headings, lists, characters, tables,
+vocabulary, and file naming.
 
 English uses Title Case headings, Polish and German use sentence case,
 and each language carries its own terminology guidance.
@@ -110,8 +108,8 @@ Tables are formatted by script, not by hand.
 
 A document validator checks structure, spacing, characters, and table alignment before delivery.
 
-A section checker compares a typed document's headings against its type's required,
-recommended, optional, and unusual section vocabulary, including localized section names.
+A section checker compares a typed document's headings against its type's required, recommended,
+optional, and unusual section vocabulary, including localized section names.
 
 **Discovers document layouts**
 
@@ -156,16 +154,16 @@ vocabulary, and characters to the target language while preserving structure, co
 The output lands in a sibling file carrying the language code, named `<basename>-<code>.md`,
 and the delivery report lists the glossaries applied and notable term choices.
 
-An explicitly requested adapted translation may compress and reorder the output, with every
-structural delta listed in the delivery report - faithful structure stays the default.
+An explicitly requested adapted translation may compress and reorder the output,
+with every structural delta listed in the delivery report - faithful structure stays the default.
 
 Asking to "audit this translation" or "check how this was translated" runs
-`process/translation-audit.md`: it maps the rendered document against its source and reports
-a fidelity verdict with findings.
+`process/translation-audit.md`: it maps the rendered document against its source and reports a
+fidelity verdict with findings.
 
 Asking to "fix this translation" or "apply the review findings" runs
-`process/translation-revision.md`: it aligns each finding with the source passage, applies
-minimal-diff corrections, and sweeps the document for the same class of issue.
+`process/translation-revision.md`: it aligns each finding with the source passage,
+applies minimal-diff corrections, and sweeps the document for the same class of issue.
 
 **Corrects documents**
 
@@ -175,55 +173,57 @@ the agent follows `process/correct-document.md`:
 it runs the audit's mechanical checks, then fixes formatting, structure, grammar, typos,
 and style in place with a minimal diff.
 
-When the target resolves to a translation source, fidelity findings - calques, modality
-drift, concordance breaks - are reported as proposals for approval, never applied silently.
+When the target resolves to a translation source, fidelity findings - calques, modality drift,
+concordance breaks - are reported as proposals for approval, never applied silently.
 
 **Maintains itself**
 
-Separately, when you ask to "work on panther-skill" or "fix this skill", the agent presents
-the maintenance menu - document work, skill adjustment, or a session review - waits for a
-selection, and enters
-maintenance mode: it reads the skill's governing documents, applies `docs/MAINTENANCE.md` and
-`docs/STYLE.md`, and runs the skill's own validators - document-mode machinery does not apply
-to the skill's own files.
+Separately, when you ask to "work on panther-skill" or "fix this skill",
+the agent presents the maintenance menu - document work, skill adjustment,
+or a session review - waits for a selection, and enters maintenance mode:
 
-The session-review path gathers the current session's lessons, reports findings for
-approval - autonomous and verbose modes resolve the gate unattended or fully explained -
-and lands the approved changes in the rule corpus.
+it reads the skill's governing documents, applies `docs/MAINTENANCE.md` and `docs/STYLE.md`,
+and runs the skill's own validators - document-mode machinery does not apply to
+the skill's own files.
+
+The session-review path gathers the current session's lessons,
+reports findings for approval - autonomous and verbose modes resolve the gate unattended or fully
+explained - and lands the approved changes in the rule corpus.
 
 **Enables on a bare request**
 
-Separately, when you say "use skill" or "run panther" without naming a task, the agent follows
-`process/skill-activation.md`: it runs the session update check, treats the loaded router as the
-enabled state, and answers with a one-sentence description of the skill, the version from
-`metadata.version`, and a compact table of the operation families - with a pointer to "list all
-operations" for the full catalog.
+Separately, when you say "use skill" or "run panther" without naming a task,
+the agent follows `process/skill-activation.md`: it runs the session update check,
+treats the loaded router as the enabled state,
+and answers with a one-sentence description of the skill, the version from `metadata.version`,
+and a compact table of the operation families - with a pointer to "list all operations"
+for the full catalog.
 
 Then it waits.
 
-A generic phrase such as "use skill" binds to Panther only when the context identifies this
-skill - an ambiguous referent asks which skill is meant.
+A generic phrase such as "use skill" binds to Panther only when the context identifies this skill -
+an ambiguous referent asks which skill is meant.
 
-An activation that names a working repository or directory but no operation is the same
-standby scoped to that target - a minimal confirmation, then the wait.
+An activation that names a working repository or directory but no operation is the same standby
+scoped to that target - a minimal confirmation, then the wait.
 
 The standby never surveys the target to infer the intended task.
 
-It waits for the next request or asks what to do, and a read-only survey with proposed work
-answers only a request that itself asks to look around.
+It waits for the next request or asks what to do,
+and a read-only survey with proposed work answers only a request that itself asks to look around.
 
 The skill changes files only on a request that names the operation and the target.
 
-No parameter questions, task classification, or document machinery runs until a task request
-arrives.
+No parameter questions, task classification,
+or document machinery runs until a task request arrives.
 
 ## Installation
 
-Panther is a filesystem-based skill following the [Agent Skills
-specification](https://agentskills.io/specification).
+Panther is a filesystem-based skill following the
+[Agent Skills specification](https://agentskills.io/specification).
 
-Agents load it by reading the directory and activating `SKILL.md` when a request matches a
-trigger phrase.
+Agents load it by reading the directory and activating `SKILL.md` when a request
+matches a trigger phrase.
 
 Clone the repository into the agent's skills directory:
 
@@ -261,8 +261,8 @@ For a personal install across all projects, use `~/.claude/skills/panther-skill/
 
 **Other Agents**
 
-Agents that follow the shared skills convention - Antigravity, Cursor, Pi, and
-similar tools - load project skills from `.agents/skills/`:
+Agents that follow the shared skills convention - Antigravity, Cursor, Pi,
+and similar tools - load project skills from `.agents/skills/`:
 
 ```
 your-project/
@@ -283,8 +283,8 @@ git -C <skills-dir>/panther-skill pull --ff-only
 
 The pull merges upstream content without cryptographic verification.
 
-The update verdict reports `tip_sha` and `tip_date` details for the upstream tip, so the new
-state can be reviewed and pinned to a specific commit before pulling.
+The update verdict reports `tip_sha` and `tip_date` details for the upstream tip,
+so the new state can be reviewed and pinned to a specific commit before pulling.
 
 Approve only trusted upstreams, and review `git log HEAD..@{u}` diffs before pulling when unsure.
 
@@ -296,31 +296,30 @@ Examples include "write a README", "draft a specification", "format this table",
 "write an ADR", "audit this document", and "run panther".
 
 A bare activation phrase such as "use skill" enables the skill for editorial support without
-starting a task - the answer describes the skill, names its version, and shows the operation
-families table.
+starting a task - the answer describes the skill, names its version,
+and shows the operation families table.
 
-The skill performs an update check, resolves parameters, detects conventions and scope, selects
-rule files, drafts the document, validates it mechanically, and delivers the file with preserved
-encoding and line endings.
+The skill performs an update check, resolves parameters, detects conventions and scope,
+selects rule files, drafts the document, validates it mechanically,
+and delivers the file with preserved encoding and line endings.
 
 ## Example Prompts
 
 **New project specification**
-> Write a project specification for a Go order-tracking service. Cover goals, non-goals,
-> glossary, functional requirements, and design decisions.
+> Write a project specification for a Go order-tracking service. Cover goals, non-goals, glossary,
+> functional requirements, and design decisions.
 
 **Architecture decision record**
-> Write an ADR in docs/adr/ deciding between RabbitMQ and a Postgres-backed queue for the
-> event pipeline. Include decision drivers, both options, and the consequences.
+> Write an ADR in docs/adr/ deciding between RabbitMQ and a Postgres-backed queue for the event
+> pipeline. Include decision drivers, both options, and the consequences.
 
 **Project risk register**
-> Create a risk register for the payments migration project in docs/registers/. Define the
-> probability and impact scales, then seed it with three risks - each with an owner and a
-> response strategy.
+> Create a risk register for the payments migration project in docs/registers/.
+> Define the probability and impact scales,
+> then seed it with three risks - each with an owner and a response strategy.
 
 **Article in Polish**
-> Write a short article in Polish about the ring buffer, with a usage example in an embedded
-> system.
+> Write a short article in Polish about the ring buffer, with a usage example in an embedded system.
 
 **Convention-preserving edit**
 > Add a new functional requirement and use case to this numbered-chapter project document.
@@ -357,8 +356,8 @@ encoding and line endings.
 The diagrams show the authoring pipeline for document tasks.
 
 Layout discovery and document audits follow their own standalone procedures in
-`process/scope-discovery.md` and `process/document-audit.md`, and inline descriptions
-follow `process/describe-response.md`.
+`process/scope-discovery.md` and `process/document-audit.md`,
+and inline descriptions follow `process/describe-response.md`.
 
 ### ASCII Diagram
 
@@ -494,13 +493,12 @@ flowchart TD
 ## Core Principles
 
 - **Plain text first** - the source must read well in a console before any renderer touches it.
-- **The document's own conventions win** - existing dialects, numbering, encodings, and naming
-  are preserved on edit.
+- **The document's own conventions win** - existing dialects, numbering, encodings,
+  and naming are preserved on edit.
 - **Minimal diff** - changes stay inside the scope of the request.
-- **Explicit unknowns** - missing information is marked `NOT SPECIFIED` or `TBD`, never
-  invented.
-- **One language file per document** - the matching `languages/` file is the authoritative style
-  source.
+- **Explicit unknowns** - missing information is marked `NOT SPECIFIED` or `TBD`, never invented.
+- **One language file per document** - the matching `languages/` file is the
+  authoritative style source.
 
 ## When To Use This Skill
 
@@ -712,8 +710,8 @@ panther-skill/
 ```
 
 Document-production tools run in place from this repository -
-`python3 <skill-root>/scripts/<tool>.py <file>` - and are copied under `.tmp.` names only
-when the skill root cannot be invoked, per `scripts/README.md`.
+`python3 <skill-root>/scripts/<tool>.py <file>` - and are copied under `.tmp.` names only when the
+skill root cannot be invoked, per `scripts/README.md`.
 
 Skill-maintenance tools run from this repository only.
 
@@ -722,43 +720,46 @@ Skill-maintenance tools run from this repository only.
 `principles/authoring-rules.md` and `process/document-workflow.md` are mandatory reading for
 every document task.
 
-Type rules, language baselines, scope rules, encoding conventions, templates, and tools load
-only as the workflow requires them.
+Type rules, language baselines, scope rules, encoding conventions, templates,
+and tools load only as the workflow requires them.
 
 ## Specification
 
 Panther is structured per the [Agent Skills specification](https://agentskills.io/specification).
 
-The layout follows the specification's conventions: `SKILL.md` as the router with required
-`name` and `description` frontmatter, canonical scripts under `scripts/`, rule material under
-named directories, and progressive disclosure keeping the router under 500 lines.
+The layout follows the specification's conventions:
+
+`SKILL.md` as the router with required `name` and `description` frontmatter,
+canonical scripts under `scripts/`, rule material under named directories,
+and progressive disclosure keeping the router under 500 lines.
 
 The corpus intentionally uses domain-named directories (`types/`, `scopes/`, `conventions/`,
 `languages/`, `translations/`, `templates/`) instead of a single `references/` directory.
 
 Every file is indexed in its directory's `README.md` under progressive disclosure.
 
-Run the conformance validators listed in [Verification](#verification) after structural
-changes.
+Run the conformance validators listed in [Verification](#verification) after structural changes.
 
 ## Verification
 
-- Run `python3 scripts/validate-skill.py .`, `python3 scripts/check-references.py .`, and
-  `python3 scripts/check-contents.py .` after changing `SKILL.md`, `README.md`, or file layout.
+- Run `python3 scripts/validate-skill.py .`, `python3 scripts/check-references.py .`,
+  and `python3 scripts/check-contents.py .` after changing `SKILL.md`, `README.md`, or file layout.
 - Exercise the regression prompts in `evals/evals.json` after structural changes.
 - Run `python3 scripts/validate-document.py <file>` on any document the skill produces.
 
-The `docs/MAINTENANCE.md` registration contract, the three mechanical validators
-(`validate-skill.py`, `check-references.py`, `check-contents.py`), and the behavioral prompts in
-`evals/evals.json` serve as the regression gate that keeps the corpus consistent between reviews.
+The `docs/MAINTENANCE.md` registration contract,
+the three mechanical validators (`validate-skill.py`, `check-references.py`, `check-contents.py`),
+and the behavioral prompts in `evals/evals.json` serve as the regression gate that keeps the corpus
+consistent between reviews.
 
-The gate is manual by design: the project runs no CI pipeline, so the maintainer runs the
-validators and smoke harness before each commit.
+The gate is manual by design: the project runs no CI pipeline,
+so the maintainer runs the validators and smoke harness before each commit.
 
 Panther is a single-maintainer project.
 
-When external contributors appear, structural changes to `SKILL.md`, frontmatter, or `scripts/`
-require a second-reviewer pass before merging - see [CONTRIBUTING.md](./docs/CONTRIBUTING.md).
+When external contributors appear, structural changes to `SKILL.md`, frontmatter,
+or `scripts/` require a second-reviewer pass before merging - see
+[CONTRIBUTING.md](./docs/CONTRIBUTING.md).
 
 ## License
 

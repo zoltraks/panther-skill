@@ -2,16 +2,16 @@
 
 ## Purpose
 
-> **Scope:** Conventions for `CHANGELOG.md` files - version-grouped records of what changed in a
-> project and why
+> **Scope:** Conventions for `CHANGELOG.md` files - version-grouped records of what changed
+> in a project and why
 > **Key items:** version sections, newest first, change categories, user-facing language
 
 A changelog tells a reader what changed between versions.
 
 It is written for the user of the project, not for the developer who made the change.
 
-Typical shape: one section per released version, newest first, with a summary sentence and
-change-kind bullets.
+Typical shape: one section per released version, newest first,
+with a summary sentence and change-kind bullets.
 
 ## When To Use
 
@@ -36,8 +36,8 @@ A type-conventional name that overrides the lowercase naming rule.
 3. A one-sentence summary under each version heading.
 4. Bullet items grouped by change kind: added, improved, fixed, removed.
 
-Write bullets that describe the effect for the user, name the feature and say what changed and
-why it matters.
+Write bullets that describe the effect for the user,
+name the feature and say what changed and why it matters.
 
 ## Deltas From The Language Baseline
 
@@ -59,7 +59,6 @@ why it matters.
 | Fixed    | optional    |
 | Removed  | optional    |
 
-Version headings carry the release number (`## Version 1.2`) - the checker matches them by
-prefix.
+Version headings carry the release number (`## Version 1.2`) - the checker matches them by prefix.
 
 Section names for other languages are declared in the matching `languages/<code>.md` file.

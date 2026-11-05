@@ -6,29 +6,31 @@
 > **Key items:** session gather, findings, approval gate, review modes, rule-file
 > application, validation
 
-This file defines the improvement path of maintenance mode: the agent reviews what happened
-in this conversation, extracts the lessons worth keeping, and lands them in the rule corpus.
+This file defines the improvement path of maintenance mode:
+the agent reviews what happened in this conversation, extracts the lessons worth keeping,
+and lands them in the rule corpus.
 
-Follow it when the user picks the session-review option of the maintenance menu, or when the
-request explicitly asks to improve the skill from this session.
+Follow it when the user picks the session-review option of the maintenance menu,
+or when the request explicitly asks to improve the skill from this session.
 
 ## Modes
 
-Two optional flags named in the request modify how the review's question surfaces behave -
-"improve panther-skill from this session, autonomously".
+Two optional flags named in the request modify how the review's question surfaces behave - "improve
+panther-skill from this session, autonomously".
 
-- **Autonomous** - `autonomous`, `automatic`, `unattended`, or `non-interactive`. Every gate
-  in this procedure resolves to its recommended option without waiting, and the completion
-  report carries a `Decisions:` list naming each resolved surface and the option taken.
-- **Verbose** - `verbose`. Every surface additionally reports the full option list and the
-  rationale for the recommended choice, whether the surface was asked or auto-resolved.
+- **Autonomous** - `autonomous`, `automatic`, `unattended`, or `non-interactive`.
+  Every gate in this procedure resolves to its recommended option without waiting,
+  and the completion report carries a `Decisions:` list naming each resolved surface
+  and the option taken.
+- **Verbose** - `verbose`. Every surface additionally reports the full option list and the rationale
+  for the recommended choice, whether the surface was asked or auto-resolved.
 
 The flags may stack.
 
 Autonomous plus verbose resolves every gate and reports all options.
 
-Autonomous mode resolves only this procedure's own gates: it never commits, and a session
-that yields no findings still reports and stops rather than inventing changes.
+Autonomous mode resolves only this procedure's own gates: it never commits,
+and a session that yields no findings still reports and stops rather than inventing changes.
 
 ## Procedure
 
@@ -36,27 +38,27 @@ that yields no findings still reports and stops rather than inventing changes.
 
 Read the session's conversation history.
 
-List what failed, surprised, or needed a workaround, and every assumption the session made -
-validated or broken.
+List what failed, surprised, or needed a workaround,
+and every assumption the session made - validated or broken.
 
-Verify real state before recording a lesson: re-check files, rerun commands, confirm the
-reported behavior - no guessed findings.
+Verify real state before recording a lesson: re-check files, rerun commands,
+confirm the reported behavior - no guessed findings.
 
 ### Findings
 
 Map each durable lesson to the rule file or files it belongs in.
 
-A lesson about produced documents goes to `languages/`, `types/`, `principles/`, or the
-matching `conventions/` file.
+A lesson about produced documents goes to `languages/`, `types/`, `principles/`,
+or the matching `conventions/` file.
 
-A lesson about the workflow goes to `process/`, a lesson about a tool goes to
-`scripts/README.md` or the tool itself.
+A lesson about the workflow goes to `process/`,
+a lesson about a tool goes to `scripts/README.md` or the tool itself.
 
-Drop lessons already covered by existing rules - the findings list names gaps, not
-repetitions.
+Drop lessons already covered by existing rules - the findings list names gaps, not repetitions.
 
-The external-example anonymization rule from `docs/MAINTENANCE.md` applies: findings describe
-the lesson with skill-owned examples, never with names or paths the session supplied.
+The external-example anonymization rule from `docs/MAINTENANCE.md` applies:
+findings describe the lesson with skill-owned examples,
+never with names or paths the session supplied.
 
 ### Approval
 
@@ -69,11 +71,10 @@ Under JSON exchange the gate emits as the `session-review-approval` `choice` par
 
 The gate offers `Apply` (recommended), `Adjust`, and `Cancel`.
 
-`Adjust` accepts a free-text correction to the findings or the proposal and re-presents the
-report.
+`Adjust` accepts a free-text correction to the findings or the proposal and re-presents the report.
 
-Under autonomous mode the gate resolves to `Apply` without asking and the resolution is
-recorded in the decisions list, per Modes above.
+Under autonomous mode the gate resolves to `Apply` without asking and the resolution is recorded in
+the decisions list, per Modes above.
 
 ### Apply
 
@@ -81,25 +82,25 @@ On approval, edit the named rule files per `docs/MAINTENANCE.md` and `docs/STYLE
 
 Apply the registration contract when the change adds, removes, or renames a resource.
 
-`SKILL.md`, the `README.md` directory tree, `## Contents` tables, and `evals/evals.json`
-move together.
+`SKILL.md`, the `README.md` directory tree, `## Contents` tables,
+and `evals/evals.json` move together.
 
 ### Validate
 
-Run the skill-maintenance suite from `docs/MAINTENANCE.md` after the edits and report every
-check that ran, failed, or was skipped.
+Run the skill-maintenance suite from `docs/MAINTENANCE.md` after the edits and report every check
+that ran, failed, or was skipped.
 
 ## What Does Not Apply
 
-- No document-mode machinery runs - parameter resolution, scope detection, and the language
-  baseline cascade do not apply to skill files.
+- No document-mode machinery runs - parameter resolution, scope detection,
+  and the language baseline cascade do not apply to skill files.
 - No separate findings log is kept - findings land directly in the rule files they correct.
-- The session's concrete task output is not part of the review - the review extracts
-  transferable rules, not a report of the work itself.
+- The session's concrete task output is not part of the review - the review extracts transferable
+  rules, not a report of the work itself.
 
 ## Relation To Maintenance Mode
 
 This file is a path inside maintenance mode, not a mode of its own.
 
-The maintenance menu in `process/skill-maintenance.md` routes to it, and the governing set
-read happens under that intake.
+The maintenance menu in `process/skill-maintenance.md` routes to it,
+and the governing set read happens under that intake.

@@ -4,8 +4,7 @@
 
 > **Scope:** German-English terminology for software engineering and the software
 > development lifecycle
-> **Key items:** domain signals, terminology table, context forms, calque traps,
-> untranslated terms
+> **Key items:** domain signals, terminology table, context forms, calque traps, untranslated terms
 
 Load this glossary for translate tasks on software and software-documentation subjects.
 
@@ -16,12 +15,12 @@ Apply it for German to English translate tasks, per `process/translate-document.
 Apply this glossary when:
 
 - The request names a software, IT, or SDLC subject.
-- The document type is technical, specification, README, contributing, changelog, agent
-  instruction, format specification, or rules document for a software project.
-- The document's terminology is dominated by code, API, build, deploy, test, or
-  infrastructure vocabulary.
-- The document's terminology is dominated by AI-agent, agentic-SDLC, or
-  assistant-orchestration vocabulary.
+- The document type is technical, specification, README, contributing, changelog, agent instruction,
+  format specification, or rules document for a software project.
+- The document's terminology is dominated by code, API, build, deploy, test,
+  or infrastructure vocabulary.
+- The document's terminology is dominated by AI-agent, agentic-SDLC,
+  or assistant-orchestration vocabulary.
 
 ## Terminology
 
@@ -94,8 +93,7 @@ Do not force one form everywhere:
 
 - `Fehler` renders `bug` for a tracked defect and `error` for runtime and message text.
 - `Problem` renders `issue` for a tracked item and `problem` in prose.
-- `Funktion` renders `feature` in product documentation and `function` in code and API
-  text.
+- `Funktion` renders `feature` in product documentation and `function` in code and API text.
 - `Umgebung` renders `environment` generally and `runtime` inside `Laufzeitumgebung`.
 - `Prompt` renders `prompt` - never `input request` or `command line`.
 
@@ -116,9 +114,8 @@ Do not force one form everywhere:
 
 German loanwords and identifiers render back to their canonical English forms:
 
-- `Endpoint`, `Frontend`, `Backend`, `Commit`, `Merge`, `Pull Request`, `Lint`,
-  `Fork`, `Framework`, `Middleware`, `Staging`, `Backlog`, `Sprint`, `Prompt`,
-  `Token`, `Workflow`, `Open Source`
-- Acronyms: `API`, `SDK`, `CLI`, `UI`, `URL`, `HTTP`, `JSON`, `YAML`, `XML`, `SQL`,
-  `REST`, `IDE`, `CI/CD`, `ASCII`, `UTF-8`, `CRLF`, `npm`, `git`, `LLM`
+- `Endpoint`, `Frontend`, `Backend`, `Commit`, `Merge`, `Pull Request`, `Lint`, `Fork`, `Framework`,
+  `Middleware`, `Staging`, `Backlog`, `Sprint`, `Prompt`, `Token`, `Workflow`, `Open Source`
+- Acronyms: `API`, `SDK`, `CLI`, `UI`, `URL`, `HTTP`, `JSON`, `YAML`, `XML`, `SQL`, `REST`, `IDE`,
+  `CI/CD`, `ASCII`, `UTF-8`, `CRLF`, `npm`, `git`, `LLM`
 - Product and technology names: `Docker`, `Kubernetes`, `Microsoft Fabric`, `Power BI`

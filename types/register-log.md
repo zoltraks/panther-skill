@@ -2,11 +2,10 @@
 
 ## Purpose
 
-> **Scope:** Living project documents that track evolving information as entry
-> tables - registers and logs.
->
-> **Key items:** ID prefixes, status lifecycles, scoring definitions,
-> append-only entries, one owner per entry.
+> **Scope:** Living project documents that track evolving information as entry tables
+> - registers and logs.
+> **Key items:** ID prefixes, status lifecycles, scoring definitions, append-only entries,
+> one owner per entry.
 
 ## When To Use
 
@@ -48,22 +47,19 @@ The document's own conventions always win on edit.
 
 ## Structure
 
-1. H1 title - `# Risk Register`, `# Issue Log`, and the other
-   register names.
+1. H1 title - `# Risk Register`, `# Issue Log`, and the other register names.
 2. Purpose - one paragraph stating what the register tracks.
-3. Scoring definitions - probability and impact scale tables sit above the
-   first register table in scored registers, agreed once per document.
+3. Scoring definitions - probability and impact scale tables sit above the first register table in
+   scored registers, agreed once per document.
 4. The register table - one row per entry, the ID column first.
 5. Notes - any project-specific conventions below the table.
 
 ## Deltas From The Language Baseline
 
-- Registers are append-only. Close an entry by changing its status, never by
-  deleting the row.
+- Registers are append-only. Close an entry by changing its status, never by deleting the row.
 - IDs are stable and sequential. A deleted entry's number is never reused.
-- The document's own column set and ID prefixes win on edit. Prefixes are
-  per-document, not global - an `A-01` assumption and an `A-01` decision in
-  another file do not collide.
+- The document's own column set and ID prefixes win on edit. Prefixes are per-document,
+  not global - an `A-01` assumption and an `A-01` decision in another file do not collide.
 - Risk statements use cause-and-effect form - "If X happens, then Y".
 - Status lifecycles follow the kind:
   - Risk - identified, assessed, response planned, closed.
@@ -104,7 +100,7 @@ The document's own conventions always win on edit.
 | Authority           | optional    | register column  |
 | Recommendation      | optional    | register column  |
 
-The register table sits under a kind-named section - `Risks`, `Issues`, `Changes` - which is
-always correct for the kind and never flagged.
+The register table sits under a kind-named section - `Risks`, `Issues`,
+`Changes` - which is always correct for the kind and never flagged.
 
 Section names for other languages are declared in the matching `languages/<code>.md` file.

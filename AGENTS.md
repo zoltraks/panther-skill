@@ -27,35 +27,35 @@ Keep each rule in its owning document and link to it instead of duplicating it.
 
 ## Boundaries
 
-- The skill is a routed instruction set: Markdown content becomes agent instructions, so
-  content integrity issues are security issues - follow `docs/SECURITY.md` for them.
+- The skill is a routed instruction set: Markdown content becomes agent instructions,
+  so content integrity issues are security issues - follow `docs/SECURITY.md` for them.
 - Maintenance-mode work on this repository follows `process/skill-maintenance.md` - the
-  document-production machinery in `process/document-workflow.md` does not apply to the
-  skill's own files.
+  document-production machinery in `process/document-workflow.md` does not apply to
+  the skill's own files.
 - Keep `SKILL.md` lean: it routes to resources and must stay below 500 lines.
-- Register every new or renamed resource in its directory's `README.md` index and mirror
-  tree, per `docs/MAINTENANCE.md`.
-- Follow `docs/STYLE.md` for every shipped file: H1 plus Purpose, one sentence per
-  paragraph, prose wrapped at 100 characters, tables aligned by source width.
-- Never embed example files, paths, or project names supplied with a request - create
-  anonymized skill-owned examples instead, per `docs/MAINTENANCE.md`.
+- Register every new or renamed resource in its directory's `README.md` index and mirror tree,
+  per `docs/MAINTENANCE.md`.
+- Follow `docs/STYLE.md` for every shipped file: H1 plus Purpose, one sentence per paragraph,
+  prose wrapped at 100 characters, tables aligned by source width.
+- Never embed example files, paths, or project names supplied with a request - create anonymized
+  skill-owned examples instead, per `docs/MAINTENANCE.md`.
 - Keep `evals/evals.json` in sync when a change alters skill behavior.
-- Bump `metadata.version` by one patch with every change set that modifies skill document
-  contents, per `docs/VERSIONING.md` - a change set is the edits delivered together, and
-  the version moves at most once until the set is committed.
-- A request that names no concrete operation authorizes analysis and proposals only -
-  files in this repository change on an explicit, confirmed instruction.
+- Bump `metadata.version` by one patch with every change set that modifies skill document contents,
+  per `docs/VERSIONING.md` - a change set is the edits delivered together,
+  and the version moves at most once until the set is committed.
+- A request that names no concrete operation authorizes analysis and proposals only - files in this
+  repository change on an explicit, confirmed instruction.
 - Do not claim validation that did not run.
-- Never commit automatically, except a commit completing a user-approved upstream
-  merge - that commit may be made, while pushing always runs on a separate request.
+- Never commit automatically, except a commit completing a user-approved upstream merge - that
+  commit may be made, while pushing always runs on a separate request.
 
 ## Local Workspace
 
 Research scratch and other local working artifacts live in the gitignored `work/` directory.
 
-Shipped skill files never depend on workspace content - document-production tools run in
-place from `scripts/` and are copied under a `.tmp.` infix only when the skill root cannot
-be invoked, per `scripts/README.md`.
+Shipped skill files never depend on workspace content - document-production tools run in place from
+`scripts/` and are copied under a `.tmp.` infix only when the skill root cannot be invoked,
+per `scripts/README.md`.
 
 ## Validation
 
@@ -70,12 +70,12 @@ git diff --check
 ```
 
 Run `python3 scripts/validate-document.py <file>` and the style self-audit checkers listed in
-`docs/MAINTENANCE.md` on every edited rule document, and `python3 scripts/format-table.py <file>`
-on every file whose tables were touched.
+`docs/MAINTENANCE.md` on every edited rule document,
+and `python3 scripts/format-table.py <file>` on every file whose tables were touched.
 
 Changes that alter skill behavior also exercise the regression prompts in `evals/evals.json`.
 
 ## Skill Improvement
 
-Structural, naming, registration, or layout changes follow the procedures in
-`docs/MAINTENANCE.md` and the intake procedure in `process/skill-maintenance.md`.
+Structural, naming, registration, or layout changes follow the procedures in `docs/MAINTENANCE.md`
+and the intake procedure in `process/skill-maintenance.md`.

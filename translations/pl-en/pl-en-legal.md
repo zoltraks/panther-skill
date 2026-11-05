@@ -3,8 +3,7 @@
 ## Purpose
 
 > **Scope:** Polish-English terminology for contracts, regulations, and legal documents
-> **Key items:** domain signals, terminology table, context forms, calque traps,
-> untranslated terms
+> **Key items:** domain signals, terminology table, context forms, calque traps, untranslated terms
 
 Load this glossary for translate tasks on legal subjects.
 
@@ -15,10 +14,8 @@ Apply it for Polish to English translate tasks, per `process/translate-document.
 Apply this glossary when:
 
 - The request names a legal, contract, compliance, or regulatory subject.
-- The document covers agreements, clauses, liability, jurisdiction, licensing, or data
-  protection.
-- The document's terminology is dominated by party, obligation, claim, or statute
-  vocabulary.
+- The document covers agreements, clauses, liability, jurisdiction, licensing, or data protection.
+- The document's terminology is dominated by party, obligation, claim, or statute vocabulary.
 
 ## Terminology
 
@@ -100,14 +97,14 @@ Some Polish terms render differently to English by context.
 
 Do not force one form everywhere:
 
-- `rękojmia` renders `warranty` for statutory seller liability and `gwarancja` renders
-  `warranty` or `guarantee` for voluntary contractual cover - keep the distinction.
+- `rękojmia` renders `warranty` for statutory seller liability and `gwarancja` renders `warranty` or
+  `guarantee` for voluntary contractual cover - keep the distinction.
 - `umowa` renders `agreement` or `contract` for binding text and `porozumienie` renders
   `arrangement` or `understanding` for looser instruments.
-- `odpowiedzialność` renders `liability` in legal prose and `obligation` where the
-  finance meaning is intended. The finance glossary governs accounting text.
-- `postanowienie` renders `provision` in contract language and `clause` where the
-  document numbers provisions as clauses.
+- `odpowiedzialność` renders `liability` in legal prose and `obligation` where the finance meaning
+  is intended. The finance glossary governs accounting text.
+- `postanowienie` renders `provision` in contract language and `clause` where the document numbers
+  provisions as clauses.
 - `sąd` renders `court` generally and `tribunal` for EU or constitutional bodies.
 - `wykonanie` renders `performance` for contract performance and `execution` for
   enforcement proceedings.
@@ -133,11 +130,10 @@ Do not force one form everywhere:
 
 Settled terms render back to their canonical English forms:
 
-- `RODO` renders `GDPR` (General Data Protection Regulation), `umowa o zachowaniu
-  poufności` renders `NDA` or `non-disclosure agreement`.
-- `KRS` and `CEIDG` stay as Polish registry acronyms - gloss them on first use, for
-  example `Krajowy Rejestr Sądowy (KRS, the National Court Register)`.
-- `due diligence`, `know-how`, `compliance`, `ESCO`, `pro bono`, `ad hoc` stay in their
-  settled forms.
-- Latin formulas common to legal writing stay: `ipso facto`, `sensu stricto`,
-  `de facto`.
+- `RODO` renders `GDPR` (General Data Protection Regulation),
+  `umowa o zachowaniu poufności` renders `NDA` or `non-disclosure agreement`.
+- `KRS` and `CEIDG` stay as Polish registry acronyms - gloss them on first use,
+  for example `Krajowy Rejestr Sądowy (KRS, the National Court Register)`.
+- `due diligence`, `know-how`, `compliance`, `ESCO`, `pro bono`,
+  `ad hoc` stay in their settled forms.
+- Latin formulas common to legal writing stay: `ipso facto`, `sensu stricto`, `de facto`.

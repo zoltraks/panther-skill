@@ -17,8 +17,8 @@
 
 A collection README is an index with a spine.
 
-It explains what the collection is, lists every entry with a one-line description, and routes
-the reader to each entry's own documentation.
+It explains what the collection is, lists every entry with a one-line description,
+and routes the reader to each entry's own documentation.
 
 ## When To Use
 
@@ -49,10 +49,9 @@ The canonical skeleton, adjusted to the request:
 
 ## Deltas From The Language Baseline
 
-- The Contents catalog uses a list or table of entries with paths in inline code - one line
-  per entry, never a prose paragraph per entry.
-- Per-entry detail lives in the entry's own README. The collection README links, it does not
-  repeat.
+- The Contents catalog uses a list or table of entries with paths in inline code - one line per
+  entry, never a prose paragraph per entry.
+- Per-entry detail lives in the entry's own README. The collection README links, it does not repeat.
 - When entries carry different licenses or statuses, a Notices section states the split plainly.
 - Groups of entries may get their own subsection when the catalog has natural categories.
 

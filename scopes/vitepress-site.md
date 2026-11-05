@@ -2,10 +2,10 @@
 
 ## Purpose
 
-> **Scope:** Document work inside a VitePress documentation site - a Vue-based static site
-> generator configured by a `.vitepress/` directory with file-based routing
-> **Key items:** `.vitepress/` config, file-based routing, `index.md` homepages, frontmatter
-> `layout` values, `srcDir` relocation
+> **Scope:** Document work inside a VitePress documentation site - a Vue-based static site generator
+> configured by a `.vitepress/` directory with file-based routing
+> **Key items:** `.vitepress/` config, file-based routing, `index.md` homepages,
+> frontmatter `layout` values, `srcDir` relocation
 
 A VitePress site compiles every Markdown file into a page at the same path.
 
@@ -20,8 +20,8 @@ A repository matches this scope when it contains all of the following:
 - a `.vitepress/` directory, typically inside `docs/` or at the repository root
 - a configuration file inside it, `config.js`, `config.ts`, or `config.mts`
 
-The `.vitepress/` directory is the strongest signal. When it is nested, for example
-`docs/.vitepress/`, the containing directory is the site's project root.
+The `.vitepress/` directory is the strongest signal. When it is nested,
+for example `docs/.vitepress/`, the containing directory is the site's project root.
 
 ## Directory Roles
 
@@ -53,10 +53,10 @@ Frontmatter keys the generator reads:
 
 - `title` - the page title and the `<title>` tag.
 - `description` - the page meta description.
-- `layout` - `doc` by default, `home` for the frontmatter-driven homepage, `page` for
-  unstyled pages.
-- `layout: home` pages carry a `hero` block and a `features` list in frontmatter - treat both
-  as metadata and edit values only, never restructure.
+- `layout` - `doc` by default, `home` for the frontmatter-driven homepage,
+  `page` for unstyled pages.
+- `layout: home` pages carry a `hero` block and a `features` list in frontmatter - treat both as
+  metadata and edit values only, never restructure.
 
 Home pages are an exception to the prose rules.
 
@@ -65,12 +65,10 @@ so the template shape is the convention to follow.
 
 ## Registration
 
-No registration is needed. Routing derives from the file tree, placing the file publishes the
-page.
+No registration is needed. Routing derives from the file tree, placing the file publishes the page.
 
-The navbar and sidebar are configured in the `theme` section of `.vitepress/config.*` - edit
-them only when the task explicitly asks, and add the entry in the position the existing order
-suggests.
+The navbar and sidebar are configured in the `theme` section of `.vitepress/config.*` - edit them
+only when the task explicitly asks, and add the entry in the position the existing order suggests.
 
 ## Document Types In This Scope
 

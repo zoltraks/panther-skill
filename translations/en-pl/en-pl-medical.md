@@ -2,10 +2,8 @@
 
 ## Purpose
 
-> **Scope:** English-Polish terminology for medical, clinical, and pharmaceutical
-> documents
-> **Key items:** domain signals, terminology table, context forms, calque traps,
-> untranslated terms
+> **Scope:** English-Polish terminology for medical, clinical, and pharmaceutical documents
+> **Key items:** domain signals, terminology table, context forms, calque traps, untranslated terms
 
 Load this glossary for translate tasks on medical and pharmaceutical subjects.
 
@@ -17,8 +15,7 @@ Apply this glossary when:
 
 - The request names a medical, clinical, pharma, or healthcare subject.
 - The document covers trials, products, dosages, patients, or regulatory submissions.
-- The document's terminology is dominated by product, dosage, safety, or study
-  vocabulary.
+- The document's terminology is dominated by product, dosage, safety, or study vocabulary.
 
 ## Terminology
 
@@ -87,12 +84,12 @@ Do not force one form everywhere:
 
 - `study` renders `badanie` for a trial and `opracowanie` for a publication or review.
 - `subject` renders `uczestnik badania` in trial text and `temat` in document metadata.
-- `dose` renders `dawka` for an amount and `porcja` colloquially - the register follows the
-  document.
-- `safety` renders `bezpieczeństwo` for patient safety and `profil bezpieczeństwa` for the
-  product profile.
-- `adverse event` renders `zdarzenie niepożądane`, never `zdarzenie negatywne` - the
-  regulated EMA rendering is required.
+- `dose` renders `dawka` for an amount and `porcja` colloquially - the register
+  follows the document.
+- `safety` renders `bezpieczeństwo` for patient safety and `profil bezpieczeństwa` for
+  the product profile.
+- `adverse event` renders `zdarzenie niepożądane`,
+  never `zdarzenie negatywne` - the regulated EMA rendering is required.
 
 ## Calque Traps
 
@@ -109,9 +106,8 @@ Do not force one form everywhere:
 
 Settled terms stay in their canonical form in Polish output:
 
-- `SmPC` renders `ChPL` (Charakterystyka Produktu Leczniczego), `PIL` renders `ulotka dla
-  pacjenta`, `MAH` renders `podmiot odpowiedzialny`
-- `GCP` renders `Dobra Praktyka Kliniczna` (DPK), `GMP` renders `Dobra Praktyka
-  Wytwarzania` (DPW), `GLP` renders `Dobra Praktyka Laboratoryjna` (DPL)
-- `EMA`, `FDA`, `WHO`, `MedDRA`, `ATC`, `INN`, `URPL` stay as institution or standard
-  names
+- `SmPC` renders `ChPL` (Charakterystyka Produktu Leczniczego), `PIL` renders `ulotka dla pacjenta`,
+  `MAH` renders `podmiot odpowiedzialny`
+- `GCP` renders `Dobra Praktyka Kliniczna` (DPK), `GMP` renders `Dobra Praktyka Wytwarzania` (DPW),
+  `GLP` renders `Dobra Praktyka Laboratoryjna` (DPL)
+- `EMA`, `FDA`, `WHO`, `MedDRA`, `ATC`, `INN`, `URPL` stay as institution or standard names

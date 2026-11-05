@@ -4,25 +4,25 @@
 
 > **Scope:** Conventions for coding standards consumed by AI coding agents - per-language,
 > per-framework, and cross-cutting documents that stack into a project's governing rules
-> **Key items:** version comment, scope, precedence table, agent intake protocol, executable
-> verification table, definition of done, self-contained layers
+> **Key items:** version comment, scope, precedence table, agent intake protocol,
+> executable verification table, definition of done, self-contained layers
 
-An engineering standard states the rules a codebase follows for one technology stack or
-concern.
+An engineering standard states the rules a codebase follows for one technology stack or concern.
 
-It is written for two audiences: humans who review the rules, and AI coding agents that
-apply them during code generation.
+It is written for two audiences: humans who review the rules,
+and AI coding agents that apply them during code generation.
 
-Standards stack in layers: a general language standard applies first, a category standard
-extends or overrides it for a framework or purpose, and project rules outrank both.
+Standards stack in layers: a general language standard applies first,
+a category standard extends or overrides it for a framework or purpose,
+and project rules outrank both.
 
 ## When To Use
 
-Use for language, framework, or cross-cutting standards that must stay portable across
-projects and composable in layers.
+Use for language, framework, or cross-cutting standards that must stay portable across projects and
+composable in layers.
 
-A document belongs to this type when it names a stack or concern in its title, pins
-toolchain versions, and ends with checks an agent can run.
+A document belongs to this type when it names a stack or concern in its title,
+pins toolchain versions, and ends with checks an agent can run.
 
 **Templates**
 
@@ -56,8 +56,8 @@ The canonical skeleton, adjusted to the request:
 
 ## Layering
 
-Name files after the stack and layer, for example `python-general-development.md` for the
-base layer and `python-web-development.md` for the category layer.
+Name files after the stack and layer, for example `python-general-development.md` for the base layer
+and `python-web-development.md` for the category layer.
 
 Keep every standard self-contained - usable on its own after being copied into a project.
 
@@ -65,8 +65,8 @@ Never name or link another standard file inside a standard.
 
 Refer to other layers by role, such as the language standard or the project rules.
 
-A category standard assumes the general layer for the same stack already applies and states
-only its deltas.
+A category standard assumes the general layer for the same stack already applies and
+states only its deltas.
 
 Record the stacking in a precedence table - wider rules first, narrower rules override.
 
@@ -80,8 +80,8 @@ Keep each rule in exactly one place.
 
 Pin toolchain and runtime versions to concrete releases.
 
-Phrase divergences found in an existing project as defects to fix, never as style choices
-to tolerate.
+Phrase divergences found in an existing project as defects to fix,
+never as style choices to tolerate.
 
 ## Verification Table
 
@@ -93,16 +93,15 @@ Commands must be copy-paste runnable in the target environment.
 
 ## Definition Of Done
 
-Close with the gates a change must pass before it counts as done - correctness, structure,
-quality, and hygiene - written as checkable statements.
+Close with the gates a change must pass before it counts as done - correctness, structure, quality,
+and hygiene - written as checkable statements.
 
 ## Deltas From The Language Baseline
 
-- The version comment is required directly under the H1 and is bumped on every change, using
-  three-part single-digit numbering that rolls over at 9 unless the project declares a
-  different scheme.
-- Imperative rules addressed to an executing agent are the norm, as in
-  `types/agent-instruction.md`.
+- The version comment is required directly under the H1 and is bumped on every change,
+  using three-part single-digit numbering that rolls over at 9 unless the project
+  declares a different scheme.
+- Imperative rules addressed to an executing agent are the norm, as in `types/agent-instruction.md`.
 - Verification commands and URLs may exceed the prose wrap width - never break them.
 - A Contents table appears only when the document grows long enough to need one.
 

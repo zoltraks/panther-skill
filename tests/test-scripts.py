@@ -629,6 +629,74 @@ def reference_regressions() -> int:
     return failures
 
 
+def reflow_regressions() -> int:
+    """Exercise canonical-wrap detection and sentence-preserving unwrap."""
+    failures = 0
+    label = "reflow fixtures"
+    with tempfile.TemporaryDirectory() as tmp:
+        tmp = Path(tmp)
+        ragged = tmp / "ragged.md"
+        ragged.write_text(
+            "# T\n\n"
+            "A paragraph wrapped at sixty characters instead of the\n"
+            "declared one hundred, so every line ends early and the\n"
+            "whole block needs a rewrap to fit the width.\n",
+            encoding="utf-8")
+        result = run_case("reflow-prose.py",
+                          [str(ragged), "--wrap", "--check",
+                           "--width", "100"])
+        if (result is None or result.returncode != 1
+                or "would rewrap" not in result.stdout):
+            print(f"FAIL {label} - mis-wrapped block passed --wrap --check")
+            failures += 1
+        result = run_case("reflow-prose.py",
+                          [str(ragged), "--wrap", "--width", "100"])
+        if (result is None or result.returncode != 0
+                or any(len(line) > 100 for line in
+                       ragged.read_text(encoding="utf-8").split("\n"))):
+            print(f"FAIL {label} - rewrap left over-width lines")
+            failures += 1
+        result = run_case("reflow-prose.py",
+                          [str(ragged), "--wrap", "--check",
+                           "--width", "100"])
+        if result is None or result.returncode != 0:
+            print(f"FAIL {label} - a canonical wrap still flags")
+            failures += 1
+        split = tmp / "split.md"
+        split.write_text(
+            "# T\n\n"
+            "A wrapped first sentence stays on its own logical line.\n"
+            "A second sentence in the same block does too.\n",
+            encoding="utf-8")
+        result = run_case("reflow-prose.py", [str(split), "--unwrap"])
+        if (result is None or result.returncode != 0
+                or "logical line. A second"
+                in split.read_text(encoding="utf-8")):
+            print(f"FAIL {label} - unwrap merged separate sentences")
+            failures += 1
+
+        # `**Label:**` field lines in a blockquote stay on their own lines
+        # under --wrap, and separate sentences in one block never merge.
+        fields = tmp / "fields.md"
+        fields.write_text(
+            "# T\n\n"
+            "> **Scope:** A long scope description that wraps to the width\n"
+            "> **Key items:** one, two\n\n"
+            "A wrapped first sentence stays on its own logical line.\n"
+            "A second sentence in the same block does too.\n",
+            encoding="utf-8")
+        result = run_case("reflow-prose.py",
+                          [str(fields), "--wrap", "--width", "60"])
+        text = fields.read_text(encoding="utf-8")
+        if (result is None or result.returncode != 0
+                or "> **Key items:**" not in text
+                or "logical line. A second" in text):
+            print(f"FAIL {label} - wrap merged field or sentence lines")
+            failures += 1
+    print(("PASS" if not failures else "FAIL") + f" {label}")
+    return failures
+
+
 def main() -> int:
     failures = 0
     for script, args, exits, prefix, env_extra in CASES:
@@ -656,7 +724,8 @@ def main() -> int:
     failures += improvement_regressions()
     failures += english_consistency_regressions()
     failures += reference_regressions()
-    print(f"RESULT {len(CASES) + 5 - failures}/{len(CASES) + 5} tools passed")
+    failures += reflow_regressions()
+    print(f"RESULT {len(CASES) + 6 - failures}/{len(CASES) + 6} tools passed")
     return 1 if failures else 0
 
 

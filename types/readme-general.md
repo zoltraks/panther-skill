@@ -2,8 +2,8 @@
 
 ## Purpose
 
-> **Scope:** Conventions for repository and package `README.md` files with no more specific
-> variant - the default README type and the entry point that orients a reader in the project
+> **Scope:** Conventions for repository and package `README.md` files with no more specific variant
+> - the default README type and the entry point that orients a reader in the project
 > **Key items:** title, purpose, contents, usage, license, conventional filename
 
 | Out of scope                    | See instead                   |
@@ -24,13 +24,13 @@ directory tree, license - like this skill's own `README.md`.
 
 ## When To Use
 
-Use for the root `README.md` of a repository and for package-level READMEs in subdirectories
-when no more specific README variant applies.
+Use for the root `README.md` of a repository and for package-level READMEs in subdirectories when no
+more specific README variant applies.
 
 The detected scope selects the variant - see `process/document-workflow.md`.
 
-When the scope gives no signal and the request does not name a variant, ask the user or fall
-back to this general type.
+When the scope gives no signal and the request does not name a variant,
+ask the user or fall back to this general type.
 
 **Templates**
 
@@ -63,10 +63,10 @@ The canonical skeleton, adjusted to the request:
 - A box-drawing flow diagram follows `conventions/ascii-diagrams.md` - one shared axis,
   centered prose lines, tee and arrowhead connectors.
 - A "when to use" table is a good fit for the usage section.
-- Badges and HTML are allowed only when the repository's README convention already uses them -
-  do not introduce them unasked.
-- Keep the README honest: describe what exists, not what is planned, unless a section is clearly
-  marked as planned.
+- Badges and HTML are allowed only when the repository's README convention already uses them - do
+  not introduce them unasked.
+- Keep the README honest: describe what exists, not what is planned,
+  unless a section is clearly marked as planned.
 
 ## Section Names
 

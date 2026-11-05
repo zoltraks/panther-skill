@@ -15,11 +15,11 @@ keep the rule and flag the conflict.
 
 ## Named Operations
 
-A file changes only on a request that names the operation and the target - "align the
-tables in SPEC.md" instructs, "use the skill" does not.
+A file changes only on a request that names the operation and the target - "align the tables in
+SPEC.md" instructs, "use the skill" does not.
 
-A request that names no operation, or names the work only in general terms - "work with the skill",
-"improve the docs".
+A request that names no operation, or names the work only in general terms - "work with the
+skill", "improve the docs".
 
 Authorizes analysis and a proposal, never a write.
 
@@ -38,8 +38,8 @@ The Markdown source is the primary artifact, the rendered output is secondary.
 
 Use short sentences.
 
-Use one sentence per paragraph for technical descriptions - the `separated` prose layout
-from `conventions/prose-layout.md`, which is the default for new documents.
+Use one sentence per paragraph for technical descriptions - the `separated` prose layout from
+`conventions/prose-layout.md`, which is the default for new documents.
 
 Separate every sentence with a blank line.
 
@@ -49,21 +49,21 @@ A sentence may contain several related clauses if they express a single thought.
 
 When editing an existing document, preserve its conventions.
 
-This covers the Markdown dialect, section numbering, heading style and depth, list style, table
-layout, prose layout, character encoding, line-ending style, and file naming.
+This covers the Markdown dialect, section numbering, heading style and depth, list style,
+table layout, prose layout, character encoding, line-ending style, and file naming.
 
-The prose layout - `flowing`, `separated`, `bounded`, or `justified` - comes from the
-document itself, never from an assumption.
+The prose layout - `flowing`, `separated`, `bounded`,
+or `justified` - comes from the document itself, never from an assumption.
 
-Detect it before reformatting and never convert between layouts unless the request
-explicitly covers the conversion.
+Detect it before reformatting and never convert between layouts unless the request explicitly
+covers the conversion.
 
 See `conventions/prose-layout.md` for the convention definitions and detection signals.
 
 Never normalize an existing document silently.
 
-Change an established convention only when the request explicitly covers it, then apply the change
-consistently across the whole document.
+Change an established convention only when the request explicitly covers it,
+then apply the change consistently across the whole document.
 
 See `conventions/markdown-dialects.md` for the dialect catalog and detection guidance.
 
@@ -71,34 +71,41 @@ See `conventions/markdown-dialects.md` for the dialect catalog and detection gui
 
 Limit changes to the scope resulting from the request.
 
-Do not reformat untouched sections, rename untouched headings, or fix unrelated typos unless the
-request covers it.
+Do not reformat untouched sections, rename untouched headings,
+or fix unrelated typos unless the request covers it.
 
 Every unrelated edit makes review harder and hides the real change.
 
 ## Scripted Bulk Edits
 
-Every scripted find/replace on prose uses word-boundary matching - `scripts/safe-replace.py`
-or an equivalent `(?<!\w)form(?!\w)` pattern - never a bare substring.
+Every scripted find/replace on prose uses word-boundary matching - `scripts/safe-replace.py` or an
+equivalent `(?<!\w)form(?!\w)` pattern - never a bare substring.
 
-A pattern inside a longer word is not the target word: replacing `niesie` must not rewrite
-`odniesienia` into `odwnosinia`.
+A pattern inside a longer word is not the target word:
+replacing `niesie` must not rewrite `odniesienia` into `odwnosinia`.
 
-After every bulk replacement, review the residue - every word still containing the pattern
-and every word containing the replacement inside a longer token is inspected before
-delivery.
+After every bulk replacement, review the residue - every word still containing the pattern and every
+word containing the replacement inside a longer token is inspected before delivery.
+
+A scripted transform over document text must skip the protected regions - YAML frontmatter,
+fenced code blocks, HTML comments, and tables - or run through a canonical tool that already
+respects them, since a flat line scan corrupts structure, not just text.
+
+Extend the canonical formatting tool when it lacks a needed behavior rather than scripting around it
+- a fix inside the tool ships to every document the tool serves,
+while a one-off script duplicates the logic and drifts.
 
 ## No Production Metadata
 
 A produced document never states which skill, tool, procedure, or rules rendered it.
 
-Production metadata belongs to the delivery report, not to the document - a sentence,
-cell, or section attributing the rendering to this skill or its rules is added content
-the request did not cover.
+Production metadata belongs to the delivery report, not to the document - a sentence, cell,
+or section attributing the rendering to this skill or its rules is added content the
+request did not cover.
 
-Such a statement appears only when the request explicitly requires it, or when the
-document's own subject covers it - a report comparing rendering methods names them as
-its subject.
+Such a statement appears only when the request explicitly requires it,
+or when the document's own subject covers it - a report comparing rendering methods names
+them as its subject.
 
 ## Explicit Unknowns
 
@@ -128,39 +135,39 @@ or the request requires it.
 
 The matching `languages/` file is the authoritative style source for the document's language.
 
-Language files are named by ISO 639-1 code (`languages/en.md`, `languages/pl.md`) and identified
-by the `code` field in their frontmatter.
+Language files are named by ISO 639-1 code (`languages/en.md`, `languages/pl.md`)
+and identified by the `code` field in their frontmatter.
 
 Load exactly one language file per document, matching the document language.
 
-The language file governs headings, lists, spacing, inline formatting, tables, file naming, and the
-language vocabulary rules.
+The language file governs headings, lists, spacing, inline formatting, tables, file naming,
+and the language vocabulary rules.
 
-A `types/` file may add or override rules for its document type, it never replaces the language
-file.
+A `types/` file may add or override rules for its document type,
+it never replaces the language file.
 
 ## Characters And Formatting
 
-Use straight ASCII double quotes (`"`) and apostrophes (`'`) in prose, unless the edited document
-consistently follows another convention.
+Use straight ASCII double quotes (`"`) and apostrophes (`'`) in prose,
+unless the edited document consistently follows another convention.
 
-Do not use the semicolon character in running prose, join related clauses with a comma or split
-them into sentences.
+Do not use the semicolon character in running prose,
+join related clauses with a comma or split them into sentences.
 
 Do not use emoji unless explicitly requested.
 
-Extended characters beyond ASCII are allowed when they render correctly in plain HTML
-output and the edited document's own conventions use or permit them - arrow and anchor
-symbols such as `->`, box-drawing and frame characters, and typographic dashes.
+Extended characters beyond ASCII are allowed when they render correctly in plain HTML output and the
+edited document's own conventions use or permit them - arrow and anchor symbols such as `->`,
+box-drawing and frame characters, and typographic dashes.
 
-A document that already uses such characters keeps them, they are not normalized to
-ASCII substitutes.
+A document that already uses such characters keeps them,
+they are not normalized to ASCII substitutes.
 
-When a request requires ASCII-only text and the document contains em or en dashes, replace
-them with ` - `.
+When a request requires ASCII-only text and the document contains em or en dashes,
+replace them with ` - `.
 
-Use ` -- ` only when the edited document already uses the double-minus form or when the
-request explicitly asks for it.
+Use ` -- ` only when the edited document already uses the double-minus form or when the request
+explicitly asks for it.
 
 A repository style document that prescribes ` -- ` makes it an eligible option - ask for
 confirmation before applying it.
@@ -177,5 +184,5 @@ Preserve the encoding and line-ending style of every existing file you edit.
 
 Never transcode or change line endings silently.
 
-See `conventions/file-encoding.md` for the full encoding rules and `scripts/detect-encoding.py` for
-detection.
+See `conventions/file-encoding.md` for the full encoding rules and
+`scripts/detect-encoding.py` for detection.

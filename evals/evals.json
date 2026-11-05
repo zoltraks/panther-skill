@@ -1886,6 +1886,18 @@
         "`embedded repository` renders `dołączone repozytorium`, while embedded datastores and engines keep `osadzony`/`osadzona`.",
         "`re-audit` renders `ponowny audyt`, shortened to `ponowny względem` where `audyt` already names the subject."
       ]
+    },
+    {
+      "id": 157,
+      "prompt": "Check whether this document is wrapped correctly to the 100-character width the repository declares, and fix it where it is not.",
+      "expected_output": "A report naming the mis-wrapped blocks, followed by a rewrap that touches only those blocks.",
+      "files": [],
+      "expectations": [
+        "The check runs `reflow-prose.py --wrap --check --width 100` or `check-document.py --layout wrap`, not a manual line-length scan.",
+        "Blocks wrapped at a different width or with ragged break points are reported as needing a rewrap even when no line exceeds the width.",
+        "The fix runs `reflow-prose.py --wrap --width 100`, which rewrites the flagged blocks and leaves correctly wrapped blocks untouched.",
+        "Lines that cannot fit because of an unbreakable span such as a URL or code span are reported, never split."
+      ]
     }
   ]
 }

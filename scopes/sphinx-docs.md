@@ -2,15 +2,15 @@
 
 ## Purpose
 
-> **Scope:** Document work inside a Sphinx documentation project that authors its content in
-> Markdown
-> **Key items:** `docs/source/` pages, `index.rst` toctrees, kebab-case filenames, setext
-> dialects, minimal `.rst` edits
+> **Scope:** Document work inside a Sphinx documentation project that authors
+> its content in Markdown
+> **Key items:** `docs/source/` pages, `index.rst` toctrees, kebab-case filenames, setext dialects,
+> minimal `.rst` edits
 
 A Sphinx project builds HTML documentation from source files.
 
-Some projects author the content pages in Markdown while the navigation and configuration stay
-in reStructuredText and Python.
+Some projects author the content pages in Markdown while the navigation and configuration stay in
+reStructuredText and Python.
 
 Load this file when the task works inside such a documentation project.
 
@@ -36,8 +36,8 @@ Any two of these signals are enough - `conf.py` plus `index.rst` is the stronges
 | `docs/source/_static/` | Static files copied into the build                   |
 | `docs/build/`          | Generated output - never edit                        |
 
-`conf.py`, `Makefile`, and `requirements.txt` are build files, not documents - do not edit them
-for a document task.
+`conf.py`, `Makefile`, and `requirements.txt` are build files,
+not documents - do not edit them for a document task.
 
 ## Page Conventions
 
@@ -49,11 +49,11 @@ This naming convention comes from the scope.
 
 It overrides the `languages/` file default for pages inside the project.
 
-The dominant dialect is setext headings (`Title` underlined with `=`, sections with `-`), with
-closed ATX headings such as `### Name ###` appearing in some topic groups.
+The dominant dialect is setext headings (`Title` underlined with `=`, sections with `-`),
+with closed ATX headings such as `### Name ###` appearing in some topic groups.
 
-Detect the page's own dialect per `conventions/markdown-dialects.md` and preserve it - pages in
-one project may mix dialects.
+Detect the page's own dialect per `conventions/markdown-dialects.md` and preserve it - pages in one
+project may mix dialects.
 
 New pages follow the dominant dialect of the surrounding pages in the same directory.
 
@@ -62,10 +62,10 @@ New pages follow the dominant dialect of the surrounding pages in the same direc
 Adding a page requires registering it:
 
 1. Create the `.md` page in `docs/source/` or in a topic subdirectory.
-2. Add the filename without extension to the `.. toctree::` list in `index.rst`, or in the
-   subdirectory's own `index.rst` for a topic-group page.
-3. Place the entry in the thematic group it belongs to - toctree order defines the reading
-   order of the built documentation.
+2. Add the filename without extension to the `.. toctree::` list in `index.rst`,
+   or in the subdirectory's own `index.rst` for a topic-group page.
+3. Place the entry in the thematic group it belongs to - toctree order defines the reading order of
+   the built documentation.
 
 Removing a page requires removing its toctree entry in the same file.
 

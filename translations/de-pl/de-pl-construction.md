@@ -2,10 +2,9 @@
 
 ## Purpose
 
-> **Scope:** German-Polish terminology for construction, civil engineering, and
-> concrete-durability subjects
-> **Key items:** domain signals, terminology table, context forms, calque traps,
-> untranslated terms
+> **Scope:** German-Polish terminology for construction, civil engineering,
+> and concrete-durability subjects
+> **Key items:** domain signals, terminology table, context forms, calque traps, untranslated terms
 
 Load this glossary for translate tasks on construction and building-materials subjects.
 
@@ -18,8 +17,8 @@ Apply this glossary when:
 - The request names a construction, civil-engineering, or building-materials subject.
 - The document covers exposure classes, corrosion processes, reinforcement, durability,
   or concrete structures.
-- The document's terminology is dominated by material-degradation vocabulary -
-  Karbonatisierung, Chloride, Frost-Tau-Wechsel, Sulfatangriff, Abrieb.
+- The document's terminology is dominated by material-degradation vocabulary - Karbonatisierung,
+  Chloride, Frost-Tau-Wechsel, Sulfatangriff, Abrieb.
 
 ## Terminology
 
@@ -105,15 +104,15 @@ Some German terms render differently by context.
 
 Do not force one form everywhere:
 
-- `Angriff` renders `atak` in process names (`Chloridangriff` - `atak chlorkowy`), while
-  `Einwirkung` in normative exposure descriptions renders `oddziaływanie` -
+- `Angriff` renders `atak` in process names (`Chloridangriff` - `atak chlorkowy`),
+  while `Einwirkung` in normative exposure descriptions renders `oddziaływanie` -
   `chloridhaltige Einwirkung` becomes `oddziaływanie chlorków`, not `atak chlorkowy`.
-- `Rissbildung` renders `rysowanie` for fine surface cracking and `pękanie` for
-  structural cracking driven by internal stresses.
+- `Rissbildung` renders `rysowanie` for fine surface cracking and `pękanie` for structural cracking
+  driven by internal stresses.
 - `Betondeckung` renders `otulina` - never `pokrywa betonu`.
 - `Bewehrung` renders `zbrojenie` - `armatura` is colloquial and avoided in prose.
-- `Verschleiß` renders `zużycie` for the process - `Abrieb` renders `ścieranie`, do not
-  conflate them.
+- `Verschleiß` renders `zużycie` for the process - `Abrieb` renders `ścieranie`,
+  do not conflate them.
 - `unversehrt` and `intakt` render `nieuszkodzony` for elements and `nienaruszony` for
   layers and coatings.
 - `freiliegende Bewehrung` renders `odsłonięte zbrojenie`.
@@ -137,13 +136,13 @@ Do not force one form everywhere:
 
 Settled terms stay in their canonical form in Polish output:
 
-- Exposure-class codes `X0`, `XC`, `XD`, `XS`, `XF`, `XA`, `XM` and their subdivisions
-  (`XC1`-`XC4`, `XD1`-`XD3`, `XS1`-`XS3`, `XF1`-`XF4`, `XA1`-`XA3`, `XM1`-`XM3`) stay
-  verbatim.
-- Chemical formulas and ions `CO₂`, `Ca(OH)₂`, `CaCO₃`, `H₂O`, `NaCl`, `MgCl₂`,
-  `SO₄²⁻`, `H⁺`, `Cl⁻` stay verbatim.
+- Exposure-class codes `X0`, `XC`, `XD`, `XS`, `XF`, `XA`,
+  `XM` and their subdivisions (`XC1` - `XC4`, `XD1` - `XD3`, `XS1` - `XS3`, `XF1` - `XF4`,
+  `XA1` - `XA3`, `XM1` - `XM3`) stay verbatim.
+- Chemical formulas and ions `CO₂`, `Ca(OH)₂`, `CaCO₃`, `H₂O`, `NaCl`, `MgCl₂`, `SO₄²⁻`, `H⁺`,
+  `Cl⁻` stay verbatim.
 - Strength classes `C20/25`, `C35/45` stay verbatim.
 - `pH`, `√t`, and the formula `x_c(t) ∝ √t` stay verbatim.
-- Standard names `DIN EN 206`, `DIN 1045-2`, `DIN EN 1992-1-1` (`Eurocode 2`),
-  `DIN 4030-1`, `DIN 1100`, `BAW-Merkblatt`, and `DAfStb-Heft` stay verbatim - the
-  Polish reader keeps the standard's own designation.
+- Standard names `DIN EN 206`, `DIN 1045-2`, `DIN EN 1992-1-1` (`Eurocode 2`), `DIN 4030-1`,
+  `DIN 1100`, `BAW-Merkblatt`, and `DAfStb-Heft` stay verbatim - the Polish reader keeps the
+  standard's own designation.

@@ -2,10 +2,9 @@
 
 ## Purpose
 
-> **Scope:** English-German terminology for construction, civil engineering, and
-> concrete-durability subjects
-> **Key items:** domain signals, terminology table, context forms, calque traps,
-> untranslated terms
+> **Scope:** English-German terminology for construction, civil engineering,
+> and concrete-durability subjects
+> **Key items:** domain signals, terminology table, context forms, calque traps, untranslated terms
 
 Load this glossary for translate tasks on construction and building-materials subjects.
 
@@ -18,8 +17,8 @@ Apply this glossary when:
 - The request names a construction, civil-engineering, or building-materials subject.
 - The document covers exposure classes, corrosion processes, reinforcement, durability,
   or concrete structures.
-- The document's terminology is dominated by material-degradation vocabulary -
-  carbonation, chlorides, freeze-thaw cycles, sulfate attack, abrasion.
+- The document's terminology is dominated by material-degradation vocabulary - carbonation,
+  chlorides, freeze-thaw cycles, sulfate attack, abrasion.
 
 ## Terminology
 
@@ -103,18 +102,18 @@ Some English terms render differently by context.
 
 Do not force one form everywhere:
 
-- `attack` renders `Angriff` in process names (`Chloridangriff`, `Sulfatangriff`) and
-  `Einwirkung` in normative exposure descriptions (`chloridhaltige Einwirkung` for XD) -
-  standards prose prefers `Einwirkung` where a standard text is paraphrased.
-- `reinforcement` renders `Bewehrung` as the DIN term - `Stahlbewehrung` when steel must
-  be explicit, `Armierung` only when the project already uses it.
+- `attack` renders `Angriff` in process names (`Chloridangriff`, `Sulfatangriff`)
+  and `Einwirkung` in normative exposure descriptions (`chloridhaltige Einwirkung` for XD)
+  - standards prose prefers `Einwirkung` where a standard text is paraphrased.
+- `reinforcement` renders `Bewehrung` as the DIN term - `Stahlbewehrung` when steel must be
+  explicit, `Armierung` only when the project already uses it.
 - `concrete cover` renders `Betondeckung` - never `Betonabdeckung`.
 - `wear` renders `Verschleiß` for the process and `Abrieb` for the abrasion mechanism.
 - `cracking` renders `Rissbildung` - `Riss` is the crack, `Rissbildung` the process.
-- `scaling` renders `Oberflächenabplatzungen` - glossing the English term in parentheses
-  on first use is acceptable.
-- `structure` renders `Tragwerk` for load-bearing systems, `Bauwerk` for buildings, and
-  `Gefüge` for the material's internal structure.
+- `scaling` renders `Oberflächenabplatzungen` - glossing the English term in parentheses on
+  first use is acceptable.
+- `structure` renders `Tragwerk` for load-bearing systems, `Bauwerk` for buildings,
+  and `Gefüge` for the material's internal structure.
 - `steel reinforcement` and `rebar` both render `Bewehrung` - `Bewehrungsstahl` names
   the material itself.
 
@@ -138,12 +137,12 @@ Do not force one form everywhere:
 
 Settled terms stay in their canonical form in German output:
 
-- Exposure-class codes `X0`, `XC`, `XD`, `XS`, `XF`, `XA`, `XM` and their subdivisions
-  (`XC1`-`XC4`, `XD1`-`XD3`, `XS1`-`XS3`, `XF1`-`XF4`, `XA1`-`XA3`, `XM1`-`XM3`) stay
-  verbatim.
-- Chemical formulas and ions `CO₂`, `Ca(OH)₂`, `CaCO₃`, `H₂O`, `NaCl`, `MgCl₂`,
-  `SO₄²⁻`, `H⁺`, `Cl⁻` stay verbatim.
+- Exposure-class codes `X0`, `XC`, `XD`, `XS`, `XF`, `XA`,
+  `XM` and their subdivisions (`XC1` - `XC4`, `XD1` - `XD3`, `XS1` - `XS3`, `XF1` - `XF4`,
+  `XA1` - `XA3`, `XM1` - `XM3`) stay verbatim.
+- Chemical formulas and ions `CO₂`, `Ca(OH)₂`, `CaCO₃`, `H₂O`, `NaCl`, `MgCl₂`, `SO₄²⁻`, `H⁺`,
+  `Cl⁻` stay verbatim.
 - Strength classes `C20/25`, `C35/45` stay verbatim.
 - `pH`, `√t`, and the formula `x_c(t) ∝ √t` stay verbatim.
-- Standard names `DIN EN 206`, `DIN 1045-2`, `DIN EN 1992-1-1` (`Eurocode 2`),
-  `DIN 4030-1`, `DIN 1100`, `BAW-Merkblatt`, and `DAfStb-Heft` stay verbatim.
+- Standard names `DIN EN 206`, `DIN 1045-2`, `DIN EN 1992-1-1` (`Eurocode 2`), `DIN 4030-1`,
+  `DIN 1100`, `BAW-Merkblatt`, and `DAfStb-Heft` stay verbatim.

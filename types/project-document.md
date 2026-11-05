@@ -13,8 +13,8 @@ Typical titles: `Project Specification`.
 
 ## When To Use
 
-Use for project specifications, solution designs, and architecture documents that define a
-system's structure, requirements, and conventions.
+Use for project specifications, solution designs,
+and architecture documents that define a system's structure, requirements, and conventions.
 
 **Templates**
 
@@ -45,51 +45,51 @@ Place an HTML comment with document metadata directly below the H1:
 
 Update the version and date on every content change.
 
-The version is the document's own counter, independent of the project version: three-part
-`<major>.<minor>.<patch>` with single-digit components that roll over at 9, unless the
-project declares a different scheme.
+The version is the document's own counter, independent of the project version:
+three-part `<major>.<minor>.<patch>` with single-digit components that roll over at 9,
+unless the project declares a different scheme.
 
-Keep the comment minimal - `Version` and `Date` are the durable fields, and a conventional
-extra such as `Author` appears only when the document's own convention calls for it.
+Keep the comment minimal - `Version` and `Date` are the durable fields,
+and a conventional extra such as `Author` appears only when the document's own
+convention calls for it.
 
-Never add decaying fields such as `Status`, especially to documents not meant for regular
-updates - a stale field misleads rather than informs.
+Never add decaying fields such as `Status`,
+especially to documents not meant for regular updates - a stale field misleads rather than informs.
 
 ### Document Navigation
 
-For long documents, add a `Document Navigation` section after the
-purpose or version block.
+For long documents, add a `Document Navigation` section after the purpose or version block.
 
-The table maps top-level sections to their contents so a reader can locate a component without
-reading linearly.
+The table maps top-level sections to their contents so a reader can locate a component
+without reading linearly.
 
 Use a `->` prefix in the section column for subsection rows.
 
 ## Requirements And Decision Tables
 
-Use identifier columns for requirements (`F-01`, `N-01`), decisions (`A-01`), and use cases
-(`C-01`).
+Use identifier columns for requirements (`F-01`, `N-01`), decisions (`A-01`),
+and use cases (`C-01`).
 
 Keep one sentence per table cell, put the long explanation in prose below the table.
 
-Define the priority legend (for example `Must Have`, `Should Have`, `Won't Have`) before the first
-requirements table that uses it.
+Define the priority legend (for example `Must Have`, `Should Have`, `Won't Have`)
+before the first requirements table that uses it.
 
 Requirements may be grouped under H3 milestone headings (`Milestone 1: ...`)
 instead of one flat table.
 
-Use cases may get one H3 subsection each (`### C-01 Product synchronization`) with a bold
-`**Mechanisms used:**` line listing the features it
-exercises.
+Use cases may get one H3 subsection each (`### C-01 Product synchronization`)
+with a bold `**Mechanisms used:**` line listing the features it exercises.
 
 ## Deltas From The Language Baseline
 
-- Section numbering is optional. If used, number chapters and subsections (`1`, `1.1`) and keep
-  the numbering continuous after any change. Both the numbered variant (`# 1 Basic
-  Information`) and the unnumbered variant occur in real documents - follow the request or the
+- Section numbering is optional. If used, number chapters and subsections (`1`, `1.1`)
+  and keep the numbering continuous after any change.
+  Both the numbered variant (`# 1 Basic Information`)
+  and the unnumbered variant occur in real documents - follow the request or the
   existing convention.
-- A metadata table with an empty header row may replace the version comment when the document
-  uses that convention - the Polish variant is declared in `languages/pl.md`.
+- A metadata table with an empty header row may replace the version comment when the document uses
+  that convention - the Polish variant is declared in `languages/pl.md`.
 
 - The glossary table defines terms before first use, keep it early in the document.
 
@@ -113,8 +113,9 @@ When documenting a project with PMBOK 7, map its artifacts to the Panther types:
 | Contracts, MOU, SLA                            | Verbatim legal text - preserve, never restyle                   |
 | Visual data artifacts                          | Out of scope - generated visuals, not text documents            |
 
-Boundary rule: architectural decisions go to `decision-record`, scope and budget changes go to
-the change log per `register-log`, and meeting decisions go to `meeting-minutes`.
+Boundary rule: architectural decisions go to `decision-record`,
+scope and budget changes go to the change log per `register-log`,
+and meeting decisions go to `meeting-minutes`.
 
 ## Section Names
 

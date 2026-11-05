@@ -2,16 +2,16 @@
 
 ## Purpose
 
-> **Scope:** Conventions for single-day planning documents - the day's priorities, scheduled
-> blocks, and notes kept or thrown away at day's end
+> **Scope:** Conventions for single-day planning documents - the day's priorities, scheduled blocks,
+> and notes kept or thrown away at day's end
 > **Key items:** date-first title, top priorities, time blocks, carry-over
 
 A daily plan organizes one working day.
 
 It is a working artifact - written fast, consulted during the day, superseded tomorrow.
 
-Typical shape: a dated title, a short priority list, an optional schedule, and a notes or
-carry-over section.
+Typical shape: a dated title, a short priority list, an optional schedule,
+and a notes or carry-over section.
 
 ## When To Use
 

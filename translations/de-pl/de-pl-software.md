@@ -15,12 +15,12 @@ Apply it for German to Polish translate tasks, per `process/translate-document.m
 Apply this glossary when:
 
 - The request names a software, IT, or SDLC subject.
-- The document type is technical, specification, README, contributing, changelog, agent
-  instruction, format specification, or rules document for a software project.
-- The document's terminology is dominated by code, API, build, deploy, test, or
-  infrastructure vocabulary.
-- The document's terminology is dominated by AI-agent, agentic-SDLC, or
-  assistant-orchestration vocabulary.
+- The document type is technical, specification, README, contributing, changelog, agent instruction,
+  format specification, or rules document for a software project.
+- The document's terminology is dominated by code, API, build, deploy, test,
+  or infrastructure vocabulary.
+- The document's terminology is dominated by AI-agent, agentic-SDLC,
+  or assistant-orchestration vocabulary.
 
 ## Terminology
 
@@ -93,8 +93,8 @@ Do not force one form everywhere:
 
 - `Fehler` renders `błąd` for a tracked defect and `komunikat błędu` for message text.
 - `Problem` renders `zgłoszenie` for a tracked item and `problem` in prose.
-- `Funktion` renders `funkcja` in product documentation and `funkcja` in code text -
-  one Polish form serves both.
+- `Funktion` renders `funkcja` in product documentation and `funkcja` in code text - one
+  Polish form serves both.
 - `Umgebung` renders `środowisko` generally and `środowisko uruchomieniowe` for runtime.
 - `Prompt` renders `prompt` - never `polecenie` in agentic documents.
 
@@ -102,9 +102,8 @@ Do not force one form everywhere:
 
 German loanwords and identifiers keep their canonical forms in Polish output:
 
-- `endpoint`, `frontend`, `backend`, `commit`, `merge`, `pull request`, `lint`,
-  `fork`, `framework`, `middleware`, `staging`, `backlog`, `sprint`, `prompt`,
-  `token`, `workflow`, `open source`
-- Acronyms: `API`, `SDK`, `CLI`, `UI`, `URL`, `HTTP`, `JSON`, `YAML`, `XML`, `SQL`,
-  `REST`, `IDE`, `CI/CD`, `ASCII`, `UTF-8`, `CRLF`, `npm`, `git`, `LLM`
+- `endpoint`, `frontend`, `backend`, `commit`, `merge`, `pull request`, `lint`, `fork`, `framework`,
+  `middleware`, `staging`, `backlog`, `sprint`, `prompt`, `token`, `workflow`, `open source`
+- Acronyms: `API`, `SDK`, `CLI`, `UI`, `URL`, `HTTP`, `JSON`, `YAML`, `XML`, `SQL`, `REST`, `IDE`,
+  `CI/CD`, `ASCII`, `UTF-8`, `CRLF`, `npm`, `git`, `LLM`
 - Product and technology names: `Docker`, `Kubernetes`, `Microsoft Fabric`, `Power BI`

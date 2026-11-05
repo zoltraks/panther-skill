@@ -2,15 +2,15 @@
 
 ## Purpose
 
-> **Scope:** Character encoding and byte-level rules for documents created and edited with this
-> skill
-> **Key items:** UTF-8 default, BOM, UTF-16/UCS-2, code pages such as CP1250, line endings,
-> composed diacritics
+> **Scope:** Character encoding and byte-level rules for documents created and
+> edited with this skill
+> **Key items:** UTF-8 default, BOM, UTF-16/UCS-2, code pages such as CP1250, line
+> endings, composed diacritics
 
 This file defines how the skill handles document encodings.
 
-Load it when a document's encoding is not UTF-8, when the request mentions encodings or code
-pages, or when `scripts/detect-encoding.py` reports an unexpected result.
+Load it when a document's encoding is not UTF-8, when the request mentions encodings or code pages,
+or when `scripts/detect-encoding.py` reports an unexpected result.
 
 ## Default
 
@@ -29,8 +29,8 @@ Never transcode a file as a side effect of an unrelated change.
 
 Never convert LF to CRLF or back as a side effect of an unrelated change.
 
-Mutating tools in `scripts/` preserve the detected line-ending style and print a `note:` when
-a file they rewrite uses CRLF, since a CRLF checkout of an LF-stored repository is common under
+Mutating tools in `scripts/` preserve the detected line-ending style and print a `note:` when a file
+they rewrite uses CRLF, since a CRLF checkout of an LF-stored repository is common under
 `core.autocrlf` and merits a deliberate look.
 
 Mixing encodings inside one file is never allowed - an edited file keeps exactly one encoding.
@@ -39,8 +39,8 @@ Mixing encodings inside one file is never allowed - an edited file keeps exactly
 
 Detect the encoding before editing an existing file.
 
-Run `scripts/detect-encoding.py` in place from the skill root on the target file - copy it
-under a `.tmp.` name only when the skill root cannot be invoked, see `scripts/README.md`.
+Run `scripts/detect-encoding.py` in place from the skill root on the target file - copy it under a
+`.tmp.` name only when the skill root cannot be invoked, see `scripts/README.md`.
 
 Detection order:
 
@@ -48,14 +48,14 @@ Detection order:
 2. **Null-byte pattern** - interleaved zero bytes indicate UTF-16/UCS-2 even without a BOM.
 3. **UTF-8 validation** - bytes that decode as valid UTF-8 with multibyte sequences are UTF-8.
 4. **ASCII** - bytes below `0x80` only.
-5. **Code page fallback** - bytes in `0x80-0xFF` that are not valid UTF-8 usually mean a legacy
-   code page. For Polish content, try CP1250 first, and for German and other Western
-   European content, try CP1252 first.
+5. **Code page fallback** - bytes in `0x80-0xFF` that are not valid UTF-8 usually mean a legacy code
+   page. For Polish content, try CP1250 first, and for German and other Western European
+   content, try CP1252 first.
 
 When detection is ambiguous, report the ambiguity and ask the user rather than guessing - the
 question lists up to three candidates guessed from the file's detection report and the dominant
-encoding of its directory, plus `Cancel`, per the question-surface rules in
-`process/document-workflow.md`.
+encoding of its directory, plus `Cancel`,
+per the question-surface rules in `process/document-workflow.md`.
 
 Under JSON exchange the question emits as the `encoding` `choice` parameter per
 `process/json-exchange.md`.
@@ -68,8 +68,8 @@ State the source encoding, the target encoding, and the BOM decision before conv
 
 Verify the converted file decodes correctly before reporting completion.
 
-A conversion never silently fixes or strips characters, a character that does not exist in the
-target encoding is an error, not a substitution.
+A conversion never silently fixes or strips characters,
+a character that does not exist in the target encoding is an error, not a substitution.
 
 ## Diacritics
 
@@ -77,13 +77,13 @@ Write diacritical letters in composed form, one Unicode code point per letter (N
 
 Do not use combining characters where a composed letter exists.
 
-This matters for table width measurement - the language files' table rules count source
-characters, and a decomposed letter counts as two.
+This matters for table width measurement - the language files' table rules count source characters,
+and a decomposed letter counts as two.
 
 ## Legacy Encodings
 
-Code pages such as CP1250 (Central European), CP1252 (Western), or ISO-8859-2 may appear in older
-documents.
+Code pages such as CP1250 (Central European), CP1252 (Western),
+or ISO-8859-2 may appear in older documents.
 
 When editing such a file, write the new bytes in the same encoding.
 

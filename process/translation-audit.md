@@ -12,19 +12,19 @@ It is analysis only.
 
 It changes nothing in either document.
 
-Use it when the request asks to audit, verify, check, or compare a translation against its
-source, or asks how a document was translated.
+Use it when the request asks to audit, verify, check, or compare a translation against its source,
+or asks how a document was translated.
 
 ## Target Resolution
 
 Resolve the source document and the translated document the request pairs.
 
-When the request names only the translation, the source is the sibling file without the
-language code - `guide-pl.md` pairs with `guide.md` - or the file the request names as the
-source.
+When the request names only the translation,
+the source is the sibling file without the language code - `guide-pl.md` pairs with `guide.md` - or
+the file the request names as the source.
 
-Ask when no source can be resolved. Under JSON exchange this emits as the `source-resolution`
-`text` parameter.
+Ask when no source can be resolved. Under JSON exchange this emits as the
+`source-resolution` `text` parameter.
 
 Detect the direction from the pair.
 
@@ -32,109 +32,101 @@ An English source and a Polish rendering is an `en-pl` audit - and report it.
 
 ## Rule Loading
 
-Load the same rule set a translate task for the pair would have used, per
-`process/translate-document.md`:
+Load the same rule set a translate task for the pair would have used,
+per `process/translate-document.md`:
 
 1. `languages/<dst>.md` - the target baseline.
 2. `translations/<pair>/<pair>-general.md` - the direction contract.
 3. `translations/<pair>/<pair>-style.md` - the pair's sentence-level adaptation rules,
    when the pair provides one.
-4. `translations/<pair>/<pair>-<category>.md` - every glossary the document's domain
-   signals.
+4. `translations/<pair>/<pair>-<category>.md` - every glossary the document's domain signals.
 5. `types/<type>.md` - when the source matches a known type.
-6. The resolved format-contract mapping per `process/translate-document.md` - when the
-   source is a governed-format document, the producer's own rendering rules supply the
-   expected vocabulary.
+6. The resolved format-contract mapping per `process/translate-document.md` - when the source is a
+   governed-format document, the producer's own rendering rules supply the expected vocabulary.
 
-The audited pair is judged against the rules that were in force for the translation -
-when the translation predates this skill, the current rules still supply the audit's
-vocabulary and severities, and the report notes the timing.
+The audited pair is judged against the rules that were in force for the translation - when the
+translation predates this skill, the current rules still supply the audit's vocabulary and
+severities, and the report notes the timing.
 
 ## Fidelity Classification
 
 Classify the expected fidelity before judging deltas:
 
 - `faithful` - the default: structure preserved one-to-one.
-- `adapted` - the translation declares an adaptation contract, or evidence shows an
-  intentional abridgment: compressed length, merged sections, reordered blocks.
+- `adapted` - the translation declares an adaptation contract,
+  or evidence shows an intentional abridgment: compressed length, merged sections, reordered blocks.
 
 A structural delta matching a declared or evident adaptation contract is reported as an
-`Adaptation`, not a defect - an adaptation without a visible contract is reported as a
-`Major` finding because the delta is unauditable.
+`Adaptation`, not a defect - an adaptation without a visible contract is reported as a `Major`
+finding because the delta is unauditable.
 
 ## Audit Checks
 
-Run `scripts/check-parity.py <source.md> <target.md>` first - its structural diff
-mechanizes most of the map: heading level sequence, fence count and tags, table
-geometry, list counts, HTML comments, inline-code spans, and anchor resolution.
+Run `scripts/check-parity.py <source.md> <target.md>` first - its structural diff mechanizes most of
+the map: heading level sequence, fence count and tags, table geometry, list counts, HTML comments,
+inline-code spans, and anchor resolution.
 
-With `--terms <glossary.md>` it also prints concordance hints for step 3 - source
-terms whose preferred target variants never appear - and seeds the declared-delta
-map, so a span rendered as a declared variant reports `DECLARED` instead of `DELTA`.
+With `--terms <glossary.md>` it also prints concordance hints for step 3 - source terms whose
+preferred target variants never appear - and seeds the declared-delta map,
+so a span rendered as a declared variant reports `DECLARED` instead of `DELTA`.
 
 A `.tmp.` expect-map file passed with `--expect-map` extends that map with declared
-`source -> target` pairs and `link:` count adjustments - declared changes report as
-`DECLARED` notes and the audit concentrates on the deltas nothing declared.
+`source -> target` pairs and `link:` count adjustments - declared changes report as `DECLARED` notes
+and the audit concentrates on the deltas nothing declared.
 
 On a document whose `ID: title` headings pair with summary-table rows,
 `scripts/check-titles.py` verifies each table title against its heading.
 
-On a pair that is not a Markdown document - a localization dictionary, a message
-file, a record set - `check-parity.py` does not apply, and the coverage described
-under Record-Oriented Sources takes its place.
+On a pair that is not a Markdown document - a localization dictionary, a message file,
+a record set - `check-parity.py` does not apply,
+and the coverage described under Record-Oriented Sources takes its place.
 
 Run the checks in order and record each result for the report:
 
-1. **Structure map** - align the two documents heading by heading and classify every
-   source heading as `faithful`, `reworded`, `dropped`, `merged`, `reordered`, plus every
-   target-only heading as `added`. A faithful translation yields only `faithful` and
-   `reworded` classes. Every `check-parity.py` DELTA line names a structural suspect.
-2. **Untranslated set** - verify byte-identity of code block content, inline code
-   spans, file paths, URLs, commands, identifiers, frontmatter, and the `TBD` and
-   `NOT SPECIFIED` markers against the pair file's untranslated list - comments and
-   natural-language string values inside examples follow the pair's reader-facing
-   rule and may differ. The parity run's inline-code diff and `NOTE` lines list every
-   span that differs.
-3. **Terminology concordance** - map every glossary-covered source term to its target
-   rendering and flag a term rendered by several different forms (a split rendering), a
-   glossary form ignored, an invented equivalent, and every calque the pair file or
-   baseline names. When a format contract resolves, verify every element it covers -
-   section names, table headers, status vocabularies, fixed phrases - against the
-   contract mapping.
-4. **Style conformance** - heading capitalization per the target baseline, section names
-   mapped through the type table, quote and dash conventions, diacritics completeness, and
-   one register throughout.
-5. **Embedded payloads** - ` ```markdown ` interiors are translated or declared verbatim,
+1. **Structure map** - align the two documents heading by heading and classify every source heading
+   as `faithful`, `reworded`, `dropped`, `merged`, `reordered`,
+   plus every target-only heading as `added`.
+   A faithful translation yields only `faithful` and `reworded` classes.
+   Every `check-parity.py` DELTA line names a structural suspect.
+2. **Untranslated set** - verify byte-identity of code block content, inline code spans, file paths,
+   URLs, commands, identifiers, frontmatter,
+   and the `TBD` and `NOT SPECIFIED` markers against the pair file's untranslated list - comments
+   and natural-language string values inside examples follow the pair's reader-facing rule and may
+   differ. The parity run's inline-code diff and `NOTE` lines list every span that differs.
+3. **Terminology concordance** - map every glossary-covered source term to its target rendering and
+   flag a term rendered by several different forms (a split rendering), a glossary form ignored,
+   an invented equivalent, and every calque the pair file or baseline names.
+   When a format contract resolves, verify every element it covers - section names, table headers,
+   status vocabularies, fixed phrases - against the contract mapping.
+4. **Style conformance** - heading capitalization per the target baseline,
+   section names mapped through the type table, quote and dash conventions, diacritics completeness,
+   and one register throughout.
+5. **Embedded payloads** - ` ``` markdown ` interiors are translated or declared verbatim,
    applied consistently across the document.
-6. **Language naturalness** - run `scripts/lint-polish.py` for `pl` targets and review
-   flagged lines, with `--payload-markdown` when the document embeds ` ```markdown `
-   blocks. Scan for calques the pair's Calque Traps table names, clauses spliced
-   by a bare comma, a participial opener missing its comma, personified files or
-   branches, completed verdicts rendered against the pair style file's aspect rule,
-   report-register verbs mismatched to its verb-choice mapping, modality drift
-   (`must`/`should`/`may` strength altered), condition drift (`only`, `unless`,
-   `when`, `if`, `otherwise` blurred), enumeration-logic drift (a positive `or` list
-   rendered with `ani`, a quantifier or negation added or dropped), entity-kind
-   substitution (a `file` rendered `katalog`, a `directory` rendered `plik`), token
-   drift (a number, unit, or threshold dropped or altered), referent-clause drift
-   (a named regulation, standard, or document the source cites dropped from the
-   rendering), voice inversion (an active rendering that swaps the source's actor
-   and recipient), mixed quote or dash conventions, mixed second-person register,
+6. **Language naturalness** - run `scripts/lint-polish.py` for `pl` targets and review flagged
+   lines, with `--payload-markdown` when the document embeds ` ``` markdown
+   ` blocks. Scan for calques the pair's Calque Traps table names, clauses spliced by a bare comma, a participial opener missing its comma, personified files or branches, completed verdicts rendered against the pair style file's aspect rule, report-register verbs mismatched to its verb-choice mapping, modality drift (`
+   must `/` should `/` may ` strength altered), condition drift (` only `, ` unless `, ` when `, `
+   if `, ` otherwise ` blurred), enumeration-logic drift (a positive ` or ` list rendered with ` ani
+   `, a quantifier or negation added or dropped), entity-kind substitution (a ` file ` rendered `
+   katalog `, a ` directory ` rendered ` plik`), token drift (a number, unit,
+   or threshold dropped or altered), referent-clause drift (a named regulation, standard,
+   or document the source cites dropped from the rendering),
+   voice inversion (an active rendering that swaps the source's actor and recipient),
+   mixed quote or dash conventions, mixed second-person register,
    and the same English term rendered by several Polish forms.
 
-A banned-form or vocabulary hit is a finding only when its covered sense matches
-the document's domain - a `pod` warning on `pod napięciem` inside an electrical
-document is expected, not evidence, and every sense-scoped warning is verified
-against its context before it is counted.
+A banned-form or vocabulary hit is a finding only when its covered sense matches the document's
+domain - a `pod` warning on `pod napięciem` inside an electrical document is expected, not evidence,
+and every sense-scoped warning is verified against its context before it is counted.
 
 ## Record-Oriented Sources
 
-The pair may be a record set - a localization dictionary, a message file, a
-question bank - rather than a prose document.
+The pair may be a record set - a localization dictionary, a message file,
+a question bank - rather than a prose document.
 
-Map the record format before comparing: the source may nest sections, group
-entries under keys, or carry several translatable fields per record, so the
-pairing follows the format's real shape.
+Map the record format before comparing: the source may nest sections, group entries under keys,
+or carry several translatable fields per record, so the pairing follows the format's real shape.
 
 The structure map becomes a key-coverage report.
 
@@ -145,37 +137,35 @@ A record pairs field by field.
 
 A question entry aligns its text, every numbered option, and its explanation, not only its label.
 
-The untranslated set covers keys, identifiers, interpolation placeholders such as
-`{0}`, and machine tokens - the placeholder set inside each paired field must
-match, and a dropped or renamed placeholder is a structural finding.
+The untranslated set covers keys, identifiers, interpolation placeholders such as `{0}`,
+and machine tokens - the placeholder set inside each paired field must match,
+and a dropped or renamed placeholder is a structural finding.
 
-The mechanical passes adapt to fields the same way: numeric and unit token
-parity inside each pair, terminal-punctuation parity (a question keeps its
-question mark), a length-ratio pass per field, and a source-word residue scan
-that excludes tokens legal in the target language - short words shared across
-the pair otherwise report as noise.
+The mechanical passes adapt to fields the same way: numeric and unit token parity inside each pair,
+terminal-punctuation parity (a question keeps its question mark), a length-ratio pass per field,
+and a source-word residue scan that excludes tokens legal in the target language - short words
+shared across the pair otherwise report as noise.
 
-Terminology concordance runs per field and flags a source term rendered
-differently across records - split renderings hide inside repeated record types.
+Terminology concordance runs per field and flags a source term rendered differently across records -
+split renderings hide inside repeated record types.
 
 The remaining checks - naturalness review, register, severity classification,
 and the report layout - run unchanged on the paired fields.
 
 ## Findings
 
-Structure every finding per `process/document-audit.md` - `FINDING-001` IDs, `Critical`,
-`Major`, `Minor`, or `Note` severity, one-sentence finding, line evidence plus the rule
-source.
+Structure every finding per `process/document-audit.md` - `FINDING-001` IDs, `Critical`, `Major`,
+`Minor`, or `Note` severity, one-sentence finding, line evidence plus the rule source.
 
 Severity guidance:
 
-- `Critical` - content mistranslated so the meaning changed, or large untranslated blocks
-  the rules required translated.
+- `Critical` - content mistranslated so the meaning changed,
+  or large untranslated blocks the rules required translated.
 - `Major` - a structural delta without a declared adaptation, untranslated-set corruption,
-  a glossary term or a resolved contract mapping ignored document-wide, or a modality or
-  condition drift that changes the instruction's strength.
-- `Minor` - heading-case violations, inconsistent term renderings, style-adaptation
-  misses, calques and unnatural phrasing that do not shift the meaning.
+  a glossary term or a resolved contract mapping ignored document-wide,
+  or a modality or condition drift that changes the instruction's strength.
+- `Minor` - heading-case violations, inconsistent term renderings, style-adaptation misses,
+  calques and unnatural phrasing that do not shift the meaning.
 - `Note` - evident adaptations worth surfacing, register choices, timing notes.
 
 ## Report
@@ -184,14 +174,12 @@ Deliver the report inline unless the request asks for a file.
 
 Structure it as:
 
-1. **Verdict** - `faithful`, `declared adaptation`, or `defective`, with the one-line
-   basis.
+1. **Verdict** - `faithful`, `declared adaptation`, or `defective`, with the one-line basis.
 2. **Document Facts** - source path, translation path, direction, glossaries applied,
    fidelity classification.
 3. **Structure Map** - the delta counts by class and every non-faithful entry.
 4. **Findings** - the findings table.
-5. **Limitations** - what could not be verified, for example a source version that no
-   longer exists.
+5. **Limitations** - what could not be verified, for example a source version that no longer exists.
 
 ## Non-Goals
 

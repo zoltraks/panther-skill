@@ -7,29 +7,28 @@
 
 Run this checklist before delivering any created or edited document.
 
-Items marked **existing** apply only to documents being edited. They verify that the document's
-own conventions were preserved rather than normalized.
+Items marked **existing** apply only to documents being edited.
+They verify that the document's own conventions were preserved rather than normalized.
 
 Fix every failure, or report it to the user with a reason.
 
 ## Structure
 
-- The document has exactly one H1 title, unless the type or the existing convention says
-  otherwise (for example, notes may omit it, numbered-chapter documents use one H1 per chapter).
+- The document has exactly one H1 title, unless the type or the existing convention says otherwise
+  (for example, notes may omit it, numbered-chapter documents use one H1 per chapter).
 - Headings do not exceed H3 in new documents, and do not exceed the existing depth in edited ones.
 - Headings carry no parenthesized qualifiers and no trailing punctuation.
 - The purpose section is present and matches the document's actual content.
 - Optional sections (Document Information, Version History) were not added without a request.
-- No sentence, cell, or section states which skill, rules, or toolchain produced the
-  document - production metadata stays out of the document unless the request or the
-  document's subject requires it.
-- A Contents table exists when required by the document's own convention or the skill's style
-  rules.
+- No sentence, cell, or section states which skill, rules,
+  or toolchain produced the document - production metadata stays out of the document unless the
+  request or the document's subject requires it.
+- A Contents table exists when required by the document's own convention or the skill's style rules.
 - For a known document type, `scripts/check-sections.py --type <type-slug>` reports no
   missing required sections.
-- For a type with an open section vocabulary such as `procedure-manual`, custom heading
-  names are valid - the check reports informational notes only, and generic section
-  names were never forced onto the document.
+- For a type with an open section vocabulary such as `procedure-manual`,
+  custom heading names are valid - the check reports informational notes only,
+  and generic section names were never forced onto the document.
 
 ## Spacing
 
@@ -38,16 +37,16 @@ Fix every failure, or report it to the user with a reason.
 - No line ends with a whitespace character.
 - No blank line sits as the first or last line inside a fenced code block.
 - No line carries a lone list marker without content.
-- **Existing:** the document's detected prose layout was preserved - `flowing`,
-  `separated`, `bounded`, or `justified` per `conventions/prose-layout.md`, with new
-  content matching the dominant convention when the document mixes layouts.
+- **Existing:** the document's detected prose layout was preserved - `flowing`, `separated`,
+  `bounded`, or `justified` per `conventions/prose-layout.md`,
+  with new content matching the dominant convention when the document mixes layouts.
 - **Existing:** lines follow the document's detected wrap convention - verified with
   `scripts/reflow-prose.py --wrap --check --width N` for fixed-width documents and
   `scripts/reflow-prose.py --unwrap --check` for logical-line documents.
 - **Existing:** character substitutions that change line length were re-verified against the
   document's wrap convention - for example `-` replaced by `--` adds one character per dash.
-- No wrapped line ends with a dangling ` - ` separator and no continuation line starts
-  with `- ` - the separator stays attached to the clause it belongs to.
+- No wrapped line ends with a dangling ` - ` separator and no continuation line starts with `- ` -
+  the separator stays attached to the clause it belongs to.
 
 ## Characters
 
@@ -55,44 +54,43 @@ Fix every failure, or report it to the user with a reason.
 - No semicolon appears in running prose outside code blocks, inline code, and file paths.
   Indented code blocks and table cells are not running prose.
 - No emoji appears unless explicitly requested.
-- Extended characters such as arrows (`->`) and box-drawing frames are allowed when they
-  render correctly and match the document's conventions.
+- Extended characters such as arrows (`->`)
+  and box-drawing frames are allowed when they render correctly and match the
+  document's conventions.
 - Box-drawing characters appear only inside code blocks, diagrams, and schematics.
 - Diacritics are written in composed form, one Unicode character per letter.
 - **Existing:** quote and apostrophe style matches the document's established convention when it
   deliberately differs.
-- **Existing:** non-ASCII punctuation in prose (dashes, ellipsis, non-breaking spaces) was
-  surfaced and checked against the document's convention.
-- Sanctioned character normalization ran through `scripts/normalize-chars.py` or an
-  equivalent deterministic tool - not through ad-hoc shell substitutions.
+- **Existing:** non-ASCII punctuation in prose (dashes, ellipsis, non-breaking spaces)
+  was surfaced and checked against the document's convention.
+- Sanctioned character normalization ran through `scripts/normalize-chars.py` or an equivalent
+  deterministic tool - not through ad-hoc shell substitutions.
 
 ## Lists And Code
 
 - Bullet items use the hyphen (`-`), or the marker the edited document already uses.
 - Numbered lists appear only for sequential steps or where the document already numbers items.
 - Task lists use `- [ ]` and `- [x]`.
-- Every fenced code block carrying code in a programming, markup, or data language has a language
-  tag.
-- Fenced blocks carrying plain text, prompts, console or standard output, directory trees,
-  diagrams, or tables have no language tag - a `text` or `txt` tag counts as a tag.
-- **Existing:** a document that already uses `text`, `txt`, `bash`, or other fence tags
-  consistently keeps its convention. Do not normalize tags on edit.
-- Trailing `#` comments inside a plain-text or shell-tagged block share one column - the
-  established column, or the longest entry plus two spaces - aligned with
-  `scripts/align-comments.py` or an equivalent script, not by hand.
-- Box-drawing diagrams follow `conventions/ascii-diagrams.md` - shared border columns
-  per box, one shared axis, centered prose lines, left-aligned enumerations,
-  `┬`/`▼`/`▶` connectors, and fan-out drops landing on box centers.
+- Every fenced code block carrying code in a programming, markup,
+  or data language has a language tag.
+- Fenced blocks carrying plain text, prompts, console or standard output, directory trees, diagrams,
+  or tables have no language tag - a `text` or `txt` tag counts as a tag.
+- **Existing:** a document that already uses `text`, `txt`, `bash`,
+  or other fence tags consistently keeps its convention. Do not normalize tags on edit.
+- Trailing `#` comments inside a plain-text or shell-tagged block share one column - the established
+  column, or the longest entry plus two spaces - aligned with `scripts/align-comments.py` or an
+  equivalent script, not by hand.
+- Box-drawing diagrams follow `conventions/ascii-diagrams.md` - shared border columns per box,
+  one shared axis, centered prose lines, left-aligned enumerations, `┬` / `▼` / `▶` connectors,
+  and fan-out drops landing on box centers.
 
 ## Tables
 
 - Columns align in plain-text view, every cell is padded to the column width.
-- Every table row starts with a single pipe. A leading `||` produces a spurious empty first
-  column.
-- Every separator-row cell contains at least one hyphen - a spaces-only cell leaves its
-  column undeclared.
-- No column is empty in every row. A fully empty column is a spurious column, never a
-  spacer.
+- Every table row starts with a single pipe. A leading `||` produces a spurious empty first column.
+- Every separator-row cell contains at least one hyphen - a spaces-only cell leaves
+  its column undeclared.
+- No column is empty in every row. A fully empty column is a spurious column, never a spacer.
 - An intentionally empty cell `| |` appears only in a column the separator row declares.
 - The separator row matches each column width plus two hyphens.
 - Column widths were measured on source text, including backticks and emphasis markers.
@@ -101,37 +99,39 @@ Fix every failure, or report it to the user with a reason.
 
 ## Language
 
-- Heading capitalization follows the document language (Title Case for English, sentence case for
-  Polish and German, or the rule in the matching `languages/` file).
+- Heading capitalization follows the document language (Title Case for English,
+  sentence case for Polish and German, or the rule in the matching `languages/` file).
 - The vocabulary table of the language file was applied, no discouraged terms remain.
 - Technical names and proper nouns keep their original spelling and decline normally.
   Filenames, commands, and identifiers keep a generic noun instead of an ending.
 - Independent clauses are never joined by a bare comma, and abbreviations expand at first use.
-- An English document passes `scripts/lint-english.py` - vocabulary violations,
-  misspellings, doubled words, and grammar errors are fixed, and advisory findings
-  (article and hyphen heuristics) were reviewed.
-- An English document keeps one spelling dialect - the dominant variant per the Dialect
-  Consistency table in `languages/en.md`, with deliberate exceptions quoted or named.
-- A Polish document passes `scripts/lint-polish.py` - calques, spliced clauses, and
-  typographic violations are fixed or reported.
+- An English document passes `scripts/lint-english.py` - vocabulary violations, misspellings,
+  doubled words, and grammar errors are fixed, and advisory findings (article and hyphen
+  heuristics) were reviewed.
+- An English document keeps one spelling dialect - the dominant variant per the Dialect Consistency
+  table in `languages/en.md`, with deliberate exceptions quoted or named.
+- A Polish document passes `scripts/lint-polish.py` - calques, spliced clauses,
+  and typographic violations are fixed or reported.
 
 ## Consistency
 
-- Every enumeration of a governed set - canonical files, owners, options, steps - lists the
-  same members wherever it appears in tables, menus, checklists, and examples.
+- Every enumeration of a governed set - canonical files, owners, options,
+  steps - lists the same members wherever it appears in tables, menus, checklists, and examples.
 - No reference to a renamed or removed section, file, or owner remains.
 - Quoted section references resolve against the document's own headings and defined terms,
-  and managed names do not drift - `scripts/check-consistency.py` reports no unresolved
-  references and its variant warnings were reviewed.
-- Scripted bulk replacements ran through `scripts/safe-replace.py` or word-boundary
-  matching, and the residue scan was reviewed - per the Scripted Bulk Edits rule in
+  and managed names do not drift - `scripts/check-consistency.py` reports no unresolved references
+  and its variant warnings were reviewed.
+- Scripted bulk replacements ran through `scripts/safe-replace.py` or word-boundary matching,
+  and the residue scan was reviewed - per the Scripted Bulk Edits rule in
   `principles/authoring-rules.md`.
 - Numbered lists renumber correctly after inserted or removed items.
-- A document serving both human readers and AI agents states each shared rule consistently
-  for both audiences.
+- A document serving both human readers and AI agents states each shared rule
+  consistently for both audiences.
 - Embedded ` ```markdown ` example documents match the normative text they illustrate.
 - Version markers and contents tables reflect the current change when the document's own
   convention maintains them.
+- Generated or managed regions - rendered contract blocks, contents tables,
+  generated indexes - re-derive from their generator or re-anchor check after any formatting pass.
 
 ## File Properties
 
@@ -141,40 +141,38 @@ Fix every failure, or report it to the user with a reason.
 
 ## Embedded Payloads
 
-- ` ```markdown ` payload blocks were treated as separate dialect regions - the payload's own
+- ` ``` markdown ` payload blocks were treated as separate dialect regions - the payload's own
   style was preserved.
-- Payload content stayed opaque unless the request covered it - tables and prose inside
-  payloads were reformatted only through the `--payload-markdown` tools on explicit request.
-- Indented code blocks inside payloads, such as directory trees, kept their original line
-  structure.
-- **Existing:** a formatting-only pass changed no words - `scripts/diff-content.py` reports a
-  token stream identical to the baseline, and every merged-line warning was reviewed.
+- Payload content stayed opaque unless the request covered it - tables and prose inside payloads
+  were reformatted only through the `--payload-markdown` tools on explicit request.
+- Indented code blocks inside payloads, such as directory trees, kept their original line structure.
+- **Existing:** a formatting-only pass changed no words - `scripts/diff-content.py` reports a token
+  stream identical to the baseline, and every merged-line warning was reviewed.
 
 ## Project Scope
 
 - The detected or named scope was reported, `unstructured-layout` when nothing matched.
 - A new file sits in the directory the scope assigns to its role.
 - The filename follows the scope's naming convention when it overrides the language default.
-- Every registration or index file the scope requires was updated, for example a `SKILL.md`
-  router entry or an `index.rst` toctree entry.
+- Every registration or index file the scope requires was updated,
+  for example a `SKILL.md` router entry or an `index.rst` toctree entry.
 - Validators the scope mandates ran, for example the skill repository's own checkers.
 
 ## Final Pass
 
-- `scripts/validate-document.py` reports no failures on the written file, run with
-  `--payload-markdown` when the document embeds ` ```markdown ` blocks - one
-  `scripts/check-document.py` invocation covers this with the table, comment, reflow,
+- `scripts/validate-document.py` reports no failures on the written file,
+  run with `--payload-markdown` when the document embeds ` ``` markdown ` blocks - one `
+  scripts/check-document.py` invocation covers this with the table, comment, reflow,
   and optional lint, section, and diff checks.
 - `scripts/lint-polish.py` reports no findings on a Polish document.
 - `scripts/lint-english.py` reports no errors on an English document.
-- `scripts/check-consistency.py` reports no unresolved references - on a long procedure
-  manual it runs together with the English lint as part of the structural validation.
+- `scripts/check-consistency.py` reports no unresolved references - on a long procedure manual it
+  runs together with the English lint as part of the structural validation.
 - A long procedure manual's final structural validation covers its own conventions:
-  open section vocabulary, quoted references, terminology, structure trees, and
-  embedded templates.
+  open section vocabulary, quoted references, terminology, structure trees, and embedded templates.
 - `scripts/diff-content.py` reports an identical token stream after formatting-only passes.
 - `git diff --check` reports no whitespace errors when inside a repository.
-- The written changes trace to a named operation or a user-confirmed proposal - no
-  out-of-scope fix shipped silently.
-- Ad-hoc `.tmp.` helpers and any tool copies made under the fallback convention are
-  removed from the working repository. No file the task did not request remains.
+- The written changes trace to a named operation or a user-confirmed proposal - no out-of-scope
+  fix shipped silently.
+- Ad-hoc `.tmp.` helpers and any tool copies made under the fallback convention are removed from the
+  working repository. No file the task did not request remains.

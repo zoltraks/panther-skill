@@ -3,8 +3,7 @@
 ## Purpose
 
 > **Scope:** Polish-English terminology for project management and PMBOK documents
-> **Key items:** domain signals, terminology table, context forms, calque traps,
-> untranslated terms
+> **Key items:** domain signals, terminology table, context forms, calque traps, untranslated terms
 
 Load this glossary for translate tasks on project management subjects.
 
@@ -14,12 +13,11 @@ Apply it for Polish to English translate tasks, per `process/translate-document.
 
 Apply this glossary when:
 
-- The request names a project management, PMBOK, charter, register, report, or
-  steering subject.
-- The document type is a charter, register or log, status report, meeting minutes,
-  management plan, or work breakdown structure.
-- The document's terminology is dominated by risk, register, baseline, sponsor, or
-  milestone vocabulary.
+- The request names a project management, PMBOK, charter, register, report, or steering subject.
+- The document type is a charter, register or log, status report, meeting minutes, management plan,
+  or work breakdown structure.
+- The document's terminology is dominated by risk, register, baseline, sponsor,
+  or milestone vocabulary.
 
 ## Terminology
 
@@ -92,12 +90,12 @@ Some Polish terms render differently to English by context.
 
 Do not force one form everywhere:
 
-- `zakres` renders `scope` for the work boundary, and `in scope` / `out of scope` for the
-  section names `w zakresie` / `poza zakresem`.
-- `skutek` and `wpływ` both render `impact` - the register column name follows the
-  document's own established column heading.
-- `ważność` renders `severity` in report contexts - `WYSOKA`, `WYSOKI`, `WYSOKIE` all
-  render `HIGH` regardless of Polish gender.
+- `zakres` renders `scope` for the work boundary,
+  and `in scope` / `out of scope` for the section names `w zakresie` / `poza zakresem`.
+- `skutek` and `wpływ` both render `impact` - the register column name follows the document's own
+  established column heading.
+- `ważność` renders `severity` in report contexts - `WYSOKA`, `WYSOKI`,
+  `WYSOKIE` all render `HIGH` regardless of Polish gender.
 - `stan` renders `status` for register and record fields.
 - `problem` renders `issue` for a logged item and `problem` in prose.
 
@@ -123,5 +121,5 @@ Settled terms render back to their canonical English forms:
 
 - `PMBOK`, `PMI`, `PMP`, `PRINCE2`, `RACI`, `KPI`, `RAG`, `SMART` stay as method acronyms.
 - `SPP` renders `WBS` (work breakdown structure) when the matching glossary declares it.
-- `agile`, `scrum`, `sprint`, `kanban`, `standup`, `retro` stay English when the
-  document's method vocabulary uses them.
+- `agile`, `scrum`, `sprint`, `kanban`, `standup`,
+  `retro` stay English when the document's method vocabulary uses them.

@@ -4,8 +4,7 @@
 
 > **Scope:** English-Polish terminology for software engineering and the software
 > development lifecycle
-> **Key items:** domain signals, terminology table, context forms, calque traps,
-> untranslated terms
+> **Key items:** domain signals, terminology table, context forms, calque traps, untranslated terms
 
 Load this glossary for translate tasks on software and software-documentation subjects.
 
@@ -15,23 +14,23 @@ Apply it for English to Polish translate tasks, per `process/translate-document.
 
 | Section        | Line | What it covers                                      |
 |----------------|------|-----------------------------------------------------|
-| Domain Signals | 24   | Activation conditions for this glossary             |
-| Terminology    | 36   | Recurring English terms and preferred Polish forms  |
-| Context Forms  | 353  | Context-dependent renderings                        |
-| Calque Traps   | 547  | Forbidden literal renderings and their replacements |
-| Untranslated   | 703  | Loanwords and identifiers kept in English form      |
+| Domain Signals | 23   | Activation conditions for this glossary             |
+| Terminology    | 35   | Recurring English terms and preferred Polish forms  |
+| Context Forms  | 354  | Context-dependent renderings                        |
+| Calque Traps   | 530  | Forbidden literal renderings and their replacements |
+| Untranslated   | 686  | Loanwords and identifiers kept in English form      |
 
 ## Domain Signals
 
 Apply this glossary when:
 
 - The request names a software, IT, or SDLC subject.
-- The document type is technical, specification, README, contributing, changelog, agent
-  instruction, format specification, or rules document for a software project.
-- The document's terminology is dominated by code, API, build, deploy, test, or
-  infrastructure vocabulary.
-- The document's terminology is dominated by AI-agent, agentic-SDLC, or
-  assistant-orchestration vocabulary.
+- The document type is technical, specification, README, contributing, changelog, agent instruction,
+  format specification, or rules document for a software project.
+- The document's terminology is dominated by code, API, build, deploy, test,
+  or infrastructure vocabulary.
+- The document's terminology is dominated by AI-agent, agentic-SDLC,
+  or assistant-orchestration vocabulary.
 
 ## Terminology
 
@@ -359,192 +358,174 @@ Some English terms render differently by context.
 Do not force one form everywhere:
 
 - `weakness` renders `błąd bezpieczeństwa` or `podatność bezpieczeństwa` in security text.
-- `drift` renders `rozbieżność` for configuration, `narastająca rozbieżność` for
-  contracts and conventions evolving over time, and `dezaktualizacja` for documentation.
+- `drift` renders `rozbieżność` for configuration,
+  `narastająca rozbieżność` for contracts and conventions evolving over time,
+  and `dezaktualizacja` for documentation.
 - `parity` renders `zgodność` or `równoważność` - never `parzystość` or `paritet`.
 - `baseline` renders `wartość bazowa` for measurements, `zbiór bazowy` for document sets,
-  `stan wyjściowy` for a verified starting state, `stan bazowy` for a codebase or
-  release state (`which baseline ships in a release`), and `lista zaakceptowanych
-  odchyleń` where it means accepted deviations.
-- `reserved decision` renders `decyzja wymagająca odrębnego ustalenia` for a decision
-  kept for a human - `zastrzeżona` or `zarezerwowana decyzja` reads like a legal
-  reservation.
-- `uncommitted` renders `niezatwierdzone` for git work - `niezacommitowane` is an
-  anglicized spelling and `niecommitowane` is also a misspelling.
-- `triage` renders `przegląd i klasyfikacja` - `triaż` only where a document already
-  established it.
+  `stan wyjściowy` for a verified starting state,
+  `stan bazowy` for a codebase or release state (`which baseline ships in a release`),
+  and `lista zaakceptowanych odchyleń` where it means accepted deviations.
+- `reserved decision` renders `decyzja wymagająca odrębnego ustalenia` for a decision kept for a
+  human - `zastrzeżona` or `zarezerwowana decyzja` reads like a legal reservation.
+- `uncommitted` renders `niezatwierdzone` for git work - `niezacommitowane` is an anglicized
+  spelling and `niecommitowane` is also a misspelling.
+- `triage` renders `przegląd i klasyfikacja` - `triaż` only where a document already established it.
 - `gate` renders `punkt kontrolny` or `warunek przejścia` for a blocking check,
-  `kontrola nieblokująca` or `kontrola informacyjna` for a non-blocking one - never
-  `brama`.
-- `workflow` renders `przepływ pracy` for user processes, `proces` for automation, and
-  `przebieg prac` where the term names the course of development work.
+  `kontrola nieblokująca` or `kontrola informacyjna` for a non-blocking one - never `brama`.
+- `workflow` renders `przepływ pracy` for user processes, `proces` for automation,
+  and `przebieg prac` where the term names the course of development work.
 - `fallback` renders `mechanizm awaryjny` or `obsługa zastępcza`.
 - `fail-closed` renders `odmowa dostępu` or `zamknięcie w przypadku błędu`.
 - `deploy` compounds translate in full - `środowisko wdrożeniowe`, `zadanie wdrożeniowe`.
-- `prompt` renders `prompt` throughout a document - do not split between `prompt` and
-  `polecenie` inside one document.
-  A project that already established `polecenie` keeps it per the precedence rule in
-  `en-pl-general.md`.
-- `record` renders `rejestruje` only for writing an entry into a register or a log - a
-  verdict or conformance claim renders `wykazuje`, and `records conformance with X`
-  becomes `wykazuje zgodność z X`.
-- `note` renders `odnotowuje` in report register and `zauważa` for observations in
-  prose.
-- `finding` renders `ustalenie` for a review's or audit's output and `wykryty problem`
-  for a check's result - `the check produced no findings` renders `kontrola nie
-  wykazała problemów` - while `defect` renders `wada` in formal testing and quality
-  text (ISTQB PL) and `usterka` colloquially.
-- `agreement` renders `uzgodnienie` - `ustalenie` is reserved for the audit `finding`
-  mapping.
-- `process` renders `proces` - `mechanizm` names machinery and never stands in for a
-  lifecycle process.
-- `ignore` renders `ignorowanie` for the mechanism and `wpis .gitignore` for countable
-  entries.
-- `bump` renders `zwiększenie numeru wersji` - `inkrementacja` and `podbicie` are
-  calques.
-- `resolve` renders `ustalić` for locations and values, `przypisać` for mapping a role
-  to a path, `usunąć` for reported diagnostics, and `rozstrzygnąć` only for disputes
-  and contradictions - `rozstrzygnięta lokalizacja` is a calque of `resolved
-  location`, and `resolve a link` renders `sprawdź, czy odnośnik wskazuje właściwy
-  cel` rather than a resolution verb.
-- `diagnostics` renders by verb: `resolve diagnostics` is `usuń błędy i ostrzeżenia
-  zgłoszone przez narzędzia`, while `temporary diagnostics` is `tymczasowy kod
-  diagnostyczny` - the first removes reported problems, the second removes temporary
-  instrumentation, so `diagnostyka` alone never stands for both.
-- `evidence` renders `informacje ustalone na podstawie repozytorium` for repository
-  evidence and keeps `dowody` only for confirmations of results.
-- `derive` renders `opracować na podstawie` when content is produced from the
-  repository - `wywieść` and `wyprowadzić` are reserved for formal derivation.
-- `build` renders `budowanie` for the whole build process and `kompilacja` only for
-  compilation itself - `czysta kompilacja` for a clean build is a false friend.
-- A `build` as a result renders `zbudowana wersja` or `wynik budowania` - `promote the
-  build` renders `przenieś zbudowaną wersję do kolejnego środowiska`, never a verb
-  applied to `budowanie`.
-- `axis` renders `cecha` or `wymiar` for repository characteristics - a literal `oś`
-  is reserved for mathematics and diagrams.
-- `routing` renders `kierowanie` for the process of directing work to the right
-  instructions, `ścieżka nawigacji` for link pointers, and keeps `routing` only inside
-  settled technical names.
-- `owner` renders `właściciel` for a business owner, `opiekun` for a maintainer, and
-  `dokument nadrzędny` or `dokument źródłowy` for the document that carries the
-  governing rules for a topic - pick one form per document at the terminology lock,
+- `prompt` renders `prompt` throughout a document - do not split between `prompt` and `polecenie`
+  inside one document.
+  A project that already established `polecenie` keeps it per the precedence rule
+  in `en-pl-general.md`.
+- `record` renders `rejestruje` only for writing an entry into a register or a log - a verdict or
+  conformance claim renders `wykazuje`, and `records conformance with X` becomes
+  `wykazuje zgodność z X`.
+- `note` renders `odnotowuje` in report register and `zauważa` for observations in prose.
+- `finding` renders `ustalenie` for a review's or audit's output and `wykryty problem` for a check's
+  result - `the check produced no findings` renders `kontrola nie wykazała problemów` - while
+  `defect` renders `wada` in formal testing and quality text (ISTQB PL) and `usterka` colloquially.
+- `agreement` renders `uzgodnienie` - `ustalenie` is reserved for the audit `finding` mapping.
+- `process` renders `proces` - `mechanizm` names machinery and never stands in for
+  a lifecycle process.
+- `ignore` renders `ignorowanie` for the mechanism and `wpis .gitignore` for countable entries.
+- `bump` renders `zwiększenie numeru wersji` - `inkrementacja` and `podbicie` are calques.
+- `resolve` renders `ustalić` for locations and values, `przypisać` for mapping a role to a path,
+  `usunąć` for reported diagnostics, and `rozstrzygnąć` only for disputes and contradictions -
+  `rozstrzygnięta lokalizacja` is a calque of `resolved location`,
+  and `resolve a link` renders `sprawdź, czy odnośnik wskazuje właściwy cel` rather
+  than a resolution verb.
+- `diagnostics` renders by verb: `resolve diagnostics` is
+  `usuń błędy i ostrzeżenia zgłoszone przez narzędzia`, while `temporary diagnostics` is
+  `tymczasowy kod diagnostyczny` - the first removes reported problems,
+  the second removes temporary instrumentation, so `diagnostyka` alone never stands for both.
+- `evidence` renders `informacje ustalone na podstawie repozytorium` for repository evidence and
+  keeps `dowody` only for confirmations of results.
+- `derive` renders `opracować na podstawie` when content is produced from the repository - `wywieść`
+  and `wyprowadzić` are reserved for formal derivation.
+- `build` renders `budowanie` for the whole build process and `kompilacja` only for compilation
+  itself - `czysta kompilacja` for a clean build is a false friend.
+- A `build` as a result renders `zbudowana wersja` or `wynik budowania` - `promote the build`
+  renders `przenieś zbudowaną wersję do kolejnego środowiska`, never a verb applied to `budowanie`.
+- `axis` renders `cecha` or `wymiar` for repository characteristics - a literal `oś` is reserved for
+  mathematics and diagrams.
+- `routing` renders `kierowanie` for the process of directing work to the right instructions,
+  `ścieżka nawigacji` for link pointers, and keeps `routing` only inside settled technical names.
+- `owner` renders `właściciel` for a business owner, `opiekun` for a maintainer,
+  and `dokument nadrzędny` or `dokument źródłowy` for the document that carries the governing rules
+  for a topic - pick one form per document at the terminology lock,
   and remember `miejsce zdefiniowania` is a calque that names no superior role.
-- `severity` renders `waga` or `stopień istotności` for problem ranking - `ważność` is
-  reserved for validity periods.
-- `frontmatter` stays untranslated - gloss it at first use as `blok metadanych YAML na
-  początku pliku (frontmatter)`.
-- `sources of truth` renders `Źródła prawdy` as a section name and `źródła prawdy` in
-  prose.
-- `Promise` stays untranslated in code discussion - `obietnica` is a calque, and a
-  `floating promise` renders `obiekt Promise pozostawiony bez oczekiwania na wynik`,
+- `severity` renders `waga` or `stopień istotności` for problem ranking - `ważność` is reserved
+  for validity periods.
+- `frontmatter` stays untranslated - gloss it at first use as
+  `blok metadanych YAML na początku pliku (frontmatter)`.
+- `sources of truth` renders `Źródła prawdy` as a section name and `źródła prawdy` in prose.
+- `Promise` stays untranslated in code discussion - `obietnica` is a calque,
+  and a `floating promise` renders `obiekt Promise pozostawiony bez oczekiwania na wynik`,
   never `pływające obietnice` or `obietnica pływająca` - and `await` stays verbatim,
   never inflected as `awaituj`.
-- `candidate` renders `kandydat` for a person and `kandydat do wydania` for a release
-  candidate - a non-person item named by purpose takes `kandydat do <celu>`, as in
-  `kandydat do sprawdzenia` for a discovery item, and a change set at its last
-  verification stage renders `ostateczna wersja zmian` or `końcowa wersja` - a
-  `final candidate` is a version, not a stage, so `końcowy etap` misstates it.
-- `wound` renders `dolegliwość` for the deliberate session-review metaphor - `rana`
-  stays reserved for a literal injury.
-- `standby` renders `stan gotowości` for a waiting state or the instruction that sets
-  it - `wstrzymanie` names an interruption, not the ready state.
+- `candidate` renders `kandydat` for a person and `kandydat do wydania` for a release candidate - a
+  non-person item named by purpose takes `kandydat do <celu>`,
+  as in `kandydat do sprawdzenia` for a discovery item,
+  and a change set at its last verification stage renders `ostateczna wersja zmian` or
+  `końcowa wersja` - a `final candidate` is a version, not a stage, so `końcowy etap` misstates it.
+- `wound` renders `dolegliwość` for the deliberate session-review metaphor - `rana` stays reserved
+  for a literal injury.
+- `standby` renders `stan gotowości` for a waiting state or the instruction that sets it -
+  `wstrzymanie` names an interruption, not the ready state.
 - `land` renders `trafia` or `umieścić` when a rule or finding lands in a document.
-- `validation` renders `sprawdzenie poprawności` for checking an artifact, setup, or
-  hierarchy - the verb renders `sprawdzić poprawność` or `zweryfikować poprawność`,
-  and `validate that X holds` renders `potwierdzić, że` - `walidacja` stays reserved
-  for the settled code-domain sense (`walidacja wejścia`, `walidacja danych`) -
-  `verification` renders `weryfikacja` and the pair stays distinct.
-- `pointer` renders `odnośnik` for a navigation reference to another document or a
-  routing pointer - `wskaźnik` stays reserved for a raw code pointer.
-- `skill package` renders `pakiet umiejętności` for a packaged unit and `skill set`
-  renders `zestaw umiejętności` for the collection itself. The two are not
-  interchangeable.
-- `load` renders `wczytać` for reading a file, resource, or context into memory -
-  when `load` names working out a sequence or resolving a set, render `określić` or
-  `ustalić`, as in `load the read order` becoming `określ kolejność czytania`.
-- `gate` renders `punkt kontrolny`, `warunek przejścia`, or `kontrola
-  blokująca` in formal documents - `bramka`/`bramki`/`bramkę` stay calques, and
-  bare `brama` stays a calque.
-- `check` renders `kontrola` for an executed check in an assessment or audit -
-  `sprawdzenie` names the act of verifying - and `the check passes` renders
-  `kontrola kończy się pomyślnie`, never `kontrola przechodzi` without naming what
-  passes it.
-- `disposition` renders `dyspozycja` for finding disposition in audit and review
-  registers.
-- `severity`, `likelihood`, `confidence`, and `priority` render `waga`,
-  `prawdopodobieństwo`, `pewność`, and `priorytet` as concepts - a verbatim field
-  label of the assessed tool (`Severity`, `Likelihood`) stays in English.
-- `coverage` renders `pokrycie` as a concept - field labels such as `statement
-  coverage` stay verbatim.
-- `runtime` renders `środowisko uruchomieniowe` as a noun - the adjective stays
-  verbatim (`runtime PoC`, `zasięg runtime`).
-- `source-only` renders `analiza źródeł` when it names the review method and stays
-  `source-only` when it names a tool mode.
-- `acceptance` renders `odbiór` for fix acceptance and acceptance tests and
-  `akceptacja` for criteria and statuses - `kryterium odbioru` and `kryteria
-  akceptacji` are both established.
-- `run` renders `uruchomienie` for one execution, `przebieg` for a pass through a
-  scope, and `wykonanie` for the act of running.
-- `invariant` renders `niezmiennik` in formal register - `inwariant` is accepted
-  in expert register.
-- `reproducible` renders `odtwarzalny` - `możliwy do powtórzenia` and `możliwy do
-  powrotu` are reserved for `revisitable`.
+- `validation` renders `sprawdzenie poprawności` for checking an artifact, setup,
+  or hierarchy - the verb renders `sprawdzić poprawność` or `zweryfikować poprawność`,
+  and `validate that X holds` renders `potwierdzić, że` - `walidacja` stays reserved for the settled
+  code-domain sense (`walidacja wejścia`, `walidacja danych`)
+  - `verification` renders `weryfikacja` and the pair stays distinct.
+- `pointer` renders `odnośnik` for a navigation reference to another document or a routing pointer -
+  `wskaźnik` stays reserved for a raw code pointer.
+- `skill package` renders `pakiet umiejętności` for a packaged unit and `skill set` renders
+  `zestaw umiejętności` for the collection itself. The two are not interchangeable.
+- `load` renders `wczytać` for reading a file, resource,
+  or context into memory - when `load` names working out a sequence or resolving a set,
+  render `określić` or `ustalić`, as in `load the read order` becoming `określ kolejność czytania`.
+- `gate` renders `punkt kontrolny`, `warunek przejścia`,
+  or `kontrola blokująca` in formal documents - `bramka` / `bramki` / `bramkę` stay calques,
+  and bare `brama` stays a calque.
+- `check` renders `kontrola` for an executed check in an assessment or audit - `sprawdzenie` names
+  the act of verifying - and `the check passes` renders `kontrola kończy się pomyślnie`,
+  never `kontrola przechodzi` without naming what passes it.
+- `disposition` renders `dyspozycja` for finding disposition in audit and review registers.
+- `severity`, `likelihood`, `confidence`, and `priority` render `waga`, `prawdopodobieństwo`,
+  `pewność`, and `priorytet` as concepts - a verbatim field label of the assessed tool (`Severity`,
+  `Likelihood`) stays in English.
+- `coverage` renders `pokrycie` as a concept - field labels such as
+  `statement coverage` stay verbatim.
+- `runtime` renders `środowisko uruchomieniowe` as a noun - the adjective stays verbatim
+  (`runtime PoC`, `zasięg runtime`).
+- `source-only` renders `analiza źródeł` when it names the review method and stays `source-only`
+  when it names a tool mode.
+- `acceptance` renders `odbiór` for fix acceptance and acceptance tests and `akceptacja` for
+  criteria and statuses - `kryterium odbioru` and `kryteria akceptacji` are both established.
+- `run` renders `uruchomienie` for one execution, `przebieg` for a pass through a scope,
+  and `wykonanie` for the act of running.
+- `invariant` renders `niezmiennik` in formal register - `inwariant` is accepted in expert register.
+- `reproducible` renders `odtwarzalny` - `możliwy do powtórzenia` and `możliwy do powrotu` are
+  reserved for `revisitable`.
 - `route` renders `trasa` for URL and HTTP routes - `kierowanie` names the routing
   process, not a route.
-- `drift` and `divergence` render `rozbieżność` in formal register - `rozjazd` is
-  accepted in expert register for contract and state divergence.
-- `lockfile` renders `plik blokady wersji zależności` with a first-use gloss -
-  bare `lockfile` is accepted in expert register.
-- `inventory` renders `inwentarz` for dependency and package inventories and
-  `wykaz` for a produced listing.
-- `owner` renders `właściciel` for a person-owner (technical owner, business
-  owner) - `dokument nadrzędny` is reserved for the document carrying the
-  governing rules.
+- `drift` and `divergence` render `rozbieżność` in formal register - `rozjazd` is accepted in expert
+  register for contract and state divergence.
+- `lockfile` renders `plik blokady wersji zależności` with a first-use gloss - bare `lockfile` is
+  accepted in expert register.
+- `inventory` renders `inwentarz` for dependency and package inventories and `wykaz`
+  for a produced listing.
+- `owner` renders `właściciel` for a person-owner (technical owner, business owner)
+  - `dokument nadrzędny` is reserved for the document carrying the governing rules.
 - `tool-executed checks` renders `kontrole narzędziowe` in expert register.
-- `commit` renders `zatwierdzenie` and `zatwierdzić` in prose - the English form
-  stays verbatim only inside commands and code such as `git commit`.
-- Settled technical loanwords decline normally in expert register - `hooka`,
-  `guardów`, `scorecardy`, `handlery`, `timeoutu`, `runnera`, `blokery`,
-  `builda` - the `pl.md` declension ban covers words with natural
-  Polish equivalents (`ownerzy`, `maintainerzy`).
+- `commit` renders `zatwierdzenie` and `zatwierdzić` in prose - the English form stays verbatim only
+  inside commands and code such as `git commit`.
+- Settled technical loanwords decline normally in expert register - `hooka`, `guardów`,
+  `scorecardy`, `handlery`, `timeoutu`, `runnera`, `blokery`,
+  `builda` - the `pl.md` declension ban covers words with natural Polish equivalents
+  (`ownerzy`, `maintainerzy`).
 - `authority` renders `zakres uprawnień` where it names the scope of what may change -
-  `an authority change` is `zmiana zakresu uprawnień` - and `wiążący` where it names
-  binding status, as in `dowody uznania dokumentu za wiążący`.
-- `surface` renders `zakres` or `interfejs` for `API surface` and `per-surface`
-  contracts - `powierzchnia` stays bound to `attack surface`.
-- `standard library` renders `biblioteka standardów` for a documentation standards
-  collection and `biblioteka standardowa` for a language's runtime library - the two
-  senses are not interchangeable.
-- `discovery` renders `rozpoznanie` where it analyzes existing repository content and
-  `odnajdywanie` where it locates a file or resource - `repository discovery` is
-  `rozpoznanie repozytorium`, `guidelines discovery` is `odnajdywanie wytycznych`.
-- `clean` compounds resolve by function - `clean seams` is `jasno określone punkty
-  rozszerzeń`, `clean increment` is `partia zmian bez błędów i ostrzeżeń` - the
-  criteria come from the document's own check instructions, never invented.
-- `seed` renders `szablon początkowy` for a file that initializes a document and
-  `scaffolding` renders `szkielet projektu` - `zalążek` is a calque.
-- `reconciliation` renders `uzgadnianie` for the alignment of documents -
-  `pojednanie` describes reconciling people, not documentation.
-- `maintainability` renders `łatwość utrzymania` in plain technical register -
-  `utrzymywalność` stays legal where a document establishes quality-taxonomy
-  terminology.
-- `serves <audience>` describes a document's purpose and renders `jest przeznaczony
-  dla` or `stanowi` - `obsługuje odbiorców` personifies the document as a service.
-- `execute` renders `wykonanie` for running a process, but `execute the steps
-  literally` renders `postępować zgodnie z krokami` - `wykonać kroki dosłownie`
-  hangs the adverb on the object, while `zgodnie z` already carries the literalness.
-- `explicit` renders `wyraźny`/`wyraźnie` for what is marked or stated
-  (`wyraźnie oznaczona`, `wyraźna instrukcja`), but a declared user choice or
-  selection renders `jawny`/`jawnie` - `jawne wybory użytkownika`, `wybór musi
-  być jawny`, `jawnie wybrany`.
-- `evaluation`/`evaluate` renders `analiza`/`analizować` when it names examining
-  artifacts or a documentation set (`evaluation and reconciliation` is `analiza
-  i uzgadnianie`) - `ocena`/`oceniać` stays for assessing quality, as in a
-  refactoring assessment or evaluating a result against a proposal.
-- `equivalent` renders `analogiczny` for a thing serving the same role
-  (`analogiczny dokument`, `analogiczny mechanizm`) and `odpowiednik` for the
-  noun (`nie istnieje zapisany odpowiednik`) - `równoważny` and `równoważność`
-  stay reserved for strict logical or behavioral equivalence.
+  `an authority change` is `zmiana zakresu uprawnień` - and `wiążący` where it names binding status,
+  as in `dowody uznania dokumentu za wiążący`.
+- `surface` renders `zakres` or `interfejs` for `API surface` and `per-surface` contracts -
+  `powierzchnia` stays bound to `attack surface`.
+- `standard library` renders `biblioteka standardów` for a documentation standards collection and
+  `biblioteka standardowa` for a language's runtime library - the two senses are
+  not interchangeable.
+- `discovery` renders `rozpoznanie` where it analyzes existing repository content and `odnajdywanie`
+  where it locates a file or resource - `repository discovery` is `rozpoznanie repozytorium`,
+  `guidelines discovery` is `odnajdywanie wytycznych`.
+- `clean` compounds resolve by function - `clean seams` is `jasno określone punkty rozszerzeń`,
+  `clean increment` is `partia zmian bez błędów i ostrzeżeń` - the criteria come from the document's
+  own check instructions, never invented.
+- `seed` renders `szablon początkowy` for a file that initializes a document and `scaffolding`
+  renders `szkielet projektu` - `zalążek` is a calque.
+- `reconciliation` renders `uzgadnianie` for the alignment of documents - `pojednanie` describes
+  reconciling people, not documentation.
+- `maintainability` renders `łatwość utrzymania` in plain technical register - `utrzymywalność`
+  stays legal where a document establishes quality-taxonomy terminology.
+- `serves <audience>` describes a document's purpose and renders `jest przeznaczony dla` or
+  `stanowi` - `obsługuje odbiorców` personifies the document as a service.
+- `execute` renders `wykonanie` for running a process,
+  but `execute the steps literally` renders `postępować zgodnie z krokami` -
+  `wykonać kroki dosłownie` hangs the adverb on the object,
+  while `zgodnie z` already carries the literalness.
+- `explicit` renders `wyraźny` / `wyraźnie` for what is marked or stated (`wyraźnie oznaczona`,
+  `wyraźna instrukcja`), but a declared user choice or selection renders `jawny` / `jawnie` -
+  `jawne wybory użytkownika`, `wybór musi być jawny`, `jawnie wybrany`.
+- `evaluation` / `evaluate` renders `analiza` / `analizować` when it names examining artifacts or a
+  documentation set (`evaluation and reconciliation` is `analiza i uzgadnianie`)
+  - `ocena` / `oceniać` stays for assessing quality,
+  as in a refactoring assessment or evaluating a result against a proposal.
+- `equivalent` renders `analogiczny` for a thing serving the same role (`analogiczny dokument`,
+  `analogiczny mechanizm`) and `odpowiednik` for the noun (`nie istnieje zapisany odpowiednik`)
+  - `równoważny` and `równoważność` stay reserved for strict logical or behavioral equivalence.
 
 ## Calque Traps
 
@@ -706,18 +687,16 @@ Do not force one form everywhere:
 
 Settled loanwords and identifiers stay in English form in Polish output:
 
-- `endpoint`, `frontend`, `backend`, `merge`, `pull request`, `lint`,
-  `roadmapa`, `due diligence`, `copyleft`, `SBOM`, `open source`, `Promise`,
-  `frontmatter`, `trunk-based development`, `await`
-- `hook`, `guard`, `handler`, `scorecard`, `advisory`, `typecheck`, `governance`,
-  `handoff`, `follow-up`, `self-check`, `control plane`, `read-only`, `offline`,
-  `upload`, `timeout`, `runner`, `blocker`, `checklist`, `lookup`, `wildcard`,
-  `step-up`, `auth`, `agent tooling` - settled loanwords in expert register -
-  they decline normally where Polish grammar requires it (`hooka`, `scorecardy`)
-- Acronyms: `API`, `SDK`, `CLI`, `UI`, `URL`, `HTTP`, `JSON`, `YAML`, `XML`, `SQL`,
-  `REST`, `IDE`, `CI/CD`, `ASCII`, `UTF-8`, `CRLF`, `npm`, `git`, `ADR`, `NFR`, `OSS`,
-  `CVE`, `CWE`, `JWT`, `RBAC`, `SSH`, `OWASP`, `ASVS`, `DORA`, `SOC 2`, `ISO/IEC`,
-  `MR`, `CVSS`, `ATAM`, `RAG`, `PoC`, `TOTP`, `CSP`, `SCA`, `SLO`, `RPO`, `RTO`,
-  `LOC`, `NIST`, `IEEE`, `FIRST`, `WSTG`, `MITRE`
-- Product and technology names: `Docker`, `Kubernetes`, `Microsoft Fabric`, `Power BI`,
-  `Git`, `SemVer`
+- `endpoint`, `frontend`, `backend`, `merge`, `pull request`, `lint`, `roadmapa`, `due diligence`,
+  `copyleft`, `SBOM`, `open source`, `Promise`, `frontmatter`, `trunk-based development`, `await`
+- `hook`, `guard`, `handler`, `scorecard`, `advisory`, `typecheck`, `governance`, `handoff`,
+  `follow-up`, `self-check`, `control plane`, `read-only`, `offline`, `upload`, `timeout`, `runner`,
+  `blocker`, `checklist`, `lookup`, `wildcard`, `step-up`, `auth`,
+  `agent tooling` - settled loanwords in expert register - they decline normally where Polish
+  grammar requires it (`hooka`, `scorecardy`)
+- Acronyms: `API`, `SDK`, `CLI`, `UI`, `URL`, `HTTP`, `JSON`, `YAML`, `XML`, `SQL`, `REST`, `IDE`,
+  `CI/CD`, `ASCII`, `UTF-8`, `CRLF`, `npm`, `git`, `ADR`, `NFR`, `OSS`, `CVE`, `CWE`, `JWT`, `RBAC`,
+  `SSH`, `OWASP`, `ASVS`, `DORA`, `SOC 2`, `ISO/IEC`, `MR`, `CVSS`, `ATAM`, `RAG`, `PoC`, `TOTP`,
+  `CSP`, `SCA`, `SLO`, `RPO`, `RTO`, `LOC`, `NIST`, `IEEE`, `FIRST`, `WSTG`, `MITRE`
+- Product and technology names: `Docker`, `Kubernetes`, `Microsoft Fabric`,
+  `Power BI`, `Git`, `SemVer`

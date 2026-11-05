@@ -2,10 +2,9 @@
 
 ## Purpose
 
-> **Scope:** Conventions for architecture decision records - short documents that capture a
-> single design decision, its context, and its consequences
-> **Key items:** status lifecycle, numbered file naming, immutable once accepted, supersede
-> chain
+> **Scope:** Conventions for architecture decision records - short documents that capture a single
+> design decision, its context, and its consequences
+> **Key items:** status lifecycle, numbered file naming, immutable once accepted, supersede chain
 
 A decision record explains why one architectural choice was made and what it implies.
 
@@ -16,14 +15,14 @@ the chosen outcome, and its consequences - following the MADR convention.
 
 ## When To Use
 
-Use for architecture decision records, technology selection records, and any single-decision
-document future maintainers will consult.
+Use for architecture decision records, technology selection records,
+and any single-decision document future maintainers will consult.
 
 Do not use for implementation plans or design proposals that cover several decisions - use
 `types/proposal-document.md` for those.
 
-Meeting decisions belong in `types/meeting-minutes.md`, and scope or budget change requests
-belong in the change log per `types/register-log.md`.
+Meeting decisions belong in `types/meeting-minutes.md`,
+and scope or budget change requests belong in the change log per `types/register-log.md`.
 
 **Templates**
 
@@ -55,11 +54,11 @@ A record moves through a small set of states, recorded in the Status block:
 - `deprecated` - the decision still stands but is being phased out.
 - `superseded by ADR-NNNN` - replaced by a newer record.
 
-Accepted records are immutable except for two edits: fixing an error, and changing the Status
-line to `deprecated` or `superseded by ADR-NNNN`.
+Accepted records are immutable except for two edits: fixing an error,
+and changing the Status line to `deprecated` or `superseded by ADR-NNNN`.
 
-To change a decision, write a new record with the next free number, link it in the old record's
-Status line, and leave the old body untouched.
+To change a decision, write a new record with the next free number,
+link it in the old record's Status line, and leave the old body untouched.
 
 ## Numbering And Placement
 
@@ -67,24 +66,23 @@ Records live in a dedicated directory, conventionally `docs/adr/`.
 
 Filenames follow `NNNN-kebab-case-title.md`, for example `0007-use-postgres-queue.md`.
 
-`NNNN` is a consecutive four-digit number - take the next free number, never reuse the number of
-a deleted record, and never renumber existing records.
+`NNNN` is a consecutive four-digit number - take the next free number,
+never reuse the number of a deleted record, and never renumber existing records.
 
-The numbering convention comes from the type, the detected scope may relocate the directory or
-adjust the naming - the scope wins for placement.
+The numbering convention comes from the type,
+the detected scope may relocate the directory or adjust the naming - the scope wins for placement.
 
 ## Deltas From The Language Baseline
 
-- One decision per record - split multi-part decisions into chained records linked through the
-  Links section.
-- The status block is metadata, not prose - keep it as a short bulleted list, the
-  sentence-per-paragraph rule does not apply to it.
-- Keep the Decision Outcome to a small number of sentences, put the option analysis in the Pros
-  and Cons section instead.
-- Write the justification so a reader who was not present can evaluate the trade-off, name the
-  drivers the chosen option satisfies.
-- Prefer `TBD` in the status block over inventing a date or a decider the request did not
-  provide.
+- One decision per record - split multi-part decisions into chained records linked
+  through the Links section.
+- The status block is metadata, not prose - keep it as a short bulleted list,
+  the sentence-per-paragraph rule does not apply to it.
+- Keep the Decision Outcome to a small number of sentences,
+  put the option analysis in the Pros and Cons section instead.
+- Write the justification so a reader who was not present can evaluate the trade-off,
+  name the drivers the chosen option satisfies.
+- Prefer `TBD` in the status block over inventing a date or a decider the request did not provide.
 
 ## Section Names
 

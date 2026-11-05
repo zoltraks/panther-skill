@@ -2,10 +2,8 @@
 
 ## Purpose
 
-> **Scope:** Polish-English terminology for medical, clinical, and pharmaceutical
-> documents
-> **Key items:** domain signals, terminology table, context forms, calque traps,
-> untranslated terms
+> **Scope:** Polish-English terminology for medical, clinical, and pharmaceutical documents
+> **Key items:** domain signals, terminology table, context forms, calque traps, untranslated terms
 
 Load this glossary for translate tasks on medical and pharmaceutical subjects.
 
@@ -17,8 +15,7 @@ Apply this glossary when:
 
 - The request names a medical, clinical, pharma, or healthcare subject.
 - The document covers trials, products, dosages, patients, or regulatory submissions.
-- The document's terminology is dominated by product, dosage, safety, or study
-  vocabulary.
+- The document's terminology is dominated by product, dosage, safety, or study vocabulary.
 
 ## Terminology
 
@@ -85,15 +82,15 @@ Some Polish terms render differently to English by context.
 
 Do not force one form everywhere:
 
-- `badanie` renders `study` for a trial and `study` or `paper` for a publication or
-  review - `opracowanie` renders `study` or `review`.
-- `uczestnik badania` renders `subject` in trial text, while `temat` renders `subject`
-  in document metadata.
+- `badanie` renders `study` for a trial and `study` or `paper` for a publication or review -
+  `opracowanie` renders `study` or `review`.
+- `uczestnik badania` renders `subject` in trial text,
+  while `temat` renders `subject` in document metadata.
 - `dawka` renders `dose` for an amount - the register follows the document.
 - `bezpieczeństwo` renders `safety` for patient safety and `safety profile` inside
   `profil bezpieczeństwa`.
-- `zdarzenie niepożądane` renders `adverse event`, never `adverse occurrence` or
-  `negative event` - the regulated rendering is required.
+- `zdarzenie niepożądane` renders `adverse event`,
+  never `adverse occurrence` or `negative event` - the regulated rendering is required.
 - `rozpoznanie` renders `diagnosis` - `diagnoza` is colloquial.
 
 ## Calque Traps
@@ -114,9 +111,8 @@ Do not force one form everywhere:
 
 Settled terms render back to their canonical English forms:
 
-- `ChPL` renders `SmPC` (Summary of Product Characteristics), `ulotka dla pacjenta`
-  renders `PIL` or `patient leaflet`, `podmiot odpowiedzialny` renders `MAH`.
-- `DPK` renders `GCP` (Good Clinical Practice), `DPW` renders `GMP`, `DPL` renders
-  `GLP`.
-- `EMA`, `FDA`, `WHO`, `MedDRA`, `ATC`, `INN`, `URPL` stay as institution or standard
-  names - `URPL` may be glossed as the Polish regulator.
+- `ChPL` renders `SmPC` (Summary of Product Characteristics),
+  `ulotka dla pacjenta` renders `PIL` or `patient leaflet`, `podmiot odpowiedzialny` renders `MAH`.
+- `DPK` renders `GCP` (Good Clinical Practice), `DPW` renders `GMP`, `DPL` renders `GLP`.
+- `EMA`, `FDA`, `WHO`, `MedDRA`, `ATC`, `INN`,
+  `URPL` stay as institution or standard names - `URPL` may be glossed as the Polish regulator.

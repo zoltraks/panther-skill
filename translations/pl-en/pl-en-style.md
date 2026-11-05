@@ -2,24 +2,22 @@
 
 ## Purpose
 
-> **Scope:** Sentence-level adaptation rules for rendering a document from Polish into
-> English
+> **Scope:** Sentence-level adaptation rules for rendering a document from Polish into English
 > **Key items:** aspect and voice, report-register verb choice, fixed idioms,
 > enumeration punctuation, hedged verdicts
 
 This file governs how Polish sentences reshape into natural English at the clause level.
 
-`translations/pl-en/pl-en-general.md` covers document-level style adaptation - this
-file covers how a single sentence is built.
+`translations/pl-en/pl-en-general.md` covers document-level style adaptation - this file covers how
+a single sentence is built.
 
 ## When To Load
 
-Load this file on every Polish to English translate task, after
-`translations/pl-en/pl-en-general.md` and before the matching industry glossaries, per
-`process/translate-document.md`.
+Load this file on every Polish to English translate task,
+after `translations/pl-en/pl-en-general.md` and before the matching industry glossaries,
+per `process/translate-document.md`.
 
-Load it on Polish to English translation audits as well, per
-`process/translation-audit.md`.
+Load it on Polish to English translation audits as well, per `process/translation-audit.md`.
 
 ## Aspect And Voice
 
@@ -27,13 +25,12 @@ A Polish perfective resultative reporting a completed evaluation - `została oce
 `został usunięty`, `zostało dodane` - renders as the English past passive `was rated`,
 `was removed`, `was added`.
 
-The English present passive `is rated`, `is required` is reserved for standing
-conditions the source describes as currently holding - `jest wymagany`, `jest
-zachowana`, `jest opisana`.
+The English present passive `is rated`, `is required` is reserved for standing conditions the source
+describes as currently holding - `jest wymagany`, `jest zachowana`, `jest opisana`.
 
-When the Polish source is ambiguous, the document's frame decides - a report delivering
-an evaluation uses the past passive, a specification stating a continuing rule uses the
-present passive.
+When the Polish source is ambiguous, the document's frame decides - a report delivering an
+evaluation uses the past passive, a specification stating a continuing rule uses
+the present passive.
 
 ## Actor And Verb Choice
 
@@ -52,11 +49,10 @@ Polish artifact state verbs map to natural English equivalents:
 | `klasyfikuje`             | classifies           |
 
 A conformance claim `wykazuje zgodność z` renders `demonstrates conformance with` or
-`is compliant with`, never `registers compliance` - the claim is a verdict, not a
-registry write.
+`is compliant with`, never `registers compliance` - the claim is a verdict, not a registry write.
 
-Reports and reviewers may act in English the way the Polish source allows - `raport
-wskazuje` renders `the report states` or `the report notes`.
+Reports and reviewers may act in English the way the Polish source allows - `raport wskazuje`
+renders `the report states` or `the report notes`.
 
 ## Fixed Idioms
 
@@ -81,26 +77,26 @@ They are never rendered word by word:
 
 ## Enumeration Punctuation
 
-A Polish comma-separated enumeration keeps its commas in English, and the final
-conjunction renders per `languages/en.md` - `A, B i C` becomes `A, B and C` or
+A Polish comma-separated enumeration keeps its commas in English,
+and the final conjunction renders per `languages/en.md` - `A, B i C` becomes `A, B and C` or
 `A, B, and C` per the document's own convention.
 
 ## Clause Joins
 
-A Polish spaced hyphen joining two full clauses (`robi X - robi Y`) splits into
-separate English sentences or takes a comma or a period - never carried over as
-` - ` between clauses, per the Spaced Hyphen rule in `docs/STYLE.md`.
+A Polish spaced hyphen joining two full clauses (`robi X - robi Y`)
+splits into separate English sentences or takes a comma or a period - never carried over as ` - `
+between clauses, per the Spaced Hyphen rule in `docs/STYLE.md`.
 
 The definitional `- term - description` separator and table cells are unaffected.
 
 ## Hedged Verdicts
 
-Preserve the hedging level of the source - `najmocniejszy wariant` renders `the
-strongest candidate`, `prawdopodobnie` renders `probably` or `arguably`, and a hedged
-verdict is never upgraded into a plain claim.
+Preserve the hedging level of the source - `najmocniejszy wariant` renders
+`the strongest candidate`, `prawdopodobnie` renders `probably` or `arguably`,
+and a hedged verdict is never upgraded into a plain claim.
 
-A comparative verdict keeps its comparative frame - `wariant zapasowy` renders `the
-fallback option`, not `the only option`.
+A comparative verdict keeps its comparative frame - `wariant zapasowy` renders
+`the fallback option`, not `the only option`.
 
 ## Example
 

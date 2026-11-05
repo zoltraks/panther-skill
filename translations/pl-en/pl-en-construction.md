@@ -2,10 +2,9 @@
 
 ## Purpose
 
-> **Scope:** Polish-English terminology for construction, civil engineering, and
-> concrete-durability subjects
-> **Key items:** domain signals, terminology table, context forms, calque traps,
-> untranslated terms
+> **Scope:** Polish-English terminology for construction, civil engineering,
+> and concrete-durability subjects
+> **Key items:** domain signals, terminology table, context forms, calque traps, untranslated terms
 
 Load this glossary for translate tasks on construction and building-materials subjects.
 
@@ -18,8 +17,8 @@ Apply this glossary when:
 - The request names a construction, civil-engineering, or building-materials subject.
 - The document covers exposure classes, corrosion processes, reinforcement, durability,
   or concrete structures.
-- The document's terminology is dominated by material-degradation vocabulary -
-  karbonatyzacja, chlorki, cykle zamarzania, atak siarczanowy, ścieranie.
+- The document's terminology is dominated by material-degradation vocabulary - karbonatyzacja,
+  chlorki, cykle zamarzania, atak siarczanowy, ścieranie.
 
 ## Terminology
 
@@ -103,23 +102,22 @@ Some Polish terms render differently by context.
 
 Do not force one form everywhere:
 
-- `atak` renders `attack` in process names (`atak chlorkowy` - `chloride attack`), while
-  `oddziaływanie` in formal class naming renders `exposure` or `action` - `oddziaływanie
-  chlorków` becomes `chloride exposure`, not `chloride attack`.
-- `rysowanie` renders `cracking` in most prose - reserve `hairline cracking` for
-  passages that deliberately distinguish fine surface cracks from structural cracking,
+- `atak` renders `attack` in process names (`atak chlorkowy` - `chloride attack`),
+  while `oddziaływanie` in formal class naming renders `exposure` or `action` -
+  `oddziaływanie chlorków` becomes `chloride exposure`, not `chloride attack`.
+- `rysowanie` renders `cracking` in most prose - reserve `hairline cracking` for passages that
+  deliberately distinguish fine surface cracks from structural cracking,
   where `pękanie` renders `cracking` plainly.
 - `otulina` renders `concrete cover` - never `cover layer` or `concrete coating`.
-- `zbrojenie` renders `reinforcement` - `rebar` is acceptable when the source means
-  individual bars (`pręty zbrojeniowe`).
-- `zużycie` renders `wear` for mechanical loss and `consumption` only when the context
-  is resource consumption. Construction documents nearly always mean `wear`.
-- `nośność` renders `load-bearing capacity` - `capacity` alone is not enough in
-  structural contexts.
-- `nieuszkodzony` and `nienaruszony` both render `intact` - `nieuszkodzony` for
-  elements, `nienaruszony` for layers.
-- `zgodność` renders `conformity` in standards contexts (`DIN EN 206` conformity) and
-  `compliance` in legal or regulatory prose.
+- `zbrojenie` renders `reinforcement` - `rebar` is acceptable when the source means individual bars
+  (`pręty zbrojeniowe`).
+- `zużycie` renders `wear` for mechanical loss and `consumption` only when the context is resource
+  consumption. Construction documents nearly always mean `wear`.
+- `nośność` renders `load-bearing capacity` - `capacity` alone is not enough in structural contexts.
+- `nieuszkodzony` and `nienaruszony` both render `intact` - `nieuszkodzony` for elements,
+  `nienaruszony` for layers.
+- `zgodność` renders `conformity` in standards contexts (`DIN EN 206` conformity)
+  and `compliance` in legal or regulatory prose.
 
 ## Calque Traps
 
@@ -141,13 +139,12 @@ Do not force one form everywhere:
 
 Settled terms stay in their canonical form in English output:
 
-- Exposure-class codes `X0`, `XC`, `XD`, `XS`, `XF`, `XA`, `XM` and their subdivisions
-  (`XC1`-`XC4`, `XD1`-`XD3`, `XS1`-`XS3`, `XF1`-`XF4`, `XA1`-`XA3`, `XM1`-`XM3`) stay
-  verbatim.
-- Chemical formulas and ions `CO₂`, `Ca(OH)₂`, `CaCO₃`, `H₂O`, `NaCl`, `MgCl₂`,
-  `SO₄²⁻`, `H⁺`, `Cl⁻` stay verbatim.
+- Exposure-class codes `X0`, `XC`, `XD`, `XS`, `XF`, `XA`,
+  `XM` and their subdivisions (`XC1` - `XC4`, `XD1` - `XD3`, `XS1` - `XS3`, `XF1` - `XF4`,
+  `XA1` - `XA3`, `XM1` - `XM3`) stay verbatim.
+- Chemical formulas and ions `CO₂`, `Ca(OH)₂`, `CaCO₃`, `H₂O`, `NaCl`, `MgCl₂`, `SO₄²⁻`, `H⁺`,
+  `Cl⁻` stay verbatim.
 - Strength classes `C20/25`, `C35/45` stay verbatim.
 - `pH`, `√t`, and the formula `x_c(t) ∝ √t` stay verbatim.
-- Standard names `PN-EN 206`, `DIN EN 206`, `DIN 1045-2`, `DIN EN 1992-1-1`
-  (`Eurocode 2`), `DIN 4030-1` stay verbatim - the English reader keeps the standard's
-  own designation.
+- Standard names `PN-EN 206`, `DIN EN 206`, `DIN 1045-2`, `DIN EN 1992-1-1` (`Eurocode 2`),
+  `DIN 4030-1` stay verbatim - the English reader keeps the standard's own designation.

@@ -7,8 +7,7 @@
 > **Key items:** emission trigger, diagnostic output, emitted document, parameter catalog,
 > returned document, authority
 
-This file defines how Panther exposes its intake questions as JSON and how it consumes JSON
-answers.
+This file defines how Panther exposes its intake questions as JSON and how it consumes JSON answers.
 
 ## Contents
 
@@ -25,34 +24,35 @@ answers.
 
 ## When To Emit
 
-When the request asks for the questions, settings, or parameters "in JSON", "as JSON", or another
-machine-readable format, emit a parameter document instead of the question prompts.
+When the request asks for the questions, settings, or parameters "in JSON", "as JSON",
+or another machine-readable format, emit a parameter document instead of the question prompts.
 
-Detection and default resolution still run first: the document contains only the questions that
-are actually pending in this session.
+Detection and default resolution still run first:
+the document contains only the questions that are actually pending in this session.
 
-Emit the document where the request directs - inline in the response by default, inside a fenced
-`json` block.
+Emit the document where the request directs - inline in the response by default,
+inside a fenced `json` block.
 
 ## Diagnostic Output
 
-When the request names a debugging mode, a diagnostic mode, a timing mode, or asks for
-detailed or verbose information, emit the parameter document for information purposes only.
+When the request names a debugging mode, a diagnostic mode, a timing mode,
+or asks for detailed or verbose information,
+emit the parameter document for information purposes only.
 
 The informational mode never triggers this emission - it arms only the elapsed-time report in
 `process/operation-timing.md`.
 
-The document covers only surfaces that are actually pending - diagnostics expose the
-intake state and never create a question.
+The document covers only surfaces that are actually pending - diagnostics expose the intake state
+and never create a question.
 
-When no surface is pending, nothing emits - no parameter document, no pending-decisions
-note, and no question prompts.
+When no surface is pending, nothing emits - no parameter document, no pending-decisions note,
+and no question prompts.
 
-Only an explicit request to emit every response as JSON overrides the suppression - the
-document then emits with its context fields and an empty `intake` array.
+Only an explicit request to emit every response as JSON overrides the suppression - the document
+then emits with its context fields and an empty `intake` array.
 
-The emission order is fixed: the JSON document first, then a text description of the pending
-decisions, then the question prompts.
+The emission order is fixed: the JSON document first,
+then a text description of the pending decisions, then the question prompts.
 
 The question prompts still run.
 
@@ -60,70 +60,73 @@ The emitted document does not replace the question flow.
 
 Answers may still arrive as prompt selections, natural-language responses, or a returned document.
 
-The same emission applies when diagnostics are implied: a malformed returned document, an
-unresolved parameter conflict, or an intake validation failure may accompany the parameter
+The same emission applies when diagnostics are implied: a malformed returned document,
+an unresolved parameter conflict, or an intake validation failure may accompany the parameter
 document and a text note, while the prompts proceed.
 
 ## Emitted Document
 
-The document carries a `description`, context fields (`target`, `task`, `date`, `time`), and an
-`intake` array.
+The document carries a `description`, context fields (`target`, `task`, `date`, `time`),
+and an `intake` array.
 
 - `target` - the document or directory the task centers on.
-- `task` - the classified task: `create`, `edit`, `reformat`, `translate`, `revise`,
-  `discover`, `audit`, `describe`, `derive`, or `correct`.
+- `task` - the classified task: `create`, `edit`, `reformat`, `translate`, `revise`, `discover`,
+  `audit`, `describe`, `derive`, or `correct`.
 - `date` - the current day in `YYYY-MM-DD` format.
-- `time` - the local time in `hh:mm:ss` followed by the timezone offset, for example
-  `13:45:21 GMT+2`.
+- `time` - the local time in `hh:mm:ss` followed by the timezone offset,
+  for example `13:45:21 GMT+2`.
 
 `task` emits as an empty string when no task is classified yet - enable mode has none.
 
-Each parameter object keeps a fixed key order: `id`, `question`, `answer`, `description`, optional `when`, `type`,
-`menu`, `open`, `default` - the `default` key is always the last key of the object.
+Each parameter object keeps a fixed key order: `id`, `question`, `answer`, `description`,
+optional `when`, `type`, `menu`, `open`,
+`default` - the `default` key is always the last key of the object.
 
 - `id` - a stable kebab-case identifier for the parameter.
 - `question` - the literal question wording presented to the answering side.
-- `answer` - emitted as an empty string, or an empty array for `selection`, to be filled by the
-  answering side.
+- `answer` - emitted as an empty string, or an empty array for `selection`,
+  to be filled by the answering side.
 - `description` - what the parameter controls and the detection evidence behind its default.
-- `when` - an optional condition under which the parameter is asked, written as
-  clauses such as `document-type is A` joined by `and` or `or` and grouped
-  with parentheses. A parameter whose `when` is unsatisfied is skipped - it is
-  not asked, applies no `default`, and ignores any returned answer. `when` may
-  reference only parameters listed earlier in `intake`.
-- `type` - `choice` for a single-option answer taken from `menu`, `selection` when multiple
-  options may be chosen, or `text` for free input.
+- `when` - an optional condition under which the parameter is asked,
+  written as clauses such as `document-type is A` joined by `and` or `or` and grouped with
+  parentheses. A parameter whose `when` is unsatisfied is skipped - it is not asked,
+  applies no `default`, and ignores any returned answer.
+  `when` may reference only parameters listed earlier in `intake`.
+- `type` - `choice` for a single-option answer taken from `menu`,
+  `selection` when multiple options may be chosen, or `text` for free input.
 - `menu` - required for `choice` and `selection` types and omitted for `text`, letter-keyed (`A`,
   `B`, `C`, ...), and the recommended option label carries "(recommended)".
-  A menu lists at most three candidate options plus a trailing `Cancel - abort the operation`
-  entry, so it never exceeds four letters, and `Cancel` is never the `default`.
-- `default` - the option letter or suggested text applied when the answer stays empty, and the
-  array of pre-checked letters for `selection`.
+  A menu lists at most three candidate options plus a trailing `Cancel - abort the operation` entry,
+  so it never exceeds four letters, and `Cancel` is never the `default`.
+- `default` - the option letter or suggested text applied when the answer stays empty,
+  and the array of pre-checked letters for `selection`.
 - `open` - whether the answer is open to free text beyond the listed options.
 
-The bypass options of a parameter gate, such as accepting every remaining default, do not become
-`menu` entries - the `default` key and the returned document's "use defaults" semantics cover
-them.
+The bypass options of a parameter gate, such as accepting every remaining default,
+do not become `menu` entries - the `default` key and the returned document's "use defaults"
+semantics cover them.
 
-`Cancel` is a real menu entry, not a bypass - it emits at the last letter of every `choice` and
-`selection` menu.
+`Cancel` is a real menu entry, not a bypass - it emits at the last letter of every `choice`
+and `selection` menu.
 
-Format parameters such as `encoding` and `line-endings` emit before `document-type` in the
-`intake` array, matching the question order in `process/document-workflow.md`.
+Format parameters such as `encoding` and `line-endings` emit before `document-type` in the `intake`
+array, matching the question order in `process/document-workflow.md`.
 
-The prose-layout parameters emit with the format group: `line-wrapping` and
-`sentence-spacing` always emit when unresolved, `wrap-width` emits directly after
-`line-wrapping` and only when the wrapping answer chooses a fixed width.
+The prose-layout parameters emit with the format group:
+`line-wrapping` and `sentence-spacing` always emit when unresolved,
+`wrap-width` emits directly after `line-wrapping` and only when the wrapping answer
+chooses a fixed width.
 
-A `selection` parameter never accepts an empty `answer` - an empty selection re-asks the
-question rather than advancing.
+A `selection` parameter never accepts an empty `answer` - an empty selection re-asks the question
+rather than advancing.
 
-When a `choice` menu exceeds the four-letter cap in interactive questioning, the emitted
-document still carries the full menu - the group-question split in
+When a `choice` menu exceeds the four-letter cap in interactive questioning,
+the emitted document still carries the full menu - the group-question split in
 `process/document-workflow.md` is a prompt-side mechanism only.
 
-`document-type` emits before `section-plan`, and `section-selection` or `section-format` follow
-its answer - `plan-confirmation` always emits last.
+`document-type` emits before `section-plan`,
+and `section-selection` or `section-format` follow its answer -
+`plan-confirmation` always emits last.
 
 ```json
 {
@@ -214,21 +217,20 @@ Every pending question surface emits with a stable kebab-case `id`:
 Thin-input clarifications emit as `text` or `choice` parameters as they arise - `text` when free
 input is appropriate.
 
-The convention confirmations in `principles/authoring-rules.md`, such as the ` -- ` form, and the
-typography questions in `languages/` files emit through this catch-all.
+The convention confirmations in `principles/authoring-rules.md`, such as the ` -- ` form,
+and the typography questions in `languages/` files emit through this catch-all.
 
 ## Returned Document
 
-A returned JSON document answers the pending surfaces by `id`, in either of two
-forms.
+A returned JSON document answers the pending surfaces by `id`, in either of two forms.
 
 The first form is the emitted document itself with `answer` fields filled.
 
-The second form is returned by the answering side and returns a document keeping a `response` key - either an array of entry objects
-or a condensed object keyed by parameter `id`.
+The second form is returned by the answering side and returns a document keeping a `response` key -
+either an array of entry objects or a condensed object keyed by parameter `id`.
 
-Each array entry requires only `id` and `answer` - an option letter for `choice`, an array of
-letters for `selection`, or free text for `text`.
+Each array entry requires only `id` and `answer` - an option letter for `choice`,
+an array of letters for `selection`, or free text for `text`.
 
 Other keys may be echoed or omitted.
 
@@ -241,16 +243,16 @@ Entries or keys with an unknown `id` are ignored.
 
 Answering "use defaults" or "bypass" applies every `default` value.
 
-A returned `answer` of `cancel` - the `Cancel` letter on a `choice` or `selection` parameter, or
-the literal string on any parameter - stops the questioning and aborts the operation.
+A returned `answer` of `cancel` - the `Cancel` letter on a `choice` or `selection` parameter,
+or the literal string on any parameter - stops the questioning and aborts the operation.
 
-A returned document is accepted whenever it appears - on any question surface, on its own or
-embedded inside a natural-language reply.
+A returned document is accepted whenever it appears - on any question surface,
+on its own or embedded inside a natural-language reply.
 
 Answers are applied from the `response` value.
 
-Natural language surrounding the document is treated as supplementary context, not as part of
-the answers.
+Natural language surrounding the document is treated as supplementary context,
+not as part of the answers.
 
 ```json
 {
@@ -281,36 +283,35 @@ The same answers in the condensed form:
 ## Autonomous Surfaces
 
 A procedure that defines an autonomous mode - such as the session review's autonomous flag in
-`process/session-review.md` - resolves each of its pending surfaces to the recommended option
-without waiting.
+`process/session-review.md` - resolves each of its pending surfaces to the recommended
+option without waiting.
 
-The document emits with the resolved value in `answer` instead of the empty string, and the
-resolution is reported in the reply like an answered question.
+The document emits with the resolved value in `answer` instead of the empty string,
+and the resolution is reported in the reply like an answered question.
 
-A verbose flag additionally reports the full `menu` and the rationale behind each resolved
-default.
+A verbose flag additionally reports the full `menu` and the rationale behind each resolved default.
 
 ## Authority
 
 The JSON format is a presentation format, not an authority change.
 
-Every gate still follows `process/document-workflow.md` and the matching procedure file: a
-confirmation still waits for an answer, and returned documents answer the same questions the
-prompts would have asked.
+Every gate still follows `process/document-workflow.md` and the matching procedure file:
+a confirmation still waits for an answer,
+and returned documents answer the same questions the prompts would have asked.
 
 The once-per-session Skill Update Check is a session gate outside this exchange.
 
 It always asks in text and never emits a parameter.
 
 Maintenance mode emits little routine: `MAINTENANCE.md` and `STYLE.md` already fix its answers,
-so the scheduled surfaces are the `maintenance-action` menu and the `session-review-approval`
-gate, plus genuine ambiguities such as `mode-selection`.
+so the scheduled surfaces are the `maintenance-action` menu and the `session-review-approval` gate,
+plus genuine ambiguities such as `mode-selection`.
 
-An orchestrating agent may emit and consume these documents without human interaction, and every
-automated decision is still recorded as answered through the exchange.
+An orchestrating agent may emit and consume these documents without human interaction,
+and every automated decision is still recorded as answered through the exchange.
 
 ## What Does Not Apply
 
 - No parameter document emits while no question surface is pending.
-- The catalog is not a parameter surface - `process/operations-catalog.md`
-  answers inline and never emits JSON.
+- The catalog is not a parameter surface - `process/operations-catalog.md` answers inline
+  and never emits JSON.

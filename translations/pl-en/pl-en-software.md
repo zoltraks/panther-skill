@@ -4,8 +4,7 @@
 
 > **Scope:** Polish-English terminology for software engineering and the software
 > development lifecycle
-> **Key items:** domain signals, terminology table, context forms, calque traps,
-> untranslated terms
+> **Key items:** domain signals, terminology table, context forms, calque traps, untranslated terms
 
 Load this glossary for translate tasks on software and software-documentation subjects.
 
@@ -26,12 +25,12 @@ Apply it for Polish to English translate tasks, per `process/translate-document.
 Apply this glossary when:
 
 - The request names a software, IT, or SDLC subject.
-- The document type is technical, specification, README, contributing, changelog, agent
-  instruction, format specification, or rules document for a software project.
-- The document's terminology is dominated by code, API, build, deploy, test, or
-  infrastructure vocabulary.
-- The document's terminology is dominated by AI-agent, agentic-SDLC, or
-  assistant-orchestration vocabulary.
+- The document type is technical, specification, README, contributing, changelog, agent instruction,
+  format specification, or rules document for a software project.
+- The document's terminology is dominated by code, API, build, deploy, test,
+  or infrastructure vocabulary.
+- The document's terminology is dominated by AI-agent, agentic-SDLC,
+  or assistant-orchestration vocabulary.
 
 ## Terminology
 
@@ -299,38 +298,36 @@ Do not force one form everywhere:
 - `błąd` renders `bug` for a tracked defect and `error` for runtime and message text.
 - `problem` renders `issue` for a tracked item and `problem` in prose.
 - `wydanie` renders `release` for a software version and `issue` for a published document.
-- `środowisko` renders `environment` generally and `runtime` inside
-  `środowisko uruchomieniowe`.
+- `środowisko` renders `environment` generally and `runtime` inside `środowisko uruchomieniowe`.
 - `proces` renders `process` for automation and `pipeline` inside `proces CI`.
 - `wydajność` renders `performance`, never `efficiency` in software text.
 - `poprawka` renders `hotfix` for an urgent release and `fix` for a routine correction.
-- `prompt` renders `prompt` - a source mixing `prompt` and `polecenie` for AI
-  instructions collapses to `prompt`.
+- `prompt` renders `prompt` - a source mixing `prompt` and `polecenie` for AI instructions
+  collapses to `prompt`.
   `polecenie` outside AI-instruction context renders `instruction` or `command`.
-- `wykazuje zgodność` renders `demonstrates conformance` or `is compliant with` -
-  never `registers compliance`.
-- `rejestruje` renders `records` or `registers` only for actual register and log
-  writes - `odnotowuje` renders `notes`.
-- `usterka` renders `defect` for a fault in the artifact - `ustalenie` renders
-  `finding` for a review's output.
+- `wykazuje zgodność` renders `demonstrates conformance` or `is compliant with` - never
+  `registers compliance`.
+- `rejestruje` renders `records` or `registers` only for actual register and log writes -
+  `odnotowuje` renders `notes`.
+- `usterka` renders `defect` for a fault in the artifact - `ustalenie` renders `finding`
+  for a review's output.
 - `wada` is the ISTQB formal register for `defect` - `usterka` is colloquial.
-- `uzgodnienie` renders `agreement` for working agreements and `reconciliation`
-  for set reconciliation - `ustalenie` stays reserved for `finding`.
-- `kontrola` renders `check` for an executed check in an assessment and
-  `control` for a security mechanism.
-- `ocena` renders `assessment` for an evaluation deliverable, `rating` for a
-  scored dimension, and `verdict` for a pass/fail judgment.
-- `naprawa` renders `fix` for a single correction and `remediation` for a planned
-  program of corrections - `działania naprawcze` renders `remediation actions`.
-- `przebieg` renders `journey` for an operational journey and `run` for a tool
-  execution.
+- `uzgodnienie` renders `agreement` for working agreements and `reconciliation` for set
+  reconciliation - `ustalenie` stays reserved for `finding`.
+- `kontrola` renders `check` for an executed check in an assessment and `control` for
+  a security mechanism.
+- `ocena` renders `assessment` for an evaluation deliverable, `rating` for a scored dimension,
+  and `verdict` for a pass/fail judgment.
+- `naprawa` renders `fix` for a single correction and `remediation` for a planned program of
+  corrections - `działania naprawcze` renders `remediation actions`.
+- `przebieg` renders `journey` for an operational journey and `run` for a tool execution.
 - `odbiór` renders `acceptance` for fix acceptance and acceptance tests.
 - `odtwarzalny` renders `reproducible` or `repeatable` - never `revisitable`.
 - `rozjazd` renders `divergence` or `drift` for contract and state divergence.
 - `bramka` renders `gate` - `bramka gotowości` is `readiness gate`.
 - `dyspozycja` renders `disposition`.
-- `severity`, `likelihood`, and `confidence` kept verbatim in the Polish source
-  stay verbatim in English - a field label never gains a translation.
+- `severity`, `likelihood`, and `confidence` kept verbatim in the Polish source stay verbatim in
+  English - a field label never gains a translation.
 - `stan roboczy` renders `working tree` or `working-tree state`.
 
 ## Calque Traps
@@ -363,16 +360,14 @@ Do not force one form everywhere:
 
 Polish loanwords and identifiers render back to their canonical English forms:
 
-- `endpoint`, `commit`, `merge`, `pull request`, `lint`, `fork`, `framework`,
-  `middleware`, `staging`, `backlog`, `sprint`, `roadmapa` renders `roadmap`,
-  `due diligence`, `copyleft`, `SBOM`, `open source`
-- `hook`, `guard`, `handler`, `scorecard`, `advisory`, `typecheck`, `governance`,
-  `handoff`, `follow-up`, `self-check`, `control plane`, `timeout`, `runner`,
-  `blocker`, `lockfile`, `workflow`, `read-only`, `offline`, `upload`,
-  `checklist`, `lookup`, `wildcard`, `step-up`, `auth`, `agent tooling`, `build`,
-  `diff`, `severity`, `likelihood` (as field labels)
-- Acronyms: `API`, `SDK`, `CLI`, `UI`, `URL`, `HTTP`, `JSON`, `YAML`, `XML`, `SQL`,
-  `REST`, `IDE`, `CI/CD`, `ASCII`, `UTF-8`, `CRLF`, `npm`, `git`, `CVSS`, `ATAM`,
-  `RAG`, `PoC`, `TOTP`, `CSP`, `SCA`, `SLO`, `RPO`, `RTO`, `LOC`, `NIST`, `IEEE`,
-  `FIRST`, `WSTG`, `MITRE`
+- `endpoint`, `commit`, `merge`, `pull request`, `lint`, `fork`, `framework`, `middleware`,
+  `staging`, `backlog`, `sprint`, `roadmapa` renders `roadmap`, `due diligence`, `copyleft`,
+  `SBOM`, `open source`
+- `hook`, `guard`, `handler`, `scorecard`, `advisory`, `typecheck`, `governance`, `handoff`,
+  `follow-up`, `self-check`, `control plane`, `timeout`, `runner`, `blocker`, `lockfile`,
+  `workflow`, `read-only`, `offline`, `upload`, `checklist`, `lookup`, `wildcard`, `step-up`,
+  `auth`, `agent tooling`, `build`, `diff`, `severity`, `likelihood` (as field labels)
+- Acronyms: `API`, `SDK`, `CLI`, `UI`, `URL`, `HTTP`, `JSON`, `YAML`, `XML`, `SQL`, `REST`, `IDE`,
+  `CI/CD`, `ASCII`, `UTF-8`, `CRLF`, `npm`, `git`, `CVSS`, `ATAM`, `RAG`, `PoC`, `TOTP`, `CSP`,
+  `SCA`, `SLO`, `RPO`, `RTO`, `LOC`, `NIST`, `IEEE`, `FIRST`, `WSTG`, `MITRE`
 - Product and technology names: `Docker`, `Kubernetes`, `Microsoft Fabric`, `Power BI`

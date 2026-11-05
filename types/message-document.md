@@ -2,16 +2,16 @@
 
 ## Purpose
 
-> **Scope:** Conventions for informal written communication - announcements, memos, notes to a
-> team, and single-issue messages meant to be read once
+> **Scope:** Conventions for informal written communication - announcements, memos, notes to a team,
+> and single-issue messages meant to be read once
 > **Key items:** subject-first title, minimal ceremony, one clear ask or statement
 
 A message document communicates one thing to its readers.
 
 It is written to be read, not maintained. A message carries no document ceremony.
 
-Typical shape: a subject title, an optional sender and audience line, a short body, and an
-optional closing ask.
+Typical shape: a subject title, an optional sender and audience line, a short body,
+and an optional closing ask.
 
 ## When To Use
 

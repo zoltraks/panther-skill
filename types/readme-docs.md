@@ -2,8 +2,8 @@
 
 ## Purpose
 
-> **Scope:** Conventions for the `README.md` of a documentation-only repository or a
-> documentation site project - a repository whose payload is documents, not code
+> **Scope:** Conventions for the `README.md` of a documentation-only repository or a documentation
+> site project - a repository whose payload is documents, not code
 > **Key items:** what the documents cover, where they live, governing rules pointer
 
 | Out of scope                   | See instead                   |
@@ -21,11 +21,11 @@ It states what the documents cover, where they live, and which files govern the 
 
 ## When To Use
 
-Use for the root `README.md` of a repository whose content is documentation: a docs
-collection, a standards repository, a knowledge base, or a documentation site project.
+Use for the root `README.md` of a repository whose content is documentation: a docs collection,
+a standards repository, a knowledge base, or a documentation site project.
 
-Also use it for a site landing page such as `docs/index.md` when the scope's page conventions
-call for an entry-point document.
+Also use it for a site landing page such as `docs/index.md` when the scope's page conventions call
+for an entry-point document.
 
 **Templates**
 
@@ -46,8 +46,8 @@ The canonical skeleton, adjusted to the request:
 
 ## Deltas From The Language Baseline
 
-- Point at the governing rules document, for example `docs/GUIDELINES.md`, instead of restating
-  its rules.
+- Point at the governing rules document, for example `docs/GUIDELINES.md`,
+  instead of restating its rules.
 - State clearly which files carry working rules and which are content or reference material.
 - No install or usage sections unless the repository ships tooling - a docs README stays short.
 - Keep links to documents relative and verified.

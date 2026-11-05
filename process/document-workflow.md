@@ -3,8 +3,8 @@
 ## Purpose
 
 > **Scope:** The end-to-end workflow for creating and editing documents with this skill
-> **Key items:** intake, parameter resolution, detection, rule selection, drafting, validation,
-> delivery
+> **Key items:** intake, parameter resolution, detection, rule selection, drafting,
+> validation, delivery
 
 This file defines the required workflow.
 
@@ -33,8 +33,8 @@ a reformatting, or a translation.
 A request whose target is the Panther repository itself is a maintenance task - follow
 `process/skill-maintenance.md` instead of this workflow.
 
-A request that activates the skill without naming a task - "use skill", "run panther" - takes
-enable mode: follow `process/skill-activation.md` instead of this workflow.
+A request that activates the skill without naming a task - "use skill",
+"run panther" - takes enable mode: follow `process/skill-activation.md` instead of this workflow.
 
 Classify the request into one primary task:
 
@@ -55,11 +55,12 @@ A request may combine tasks.
 
 Apply the union of the required rule files.
 
-An approved fix plan from an audit becomes a Correct task - an approved translation
-audit or a supplied translation review becomes a Revise task.
+An approved fix plan from an audit becomes a Correct task - an approved translation audit or a
+supplied translation review becomes a Revise task.
 
-A describe task produces an inline response, not a document - a request that names a file
-output or asks for a summary, brief, or supplement document is a Derive task instead.
+A describe task produces an inline response,
+not a document - a request that names a file output or asks for a summary, brief,
+or supplement document is a Derive task instead.
 
 Identify the target file or the intended output location before writing anything.
 
@@ -79,11 +80,11 @@ Ask the user whether to accept the defaults or configure the core parameters.
 
 The gate carries `Cancel` like every other surface.
 
-When the request asks for parameters in JSON or another machine-readable format, or names a
-diagnostic or verbose mode, apply `process/json-exchange.md` to every pending question surface.
+When the request asks for parameters in JSON or another machine-readable format,
+or names a diagnostic or verbose mode, apply `process/json-exchange.md` to every
+pending question surface.
 
-The acceptance question emits as the `parameters-acceptance` `choice` parameter under JSON
-exchange.
+The acceptance question emits as the `parameters-acceptance` `choice` parameter under JSON exchange.
 
 | Parameter         | Default                                                             |
 |-------------------|---------------------------------------------------------------------|
@@ -98,25 +99,25 @@ exchange.
 | Wrap width        | 100 - asked only when line wrapping is selected                     |
 | Delivery          | File in the location named by the request                           |
 
-The three layout parameters together resolve the document's prose layout, one of the
-conventions defined in `conventions/prose-layout.md` - the defaults produce `separated`.
+The three layout parameters together resolve the document's prose layout,
+one of the conventions defined in `conventions/prose-layout.md` - the defaults produce `separated`.
 
 The wrap-width question is asked only when the wrapping answer chooses a fixed width.
 
 If the user accepts the defaults or says "bypass", proceed immediately.
 
-If the user chooses to configure, ask only the unresolved parameter questions, each per
-`## Question Surfaces` below.
+If the user chooses to configure, ask only the unresolved parameter questions,
+each per `## Question Surfaces` below.
 
 Under JSON exchange each unresolved parameter emits with its catalog `id`: `document-type`,
-`document-language`, `document-scope`, `filename`, `encoding`, `line-endings`,
-`line-wrapping`, `sentence-spacing`, `wrap-width`, or `delivery`.
+`document-language`, `document-scope`, `filename`, `encoding`, `line-endings`, `line-wrapping`,
+`sentence-spacing`, `wrap-width`, or `delivery`.
 
 README documents resolve their variant through the detected scope's Document Types table -
 `types/readme-general.md` is the fallback.
 
-When the scope gives no signal and the request does not name a variant, ask the user which
-README variant applies.
+When the scope gives no signal and the request does not name a variant,
+ask the user which README variant applies.
 
 Under JSON exchange this is the `readme-variant` `choice` parameter.
 
@@ -124,29 +125,28 @@ For edits to existing documents, do not ask.
 
 The existing document's conventions and the minimal-diff rule provide the answers.
 
-Questions that still arise during an edit - encoding ambiguity, overwrite confirmation - follow
-`## Question Surfaces`.
+Questions that still arise during an edit - encoding ambiguity,
+overwrite confirmation - follow `## Question Surfaces`.
 
-Type-conventional names such as `README.md`, `CHANGELOG.md`, `SPECIFICATION.md`,
-`CHARTER.md`, or `WBS.md` are allowed even though the default naming rule is
-lowercase with underscores.
+Type-conventional names such as `README.md`, `CHANGELOG.md`, `SPECIFICATION.md`, `CHARTER.md`,
+or `WBS.md` are allowed even though the default naming rule is lowercase with underscores.
 
 Conventional names in other languages are declared in the matching `languages/` file.
 
 ## Question Surfaces
 
-Every question the workflow asks - parameter resolution, confirmations, and procedure gates -
-presents at most four answers.
+Every question the workflow asks - parameter resolution, confirmations,
+and procedure gates - presents at most four answers.
 
-A surface exists only for a decision the request leaves open - never ask a question whose
-answer the request, the target's governing rules, or detection evidence already provides.
+A surface exists only for a decision the request leaves open - never ask a question whose answer the
+request, the target's governing rules, or detection evidence already provides.
 
 A choice question lists up to three candidate options guessed from the file's location,
 followed by `Cancel` as the last answer.
 
-Rank the guesses by location evidence: the target file's detected value first, then the dominant
-convention of the target directory, then the scope or language-file default, then the skill
-default.
+Rank the guesses by location evidence: the target file's detected value first,
+then the dominant convention of the target directory, then the scope or language-file default,
+then the skill default.
 
 Mark the strongest candidate `(recommended)`.
 
@@ -154,8 +154,8 @@ Free-text answers stay available through the host's own input path.
 
 They do not consume an option slot.
 
-`Cancel` stops the questioning and aborts the operation - write nothing, report the abort
-briefly, and wait for a new request.
+`Cancel` stops the questioning and aborts the operation - write nothing, report the abort briefly,
+and wait for a new request.
 
 Ask format questions - encoding and line endings - before the document-type question.
 
@@ -164,20 +164,20 @@ The document type is always its own surface, never bundled with a format questio
 A confirmation surface offers its genuine choices plus `Cancel` - a yes or no gate lists its two
 answers and `Cancel`, not three artificial guesses.
 
-A selection surface - a checklist where several options may be chosen - never advances on an
-empty answer: at least one option must be selected before the questioning moves on, and only
-`Cancel` closes the surface without a selection.
+A selection surface - a checklist where several options may be chosen - never advances on an empty
+answer: at least one option must be selected before the questioning moves on,
+and only `Cancel` closes the surface without a selection.
 
-When the candidate list exceeds the four-answer cap, split it with a group question: first ask
-which group the answer belongs to - at most three groups plus `Cancel` - then ask a follow-up
-listing only that group's options.
+When the candidate list exceeds the four-answer cap, split it with a group question:
+first ask which group the answer belongs to - at most three groups plus `Cancel` - then ask a
+follow-up listing only that group's options.
 
-The grouped form keeps every surface within the cap instead of handing the host one oversized
-menu it would split arbitrarily.
+The grouped form keeps every surface within the cap instead of handing the host one oversized menu
+it would split arbitrarily.
 
-These rules apply to every surface the procedures raise: parameter questions on create, the
-encoding-ambiguity ask on edit, overwrite and fix-plan confirmations, translate and derive
-gates, the plan-confirmation gate, and mode selection.
+These rules apply to every surface the procedures raise: parameter questions on create,
+the encoding-ambiguity ask on edit, overwrite and fix-plan confirmations,
+translate and derive gates, the plan-confirmation gate, and mode selection.
 
 ## Detection
 
@@ -190,46 +190,45 @@ python3 <skill-root>/scripts/detect-encoding.py <file>
 Run document-production tools in place from the skill root - copy them under `.tmp.`
 names only when the skill root cannot be invoked, see `scripts/README.md`.
 
-The report gives the byte order mark, the guessed encoding, the line-ending style, and the
-trailing-whitespace count.
+The report gives the byte order mark, the guessed encoding, the line-ending style,
+and the trailing-whitespace count.
 
 Then identify the Markdown dialect of the document per `conventions/markdown-dialects.md`.
 
-Dialect signals include heading style, section numbering, list markers, table shape, and embedded
-HTML artifacts.
+Dialect signals include heading style, section numbering, list markers, table shape,
+and embedded HTML artifacts.
 
-Identify embedded payload documents the same way - ` ```markdown ` fenced blocks that carry
+Identify embedded payload documents the same way - ` ``` markdown ` fenced blocks that carry
 complete documents are separate dialect regions with their own conventions.
 
-Before planning changes, gather every convention the document currently follows and record them
-as the working set for the edit:
+Before planning changes, gather every convention the document currently follows and record them as
+the working set for the edit:
 
 - encoding, byte order mark, and line-ending style (from `detect-encoding.py`)
 - Markdown dialect, heading style, and section numbering
-- prose layout - one of the named conventions (`flowing`, `separated`, `bounded`,
-  `justified`) per `conventions/prose-layout.md`, detected per element type
+- prose layout - one of the named conventions (`flowing`, `separated`, `bounded`, `justified`)
+  per `conventions/prose-layout.md`, detected per element type
 - quote and apostrophe style, list markers, table alignment
 - version markers or contents tables the document maintains
 - embedded payload regions and their own interior conventions
 
-Never assume a prose layout - detect it with `scripts/census-document.py` and a read of the
-document.
+Never assume a prose layout - detect it with `scripts/census-document.py` and a
+read of the document.
 
-A document that mixes layouts is inconsistent: report it, adopt the dominant and
-most-appropriate convention for the content the task touches, and suggest normalization -
-normalizing itself requires an explicit request.
+A document that mixes layouts is inconsistent: report it,
+adopt the dominant and most-appropriate convention for the content the task touches,
+and suggest normalization - normalizing itself requires an explicit request.
 
 The document's own observed conventions are authoritative for edits.
 
-Repository rule documents such as `STYLE.md` or `GUIDELINES.md` declare the convention for new
-files and break ties when the document is mixed or ambiguous.
+Repository rule documents such as `STYLE.md` or `GUIDELINES.md` declare the convention for new files
+and break ties when the document is mixed or ambiguous.
 
-When the observed convention conflicts with a declared rule, report the conflict instead of
-silently normalizing the document.
+When the observed convention conflicts with a declared rule,
+report the conflict instead of silently normalizing the document.
 
-Converting between prose-layout conventions is itself a convention change - apply it only
-when the request explicitly covers it, using the tools in the `conventions/prose-layout.md`
-tooling map.
+Converting between prose-layout conventions is itself a convention change - apply it only when the
+request explicitly covers it, using the tools in the `conventions/prose-layout.md` tooling map.
 
 ## Scope Detection
 
@@ -265,75 +264,76 @@ Load the matching `scopes/<scope>.md` file when a scope is detected or named.
 
 The `unstructured-layout` scope is the default and needs no signals.
 
-Run `python3 <skill-root>/scripts/detect-scope.py <dir>` on the target when the layout is
-not obvious from the visible structure - the census reports every scope's signals at once,
+Run `python3 <skill-root>/scripts/detect-scope.py <dir>` on the target when the layout is not
+obvious from the visible structure - the census reports every scope's signals at once,
 see `scripts/README.md`.
 
-When the request asks to discover or detect the document layout itself, follow
-`process/scope-discovery.md` - that procedure produces a full report, not just a scope name.
+When the request asks to discover or detect the document layout itself,
+follow `process/scope-discovery.md` - that procedure produces a full report, not just a scope name.
 
 ## Rule Selection
 
 Load rule files in this order:
 
-1. **`languages/<lang>.md`** - mandatory for every document. `<lang>` is the ISO 639-1 language
-   code (`en`, `pl`, `de`). Load the file matching the document language, never more than one
-   at once.
-2. **`types/<type>.md`** - load when the document matches a known type. The type file adds deltas
-   on top of the language file.
-3. **`scopes/<scope>.md`** - load when scope detection matches a project layout, or when the
-   request names a scope. The scope file governs placement, filename conventions, and
-   registration side effects, it never replaces the language baseline for prose style, and the
-   document's own conventions still win on edit.
-4. **`conventions/file-encoding.md`** - load when the document encoding is not UTF-8, when
-   the request involves encoding or code pages, or when detection reports an unexpected
-   result.
-5. **`conventions/markdown-dialects.md`** - load when the document uses a non-default dialect or
+1. ** `languages/<lang>.md` ** - mandatory for every document.
+   `<lang>` is the ISO 639-1 language code (`en`, `pl`, `de`).
+   Load the file matching the document language, never more than one at once.
+2. ** `types/<type>.md` ** - load when the document matches a known type.
+   The type file adds deltas on top of the language file.
+3. ** `scopes/<scope>.md` ** - load when scope detection matches a project layout,
+   or when the request names a scope. The scope file governs placement, filename conventions,
+   and registration side effects, it never replaces the language baseline for prose style,
+   and the document's own conventions still win on edit.
+4. ** `conventions/file-encoding.md` ** - load when the document encoding is not UTF-8,
+   when the request involves encoding or code pages, or when detection reports an unexpected result.
+5. ** `conventions/markdown-dialects.md` ** - load when the document uses a non-default dialect or
    when the request involves reformatting.
-6. **`conventions/prose-layout.md`** - load when the task involves prose formatting or a
-   layout conversion, when a layout parameter was configured on create, or when layout
-   detection is ambiguous.
-7. **`conventions/rst-documents.md`** - load when the task touches an `.rst` file or when a scope
+6. ** `conventions/prose-layout.md` ** - load when the task involves prose formatting or a layout
+   conversion, when a layout parameter was configured on create,
+   or when layout detection is ambiguous.
+7. ** `conventions/rst-documents.md` ** - load when the task touches an `.rst` file or when a scope
    file delegates to it.
-8. **`conventions/asciidoc-documents.md`** - load when the task touches an `.adoc` file or when
-   a scope file delegates to it.
-9. **`types/yaml-document.md`** - load when the task touches a `.yaml` or `.yml` file - it
-   resolves as the document type and replaces the language-baseline prose rules with YAML
-   syntax rules.
+8. ** `conventions/asciidoc-documents.md` ** - load when the task touches an `.adoc` file or when a
+   scope file delegates to it.
+9. ** `types/yaml-document.md` ** - load when the task touches a `.yaml` or `.yml` file - it
+   resolves as the document type and replaces the language-baseline prose rules
+   with YAML syntax rules.
 
 On a Translate task the selection shifts: `languages/<lang>.md` is the target language,
 and `process/translate-document.md` defines the procedure.
 
-It loads `translations/<pair>/<pair>-general.md` and the matching industry glossaries on top of the
-target baseline.
+It loads `translations/<pair>/<pair>-general.md` and the matching industry glossaries on top of
+the target baseline.
 
 For a simple document, the language file alone may suffice.
 
-Language files are self-contained baselines and stay the single source of truth for their
-language.
+Language files are self-contained baselines and stay the single source of truth for their language.
 
 ## Section Plan
 
 When the document type resolves, the proposed structure derives from the type file's
-`## Section Names` table - `required` sections are always planned, `recommended` sections are
-pre-checked, `optional` sections are opt-in, and `unusual` sections are never offered.
+`## Section Names` table - `required` sections are always planned,
+`recommended` sections are pre-checked, `optional` sections are opt-in,
+and `unusual` sections are never offered.
 
-The `section-plan` choice asks how to structure the document: `Accept the recommended
-structure` (recommended), `Select sections individually`, or `Describe the format in text`.
+The `section-plan` choice asks how to structure the document:
+`Accept the recommended structure` (recommended), `Select sections individually`,
+or `Describe the format in text`.
 
-Selecting sections individually raises `section-selection`, a selection surface listing the
-recommended and optional sections with the recommended ones pre-checked.
+Selecting sections individually raises `section-selection`,
+a selection surface listing the recommended and optional sections with the
+recommended ones pre-checked.
 
-A free-text format answer replaces the table - "plain without sections" produces a document
-with no fixed sections when the type permits it.
+A free-text format answer replaces the table - "plain without sections" produces a document with no
+fixed sections when the type permits it.
 
-When a selection surface would exceed the four-answer limit, the question degrades to the
-`section-format` text surface, to grouped choices such as `All recommended` or `Required
-only`, or to the group-question split in `## Question Surfaces` - the JSON emission keeps the
-full menu.
+When a selection surface would exceed the four-answer limit,
+the question degrades to the `section-format` text surface,
+to grouped choices such as `All recommended` or `Required only`,
+or to the group-question split in `## Question Surfaces` - the JSON emission keeps the full menu.
 
-On an Edit task the request may cover structure - "add the missing sections", "fix the
-structure" - then run `scripts/check-sections.py` against the resolved type and raise
+On an Edit task the request may cover structure - "add the missing sections",
+"fix the structure" - then run `scripts/check-sections.py` against the resolved type and raise
 `section-add`, a selection of the missing `required` and `recommended` sections to insert.
 
 Inserted sections land at their canonical positions per the type's `## Structure` order and carry
@@ -345,8 +345,8 @@ No content is invented.
 
 Before executing the operation, describe the plan and confirm it.
 
-The plan states the task, the target, the rule files loaded, the detected conventions, the
-sections to create or insert, and every file the operation writes.
+The plan states the task, the target, the rule files loaded, the detected conventions,
+the sections to create or insert, and every file the operation writes.
 
 The `plan-confirmation` choice offers `Proceed` (recommended), `Adjust`, and `Cancel`.
 
@@ -361,11 +361,11 @@ Maintenance-mode work is exempt - `docs/MAINTENANCE.md` already fixes those answ
 
 ## Drafting And Editing
 
-For a new typed document, start from the matching `templates/<lang>/<type>-template-<lang>.md`
-skeleton.
+For a new typed document, start from the matching
+`templates/<lang>/<type>-template-<lang>.md` skeleton.
 
-A template is a starting point, not a cage - add, remove, or rename sections when the request or
-the content requires it.
+A template is a starting point, not a cage - add, remove,
+or rename sections when the request or the content requires it.
 
 For an edit, work inside the document's existing conventions.
 
@@ -374,9 +374,9 @@ Keep the minimal-diff rule: touch only what the request covers.
 A defect found outside the named scope is reported and proposed in the delivery - never
 folded into the diff.
 
-The detected scope decides the target directory for new documents, overrides the filename
-convention when it defines one, and lists the registration steps that follow adding, moving, or
-removing a document.
+The detected scope decides the target directory for new documents,
+overrides the filename convention when it defines one,
+and lists the registration steps that follow adding, moving, or removing a document.
 
 Apply the language file rules to the content you write even inside a dialect document - sentence
 shape, vocabulary, and terminology still follow the language rules.
@@ -385,36 +385,33 @@ For a requested reformatting, prefer the dedicated tools over hand edits:
 
 `scripts/normalize-chars.py` maps typographic characters to ASCII,
 `scripts/split-sentences.py` separates packed sentences onto individual logical lines,
-`scripts/reflow-prose.py --wrap --width N` wraps prose and `--unwrap` joins wrapped
-continuations back into logical lines,
-`scripts/format-table.py` realigns tables,
+`scripts/reflow-prose.py --wrap --width N` wraps prose and `--unwrap` joins wrapped continuations
+back into logical lines, `scripts/format-table.py` realigns tables,
 `scripts/align-comments.py` aligns `#` comments inside plain-text and shell blocks.
 
 Order mutating passes so content-changing fixes come first - character normalization,
-sentence splits, and language-lint corrections - and `format-table.py` runs last, because
-any later text edit inside a cell re-breaks the source alignment.
+sentence splits, and language-lint corrections - and `format-table.py` runs last,
+because any later text edit inside a cell re-breaks the source alignment.
 
-`scripts/lint-polish.py` therefore belongs in the fix phase, not only in the final
-validation sweep.
+`scripts/lint-polish.py` therefore belongs in the fix phase, not only in the final validation sweep.
 
-Pass `--payload-markdown` to the payload-aware tools only when the request covers embedded
-payload documents - payload content stays opaque otherwise.
+Pass `--payload-markdown` to the payload-aware tools only when the request covers embedded payload
+documents - payload content stays opaque otherwise.
 
 ## Editing Governed Documents
 
-A governed document defines a set other parts of itself enumerate - canonical files, section
-names, rule owners, or options.
+A governed document defines a set other parts of itself enumerate - canonical files, section names,
+rule owners, or options.
 
-Re-verify the target before planning a multi-part edit when time passed or the file may have
-changed - re-read it or check its version marker and `git status`, never rely on an earlier
-read.
+Re-verify the target before planning a multi-part edit when time passed or the file may have changed
+- re-read it or check its version marker and `git status`, never rely on an earlier read.
 
-When the change adds, removes, or renames a member of a governed set, first inventory every
-place the document enumerates that set - tables, bullet lists, decision menus, checklists,
-procedures, and embedded examples - then update all of them in one pass.
+When the change adds, removes, or renames a member of a governed set,
+first inventory every place the document enumerates that set - tables, bullet lists, decision menus,
+checklists, procedures, and embedded examples - then update all of them in one pass.
 
-When renaming a section or file the document references by name, search the whole document
-for the old name before and after the rename and update every reference.
+When renaming a section or file the document references by name,
+search the whole document for the old name before and after the rename and update every reference.
 
 Renumber ordered lists after inserting or removing items.
 
@@ -434,28 +431,28 @@ It is not a failure.
 Before delivering, run the checks from `process/document-checklist.md`:
 
 - `scripts/check-document.py` runs the mechanical battery below in one invocation -
-  `python3 <skill-root>/scripts/check-document.py <file>` with `--layout`,
-  `--polish`, `--type`, and `--baseline` selecting the optional gates - run the
-  individual checks instead when only a subset applies.
+  `python3 <skill-root>/scripts/check-document.py <file>` with `--layout`, `--polish`, `--type`,
+  and `--baseline` selecting the optional gates - run the individual checks instead when
+  only a subset applies.
 - Mechanical self-review of the written content.
 - `scripts/split-sentences.py --check` when the request covered packed sentences.
-- `scripts/format-table.py --check` on the file when it contains tables - its warnings on
-  `||` row starts or fully empty columns are resolved, not ignored.
-- `scripts/align-comments.py --check` when the document contains plain-text blocks with `#`
-  comments.
-- `scripts/reflow-prose.py --wrap --check --width N` when the document follows a width
-  convention, `scripts/reflow-prose.py --unwrap --check` when it keeps logical lines.
-- `scripts/check-sections.py` on the file when the document type is known - a bare type
-  slug resolves against `types/` - no missing required sections, warnings reported in
-  delivery.
-- `scripts/validate-document.py` on the file, with `--payload-markdown` when the document embeds
-  ` ```markdown ` payload blocks.
-- `scripts/diff-content.py` after any formatting-only pass - the token stream must be identical
-  to the pre-edit baseline, and every merged-line warning must be reviewed.
+- `scripts/format-table.py --check` on the file when it contains tables - its warnings on `||` row
+  starts or fully empty columns are resolved, not ignored.
+- `scripts/align-comments.py --check` when the document contains plain-text
+  blocks with `#` comments.
+- `scripts/reflow-prose.py --wrap --check --width N` when the document follows a width convention,
+  `scripts/reflow-prose.py --unwrap --check` when it keeps logical lines.
+- `scripts/check-sections.py` on the file when the document type is known - a bare type slug
+  resolves against `types/` - no missing required sections, warnings reported in delivery.
+- `scripts/validate-document.py` on the file,
+  with `--payload-markdown` when the document embeds ` ``` markdown ` payload blocks.
+- `scripts/diff-content.py` after any formatting-only pass - the token stream must be identical to
+  the pre-edit baseline, and every merged-line warning must be reviewed.
 - A file outside version control has no `git show HEAD` baseline - snapshot it to a `.tmp.`
   copy before the first edit and pass it as `--baseline`.
-- When `normalize-chars.py` ran on the file, compare with `--normalize-chars` so the
-  sanctioned character map does not surface as token differences.
+- When `normalize-chars.py` ran on the file,
+  compare with `--normalize-chars` so the sanctioned character map does not surface
+  as token differences.
 - Legitimate sentence joins and deliberate reflows produce expected merged-line warnings.
 - `git diff --check` when working inside a repository.
 
@@ -463,15 +460,15 @@ A failing check must be fixed or explicitly reported to the user with a reason.
 
 ## Delivery
 
-Never overwrite an existing document without the user's confirmation when the change replaces the
-whole file.
+Never overwrite an existing document without the user's confirmation when the change
+replaces the whole file.
 
 Under JSON exchange the confirmation emits as the `overwrite-confirmation` `choice` parameter.
 
 In-place edits that follow the request do not need confirmation.
 
-When finished, report the file path, the scope detected, the conventions applied, every
-registration or index file updated, and any checks that were skipped or failed.
+When finished, report the file path, the scope detected, the conventions applied,
+every registration or index file updated, and any checks that were skipped or failed.
 
-Remove every ad-hoc `.tmp.` helper - and any tool copies made under the fallback
-convention - from the working repository, including after an aborted run.
+Remove every ad-hoc `.tmp.` helper - and any tool copies made under the fallback convention - from
+the working repository, including after an aborted run.

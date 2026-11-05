@@ -2,10 +2,9 @@
 
 ## Purpose
 
-> **Scope:** Catalog of Markdown dialects observed in real documents, detection signals, and the
-> preserve-on-edit rule
-> **Key items:** ATX, setext headings, numbered chapters, pandoc artifacts, per-document
-> conventions
+> **Scope:** Catalog of Markdown dialects observed in real documents, detection signals,
+> and the preserve-on-edit rule
+> **Key items:** ATX, setext headings, numbered chapters, pandoc artifacts, per-document conventions
 
 Documents in the wild do not all look the same.
 
@@ -79,11 +78,11 @@ The Polish variant of this dialect is described in `languages/pl.md`.
 
 Additional traits that may accompany this dialect:
 
-- H4 headings (`####`) or deeper, used sparingly for enumeration detail. Preserve them when
-  established, even though the standard dialect stops at H3.
+- H4 headings (`####`) or deeper, used sparingly for enumeration detail.
+  Preserve them when established, even though the standard dialect stops at H3.
 - Double-backtick inline code for filenames and identifiers: `` ``config.yaml`` ``.
-- Bold pseudo-headings such as `**Note**`, `**Important**`, or `**Description:**` standing in
-  for headings.
+- Bold pseudo-headings such as `**Note**`, `**Important**`,
+  or `**Description:**` standing in for headings.
 - Spaced table separator cells (`| ------ |`) instead of compact ones (`|------|`).
 
 Rule: keep the numbering scheme, renumber continuously after adding, removing, or moving a section.
@@ -114,9 +113,10 @@ The minimal-diff rule applies.
 
 Normalize them only when the request is about reformatting or cleanup.
 
-Unlike the artifacts above, a row starting with `||`, a column empty in every row, or a
-separator cell without hyphens is a structural defect, not a dialect convention - the column
-it leaves behind is spurious, and `format-table.py --drop-empty-columns` repairs it.
+Unlike the artifacts above, a row starting with `||`, a column empty in every row,
+or a separator cell without hyphens is a structural defect,
+not a dialect convention - the column it leaves behind is spurious,
+and `format-table.py --drop-empty-columns` repairs it.
 
 ## YAML Frontmatter
 
@@ -129,8 +129,8 @@ sidebar_position: 3
 ---
 ```
 
-Signals: the file opens with a `---` line, followed by `key: value` lines, and closed by a
-second `---` line.
+Signals: the file opens with a `---` line, followed by `key: value` lines,
+and closed by a second `---` line.
 
 Seen in MkDocs, Docusaurus, VitePress, and GitBook sites, and in blog engines.
 
@@ -138,10 +138,10 @@ Rule: the frontmatter belongs to the document's conventions.
 
 - Preserve every existing key on edit, keep the original key order.
 - Never remove or rename a key silently, report a key that seems wrong instead of fixing it.
-- Add or change a key only when the task requires it, for example `sidebar_position` when
-  reordering pages.
-- The block is metadata, not prose. The sentence-per-paragraph and wrapping rules do not apply
-  inside it.
+- Add or change a key only when the task requires it,
+  for example `sidebar_position` when reordering pages.
+- The block is metadata, not prose. The sentence-per-paragraph and wrapping rules do
+  not apply inside it.
 - Keep values in their existing scalar style, quoted or bare.
 - Common keys: `title`, `description`, `slug`, `sidebar_position`, `sidebar_label`, `layout`,
   `nav_order`, `order`, `weight`, `draft`.
@@ -152,39 +152,40 @@ A document may mix dialects, for example ATX headings with a numbered chapter sc
 
 When signals conflict, the dominant pattern wins.
 
-When no pattern is clear, apply the standard ATX dialect to new content and leave existing
-content untouched.
+When no pattern is clear, apply the standard ATX dialect to new content and leave
+existing content untouched.
 
 ## Embedded Payload Documents
 
-Some documents carry complete documents inside ` ```markdown ` fenced blocks - embedded
-templates, examples, and prompt payloads that readers copy into other files.
+Some documents carry complete documents inside ` ``` markdown ` fenced blocks - embedded templates,
+examples, and prompt payloads that readers copy into other files.
 
-The host document and its payloads can legitimately follow different conventions, treat each
-payload as its own dialect region.
+The host document and its payloads can legitimately follow different conventions,
+treat each payload as its own dialect region.
 
-Recognize a payload by context: the fence language is `markdown`, the content forms a
-complete document (own headings, lists, tables, sometimes indented code blocks such as
-directory trees), and surrounding prose says the content is copied elsewhere or defines a
-target file.
+Recognize a payload by context: the fence language is `markdown`,
+the content forms a complete document (own headings, lists, tables,
+sometimes indented code blocks such as directory trees),
+and surrounding prose says the content is copied elsewhere or defines a target file.
 
 Inside a payload:
 
-- The payload's own established style is authoritative, not the host document's and not this
-  skill's defaults.
+- The payload's own established style is authoritative,
+  not the host document's and not this skill's defaults.
 - Content is opaque unless the user asks for changes inside payloads. In particular,
   reformat tables inside payloads only on explicit request -
   `scripts/format-table.py --payload-markdown` exists for that case.
-- Wrap payload prose only when the host convention requires it or the user asks, via
-  `scripts/reflow-prose.py --wrap --payload-markdown`.
+- Wrap payload prose only when the host convention requires it or the user asks,
+  via `scripts/reflow-prose.py --wrap --payload-markdown`.
 - Payload content can carry real formatting defects (trailing whitespace, lone list markers,
   merged indented lines). Surface them with `scripts/validate-document.py --payload-markdown`.
-- Other fence languages (` ```bash `, ` ```python `, ` ```text `, bare ` ``` `) and indented
-  code blocks are always opaque. They may contain table-like `|` text or prose-like lines
-  that must never be reformatted.
+- Other fence languages (` ``` bash `, ` ```python `, ` ``` text `, bare ` ``` `)
+  and indented code blocks are always opaque.
+  They may contain table-like `|` text or prose-like lines that must never be reformatted.
 
-When a document embeds another fenced block inside a payload, the inner fence must use a
-longer marker than the outer one (four backticks inside a three-backtick fence).
+When a document embeds another fenced block inside a payload,
+the inner fence must use a longer marker than the outer one (four backticks inside a
+three-backtick fence).
 
 Nested fences never nest at the same marker length.
 
@@ -192,40 +193,40 @@ Nested fences never nest at the same marker length.
 
 The wrap axis of the prose layout decides whether a sentence may break across lines.
 
-Fixed-width wrapping breaks prose at a character limit such as 80, 100, or 120, indenting
-continuation lines inside list items and repeating the marker inside blockquotes, while
-unwrapped layout keeps every sentence on one logical line of any length.
+Fixed-width wrapping breaks prose at a character limit such as 80, 100, or 120,
+indenting continuation lines inside list items and repeating the marker inside blockquotes,
+while unwrapped layout keeps every sentence on one logical line of any length.
 
-Signals: in a wrapped document most prose lines cluster below one width and continuation lines
-are common, in an unwrapped document prose lines vary in length and regularly run past the
-usual limits.
+Signals: in a wrapped document most prose lines cluster below one width and continuation lines are
+common, in an unwrapped document prose lines vary in length and regularly run past the usual limits.
 
-The dominant pattern per element type is the convention - paragraphs, list items, and
-blockquotes are evaluated separately.
+The dominant pattern per element type is the convention - paragraphs, list items,
+and blockquotes are evaluated separately.
 
-Rule: detect the wrap convention with the rest of the dialect census, preserve it on edit, and
-never convert between layouts unless the request covers the conversion.
+Rule: detect the wrap convention with the rest of the dialect census, preserve it on edit,
+and never convert between layouts unless the request covers the conversion.
 
-The full prose-layout model - the named `flowing`, `separated`, `bounded`, and `justified`
-conventions, their detection signals, and the mixed-document rule - lives in
-`conventions/prose-layout.md`.
+The full prose-layout model - the named `flowing`, `separated`, `bounded`,
+and `justified` conventions, their detection signals,
+and the mixed-document rule - lives in `conventions/prose-layout.md`.
 
-`scripts/reflow-prose.py --wrap` applies a fixed width, `--unwrap` joins wrapped continuations
-into logical lines, `--justify` produces the justified variant.
+`scripts/reflow-prose.py --wrap` applies a fixed width,
+`--unwrap` joins wrapped continuations into logical lines,
+`--justify` produces the justified variant.
 
 ## Element-Level Conventions
 
 Conventions may differ between element types within one document.
 
-A document may place every paragraph sentence on its own logical line while its list items
-pack several sentences into a wrapped block, or the reverse.
+A document may place every paragraph sentence on its own logical line while its list items pack
+several sentences into a wrapped block, or the reverse.
 
 Detect the dominant pattern per element type.
 
 Paragraphs, list items, and headings are separate conventions.
 
-Normalize one element type only when the request covers it, and never impose the paragraph
-convention on list items or vice versa.
+Normalize one element type only when the request covers it,
+and never impose the paragraph convention on list items or vice versa.
 
 Within paragraphs, the spacing axis of the prose layout decides how sentences separate.
 
@@ -234,14 +235,14 @@ convention in `docs/STYLE.md` and the `languages/` baselines.
 
 While `flowing` keeps consecutive sentences inside one shared paragraph block.
 
-`split-sentences.py` defaults to sentence-per-line output, `--paragraphs` produces
-`separated`, and `--flow` produces `flowing`.
+`split-sentences.py` defaults to sentence-per-line output, `--paragraphs` produces `separated`,
+and `--flow` produces `flowing`.
 
 ## Detection Procedure
 
 1. Read the document, or its outline when it is long.
-2. Note the heading style, section numbering, list markers, table shape, wrap convention, and
-   embedded HTML.
+2. Note the heading style, section numbering, list markers, table shape, wrap
+   convention, and embedded HTML.
 3. Classify the dialect or dialects.
-4. Record the classification in the working notes, and apply it consistently for the rest of the
-   edit.
+4. Record the classification in the working notes,
+   and apply it consistently for the rest of the edit.

@@ -48,13 +48,13 @@ The canonical skeleton, adjusted to the request:
 
 ## Deltas From The Language Baseline
 
-- The Usage example must be real and runnable. An example that references functions that no
-  longer exist is the most common library README failure.
+- The Usage example must be real and runnable.
+  An example that references functions that no longer exist is the most common
+  library README failure.
 - Keep the README scannable, roughly 100 to 300 lines - move deep reference material into
   `docs/` and link to it.
 - Badges and banners appear only when the repository's convention already uses them.
-- A "why this library" section fits when the package replaces or improves on existing
-  solutions.
+- A "why this library" section fits when the package replaces or improves on existing solutions.
 
 ## Section Names
 

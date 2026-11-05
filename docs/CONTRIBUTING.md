@@ -42,13 +42,13 @@ Everything else is documentation.
 - Follow [MAINTENANCE.md](./MAINTENANCE.md) for naming, registration, and layout rules.
 - Run `python3 tests/test-scripts.py` before submitting. It covers all three validators.
 - The project runs no CI by design, so this local gate is the only regression check.
-- Bump the skill version on every change to skill document contents - `VERSIONING.md`
-  defines the patch increment.
+- Bump the skill version on every change to skill document contents - `VERSIONING.md` defines
+  the patch increment.
 - Review goes through the maintainer, with a second reviewer per `README.md`.
-- Keep `work/` research scratch out of tracked content - replace copied examples with links
-  instead.
-- Never embed references to external example files, paths, or names supplied in a request -
-  contribute anonymized skill-owned examples instead, per [MAINTENANCE.md](./MAINTENANCE.md).
+- Keep `work/` research scratch out of tracked content - replace copied examples with links instead.
+- Never embed references to external example files, paths,
+  or names supplied in a request - contribute anonymized skill-owned examples instead,
+  per [MAINTENANCE.md](./MAINTENANCE.md).
 
 ## AI-Assisted Contributions
 

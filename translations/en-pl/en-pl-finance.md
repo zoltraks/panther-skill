@@ -3,8 +3,7 @@
 ## Purpose
 
 > **Scope:** English-Polish terminology for finance, accounting, and banking documents
-> **Key items:** domain signals, terminology table, context forms, calque traps,
-> untranslated terms
+> **Key items:** domain signals, terminology table, context forms, calque traps, untranslated terms
 
 Load this glossary for translate tasks on financial subjects.
 
@@ -15,10 +14,9 @@ Apply it for English to Polish translate tasks, per `process/translate-document.
 Apply this glossary when:
 
 - The request names a finance, accounting, banking, or reporting subject.
-- The document covers statements, budgets, ledgers, audits of accounts, payments, or
-  regulatory financial reporting.
-- The document's terminology is dominated by balance-sheet, income, tax, or payment
-  vocabulary.
+- The document covers statements, budgets, ledgers, audits of accounts, payments,
+  or regulatory financial reporting.
+- The document's terminology is dominated by balance-sheet, income, tax, or payment vocabulary.
 
 ## Terminology
 
@@ -103,10 +101,9 @@ Some English terms render differently by context.
 
 Do not force one form everywhere:
 
-- `interest` renders `odsetki` for accrued amounts and `stopa procentowa` inside
-  `interest rate`.
-- `provision` renders `rezerwa` for a booked provision and `odpis` for the charge, and
-  `postanowienie` in contract language - the legal glossary governs contract text.
+- `interest` renders `odsetki` for accrued amounts and `stopa procentowa` inside `interest rate`.
+- `provision` renders `rezerwa` for a booked provision and `odpis` for the charge,
+  and `postanowienie` in contract language - the legal glossary governs contract text.
 - `balance` renders `saldo` on an account and `bilans` as the statement name.
 - `statement` renders `sprawozdanie` for financial statements, `zestawienie` for tables,
   and `wyciąg` for bank statements.
@@ -128,7 +125,7 @@ Do not force one form everywhere:
 
 Settled terms stay in their canonical form in Polish output:
 
-- `IFRS` spelled out once as `MSSF` (Międzynarodowe Standardy Sprawozdawczości
-  Finansowej), `US GAAP`, `EBITDA`, `ROI`, `VAT`, `KYC`, `AML`, `IBAN`, `SWIFT`,
-  `BASEL`/`Bazylea` as the accord name
+- `IFRS` spelled out once as `MSSF` (Międzynarodowe Standardy Sprawozdawczości Finansowej),
+  `US GAAP`, `EBITDA`, `ROI`, `VAT`, `KYC`, `AML`, `IBAN`, `SWIFT`,
+  `BASEL` / `Bazylea` as the accord name
 - `due diligence`, `benchmark`, `rating`, `leasing`, `factoring`, `hedging`

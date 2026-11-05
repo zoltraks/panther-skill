@@ -2,10 +2,10 @@
 
 ## Purpose
 
-> **Scope:** Conventions for the `README.md` of a software product - an application, service,
-> tool, or system a user installs, runs, or deploys
-> **Key items:** install and download paths, features, technical stack, repository structure,
-> changelog pointer
+> **Scope:** Conventions for the `README.md` of a software product - an application, service, tool,
+> or system a user installs, runs, or deploys
+> **Key items:** install and download paths, features, technical stack, repository
+> structure, changelog pointer
 
 | Out of scope                    | See instead                  |
 |---------------------------------|------------------------------|
@@ -18,8 +18,8 @@
 
 An application README serves a reader who wants to run the product.
 
-It leads with what the product does, how to get it, and how to start it - then points to deeper
-documentation instead of duplicating it.
+It leads with what the product does, how to get it,
+and how to start it - then points to deeper documentation instead of duplicating it.
 
 ## When To Use
 

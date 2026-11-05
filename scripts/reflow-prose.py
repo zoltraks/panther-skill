@@ -3,8 +3,12 @@
 
 Two directions exist:
 
---wrap    splits prose lines longer than --width at whitespace, preferring
-          clause boundaries; continuation lines indent to the item's text
+--wrap    rewraps each prose block to --width: the block's lines re-derive
+          their logical lines first - separate sentences, `**Label:**`
+          field lines, and list items stay on their own lines - then each
+          logical line splits at whitespace, preferring clause boundaries,
+          so a block wrapped at a different width or with ragged break
+          points normalizes; continuation lines indent to the item's text
           column and blockquote continuations repeat the quote marker.
 
 --unwrap  joins hard-wrapped continuation lines back into single logical
@@ -27,11 +31,13 @@ on their own lines - it converts wrapping, not sentence layout. Combine
 with `split-sentences.py --paragraphs` when the task also asks for one
 sentence per paragraph.
 
-The wrap direction never joins lines and the unwrap direction never splits
+The wrap direction joins physical continuation lines inside each block
+only to rewrap that block's logical lines - it never merges separate
+blocks, sentences, or field lines - and the unwrap direction never splits
 them, so a document that already matches its own convention is unchanged.
 Run `--unwrap --check` on a logical-line document to find wrapped
-fragments, or `--wrap --check` on a wrapped document to find over-width
-lines.
+fragments, or `--wrap --check` on a wrapped document to find blocks that
+would rewrap and lines whose unbreakable spans exceed the width.
 
 Run this file in place from the skill repository -
 `python <skill-root>/scripts/reflow-prose.py` - and run it on the
@@ -43,8 +49,8 @@ afterward.
 Usage: python reflow-prose.py <file.md> (--wrap | --unwrap | --justify)
                                 [--width N] [--payload-markdown] [--check]
 
-  --wrap               split over-width prose lines (same algorithm as the
-                       deprecated wrap-prose.py)
+  --wrap               rewrap prose blocks to the width (a superset of the
+                       deprecated wrap-prose.py's line splitting)
   --unwrap             join wrapped continuation lines into logical lines
   --justify            wrap to the width and stretch inter-word spacing so
                        every line of a block but its last reaches it exactly
@@ -175,6 +181,33 @@ def wrap_line(line, width):
                 cur = cont + extra
                 parts = [extra]
     out.append(cur)
+    return rebalance(out, prefix, cont, width)
+
+
+def rebalance(out, prefix, cont, width):
+    """Move atoms from the previous line onto a too-short final line.
+
+    A wrap that leaves a single word or tiny fragment on the last line reads
+    as a broken sentence - atoms shift down until the tail carries enough
+    text, while the head keeps at least 45 characters and the tail stays
+    within the width.
+    """
+    if len(out) < 2:
+        return out
+    tail = out[-1][len(cont) :]
+    if len(tail) >= 20:
+        return out
+    pfx = prefix if len(out) == 2 else cont
+    head = out[-2][len(pfx) :]
+    parts = atoms(head)
+    while len(parts) > 3 and len(tail) < 20:
+        candidate = parts[-1] + " " + tail
+        if len(pfx) + len(" ".join(parts[:-1])) < 45 or len(cont) + len(candidate) > width:
+            break
+        tail = candidate
+        parts = parts[:-1]
+    out[-2] = pfx + " ".join(parts)
+    out[-1] = cont + tail
     return out
 
 
@@ -245,21 +278,87 @@ def unit_bodies(unit_lines):
     return lead, marker, [b for b in bodies if b]
 
 
+FIELD_LABEL = re.compile(r"^\*\*[^*]+:\*\*")
+
+
+def logical_lines(unit_lines):
+    """Re-derive the logical lines inside a unit before re-wrapping.
+
+    A physical line continues the previous logical line only while the
+    accumulated text does not end with sentence-final punctuation or a
+    label colon and the line opens no structural boundary - a `**Label:**`
+    field or a list marker. These are the same boundary rules `--unwrap`
+    applies, so separate sentences and field lines stay on their own lines.
+    """
+    _, _, bodies = unit_bodies(unit_lines)
+    logical = []
+    for body in bodies:
+        boundary = (FIELD_LABEL.match(body) or ITEM.match(body)
+                    or LONE_ITEM.match(body))
+        if logical and not boundary and not SENT_END.search(logical[-1]):
+            logical[-1] += " " + body
+        else:
+            logical.append(body)
+    return logical
+
+
+def unit_prefixes(unit_lines):
+    """Return (first, later) prefixes for the unit's logical lines.
+
+    A list item repeats its marker only on the first logical line - later
+    logical lines are continuations and indent to the text column - while
+    a blockquote repeats its marker on every logical line.
+    """
+    lead, marker, _ = unit_bodies(unit_lines)
+    gap = " " if marker and not marker.endswith(" ") else ""
+    first = lead + marker + gap
+    if marker and not marker.startswith(">"):
+        return first, " " * len(first)
+    return first, first
+
+
+def reflow_unit(unit_lines, width, stretch):
+    """Reflow one unit's logical lines to the width.
+
+    Each logical line wraps (and optionally justifies) on its own, so the
+    unit's sentence and field-line boundaries survive the pass.
+    """
+    first_p, later_p = unit_prefixes(unit_lines)
+    out = []
+    for k, logical in enumerate(logical_lines(unit_lines)):
+        prefix = first_p if k == 0 else later_p
+        pieces = wrap_line((prefix + logical).rstrip(), width)
+        if stretch and len(pieces) > 1:
+            pieces = ([stretch_line(p, width) for p in pieces[:-1]]
+                      + [pieces[-1]])
+        out.extend(pieces)
+    return out
+
+
 def justify_unit(unit_lines, width):
     """Reflow a block of prose lines and justify every line but its last.
 
     The unit is one paragraph run, one list item with its continuations, or
-    one blockquote run. Its lines join into a single text, wrap to the width
-    with the same logic as --wrap, and every physical line except the unit's
-    last stretches to exactly the width.
+    one blockquote run. Its lines re-derive their logical lines first -
+    wrapping already-wrapped text at any width requires the unwrap before
+    the wrap, or each physical line breaks on its own and fragments remain -
+    and every physical line of each logical line except its last stretches
+    to exactly the width.
     """
-    lead, marker, bodies = unit_bodies(unit_lines)
-    joined = " ".join(bodies)
-    synth = lead + marker + (" " if marker and not marker.endswith(" ") else "") + joined
-    pieces = wrap_line(synth.rstrip(), width)
-    if len(pieces) <= 1:
-        return pieces
-    return [stretch_line(p, width) for p in pieces[:-1]] + [pieces[-1]]
+    return reflow_unit(unit_lines, width, stretch=True)
+
+
+def wrap_unit(unit_lines, width):
+    """Reflow a block of prose lines to the width without stretching.
+
+    The unit is one paragraph run, one list item with its continuations, or
+    one blockquote run. Its lines re-derive their logical lines first -
+    wrapping already-wrapped text at any width requires the unwrap before
+    the wrap, or each physical line breaks on its own and fragments remain -
+    and every logical line wraps on its own, so separate sentences and
+    `**Label:**` field lines stay on their own lines.
+    """
+    return reflow_unit(unit_lines, width, stretch=False)
 
 
 def processable(fences, payload_markdown):
@@ -293,19 +392,30 @@ def main(path, mode, width, payload_markdown, check_only):
     open_ok = False      # unwrap: last emitted line may absorb a continuation
     open_min = 0         # unwrap: minimum indent a continuation must reach
     open_quote = False   # unwrap: last emitted line is a quote line
-    unit = []            # justify: buffered (line number, line) of the open unit
-    unit_kind = ""       # justify: "para", "item", or "quote"
-    unit_col = 0         # justify: item content column or paragraph indent
-    unit_marker = ""     # justify: quote marker of the open quote unit
+    unit = []            # wrap/justify: buffered (line number, line) of the open unit
+    unit_kind = ""       # wrap/justify: "para", "item", or "quote"
+    unit_col = 0         # wrap/justify: item content column or paragraph indent
+    unit_marker = ""     # wrap/justify: quote marker of the open quote unit
     justified = []       # justify: (first line, last line) of changed units
+    rewrapped = []       # wrap: (first line, last line) of changed units
 
     def flush_unit():
+        nonlocal wrapped
         if not unit:
             return
         body = [ln for _, ln in unit]
-        pieces = justify_unit(body, width)
-        if pieces != body:
-            justified.append((unit[0][0], unit[-1][0]))
+        if mode == "justify":
+            pieces = justify_unit(body, width)
+            if pieces != body:
+                justified.append((unit[0][0], unit[-1][0]))
+        else:
+            pieces = wrap_unit(body, width)
+            if pieces != body:
+                wrapped += 1
+                rewrapped.append((unit[0][0], unit[-1][0]))
+            for piece in pieces:
+                if len(piece) > width:
+                    unbreakable.append((unit[0][0], len(piece), piece.strip()[:60]))
         if check_only:
             out.extend(ln for _, ln in unit)
         else:
@@ -367,7 +477,7 @@ def main(path, mode, width, payload_markdown, check_only):
         item = ITEM.match(line)
         quote = QUOTE.match(line)
 
-        if mode == "justify":
+        if mode in ("wrap", "justify"):
             if item or LONE_ITEM.match(line):
                 flush_unit()
                 unit_kind = "item"
@@ -410,34 +520,6 @@ def main(path, mode, width, payload_markdown, check_only):
                 unit_kind = "para"
                 unit_col = indent
             unit.append((n, line))
-            continue
-
-        if mode == "wrap":
-            if item:
-                content_col = indent + len(item.group(2)) + len(item.group(3))
-                while list_stack and list_stack[-1] > indent:
-                    list_stack.pop()
-                list_stack.append(content_col)
-            else:
-                while list_stack and indent < list_stack[-1]:
-                    list_stack.pop()
-                base = list_stack[-1] if list_stack else 0
-                if s.startswith(("#", "|")) or indent >= base + 4:
-                    out.append(line)    # heading, table row, or indented code
-                    continue
-            if len(line) > width:
-                if check_only:
-                    unbreakable.append((n, len(line), line.strip()[:60]))
-                else:
-                    parts = wrap_line(line, width)
-                    if len(parts) > 1:
-                        wrapped += 1
-                    for piece in parts:
-                        if len(piece) > width:
-                            unbreakable.append((n, len(piece), piece.strip()[:60]))
-                    out.extend(parts)
-                    continue
-            out.append(line)
             continue
 
         # --unwrap mode below this point
@@ -501,12 +583,20 @@ def main(path, mode, width, payload_markdown, check_only):
 
     if check_only:
         if mode == "wrap":
+            for first, last in rewrapped:
+                span = f"{first}" if first == last else f"{first}-{last}"
+                print(f"lines {span}: block is not wrapped at {width}")
             for n, size, preview in unbreakable:
                 print(f"line {n}: {size} chars > {width}: {preview}...")
-            if unbreakable:
-                print(f"{len(unbreakable)} line(s) exceed {width}")
+            if rewrapped or unbreakable:
+                parts = []
+                if rewrapped:
+                    parts.append(f"{len(rewrapped)} block(s) would rewrap")
+                if unbreakable:
+                    parts.append(f"{len(unbreakable)} line(s) exceed {width}")
+                print(", ".join(parts))
                 return 1
-            print(f"PASS {path}: no line exceeds {width}")
+            print(f"PASS {path}: every block is wrapped at {width}")
             return 0
         if mode == "justify":
             for first, last in justified:
@@ -537,7 +627,7 @@ def main(path, mode, width, payload_markdown, check_only):
     if crlf:
         print("note: file uses CRLF line endings - preserved")
     if mode == "wrap":
-        print(f"wrapped {wrapped} lines to width {width}")
+        print(f"rewrapped {wrapped} block(s) to width {width}")
         for n, size, preview in unbreakable:
             print(f"note: line {n} still {size} chars (unbreakable span): {preview}...")
     elif mode == "justify":

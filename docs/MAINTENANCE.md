@@ -2,15 +2,14 @@
 
 ## Purpose
 
-> **Scope:** Rules for extending, restructuring, and maintaining the panther-skill repository
-> itself
-> **Key items:** directory roles, file naming, registration contract, addition procedures,
-> validation
+> **Scope:** Rules for extending, restructuring, and maintaining the panther-skill repository itself
+> **Key items:** directory roles, file naming, registration contract, addition
+> procedures, validation
 
 These rules apply to the skill's own files, not to documents the skill produces.
 
-Document production rules live in `principles/`, `process/`, `types/`, `languages/`, and
-`conventions/`.
+Document production rules live in `principles/`, `process/`, `types/`,
+`languages/`, and `conventions/`.
 
 Prose and formatting style for the skill's files lives in `docs/STYLE.md`.
 
@@ -33,10 +32,10 @@ governing-file read set - lives in `process/skill-maintenance.md`.
 | `evals/`        | Behavioral regression prompts                                  |
 | `docs/`         | Repository-governance documents for the skill itself           |
 
-Root files govern the repository itself: `SKILL.md` (router), `AGENTS.md` (agent entry
-point), `README.md`, `LICENSE`, plus the `docs/` governance documents - `docs/STYLE.md`,
-`docs/VERSIONING.md`, `docs/MAINTENANCE.md`, `docs/SECURITY.md`, `docs/CONTRIBUTING.md`, and
-the `docs/README.md` index.
+Root files govern the repository itself: `SKILL.md` (router), `AGENTS.md` (agent entry point),
+`README.md`, `LICENSE`, plus the `docs/` governance documents - `docs/STYLE.md`,
+`docs/VERSIONING.md`, `docs/MAINTENANCE.md`, `docs/SECURITY.md`, `docs/CONTRIBUTING.md`,
+and the `docs/README.md` index.
 
 `work/` is gitignored research scratch outside the rule corpus.
 
@@ -48,15 +47,15 @@ Do not nest subdirectories inside `types/`, `languages/`, `scopes/`, `convention
 `process/`, or `principles/`.
 
 A new top-level rule directory also needs its name added to `KNOWN_DIRS` in
-`scripts/check-references.py`, otherwise references to its files inside rule documents are not
-checked.
+`scripts/check-references.py`, otherwise references to its files inside rule
+documents are not checked.
 
-`docs/` is a governance directory excluded from rule-document scanning, not a rule directory -
-it stays out of `KNOWN_DIRS`.
+`docs/` is a governance directory excluded from rule-document scanning,
+not a rule directory - it stays out of `KNOWN_DIRS`.
 
-`templates/` and `translations/` are the exceptions: `templates/` groups skeletons one
-level deep under per-language directories (`templates/<code>/`), and `translations/`
-groups direction files one level deep under per-pair directories
+`templates/` and `translations/` are the exceptions:
+`templates/` groups skeletons one level deep under per-language directories (`templates/<code>/`),
+and `translations/` groups direction files one level deep under per-pair directories
 (`translations/<pair>/`).
 
 ## File Naming
@@ -65,16 +64,16 @@ Use lowercase kebab-case for rule files: `project-document.md`, `rules-document.
 
 Match the dominant word-count convention of the target directory.
 
-When most existing filenames use two words, a new file uses at least two words even when one
-word would do: `article-text.md` in `types/`, not `article.md`.
+When most existing filenames use two words,
+a new file uses at least two words even when one word would do: `article-text.md` in
+`types/`, not `article.md`.
 
-Language baselines are named `languages/<code>.md`, where `<code>` is the ISO 639-1 language
-code.
+Language baselines are named `languages/<code>.md`, where `<code>` is the ISO 639-1 language code.
 
 Each language file carries YAML frontmatter with `code`, `name`, and `native-name` fields.
 
-Localized templates are named `templates/<code>/<type>-template-<code>.md` - the language code
-in the filename makes the variant self-describing.
+Localized templates are named `templates/<code>/<type>-template-<code>.md` - the language code in
+the filename makes the variant self-describing.
 
 Translation pair directories are named `translations/<pair>/` with ISO 639-1 codes
 ordered source to target.
@@ -83,19 +82,17 @@ Translation files inside a pair directory are named `translations/<pair>/<pair>-
 
 Direction rules use `translations/<pair>/<pair>-general.md`.
 
-Glossaries use a stable category slug per subject (`software`, `project`,
-`finance`, `legal`, `medical`, `electrical`, `construction`)
+Glossaries use a stable category slug per subject (`software`, `project`, `finance`, `legal`,
+`medical`, `electrical`, `construction`)
 so the same subject keeps the same filename in every pair directory that carries it.
 
-Tools are named `scripts/<verb>-<object>.py`, for example `detect-encoding.py` or
-`format-table.py`.
+Tools are named `scripts/<verb>-<object>.py`, for example `detect-encoding.py` or `format-table.py`.
 
-Document-production tools run in place - `python3 <skill-root>/scripts/<tool>.py <file>` -
-and are copied into working repositories under a `.tmp.` infix only when the skill root
-cannot be invoked.
+Document-production tools run in place - `python3 <skill-root>/scripts/<tool>.py <file>` - and are
+copied into working repositories under a `.tmp.` infix only when the skill root cannot be invoked.
 
-Repository files use uppercase conventional names: `README.md`, `AGENTS.md`, `LICENSE`, and the
-governance documents under `docs/` - `STYLE.md`, `VERSIONING.md`, `MAINTENANCE.md`,
+Repository files use uppercase conventional names: `README.md`, `AGENTS.md`, `LICENSE`,
+and the governance documents under `docs/` - `STYLE.md`, `VERSIONING.md`, `MAINTENANCE.md`,
 `SECURITY.md`, `CONTRIBUTING.md`, `README.md`.
 
 ## New Rule Files
@@ -110,11 +107,11 @@ Files over 300 lines must also include a `## Contents` table.
 
 ## Registration Contract
 
-Register every new rule file in its directory's `README.md` index with a line saying what it
-it, under the section matching its directory.
+Register every new rule file in its directory's `README.md` index with a line saying what it it,
+under the section matching its directory.
 
-Keep registry lines single-line where the content allows - `SKILL.md` must stay under 500
-lines, and the detail belongs in the registered file anyway.
+Keep registry lines single-line where the content allows - `SKILL.md` must stay under 500 lines,
+and the detail belongs in the registered file anyway.
 
 List every new template pair in the matching `types/<type>.md` file as a `**Templates**` bullet
 list, see the Localized Resources rule in `docs/STYLE.md`.
@@ -132,38 +129,38 @@ then check that `git diff` shows only the appended entries.
 
 ## External Examples
 
-A change request may supply example documents, file paths, or project names to illustrate the
-requested behavior.
+A change request may supply example documents, file paths,
+or project names to illustrate the requested behavior.
 
-Never reference those supplied examples inside skill documents, scripts, templates, or evals -
-external material may not be reachable later, and real names or paths do not belong in the rule
-corpus.
+Never reference those supplied examples inside skill documents, scripts, templates,
+or evals - external material may not be reachable later,
+and real names or paths do not belong in the rule corpus.
 
 Create the skill's own examples instead.
 
-Keep them generic and anonymized - invented project names, placeholder paths, and synthetic
-content that demonstrates the same point without depending on anything outside this repository.
+Keep them generic and anonymized - invented project names, placeholder paths,
+and synthetic content that demonstrates the same point without depending on anything
+outside this repository.
 
 ## Adding A Language
 
-1. Create `languages/<code>.md` with frontmatter (`code`, `name`, `native-name`) and a full
-   style baseline modeled on `languages/en.md`.
+1. Create `languages/<code>.md` with frontmatter (`code`, `name`, `native-name`)
+   and a full style baseline modeled on `languages/en.md`.
 2. Create `templates/<code>/` with one `<type>-template-<code>.md` per document type.
 3. Register both in the `languages/README.md` and `templates/README.md` indexes.
 4. Extend the `**Templates**` list in every file under `types/`.
-5. Declare the language's activation phrases with their English equivalents and its per-type
-   section names inside `languages/<code>.md` - keep `SKILL.md` and the other rule files in
-   English only.
+5. Declare the language's activation phrases with their English equivalents and its per-type section
+   names inside `languages/<code>.md` - keep `SKILL.md` and the other rule files in English only.
 6. Update the `README.md` directory tree.
 
 ## Adding A Document Type
 
-1. Create `types/<name>.md` following the existing type-file shape: Purpose blockquote, When To
-   Use with a `**Templates**` list, Structure, Deltas From The Language Baseline, and a
-   `## Section Names` requirement table marking each section `required`, `recommended`,
+1. Create `types/<name>.md` following the existing type-file shape: Purpose blockquote,
+   When To Use with a `**Templates**` list, Structure, Deltas From The Language Baseline,
+   and a `## Section Names` requirement table marking each section `required`, `recommended`,
    `optional`, or `unusual` - `scripts/check-sections.py` reads this table.
-2. Create `templates/<lang>/<name>-template-<lang>.md` for every language directory under
-   `templates/`.
+2. Create `templates/<lang>/<name>-template-<lang>.md` for every language
+   directory under `templates/`.
 3. Register the type in `types/README.md` and add trigger phrases when needed - the
    `languages/<code>.md` activation tables carry the localized equivalents.
 4. Add the type's localized section names to each `languages/<code>.md` section-name table so
@@ -174,21 +171,18 @@ content that demonstrates the same point without depending on anything outside t
 
 1. Create `scopes/<name>.md` following the scope-file shape: Purpose blockquote, Detection,
    Directory Roles or layout table, Conventions, Document Types In This Scope.
-2. Register the scope in `scopes/README.md` and add trigger phrases when
-   needed.
+2. Register the scope in `scopes/README.md` and add trigger phrases when needed.
 3. Extend the Scope Detection table in `process/document-workflow.md` with the scope's signals.
 4. Update the `README.md` directory tree.
 
 ## Adding A Tool
 
-1. Create `scripts/<verb>-<object>.py`, standard library only unless the dependency is
-   documented.
-2. Keep it a self-contained single file - the `.tmp.` fallback copies a
-   document-production tool alone into a working repository, where a shared helper
-   module would not exist.
+1. Create `scripts/<verb>-<object>.py`, standard library only unless the dependency is documented.
+2. Keep it a self-contained single file - the `.tmp.` fallback copies a document-production tool
+   alone into a working repository, where a shared helper module would not exist.
 3. Under the `__main__` guard, reconfigure `sys.stdout` and `sys.stderr` with
-   `errors="backslashreplace"`, and pass explicit `encoding=` and `errors=` to every
-   `subprocess` text call - console and pipe output must survive legacy encodings.
+   `errors="backslashreplace"`, and pass explicit `encoding=` and `errors=` to every `subprocess`
+   text call - console and pipe output must survive legacy encodings.
 4. Classify it in `scripts/README.md` as document-production (runs in place, `.tmp.`
    fallback) or skill-maintenance (runs from this repository only).
 5. Register it in `scripts/README.md` and reference it from the workflow step where it runs.
@@ -196,8 +190,8 @@ content that demonstrates the same point without depending on anything outside t
 ## Adding A Translation Pair
 
 1. Create `translations/<pair>/` with `<pair>-general.md` following the pair-file shape:
-   Purpose blockquote, Loading Order, Style Adaptation, Locale Conventions, Vocabulary
-   And Register, What Stays Untranslated, Terminology Resolution, Output Conventions.
+   Purpose blockquote, Loading Order, Style Adaptation, Locale Conventions, Vocabulary And Register,
+   What Stays Untranslated, Terminology Resolution, Output Conventions.
 2. Create the reverse pair directory `translations/<reverse-pair>/` with its own
    directional `general` file.
 3. Register both pair directories in `translations/README.md`.
@@ -206,11 +200,10 @@ content that demonstrates the same point without depending on anything outside t
 ## Adding A Translation Glossary
 
 1. Create `translations/<pair>/<pair>-<category>.md` following the glossary shape:
-   Purpose blockquote, Domain Signals, Terminology, Context Forms, Calque Traps,
-   Untranslated. The `<category>` slug must match the same subject's slug in every
-   other pair directory.
-2. Create the matching `translations/<reverse-pair>/<reverse-pair>-<category>.md` with
-   its own directional tables and calque traps.
+   Purpose blockquote, Domain Signals, Terminology, Context Forms, Calque Traps, Untranslated.
+   The `<category>` slug must match the same subject's slug in every other pair directory.
+2. Create the matching `translations/<reverse-pair>/<reverse-pair>-<category>.md` with its own
+   directional tables and calque traps.
 3. Register the category slug in `translations/README.md`.
 4. Update the `README.md` directory tree.
 
@@ -230,17 +223,17 @@ Run `python3 scripts/validate-document.py <file>` on every edited rule document.
 
 Exercise the prompts in `evals/evals.json` after changes that alter behavior.
 
-The gate is manual by design: no CI pipeline or hook automation runs these checks, so the
-maintainer runs the full suite before each commit.
+The gate is manual by design: no CI pipeline or hook automation runs these checks,
+so the maintainer runs the full suite before each commit.
 
 ## Style Self-Audit
 
 Run the checkers over every Markdown file outside `work/`:
 
-- `python3 scripts/split-sentences.py <file> --paragraphs --check` - every sentence must be its
-  own paragraph, per `docs/STYLE.md`.
-- `python3 scripts/reflow-prose.py <file> --wrap --check` - skill files wrap prose at 100
-  characters.
+- `python3 scripts/split-sentences.py <file> --paragraphs --check` - every sentence must be its own
+  paragraph, per `docs/STYLE.md`.
+- `python3 scripts/reflow-prose.py <file> --wrap --check` - skill files wrap
+  prose at 100 characters.
 - `python3 scripts/format-table.py <file> --check`
 - `python3 scripts/align-comments.py <file> --check`
 - `python3 scripts/validate-document.py <file>`

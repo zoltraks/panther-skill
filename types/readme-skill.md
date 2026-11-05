@@ -2,10 +2,10 @@
 
 ## Purpose
 
-> **Scope:** Conventions for the `README.md` of an Agent Skill repository - a directory
-> containing a `SKILL.md` router and bundled resource files
-> **Key items:** activation contract, agent-environment installation, example prompts,
-> directory tree
+> **Scope:** Conventions for the `README.md` of an Agent Skill repository - a directory containing a
+> `SKILL.md` router and bundled resource files
+> **Key items:** activation contract, agent-environment installation, example
+> prompts, directory tree
 
 | Out of scope                    | See instead                   |
 |---------------------------------|-------------------------------|
@@ -18,16 +18,16 @@
 
 A skill repository README is both a human document and a sales pitch for the skill.
 
-It tells a reader what the skill does, shows the prompts that activate it, and gives the exact
-paths where an agent loads it.
+It tells a reader what the skill does, shows the prompts that activate it,
+and gives the exact paths where an agent loads it.
 
 ## When To Use
 
 Use for the root `README.md` of a repository that ships an Agent Skill - one or more `SKILL.md`
 routers with their resource files - like this skill's own `README.md`.
 
-For a repository that collects several independent skills as a catalog, prefer
-`types/readme-collection.md` instead.
+For a repository that collects several independent skills as a catalog,
+prefer `types/readme-collection.md` instead.
 
 **Templates**
 
@@ -53,17 +53,18 @@ The canonical skeleton, adjusted to the request:
 
 ## Deltas From The Language Baseline
 
-- The Installation section names the concrete skills directory per agent environment, for
-  example `.devin/skills/`, `.claude/skills/`, or `.agents/skills/`, plus a global or personal
-  install path and a `git clone` command when the skill ships as a repository.
-- Example Prompts list real requests as blockquoted phrases. They double as activation
-  examples and must stay in sync with the `SKILL.md` trigger phrases.
-- The What's Inside tree lists the skill's own resource directories - keep it in sync with the
-  actual layout.
-- A Verification section documents the skill's maintenance commands when the skill defines
-  them, for example its own validators.
-- Keep the README honest about activation: describe what the skill does when triggered, not
-  aspirational behavior.
+- The Installation section names the concrete skills directory per agent environment,
+  for example `.devin/skills/`, `.claude/skills/`, or `.agents/skills/`,
+  plus a global or personal install path and a `git clone` command when the skill
+  ships as a repository.
+- Example Prompts list real requests as blockquoted phrases.
+  They double as activation examples and must stay in sync with the `SKILL.md` trigger phrases.
+- The What's Inside tree lists the skill's own resource directories - keep it in sync
+  with the actual layout.
+- A Verification section documents the skill's maintenance commands when the skill defines them,
+  for example its own validators.
+- Keep the README honest about activation: describe what the skill does when triggered,
+  not aspirational behavior.
 
 ## Section Names
 

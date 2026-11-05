@@ -2,16 +2,15 @@
 
 ## Purpose
 
-> **Scope:** Response contract for requests that ask for the skill's complete list of
-> operations
+> **Scope:** Response contract for requests that ask for the skill's complete list of operations
 > **Key items:** catalog triggers, canonical operations table, inline delivery, no caps
 
 This file defines the answer produced when the request asks what operations the skill
 performs or assists with.
 
-Follow it when the request says "list all operations", "show all capabilities", "what
-operations can this skill perform", "list everything this skill can do", or an
-equivalent declared in the `languages/` files.
+Follow it when the request says "list all operations", "show all capabilities",
+"what operations can this skill perform", "list everything this skill can do",
+or an equivalent declared in the `languages/` files.
 
 ## When This Applies
 
@@ -21,18 +20,18 @@ A partial question - "can panther translate documents" - is not a catalog reques
 
 Answer it directly instead of reproducing the table.
 
-The catalog is a query surface, not a document task - no parameter resolution, scope
-detection, or encoding detection runs.
+The catalog is a query surface, not a document task - no parameter resolution, scope detection,
+or encoding detection runs.
 
-When the catalog request is the session's first action, the once-per-session Skill
-Update Check from `SKILL.md` runs first.
+When the catalog request is the session's first action,
+the once-per-session Skill Update Check from `SKILL.md` runs first.
 
 When it follows an activation or another task, the check is not repeated.
 
 ## The Catalog
 
-Answer with the operations table below, reproduced inline and re-aligned to source
-width when the request's language changes the cell text.
+Answer with the operations table below, reproduced inline and re-aligned to source width when the
+request's language changes the cell text.
 
 | Family    | Operation                | What it covers                                                                  |
 |-----------|--------------------------|---------------------------------------------------------------------------------|
@@ -96,16 +95,16 @@ width when the request's language changes the cell text.
 
 Deliver the catalog inline.
 
-Write the response in the language of the request - family and operation names render
-in that language while the `Family` column keeps its canonical grouping.
+Write the response in the language of the request - family and operation names render in that
+language while the `Family` column keeps its canonical grouping.
 
 Close with one line inviting a task request.
 
 ## What Does Not Apply
 
 - No task classification or parameter resolution runs - the request named a query.
-- No rule files beyond the router and this file load. The catalog table is canonical
-  and is not rebuilt by rescanning the repository.
-- The caps and floors of `process/describe-response.md` do not apply. The catalog is
-  a table, not a consolidated description.
+- No rule files beyond the router and this file load.
+  The catalog table is canonical and is not rebuilt by rescanning the repository.
+- The caps and floors of `process/describe-response.md` do not apply. The catalog is a table,
+  not a consolidated description.
 - No file is written and no target is surveyed.

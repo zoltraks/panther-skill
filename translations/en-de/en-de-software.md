@@ -4,8 +4,7 @@
 
 > **Scope:** English-German terminology for software engineering and the software
 > development lifecycle
-> **Key items:** domain signals, terminology table, context forms, calque traps,
-> untranslated terms
+> **Key items:** domain signals, terminology table, context forms, calque traps, untranslated terms
 
 Load this glossary for translate tasks on software and software-documentation subjects.
 
@@ -16,12 +15,12 @@ Apply it for English to German translate tasks, per `process/translate-document.
 Apply this glossary when:
 
 - The request names a software, IT, or SDLC subject.
-- The document type is technical, specification, README, contributing, changelog, agent
-  instruction, format specification, or rules document for a software project.
-- The document's terminology is dominated by code, API, build, deploy, test, or
-  infrastructure vocabulary.
-- The document's terminology is dominated by AI-agent, agentic-SDLC, or
-  assistant-orchestration vocabulary.
+- The document type is technical, specification, README, contributing, changelog, agent instruction,
+  format specification, or rules document for a software project.
+- The document's terminology is dominated by code, API, build, deploy, test,
+  or infrastructure vocabulary.
+- The document's terminology is dominated by AI-agent, agentic-SDLC,
+  or assistant-orchestration vocabulary.
 
 ## Terminology
 
@@ -93,14 +92,14 @@ Some English terms render differently by context.
 
 Do not force one form everywhere:
 
-- `feature` renders `Funktion` in product documentation - the `Feature` loanword only
-  when the project already uses it.
+- `feature` renders `Funktion` in product documentation - the `Feature` loanword only when the
+  project already uses it.
 - `issue` renders `Issue` for a tracked ticket and `Problem` in prose.
 - `environment` renders `Umgebung` generally and `Laufzeitumgebung` in runtime contexts.
 - `prompt` renders `Prompt` - capitalized as a German noun and never alternated with
   `Eingabeaufforderung` inside one document.
-- `human in the loop` renders `Human-in-the-Loop` or `menschliche Kontrolle` - one form
-  per document.
+- `human in the loop` renders `Human-in-the-Loop` or `menschliche Kontrolle` -
+  one form per document.
 
 ## Calque Traps
 
@@ -119,9 +118,8 @@ Do not force one form everywhere:
 
 Settled loanwords and identifiers stay in English form in German output:
 
-- `endpoint`, `frontend`, `backend`, `commit`, `merge`, `pull request`, `lint`,
-  `fork`, `framework`, `middleware`, `staging`, `backlog`, `sprint`, `prompt`,
-  `token`, `workflow`, `open source`
-- Acronyms: `API`, `SDK`, `CLI`, `UI`, `URL`, `HTTP`, `JSON`, `YAML`, `XML`, `SQL`,
-  `REST`, `IDE`, `CI/CD`, `ASCII`, `UTF-8`, `CRLF`, `npm`, `git`, `LLM`
+- `endpoint`, `frontend`, `backend`, `commit`, `merge`, `pull request`, `lint`, `fork`, `framework`,
+  `middleware`, `staging`, `backlog`, `sprint`, `prompt`, `token`, `workflow`, `open source`
+- Acronyms: `API`, `SDK`, `CLI`, `UI`, `URL`, `HTTP`, `JSON`, `YAML`, `XML`, `SQL`, `REST`, `IDE`,
+  `CI/CD`, `ASCII`, `UTF-8`, `CRLF`, `npm`, `git`, `LLM`
 - Product and technology names: `Docker`, `Kubernetes`, `Microsoft Fabric`, `Power BI`

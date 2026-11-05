@@ -2,13 +2,11 @@
 
 ## Purpose
 
-> **Scope:** English-Polish terminology for electrical engineering and electrotechnical
-> site-safety documents, including UK ECS and HSE vocabulary
-> **Key items:** domain signals, terminology table, context forms, calque traps,
-> untranslated terms
+> **Scope:** English-Polish terminology for electrical engineering and electrotechnical site-safety
+> documents, including UK ECS and HSE vocabulary
+> **Key items:** domain signals, terminology table, context forms, calque traps, untranslated terms
 
-Load this glossary for translate tasks on electrical, electrotechnical, and site-safety
-subjects.
+Load this glossary for translate tasks on electrical, electrotechnical, and site-safety subjects.
 
 Apply it for English to Polish translate tasks, per `process/translate-document.md`.
 
@@ -18,10 +16,10 @@ Apply this glossary when:
 
 - The request names an electrical, electrotechnical, wiring, or installation subject.
 - The document covers circuits, protection devices, isolation, voltage, or site power.
-- The document covers UK site safety for electrical work - ECS, HSE assessments,
-  permits to work, or safe-isolation procedures.
-- The document's terminology is dominated by protection devices, conductors, voltage
-  ratings, or isolation vocabulary.
+- The document covers UK site safety for electrical work - ECS, HSE assessments, permits to work,
+  or safe-isolation procedures.
+- The document's terminology is dominated by protection devices, conductors, voltage ratings,
+  or isolation vocabulary.
 
 ## Terminology
 
@@ -176,24 +174,22 @@ Some English terms render differently by context.
 
 Do not force one form everywhere:
 
-- `live` renders `pod napięciem` for an energized state and `czynny` for the IEC sense of
-  a live part - `live working` is `praca pod napięciem`, a `live conductor` is `przewód
-  czynny`.
-- `switch` renders `przełącznik` for a control device and `wyłącznik` for a protection or
-  supply switch - `main switch` is `wyłącznik główny`.
-- `dead` in `proving dead` renders `stwierdzenie braku napięcia`, and `dead working` is
-  `praca na sprzęcie odłączonym` - never a literal `martwy` in prose outside option-style
-  brevity.
+- `live` renders `pod napięciem` for an energized state and `czynny` for the IEC sense of a live
+  part - `live working` is `praca pod napięciem`, a `live conductor` is `przewód czynny`.
+- `switch` renders `przełącznik` for a control device and `wyłącznik` for a protection or supply
+  switch - `main switch` is `wyłącznik główny`.
+- `dead` in `proving dead` renders `stwierdzenie braku napięcia`,
+  and `dead working` is `praca na sprzęcie odłączonym` - never a literal `martwy` in prose outside
+  option-style brevity.
 - `protection` renders `ochrona` for shock/fire protection and `zabezpieczenie` for an
   installed protective device.
-- `isolation` renders `odłączenie` for switching off and `izolacja` only for insulating
-  material.
-- `rating` on a cable, fuse, or appliance renders `wartość znamionowa` or `obciążalność` -
-  `ocena` means assessment, not rating.
+- `isolation` renders `odłączenie` for switching off and `izolacja` only for insulating material.
+- `rating` on a cable, fuse, or appliance renders `wartość znamionowa` or `obciążalność` - `ocena`
+  means assessment, not rating.
 - `permit to work` renders `zezwolenie na pracę` - `pozwolenie` is general permission,
   not the UK site document.
-- `wyłącznik różnicowoprądowy` is preferred for `RCD` - `urządzenie różnicowoprądowe` is
-  an accepted synonym when a document already uses it.
+- `wyłącznik różnicowoprądowy` is preferred for `RCD` - `urządzenie różnicowoprądowe` is an accepted
+  synonym when a document already uses it.
 
 ## Calque Traps
 
@@ -239,14 +235,12 @@ Do not force one form everywhere:
 
 Settled terms stay in their canonical form in Polish output:
 
-- `RCD`, `RCCB`, `RCBO`, `MCB`, `MCCB`, `SPD` stay as device acronyms - gloss with the
-  Polish device name on first use, for example `wyłącznik różnicowoprądowy (RCD)`.
-- `HSE`, `ECS`, `EAW`, `RIDDOR`, `PAT`, `LOTO`, `CDM` stay as UK scheme acronyms - gloss
-  on first use, for example `urząd ds. BHP (HSE)`.
-- `BS 7671` and `IET Wiring Regulations` stay as standard names - the nearest Polish
-  counterparts `PN-HD 60364` and `N SEP-E-002` may be named as equivalents, never as
-  substitutes.
-- `AC`, `DC`, `ELV`, `SELV`, `PELV`, `PE`, `N`, `L1`, `L2`, `L3`, `IP` ratings stay
-  verbatim.
+- `RCD`, `RCCB`, `RCBO`, `MCB`, `MCCB`, `SPD` stay as device acronyms - gloss with the Polish device
+  name on first use, for example `wyłącznik różnicowoprądowy (RCD)`.
+- `HSE`, `ECS`, `EAW`, `RIDDOR`, `PAT`, `LOTO`,
+  `CDM` stay as UK scheme acronyms - gloss on first use, for example `urząd ds. BHP (HSE)`.
+- `BS 7671` and `IET Wiring Regulations` stay as standard names - the nearest Polish counterparts
+  `PN-HD 60364` and `N SEP-E-002` may be named as equivalents, never as substitutes.
+- `AC`, `DC`, `ELV`, `SELV`, `PELV`, `PE`, `N`, `L1`, `L2`, `L3`, `IP` ratings stay verbatim.
 - `Health and Safety Executive` renders `urząd ds. BHP (HSE)` in prose - the literal
   `Executive ds. Zdrowia i Bezpieczeństwa` is a calque.

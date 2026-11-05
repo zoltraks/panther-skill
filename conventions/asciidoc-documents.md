@@ -3,8 +3,8 @@
 ## Purpose
 
 > **Scope:** Handling of AsciiDoc files encountered inside projects the skill works on
-> **Key items:** title markers, document attributes, admonitions, includes, tables, minimal-edit
-> contract
+> **Key items:** title markers, document attributes, admonitions, includes, tables,
+> minimal-edit contract
 
 The skill authors Markdown.
 
@@ -19,11 +19,11 @@ Load it when the task touches an `.adoc` file, or when a scope file delegates to
 
 Author document content in Markdown files only.
 
-Edit an `.adoc` file only for structural changes the task requires, such as adding or removing
-an entry in a navigation outline or an include list.
+Edit an `.adoc` file only for structural changes the task requires,
+such as adding or removing an entry in a navigation outline or an include list.
 
-Never convert an `.adoc` file to Markdown or a Markdown file to `.adoc` as a side effect of a
-document task.
+Never convert an `.adoc` file to Markdown or a Markdown file to `.adoc` as a side
+effect of a document task.
 
 Never reformat, restyle, or normalize an `.adoc` file.
 
@@ -47,8 +47,7 @@ AsciiDoc marks headings with equals signs preceding the title:
 The number of `=` characters chooses the level - one for the document title, two for sections,
 three for subsections.
 
-When editing, keep the document's existing marker-to-level mapping and match it for added
-headings.
+When editing, keep the document's existing marker-to-level mapping and match it for added headings.
 
 ## Document Header And Attributes
 
@@ -64,8 +63,8 @@ Author Name <author@example.com>
 
 Attribute lines start with a colon and end with a colon, they configure the renderer.
 
-Treat the header and its attributes as opaque - preserve them exactly, change a value only when
-the task explicitly asks for it.
+Treat the header and its attributes as opaque - preserve them exactly,
+change a value only when the task explicitly asks for it.
 
 ## Admonitions
 
@@ -105,8 +104,8 @@ link:https://example.com[external link]
 An `include::` path resolves relative to the including file or to the base directory the build
 defines - check the project's build configuration before moving a file that includes others.
 
-Treat `xref:`, `link:`, and `<<anchor>>` references as opaque content, preserve them exactly
-when editing.
+Treat `xref:`, `link:`, and `<<anchor>>` references as opaque content,
+preserve them exactly when editing.
 
 ## Tables
 
@@ -120,8 +119,8 @@ AsciiDoc tables use delimited blocks:
 |===
 ```
 
-The `|===` lines open and close the table, `cols=` sets the column specification, and cells
-separate with `|`.
+The `|===` lines open and close the table, `cols=` sets the column specification,
+and cells separate with `|`.
 
 Treat table blocks as opaque.
 
@@ -141,9 +140,8 @@ Treat all of it as opaque content - preserve it exactly when editing.
 
 ## Detection Signals
 
-A file is likely AsciiDoc when it has an `.adoc` extension, or when it opens with a `= Title`
-line, carries `:attribute:` lines, or contains `include::` directives or `|===` table
-delimiters.
+A file is likely AsciiDoc when it has an `.adoc` extension, or when it opens with a `= Title` line,
+carries `:attribute:` lines, or contains `include::` directives or `|===` table delimiters.
 
-An `.txt` file may also contain AsciiDoc inside a documentation project, check the project's
-build configuration when unsure.
+An `.txt` file may also contain AsciiDoc inside a documentation project,
+check the project's build configuration when unsure.

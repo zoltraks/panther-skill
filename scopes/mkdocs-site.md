@@ -4,13 +4,13 @@
 
 > **Scope:** Document work inside an MkDocs documentation site - a project that builds its
 > documentation from Markdown pages in a `docs/` directory configured by `mkdocs.yml`
-> **Key items:** `mkdocs.yml` nav registration, `docs/index.md` homepage, kebab-case pages,
-> file-path URLs
+> **Key items:** `mkdocs.yml` nav registration, `docs/index.md` homepage, kebab-case
+> pages, file-path URLs
 
 An MkDocs site renders a `docs/` directory into a static documentation website.
 
-Navigation is either listed explicitly in the `mkdocs.yml` `nav` key or generated from the
-directory tree.
+Navigation is either listed explicitly in the `mkdocs.yml` `nav` key or generated
+from the directory tree.
 
 Load this file when the task creates or edits pages inside such a site.
 
@@ -22,11 +22,12 @@ A repository matches this scope when it contains all of the following:
 - a `site_name` key inside that configuration file
 - a `docs/` directory holding Markdown pages, with `docs/index.md` as the homepage
 
-The configuration file is the strongest signal. The other two may be missing in a partially
-set up project.
+The configuration file is the strongest signal.
+The other two may be missing in a partially set up project.
 
-When a software project with a `docs/GUIDELINES.md` tree also carries `mkdocs.yml`, this scope
-governs placement and registration while the guidelines document still governs project rules.
+When a software project with a `docs/GUIDELINES.md` tree also carries `mkdocs.yml`,
+this scope governs placement and registration while the guidelines document still
+governs project rules.
 
 ## Directory Roles
 
@@ -39,15 +40,14 @@ governs placement and registration while the guidelines document still governs p
 | `docs/<topic>/index.md` | Topic homepage, serves as the section landing page |
 | `docs/` media           | Images and assets referenced by relative path      |
 
-`mkdocs.yml` is build configuration, not a document - edit only the `nav` section for a
-document task.
+`mkdocs.yml` is build configuration, not a document - edit only the `nav` section
+for a document task.
 
 ## Page Conventions
 
 Author and edit content in the `.md` pages.
 
-Page filenames use lowercase kebab-case, for example `retry-helpers.md` or
-`installation-guide.md`.
+Page filenames use lowercase kebab-case, for example `retry-helpers.md` or `installation-guide.md`.
 
 This convention comes from the scope.
 
@@ -62,8 +62,8 @@ A page carrying YAML frontmatter follows `conventions/markdown-dialects.md` - pr
 When `mkdocs.yml` defines a `nav` key, adding a page requires registering it:
 
 1. Create the `.md` page in `docs/` or in a topic subdirectory.
-2. Add the page's path relative to `docs/` to the `nav` list, in the entry and position that
-   define the section and the reading order.
+2. Add the page's path relative to `docs/` to the `nav` list,
+   in the entry and position that define the section and the reading order.
 3. Remove the entry when the page is removed.
 
 When no `nav` key is defined, navigation is generated from the directory structure and no

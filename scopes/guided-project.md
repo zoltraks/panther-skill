@@ -4,8 +4,8 @@
 
 > **Scope:** Document work inside a software project whose `docs/` tree is governed by an
 > explicit guidelines document
-> **Key items:** README entry point, `docs/GUIDELINES.md` source of truth, UPPERCASE document
-> set, versioned artifact directories, agent read boundaries
+> **Key items:** README entry point, `docs/GUIDELINES.md` source of truth, UPPERCASE document set,
+> versioned artifact directories, agent read boundaries
 
 A guided project is a software repository that carries a governed documentation tree.
 
@@ -18,26 +18,26 @@ Load this file when the task creates or edits documents inside such a project.
 
 A repository matches this scope when it contains all of the following:
 
-- a software project - source directories, build manifests such as `Cargo.toml`, `*.sln`, or
-  `package.json`
+- a software project - source directories, build manifests such as `Cargo.toml`,
+  `*.sln`, or `package.json`
 - a guidelines document, conventionally `docs/GUIDELINES.md`, named as the source of truth
 - a root `README.md` that points to the guidelines for project rules
 
 Secondary signals: a set of UPPERCASE conventional documents in `docs/` such as `ALWAYS.md`,
-`COPYRIGHTS.md`, `CONCEPT.md`, `SPECIFICATION.md`, `VERSIONING.md`, `REFACTORING.md`, and
-versioned artifact directories such as `docs/feature/`, `docs/change/`, `docs/plan/`,
+`COPYRIGHTS.md`, `CONCEPT.md`, `SPECIFICATION.md`, `VERSIONING.md`, `REFACTORING.md`,
+and versioned artifact directories such as `docs/feature/`, `docs/change/`, `docs/plan/`,
 `docs/refactoring/`, or `docs/report/`.
 
-When `docs/GUIDELINES.md` exists but no software project does, check `scopes/docs-collection.md`
-instead.
+When `docs/GUIDELINES.md` exists but no software project does,
+check `scopes/docs-collection.md` instead.
 
 ## Sources Of Truth
 
 The project defines its own rule hierarchy - read the guidelines document before writing.
 
-Typical chain: `README.md` points to `docs/GUIDELINES.md`, which names the authoritative
-specification and mandatory reads such as `COPYRIGHTS.md` or a pre-work checklist in
-`ALWAYS.md`.
+Typical chain: `README.md` points to `docs/GUIDELINES.md`,
+which names the authoritative specification and mandatory reads such as `COPYRIGHTS.md` or a
+pre-work checklist in `ALWAYS.md`.
 
 Project rules outrank the skill's defaults for that repository.
 
@@ -65,8 +65,9 @@ The exact directory set varies per project.
 
 The guidelines document is authoritative.
 
-Projects may also carry payload collections outside `docs/`, for example a knowledge base under
-`example/data/` - those follow their own conventions, not this scope's.
+Projects may also carry payload collections outside `docs/`,
+for example a knowledge base under `example/data/` - those follow their own
+conventions, not this scope's.
 
 ## Working Rules
 
@@ -79,16 +80,16 @@ Do not read files under versioned artifact directories such as `docs/feature/`, 
 
 Place temporary scripts in the project's `work/` directory when it declares one.
 
-Many projects require documentation updates to precede implementation - check the guidelines
-when a task mixes code and documents.
+Many projects require documentation updates to precede implementation - check the guidelines when a
+task mixes code and documents.
 
-Documents carrying a version comment such as `<!-- Version: X.Y | Date: ... -->` have it
-updated on every change, per the project's own versioning rules.
+Documents carrying a version comment such as `<!-- Version: X.Y | Date: ... -->` have it updated on
+every change, per the project's own versioning rules.
 
-Where the project declares no scheme of its own, a document version uses three-part
-`<major>.<minor>.<patch>` numbering with single-digit components that roll over at 9
-(`0.2.9` bumps to `0.3.0`, `0.9.9` to `1.0.0`), counted per document and never copied from
-the project version.
+Where the project declares no scheme of its own,
+a document version uses three-part `<major>.<minor>.<patch>` numbering with single-digit components
+that roll over at 9 (`0.2.9` bumps to `0.3.0`, `0.9.9` to `1.0.0`),
+counted per document and never copied from the project version.
 
 Never bump version numbers unless the request explicitly asks for it.
 
@@ -100,11 +101,12 @@ UPPERCASE conventional names are used for the governed document set in `docs/`:
 `WORKFLOW.md`, `REFERENCES.md`, `COPYRIGHTS.md`, `CONCEPT.md`, `PREPARATION.md`, `PLAN.md`,
 `BENCHMARK.md`, `IGNORE.md`, `STYLE.md`.
 
-Versioned artifact files use lowercase kebab-case inside the version directory, for example
-`docs/feature/0.1.8/knowledge-library.md`.
+Versioned artifact files use lowercase kebab-case inside the version directory,
+for example `docs/feature/0.1.8/knowledge-library.md`.
 
-Implementation plans carry the `-implementation` suffix, for example
-`docs/plan/0.1.5/code-quality-issues-implementation.md` derived from `code-quality-issues.md`.
+Implementation plans carry the `-implementation` suffix,
+for example `docs/plan/0.1.5/code-quality-issues-implementation.md` derived from
+`code-quality-issues.md`.
 
 Refactoring artifacts come in `ASSESSMENT` and `PROPOSAL` pairs per version.
 

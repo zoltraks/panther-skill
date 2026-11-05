@@ -2,9 +2,7 @@
 
 ## Purpose
 
-> **Scope:** Documents describing how one project domain will be managed - the
-> PMBOK plan family.
->
+> **Scope:** Documents describing how one project domain will be managed - the PMBOK plan family.
 > **Key items:** Methodology, roles, thresholds and tolerances, cadence, tools,
 > master plan integration.
 
@@ -33,8 +31,8 @@ A management plan describes how a project domain is governed. That is this type.
 2. Version comment per the project-document convention.
 3. Purpose - the domain covered and the relationship to the master plan.
 4. Methodology and Approach - how the domain is managed.
-5. Roles and Responsibilities - who does what, with a RACI table when several
-   parties share the work.
+5. Roles and Responsibilities - who does what,
+   with a RACI table when several parties share the work.
 6. Thresholds and Tolerances - the variance that triggers action.
 7. Cadence and Process - review frequency, update process, change control.
 8. Tools - what the project uses for this domain.
@@ -43,16 +41,16 @@ A management plan describes how a project domain is governed. That is this type.
 
 ## Deltas From The Language Baseline
 
-- The imperative voice matches `types/rules-document.md`, but the plan shape
-  adds thresholds, cadences, and named roles.
-- Reference registers, never duplicate their entries - the risk management
-  plan points at the risk register, it does not contain it.
-- Subsidiary plans may live as sections of one master plan. Follow the
-  document's existing structure.
-- Update the version comment on every change - three-part single-digit numbering that rolls
-  over at 9 unless the project declares a different scheme.
-- Placement - conventionally `docs/plan/` for subsidiary plans or an uppercase
-  `docs/PLAN.md` master plan in guided projects.
+- The imperative voice matches `types/rules-document.md`, but the plan shape adds thresholds,
+  cadences, and named roles.
+- Reference registers, never duplicate their entries - the risk management plan points at the risk
+  register, it does not contain it.
+- Subsidiary plans may live as sections of one master plan.
+  Follow the document's existing structure.
+- Update the version comment on every change - three-part single-digit numbering that rolls over at
+  9 unless the project declares a different scheme.
+- Placement - conventionally `docs/plan/` for subsidiary plans or an uppercase `docs/PLAN.md` master
+  plan in guided projects.
 
 ## Section Names
 
@@ -76,7 +74,7 @@ A management plan describes how a project domain is governed. That is this type.
 
 Merged forms satisfy their constituent entries.
 
-A plan may still split `Methodology and Approach` or `Related Plans and Registers` into separate
-sections.
+A plan may still split `Methodology and Approach` or `Related Plans and Registers`
+into separate sections.
 
 Section names for other languages are declared in the matching `languages/<code>.md` file.

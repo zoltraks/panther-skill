@@ -2,8 +2,8 @@
 
 ## Purpose
 
-> **Scope:** Conventions for formal change request documents - a single proposed change to
-> scope, schedule, budget, or baseline submitted for approval
+> **Scope:** Conventions for formal change request documents - a single proposed change to scope,
+> schedule, budget, or baseline submitted for approval
 > **Key items:** request metadata, justification, impact assessment, approval block
 
 A change request asks a decision maker to approve one change.
@@ -12,16 +12,15 @@ It is a form, not an argument.
 
 Each field exists so the approver can decide without a meeting.
 
-Typical shape: a request header, the description of the change, the reason, the impact on the
-baselines, and an approval block.
+Typical shape: a request header, the description of the change, the reason,
+the impact on the baselines, and an approval block.
 
 ## When To Use
 
 Use for scope, schedule, budget, and baseline change requests in governed projects.
 
-For design alternatives under review use `types/proposal-document.md` - a decision already
-taken belongs in `types/decision-record.md`, and the log of many requests in
-`types/register-log.md`.
+For design alternatives under review use `types/proposal-document.md` - a decision already taken
+belongs in `types/decision-record.md`, and the log of many requests in `types/register-log.md`.
 
 **Templates**
 
@@ -45,12 +44,12 @@ The canonical skeleton, adjusted to the request:
 ## Deltas From The Language Baseline
 
 - One change per request. Split combined requests into separate documents linked by ID.
-- The state moves through `submitted`, `approved`, `rejected`, `deferred` - record the state in
-  Document Information, never rewrite a decided request's description.
+- The state moves through `submitted`, `approved`, `rejected`,
+  `deferred` - record the state in Document Information,
+  never rewrite a decided request's description.
 - Mark unknown fields `TBD` or `NOT SPECIFIED` - never invent impact figures.
 - The approval block is filled by the approver - write `Pending` until the decision lands.
-- Placement - conventionally `docs/change-requests/` or the register directory the project
-  declares.
+- Placement - conventionally `docs/change-requests/` or the register directory the project declares.
 
 ## Section Names
 

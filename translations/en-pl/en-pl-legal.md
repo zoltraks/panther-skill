@@ -3,15 +3,14 @@
 ## Purpose
 
 > **Scope:** English-Polish terminology for contracts, compliance, and legal documents
-> **Key items:** domain signals, terminology table, context forms, calque traps,
-> untranslated terms
+> **Key items:** domain signals, terminology table, context forms, calque traps, untranslated terms
 
 Load this glossary for translate tasks on legal subjects.
 
 Apply it for English to Polish translate tasks, per `process/translate-document.md`.
 
-Legal systems differ - common-law and civil-law concepts are not interchangeable, so this
-glossary maps the conventional equivalents a Polish document uses.
+Legal systems differ - common-law and civil-law concepts are not interchangeable,
+so this glossary maps the conventional equivalents a Polish document uses.
 
 ## Domain Signals
 
@@ -19,8 +18,7 @@ Apply this glossary when:
 
 - The request names a legal, contract, compliance, license, or regulatory subject.
 - The document covers agreements, terms of use, privacy, licensing, or statutory rules.
-- The document's terminology is dominated by parties, clauses, liability, or rights
-  vocabulary.
+- The document's terminology is dominated by parties, clauses, liability, or rights vocabulary.
 
 ## Terminology
 
@@ -102,15 +100,14 @@ Some English terms render differently by context.
 
 Do not force one form everywhere:
 
-- `warranty` renders `rękojmia` for the statutory seller liability and `gwarancja` for the
-  voluntary contractual guarantee - the distinction is material in Polish law.
+- `warranty` renders `rękojmia` for the statutory seller liability and `gwarancja` for the voluntary
+  contractual guarantee - the distinction is material in Polish law.
 - `agreement` renders `umowa` for a contract and `porozumienie` for an arrangement.
-- `liability` renders `odpowiedzialność` in legal prose and `zobowiązanie` on a balance
-  sheet - the finance glossary governs accounting text.
-- `provision` renders `postanowienie` in contract language and `rezerwa` in financial
-  statements.
-- `court` renders `sąd` generally, `sąd rejestrowy` for registry matters, and
-  `trybunał` for EU or constitutional bodies.
+- `liability` renders `odpowiedzialność` in legal prose and `zobowiązanie` on a balance sheet - the
+  finance glossary governs accounting text.
+- `provision` renders `postanowienie` in contract language and `rezerwa` in financial statements.
+- `court` renders `sąd` generally, `sąd rejestrowy` for registry matters,
+  and `trybunał` for EU or constitutional bodies.
 - `execution` renders `wykonanie` for performance of a contract and `egzekucja` for
   enforcement proceedings.
 
@@ -130,7 +127,7 @@ Do not force one form everywhere:
 
 Settled terms stay in their canonical form in Polish output:
 
-- `GDPR` renders `RODO` (Rozporządzenie o Ochronie Danych Osobowych), `NDA` may stay or
-  render `umowa o zachowaniu poufności`, `KRS` stays, `CEIDG` stays
+- `GDPR` renders `RODO` (Rozporządzenie o Ochronie Danych Osobowych),
+  `NDA` may stay or render `umowa o zachowaniu poufności`, `KRS` stays, `CEIDG` stays
 - `due diligence`, `know-how`, `compliance`, `ESCO`, `pro bono`, `ad hoc`
 - Latin formulas common to Polish legal writing: `ipso facto`, `sensu stricto`, `de facto`

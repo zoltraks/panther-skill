@@ -2,8 +2,7 @@
 
 ## Purpose
 
-> **Scope:** The standalone procedure for auditing a single document against its governing
-> rules
+> **Scope:** The standalone procedure for auditing a single document against its governing rules
 > **Key items:** mechanical checks, structural census, convention evaluation, content review,
 > findings, fix plan, report
 
@@ -13,8 +12,8 @@ It is analysis only.
 
 It changes nothing in the audited location.
 
-Use it when the request asks to audit, check, review, or assess a document's formatting,
-structure, conformance, or content quality.
+Use it when the request asks to audit, check, review, or assess a document's formatting, structure,
+conformance, or content quality.
 
 ## Target Resolution
 
@@ -24,33 +23,33 @@ When the request names none, the target is the file the request centers on.
 
 Markdown documents get the full procedure.
 
-Other formats get a limited census - encoding and characters only - reported with a `Note`
-finding that coverage was partial.
+Other formats get a limited census - encoding and characters only - reported with a `Note` finding
+that coverage was partial.
 
 ## Governing Rules
 
 Read the target repository's own rule documents first.
 
-Candidates are `README.md`, `AGENTS.md`, and rule files the repository declares, such as
-`GUIDELINES.md`, `STYLE.md`, or `TABLE.md` inside a docs tree.
+Candidates are `README.md`, `AGENTS.md`, and rule files the repository declares,
+such as `GUIDELINES.md`, `STYLE.md`, or `TABLE.md` inside a docs tree.
 
 The document's own conventions win over skill defaults.
 
-Where the repository is silent, the matching `languages/` baseline and `types/` file supply
-the defaults.
+Where the repository is silent, the matching `languages/` baseline and `types/` file
+supply the defaults.
 
-Directories the repository marks frozen or excluded stay out of scope unless the request
-names them - an `archive/` tree is the common case.
+Directories the repository marks frozen or excluded stay out of scope unless the request names them
+- an `archive/` tree is the common case.
 
 ## Mechanical Checks
 
 Run the document-production tools in place from the skill root - copy them under `.tmp.`
-names only when the skill root cannot be invoked, see `scripts/README.md` and the File
-Handling Contract in `SKILL.md`.
+names only when the skill root cannot be invoked,
+see `scripts/README.md` and the File Handling Contract in `SKILL.md`.
 
-`check-document.py` runs the standard battery in one invocation - `--layout` promotes
-the reflow check matching the document's detected wrap convention (`wrap` for
-fixed-width documents, `unwrap` for logical-line documents):
+`check-document.py` runs the standard battery in one invocation - `--layout` promotes the reflow
+check matching the document's detected wrap convention (`wrap` for fixed-width documents,
+`unwrap` for logical-line documents):
 
 ```bash
 python3 <skill-root>/scripts/check-document.py <file> --width <convention> --layout <wrap-or-unwrap>
@@ -68,14 +67,15 @@ python3 <skill-root>/scripts/lint-english.py <file>
 python3 <skill-root>/scripts/check-consistency.py <file>
 ```
 
-`check-document.py` flags `--english` and `--consistency` cover the last two in the
-standard battery, and `lint-english.py` runs only for English documents.
+`check-document.py` flags `--english` and `--consistency` cover the last two in the standard
+battery, and `lint-english.py` runs only for English documents.
 
-The width comes from the document's convention, declared by the repository's rules or observed
-in the document itself - 100 when neither declares one.
+The width comes from the document's convention,
+declared by the repository's rules or observed in the document itself - 100 when
+neither declares one.
 
-Add `--payload-markdown` to `check-document.py` or the individual payload-aware tools
-when the document carries ` ```markdown ` payload blocks.
+Add `--payload-markdown` to `check-document.py` or the individual payload-aware tools when the
+document carries ` ``` markdown ` payload blocks.
 
 Record every `PASS`, `WARN`, `NOTE`, `SKIP`, and `FAIL` for the report.
 
@@ -96,32 +96,31 @@ When the document's type is known or declared, run the section check on top:
 python3 <skill-root>/scripts/check-sections.py <file> --type <name>
 ```
 
-It reports missing required and recommended sections, sections unusual for the type, and
-headings the type does not know - record them as findings and feed the missing set into the
-fix plan's `section-add` surface when fixes are approved.
+It reports missing required and recommended sections, sections unusual for the type,
+and headings the type does not know - record them as findings and feed the missing set into the fix
+plan's `section-add` surface when fixes are approved.
 
-A document whose type defines an open section vocabulary - `procedure-manual`, or a
-vocabulary the repository's own rules declare - treats unknown-heading notes as
-informational, and the fix plan never forces generic section names onto custom headings.
+A document whose type defines an open section vocabulary - `procedure-manual`,
+or a vocabulary the repository's own rules declare - treats unknown-heading notes as informational,
+and the fix plan never forces generic section names onto custom headings.
 
 ## Convention Evaluation
 
 Compare the mechanical results and the census against the governing rules.
 
-Classify the document's prose layout per `conventions/prose-layout.md` - the census
-`prose layout` lines report `separated`, `flowing`, `bounded`, `justified`, or `mixed`
-per element type.
+Classify the document's prose layout per `conventions/prose-layout.md` - the census `prose layout`
+lines report `separated`, `flowing`, `bounded`, `justified`, or `mixed` per element type.
 
-A `mixed` result or diverging layouts across element types is an inconsistency - report
-it as a `Minor` or `Note` finding naming the dominant convention, and put normalization
-into the fix plan only when the request asks for one.
+A `mixed` result or diverging layouts across element types is an inconsistency - report it as a
+`Minor` or `Note` finding naming the dominant convention,
+and put normalization into the fix plan only when the request asks for one.
 
 Distinguish a violation from an in-document convention.
 
 A rule broken once is a violation.
 
-A rule broken systematically and consistently - em-dashes everywhere, paired short sentences
-throughout is a convention the document adopted.
+A rule broken systematically and consistently - em-dashes everywhere,
+paired short sentences throughout is a convention the document adopted.
 
 Report conventions as `Minor` or `Note` findings that name the diverging rule.
 
@@ -139,9 +138,9 @@ Report only observations with line evidence - never taste judgments:
 - consistency - contradictory statements, version numbers that disagree between sections,
   quoted section references that resolve nowhere, and names that drift between variants
 - redundancy - the same statement repeated across sections
-- structural residue - empty headings, stranded table fragments such as a prose line ending
-  in a bare `|`, and dangling numeric references (`section X.Y`, record identifiers) left
-  behind by a renumbering
+- structural residue - empty headings, stranded table fragments such as a prose line ending in a
+  bare `|`, and dangling numeric references (`section X.Y`, record identifiers)
+  left behind by a renumbering
 
 The review is best-effort.
 
@@ -166,16 +165,15 @@ Never mix the two styles in one report.
 
 Severity levels:
 
-- `Critical` - the document is broken or unusable, for example wrong encoding or unreadable
-  content
+- `Critical` - the document is broken or unusable, for example wrong encoding or unreadable content
 - `Major` - a clear rule violation, for example a missing H1 or a dead internal link
 - `Minor` - a style divergence from a stated or default rule
-- `Note` - an observation or usability gap, for example no Contents section in a very long
-  document
+- `Note` - an observation or usability gap, for example no Contents section in a very long document
 
-Findings the user deliberately accepts - an intentional dialect choice, a rule the
-document's own convention overrides, a check result that does not apply - are recorded
-with their acceptance reason so later passes do not re-flag them as new defects.
+Findings the user deliberately accepts - an intentional dialect choice,
+a rule the document's own convention overrides,
+a check result that does not apply - are recorded with their acceptance reason so later passes do
+not re-flag them as new defects.
 
 ## Fix Plan
 
@@ -192,13 +190,13 @@ Map every finding to a fix:
 
 Order the plan by severity - `Critical` first, `Note` last.
 
-Note explicitly that executing the plan is a Correct task per
-`process/correct-document.md` the user must approve.
+Note explicitly that executing the plan is a Correct task per `process/correct-document.md`
+the user must approve.
 
-When the request asks to decide findings individually - "go through the findings
-interactively", "ask me about each one" - group the findings into approval rounds of at
-most four related findings per question, offer a fix or skip decision on each, and apply
-only the approved fixes through `process/correct-document.md`.
+When the request asks to decide findings individually - "go through the findings interactively",
+"ask me about each one" - group the findings into approval rounds of at most four related findings
+per question, offer a fix or skip decision on each,
+and apply only the approved fixes through `process/correct-document.md`.
 
 Under JSON exchange the approval question emits as the `fix-plan-approval` `choice` parameter.
 
@@ -213,8 +211,7 @@ A file goes to the location the request names - a conventional name such as
 
 Structure every report the same way:
 
-1. **Verdict** - the conformance summary and whether the document is clean, divergent, or
-   broken.
+1. **Verdict** - the conformance summary and whether the document is clean, divergent, or broken.
 2. **Document Facts** - path, scope, type, language, encoding, line endings, size.
 3. **Mechanical Results** - every tool run and its `PASS`, `WARN`, or `FAIL`.
 4. **Structural Census** - the census numbers that matter.
@@ -235,5 +232,6 @@ It is not a security review, code audit, or production-readiness assessment.
 
 Those belong to a dedicated engineering-audit capability, not to document work.
 
-It does not re-ask after a declined fix plan, and it never applies the plan it writes -
-an approved plan executes through `process/correct-document.md`.
+It does not re-ask after a declined fix plan,
+and it never applies the plan it writes - an approved plan executes through
+`process/correct-document.md`.
