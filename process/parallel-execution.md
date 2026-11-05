@@ -29,11 +29,11 @@ Parallelism never changes what is produced - it changes only who reads or drafts
 Choose roles from the pool per request shape, merging roles when the surface is small.
 State which roles ran and why in the delivery.
 
-| Role            | Focus                                                              |
-|-----------------|--------------------------------------------------------------------|
-| `evidence`      | Read-only sweep: seed material, existing documents, conventions    |
-| `section-draft` | Draft one named region of a large document to a scratch path       |
-| `checklist`     | Run one checklist family from `references/review-checklist.md`     |
+| Role            | Focus                                                           |
+|-----------------|-----------------------------------------------------------------|
+| `evidence`      | Read-only sweep: seed material, existing documents, conventions |
+| `section-draft` | Draft one named region of a large document to a scratch path    |
+| `checklist`     | Run one checklist family from `references/review-checklist.md`  |
 
 ## Scout Contract
 
