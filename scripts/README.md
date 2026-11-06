@@ -638,3 +638,15 @@ The validators are mechanical checks, not judgment.
 A passing validator does not prove that a document is well written or correct.
 
 Use the prompts in `evals/evals.json` for behavioral regression checks.
+
+## Session Notes - Repair Options
+
+`fix-document.py` reads `panther.json` for repair style: `semicolon_repair`
+(`aside` default, `period`, `comma`) and `list_line_repair` (`join` default -
+a lone marker-led continuation rejoins its previous line - `blank`, `skip`).
+Its loop ends with `reflow-prose.py --wrap`, which abstains on unwrapped
+documents. `reflow-prose.py` never emits a paragraph continuation that opens
+with a list or quote marker. `safe-replace.py --multiline` lets the pattern
+span line endings (`\r\n`, `\r`, or `\n`). `validate-document.py` and
+`check-document.py` print a pointer to `fix-document.py` when mechanical
+findings exist.

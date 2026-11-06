@@ -181,7 +181,32 @@ def wrap_line(line, width):
                 cur = cont + extra
                 parts = [extra]
     out.append(cur)
+    out = merge_marked_continuations(out, cont, width)
     return rebalance(out, prefix, cont, width)
+
+
+MARKED_CONT = re.compile(r"^(>+|[-*+]|\d+[.)]) ")
+
+
+def merge_marked_continuations(out, cont, width):
+    """Pull a marker-looking atom off a continuation line's front.
+
+    A continuation that opens with "- ", "* ", a numeral marker, or ">"
+    reads as a real list or quote to parsers and to the ITEM/QUOTE
+    detectors on the next pass - the atom is aside or inline text, so it
+    rejoins the previous line when it fits within the width.
+    """
+    for i in range(1, len(out)):
+        text = out[i][len(cont):]
+        m = MARKED_CONT.match(text)
+        if not m:
+            continue
+        token = m.group(1)
+        if len(out[i - 1]) + 1 + len(token) > width:
+            continue
+        out[i - 1] += " " + token
+        out[i] = cont + text[m.end():]
+    return out
 
 
 def rebalance(out, prefix, cont, width):

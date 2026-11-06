@@ -27,6 +27,7 @@ that survives the loop is listed as unrepairable.
 """
 
 import argparse
+import importlib.util
 import os
 import re
 import subprocess
@@ -35,6 +36,7 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 VALIDATE = os.path.join(HERE, "validate-document.py")
 TABLE = os.path.join(HERE, "format-table.py")
+REFLOW = os.path.join(HERE, "reflow-prose.py")
 
 FAIL_RE = re.compile(r"FAIL .+?:line (\d+): (.+)$", re.M)
 
@@ -60,9 +62,36 @@ def validate_failures(path):
     return FAIL_RE.findall(out)
 
 
-def fix_semicolon(line):
-    # "; " mid-sentence becomes the aside separator; a trailing ';'
-    # becomes a period. Spans exempted by the validator stay untouched.
+LIST_LEAD = re.compile(r"^\s*[-*+] ")
+
+
+def load_panther_config(path):
+    """Read panther.json from the document's directory or an ancestor.
+
+    Reuses the loader inside validate-document.py so the key format stays
+    single-sourced - `semicolon_repair` selects aside|period|comma joins,
+    `list_line_repair` selects join|blank|skip for marker-led
+    continuation lines.
+    """
+    spec = importlib.util.spec_from_file_location("vd", VALIDATE)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    cfg, _ = mod.load_config(path)
+    return cfg if isinstance(cfg, dict) else {}
+
+
+def fix_semicolon(line, mode="aside"):
+    # "aside" keeps the canonical repair - "; " mid-sentence becomes the
+    # aside separator, a trailing ';' a period. "period" splits into two
+    # sentences, capitalizing the new one. "comma" joins with ", ".
+    # Spans exempted by the validator stay untouched in every mode.
+    if mode == "period":
+        line = re.sub(r"; ([a-z])", lambda m: ". " + m.group(1).upper(), line)
+        line = line.replace("; ", ". ")
+        return re.sub(r";(?=\s*$)", ".", line)
+    if mode == "comma":
+        line = line.replace("; ", ", ")
+        return re.sub(r";(?=\s*$)", ".", line)
     if "; " in line:
         return line.replace("; ", " - ")
     return re.sub(r";(?=\s*$)", ".", line)
@@ -74,18 +103,28 @@ def fix_pipe(line):
     return re.sub(r"`[^`]*\|[^`]*`", lambda m: m.group(0).replace("|", "&#124;"), line)
 
 
-def apply_repair(lines, number, reason):
+def apply_repair(lines, number, reason, cfg):
     idx = number - 1
     if idx >= len(lines):
         return lines
     if "semicolon in prose" in reason:
-        lines[idx] = fix_semicolon(lines[idx])
+        lines[idx] = fix_semicolon(lines[idx], cfg.get("semicolon_repair", "aside"))
     elif "literal pipe inside code span" in reason:
         lines[idx] = fix_pipe(lines[idx])
     elif "no blank line before" in reason or "no blank line after" in reason:
+        policy = cfg.get("list_line_repair", "join")
+        if policy == "join" and "before" in reason and LIST_LEAD.match(lines[idx]):
+            nxt = idx + 1
+            if nxt >= len(lines) or not LIST_LEAD.match(lines[nxt]):
+                # A lone marker-led line after prose is a wrapped aside
+                # continuation, not a list - join it back instead of
+                # opening a fake list with a blank line.
+                lines[idx - 1] = lines[idx - 1].rstrip() + " " + lines[idx].strip()
+                del lines[idx]
+                return lines
         # Both findings name the same missing boundary - the blank goes
         # between line N-1 and line N in every flagged case.
-        if idx > 0 and lines[idx - 1].strip() != "":
+        if policy != "skip" and idx > 0 and lines[idx - 1].strip() != "":
             lines.insert(idx, "")
     return lines
 
@@ -119,6 +158,7 @@ def main(path, check_only, max_passes):
         return 0
 
     repaired = 0
+    cfg = load_panther_config(path)
     for _ in range(max_passes):
         before = open(path, "rb").read()
         fails = validate_failures(path)
@@ -128,13 +168,20 @@ def main(path, check_only, max_passes):
         if mechanical:
             lines = read_lines(path)
             for number, reason in sorted(mechanical, key=lambda item: -int(item[0])):
-                lines = apply_repair(lines, int(number), reason)
+                lines = apply_repair(lines, int(number), reason, cfg)
             write_lines(path, lines)
             repaired += len(mechanical)
         # format-table runs after the text repairs - a literal pipe left
         # in a code span would otherwise inflate the table's column count.
         subprocess.run(
             [sys.executable, TABLE, path], capture_output=True, check=False
+        )
+        # reflow normalizes lines the join-back repair lengthened; on an
+        # unwrapped document it abstains with a note, so the call is safe
+        # under either prose layout.
+        subprocess.run(
+            [sys.executable, REFLOW, path, "--wrap"],
+            capture_output=True, check=False,
         )
         if open(path, "rb").read() == before:
             break

@@ -299,6 +299,8 @@ def main(argv: list[str]) -> int:
 
     print(f"check-document: {'PASS' if not failures else 'FAIL'} "
           f"({failures} gated check(s) reporting)")
+    if failures:
+        print("note: fix-document.py repairs the mechanical finding classes")
     return 1 if failures else 0
 
 

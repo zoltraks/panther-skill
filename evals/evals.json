@@ -1909,6 +1909,17 @@
         "Example-block interiors change only when the request names them or a force surface applies, such as `--payload-markdown` or an opt-in marker like `<!-- align-comments: off -->`.",
         "An example that fails its own teaching point is reported as a finding, not silently fixed."
       ]
+    },
+    {
+      "id": 159,
+      "prompt": "Fix the mechanical defects in this document.",
+      "expected_output": "The mechanical finding classes repaired by fix-document.py - semicolons, literal pipes, missing blank lines, marker-led continuation joins - with structural findings left as judgment items.",
+      "files": [],
+      "expectations": [
+        "runs `fix-document.py`, not hand repairs",
+        "panther.json keys `semicolon_repair` and `list_line_repair` tune the repair style",
+        "a lone marker-led continuation rejoins its previous line; a real list gets the blank line"
+      ]
     }
   ]
 }

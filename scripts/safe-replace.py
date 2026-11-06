@@ -74,6 +74,9 @@ def main():
     parser.add_argument("file", type=Path)
     parser.add_argument("old")
     parser.add_argument("new")
+    parser.add_argument("--multiline", action="store_true",
+                        help="let the pattern span line boundaries - each "
+                        "newline inside OLD matches \\r\\n, \\r, or \\n")
     parser.add_argument("--raw", action="store_true",
                         help="literal substring replacement - corrupts words "
                              "that contain the pattern as a fragment")
@@ -86,7 +89,10 @@ def main():
     bom = raw.startswith(b"\xef\xbb\xbf")
     text = raw.decode("utf-8-sig" if bom else "utf-8")
 
-    boundary = re.compile(r"(?<!\w)" + re.escape(args.old) + r"(?!\w)")
+    escaped = re.escape(args.old)
+    if args.multiline:
+        escaped = escaped.replace(re.escape("\n"), r"(?:\r\n|\r|\n)")
+    boundary = re.compile(r"(?<!\w)" + escaped + r"(?!\w)")
     if args.raw:
         count = text.count(args.old)
         result = text.replace(args.old, args.new)

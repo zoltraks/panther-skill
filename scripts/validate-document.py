@@ -419,6 +419,11 @@ def main(path, width, payload_markdown):
         for message in issues:
             print(f"FAIL {path}:{message}")
         print(f"{len(issues)} issue(s) found")
+        mechanical = ("semicolon in prose", "literal pipe inside code span",
+                      "no blank line")
+        if any(k in m for m in issues for k in mechanical):
+            print(f"note: {path} - fix-document.py repairs the mechanical "
+                  "finding classes")
         return 1
     print(f"PASS {path}")
     return 0

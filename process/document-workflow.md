@@ -475,3 +475,10 @@ every registration or index file updated, and any checks that were skipped or fa
 
 Remove every ad-hoc `.tmp.` helper - and any tool copies made under the fallback convention - from
 the working repository, including after an aborted run.
+
+## Reformat Tool Sequence
+
+A Reformat task runs the scripted sequence, never a hand pass:
+`detect-encoding.py` first, `check-document.py --layout wrap` (or `unwrap`)
+for the gated check, `fix-document.py` for the mechanical repair classes,
+then `reflow-prose.py --wrap` and a judgment pass on what remains.

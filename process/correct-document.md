@@ -261,3 +261,13 @@ locally, recommend a fresh translation instead.
 Fidelity proposals are never applied inside this procedure - their execution is a Revise task.
 
 A systematic in-document convention is reported, never normalized.
+
+## Mechanical Repair Pass
+
+Before any hand edit, run `scripts/fix-document.py <file>` - it repairs the
+safe mechanical finding classes (semicolons, literal pipes, missing blank
+lines, marker-led continuation joins) in a fixed-point loop, driven by
+`panther.json` keys `semicolon_repair` and `list_line_repair`.
+
+Findings outside the mechanical set stay judgment calls - reported, never
+auto-fixed.
