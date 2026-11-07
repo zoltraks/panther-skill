@@ -100,6 +100,9 @@ replacing `niesie` must not rewrite `odniesienia` into `odwnosinia`.
 After every bulk replacement, review the residue - every word still containing the pattern and every
 word containing the replacement inside a longer token is inspected before delivery.
 
+A scripted edit over a file set verifies the whole set afterward - a file believed already
+conformant is checked, never assumed.
+
 A scripted transform over document text must skip the protected regions - YAML frontmatter,
 fenced code blocks, HTML comments, and tables - or run through a canonical tool that already
 respects them, since a flat line scan corrupts structure, not just text.

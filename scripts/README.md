@@ -112,7 +112,7 @@ python <skill-root>/scripts/format-table.py <file.md|dir> [--check] [--payload-m
 python <skill-root>/scripts/align-comments.py <file.md> [--check] [--compact] [--payload-markdown]
 python <skill-root>/scripts/validate-document.py <file.md> [--width N] [--payload-markdown]
 python <skill-root>/scripts/fix-document.py <file.md> [--check] [--passes N]
-python <skill-root>/scripts/check-document.py <file.md> [--width N] [--payload-markdown] [--layout wrap|unwrap] [--split] [--polish] [--english] [--consistency] [--type <slug>] [--language <code>] [--baseline <file>] [--normalize-chars] [--parity <source.md>] [--terms <glossary.md> ...] [--expect-map <file> ...] [--eol lf|crlf] [--title-agreement] [--skill-root <dir>]
+python <skill-root>/scripts/check-document.py <file.md|dir> [--width N] [--payload-markdown] [--layout wrap|unwrap] [--split] [--polish] [--english] [--consistency] [--type <slug>] [--language <code>] [--baseline <file>] [--normalize-chars] [--parity <source.md>] [--terms <glossary.md> ...] [--expect-map <file> ...] [--eol lf|crlf] [--title-agreement] [--skill-root <dir>]
 python <skill-root>/scripts/check-parity.py <source.md> <target.md> [--terms <glossary.md> ...] [--expect-map <file> ...] [--eol lf|crlf]
 python <skill-root>/scripts/check-titles.py <file.md> [--verbose]
 python <skill-root>/scripts/safe-replace.py <file.md> <old> <new> [--raw] [--check]
@@ -216,7 +216,9 @@ and frontmatter untouched.
 
 It stays in `scripts/` for compatibility with documents that already reference it.
 
-`check-document.py` runs the standard non-mutating battery against one file in a single invocation -
+`check-document.py` runs the standard non-mutating battery against one file in a single invocation,
+or against every `*.md` under a directory argument - `.git` and `work` trees skipped -
+closing with an aggregate verdict -
 `detect-encoding.py`, `validate-document.py`, `format-table.py --check`,
 `align-comments.py --check`, and both `reflow-prose.py` direction checks - and prints one
 verdict line per tool.
@@ -557,6 +559,10 @@ and `check-contents.py` first.
 Escaped `\|` sequences and pipes inside inline code spans are not supported,
 so table cells must not contain literal pipe characters - `validate-document.py` fails both forms on
 sight so the miscount surfaces instead of passing silently.
+
+`fix-document.py` escapes the literal pipe before its table pass - a standalone
+`format-table.py` run has no such guard and rewrites the row across the pipe,
+so resolve literal pipes in code spans before running it alone.
 
 `validate-document.py` skips fenced code blocks when checking tables - example tables inside code
 fences, such as AsciiDoc samples, are payload, not Markdown tables.

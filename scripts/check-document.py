@@ -24,7 +24,11 @@ or ``PANTHER_SKILL_ROOT`` - running from the skill tree needs no flag at all.
 A missing sibling reports SKIP and never gates.
 
 Usage:
-    python check-document.py <file.md> [--width N] [--payload-markdown]
+    python check-document.py <file.md|dir> [--width N] [--payload-markdown]
+
+Passing a directory sweeps every ``*.md`` under it recursively - ``.git`` and
+``work`` trees are skipped - running the same battery per file and closing
+with an aggregate verdict. Per-file arguments apply to every file.
         [--layout wrap|unwrap] [--split] [--polish] [--english]
         [--consistency] [--type <slug-or-path>]
         [--language <code-or-path>] [--baseline <file>] [--normalize-chars]
@@ -159,20 +163,41 @@ def main(argv: list[str]) -> int:
     parser.add_argument("--skill-root", type=Path, default=None)
     args = parser.parse_args(argv)
 
-    if not args.file.is_file():
-        print(f"ERROR document not found: {args.file}")
-        return 1
-
     skill_root = args.skill_root or (
         Path(os.environ["PANTHER_SKILL_ROOT"]) if os.environ.get("PANTHER_SKILL_ROOT")
         else None
     )
-    cwd = args.file.resolve().parent
+    if args.file.is_dir():
+        targets = sorted(
+            p for p in args.file.rglob("*.md")
+            if ".git" not in p.parts and "work" not in p.parts
+            and not p.name.startswith("."))
+    elif args.file.is_file():
+        targets = [args.file]
+    else:
+        print(f"ERROR document not found: {args.file}")
+        return 1
+    if not targets:
+        print(f"ERROR no .md documents under: {args.file}")
+        return 1
+    grand = 0
+    for target in targets:
+        grand += check_one(target, args, skill_root)
+    if len(targets) > 1:
+        print(f"check-document: {len(targets)} file(s) - "
+              f"{'PASS' if not grand else 'FAIL'} "
+              f"({grand} gated finding(s))")
+    return 1 if grand else 0
+
+
+def check_one(target: Path, args, skill_root) -> int:
+    """Run the standard battery on one document; return its gated count."""
+    cwd = target.resolve().parent
     payload = ["--payload-markdown"] if args.payload_markdown else []
     width = ["--width", str(args.width)] if args.width else []
-    doc = str(args.file.resolve())
+    doc = str(target.resolve())
     failures = 0
-    print(f"check-document: {args.file}")
+    print(f"check-document: {target}")
 
     script = resolve("detect-encoding.py", skill_root)
     if script is None:
@@ -301,7 +326,7 @@ def main(argv: list[str]) -> int:
           f"({failures} gated check(s) reporting)")
     if failures:
         print("note: fix-document.py repairs the mechanical finding classes")
-    return 1 if failures else 0
+    return failures
 
 
 if __name__ == "__main__":

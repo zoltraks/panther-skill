@@ -1920,6 +1920,16 @@
         "panther.json keys `semicolon_repair` and `list_line_repair` tune the repair style",
         "a lone marker-led continuation rejoins its previous line; a real list gets the blank line"
       ]
+    },
+    {
+      "id": 160,
+      "prompt": "reformat all documents in this repository",
+      "expected_output": "A scripted sweep - check-document.py against the directory with the detected layout gate, failures reported per file.",
+      "files": [],
+      "expectations": [
+        "runs check-document.py on the directory, not a per-file shell loop",
+        "reports the aggregate verdict and every failing file"
+      ]
     }
   ]
 }
