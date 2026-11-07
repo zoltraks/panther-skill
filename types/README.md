@@ -15,10 +15,10 @@ Load the file matching the document type, it adds deltas on top of the language 
   sources of truth, Correct/Incorrect examples.
 - ** `types/agent-instruction.md` ** - Documents an AI coding agent executes: dual audiences,
   activation routing, staged procedures, validation checklists, embedded templates.
-- ** `types/procedure-manual.md` ** - Long procedural guides with a self-defined section vocabulary:
+- **`types/procedure-manual.md`** - Long procedural guides with a self-defined section vocabulary:
   operating modes, decision gates, role mappings, structure trees.
 - **`types/engineering-standard.md`** - Coding standards by stack: precedence, intake, verification.
-- ** `types/format-specification.md` ** - File format and protocol specifications:
+- **`types/format-specification.md`** - File format and protocol specifications:
   document information, version history, field tables, value enumerations.
 - ** `types/article-text.md` ** - Prose documents, tutorials, course material: narrative paragraphs,
   dialect tolerance, media references.

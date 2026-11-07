@@ -8,8 +8,8 @@ native-name: polski
 
 ## Przeznaczenie
 
-Ten dokument definiuje styl tekstu oraz zasady formatowania dokumentów Markdown pisanych w języku
-polskim.
+Ten dokument definiuje styl tekstu oraz zasady formatowania dokumentów Markdown
+pisanych w języku polskim.
 
 Obowiązuje w całej dokumentacji projektu, w tym w wytycznych, standardach, szablonach,
 notatkach i materiałach referencyjnych.
@@ -54,7 +54,7 @@ Stosuj ten sam układ w każdym dokumencie.
 - Sekcja przeznaczenia lub celu, jeden akapit mówiący, co dokument obejmuje.
 - Sekcje główne w poziomie H2 (`##`), podsekcje w poziomie H3 (`###`).
 
-Sekcje **Informacje o dokumencie** oraz **Historia wersji** są opcjonalne.
+Sekcje **Informacje o dokumencie**oraz**Historia wersji** są opcjonalne.
 
 Nie dodawaj tych sekcji do istniejącego dokumentu.
 
@@ -158,8 +158,8 @@ na przykład "plik został usunięty" zamiast "plik usuwa".
 Imiesłów przysłówkowy stosuj tylko wtedy,
 gdy jego podmiot jest tym samym podmiotem co zdanie główne.
 
-Człon zdania otwierany imiesłowem przysłówkowym kończy się przecinkiem, na przykład "Wnosząc wkład,
-zgadzasz się".
+Człon zdania otwierany imiesłowem przysłówkowym kończy się przecinkiem, na przykład "Wnosząc
+wkład, zgadzasz się".
 
 W razie wątpliwości zastąp go konstrukcją "co" z czasownikiem albo rozdziel zdanie na dwa.
 
@@ -464,8 +464,8 @@ niej wzorce zabronione.
 | dostać winę                                                                                                                                                                      | zostać obwinionym / ponieść winę                               |
 
 Wpis `pod` w tabeli dotyczy wyłącznie kalki opisu miejsca - `pod katalogiem` zamiast `w katalogu` -
-a stałe zwroty takie jak `pod kątem`, `pod względem` czy `pod opieką` są poprawne i nie podlegają
-zastąpieniu.
+a stałe zwroty takie jak `pod kątem`, `pod względem` czy `pod opieką` są poprawne i nie
+podlegają zastąpieniu.
 
 Zaprzeczenie `nie` przed rzeczownikiem odczasownikowym zapisuje się łącznie - `niemycie`,
 `niezgłoszenie`, `nieużywanie` - bo rozdzielny zapis jest błędem ortograficznym.
@@ -979,8 +979,8 @@ szerokości tekstu źródłowego.
 
 Komórka `` `api/konfiguracja` `` ma 18 znaków w źródle, a przeglądarka wyświetla tylko 16 znaków.
 
-Użycie wartości 16 zamiast 18 daje zbyt wąską kolumnę i rozjeżdżone kreski pionowe w widoku
-tekstowym.
+Użycie wartości 16 zamiast 18 daje zbyt wąską kolumnę i rozjeżdżone kreski
+pionowe w widoku tekstowym.
 
 ### Kompaktowanie
 
@@ -990,8 +990,8 @@ Usuwaj wypełnienie przekraczające najszerszą komórkę w danej kolumnie.
 
 Po skompaktowaniu przelicz wiersz separatora i wypełnienie wszystkich komórek.
 
-Tabela skompaktowana ma najmniejsze szerokości kolumn wystarczające do poprawnego wyświetlenia
-wszystkich komórek.
+Tabela skompaktowana ma najmniejsze szerokości kolumn wystarczające do poprawnego
+wyświetlenia wszystkich komórek.
 
 Wersja skompaktowana jest wersją poprawną.
 
@@ -1024,8 +1024,8 @@ Nie używaj liter diakrytycznych ani odstępów w nazwach nowych plików.
 Nazwy przyjęte umownie zachowuj w formie oryginalnej, na przykład `README.md`,
 `CHANGELOG.md` albo `SPECYFIKACJA.md`.
 
-Preferuj pełne wyrazy zamiast skrótów, których żądanie nie użyło, na przykład
-`przeglad_scalenia.md` zamiast `mr_przeglad.md`.
+Preferuj pełne wyrazy zamiast skrótów, których żądanie nie użyło,
+na przykład `przeglad_scalenia.md` zamiast `mr_przeglad.md`.
 
 Nazwa pliku ma odpowiadać tematowi dokumentu.
 
@@ -1072,8 +1072,8 @@ Przed dostarczeniem polskiego dokumentu wykonaj te kontrole.
 - Uruchom `scripts/lint-polish.py`, aby wykryć kalki, sklejone zdania i naruszenia typografii.
 - Przejrzyj zdania dłuższe niż 35 wyrazów i rozważ ich podział.
 - Zestaw liczby i wartości w tekście z wartościami w tabelach tego dokumentu.
-- Sprawdź, czy jedno pojęcie ma jedną nazwę oraz czy wszystkie skróty są rozwinięte przy pierwszym
-  użyciu.
+- Sprawdź, czy jedno pojęcie ma jedną nazwę oraz czy wszystkie skróty są rozwinięte
+  przy pierwszym użyciu.
 
 ## Utrzymanie plików
 
@@ -1098,8 +1098,8 @@ Opcje odpowiedzi to `Zaktualizuj teraz` i `Pomiń w tej sesji`.
 
 Żądania kierowane do tej umiejętności mogą być sformułowane po polsku.
 
-Poniższe frazy aktywują umiejętność tak samo jak ich angielskie odpowiedniki wymienione w
-`languages/en.md`.
+Poniższe frazy aktywują umiejętność tak samo jak ich angielskie odpowiedniki wymienione
+w `languages/en.md`.
 
 Traktuj żądanie pasujące do frazy z tabeli jako jej angielski odpowiednik.
 

@@ -118,8 +118,8 @@ or a separator cell without hyphens is a structural defect,
 not a dialect convention - the column it leaves behind is spurious,
 and `format-table.py --drop-empty-columns` repairs it.
 
-A paragraph line ending in a padded `|` carries the same verdict - it is table-row
-residue left by a table-to-prose conversion, and the pipe and its padding go.
+A paragraph line ending in a padded `|` carries the same verdict - it is table-row residue left by a
+table-to-prose conversion, and the pipe and its padding go.
 
 ## YAML Frontmatter
 

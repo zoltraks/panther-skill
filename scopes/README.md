@@ -12,7 +12,7 @@ Load the file matching the detected or named scope - it governs placement, namin
   directory roles, and the registration procedure for adding or removing rule files.
 - **`scopes/sphinx-docs.md`** - Sphinx documentation projects authoring Markdown:
   `docs/source/` page conventions, kebab-case filenames, and `index.rst` toctree registration.
-- ** `scopes/guided-project.md` ** - Software projects with a governed `docs/` tree:
+- **`scopes/guided-project.md`** - Software projects with a governed `docs/` tree:
   `README.md` entry point, a `GUIDELINES.md` source of truth inside `docs/`, UPPERCASE document set,
   and versioned artifact directories.
 - ** `scopes/docs-collection.md` ** - Documentation-only repositories: `docs/` as the payload,

@@ -48,8 +48,8 @@ denselben Stil-, Test- und Lizenzanforderungen wie jeder andere Beitrag.
 
 ## Lizenz
 
-Mit Ihrem Beitrag stimmen Sie zu, dass Ihre Beiträge unter der Lizenz des Projekts lizenziert
-werden.
+Mit Ihrem Beitrag stimmen Sie zu, dass Ihre Beiträge unter der Lizenz des
+Projekts lizenziert werden.
 
 ## Verhaltenskodex
 

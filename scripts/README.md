@@ -196,7 +196,7 @@ of a block except its last, so both edges sit flush - the `justified` layout fro
 
 A document that reads as unwrapped - over-width lines that open their own prose units with few
 continuation lines - is refused by `--wrap` and `--justify`: wrapping it would convert the layout,
-not fix wrapping. `--check` reports the file as an unwrapped layout and passes it; write mode asks
+not fix wrapping. `--check` reports the file as an unwrapped layout and passes it - write mode asks
 for `--convert`, the explicit opt-in for layout conversions.
 
 `--loose` is the loose-wrap convention: only a multi-line block that contains an over-width line
@@ -217,9 +217,8 @@ and frontmatter untouched.
 It stays in `scripts/` for compatibility with documents that already reference it.
 
 `check-document.py` runs the standard non-mutating battery against one file in a single invocation,
-or against every `*.md` under a directory argument - `.git` and `work` trees skipped -
-closing with an aggregate verdict -
-`detect-encoding.py`, `validate-document.py`, `format-table.py --check`,
+or against every `*.md` under a directory argument - `.git` and `work` trees skipped - closing with
+an aggregate verdict - `detect-encoding.py`, `validate-document.py`, `format-table.py --check`,
 `align-comments.py --check`, and both `reflow-prose.py` direction checks - and prints one
 verdict line per tool.
 
@@ -564,8 +563,8 @@ Escaped `\|` sequences and pipes inside inline code spans are not supported,
 so table cells must not contain literal pipe characters - `validate-document.py` fails both forms on
 sight so the miscount surfaces instead of passing silently.
 
-`fix-document.py` escapes the literal pipe before its table pass - a standalone
-`format-table.py` run has no such guard and rewrites the row across the pipe,
+`fix-document.py` escapes the literal pipe before its table pass - a standalone `format-table.py`
+run has no such guard and rewrites the row across the pipe,
 so resolve literal pipes in code spans before running it alone.
 
 `validate-document.py` skips fenced code blocks when checking tables - example tables inside code
@@ -651,12 +650,11 @@ Use the prompts in `evals/evals.json` for behavioral regression checks.
 
 ## Session Notes - Repair Options
 
-`fix-document.py` reads `panther.json` for repair style: `semicolon_repair`
-(`aside` default, `period`, `comma`) and `list_line_repair` (`join` default -
-a lone marker-led continuation rejoins its previous line - `blank`, `skip`).
-Its loop ends with `reflow-prose.py --wrap`, which abstains on unwrapped
-documents. `reflow-prose.py` never emits a paragraph continuation that opens
-with a list or quote marker. `safe-replace.py --multiline` lets the pattern
-span line endings (`\r\n`, `\r`, or `\n`). `validate-document.py` and
-`check-document.py` print a pointer to `fix-document.py` when mechanical
-findings exist.
+`fix-document.py` reads `panther.json` for repair style: `semicolon_repair` (`aside` default,
+`period`, `comma`) and `list_line_repair` (`join` default - a lone marker-led continuation rejoins
+its previous line - `blank`, `skip`).
+Its loop ends with `reflow-prose.py --wrap`, which abstains on unwrapped documents.
+`reflow-prose.py` never emits a paragraph continuation that opens with a list or quote marker.
+`safe-replace.py --multiline` lets the pattern span line endings (`\r\n`, `\r`, or `\n`).
+`validate-document.py` and `check-document.py` print a pointer to `fix-document.py` when
+mechanical findings exist.

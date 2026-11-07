@@ -103,8 +103,9 @@ Render `the file removes X` as `plik usuwa X` only when the file is a program.
 Otherwise use the passive or an action noun (`plik został usunięty`, `usunięcie X`).
 
 A rendering never adds or drops meaning - no invented negation, quantifier, condition, or exception,
-and no silently changed entity kind (`file` stays `plik`, never `katalog`)
-- and a source ambiguity or contradiction is reported in the delivery report,
+and no silently changed entity kind (`file` stays `plik`, never `katalog`) -
+and a source ambiguity or contradiction is reported in the delivery report,
+
 never silently resolved in the rendering.
 
 Expand abbreviations at first use and record them in the document's glossary -
@@ -177,7 +178,7 @@ The following elements are copied verbatim:
   a resolved format contract's Polish forms apply instead.
 - `N/A` renders `N/D` in Polish prose and table cells.
 - Enumerated flag values that are document vocabulary rather than contract labels - `yes`, `record`,
-  `no` in result tables - translate like ordinary prose;
+  `no` in result tables - translate like ordinary prose.
   only the fixed contract vocabulary stays verbatim.
 
 ## Reader-Facing Text In Examples

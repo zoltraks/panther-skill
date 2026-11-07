@@ -14,8 +14,8 @@ This document explains how to report issues, set up the project, and submit chan
 
 Search the existing issues before opening a new one.
 
-File one issue per problem and include the version, environment, reproducible steps, and the
-expected versus actual behavior.
+File one issue per problem and include the version, environment, reproducible steps,
+and the expected versus actual behavior.
 
 ## Development Setup
 

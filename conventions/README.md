@@ -17,7 +17,7 @@
   `.adoc` files: title markers, admonitions, includes, opaque tables.
 - ** `conventions/plain-text-comments.md` ** - `#` comment alignment inside untagged fenced blocks
   and shell-tagged blocks: one shared column per block, longest entry plus two spaces.
-- ** `conventions/ascii-diagrams.md` ** - Box-drawing node-and-edge diagrams:
+- **`conventions/ascii-diagrams.md`** - Box-drawing node-and-edge diagrams:
   fixed border columns per box, one shared axis, centered boxes and prose lines,
   `┬` / `▼` vertical edges, gap-filling `▶` side branches, `┌` / `┬` / `┼` / `┐` fan-out junctions.
 - ** `conventions/prose-layout.md` ** - Prose-layout conventions `flowing`, `separated`, `bounded`,

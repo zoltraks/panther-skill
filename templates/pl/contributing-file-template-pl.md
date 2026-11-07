@@ -14,8 +14,8 @@ Ten dokument wyjaśnia, jak zgłaszać problemy, przygotować środowisko i prze
 
 Przed otwarciem nowego zgłoszenia przeszukaj istniejące.
 
-Zgłaszaj jeden problem w jednym zgłoszeniu i podaj wersję, środowisko, kroki reprodukcji
-oraz oczekiwane i rzeczywiste zachowanie.
+Zgłaszaj jeden problem w jednym zgłoszeniu i podaj wersję, środowisko,
+kroki reprodukcji oraz oczekiwane i rzeczywiste zachowanie.
 
 ## Konfiguracja środowiska
 
@@ -39,11 +39,11 @@ Przed otwarciem pull requesta uruchom kontrole projektu.
 
 Ujawnij, gdy zgłoszenie lub zmiana powstała z pomocą AI.
 
-Osobiście zweryfikuj każde ustalenie wygenerowane przez AI przed zgłoszeniem - nie wklejaj
-surowego wyniku AI do zgłoszenia ani pull requesta.
+Osobiście zweryfikuj każde ustalenie wygenerowane przez AI przed zgłoszeniem - nie wklejaj surowego
+wyniku AI do zgłoszenia ani pull requesta.
 
-Musisz rozumieć przesyłany kod i brać za niego odpowiedzialność - zmiany wspomagane AI
-spełniają te same wymagania stylu, testów i licencji co każdy inny wkład.
+Musisz rozumieć przesyłany kod i brać za niego odpowiedzialność - zmiany wspomagane AI spełniają te
+same wymagania stylu, testów i licencji co każdy inny wkład.
 
 ## Licencja
 

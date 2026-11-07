@@ -5,9 +5,8 @@
 > **Scope:** Index of the per-language style baselines under `languages/`
 > **Key items:** one baseline per ISO code, activation phrases
 
-Load exactly one file, matching the document language - each baseline is
-self-contained: structure, headings, lists, tables, characters, vocabulary,
-file naming, and the language's activation phrases.
+Load exactly one file, matching the document language - each baseline is self-contained: structure,
+headings, lists, tables, characters, vocabulary, file naming, and the language's activation phrases.
 
 ## Index
 

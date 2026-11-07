@@ -8,8 +8,8 @@ native-name: Deutsch
 
 ## Zweck
 
-Dieses Dokument definiert den Textstil und die Formatierungsregeln für Markdown-Dokumente in
-deutscher Sprache.
+Dieses Dokument definiert den Textstil und die Formatierungsregeln für Markdown-Dokumente
+in deutscher Sprache.
 
 Es gilt für die gesamte Projektdokumentation, einschließlich Richtlinien, Standards, Vorlagen,
 Notizen und Referenzmaterial.
@@ -52,7 +52,7 @@ Verwende denselben Aufbau in jedem Dokument.
 - Ein Abschnitt zum Zweck oder Ziel, ein Absatz, der sagt, was das Dokument abdeckt.
 - Hauptabschnitte auf Ebene H2 (`##`), Unterabschnitte auf Ebene H3 (`###`).
 
-Die Abschnitte **Dokumentinformationen** und **Versionsverlauf** sind optional.
+Die Abschnitte **Dokumentinformationen**und**Versionsverlauf** sind optional.
 
 Füge diese Abschnitte nicht zu einem bestehenden Dokument hinzu.
 
@@ -126,8 +126,8 @@ Abschnittsnummerierung enthalten.
 Platziere es am Anfang des Dokuments, unmittelbar nach dem optionalen Abschnitt
 Dokumentinformationen und dem optionalen Abschnitt Versionsverlauf.
 
-Wenn diese Abschnitte fehlen, ist das Inhaltsverzeichnis der erste Abschnitt nach der
-H1-Überschrift.
+Wenn diese Abschnitte fehlen, ist das Inhaltsverzeichnis der erste Abschnitt
+nach der H1-Überschrift.
 
 Aktualisiere das Inhaltsverzeichnis nach jeder Änderung der Dokumentstruktur.
 
@@ -189,8 +189,8 @@ Verwende eine Nummerierung für nacheinander ausgeführte Schritte,
 wenn das bearbeitete Dokument sie in der betreffenden Liste bereits verwendet oder wenn der
 Änderungsauftrag sie ausdrücklich verlangt.
 
-Wenn die Liste nummeriert ist, halte die Nummern nach dem Hinzufügen oder Entfernen von Einträgen
-lückenlos.
+Wenn die Liste nummeriert ist, halte die Nummern nach dem Hinzufügen oder Entfernen von
+Einträgen lückenlos.
 
 Setze eine Leerzeile vor die Liste und eine Leerzeile hinter die Liste.
 
@@ -202,8 +202,8 @@ Setze eine Leerzeile zwischen einen übergeordneten Eintrag und seine untergeord
 
 Rücke die untergeordnete Liste auf die Ebene des übergeordneten Eintrags ein.
 
-Schreibe Aufgabenlisten als `- [ ]` für einen offenen Eintrag und `- [x]` für einen erledigten
-Eintrag.
+Schreibe Aufgabenlisten als `- [ ]` für einen offenen Eintrag und `- [x]` für
+einen erledigten Eintrag.
 
 ## Leerzeilen und Abstände
 
@@ -695,8 +695,8 @@ Bewahre diese Merkmale bei der Bearbeitung gemäß `conventions/markdown-dialect
 
 Tabellen müssen in der Textansicht lesbar bleiben, bevor ein Markdown-Viewer sie verarbeitet.
 
-Die Ausrichtung der Spalten und die gleichmäßige Auffüllung der Zellen sind das Hauptziel der
-Formatierung.
+Die Ausrichtung der Spalten und die gleichmäßige Auffüllung der Zellen sind das
+Hauptziel der Formatierung.
 
 ### Trennzeichen
 
@@ -736,8 +736,8 @@ Die Bindestriche schließen ohne Leerzeichen an die senkrechten Striche an.
 
 Die Breite eines Spaltentrenners entspricht der Spaltenbreite plus zwei Bindestriche.
 
-Die zwei zusätzlichen Bindestriche stehen für das Leerzeichen vor dem Zellenwert und das Leerzeichen
-danach.
+Die zwei zusätzlichen Bindestriche stehen für das Leerzeichen vor dem Zellenwert und
+das Leerzeichen danach.
 
 Die minimale Spaltenbreite beträgt drei Zeichen.
 
@@ -791,8 +791,8 @@ die Breite des angezeigten Textes anstelle der Breite des Quelltextes zu messen.
 Die Zelle `` ` api/konfiguration ` `` hat 19 Zeichen im Quelltext,
 der Viewer zeigt jedoch nur 17 Zeichen.
 
-Die Verwendung von 17 statt 19 ergibt eine zu schmale Spalte und verschobene senkrechte Striche in
-der Textansicht.
+Die Verwendung von 17 statt 19 ergibt eine zu schmale Spalte und verschobene senkrechte
+Striche in der Textansicht.
 
 ### Kompaktieren
 
@@ -837,8 +837,8 @@ Verwende keine Umlaute und keine Leerzeichen in den Namen neuer Dateien.
 Behalte vereinbarte Namen in ihrer Originalform, zum Beispiel `README.md`,
 `CHANGELOG.md` oder `SPEZIFIKATION.md`.
 
-Bevorzuge vollständige Wörter gegenüber Abkürzungen, die die Anfrage nicht
-verwendet hat, zum Beispiel `merge_bericht.md` statt `mr_bericht.md`.
+Bevorzuge vollständige Wörter gegenüber Abkürzungen, die die Anfrage nicht verwendet hat,
+zum Beispiel `merge_bericht.md` statt `mr_bericht.md`.
 
 Der Dateiname soll dem Thema des Dokuments entsprechen.
 
@@ -899,8 +899,8 @@ Die Antwortoptionen sind `Jetzt aktualisieren` und `In dieser Sitzung übersprin
 
 An diese Fähigkeit gerichtete Anfragen können auf Deutsch formuliert sein.
 
-Die folgenden Phrasen aktivieren die Fähigkeit genauso wie ihre englischen Entsprechungen in
-`languages/en.md`.
+Die folgenden Phrasen aktivieren die Fähigkeit genauso wie ihre englischen Entsprechungen
+in `languages/en.md`.
 
 Behandle eine Anfrage, die einer Phrase aus der Tabelle entspricht, wie ihre englische Entsprechung.
 
