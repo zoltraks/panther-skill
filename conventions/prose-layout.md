@@ -155,6 +155,11 @@ content - for the content the task adds or touches.
 Suggest normalizing the document to one convention,
 but normalize only when the request explicitly covers the conversion.
 
+Packed blocks of tightly-related short sentences inside a separated or bounded document are
+deliberate coupling, not inconsistency - the block holds one thought.
+Detect them as a convention, report them, and split them only on an explicit request -
+a checker finding there is a convention note, never an automatic fix.
+
 ## New Documents
 
 The layout of a new document resolves through the intake parameters in

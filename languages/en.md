@@ -21,26 +21,26 @@ The rules described below apply to this document itself as well.
 
 | Section                  | Line | What it covers                      |
 |--------------------------|------|-------------------------------------|
-| Document Structure       | 44   | Titles, purpose blocks, and layout  |
-| Headings                 | 63   | Capitalization and qualifiers       |
-| Section Numbering        | 96   | Numbered section policy             |
-| Table of Contents        | 111  | When to add a contents section      |
-| Paragraphs and Sentences | 127  | Sentence structure                  |
-| Line Wrapping            | 141  | Logical lines and hard breaks       |
-| Lists                    | 174  | Bullets, numbering, and spacing     |
-| Blank Lines and Spacing  | 198  | Whitespace rules                    |
-| Code Blocks              | 212  | Fences, tags, and inline code       |
-| Inline Formatting        | 231  | Quotes, bold, and italics           |
-| Spaced Hyphens           | 247  | Asides, never joins clauses         |
-| Semicolons               | 273  | Semicolon prohibition in prose      |
-| Special Characters       | 299  | Box-drawing and emoji               |
-| English Vocabulary       | 307  | Preferred terms and calques         |
-| Dialect Consistency      | 332  | One spelling dialect per document   |
-| Tables                   | 391  | Source-width alignment rules        |
-| File Names               | 524  | Naming new documentation files      |
-| Example                  | 538  | Correct and incorrect sample        |
-| File Maintenance         | 572  | Encoding and line-ending preserving |
-| Activation Phrases       | 583  | English trigger phrases by intent   |
+| Document Structure       | 45   | Titles, purpose blocks, and layout  |
+| Headings                 | 64   | Capitalization and qualifiers       |
+| Section Numbering        | 97   | Numbered section policy             |
+| Table of Contents        | 112  | When to add a contents section      |
+| Paragraphs and Sentences | 128  | Sentence structure                  |
+| Line Wrapping            | 142  | Logical lines and hard breaks       |
+| Lists                    | 175  | Bullets, numbering, and spacing     |
+| Blank Lines and Spacing  | 203  | Whitespace rules                    |
+| Code Blocks              | 217  | Fences, tags, and inline code       |
+| Inline Formatting        | 236  | Quotes, bold, and italics           |
+| Spaced Hyphens           | 252  | Asides, never joins clauses         |
+| Semicolons               | 278  | Semicolon prohibition in prose      |
+| Special Characters       | 304  | Box-drawing and emoji               |
+| English Vocabulary       | 312  | Preferred terms and calques         |
+| Dialect Consistency      | 337  | One spelling dialect per document   |
+| Tables                   | 395  | Source-width alignment rules        |
+| File Names               | 537  | Naming new documentation files      |
+| Example                  | 551  | Correct and incorrect sample        |
+| File Maintenance         | 585  | Encoding and line-ending preserving |
+| Activation Phrases       | 596  | English trigger phrases by intent   |
 
 ## Document Structure
 
@@ -50,7 +50,7 @@ Use the same layout in every document.
 - A purpose section, one paragraph stating what the document covers.
 - Main sections at H2 (`##`), subsections at H3 (`###`).
 
-The **Document Information** and **Version History** sections are optional.
+The **Document Information**and**Version History** sections are optional.
 
 Do not add these sections to an existing document.
 
@@ -115,8 +115,8 @@ By default, do not add a table of contents.
 
 Add a table of contents only on request and only when the document sections are numbered.
 
-A reference file longer than 300 lines may include a contents table even when its sections are not
-numbered.
+A reference file longer than 300 lines may include a contents table even when its
+sections are not numbered.
 
 Place it at the beginning of the document,
 directly after the optional document information section and the optional version history section.
@@ -169,8 +169,8 @@ The layout of a produced document follows `conventions/prose-layout.md`.
 This baseline describes the `separated` convention, and the `line-wrapping`, `sentence-spacing`,
 and `wrap-width` intake parameters may select `flowing`, `bounded`, or `justified` on create.
 
-The detection of an existing document's layout follows `conventions/prose-layout.md` and never
-assumes a default.
+The detection of an existing document's layout follows `conventions/prose-layout.md` and
+never assumes a default.
 
 ## Lists
 
@@ -195,6 +195,10 @@ Insert one blank line between a parent item and its nested list.
 Indent a nested list to the level of its parent item.
 
 Write task lists as `- [ ]` for an open item and `- [x]` for a completed item.
+
+A list item carries no terminal period or semicolon.
+
+An item holding two related clauses joins them with a comma rather than packing two sentences.
 
 ## Blank Lines and Spacing
 
@@ -254,8 +258,8 @@ A spaced hyphen never joins two independent clauses.
 Split such a pair into separate sentences.
 
 Structural uses are unaffected: definitional list entries such as `- term - description`,
-title-style pseudo-headers such as `**Step 1 - Name**`, titles inside quoted references,
-and inline code.
+title-style pseudo-headers such as `**Step 1 - Name**`, titles inside quoted
+references, and inline code.
 
 ### Correct
 
@@ -273,7 +277,7 @@ The file list follows the resolved selection - it contains required and recommen
 
 ## Semicolons
 
-Do not use the semicolon character in running text.
+Do not use the semicolon character in running text or in table cells.
 
 Join two closely related clauses with a comma.
 
@@ -327,8 +331,8 @@ for example Microsoft Fabric, Lakehouse, Warehouse, Power BI, workspace.
 
 Write technical names taken from a source system exactly as they appear in that system.
 
-In example headings, use English section names such as "Example Content", "Correct",
-and "Incorrect".
+In example headings, use English section names such as "Example Content",
+"Correct", and "Incorrect".
 
 ## Dialect Consistency
 
@@ -338,13 +342,13 @@ American and British spellings must not mix within the same document,
 including splits inside a single word family,
 for example `synchronized` and `synchronised` side by side.
 
-An existing document's dominant dialect is its own convention and wins on edits - match the majority
-variant.
+An existing document's dominant dialect is its own convention and wins on edits - match
+the majority variant.
 
 Normalize the minority dialect only when the request covers the change,
 and report the mixed usage instead of fixing it silently.
-`scripts/lint-english.py` detects the dominant variant and reports minority forms as advisory
-findings.
+`scripts/lint-english.py` detects the dominant variant and reports minority forms
+as advisory findings.
 
 The pair table below lists representative variants the checker tracks - the suffix patterns the
 pairs illustrate cover forms beyond the listed rows.
@@ -385,8 +389,8 @@ pairs illustrate cover forms beyond the listed rows.
 | acknowledgment | acknowledgement |
 | tunable        | tuneable        |
 
-Variant forms inside inline code spans, identifiers, and enum values are literals, not
-spelling - a state named `cancelled` in backticks keeps its spelling under either dialect.
+Variant forms inside inline code spans, identifiers, and enum values are literals,
+not spelling - a state named `cancelled` in backticks keeps its spelling under either dialect.
 
 ## Tables
 
@@ -467,8 +471,8 @@ but those characters are still present in the source and must be counted.
 
 The following elements are part of the cell content and enter the width measurement.
 
-- Backticks around inline code, for example the cell `` ` db.table_name ` `` has 15 characters,
-  not 13.
+- Backticks around inline code, for example the cell `` ` db.table_name ` `` has
+  15 characters, not 13.
 - Double backticks around values such as codes and numbers,
   for example the cell `` `` 00 `` `` has 6 characters, not 2.
 - Emphasis asterisks, for example the cell `*italics*` has 9 characters, not 7.
@@ -482,8 +486,8 @@ for example the word `Częstotliwość` has 13 characters.
 Write diacritical letters in composed form as a single Unicode character,
 so that the width measurement matches the number of characters visible in the text.
 
-The most common formatting error is measuring the rendered text width instead of the source text
-width.
+The most common formatting error is measuring the rendered text width instead of
+the source text width.
 
 The cell `` ` api/configuration ` `` has 19 characters in the source,
 while the renderer displays only 17.
@@ -508,6 +512,15 @@ Avoid multiline cells.
 
 If a cell must be wrapped, apply the same formatting rules across all rows of the table.
 
+### Cell Content
+
+Keep cells terse.
+
+A cell that stretches the table wide carries too much - the long description lives in the
+prose around the table.
+
+A column holding the same value in every row folds into prose or into the exception cells.
+
 ### Example Content
 
 The table below is compacted and aligned.
@@ -530,8 +543,8 @@ Do not use diacritical letters or spaces in new file names.
 
 Keep conventionally established names in their original form, for example `README.md`.
 
-Prefer full words over abbreviations the request did not use, for example
-`merge_review.md` rather than `mr_review.md`.
+Prefer full words over abbreviations the request did not use,
+for example `merge_review.md` rather than `mr_review.md`.
 
 The file name should match the document topic.
 
@@ -587,56 +600,56 @@ Requests directed at this skill arrive in English or in another supported langua
 The following phrases activate the skill, grouped by intent:
 
 - **Create documents**: create a document, write documentation, draft a specification,
-  write a spec for, project document, technical documentation, write a README, write a
-  changelog, contributing guide, CONTRIBUTING.md, format specification, file format spec,
-  guidelines document, coding standard document, style guide document, agent instruction
-  document, preparation document, dual-audience document, write an article, quick note,
-  daily plan, write a message, announcement, meeting notes, yaml document.
-- **Edit and format**: edit this document, update this document, fix this table, format
-  this table, align the table, align the comments, fix tree comments, reformat this
-  markdown, unwrap this document, unwrap long lines, reflow the prose, edit this yaml file.
-- **Correct documents**: correct this document, fix the errors in this
-  document, proofread this document, correct the grammar, fix the typos,
-  copyedit this document.
-- **Humanize documents**: humanize this document, make it read like a person wrote
-  it, rewrite the voice, remove the generated voice, make this read human-authored.
-- **Editorial review**: editorial pass, run the editorial battery, check the
-  documents I just wrote, document check on <path>, check-document on the new files.
+  write a spec for, project document, technical documentation, write a README, write a changelog,
+  contributing guide, CONTRIBUTING.md, format specification, file format spec, guidelines document,
+  coding standard document, style guide document, agent instruction document, preparation document,
+  dual-audience document, write an article, quick note, daily plan, write a message, announcement,
+  meeting notes, yaml document.
+- **Edit and format**: edit this document, update this document, fix this table, format this table,
+  align the table, align the comments, fix tree comments, reformat this markdown,
+  unwrap this document, unwrap long lines, reflow the prose, edit this yaml file.
+- **Correct documents**: correct this document, fix the errors in this document,
+  proofread this document, correct the grammar, fix the typos, copyedit this document.
+- **Humanize documents**: humanize this document, make it read like a person wrote it,
+  rewrite the voice, remove the generated voice, make this read human-authored.
+- **Editorial review**: editorial pass, run the editorial battery, check the documents I just wrote,
+  document check on <path>, check-document on the new files.
 - **Translate**: translate this document, translate this file, translate to Polish,
   translate to English, translate to German, document in Polish, document in German,
   polish this document.
-- **Activate**: run panther, use panther, use skill, work with skill, use this skill,
-  activate the skill.
+- **Activate**: run panther, use panther, use skill, work with skill, use this
+  skill, activate the skill.
 - **Operations catalog**: list all operations, show all capabilities.
-- **Maintain the skill**: work on panther, work on panther-skill, work on this skill, fix
-  this skill, adjust the skill, maintain this skill, update the skill documents.
-- **Extend and maintain**: add a page to the docs, documentation project, new document in
-  this project, extend this skill, add a rule file to this skill, update the toctree,
-  write an implementation plan, add a feature document, add a standards document.
-- **Decisions and proposals**: write an ADR, architecture decision record, supersede the
-  ADR, write an RFC, proposal document, design proposal.
-- **Documentation sites**: add a page to this MkDocs site, update the nav, add a page to
-  this Docusaurus site, set the sidebar position, add a page to this VitePress site, add a
-  page to this GitBook, update the summary file.
+- **Maintain the skill**: work on panther, work on panther-skill, work on this skill,
+  fix this skill, adjust the skill, maintain this skill, update the skill documents.
+- **Extend and maintain**: add a page to the docs, documentation project,
+  new document in this project, extend this skill, add a rule file to this skill,
+  update the toctree, write an implementation plan, add a feature document,
+  add a standards document.
+- **Decisions and proposals**: write an ADR, architecture decision record, supersede the ADR,
+  write an RFC, proposal document, design proposal.
+- **Documentation sites**: add a page to this MkDocs site, update the nav,
+  add a page to this Docusaurus site, set the sidebar position, add a page to this VitePress site,
+  add a page to this GitBook, update the summary file.
 - **Dialects**: edit this AsciiDoc file, preserve the frontmatter.
-- **PMBOK artifacts**: write a project charter, create a risk register, update the issue
-  log, stakeholder register, assumption log, change log, lessons learned, write a status
-  report, weekly status, meeting minutes, write the minutes, management plan, risk
-  management plan, work breakdown structure, create the WBS, change request.
+- **PMBOK artifacts**: write a project charter, create a risk register, update the issue log,
+  stakeholder register, assumption log, change log, lessons learned, write a status report,
+  weekly status, meeting minutes, write the minutes, management plan, risk management plan,
+  work breakdown structure, create the WBS, change request.
 - **Layout discovery**: discover layout, detect document layout, what layout is this,
-  analyze document structure, analyze this repository, analyse this codebase, audit the
-  document layout, document census.
-- **Document audit**: audit this document, document audit, audit this file, check document
-  formatting, document conformance check, plan fixes for findings.
-- **Translation audit**: audit this translation, check the translation, verify the
-  translated document, compare the translation with the source, check how this was
-  translated.
+  analyze document structure, analyze this repository, analyse this codebase,
+  audit the document layout, document census.
+- **Document audit**: audit this document, document audit, audit this file,
+  check document formatting, document conformance check, plan fixes for findings.
+- **Translation audit**: audit this translation, check the translation,
+  verify the translated document, compare the translation with the source,
+  check how this was translated.
 - **Translation revision**: fix this translation, correct the translated document,
   revise the translation, apply translation review findings.
 - **Describe and summarize**: describe, describe shortly, make a description, summarize,
-  write a summary, give an overview, short description, long description, detailed
-  description, describe in detail, full description.
-- **Derive documents**: summarize this document to a file, save a summary of this
-  document, write a document summary, write a brief of this document, write an abstract
-  of this document, abridge this document, write a supplement, extend this report, write
-  a continuation of this document.
+  write a summary, give an overview, short description, long description, detailed description,
+  describe in detail, full description.
+- **Derive documents**: summarize this document to a file, save a summary of this document,
+  write a document summary, write a brief of this document, write an abstract of this document,
+  abridge this document, write a supplement, extend this report,
+  write a continuation of this document.

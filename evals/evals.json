@@ -1930,6 +1930,17 @@
         "runs check-document.py on the directory, not a per-file shell loop",
         "reports the aggregate verdict and every failing file"
       ]
+    },
+    {
+      "id": 161,
+      "prompt": "reformat this document to the house conventions",
+      "expected_output": "List items end without terminal punctuation, packed blocks of tightly-related sentences stay coupled, and wide table cells yield to prose.",
+      "files": [],
+      "expectations": [
+        "strips terminal periods and semicolons from list items",
+        "leaves deliberate packed blocks joined and reports them as a convention",
+        "reports wide-table cells instead of silently shortening content"
+      ]
     }
   ]
 }
