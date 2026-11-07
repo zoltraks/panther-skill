@@ -479,11 +479,15 @@ the working repository, including after an aborted run.
 ## Reformat Tool Sequence
 
 A Reformat task runs the scripted sequence, never a hand pass:
-`detect-encoding.py` first, `check-document.py --layout wrap` (or `unwrap`)
-for the gated check, `fix-document.py` for the mechanical repair classes,
+`detect-encoding.py` first, `check-document.py --layout wrap` (or `unwrap`) for the gated check,
+`fix-document.py` for the mechanical repair classes,
 then `reflow-prose.py --wrap` and a judgment pass on what remains.
 
+When the judgment pass joins or rewrites a block,
+run `reflow-prose.py --wrap` once more before validation,
+since the tool re-derives the canonical break and a hand-chosen wrap will not match it.
+
 When `fix-document.py` is skipped to preserve a convention it would rewrite,
-resolve its ordering-sensitive classes by hand first - a literal pipe inside a code
-span gets its `&#124;` escape before any table pass, since a standalone
-`format-table.py` run splits the row on that pipe.
+resolve its ordering-sensitive classes by hand first - a literal pipe inside a code span gets its
+`&#124;` escape before any table pass, since a standalone `format-table.py` run splits
+the row on that pipe.

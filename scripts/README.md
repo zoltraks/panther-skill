@@ -21,8 +21,8 @@ They do not modify documents beyond the specific task each tool performs.
 |------------------|------|------------------------------------------|
 | Tool Classes     | 27   | Tool groups and when to run them         |
 | Commands         | 99   | Per-tool usage, flags, and output        |
-| Validation Order | 504  | Recommended run sequence                 |
-| Limitations      | 553  | Known parsing limits and validator scope |
+| Validation Order | 510  | Recommended run sequence                 |
+| Limitations      | 559  | Known parsing limits and validator scope |
 
 ## Tool Classes
 
@@ -239,6 +239,10 @@ while `--expect-map <file>` and `--eol` forward to `check-parity.py`.
 
 `validate-document.py` prints each finding as `FAIL <file>:line <n>: <reason>` on stdout and exits 1
 when any exist - that line shape is the contract for wrappers that consume the findings.
+
+Advisory `WARN` lines cover deliberate-convention candidates - non-ASCII prose, `text` fence tags,
+blocks that open like mid-sentence continuations,
+and sentences opening with a code span or emphasis marker - and never fail the run.
 
 `fix-document.py` applies the safe mechanical repair classes in a fixed-point loop - it runs
 `format-table.py`, parses the `validate-document.py` findings,

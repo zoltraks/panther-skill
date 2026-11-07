@@ -1941,6 +1941,28 @@
         "leaves deliberate packed blocks joined and reports them as a convention",
         "reports wide-table cells instead of silently shortening content"
       ]
+    },
+    {
+      "id": 162,
+      "prompt": "This document's wrapped list items and paragraphs were split by blank lines inserted mid-sentence - repair them.",
+      "expected_output": "The fragments rejoin their items as indented continuations, each sentence becoming a whole block again.",
+      "files": [],
+      "expectations": [
+        "a prose block opening lowercase or `(` after a block lacking terminal punctuation is reported as a continuation-fragment warning, not silently joined",
+        "joined fragments become wrapped continuations indented to the item's text column",
+        "a judgment pass that joins blocks runs reflow-prose.py --wrap again before validation"
+      ]
+    },
+    {
+      "id": 163,
+      "prompt": "Rewrite this document so no sentence opens with a code span or a bold marker.",
+      "expected_output": "Every sentence opens with a leading word (Operation `sync` composes...), while label lines and definitional entries stay unchanged.",
+      "files": [],
+      "expectations": [
+        "sentences opening with a backtick code span or `**` emphasis get a leading word rather than dropping the marker",
+        "label lines such as `**Goals**` and definitional entries such as `**Term**:` are exempt and stay untouched",
+        "validate-document.py reports the sentence-opener class as advisory warnings"
+      ]
     }
   ]
 }

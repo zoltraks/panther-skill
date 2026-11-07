@@ -26,21 +26,21 @@ The rules described below apply to this document itself as well.
 | Section Numbering        | 97   | Numbered section policy             |
 | Table of Contents        | 112  | When to add a contents section      |
 | Paragraphs and Sentences | 128  | Sentence structure                  |
-| Line Wrapping            | 142  | Logical lines and hard breaks       |
-| Lists                    | 175  | Bullets, numbering, and spacing     |
-| Blank Lines and Spacing  | 203  | Whitespace rules                    |
-| Code Blocks              | 217  | Fences, tags, and inline code       |
-| Inline Formatting        | 236  | Quotes, bold, and italics           |
-| Spaced Hyphens           | 252  | Asides, never joins clauses         |
-| Semicolons               | 278  | Semicolon prohibition in prose      |
-| Special Characters       | 304  | Box-drawing and emoji               |
-| English Vocabulary       | 312  | Preferred terms and calques         |
-| Dialect Consistency      | 337  | One spelling dialect per document   |
-| Tables                   | 395  | Source-width alignment rules        |
-| File Names               | 537  | Naming new documentation files      |
-| Example                  | 551  | Correct and incorrect sample        |
-| File Maintenance         | 585  | Encoding and line-ending preserving |
-| Activation Phrases       | 596  | English trigger phrases by intent   |
+| Line Wrapping            | 148  | Logical lines and hard breaks       |
+| Lists                    | 181  | Bullets, numbering, and spacing     |
+| Blank Lines and Spacing  | 209  | Whitespace rules                    |
+| Code Blocks              | 223  | Fences, tags, and inline code       |
+| Inline Formatting        | 242  | Quotes, bold, and italics           |
+| Spaced Hyphens           | 258  | Asides, never joins clauses         |
+| Semicolons               | 286  | Semicolon prohibition in prose      |
+| Special Characters       | 312  | Box-drawing and emoji               |
+| English Vocabulary       | 320  | Preferred terms and calques         |
+| Dialect Consistency      | 345  | One spelling dialect per document   |
+| Tables                   | 403  | Source-width alignment rules        |
+| File Names               | 545  | Naming new documentation files      |
+| Example                  | 559  | Correct and incorrect sample        |
+| File Maintenance         | 593  | Encoding and line-ending preserving |
+| Activation Phrases       | 604  | English trigger phrases by intent   |
 
 ## Document Structure
 
@@ -138,6 +138,12 @@ Separate each sentence with a blank line.
 A sentence may contain several related parts if they express a single thought.
 
 Do not pack unrelated thoughts into one long paragraph.
+
+A sentence opens with a word rather than a code span or an emphasis marker.
+
+Write `Operation \`sync\` composes them end to end`, not `` `sync` composes them end to end ``.
+
+Label lines such as `**Goals**` and definitional entries such as `**Term**: definition` are exempt.
 
 ## Line Wrapping
 
@@ -256,6 +262,8 @@ Use the spaced hyphen (` - `) for asides, enumerations, and completions.
 A spaced hyphen never joins two independent clauses.
 
 Split such a pair into separate sentences.
+
+A right side that stands alone as a sentence is a clause join, not an aside.
 
 Structural uses are unaffected: definitional list entries such as `- term - description`,
 title-style pseudo-headers such as `**Step 1 - Name**`, titles inside quoted

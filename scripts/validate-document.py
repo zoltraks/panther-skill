@@ -14,6 +14,12 @@ Box-drawing characters (U+2500-U+257F) are exempt.
 document may carry them as its established convention, while new content
 defaults to untagged fences for plain text.
 
+Two block-shape classes are warnings as well: a block that opens like a
+mid-sentence continuation - a lowercase or `(` start after a block lacking
+sentence-final punctuation, which is how blank-line-split wrapped sentences
+surface - and a sentence opening with a code span or emphasis marker, which
+the English baseline asks to lead with a word instead.
+
 Run this file in place from the skill repository -
 `python <skill-root>/scripts/validate-document.py` - and run it on the
 document file. Copy it under a `.tmp.` name into the working
@@ -44,6 +50,9 @@ LONE_ITEM = re.compile(r"^\s*[-*+][ \t]*$")
 LONE_ORDERED = re.compile(r"^\d+[.)][ \t]*$")
 TYPO_QUOTES = "“”‘’‚„«»"
 INLINE_CODE = re.compile(r"`[^`]*`")
+LABEL_LINE = re.compile(r"^\*\*[^*\n]+\*\*:?\s*$")
+DEFINITION_LINE = re.compile(r"^\*\*[^*\n]+\*\*:")
+HRULE = re.compile(r"^\s*([-*_]\s*){3,}$")
 
 
 def sep_like(cells):
@@ -223,6 +232,7 @@ def main(path, width, payload_markdown):
     last_open_heading = -1
     last_open_level = 0
     prev = ""
+    prev_text = ""
     for i, line in enumerate(lines):
         n = i + 1
         fence = FENCE.match(line)
@@ -372,6 +382,36 @@ def main(path, width, payload_markdown):
         ):
             issues.append(f"line {n}: no blank line after list or table")
 
+        if (
+            not payload
+            and line.strip() != ""
+            and prev.strip() == ""
+            and prev_text.strip() != ""
+        ):
+            opener = line.lstrip()
+            probe = opener.lstrip("`*_ ")
+            if not prev_text.rstrip().endswith((".", "!", "?", ":")):
+                if opener.startswith("(") or probe[:1].islower():
+                    warnings.append(
+                        f"line {n}: block opens like a mid-sentence "
+                        "continuation - a blank line may split a wrapped "
+                        "sentence")
+            if (
+                not HRULE.match(opener)
+                and not LABEL_LINE.match(opener)
+                and not DEFINITION_LINE.match(opener)
+                and (
+                    opener.startswith("`")
+                    or opener[:2] in ("**", "__")
+                    or opener[:1] in ("*", "_")
+                )
+            ):
+                warnings.append(
+                    f"line {n}: sentence opens with a code span or "
+                    "emphasis marker - lead with a word")
+
+        if line.strip() and not heading and not line.startswith("|"):
+            prev_text = line
         prev = line
 
     if last_open_heading >= 0 and all(
