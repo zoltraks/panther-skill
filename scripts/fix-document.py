@@ -41,7 +41,7 @@ REFLOW = os.path.join(HERE, "reflow-prose.py")
 FAIL_RE = re.compile(r"FAIL .+?:line (\d+): (.+)$", re.M)
 
 MECHANICAL = (
-    "semicolon in prose",
+    "semicolon in prose", "spaced bold markers",
     "literal pipe inside code span",
     "no blank line before",
     "no blank line after",
@@ -97,6 +97,10 @@ def fix_semicolon(line, mode="aside"):
     return re.sub(r";(?=\s*$)", ".", line)
 
 
+def fix_spaced_bold(line):
+    return re.sub(r"\*\* (\S[^*]*\S) \*\*", r"**\1**", line)
+
+
 def fix_pipe(line):
     # A literal | inside a code span inflates the table's column count -
     # escape it inside the span only.
@@ -109,6 +113,8 @@ def apply_repair(lines, number, reason, cfg):
         return lines
     if "semicolon in prose" in reason:
         lines[idx] = fix_semicolon(lines[idx], cfg.get("semicolon_repair", "aside"))
+    elif "spaced bold markers" in reason:
+        lines[idx] = fix_spaced_bold(lines[idx])
     elif "literal pipe inside code span" in reason:
         lines[idx] = fix_pipe(lines[idx])
     elif "no blank line before" in reason or "no blank line after" in reason:

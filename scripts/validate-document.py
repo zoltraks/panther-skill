@@ -304,6 +304,9 @@ def main(path, width, payload_markdown):
             if ";" in prose and not line.startswith("|"):
                 issues.append(f"line {n}: semicolon in prose")
 
+            if re.search(r"\*\* \S[^*]*\S \*\*", line):
+                issues.append(f"line {n}: spaced bold markers render literally")
+
             if not line.lstrip().startswith("|") \
                     and line.rstrip().endswith("|"):
                 issues.append(
@@ -419,7 +422,7 @@ def main(path, width, payload_markdown):
         for message in issues:
             print(f"FAIL {path}:{message}")
         print(f"{len(issues)} issue(s) found")
-        mechanical = ("semicolon in prose", "literal pipe inside code span",
+        mechanical = ("semicolon in prose", "spaced bold markers", "literal pipe inside code span",
                       "no blank line")
         if any(k in m for m in issues for k in mechanical):
             print(f"note: {path} - fix-document.py repairs the mechanical "
