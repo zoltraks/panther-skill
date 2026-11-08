@@ -37,7 +37,7 @@ Four named conventions cover the combinations seen in real documents:
 | `bounded`   | fixed-width | separated | Lines wrap at a declared width, blank lines between sentence blocks   |
 | `justified` | fixed-width | separated | Like bounded, with inter-word spacing stretched to flush both margins |
 
-`separated` is the produced-document default - the `languages/` baselines define it.
+`separated` is the produced documents' default - the `languages/` baselines define it.
 
 `bounded` is the convention the skill's own rule files use, wrapped at 100 characters.
 

@@ -120,7 +120,7 @@ Document-mode machinery is skipped for the skill's own files:
   already fix the answers.
 - No `languages/` baseline, `types/` delta,
   or `templates/` skeleton - skill files follow `docs/STYLE.md`,
-  which wraps prose at 100 characters instead of the produced-document baselines.
+  which wraps prose at 100 characters instead of the produced documents' baselines.
 - No scope detection - the repository is the `agent-skill` scope by definition.
 - No `.tmp.` tool copies - document-production tools run directly from `scripts/` here.
 

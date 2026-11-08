@@ -77,7 +77,7 @@ The document's own conventions always win on edit.
 |---------------------|-------------|------------------|
 | Purpose             | optional    |                  |
 | Scoring Definitions | recommended | scored registers |
-| Register            | optional    | generic exemplar |
+| Register            | optional    | generic example |
 | Notes               | optional    |                  |
 | Probability         | optional    | register column  |
 | Impact              | optional    | register column  |
