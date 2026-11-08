@@ -32,7 +32,7 @@ Run `detect-encoding.py`, `detect-scope.py`, `normalize-chars.py`, `split-senten
 `reflow-prose.py`, `wrap-prose.py`, `format-table.py`, `align-comments.py`, `validate-document.py`,
 `check-document.py`, `fix-document.py`, `diff-content.py`, `census-document.py`,
 `check-sections.py`, `check-parity.py`, `check-titles.py`, `safe-replace.py`, `apply-pairs.py`,
-`diff-identifiers.py`, `lint-polish.py`, `lint-english.py`,
+`diff-identifiers.py`, `renumber-sections.py`, `lint-polish.py`, `lint-english.py`,
 and `check-consistency.py` in place from the skill repository:
 
 `python <skill-root>/scripts/<tool>.py <file>`.

@@ -136,13 +136,16 @@ def apply_repair(lines, number, reason, cfg):
 
 
 def read_lines(path):
-    with open(path, encoding="utf-8") as handle:
-        return handle.read().split("\n")
+    raw = open(path, "rb").read()
+    return raw.decode("utf-8").replace("\r\n", "\n").split("\n"), b"\r\n" in raw
 
 
-def write_lines(path, lines):
-    with open(path, "w", encoding="utf-8", newline="\n") as handle:
-        handle.write("\n".join(lines))
+def write_lines(path, lines, crlf):
+    eol = "\r\n" if crlf else "\n"
+    with open(path, "w", encoding="utf-8", newline="") as handle:
+        handle.write(eol.join(lines))
+    if crlf:
+        print("note: file uses CRLF line endings - preserved")
 
 
 def main(path, check_only, max_passes):
@@ -172,10 +175,10 @@ def main(path, check_only, max_passes):
             (n, r) for n, r in fails if any(k in r for k in MECHANICAL)
         ]
         if mechanical:
-            lines = read_lines(path)
+            lines, crlf = read_lines(path)
             for number, reason in sorted(mechanical, key=lambda item: -int(item[0])):
                 lines = apply_repair(lines, int(number), reason, cfg)
-            write_lines(path, lines)
+            write_lines(path, lines, crlf)
             repaired += len(mechanical)
         # format-table runs after the text repairs - a literal pipe left
         # in a code span would otherwise inflate the table's column count.
