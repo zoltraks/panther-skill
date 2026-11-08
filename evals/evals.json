@@ -1963,6 +1963,17 @@
         "label lines such as `**Goals**` and definitional entries such as `**Term**:` are exempt and stay untouched",
         "validate-document.py reports the sentence-opener class as advisory warnings"
       ]
+    },
+    {
+      "id": 164,
+      "prompt": "Summarize the run in verbose mode.",
+      "expected_output": "The report closes with an operations table - one row per operation carrying `Operation`, `Time`, and `Context` columns - and the timing sentence stays last.",
+      "files": [],
+      "expectations": [
+        "a verbose report closes with an operations table carrying `Operation`, `Time`, and `Context` columns",
+        "the driving agent and model are named in a separate paragraph once per session or on request",
+        "the `<description> operation took <m:ss>` sentence stays the last sentence"
+      ]
     }
   ]
 }
