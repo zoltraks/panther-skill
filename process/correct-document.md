@@ -177,6 +177,10 @@ Run the scripted fixes first, in the mutating-pass order of `process/document-wo
 `scripts/align-comments.py`, and `scripts/format-table.py` last,
 because any later text edit inside a cell re-breaks the source alignment.
 
+A hand edit that removes a plain-text fence tag (` ```text ` -> ` ``` `) runs before
+`align-comments.py` - the tag shields the block from comment alignment, so removing it
+first lets the same pass align the comments it newly exposes.
+
 Missing sections feed the `section-add` selection surface before insertion - inserted sections land
 at their canonical positions per the type's `## Structure` order and carry `NOT SPECIFIED` markers,
 no content is invented.

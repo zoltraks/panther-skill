@@ -17,8 +17,9 @@ The tool drives the siblings it ships with: `format-table.py` realigns
 tables first, then each `validate-document.py` finding is repaired when it
 belongs to a safe mechanical class - `semicolon in prose` becomes the
 house aside separator ` - ` (a period at line end), `literal pipe inside
-code span` is escaped to `&#124;`, and missing blank lines around lists
-and tables are inserted. The loop repeats to a fixed point so one repair
+code span` is escaped to `&#124;`, missing blank lines around lists
+and tables are inserted, and a run of consecutive blank lines collapses
+to one. The loop repeats to a fixed point so one repair
 cannot shadow another.
 
 Classes outside that set - headings, fences, links, reflow notes - are
@@ -45,6 +46,7 @@ MECHANICAL = (
     "literal pipe inside code span",
     "no blank line before",
     "no blank line after",
+    "consecutive blank lines",
 )
 
 
@@ -132,6 +134,11 @@ def apply_repair(lines, number, reason, cfg):
         # between line N-1 and line N in every flagged case.
         if policy != "skip" and idx > 0 and lines[idx - 1].strip() != "":
             lines.insert(idx, "")
+    elif "consecutive blank lines" in reason:
+        # The validator flags the second blank line of a run - deleting it
+        # collapses one duplicate per pass and the loop handles longer runs.
+        if lines[idx].strip() == "" and idx > 0 and lines[idx - 1].strip() == "":
+            del lines[idx]
     return lines
 
 

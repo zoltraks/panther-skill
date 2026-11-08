@@ -457,6 +457,8 @@ Before delivering, run the checks from `process/document-checklist.md`:
   compare with `--normalize-chars` so the sanctioned character map does not surface
   as token differences.
 - Legitimate sentence joins and deliberate reflows produce expected merged-line warnings.
+- Verify the delivered file's encoding and line endings byte-level - a host write tool may
+  emit CRLF on Windows where the contract requires LF; `scripts/detect-encoding.py` reports both.
 - `git diff --check` when working inside a repository.
 
 A failing check must be fixed or explicitly reported to the user with a reason.

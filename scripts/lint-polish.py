@@ -325,7 +325,13 @@ def check_mechanical(lineno, text, findings, splice=True):
                              "typographic %s %r" % (name, char),
                              "typographic char"))
     if ";" in text:
-        findings.append(("error", lineno, "semicolon in prose", "semicolon"))
+        if "," in text:
+            findings.append(("warn", lineno,
+                             "semicolon in prose - allowed only inside a "
+                             "complex enumeration", "semicolon"))
+        else:
+            findings.append(("error", lineno, "semicolon in prose",
+                             "semicolon"))
 
     # Participial opener: a line opening with an adverbial participle clause
     # ("Wnosząc...", "Zbadawszy...") needs a comma after that clause.
