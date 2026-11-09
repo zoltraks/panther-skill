@@ -109,6 +109,17 @@ def fix_pipe(line):
     return re.sub(r"`[^`]*\|[^`]*`", lambda m: m.group(0).replace("|", "&#124;"), line)
 
 
+LINK_TAIL = re.compile(r"^(?:[\w./-]+\)+[.,;:]?\s*|.*\]\([^)]*)$")
+
+
+def _link_tail(line):
+    # A wrapped link or URL atom continuation - a bare closing fragment at
+    # column zero, or a line still inside an unclosed `](` target. Joining
+    # the next line into it or splitting it with a blank line corrupts the
+    # link, so repairs never touch this boundary.
+    return bool(LINK_TAIL.match(line))
+
+
 def apply_repair(lines, number, reason, cfg):
     idx = number - 1
     if idx >= len(lines):
@@ -121,7 +132,8 @@ def apply_repair(lines, number, reason, cfg):
         lines[idx] = fix_pipe(lines[idx])
     elif "no blank line before" in reason or "no blank line after" in reason:
         policy = cfg.get("list_line_repair", "join")
-        if policy == "join" and "before" in reason and LIST_LEAD.match(lines[idx]):
+        if (policy == "join" and "before" in reason and LIST_LEAD.match(lines[idx])
+                and not _link_tail(lines[idx - 1])):
             nxt = idx + 1
             if nxt >= len(lines) or not LIST_LEAD.match(lines[nxt]):
                 # A lone marker-led line after prose is a wrapped aside
@@ -132,7 +144,8 @@ def apply_repair(lines, number, reason, cfg):
                 return lines
         # Both findings name the same missing boundary - the blank goes
         # between line N-1 and line N in every flagged case.
-        if policy != "skip" and idx > 0 and lines[idx - 1].strip() != "":
+        if (policy != "skip" and idx > 0 and lines[idx - 1].strip() != ""
+                and not _link_tail(lines[idx - 1])):
             lines.insert(idx, "")
     elif "consecutive blank lines" in reason:
         # The validator flags the second blank line of a run - deleting it
