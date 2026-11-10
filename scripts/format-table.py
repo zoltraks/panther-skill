@@ -58,7 +58,7 @@ def sep_like(cells):
     )
 
 
-def format_block(block, start, drop_empty):
+def format_block(block, start, drop_empty, spaced_sep=False):
     warnings = []
     rows = [parse_row(l) for l in block]
     for k, line in enumerate(block):
@@ -110,7 +110,14 @@ def format_block(block, start, drop_empty):
     out = []
     for r in rows:
         if sep_like(r):
-            out.append("|" + "|".join("-" * (w + 2) for w in widths) + "|")
+            if spaced_sep:
+                out.append(
+                    "| " + " | ".join("-" * w for w in widths) + " |"
+                )
+            else:
+                out.append(
+                    "|" + "|".join("-" * (w + 2) for w in widths) + "|"
+                )
         else:
             out.append(
                 "| " + " | ".join(c.ljust(widths[j]) for j, c in enumerate(r)) + " |"
@@ -124,7 +131,7 @@ def in_payload(fences, payload_markdown):
     )
 
 
-def main(path, check_only, payload_markdown, drop_empty, excludes=None):
+def main(path, check_only, payload_markdown, drop_empty, excludes=None, spaced_sep=False):
     if os.path.isdir(path):
         from pathlib import Path
         files = [str(p) for p in sorted(Path(path).rglob("*.md"))
@@ -136,8 +143,7 @@ def main(path, check_only, payload_markdown, drop_empty, excludes=None):
         worst = 0
         for f in files:
             worst = max(worst, main(f, check_only, payload_markdown,
-                                    drop_empty,
-                                    excludes))
+                                    drop_empty, excludes, spaced_sep))
         return worst
     raw = open(path, "rb").read()
     crlf = b"\r\n" in raw
@@ -174,7 +180,9 @@ def main(path, check_only, payload_markdown, drop_empty, excludes=None):
             while i < len(lines) and lines[i].startswith("|"):
                 block.append(lines[i])
                 i += 1
-            formatted, warnings = format_block(block, start, drop_empty)
+            formatted, warnings = format_block(
+                block, start, drop_empty, spaced_sep
+            )
             for message in warnings:
                 print(message)
             if formatted != block:
@@ -224,6 +232,10 @@ if __name__ == "__main__":
     parser.add_argument("--drop-empty-columns", action="store_true",
                         help="remove columns that are empty in every "
                              "non-separator row")
+    parser.add_argument("--spaced-separator", action="store_true",
+                        help="emit spaced separators | --- | instead of "
+                             "compact |---|")
     parsed = parser.parse_args()
     raise SystemExit(main(parsed.file, parsed.check, parsed.payload_markdown,
-                          parsed.drop_empty_columns, parsed.exclude))
+                          parsed.drop_empty_columns, parsed.exclude,
+                          parsed.spaced_separator))

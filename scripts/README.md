@@ -108,7 +108,7 @@ python <skill-root>/scripts/detect-scope.py <directory>
 python <skill-root>/scripts/normalize-chars.py <file.md> [--check] [--payload-markdown]
 python <skill-root>/scripts/split-sentences.py <file.md> [--check] [--paragraphs | --flow] [--width N] [--payload-markdown]
 python <skill-root>/scripts/reflow-prose.py <file.md|dir> (--wrap | --unwrap | --justify) [--check] [--width N] [--payload-markdown] [--loose] [--convert] [--exclude NAME ...]
-python <skill-root>/scripts/format-table.py <file.md|dir> [--check] [--payload-markdown] [--drop-empty-columns] [--exclude NAME ...]
+python <skill-root>/scripts/format-table.py <file.md|dir> [--check] [--payload-markdown] [--drop-empty-columns] [--spaced-separator] [--exclude NAME ...]
 python <skill-root>/scripts/align-comments.py <file.md> [--check] [--compact] [--payload-markdown]
 python <skill-root>/scripts/validate-document.py <file.md> [--width N] [--payload-markdown]
 python <skill-root>/scripts/fix-document.py <file.md> [--check] [--passes N]
@@ -249,6 +249,10 @@ rewrites `semicolon in prose` to the aside separator,
 escapes `literal pipe inside code span` to `&#124;`,
 and inserts missing blank lines around lists and tables,
 repeating until the file is clean or the loop stops changing it.
+
+`panther.json` gates the subprocess passes - `table_format: "off"` skips
+`format-table.py`, `prose_reflow: "off"` skips `reflow-prose.py`, and
+`table_separator: "spaced"` makes the table pass emit `| --- |` separators.
 
 Pipe escapes run before the table pass, since a literal pipe left in a code span would otherwise
 inflate the table's column count.

@@ -100,7 +100,7 @@ def fix_semicolon(line, mode="aside"):
 
 
 def fix_spaced_bold(line):
-    return re.sub(r"\*\* (\S[^*]*\S) \*\*", r"**\1**", line)
+    return re.sub(r"(?<![\w*])\*\* (\S[^*]*?\S) \*\*(?!\w)", r"**\1**", line)
 
 
 def fix_pipe(line):
@@ -202,16 +202,29 @@ def main(path, check_only, max_passes):
             repaired += len(mechanical)
         # format-table runs after the text repairs - a literal pipe left
         # in a code span would otherwise inflate the table's column count.
-        subprocess.run(
-            [sys.executable, TABLE, path], capture_output=True, check=False
-        )
+        # `table_format: off` opts a repository out entirely, and
+        # `table_separator: spaced` emits `| --- |` separators instead of
+        # the compact `|---|` form.
+        if cfg.get("table_format", "on") != "off":
+            sep = (
+                ["--spaced-separator"]
+                if cfg.get("table_separator") == "spaced"
+                else []
+            )
+            subprocess.run(
+                [sys.executable, TABLE, path, *sep],
+                capture_output=True,
+                check=False,
+            )
         # reflow normalizes lines the join-back repair lengthened; on an
         # unwrapped document it abstains with a note, so the call is safe
-        # under either prose layout.
-        subprocess.run(
-            [sys.executable, REFLOW, path, "--wrap"],
-            capture_output=True, check=False,
-        )
+        # under either prose layout. `prose_reflow: off` opts out.
+        if cfg.get("prose_reflow", "on") != "off":
+            subprocess.run(
+                [sys.executable, REFLOW, path, "--wrap"],
+                capture_output=True,
+                check=False,
+            )
         if open(path, "rb").read() == before:
             break
 
