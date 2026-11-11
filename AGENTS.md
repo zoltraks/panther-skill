@@ -48,7 +48,10 @@ Keep each rule in its owning document and link to it instead of duplicating it.
   repository change on an explicit, confirmed instruction.
 - Do not claim validation that did not run.
 - Never commit automatically, except a commit completing a user-approved upstream merge - that
-  commit may be made, while pushing always runs on a separate request.
+  commit may be made, while pushing always runs on a separate request. Proposed commit messages
+  match the repository convention (`git log -10 --format=%s`): a one-line subject with no type
+  prefixes, no trailing period on a single-line subject, no AI attribution or trailers, and no
+  trailing newline - a blank line belongs only between a subject and a real body paragraph.
 - Pending questions and option surfaces are asked through the host's question mechanism, never
   appended to a reply in prose.
 
