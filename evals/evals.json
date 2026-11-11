@@ -2009,6 +2009,19 @@
         "reflow-prose --wrap preserves an empty `>` separator instead of folding it into the quote unit",
         "link rows outside a blockquote are not flagged"
       ]
+    },
+    {
+      "id": 168,
+      "prompt": "the draft plan names its correction options at the end of the report - apply them?",
+      "expected_output": "The pending choice is asked through the host's question mechanism - a menu ending with a cancel-class entry - never answered by options named in reply prose.",
+      "files": [],
+      "expectations": [
+        "asks the pending surface through the host's question mechanism",
+        "a reply ending by waiting on a choice is treated as a pending surface",
+        "naming options in reply prose is not asking them",
+        "the question ends with a cancel-class entry",
+        "an appended question names its recommendation, and a verbose-mode append also states what it decides and each answer's consequences"
+      ]
     }
   ]
 }

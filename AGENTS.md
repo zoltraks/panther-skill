@@ -48,6 +48,8 @@ Keep each rule in its owning document and link to it instead of duplicating it.
 - Do not claim validation that did not run.
 - Never commit automatically, except a commit completing a user-approved upstream merge - that
   commit may be made, while pushing always runs on a separate request.
+- Pending questions and option surfaces are asked through the host's question mechanism, never
+  appended to a reply in prose.
 
 ## Local Workspace
 
