@@ -3,6 +3,7 @@
 ## Purpose
 
 > **Scope:** Enablement procedure for requests that activate the skill without naming a task
+>
 > **Key items:** bare activation, session update check, enablement response with operations table,
 > catalog pointer, mode hand-off
 

@@ -4,6 +4,7 @@
 
 > **Scope:** Conventions for architecture decision records - short documents that capture a single
 > design decision, its context, and its consequences
+>
 > **Key items:** status lifecycle, numbered file naming, immutable once accepted, supersede chain
 
 A decision record explains why one architectural choice was made and what it implies.

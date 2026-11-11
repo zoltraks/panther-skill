@@ -4,6 +4,7 @@
 
 > **Scope:** Conventions for formal change request documents - a single proposed change to scope,
 > schedule, budget, or baseline submitted for approval
+>
 > **Key items:** request metadata, justification, impact assessment, approval block
 
 A change request asks a decision maker to approve one change.

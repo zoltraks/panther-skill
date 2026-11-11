@@ -4,6 +4,7 @@
 
 > **Scope:** German-Polish terminology for software engineering and the software
 > development lifecycle
+>
 > **Key items:** domain signals, terminology table, context forms, untranslated terms
 
 Load this glossary for translate tasks on software and software-documentation subjects.

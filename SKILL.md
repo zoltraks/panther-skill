@@ -17,7 +17,7 @@ compatibility: >-
   Claude Desktop, Windsurf, Devin, and similar). Requires the ability to read
   and write text files. No network access required.
 metadata:
-  version: "1.6.7"
+  version: "1.6.8"
   author: Filip Golewski
 allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob Grep
 ---
@@ -25,6 +25,7 @@ allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob G
 # Document Authoring Skill
 
 > **Type:** Root router and taxonomy
+>
 > **Purpose:** Route document creation and editing requests to the smallest useful rule file and
 > enforce plain-text-readable Markdown output.
 

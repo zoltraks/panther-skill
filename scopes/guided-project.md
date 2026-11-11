@@ -4,6 +4,7 @@
 
 > **Scope:** Document work inside a software project whose `docs/` tree is governed by an
 > explicit guidelines document
+>
 > **Key items:** README entry point, `docs/GUIDELINES.md` source of truth, UPPERCASE document set,
 > versioned artifact directories, agent read boundaries
 

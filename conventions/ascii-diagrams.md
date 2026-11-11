@@ -4,6 +4,7 @@
 
 > **Scope:** Node-and-edge diagrams drawn with box-drawing characters inside untagged fenced blocks
 > in documents created and edited with this skill
+>
 > **Key items:** fixed border columns, shared axis, centered boxes and prose lines,
 > `┬` / `▼` vertical edges, gap-filling `▶` side branches, `┌` / `┬` / `┼` / `┐` fan-out junctions
 

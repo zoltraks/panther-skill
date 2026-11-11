@@ -5,6 +5,7 @@
 > **Scope:** The named prose-formatting conventions for Markdown documents.
 > How sentences sit on lines and how blank lines separate them - with detection signals,
 > the no-assumed-default rule, and the intake parameters that resolve the layout of a new document
+>
 > **Key items:** flowing, separated, bounded, justified conventions, per-element detection,
 > mixed-document handling, layout parameters, tooling map
 

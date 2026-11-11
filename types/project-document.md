@@ -4,6 +4,7 @@
 
 > **Scope:** Conventions for technical project documents - project specifications and solution
 > designs that are the primary source of truth for implementation
+>
 > **Key items:** version comment, document navigation, glossary, goals, requirements tables,
 > numbered chapters variant
 

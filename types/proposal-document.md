@@ -4,6 +4,7 @@
 
 > **Scope:** Conventions for request-for-comments and design proposal documents - proposals
 > circulated for review before implementation starts
+>
 > **Key items:** review status lifecycle, metadata header, alternatives considered, open questions,
 > decision recorded on resolution
 

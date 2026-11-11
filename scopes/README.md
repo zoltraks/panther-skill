@@ -3,6 +3,7 @@
 ## Purpose
 
 > **Scope:** Index of the per-scope rule files loaded on detected or named project layouts
+>
 > **Key items:** scope selection, placement, naming, registration rules
 
 Load the file matching the detected or named scope - it governs placement, naming, registration:

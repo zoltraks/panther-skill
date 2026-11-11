@@ -4,6 +4,7 @@
 
 > **Scope:** Document work inside a VitePress documentation site - a Vue-based static site generator
 > configured by a `.vitepress/` directory with file-based routing
+>
 > **Key items:** `.vitepress/` config, file-based routing, `index.md` homepages,
 > frontmatter `layout` values, `srcDir` relocation
 

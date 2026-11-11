@@ -4,6 +4,7 @@
 
 > **Scope:** Conventions for YAML documents - configuration files, specifications, pipelines,
 > and manifests written in the YAML data language rather than Markdown
+>
 > **Key items:** two-space indentation, minimal quoting, comment placement, key ordering,
 > minimal-diff edits, scalar pitfall awareness
 

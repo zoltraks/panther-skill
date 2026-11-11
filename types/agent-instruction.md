@@ -4,6 +4,7 @@
 
 > **Scope:** Conventions for documents an AI coding agent executes - preparation procedures,
 > operational specifications, and instruction documents that also serve human readers
+>
 > **Key items:** dual audience, activation routing, decision menus, staged procedures,
 > validation checklists, embedded templates
 

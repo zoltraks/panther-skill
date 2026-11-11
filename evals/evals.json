@@ -1137,15 +1137,18 @@
     },
     {
       "id": 93,
-      "prompt": "Improve panther-skill using what happened in this session.",
-      "expected_output": "The session-review procedure: session lessons gathered, findings mapped to rule files and reported for approval, only approved changes applied, validation run.",
+      "prompt": "Improve panther-skill using what happened in this session - first plainly, then in verbose mode.",
+      "expected_output": "The session-review procedure: session lessons gathered, findings mapped to rule files and reported for approval, only approved changes applied, validation run. The verbose run additionally reports every offered option with its disposition and the rationale for the recommended choice before the gate waits for an answer.",
       "files": [],
       "expectations": [
         "The agent loaded process/session-review.md and followed its workflow.",
         "Gathered observations cover assumptions made, failures and workarounds, and missing or ambiguous rules.",
         "Findings are reported to the user first, each mapped to the rule file or script it would change.",
         "No skill file was modified before the user approved the findings.",
-        "After approved changes the maintenance validation suite ran and the report lists changed files and findings."
+        "After approved changes the maintenance validation suite ran and the report lists changed files and findings.",
+        "The verbose run reports the full option list and the rationale for the recommended choice at each gate.",
+        "The approval gate still waits for the user's answer - verbose alone does not auto-resolve.",
+        "Under an additional autonomous flag the same detail is reported while the gate resolves without waiting."
       ]
     },
     {
@@ -1615,18 +1618,6 @@
       ]
     },
     {
-      "id": 132,
-      "prompt": "Improve panther-skill using what happened in this session, verbose.",
-      "expected_output": "The session-review procedure with expanded gate reporting: every offered option listed with its disposition and the rationale for the recommended choice before the gate waits for an answer.",
-      "files": [],
-      "expectations": [
-        "The agent loaded process/session-review.md and followed its workflow in verbose mode.",
-        "Each gate reports the full option list and the rationale for the recommended choice.",
-        "The approval gate still waits for the user's answer - verbose alone does not auto-resolve.",
-        "Under an additional autonomous flag the same detail is reported while the gate resolves without waiting."
-      ]
-    },
-    {
       "id": 133,
       "prompt": "Correct this English document - it has a misaligned table, packed sentences, typos, and a missing required section for its type.",
       "expected_output": "The same document corrected in place - table realigned by script, sentences split, typos fixed, missing section inserted with NOT SPECIFIED markers - followed by a corrections report.",
@@ -1715,24 +1706,13 @@
     },
     {
       "id": 140,
-      "prompt": "Write a quick note about the stand-up agenda, informational mode.",
-      "expected_output": "The document-mode intake runs and the response ends with a separate paragraph whose last sentence reports '<description> operation took <m:ss>' in minutes:seconds format.",
+      "prompt": "Write a quick note about the stand-up agenda - first in timing mode, then in informational mode.",
+      "expected_output": "Both document-mode intake runs close per the operation-timing contract - each reply ends with the '<description> operation took <m:ss>' sentence, and the informational run emits no parameter document.",
       "files": [],
       "expectations": [
-        "The agent loaded process/operation-timing.md for the informational flag - the diagnostic surface stays in process/json-exchange.md.",
+        "The agent loaded process/operation-timing.md for both flags - the diagnostic surface stays in process/json-exchange.md.",
         "No parameter document emits under the informational flag - it arms the timing report alone.",
-        "The reply ends with a separate paragraph whose single sentence is the last sentence: '<description> operation took <m:ss>' - the description names the document operation and the time uses minutes:seconds.",
-        "No timing line appears on a bare activation or standby reply - the rule covers named operations only."
-      ]
-    },
-    {
-      "id": 141,
-      "prompt": "Write a quick note about the stand-up agenda, timing mode.",
-      "expected_output": "The document-mode intake runs and the response ends with a separate paragraph whose last sentence reports '<description> operation took <m:ss>' in minutes:seconds format.",
-      "files": [],
-      "expectations": [
-        "The agent loaded process/operation-timing.md for the timing flag - the diagnostic surface stays in process/json-exchange.md.",
-        "The reply ends with a separate paragraph whose single sentence is the last sentence: '<description> operation took <m:ss>' - the description names the document operation and the time uses minutes:seconds.",
+        "Each reply ends with a separate paragraph whose single sentence is the last sentence: '<description> operation took <m:ss>' - the description names the document operation and the time uses minutes:seconds.",
         "No timing line appears on a bare activation or standby reply - the rule covers named operations only."
       ]
     },
@@ -2021,6 +2001,40 @@
         "naming options in reply prose is not asking them",
         "the question ends with a cancel-class entry",
         "an appended question names its recommendation, and a verbose-mode append also states what it decides and each answer's consequences"
+      ]
+    },
+    {
+      "id": 169,
+      "prompt": "check a document whose Purpose blockquote carries a `**Scope:**` paragraph directly followed by a `**Key items:**` field row",
+      "expected_output": "validate-document.py flags each `**Label:**` field row that follows a non-empty `>` line as `blockquote field row merges into the previous paragraph`, and fix-document.py inserts a `>` blank separator ahead of the row so the field renders on its own line.",
+      "files": [],
+      "expectations": [
+        "the validator flags a `>` `**Label:**` field row that directly follows a non-empty `>` line",
+        "the fixer inserts a `>` blank line ahead of the flagged field row",
+        "a field row already separated by a `>` blank line is not flagged",
+        "field rows outside a blockquote are not flagged"
+      ]
+    },
+    {
+      "id": 170,
+      "prompt": "check a rule document whose fenced ```markdown example shows a Purpose blockquote with `**Scope:**` directly followed by `**Key items:**`",
+      "expected_output": "validate-document.py --payload-markdown flags the field row inside the example fence as `blockquote field row merges into the previous paragraph`, while the same file passes without the flag - payload checks are opt-in.",
+      "files": [],
+      "expectations": [
+        "the validator checks blockquote link and field rows inside ```markdown fenced blocks only under --payload-markdown",
+        "the default run leaves fenced example payloads unchecked",
+        "a deliberately defective teaching example can be exempted through the panther.json findings suppression list"
+      ]
+    },
+    {
+      "id": 171,
+      "prompt": "repair only the blockquote separation findings in a document that also carries other mechanical findings",
+      "expected_output": "fix-document.py --only \"row merges\" repairs just the matching finding classes - the format-table and reflow-prose normalization passes stay skipped, and findings outside the named class are left untouched and reported as remaining.",
+      "files": [],
+      "expectations": [
+        "--only filters the applied mechanical repairs to reasons containing the given text",
+        "--check lists FIXABLE findings only for the named classes",
+        "findings outside the named classes are reported as remaining and the run exits nonzero"
       ]
     }
   ]

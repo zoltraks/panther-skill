@@ -33,7 +33,7 @@ Usage: python validate-document.py <file.md> [--width N] [--payload-markdown]
   --payload-markdown   apply a curated subset of checks inside ```markdown
                        fenced blocks (embedded payload documents): trailing
                        whitespace, consecutive blank lines, lone list
-                       markers, and heading checks
+                       markers, blockquote row separation, and heading checks
 """
 
 import argparse
@@ -47,6 +47,7 @@ HEADING = re.compile(r"^(#{1,6})\s")
 BULLET = re.compile(r"^\s*[-*+] ")
 ORDERED = re.compile(r"^\s*\d+\. ")
 BQ_LINK_ROW = re.compile(r"^>\s*(?:!?\[[^\]]*\]\([^)]*\)\s*)+$")
+BQ_FIELD_ROW = re.compile(r"^>\s*\*\*[^*\n]+:\*\*|^>\s*\*\*[^*\n]+\*\*:")
 LONE_ITEM = re.compile(r"^\s*[-*+][ \t]*$")
 LONE_ORDERED = re.compile(r"^\d+[.)][ \t]*$")
 TYPO_QUOTES = "“”‘’‚„«»"
@@ -383,10 +384,16 @@ def main(path, width, payload_markdown):
         ):
             issues.append(f"line {n}: no blank line after list or table")
 
-        if (not payload and BQ_LINK_ROW.match(line)
+        if (BQ_LINK_ROW.match(line)
                 and prev.startswith(">") and prev.lstrip("> ").strip() != ""):
             issues.append(
                 f"line {n}: blockquote link row merges into the previous "
+                "paragraph - separate it with a `>` blank line")
+
+        if (BQ_FIELD_ROW.match(line)
+                and prev.startswith(">") and prev.lstrip("> ").strip() != ""):
+            issues.append(
+                f"line {n}: blockquote field row merges into the previous "
                 "paragraph - separate it with a `>` blank line")
 
         if (

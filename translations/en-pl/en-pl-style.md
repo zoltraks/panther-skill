@@ -3,6 +3,7 @@
 ## Purpose
 
 > **Scope:** Sentence-level adaptation rules for rendering a document from English into Polish
+>
 > **Key items:** aspect and voice, actor verbs, report-register verb choice, fixed idioms,
 > correlative frames, enumeration punctuation, hedged verdicts, meaning over word order,
 > metaphors resolved to function, modality, conditions, enumeration logic, imperative voice,

@@ -3,6 +3,7 @@
 ## Purpose
 
 > **Scope:** Direction contract for rendering a document from English into Polish
+>
 > **Key items:** loading order, style adaptation, locale conventions, vocabulary and register,
 > untranslated set, terminology resolution, output conventions
 

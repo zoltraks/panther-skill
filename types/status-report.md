@@ -3,6 +3,7 @@
 ## Purpose
 
 > **Scope:** Periodic project health reports that compare the project to its baselines.
+>
 > **Key items:** RAG ratings, variance metrics, decisions needed, fixed structure,
 > period identification.
 

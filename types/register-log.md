@@ -4,6 +4,7 @@
 
 > **Scope:** Living project documents that track evolving information as entry tables
 > - registers and logs.
+>
 > **Key items:** ID prefixes, status lifecycles, scoring definitions, append-only entries,
 > one owner per entry.
 

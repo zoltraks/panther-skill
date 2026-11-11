@@ -3,6 +3,7 @@
 ## Purpose
 
 > **Scope:** Direction contract for rendering a document from Polish into German
+>
 > **Key items:** loading order, style adaptation, abbreviation mapping, locale conventions,
 > vocabulary and register, untranslated set, terminology resolution, output conventions
 

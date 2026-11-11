@@ -3,6 +3,7 @@
 ## Purpose
 
 > **Scope:** Formal records of what a meeting decided and assigned.
+>
 > **Key items:** Attendees with roles, agenda-driven body, decisions,
 > action items with one owner each.
 

@@ -4,6 +4,7 @@
 
 > **Scope:** Conventions for documents that define rules - guidelines, standards, conventions,
 > and workflow definitions other documents or agents must follow
+>
 > **Key items:** imperative voice, scope statement, correct/incorrect examples, sources of truth
 
 A rules document instructs the reader.

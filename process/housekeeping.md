@@ -4,6 +4,7 @@
 
 > **Scope:** Self-repository upkeep for the panther-skill repository - registration reconciliation,
 > coverage checks, workspace hygiene, and validation.
+>
 > **Key items:** upstream state, registration reconciliation, eval coverage, version check,
 > workspace hygiene, proposal report.
 

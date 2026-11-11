@@ -4,6 +4,7 @@
 
 > **Scope:** German-Polish terminology for construction, civil engineering,
 > and concrete-durability subjects
+>
 > **Key items:** domain signals, terminology table, context forms, calque traps, untranslated terms
 
 Load this glossary for translate tasks on construction and building-materials subjects.

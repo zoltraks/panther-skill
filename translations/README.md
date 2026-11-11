@@ -3,6 +3,7 @@
 ## Purpose
 
 > **Scope:** Index of the per-direction translation rule files and industry glossaries
+>
 > **Key items:** pair directories, loading order, glossary slugs
 
 Load on translate tasks per `process/translate-document.md` and on translation-audit tasks per

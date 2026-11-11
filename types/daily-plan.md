@@ -4,6 +4,7 @@
 
 > **Scope:** Conventions for single-day planning documents - the day's priorities, scheduled blocks,
 > and notes kept or thrown away at day's end
+>
 > **Key items:** date-first title, top priorities, time blocks, carry-over
 
 A daily plan organizes one working day.

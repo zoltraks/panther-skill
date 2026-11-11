@@ -4,6 +4,7 @@
 
 > **Scope:** Conventions for the `README.md` of a consumable package or library - a module a
 > developer installs and imports into their own code
+>
 > **Key items:** short description, package-manager install, minimal usage example, API pointer
 
 | Out of scope                    | See instead                   |

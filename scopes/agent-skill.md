@@ -4,6 +4,7 @@
 
 > **Scope:** Document work inside an Agent Skill repository.
 > A directory that contains a `SKILL.md` router and bundled resource files
+>
 > **Key items:** router contract, directory roles, registration procedure, kebab-case naming
 
 An Agent Skill is a documented collection of rule files, scripts,

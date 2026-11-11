@@ -4,6 +4,7 @@
 
 > **Scope:** Conventions for the `README.md` of a repository that is a catalog of independent
 > entries - a skill collection, a monorepo root, an examples showcase, or a package family
+>
 > **Key items:** collection description, entry catalog, per-entry pointers, notices
 
 | Out of scope                    | See instead                   |

@@ -3,6 +3,7 @@
 ## Purpose
 
 > **Scope:** Index of the authoring invariants under `principles/`
+>
 > **Key items:** mandatory load
 
 ## Index

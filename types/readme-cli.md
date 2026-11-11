@@ -4,6 +4,7 @@
 
 > **Scope:** Conventions for the `README.md` of a command-line tool.
 > A utility whose value is invoked through commands, subcommands, and flags
+>
 > **Key items:** install, commands table, options table, copy-pasteable examples
 
 | Out of scope                    | See instead                   |

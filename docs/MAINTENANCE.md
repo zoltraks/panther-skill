@@ -3,6 +3,7 @@
 ## Purpose
 
 > **Scope:** Rules for extending, restructuring, and maintaining the panther-skill repository itself
+>
 > **Key items:** directory roles, file naming, registration contract, addition
 > procedures, validation
 
@@ -237,6 +238,8 @@ Run the checkers over every Markdown file outside `work/`:
 - `python3 scripts/format-table.py <file> --check`
 - `python3 scripts/align-comments.py <file> --check`
 - `python3 scripts/validate-document.py <file>`
+- `python3 scripts/validate-document.py <file> --payload-markdown` on documents carrying
+  `markdown` example fences - a teaching example must pass the same checks it teaches.
 - `python3 scripts/check-contents.py .` - Contents tables still anchor to real headings.
 
 Skip the reflow check on `languages/` and `templates/` files.

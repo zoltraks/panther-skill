@@ -3,6 +3,7 @@
 ## Purpose
 
 > **Scope:** Index of the procedures under `process/` and the per-operation behavior summary
+>
 > **Key items:** load triggers, workflow, standalone procedures, operations summary
 
 Load a procedure only when the task reaches it - progressive disclosure stays lazy,

@@ -4,6 +4,7 @@
 
 > **Scope:** Conventions for `CONTRIBUTING.md` - the root-level contributor guide in open source and
 > collaborative projects
+>
 > **Key items:** welcome paragraph, ways to contribute, issue reporting, development setup,
 > pull request rules, AI-assisted contributions, license note
 

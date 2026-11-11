@@ -3,6 +3,7 @@
 ## Purpose
 
 > **Scope:** Agent-facing entry point for authoring and maintaining this skill repository.
+>
 > **Key items:** governing documents, boundaries, local workspace, validation, improvement.
 
 This repository is the Panther skill, an Agent Skills package for authoring and editing

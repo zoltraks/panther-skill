@@ -4,6 +4,7 @@
 
 > **Scope:** Conventions for coding standards consumed by AI coding agents - per-language,
 > per-framework, and cross-cutting documents that stack into a project's governing rules
+>
 > **Key items:** version comment, scope, precedence table, agent intake protocol,
 > executable verification table, definition of done, self-contained layers
 

@@ -3,6 +3,7 @@
 ## Purpose
 
 > **Scope:** Polish-English terminology for finance, accounting, and banking documents
+>
 > **Key items:** domain signals, terminology table, context forms, calque traps, untranslated terms
 
 Load this glossary for translate tasks on financial subjects.

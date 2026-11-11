@@ -3,6 +3,7 @@
 ## Purpose
 
 > **Scope:** Direction contract for rendering a document from German into English
+>
 > **Key items:** loading order, style adaptation, abbreviation mapping, terminology resolution,
 > untranslated set, output conventions
 

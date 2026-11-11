@@ -4,6 +4,7 @@
 
 > **Scope:** Conventions for informal written communication - announcements, memos, notes to a team,
 > and single-issue messages meant to be read once
+>
 > **Key items:** subject-first title, minimal ceremony, one clear ask or statement
 
 A message document communicates one thing to its readers.

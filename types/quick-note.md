@@ -4,6 +4,7 @@
 
 > **Scope:** Conventions for quick notes - short working documents, outlines, meeting notes,
 > and drafts that capture content fast
+>
 > **Key items:** minimal structure, optional H1, informal lists, tolerance for loose conventions
 
 A note is the lightest document type.

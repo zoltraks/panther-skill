@@ -3,6 +3,7 @@
 ## Purpose
 
 > **Scope:** Hierarchical decompositions of project scope - the WBS and its dictionary.
+>
 > **Key items:** Decimal-coded outline, work packages, WBS dictionary, 100
 > percent rule, RACI matrix.
 

@@ -4,6 +4,7 @@
 
 > **Scope:** Comment alignment inside fenced plain-text and shell blocks in documents created and
 > edited with this skill
+>
 > **Key items:** shared comment column, dominant column, longest entry plus two spaces, compacting,
 > per-block scope, `align-comments.py`
 

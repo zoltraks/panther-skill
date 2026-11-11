@@ -4,6 +4,7 @@
 
 > **Scope:** The standalone procedure for discovering the document layout of a
 > directory or repository
+>
 > **Key items:** signal census, scope comparison, document type census, exceptions, report
 
 Discovery answers "which scope describes this location best".

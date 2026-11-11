@@ -3,6 +3,7 @@
 ## Purpose
 
 > **Scope:** The standalone procedure for auditing a single document against its governing rules
+>
 > **Key items:** mechanical checks, structural census, convention evaluation, content review,
 > findings, fix plan, report
 

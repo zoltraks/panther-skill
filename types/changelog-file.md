@@ -4,6 +4,7 @@
 
 > **Scope:** Conventions for `CHANGELOG.md` files - version-grouped records of what changed
 > in a project and why
+>
 > **Key items:** version sections, newest first, change categories, user-facing language
 
 A changelog tells a reader what changed between versions.

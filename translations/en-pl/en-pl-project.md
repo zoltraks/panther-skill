@@ -3,6 +3,7 @@
 ## Purpose
 
 > **Scope:** English-Polish terminology for project management and PMBOK artifacts
+>
 > **Key items:** domain signals, terminology table, context forms, calque traps, untranslated terms
 
 Load this glossary for translate tasks on project management subjects.

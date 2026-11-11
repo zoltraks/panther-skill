@@ -4,6 +4,7 @@
 
 > **Scope:** Conventions for the `README.md` of a documentation-only repository or a documentation
 > site project - a repository whose payload is documents, not code
+>
 > **Key items:** what the documents cover, where they live, governing rules pointer
 
 | Out of scope                   | See instead                   |

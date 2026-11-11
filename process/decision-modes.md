@@ -4,6 +4,7 @@
 
 > **Scope:** The interaction-mode contract for every Panther operation - how question surfaces,
 > gates, and gated actions resolve in each mode
+>
 > **Key items:** mode selection, the autonomous flag, resolution precedence, reporting
 > flags, permission boundary
 

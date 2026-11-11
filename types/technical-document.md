@@ -4,6 +4,7 @@
 
 > **Scope:** Conventions for general technical documentation - guides, how-tos, architecture notes,
 > API descriptions, and reference material
+>
 > **Key items:** purpose-first structure, progressive detail, example blocks
 
 A technical document explains a system, a feature, or a procedure to a technical reader.

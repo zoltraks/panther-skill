@@ -3,6 +3,7 @@
 ## Purpose
 
 > **Scope:** Index of the per-type rule files loaded during document creation
+>
 > **Key items:** type selection, deltas on the language baseline
 
 Load the file matching the document type, it adds deltas on top of the language baseline:

@@ -762,6 +762,72 @@ def blockquote_regressions() -> int:
                 or "blockquote link row" in result.stdout):
             print(f"FAIL {label} - non-quote link rows must not flag")
             failures += 1
+        fields_bad = tmp / "fields-bad.md"
+        fields_bad.write_text(
+            "# T\n\n"
+            "> **Scope:** A scope sentence that wraps\n"
+            "> onto a continuation line.\n"
+            "> **Key items:** one, two\n",
+            encoding="utf-8")
+        fields_clean = (
+            "# T\n\n"
+            "> **Scope:** A scope sentence that wraps onto a "
+            "continuation line.\n"
+            ">\n"
+            "> **Key items:** one, two\n"
+        )
+        result = run_case("validate-document.py", [str(fields_bad)])
+        if (result is None or result.returncode != 1
+                or result.stdout.count("blockquote field row") != 1):
+            print(f"FAIL {label} - merged field row not reported")
+            failures += 1
+        result = run_case("fix-document.py", [str(fields_bad)])
+        if (result is None or result.returncode != 0
+                or fields_bad.read_text(encoding="utf-8") != fields_clean):
+            print(f"FAIL {label} - field row repair did not insert `>`")
+            failures += 1
+        result = run_case("validate-document.py", [str(fields_bad)])
+        if result is None or result.returncode != 0:
+            print(f"FAIL {label} - repaired field fixture must validate")
+            failures += 1
+        # A ```markdown example fence shields the default run - the row check
+        # reaches the payload only under --payload-markdown.
+        fenced = tmp / "fenced.md"
+        fenced.write_text(
+            "# T\n\n"
+            "```markdown\n"
+            "> **Scope:** demo\n"
+            "> **Key items:** one, two\n"
+            "```\n",
+            encoding="utf-8")
+        result = run_case("validate-document.py", [str(fenced)])
+        if (result is None or result.returncode != 0
+                or "blockquote field row" in result.stdout):
+            print(f"FAIL {label} - fenced example flagged without --payload-markdown")
+            failures += 1
+        result = run_case("validate-document.py",
+                          [str(fenced), "--payload-markdown"])
+        if (result is None or result.returncode != 1
+                or "blockquote field row" not in result.stdout):
+            print(f"FAIL {label} - fenced field row not reported in payload mode")
+            failures += 1
+        # --only repairs the named class and leaves other findings alone.
+        multi = tmp / "multi.md"
+        multi.write_text(
+            "# T\n\n"
+            "> **Scope:** demo\n"
+            "> **Key items:** one, two\n"
+            "\n"
+            "A sentence with ** spaced bold ** markers.\n",
+            encoding="utf-8")
+        result = run_case("fix-document.py",
+                          [str(multi), "--only", "field row"])
+        text = multi.read_text(encoding="utf-8")
+        if (result is None or result.returncode != 1
+                or ">\n> **Key items:**" not in text
+                or "** spaced bold **" not in text):
+            print(f"FAIL {label} - --only repair leaked outside its class")
+            failures += 1
     print(("PASS" if not failures else "FAIL") + f" {label}")
     return failures
 

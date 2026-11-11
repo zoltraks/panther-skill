@@ -4,6 +4,7 @@
 
 > **Scope:** Conventions for file format specifications and protocol documents that describe a
 > binary or textual structure field by field
+>
 > **Key items:** document information, version history, overview, structure tables, value references
 
 A format specification describes a file format or protocol precisely enough to

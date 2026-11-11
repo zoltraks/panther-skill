@@ -4,6 +4,7 @@
 
 > **Scope:** Conventions for prose documents - articles, tutorials,
 > and educational material read for understanding rather than scanned for rules
+>
 > **Key items:** prose flow, illustrative tables and figures, looser structure, dialect tolerance
 
 An article is a narrative document.

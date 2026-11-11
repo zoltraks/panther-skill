@@ -4,6 +4,7 @@
 
 > **Scope:** Project charters and project briefs - the formal documents that authorize a project and
 > empower its manager.
+>
 > **Key items:** SMART objectives, scope boundaries, milestone summary, project-manager authority,
 > sponsor approval block.
 

@@ -3,6 +3,7 @@
 ## Purpose
 
 > **Scope:** The mechanical pre-delivery checklist applied to every document
+>
 > **Key items:** structure checks, spacing, characters, tables, file properties
 
 Run this checklist before delivering any created or edited document.

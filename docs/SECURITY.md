@@ -4,6 +4,7 @@
 
 > **Scope:** Vulnerability disclosure channel and response expectations for the
 > panther-skill repository
+>
 > **Key items:** GitHub Issues reporting, update-path trust boundary, supported versions
 
 This file defines how to report a security defect in the skill repository itself - the `SKILL.md`

@@ -3,6 +3,7 @@
 ## Purpose
 
 > **Scope:** Procedure for requests that target the panther-skill repository itself
+>
 > **Key items:** mode distinction, governing set, skipped document machinery, validation
 
 This file defines the intake and execution rules for changes to the skill's own files.

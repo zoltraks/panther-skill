@@ -3,6 +3,7 @@
 ## Purpose
 
 > **Scope:** The standalone procedure for correcting an existing translated document
+>
 > **Key items:** pair resolution, review input, passage alignment, issue classes,
 > minimal-diff correction, same-class sweep, validation, report
 

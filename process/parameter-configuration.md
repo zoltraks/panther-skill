@@ -4,6 +4,7 @@
 
 > **Scope:** The document-creation parameter surfaces, their defaults,
 > and the resolution rules applied before drafting
+>
 > **Key items:** core parameters table, question shapes, plan confirmation, edit-case resolution
 
 When creating a new standalone document,

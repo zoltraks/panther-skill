@@ -4,6 +4,7 @@
 
 > **Scope:** Document work inside a repository whose entire content is documents - a documentation
 > project with no software underneath
+>
 > **Key items:** `docs/` as the payload, rule files versus content documents,
 > `standard/` and `template/` directories, frozen `archive/` snapshots
 

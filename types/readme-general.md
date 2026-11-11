@@ -4,6 +4,7 @@
 
 > **Scope:** Conventions for repository and package `README.md` files with no more specific variant
 > - the default README type and the entry point that orients a reader in the project
+>
 > **Key items:** title, purpose, contents, usage, license, conventional filename
 
 | Out of scope                    | See instead                   |

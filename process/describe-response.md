@@ -3,6 +3,7 @@
 ## Purpose
 
 > **Scope:** Consolidated descriptions produced when a request asks to describe a subject
+>
 > **Key items:** collection and consolidation, impersonal compact style, shortly length caps,
 > long-description floors, inline delivery
 

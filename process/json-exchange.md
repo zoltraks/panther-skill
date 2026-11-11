@@ -4,6 +4,7 @@
 
 > **Scope:** Emit and consume machine-readable parameter documents in place of, or alongside,
 > the question surfaces in `process/document-workflow.md`
+>
 > **Key items:** emission trigger, diagnostic output, emitted document, parameter catalog,
 > returned document, authority
 

@@ -4,6 +4,7 @@
 
 > **Scope:** Conventions for the `README.md` of a software product - an application, service, tool,
 > or system a user installs, runs, or deploys
+>
 > **Key items:** install and download paths, features, technical stack, repository
 > structure, changelog pointer
 

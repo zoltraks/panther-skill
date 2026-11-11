@@ -4,6 +4,7 @@
 
 > **Scope:** Character encoding and byte-level rules for documents created and
 > edited with this skill
+>
 > **Key items:** UTF-8 default, BOM, UTF-16/UCS-2, code pages such as CP1250, line
 > endings, composed diacritics
 

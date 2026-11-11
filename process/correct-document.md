@@ -3,6 +3,7 @@
 ## Purpose
 
 > **Scope:** The standalone procedure for correcting a document in place
+>
 > **Key items:** target resolution, governing rules, source resolution, correction classes,
 > check pass, translation-quality layer, plan confirmation, correction pass, fidelity
 > proposals, validation, report

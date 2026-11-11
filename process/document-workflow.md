@@ -3,6 +3,7 @@
 ## Purpose
 
 > **Scope:** The end-to-end workflow for creating and editing documents with this skill
+>
 > **Key items:** intake, parameter resolution, detection, rule selection, drafting,
 > validation, delivery
 

@@ -44,7 +44,7 @@ FAIL_RE = re.compile(r"FAIL .+?:line (\d+): (.+)$", re.M)
 MECHANICAL = (
     "semicolon in prose", "spaced bold markers",
     "literal pipe inside code span",
-    "blockquote link row merges",
+    "blockquote link row merges", "blockquote field row merges",
     "no blank line before",
     "no blank line after",
     "consecutive blank lines",
@@ -148,7 +148,8 @@ def apply_repair(lines, number, reason, cfg):
         if (policy != "skip" and idx > 0 and lines[idx - 1].strip() != ""
                 and not _link_tail(lines[idx - 1])):
             lines.insert(idx, "")
-    elif "blockquote link row merges" in reason:
+    elif ("blockquote link row merges" in reason
+            or "blockquote field row merges" in reason):
         marker = re.match(r"^>+", lines[idx])
         lines.insert(idx, marker.group(0) if marker else ">")
     elif "consecutive blank lines" in reason:
@@ -172,15 +173,17 @@ def write_lines(path, lines, crlf):
         print("note: file uses CRLF line endings - preserved")
 
 
-def main(path, check_only, max_passes):
+def main(path, check_only, max_passes, only=None):
     if not os.path.isfile(path):
         print(f"fix-document: {path} - not found")
         return 2
 
+    def wanted(reason):
+        return any(k in reason for k in MECHANICAL) and (not only or only in reason)
+
     if check_only:
         repairable = [
-            (n, r) for n, r in validate_failures(path)
-            if any(k in r for k in MECHANICAL)
+            (n, r) for n, r in validate_failures(path) if wanted(r)
         ]
         if repairable:
             for n, r in repairable:
@@ -195,9 +198,7 @@ def main(path, check_only, max_passes):
     for _ in range(max_passes):
         before = open(path, "rb").read()
         fails = validate_failures(path)
-        mechanical = [
-            (n, r) for n, r in fails if any(k in r for k in MECHANICAL)
-        ]
+        mechanical = [(n, r) for n, r in fails if wanted(r)]
         if mechanical:
             lines, crlf = read_lines(path)
             for number, reason in sorted(mechanical, key=lambda item: -int(item[0])):
@@ -209,7 +210,9 @@ def main(path, check_only, max_passes):
         # `table_format: off` opts a repository out entirely, and
         # `table_separator: spaced` emits `| --- |` separators instead of
         # the compact `|---|` form.
-        if cfg.get("table_format", "on") != "off":
+        # `--only` is surgical - it restricts repairs to the named finding
+        # classes and skips both normalization passes.
+        if not only and cfg.get("table_format", "on") != "off":
             sep = (
                 ["--spaced-separator"]
                 if cfg.get("table_separator") == "spaced"
@@ -223,7 +226,7 @@ def main(path, check_only, max_passes):
         # reflow normalizes lines the join-back repair lengthened; on an
         # unwrapped document it abstains with a note, so the call is safe
         # under either prose layout. `prose_reflow: off` opts out.
-        if cfg.get("prose_reflow", "on") != "off":
+        if not only and cfg.get("prose_reflow", "on") != "off":
             subprocess.run(
                 [sys.executable, REFLOW, path, "--wrap"],
                 capture_output=True,
@@ -256,5 +259,8 @@ if __name__ == "__main__":
     parser.add_argument("path")
     parser.add_argument("--check", action="store_true")
     parser.add_argument("--passes", type=int, default=6)
+    parser.add_argument("--only", metavar="TEXT",
+                        help="repair only findings whose reason contains TEXT "
+                             "and skip the format-table and reflow passes")
     sys.exit(main(parser.parse_args().path, parser.parse_args().check,
-                  parser.parse_args().passes))
+                  parser.parse_args().passes, parser.parse_args().only))

@@ -4,6 +4,7 @@
 
 > **Scope:** Documents derived from an existing document by compression - summaries,
 > briefs, and abstracts.
+>
 > **Key items:** declared source, compression tiers, carried verdict, verbatim identifiers,
 > localized role marker.
 

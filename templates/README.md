@@ -3,6 +3,7 @@
 ## Purpose
 
 > **Scope:** Index of the per-type, per-language skeletons under `templates/`
+>
 > **Key items:** language directories, filename convention
 
 Starting skeletons for new typed documents,

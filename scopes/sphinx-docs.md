@@ -4,6 +4,7 @@
 
 > **Scope:** Document work inside a Sphinx documentation project that authors
 > its content in Markdown
+>
 > **Key items:** `docs/source/` pages, `index.rst` toctrees, kebab-case filenames, setext dialects,
 > minimal `.rst` edits
 

@@ -4,6 +4,7 @@
 
 > **Scope:** The standalone procedure for rendering a document into another supported language while
 > preserving its structure and adapting its style
+>
 > **Key items:** language pair resolution, industry glossary selection, single-pass translation,
 > structure preservation, validation, delivery
 

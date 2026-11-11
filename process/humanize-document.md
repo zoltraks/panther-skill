@@ -4,6 +4,7 @@
 
 > **Scope:** Standalone procedure for rewriting a document so its style, structure,
 > and voice read human-authored while every fact stays intact
+>
 > **Key items:** hard invariants, deletion pass, meta collapse, passage rewrites, voice sweeps,
 > scout decomposition, verification
 

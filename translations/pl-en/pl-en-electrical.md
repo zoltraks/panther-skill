@@ -4,6 +4,7 @@
 
 > **Scope:** Polish-English terminology for electrical engineering and electrotechnical site-safety
 > documents, including UK ECS and HSE vocabulary
+>
 > **Key items:** domain signals, terminology table, context forms, calque traps, untranslated terms
 
 Load this glossary for translate tasks on electrical, electrotechnical, and site-safety subjects.

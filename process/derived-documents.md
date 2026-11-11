@@ -4,6 +4,7 @@
 
 > **Scope:** The standalone procedure for producing a document derived from an existing document - a
 > summary, a brief or abstract, or a supplement.
+>
 > **Key items:** derivation contract, compression tiers, continuation contract, naming, freshness,
 > validation, delivery.
 

@@ -3,6 +3,7 @@
 ## Purpose
 
 > **Scope:** Non-negotiable rules applied to every document created or edited with this skill
+>
 > **Key items:** named-operation authorization, plain-text readability, one-sentence paragraphs,
 > convention preservation, minimal diffs, explicit unknowns
 

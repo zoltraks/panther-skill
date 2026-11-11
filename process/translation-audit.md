@@ -3,6 +3,7 @@
 ## Purpose
 
 > **Scope:** The standalone procedure for auditing a translated document against its source
+>
 > **Key items:** target resolution, rule loading, fidelity classification, structure map,
 > untranslated-set verification, terminology concordance, style conformance, findings, report
 

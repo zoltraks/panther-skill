@@ -3,6 +3,7 @@
 ## Purpose
 
 > **Scope:** Documents describing how one project domain will be managed - the PMBOK plan family.
+>
 > **Key items:** Methodology, roles, thresholds and tolerances, cadence, tools,
 > master plan integration.
 

@@ -6,6 +6,7 @@ grep the tool or section you need instead of loading the whole file.
 ## Purpose
 
 > **Scope:** Document-production and skill-maintenance scripts
+>
 > **Key items:** encoding detection, scope signals, sentence splitting,
 > prose wrapping and unwrapping, table formatting, comment alignment, document validation,
 > content diffing, structural parity, document census, skill validation, reference integrity,
@@ -19,10 +20,10 @@ They do not modify documents beyond the specific task each tool performs.
 
 | Section          | Line | What it covers                           |
 |------------------|------|------------------------------------------|
-| Tool Classes     | 27   | Tool groups and when to run them         |
-| Commands         | 99   | Per-tool usage, flags, and output        |
-| Validation Order | 516  | Recommended run sequence                 |
-| Limitations      | 565  | Known parsing limits and validator scope |
+| Tool Classes     | 28   | Tool groups and when to run them         |
+| Commands         | 101  | Per-tool usage, flags, and output        |
+| Validation Order | 521  | Recommended run sequence                 |
+| Limitations      | 570  | Known parsing limits and validator scope |
 
 ## Tool Classes
 
@@ -112,7 +113,7 @@ python <skill-root>/scripts/reflow-prose.py <file.md|dir> (--wrap | --unwrap | -
 python <skill-root>/scripts/format-table.py <file.md|dir> [--check] [--payload-markdown] [--drop-empty-columns] [--spaced-separator] [--exclude NAME ...]
 python <skill-root>/scripts/align-comments.py <file.md> [--check] [--compact] [--payload-markdown]
 python <skill-root>/scripts/validate-document.py <file.md> [--width N] [--payload-markdown]
-python <skill-root>/scripts/fix-document.py <file.md> [--check] [--passes N]
+python <skill-root>/scripts/fix-document.py <file.md> [--check] [--passes N] [--only <text>]
 python <skill-root>/scripts/check-document.py <file.md|dir> [--width N] [--payload-markdown] [--layout wrap|unwrap] [--split] [--polish] [--english] [--consistency] [--type <slug>] [--language <code>] [--baseline <file>] [--normalize-chars] [--parity <source.md>] [--terms <glossary.md> ...] [--expect-map <file> ...] [--eol lf|crlf] [--title-agreement] [--skill-root <dir>]
 python <skill-root>/scripts/check-parity.py <source.md> <target.md> [--terms <glossary.md> ...] [--expect-map <file> ...] [--eol lf|crlf]
 python <skill-root>/scripts/check-titles.py <file.md> [--verbose]
@@ -251,8 +252,11 @@ and sentences opening with a code span or emphasis marker - and never fail the r
 rewrites `semicolon in prose` to the aside separator,
 escapes `literal pipe inside code span` to `&#124;`,
 inserts missing blank lines around lists and tables,
-and opens a `>` separator line ahead of a blockquote link row,
+and opens a `>` separator line ahead of a blockquote link or `**Label:**` field row,
 repeating until the file is clean or the loop stops changing it.
+
+`--only <text>` repairs just the finding classes whose reason contains the text and skips the
+format-table and reflow passes - the surgical form for a single-class correction across a corpus.
 
 `panther.json` gates the subprocess passes - `table_format: "off"` skips `format-table.py`,
 `prose_reflow: "off"` skips `reflow-prose.py`,
@@ -583,7 +587,8 @@ and reflow findings are reported as remaining and left for a judgment pass.
 
 Pass `--payload-markdown` to apply a curated subset of checks inside ` ```markdown ` blocks:
 
-trailing whitespace, consecutive blank lines, lone list markers, and line width.
+trailing whitespace, consecutive blank lines, lone list markers, blockquote row separation,
+and line width.
 
 `diff-content.py` is a heuristic net, not a proof - its merged-line warnings require manual review,
 and a clean report still does not replace reading the diff.

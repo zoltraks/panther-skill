@@ -5,6 +5,7 @@
 > **Scope:** Document work inside a GitBook project.
 > A documentation space whose pages are listed in a `SUMMARY.md` outline that
 > defines the reading order
+>
 > **Key items:** `SUMMARY.md` as the table of contents, `.gitbook.yaml` configuration,
 > outline registration, relative page links
 

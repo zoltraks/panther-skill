@@ -3,6 +3,7 @@
 ## Purpose
 
 > **Scope:** Handling of reStructuredText files encountered inside projects the skill works on
+>
 > **Key items:** heading underlines, directives, toctrees, indentation sensitivity,
 > minimal-edit contract
 

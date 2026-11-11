@@ -4,6 +4,7 @@
 
 > **Scope:** The default document scope - a project or directory with no defined organization of
 > documents or document types
+>
 > **Key items:** request-driven placement, language-file naming, no registration side effects
 
 This is the baseline scope.

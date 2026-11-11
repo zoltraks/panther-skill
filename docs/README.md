@@ -3,6 +3,7 @@
 ## Purpose
 
 > **Scope:** Index of the repository-governance documents under `docs/`.
+>
 > **Key items:** style, maintenance, versioning, contributing, security.
 
 These documents govern the Panther repository itself, not the documents the skill produces.

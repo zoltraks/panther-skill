@@ -5,6 +5,7 @@
 > **Scope:** Conventions for long procedural guides that define their own section vocabulary -
 > preparation guides, operational runbooks,
 > and multi-mode handbooks an agent or operator executes against a repository or environment
+>
 > **Key items:** open heading set, operating modes, decision gates, role-to-path mappings,
 > structure trees, embedded templates, appendices
 

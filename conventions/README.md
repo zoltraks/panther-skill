@@ -4,6 +4,7 @@
 
 > **Scope:** Index of the convention rule files loaded for encoding, dialect,
 > and format-contract requirements
+>
 > **Key items:** encodings, Markdown dialects, foreign formats, fenced and diagram
 > conventions, prose layouts
 

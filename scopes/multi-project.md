@@ -4,6 +4,7 @@
 
 > **Scope:** Document work inside a repository that holds several projects,
 > each with its own documentation structure
+>
 > **Key items:** per-directory scope resolution, nearest governing `docs/` wins, sparse root,
 > independent project conventions
 

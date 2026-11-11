@@ -4,6 +4,7 @@
 
 > **Scope:** Document work inside an MkDocs documentation site - a project that builds its
 > documentation from Markdown pages in a `docs/` directory configured by `mkdocs.yml`
+>
 > **Key items:** `mkdocs.yml` nav registration, `docs/index.md` homepage, kebab-case
 > pages, file-path URLs
 

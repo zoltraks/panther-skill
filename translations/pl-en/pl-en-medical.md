@@ -3,6 +3,7 @@
 ## Purpose
 
 > **Scope:** Polish-English terminology for medical, clinical, and pharmaceutical documents
+>
 > **Key items:** domain signals, terminology table, context forms, calque traps, untranslated terms
 
 Load this glossary for translate tasks on medical and pharmaceutical subjects.

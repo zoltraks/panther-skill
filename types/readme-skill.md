@@ -4,6 +4,7 @@
 
 > **Scope:** Conventions for the `README.md` of an Agent Skill repository - a directory containing a
 > `SKILL.md` router and bundled resource files
+>
 > **Key items:** activation contract, agent-environment installation, example
 > prompts, directory tree
 

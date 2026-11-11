@@ -3,6 +3,7 @@
 ## Purpose
 
 > **Scope:** Handling of AsciiDoc files encountered inside projects the skill works on
+>
 > **Key items:** title markers, document attributes, admonitions, includes, tables,
 > minimal-edit contract
 
