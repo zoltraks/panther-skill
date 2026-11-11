@@ -42,6 +42,17 @@ it through the task.
 A gate is a point where the task cannot proceed without an answer - parameter resolution,
 plan confirmation, apply confirmation - not every routine sub-step.
 
+An interactive question lists at most four entries and ends with a cancel-class entry - `Cancel`,
+`Pause`, `Skip`, `None`, `Break`, or `Stop` - which means no answer and pauses the operation for
+the next user prompt.
+Five or more candidates split the question into pages or a group question per
+`process/document-workflow.md` - non-final pages end with `Next`,
+the final page carries the cancel entry, and a page asks only after `Next` was selected.
+A `Proceed` entry may replace the cancel entry,
+accepting every recommendation and answering the current and remaining questions at once.
+A canceled questionnaire resumes on `repeat` - the last question is re-asked and the task continues.
+A `selection` answer mixing a no-answer entry with content entries warns and re-asks.
+
 ## Resolution Precedence
 
 Resolve each surface in this order, and record which tier supplied the answer:

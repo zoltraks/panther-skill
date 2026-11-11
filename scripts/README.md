@@ -21,8 +21,8 @@ They do not modify documents beyond the specific task each tool performs.
 |------------------|------|------------------------------------------|
 | Tool Classes     | 27   | Tool groups and when to run them         |
 | Commands         | 99   | Per-tool usage, flags, and output        |
-| Validation Order | 510  | Recommended run sequence                 |
-| Limitations      | 559  | Known parsing limits and validator scope |
+| Validation Order | 516  | Recommended run sequence                 |
+| Limitations      | 565  | Known parsing limits and validator scope |
 
 ## Tool Classes
 
@@ -79,8 +79,9 @@ These tools inspect the skill itself and are never copied into a working project
 
 Untracked scratch under `work/` is gitignored and excluded from validation.
 
-`check-contents.py` verifies that every `## Contents` table row still points at a real `## ` section
-- run it after any edit that shifts lines in a file carrying a contents table.
+`check-contents.py` verifies that every `## Contents` table row still points at
+a real `## ` section.
+Run it after any edit that shifts lines in a file carrying a contents table.
 
 `check-update.py` reports the git upstream status of the skill repository for the once-per-session
 Skill Update Check in `SKILL.md`, and always exits `0` with a `STATUS` verdict line.
@@ -174,6 +175,8 @@ a list item with its continuations, or a blockquote run - joining only wrapped c
 separate sentences, `**Label:**` field lines, and list items keep their own lines,
 then re-wraps each logical line to the width,
 so re-wrapping already-wrapped text never fragments a paragraph.
+An empty `>` line ends the open quote unit and stays verbatim - it separates two blockquote
+paragraphs and never folds into either side.
 A final line shorter than 20 characters pulls words back from the line before it.
 
 `--check` reports every unit that would rewrap as `block is not wrapped at <width>` and every line
@@ -247,12 +250,13 @@ and sentences opening with a code span or emphasis marker - and never fail the r
 `format-table.py`, parses the `validate-document.py` findings,
 rewrites `semicolon in prose` to the aside separator,
 escapes `literal pipe inside code span` to `&#124;`,
-and inserts missing blank lines around lists and tables,
+inserts missing blank lines around lists and tables,
+and opens a `>` separator line ahead of a blockquote link row,
 repeating until the file is clean or the loop stops changing it.
 
-`panther.json` gates the subprocess passes - `table_format: "off"` skips
-`format-table.py`, `prose_reflow: "off"` skips `reflow-prose.py`, and
-`table_separator: "spaced"` makes the table pass emit `| --- |` separators.
+`panther.json` gates the subprocess passes - `table_format: "off"` skips `format-table.py`,
+`prose_reflow: "off"` skips `reflow-prose.py`,
+and `table_separator: "spaced"` makes the table pass emit `| --- |` separators.
 
 Pipe escapes run before the table pass, since a literal pipe left in a code span would otherwise
 inflate the table's column count.

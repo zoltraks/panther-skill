@@ -1985,6 +1985,30 @@
         "applies improvements during the work through the member's own maintenance path",
         "reviews no session history that precedes the mode request"
       ]
+    },
+    {
+      "id": 166,
+      "prompt": "ask me to pick one of six heading styles for the document",
+      "expected_output": "A split question - the prompt pages with a `Next` continuation entry or a group question per process/document-workflow.md, and the final page carries the cancel entry.",
+      "files": [],
+      "expectations": [
+        "a menu over five or more candidates pages with `Next` or a group question",
+        "the final page carries the cancel entry and asks only after `Next` was selected",
+        "a cancel-class answer pauses for the next prompt and `repeat` re-asks the last question",
+        "a `selection` answer mixing a no-answer entry with content entries warns and re-asks"
+      ]
+    },
+    {
+      "id": 167,
+      "prompt": "check a document whose blockquote has a description paragraph followed by bare `>` link rows",
+      "expected_output": "validate-document.py flags each link row that follows a non-empty `>` line as `blockquote link row merges into the previous paragraph`, and fix-document.py inserts a `>` blank separator ahead of each row so the links render on their own lines - reflow-prose keeps the separators because an empty `>` line ends the quote unit.",
+      "files": [],
+      "expectations": [
+        "the validator flags a `>` link or image row that directly follows a non-empty `>` line",
+        "the fixer inserts a `>` blank line ahead of each flagged row",
+        "reflow-prose --wrap preserves an empty `>` separator instead of folding it into the quote unit",
+        "link rows outside a blockquote are not flagged"
+      ]
     }
   ]
 }

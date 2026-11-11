@@ -248,6 +248,21 @@ While `flowing` keeps consecutive sentences inside one shared paragraph block.
 `split-sentences.py` defaults to sentence-per-line output, `--paragraphs` produces `separated`,
 and `--flow` produces `flowing`.
 
+## Blockquote Row Separation
+
+Consecutive `>` lines form one blockquote paragraph - the renderer collapses the line
+boundaries into spaces.
+
+A standalone row inside the quote - a link row, an image row, an address entry - that must
+render on its own line opens a new blockquote paragraph, separated from the previous content
+by a `>` blank line.
+
+Hard breaks made of trailing spaces are not the mechanism - trailing whitespace is a defect
+class of its own, and invisible separators break silently under cleanup passes.
+
+`validate-document.py` flags a link or image row that follows a non-empty `>` line,
+and `fix-document.py` repairs it by inserting the `>` separator.
+
 ## Detection Procedure
 
 1. Read the document, or its outline when it is long.

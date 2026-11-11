@@ -44,6 +44,7 @@ FAIL_RE = re.compile(r"FAIL .+?:line (\d+): (.+)$", re.M)
 MECHANICAL = (
     "semicolon in prose", "spaced bold markers",
     "literal pipe inside code span",
+    "blockquote link row merges",
     "no blank line before",
     "no blank line after",
     "consecutive blank lines",
@@ -147,6 +148,9 @@ def apply_repair(lines, number, reason, cfg):
         if (policy != "skip" and idx > 0 and lines[idx - 1].strip() != ""
                 and not _link_tail(lines[idx - 1])):
             lines.insert(idx, "")
+    elif "blockquote link row merges" in reason:
+        marker = re.match(r"^>+", lines[idx])
+        lines.insert(idx, marker.group(0) if marker else ">")
     elif "consecutive blank lines" in reason:
         # The validator flags the second blank line of a run - deleting it
         # collapses one duplicate per pass and the loop handles longer runs.

@@ -13,14 +13,14 @@ This file defines how Panther exposes its intake questions as JSON and how it co
 
 | Section             | Line | What it covers                                        |
 |---------------------|------|-------------------------------------------------------|
-| When To Emit        | 26   | The JSON-request trigger and pending-only emission    |
-| Diagnostic Output   | 37   | Verbose and diagnostic emission for information only  |
+| When To Emit        | 25   | The JSON-request trigger and pending-only emission    |
+| Diagnostic Output   | 36   | Verbose and diagnostic emission for information only  |
 | Emitted Document    | 67   | Context fields, fixed key order, and parameter shapes |
-| Parameter Catalog   | 175  | Stable parameter ids per pending surface              |
-| Returned Document   | 220  | Answer formats and resolution rules                   |
-| Autonomous Surfaces | 281  | Auto-resolved gates emit as answered informational    |
-| Authority           | 293  | The exchange is presentation, not a change to gate    |
-| What Does Not Apply | 312  | Boundaries of the operation                           |
+| Parameter Catalog   | 187  | Stable parameter ids per pending surface              |
+| Returned Document   | 232  | Answer formats and resolution rules                   |
+| Autonomous Surfaces | 292  | Auto-resolved gates emit as answered informational    |
+| Authority           | 303  | The exchange is presentation, not a change to gate    |
+| What Does Not Apply | 322  | Boundaries of the operation                           |
 
 ## When To Emit
 
@@ -119,10 +119,19 @@ chooses a fixed width.
 
 A `selection` parameter never accepts an empty `answer` - an empty selection re-asks the question
 rather than advancing.
+A `selection` answer that mixes a no-answer entry (`None` or the cancel entry)
+with content entries warns and re-asks rather than resolving the mix.
+
+A cancel-class entry - `Cancel` or a member-owned label such as `Pause`, `Skip`,
+or `Stop` - means no answer: the operation pauses for the next user prompt,
+and a later `repeat` re-asks the last question and continues.
+A `Proceed` entry may replace the cancel entry where skipping is meaningful - it accepts every
+recommendation and answers the current and all remaining questions at once.
 
 When a `choice` menu exceeds the four-letter cap in interactive questioning,
-the emitted document still carries the full menu - the group-question split in
-`process/document-workflow.md` is a prompt-side mechanism only.
+the prompt pages - a non-final page ends with a `Next` continuation entry and asks only after `Next`
+was selected - or splits by the group question in `process/document-workflow.md`.
+The emitted document still carries the full menu - paging is a prompt-side mechanism only.
 
 `document-type` emits before `section-plan`,
 and `section-selection` or `section-format` follow its answer -

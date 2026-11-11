@@ -702,6 +702,70 @@ def reflow_regressions() -> int:
     return failures
 
 
+def blockquote_regressions() -> int:
+    """Exercise the blockquote row-separation check and its repair."""
+    failures = 0
+    label = "blockquote fixtures"
+    defect = (
+        "# T\n\n"
+        "> A descriptive lead paragraph that carries on\n"
+        "> across a wrapped continuation line.\n"
+        "> [First Link](./first.md)\n"
+        "> [Second Link](https://example.com/second)\n"
+    )
+    clean = (
+        "# T\n\n"
+        "> A descriptive lead paragraph that carries on across a wrapped "
+        "continuation line.\n"
+        ">\n"
+        "> [First Link](./first.md)\n"
+        ">\n"
+        "> [Second Link](https://example.com/second)\n"
+    )
+    with tempfile.TemporaryDirectory() as tmp:
+        tmp = Path(tmp)
+        bad = tmp / "bad.md"
+        bad.write_text(defect, encoding="utf-8")
+        result = run_case("validate-document.py", [str(bad)])
+        if (result is None or result.returncode != 1
+                or result.stdout.count("blockquote link row") != 2):
+            print(f"FAIL {label} - merged link rows not reported")
+            failures += 1
+        result = run_case("fix-document.py", [str(bad)])
+        text = bad.read_text(encoding="utf-8")
+        if result is None or result.returncode != 0 or text != clean:
+            print(f"FAIL {label} - repair did not insert `>` separators")
+            failures += 1
+        result = run_case("validate-document.py", [str(bad)])
+        if result is None or result.returncode != 0:
+            print(f"FAIL {label} - repaired fixture must validate clean")
+            failures += 1
+        result = run_case("reflow-prose.py",
+                          [str(bad), "--wrap", "--check"])
+        if result is None or result.returncode != 0:
+            print(f"FAIL {label} - reflow must keep the `>` separators")
+            failures += 1
+        fine = tmp / "fine.md"
+        fine.write_text(clean, encoding="utf-8")
+        result = run_case("validate-document.py", [str(fine)])
+        if result is None or result.returncode != 0:
+            print(f"FAIL {label} - separated quote rows flagged")
+            failures += 1
+        plain = tmp / "plain.md"
+        plain.write_text(
+            "# T\n\n"
+            "A descriptive paragraph outside any blockquote.\n"
+            "[A Link](./doc.md)\n",
+            encoding="utf-8")
+        result = run_case("validate-document.py", [str(plain)])
+        if (result is None or result.returncode != 0
+                or "blockquote link row" in result.stdout):
+            print(f"FAIL {label} - non-quote link rows must not flag")
+            failures += 1
+    print(("PASS" if not failures else "FAIL") + f" {label}")
+    return failures
+
+
 def main() -> int:
     failures = 0
     for script, args, exits, prefix, env_extra in CASES:
@@ -730,7 +794,8 @@ def main() -> int:
     failures += english_consistency_regressions()
     failures += reference_regressions()
     failures += reflow_regressions()
-    print(f"RESULT {len(CASES) + 6 - failures}/{len(CASES) + 6} tools passed")
+    failures += blockquote_regressions()
+    print(f"RESULT {len(CASES) + 7 - failures}/{len(CASES) + 7} tools passed")
     return 1 if failures else 0
 
 

@@ -652,6 +652,11 @@ def main(path, mode, width, payload_markdown, check_only, convert=False,
                 unit.append((n, line))
                 continue
             if quote:
+                if quote.group(3).strip() == "":
+                    flush_unit()
+                    unit_kind = ""
+                    out.append(line)
+                    continue
                 marker = quote.group(1) + quote.group(2)
                 if unit_kind != "quote" or marker != unit_marker:
                     flush_unit()

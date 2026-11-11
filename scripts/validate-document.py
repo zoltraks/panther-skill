@@ -46,6 +46,7 @@ FENCE = re.compile(r"^\s*(`{3,}|~{3,})\s*(\w*)")
 HEADING = re.compile(r"^(#{1,6})\s")
 BULLET = re.compile(r"^\s*[-*+] ")
 ORDERED = re.compile(r"^\s*\d+\. ")
+BQ_LINK_ROW = re.compile(r"^>\s*(?:!?\[[^\]]*\]\([^)]*\)\s*)+$")
 LONE_ITEM = re.compile(r"^\s*[-*+][ \t]*$")
 LONE_ORDERED = re.compile(r"^\d+[.)][ \t]*$")
 TYPO_QUOTES = "“”‘’‚„«»"
@@ -381,6 +382,12 @@ def main(path, width, payload_markdown):
             and line.strip() != ""
         ):
             issues.append(f"line {n}: no blank line after list or table")
+
+        if (not payload and BQ_LINK_ROW.match(line)
+                and prev.startswith(">") and prev.lstrip("> ").strip() != ""):
+            issues.append(
+                f"line {n}: blockquote link row merges into the previous "
+                "paragraph - separate it with a `>` blank line")
 
         if (
             not payload
