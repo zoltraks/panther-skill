@@ -60,7 +60,9 @@ def sep_like(cells):
 
 def format_block(block, start, drop_empty, spaced_sep=False):
     warnings = []
-    rows = [parse_row(l) for l in block]
+    if any(r"\|" in line or re.search(r"`+[^`\n]*\|[^`\n]*`+", line) for line in block):
+        return block, [f"line {start + 1}: literal pipe in table - left unchanged"]
+    rows = [parse_row(line) for line in block]
     for k, line in enumerate(block):
         if line.startswith("||"):
             warnings.append(
@@ -110,13 +112,19 @@ def format_block(block, start, drop_empty, spaced_sep=False):
     out = []
     for r in rows:
         if sep_like(r):
+            separators = []
+            for cell, width in zip(r, widths):
+                left = ":" if cell.startswith(":") else ""
+                right = ":" if cell.endswith(":") else ""
+                size = width if spaced_sep else width + 2
+                separators.append(left + "-" * max(1, size - len(left) - len(right)) + right)
             if spaced_sep:
                 out.append(
-                    "| " + " | ".join("-" * w for w in widths) + " |"
+                    "| " + " | ".join(separators) + " |"
                 )
             else:
                 out.append(
-                    "|" + "|".join("-" * (w + 2) for w in widths) + "|"
+                    "|" + "|".join(separators) + "|"
                 )
         else:
             out.append(

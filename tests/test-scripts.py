@@ -174,6 +174,19 @@ def table_defect_case() -> int:
         if result is None or result.returncode != 0:
             print(f"FAIL {label} - repaired fixture must validate clean")
             return 1
+        aligned = Path(tmp) / "aligned.md"
+        aligned.write_text("| Label | Value |\n| :--- | ---: |\n| a | b |\n", encoding="utf-8")
+        result = run_case("format-table.py", [str(aligned)])
+        if result is None or result.returncode or "|:------|------:|" not in aligned.read_text():
+            print(f"FAIL {label} - alignment markers were lost")
+            return 1
+        for cell in (r"a\|b", "`a|b`", "``a|b``"):
+            source = f"| Label | Value |\n|---|---|\n| {cell} | b |\n"
+            aligned.write_text(source, encoding="utf-8")
+            result = run_case("format-table.py", [str(aligned)])
+            if result is None or result.returncode or aligned.read_text() != source:
+                print(f"FAIL {label} - literal pipe changed the table")
+                return 1
     print(f"PASS {label}")
     return failures
 

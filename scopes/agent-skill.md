@@ -20,7 +20,13 @@ including the Panther repository itself.
 A repository matches this scope when it contains a `SKILL.md` file at its root with YAML frontmatter
 carrying `name` and `description` fields.
 
-The `name` field conventionally matches the directory name.
+The Agent Skills specification requires the `name` field to match the directory name.
+
+When editing an Astra member, preserve its Task Entry table and local procedure links.
+Check that the operation, target, and first file to read are clear at the point of use.
+Keep detailed member procedures and examples in their owning files.
+Use source-aligned Markdown tables for parallel choices,
+and use numbered steps when the order matters.
 
 ## Directory Roles
 

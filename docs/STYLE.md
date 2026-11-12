@@ -25,15 +25,15 @@ They are dialect examples, so their prose is not wrapped to 100 characters.
 
 | Section                    | Line | What it covers                                  |
 |----------------------------|------|-------------------------------------------------|
-| Document Structure         | 32   | Titles, purpose blocks, and contents tables     |
-| Paragraphs And Wrapping    | 92   | Sentence structure and line width               |
-| Headings And Lists         | 126  | Heading depth, lists, and spacing               |
-| Code And Inline Formatting | 175  | Fences, code spans, and semicolons              |
-| Tables                     | 281  | Source-width alignment and automated formatting |
-| Characters And Language    | 464  | Box-drawing, emoji, and per-language rules      |
-| File References            | 490  | Relative paths and localized resources          |
-| Skill Requirements         | 518  | Frontmatter and progressive disclosure          |
-| Maintenance                | 579  | Pointer to the skill extension rules            |
+| Document Structure         | 38   | Titles, purpose blocks, and contents tables     |
+| Paragraphs And Wrapping    | 102  | Sentence structure and line width               |
+| Headings And Lists         | 136  | Heading depth, lists, and spacing               |
+| Code And Inline Formatting | 185  | Fences, code spans, and semicolons              |
+| Tables                     | 304  | Source-width alignment and automated formatting |
+| Characters And Language    | 495  | Box-drawing, emoji, and per-language rules      |
+| File References            | 519  | Relative paths and localized resources          |
+| Skill Requirements         | 547  | Frontmatter and progressive disclosure          |
+| Maintenance                | 609  | Pointer to the skill extension rules            |
 
 ## Document Structure
 
@@ -333,6 +333,10 @@ A column that is empty in every row, including the header, is never legal - remo
 
 Place a separator line immediately after the header row.
 
+For existing tables with Markdown alignment markers, preserve those markers during a formatting
+pass. Check the table structure before using a formatter that normalizes separators.
+Protect escaped pipes and pipes inside code spans so they remain part of their original cells.
+
 The separator line contains only hyphens and pipe characters.
 
 Every cell of the separator line carries at least one hyphen.
@@ -551,10 +555,10 @@ The `SKILL.md` file must contain YAML frontmatter followed by Markdown content.
 
 Required frontmatter fields:
 
-- ** `name` ** - 1-64 characters, lowercase letters and hyphens only,
+- **`name`** - 1-64 characters, lowercase letters, digits, and hyphens only,
   must not start or end with a hyphen, must not contain consecutive hyphens,
   must match the parent directory name.
-- ** `description` ** - 1-1024 characters, non-empty,
+- **`description`** - 1-1024 characters, non-empty,
   describes what the skill does and when to use it, should include specific trigger keywords.
 
 Optional frontmatter fields:

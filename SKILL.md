@@ -17,7 +17,7 @@ compatibility: >-
   Claude Desktop, Windsurf, Devin, and similar). Requires the ability to read
   and write text files. No network access required.
 metadata:
-  version: "1.6.8"
+  version: "1.6.9"
   author: Filip Golewski
 allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob Grep
 ---
@@ -43,6 +43,25 @@ You do not invent content.
 You do not reformat what was not asked for.
 
 You do not normalize a document that has its own conventions.
+
+## Task Entry
+
+| Request              | First step                                                                                                                                                                      |
+|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Bare activation      | Follow [activation](process/skill-activation.md) and wait for a task.                                                                                                           |
+| List capabilities    | Read the [operations catalog](process/operations-catalog.md).                                                                                                                   |
+| Perform a task       | Identify the requested operation and target, then load its procedure and the resources it calls for.                                                                            |
+| Develop this skill   | Follow [development](process/development.md) and use [repository instructions](AGENTS.md) for maintenance.                                                                      |
+| Use improvement mode | Apply improvements surfaced by the work through the owning skill's maintenance procedure. A separate session-review request starts [session review](process/session-review.md). |
+| Use verbose mode     | Follow [timing and reporting](process/operation-timing.md) and expose pending questions through [JSON exchange](process/json-exchange.md).                                      |
+
+Read the selected procedure before acting. At each phase, read every file required for that
+phase, including conditional files once their conditions apply. Use a directory index when you
+need to discover a path. Defer later-phase material until that phase begins.
+
+Use the skill's procedures for its own files and the target repository's instructions for artifacts.
+When a procedure calls for a script, use its documented invocation and check the result. Read
+script source when reviewing, modifying, or diagnosing the script, or when its behavior is unclear.
 
 ## Three Modes
 
@@ -100,7 +119,8 @@ Use progressive disclosure:
 - Read this router first.
 - Follow `process/skill-activation.md` when the request activates the skill without naming a task.
 - Read `principles/authoring-rules.md` and `process/document-workflow.md` before producing any
-  document. They are mandatory for every task.
+  document. They are mandatory for document production. For catalog and maintenance requests,
+  follow the selected route and its own prerequisites.
 - Load the matching `languages/` file for the document language.
 - Load the matching `types/` file when the document is a known type.
 - Load the matching `scopes/` file when the task runs in an organized project or names a scope.
@@ -131,7 +151,7 @@ consult the index when a route or procedure needs a name, never bulk-read a dire
 
 | Path            | Index                    | Contents                                        |
 |-----------------|--------------------------|-------------------------------------------------|
-| `principles/`   | `principles/README.md`   | Authoring invariants, mandatory every task      |
+| `principles/`   | `principles/README.md`   | Required for document production                |
 | `process/`      | `process/README.md`      | Workflow, standalone procedures, mode contracts |
 | `types/`        | `types/README.md`        | Per-document-type deltas on the language base   |
 | `languages/`    | `languages/README.md`    | Per-language self-contained style baselines     |
