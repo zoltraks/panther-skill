@@ -284,22 +284,22 @@ Load rule files in this order:
    Load the file matching the document language, never more than one at once.
 2. **`types/<type>.md`** - load when the document matches a known type.
    The type file adds deltas on top of the language file.
-3. ** `scopes/<scope>.md` ** - load when scope detection matches a project layout,
+3. **`scopes/<scope>.md`** - load when scope detection matches a project layout,
    or when the request names a scope. The scope file governs placement, filename conventions,
    and registration side effects, it never replaces the language baseline for prose style,
    and the document's own conventions still win on edit.
-4. ** `conventions/file-encoding.md` ** - load when the document encoding is not UTF-8,
+4. **`conventions/file-encoding.md`** - load when the document encoding is not UTF-8,
    when the request involves encoding or code pages, or when detection reports an unexpected result.
-5. ** `conventions/markdown-dialects.md` ** - load when the document uses a non-default dialect or
+5. **`conventions/markdown-dialects.md`** - load when the document uses a non-default dialect or
    when the request involves reformatting.
-6. ** `conventions/prose-layout.md` ** - load when the task involves prose formatting or a layout
+6. **`conventions/prose-layout.md`** - load when the task involves prose formatting or a layout
    conversion, when a layout parameter was configured on create,
    or when layout detection is ambiguous.
-7. ** `conventions/rst-documents.md` ** - load when the task touches an `.rst` file or when a scope
+7. **`conventions/rst-documents.md`** - load when the task touches an `.rst` file or when a scope
    file delegates to it.
-8. ** `conventions/asciidoc-documents.md` ** - load when the task touches an `.adoc` file or when a
+8. **`conventions/asciidoc-documents.md`** - load when the task touches an `.adoc` file or when a
    scope file delegates to it.
-9. ** `types/yaml-document.md` ** - load when the task touches a `.yaml` or `.yml` file - it
+9. **`types/yaml-document.md`** - load when the task touches a `.yaml` or `.yml` file - it
    resolves as the document type and replaces the language-baseline prose rules
    with YAML syntax rules.
 
@@ -458,8 +458,8 @@ Before delivering, run the checks from `process/document-checklist.md`:
   compare with `--normalize-chars` so the sanctioned character map does not surface
   as token differences.
 - Legitimate sentence joins and deliberate reflows produce expected merged-line warnings.
-- Verify the delivered file's encoding and line endings byte-level - a host write tool may
-  emit CRLF on Windows where the contract requires LF; `scripts/detect-encoding.py` reports both.
+- Verify the delivered file's encoding and line endings byte-level - a host write tool may emit CRLF
+  on Windows where the contract requires LF - `scripts/detect-encoding.py` reports both.
 - `git diff --check` when working inside a repository.
 
 A failing check must be fixed or explicitly reported to the user with a reason.

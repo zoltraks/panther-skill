@@ -59,8 +59,8 @@ The Purpose section may use a blockquote format to summarize scope and key items
 
 This format is recommended for reference files and topic documents.
 
-The `**Scope:**` and `**Key items:**` rows are separate blockquote paragraphs -
-a `>` blank line divides them, because consecutive `>` lines render as one merged line.
+The `**Scope:**` and `**Key items:**` rows are separate blockquote paragraphs - a `>` blank line
+divides them, because consecutive `>` lines render as one merged line.
 
 ### Out-of-Scope Table
 
@@ -333,8 +333,9 @@ A column that is empty in every row, including the header, is never legal - remo
 
 Place a separator line immediately after the header row.
 
-For existing tables with Markdown alignment markers, preserve those markers during a formatting
-pass. Check the table structure before using a formatter that normalizes separators.
+For existing tables with Markdown alignment markers,
+preserve those markers during a formatting pass.
+Check the table structure before using a formatter that normalizes separators.
 Protect escaped pipes and pipes inside code spans so they remain part of their original cells.
 
 The separator line contains only hyphens and pipe characters.

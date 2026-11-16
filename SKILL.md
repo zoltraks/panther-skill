@@ -17,7 +17,7 @@ compatibility: >-
   Claude Desktop, Windsurf, Devin, and similar). Requires the ability to read
   and write text files. No network access required.
 metadata:
-  version: "1.6.9"
+  version: "1.7.0"
   author: Filip Golewski
 allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob Grep
 ---
@@ -55,13 +55,15 @@ You do not normalize a document that has its own conventions.
 | Use improvement mode | Apply improvements surfaced by the work through the owning skill's maintenance procedure. A separate session-review request starts [session review](process/session-review.md). |
 | Use verbose mode     | Follow [timing and reporting](process/operation-timing.md) and expose pending questions through [JSON exchange](process/json-exchange.md).                                      |
 
-Read the selected procedure before acting. At each phase, read every file required for that
-phase, including conditional files once their conditions apply. Use a directory index when you
-need to discover a path. Defer later-phase material until that phase begins.
+Read the selected procedure before acting. At each phase, read every file required for that phase,
+including conditional files once their conditions apply.
+Use a directory index when you need to discover a path.
+Defer later-phase material until that phase begins.
 
 Use the skill's procedures for its own files and the target repository's instructions for artifacts.
-When a procedure calls for a script, use its documented invocation and check the result. Read
-script source when reviewing, modifying, or diagnosing the script, or when its behavior is unclear.
+When a procedure calls for a script, use its documented invocation and check the result.
+Read script source when reviewing, modifying, or diagnosing the script,
+or when its behavior is unclear.
 
 ## Three Modes
 

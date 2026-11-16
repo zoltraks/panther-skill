@@ -587,8 +587,8 @@ and reflow findings are reported as remaining and left for a judgment pass.
 
 Pass `--payload-markdown` to apply a curated subset of checks inside ` ```markdown ` blocks:
 
-trailing whitespace, consecutive blank lines, lone list markers, blockquote row separation,
-and line width.
+trailing whitespace, consecutive blank lines, lone list markers, blockquote row
+separation, and line width.
 
 `diff-content.py` is a heuristic net, not a proof - its merged-line warnings require manual review,
 and a clean report still does not replace reading the diff.

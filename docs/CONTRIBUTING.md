@@ -54,12 +54,13 @@ Everything else is documentation.
 
 Disclose when a report or change was produced with AI assistance.
 
-Record meaningful AI involvement in the pull request description, so provenance stays
-traceable - commit messages carry no AI attribution or `Co-Authored-By` trailers.
+Record meaningful AI involvement in the pull request description,
+so provenance stays traceable - commit messages carry no AI attribution or
+`Co-Authored-By` trailers.
 
-Commit messages match the repository convention (`git log -10 --format=%s`): a one-line
-subject with no type prefixes, no trailing period on a single-line subject, and no
-trailing newline.
+Commit messages match the repository convention (`git log -10 --format=%s`):
+a one-line subject with no type prefixes, no trailing period on a single-line subject,
+and no trailing newline.
 
 Verify every AI-generated finding yourself before reporting it.
 

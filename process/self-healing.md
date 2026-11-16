@@ -2,8 +2,9 @@
 
 ## Purpose
 
-> **Scope:** The evidence-gated self-repair loop for this skill - diagnose a named defect in panther's
-> own behavior, patch minimally, replay against external evidence, promote only what improves.
+> **Scope:** The evidence-gated self-repair loop for this skill - diagnose a named defect in
+> panther's own behavior, patch minimally, replay against external evidence,
+> promote only what improves.
 >
 > **Key items:** safety taxonomy, the healing loop, external verifiers, rollback
 
