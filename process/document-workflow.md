@@ -299,9 +299,8 @@ Load rule files in this order:
    file delegates to it.
 8. **`conventions/asciidoc-documents.md`** - load when the task touches an `.adoc` file or when a
    scope file delegates to it.
-9. **`types/yaml-document.md`** - load when the task touches a `.yaml` or `.yml` file - it
-   resolves as the document type and replaces the language-baseline prose rules
-   with YAML syntax rules.
+9. **`types/yaml-document.md`** - load when the task touches a `.yaml` or `.yml` file - it resolves
+   as the document type and replaces the language-baseline prose rules with YAML syntax rules.
 
 On a Translate task the selection shifts: `languages/<lang>.md` is the target language,
 and `process/translate-document.md` defines the procedure.
@@ -407,8 +406,8 @@ documents - payload content stays opaque otherwise.
 A governed document defines a set other parts of itself enumerate - canonical files, section names,
 rule owners, or options.
 
-Re-verify the target before planning a multi-part edit when time passed or the file may have changed
-- re-read it or check its version marker and `git status`, never rely on an earlier read.
+Re-verify the target before planning a multi-part edit when time passed or the file may have
+changed. Re-read it or check its version marker and `git status`, never rely on an earlier read.
 
 When the change adds, removes, or renames a member of a governed set,
 first inventory every place the document enumerates that set - tables, bullet lists, decision menus,

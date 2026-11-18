@@ -77,9 +77,10 @@ PSEUDO_HEAD = re.compile(r"^\*{1,2}[^*\n]+\*{1,2}:?\s*$")
 SENT_END = re.compile(r"[.!?:][\"')\]`}*]*\s*$")
 LEAD_PUNCT = r"[(\[{'\"]*"
 TRAIL_PUNCT = r"[\")\].,;:!?}\"]*(?:'[a-zA-Z]*)?[\"')\].,;:!?}]*"
+EMPH = r"\*{0,2}"
 PROTECTED = re.compile(
-    r"(" + LEAD_PUNCT + r"`+[^`]*`+" + TRAIL_PUNCT + r")"           # code span + adjacent punct
-    r"|(" + LEAD_PUNCT + r"\[[^]]*\]\([^)]*\)" + TRAIL_PUNCT + r")"  # inline link + adjacent punct
+    r"(" + LEAD_PUNCT + EMPH + r"`+[^`]*`+" + EMPH + TRAIL_PUNCT + r")"           # code span + adjacent punct
+    r"|(" + LEAD_PUNCT + EMPH + r"\[[^]]*\]\([^)]*\)" + EMPH + TRAIL_PUNCT + r")"  # inline link + adjacent punct
     r"|(https?://\S+)"                                              # bare URL
 )
 BOUNDARY_END = ",.:;?!)]}"

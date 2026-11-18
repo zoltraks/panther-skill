@@ -92,10 +92,10 @@ def check_tables(lines, issues):
         if fence:
             marker = len(fence.group(1))
             if fences:
-                if marker >= fences[-1][0]:
+                if marker >= fences[-1][0] and fence.group(1)[0] == fences[-1][2]:
                     fences.pop()
             else:
-                fences.append((marker, fence.group(2)))
+                fences.append((marker, fence.group(2), fence.group(1)[0]))
             i += 1
             continue
         if fences or not lines[i].startswith("|"):
@@ -241,7 +241,7 @@ def main(path, width, payload_markdown):
         if fence:
             marker = len(fence.group(1))
             if fences:
-                if marker >= fences[-1][0]:
+                if marker >= fences[-1][0] and fence.group(1)[0] == fences[-1][2]:
                     if i > fence_first + 1 and lines[i - 1].strip() == "":
                         issues.append(f"line {n}: blank line at end of code block")
                     if i + 1 < len(lines) and lines[i + 1].strip() != "":
@@ -256,7 +256,7 @@ def main(path, width, payload_markdown):
                         "plain-text blocks default to untagged fences in new content"
                     )
                 fence_first = i
-                fences.append((marker, fence.group(2)))
+                fences.append((marker, fence.group(2), fence.group(1)[0]))
             prev = line
             continue
 
@@ -325,7 +325,7 @@ def main(path, width, payload_markdown):
                     f"line {n}: stranded table fragment - "
                     "line ends with a bare pipe")
 
-            if re.search(r"[\U0001F300-\U0001FAFF☀-➿⬀-⯿]", line):
+            if re.search(r"[\U0001F300-\U0001FAFF☀-➿⬀-⯿]", prose):
                 issues.append(f"line {n}: emoji or pictograph")
 
             prev_heading = HEADING.match(prev)

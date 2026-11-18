@@ -107,8 +107,8 @@ Several `pod` phrases are fixed Polish idioms that are never rewritten under the
 `pod opieką`, `pod kątem`, `pod względem`, `pod warunkiem`, `pod presją`, `pod kontrolą`,
 `pod adresem`, `pod hasłem`, `pod nazwą`, `pod postacią`.
 
-The `pod (katalogiem)` row in the `languages/pl.md` vocabulary table covers locative placement only
-- `under the directory` rendering `pod katalogiem` is the calque the rule forbids.
+The `pod (katalogiem)` row in the `languages/pl.md` vocabulary table covers locative placement only.
+The `under the directory` rendering `pod katalogiem` is the calque the rule forbids.
 
 An idiom keeps `pod` even where a different preposition would also be legal -
 `assessed under the aspect of` correctly renders `oceniona pod kątem`.
@@ -137,9 +137,8 @@ pair into two sentences.
 `The file must exist - a missing file stops the run` splits into `Plik musi istnieć.` and
 `Brak pliku przerywa uruchomienie.` - never `Plik musi istnieć - brak pliku przerywa uruchomienie`.
 
-The same split applies when the second half is an imperative or an apposition the reader must act on
-- `check the marker - it carries the date` splits into `Sprawdź znacznik.` and
-
+The same split applies when the second half is an imperative or an apposition the reader must act
+on. For example, `check the marker - it carries the date` splits into `Sprawdź znacznik.` and
 `Znacznik zawiera datę.`
 
 The spaced hyphen stays legal for the functions `languages/pl.md` assigns it - an apposition or
@@ -240,8 +239,8 @@ negates the scope (`nie ... ani`, `neither ... nor`).
 `zmiana ... testów, zależności ani łańcucha narzędzi`, where the stray `ani` reads as if the last
 item were exempted or the list were under negation.
 
-The Polish rendering never gains a negation the source lacks and never loses one the source carries
-- check every `nie` and `ani` in the output against the source's polarity.
+The Polish rendering never gains a negation the source lacks and never loses one the source carries.
+Check every `nie` and `ani` in the output against the source's polarity.
 
 A named entity keeps its kind.
 

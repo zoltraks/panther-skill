@@ -108,9 +108,8 @@ A scripted transform over document text must skip the protected regions - YAML f
 fenced code blocks, HTML comments, and tables - or run through a canonical tool that already
 respects them, since a flat line scan corrupts structure, not just text.
 
-Extend the canonical formatting tool when it lacks a needed behavior rather than scripting around it
-- a fix inside the tool ships to every document the tool serves,
-
+Extend the canonical formatting tool when it lacks a needed behavior rather than scripting around
+it. A fix inside the tool ships to every document the tool serves,
 while a one-off script duplicates the logic and drifts.
 
 ## No Production Metadata

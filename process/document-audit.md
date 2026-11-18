@@ -39,8 +39,8 @@ The document's own conventions win over skill defaults.
 Where the repository is silent, the matching `languages/` baseline and `types/` file
 supply the defaults.
 
-Directories the repository marks frozen or excluded stay out of scope unless the request names them
-- an `archive/` tree is the common case.
+Directories the repository marks frozen or excluded stay out of scope unless the request names them.
+An `archive/` tree is the common case.
 
 ## Mechanical Checks
 

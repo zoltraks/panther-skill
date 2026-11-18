@@ -107,6 +107,8 @@ Use one sentence per paragraph for technical descriptions.
 
 Every sentence is its own paragraph, separated from the next sentence by one empty line.
 
+A blank line never splits a sentence - wrapped continuation lines stay inside the same paragraph.
+
 This keeps the text readable in plain text editors, terminal viewers, and diff output.
 
 A sentence may contain multiple related clauses if they express a single thought.

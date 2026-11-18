@@ -45,7 +45,6 @@ Section
 Subsection
 
 ~~~~~~~~~
-
 ```
 
 The character chooses the level: `=` for the document title, `-` for sections,
@@ -73,7 +72,6 @@ Directives are block elements starting with `.. ` followed by a name and two col
    :align: center
 
 .. note:: A remark for the reader.
-
 ```
 
 Directive bodies are indented, conventionally by three spaces.
