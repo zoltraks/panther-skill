@@ -24,6 +24,8 @@ It governs the continuation contract, naming, and freshness.
 - `templates/en/supplement-document-template-en.md`
 - `templates/pl/supplement-document-template-pl.md`
 - `templates/de/supplement-document-template-de.md`
+- `templates/fr/supplement-document-template-fr.md`
+- `templates/es/supplement-document-template-es.md`
 
 ## Structure
 

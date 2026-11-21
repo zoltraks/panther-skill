@@ -138,7 +138,8 @@ pair into two sentences.
 `Brak pliku przerywa uruchomienie.` - never `Plik musi istnieć - brak pliku przerywa uruchomienie`.
 
 The same split applies when the second half is an imperative or an apposition the reader must act
-on. For example, `check the marker - it carries the date` splits into `Sprawdź znacznik.` and
+on.
+For example, `check the marker - it carries the date` splits into `Sprawdź znacznik.` and
 `Znacznik zawiera datę.`
 
 The spaced hyphen stays legal for the functions `languages/pl.md` assigns it - an apposition or

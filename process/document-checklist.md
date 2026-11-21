@@ -101,7 +101,8 @@ Fix every failure, or report it to the user with a reason.
 ## Language
 
 - Heading capitalization follows the document language (Title Case for English,
-  sentence case for Polish and German, or the rule in the matching `languages/` file).
+  sentence case for Polish, German, French, and Spanish,
+  or the rule in the matching `languages/` file).
 - The vocabulary table of the language file was applied, no discouraged terms remain.
 - Technical names and proper nouns keep their original spelling and decline normally.
   Filenames, commands, and identifiers keep a generic noun instead of an ending.

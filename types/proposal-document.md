@@ -35,6 +35,8 @@ Each option carries measurable benefits, costs, and risks, and doing nothing is 
 - `templates/en/proposal-document-template-en.md`
 - `templates/pl/proposal-document-template-pl.md`
 - `templates/de/proposal-document-template-de.md`
+- `templates/fr/proposal-document-template-fr.md`
+- `templates/es/proposal-document-template-es.md`
 
 ## Structure
 

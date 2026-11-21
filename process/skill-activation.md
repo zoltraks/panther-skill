@@ -83,26 +83,27 @@ Open with one sentence confirming the skill is enabled for editorial support.
 
 Follow with one sentence describing the skill.
 
-It produces plain-text-readable Markdown documents in English, Polish, or German,
+It produces plain-text-readable Markdown documents in English, Polish, German, French,
+or Spanish,
 and the answer names the skill version read from `metadata.version` in the loaded `SKILL.md`.
 
 Follow with a compact operations table - one row per family,
 columns `Operation` and `What it covers`, aligned by source width:
 
-| Operation          | What it covers                                            |
-|--------------------|-----------------------------------------------------------|
-| Create             | New documents of every supported type                     |
-| Edit               | Convention-preserving edits to existing documents         |
-| Reformat           | Table, prose, comment, and character normalization passes |
-| Translate          | Documents between English, Polish, and German             |
-| Revise             | Minimal-diff corrections to an existing translation       |
-| Correct            | In-place document correction with fidelity proposals      |
-| Humanize           | Fact-preserving voice rewrite, human-authored read        |
-| Audit              | Document and translation conformance checks               |
-| Describe           | Consolidated inline descriptions of a subject             |
-| Derive             | Summaries, briefs, and supplements from a source document |
-| Discover layout    | Document-layout census and scope classification           |
-| Maintain the skill | Changes and session reviews of this skill repository      |
+| Operation          | What it covers                                                 |
+|--------------------|----------------------------------------------------------------|
+| Create             | New documents of every supported type                          |
+| Edit               | Convention-preserving edits to existing documents              |
+| Reformat           | Table, prose, comment, and character normalization passes      |
+| Translate          | Documents between English, Polish, German, French, and Spanish |
+| Revise             | Minimal-diff corrections to an existing translation            |
+| Correct            | In-place document correction with fidelity proposals           |
+| Humanize           | Fact-preserving voice rewrite, human-authored read             |
+| Audit              | Document and translation conformance checks                    |
+| Describe           | Consolidated inline descriptions of a subject                  |
+| Derive             | Summaries, briefs, and supplements from a source document      |
+| Discover layout    | Document-layout census and scope classification                |
+| Maintain the skill | Changes and session reviews of this skill repository           |
 
 Close with the catalog pointer - the full operations list answers "list all operations" or an
 equivalent - and a line inviting the task request.

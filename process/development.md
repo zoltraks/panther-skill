@@ -36,7 +36,8 @@ The target is this repository's own files,
 edited under `docs/MAINTENANCE.md` and `docs/STYLE.md` through `process/skill-maintenance.md`.
 
 A development request may also name `improvement` - "work on panther-skill development and
-improvement". The flag arms improvement mode for the described work:
+improvement".
+The flag arms improvement mode for the described work:
 improvements the work surfaces are applied to this repository's files through the member's own
 maintenance path, and the flag alone never routes to the session-history gather.
 

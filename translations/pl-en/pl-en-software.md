@@ -17,9 +17,9 @@ Apply it for Polish to English translate tasks, per `process/translate-document.
 |----------------|------|-----------------------------------------------------|
 | Domain Signals | 24   | Activation conditions for this glossary             |
 | Terminology    | 36   | Recurring Polish terms and preferred English forms  |
-| Context Forms  | 291  | Context-dependent renderings                        |
-| Calque Traps   | 335  | Forbidden literal renderings and their replacements |
-| Untranslated   | 361  | Loanwords and identifiers rendered back to English  |
+| Context Forms  | 293  | Context-dependent renderings                        |
+| Calque Traps   | 337  | Forbidden literal renderings and their replacements |
+| Untranslated   | 363  | Loanwords and identifiers rendered back to English  |
 
 ## Domain Signals
 
@@ -142,6 +142,7 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | od początku do końca                                   | end-to-end                       |
 | ograniczenie częstotliwości żądań                      | rate limiting                    |
 | okno kontekstu                                         | context window                   |
+| oparty o pliki                                         | file-based                       |
 | opiekun projektu                                       | maintainer                       |
 | orkiestrator                                           | orchestrator                     |
 | osiągalność                                            | reachability                     |
@@ -257,6 +258,7 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | wartość domyślna                                       | default value                    |
 | wątek                                                  | thread                           |
 | wdrażać / wdrożenie                                    | deploy / deployment              |
+| wersja robocza                                         | draft                            |
 | wersjonowanie                                          | versioning                       |
 | weryfikacja dynamiczna                                 | dynamic verification             |
 | weryfikacja stanu wyjściowego                          | baseline verification            |

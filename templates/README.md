@@ -7,7 +7,8 @@
 > **Key items:** language directories, filename convention
 
 Starting skeletons for new typed documents,
-grouped one level deep under per-language directories `templates/<code>/` (`en`, `pl`, `de`).
+grouped one level deep under per-language directories `templates/<code>/` (`en`, `pl`, `de`,
+`fr`, `es`).
 
 Template filenames carry the language code: `<type>-template-<code>.md`.
 

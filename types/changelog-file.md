@@ -25,6 +25,8 @@ A project change-request register is a different document - use `types/register-
 - `templates/en/changelog-file-template-en.md`
 - `templates/pl/changelog-file-template-pl.md`
 - `templates/de/changelog-file-template-de.md`
+- `templates/fr/changelog-file-template-fr.md`
+- `templates/es/changelog-file-template-es.md`
 
 The filename is `CHANGELOG.md`.
 

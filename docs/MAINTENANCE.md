@@ -48,8 +48,8 @@ Do not nest subdirectories inside `types/`, `languages/`, `scopes/`, `convention
 `process/`, or `principles/`.
 
 A new top-level rule directory also needs its name added to `KNOWN_DIRS` in
-`scripts/check-references.py`, otherwise references to its files inside rule
-documents are not checked.
+`scripts/check-references.py` - references into unregistered directories still get checked,
+but a miss reports `UNKNOWN_FILE` instead of the known-directory verdict.
 
 `docs/` is a governance directory excluded from rule-document scanning,
 not a rule directory - it stays out of `KNOWN_DIRS`.
@@ -152,7 +152,15 @@ outside this repository.
 4. Extend the `**Templates**` list in every file under `types/`.
 5. Declare the language's activation phrases with their English equivalents and its per-type section
    names inside `languages/<code>.md` - keep `SKILL.md` and the other rule files in English only.
-6. Update the `README.md` directory tree.
+6. Search the corpus for prior language-code enumerations and update every surface that names the
+   set - rule tables, parameter surfaces,
+   and router prose carry hard-coded code lists that must name the new language too:
+
+   ```bash
+   grep -rEn '(`en`|`pl`|`de`)|English, Polish' --include='*.md' --exclude-dir=work .
+   ```
+
+7. Update the `README.md` directory tree.
 
 ## Adding A Document Type
 

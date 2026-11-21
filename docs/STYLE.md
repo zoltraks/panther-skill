@@ -31,9 +31,9 @@ They are dialect examples, so their prose is not wrapped to 100 characters.
 | Code And Inline Formatting | 185  | Fences, code spans, and semicolons              |
 | Tables                     | 304  | Source-width alignment and automated formatting |
 | Characters And Language    | 495  | Box-drawing, emoji, and per-language rules      |
-| File References            | 519  | Relative paths and localized resources          |
-| Skill Requirements         | 547  | Frontmatter and progressive disclosure          |
-| Maintenance                | 609  | Pointer to the skill extension rules            |
+| File References            | 526  | Relative paths and localized resources          |
+| Skill Requirements         | 554  | Frontmatter and progressive disclosure          |
+| Maintenance                | 616  | Pointer to the skill extension rules            |
 
 ## Document Structure
 
@@ -139,7 +139,7 @@ such as inside a code block or a diagram.
 
 Use Title Case for all English section and chapter names.
 
-Use sentence case for Polish section and chapter names.
+Use sentence case for Polish, German, French, and Spanish section and chapter names.
 
 Use H2 (`##`) for top-level sections.
 
@@ -518,6 +518,10 @@ For English, use Title Case in section names.
 For Polish, use sentence case in section names and follow `languages/pl.md`.
 
 For German, use sentence case in section names and follow `languages/de.md`.
+
+For French, use sentence case in section names and follow `languages/fr.md`.
+
+For Spanish, use sentence case in section names and follow `languages/es.md`.
 
 ## File References
 

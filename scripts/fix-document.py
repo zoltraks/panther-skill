@@ -68,18 +68,23 @@ def validate_failures(path):
 LIST_LEAD = re.compile(r"^\s*[-*+] ")
 
 
+def _validator():
+    spec = importlib.util.spec_from_file_location("vd", VALIDATE)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
 def load_panther_config(path):
     """Read panther.json from the document's directory or an ancestor.
 
     Reuses the loader inside validate-document.py so the key format stays
     single-sourced - `semicolon_repair` selects aside|period|comma joins,
     `list_line_repair` selects join|blank|skip for marker-led
-    continuation lines.
+    continuation lines, and `lazy_continuation` skips the blank-line
+    repairs that would break the flush-left dialect's items open.
     """
-    spec = importlib.util.spec_from_file_location("vd", VALIDATE)
-    mod = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(mod)
-    cfg, _ = mod.load_config(path)
+    cfg, _ = _validator().load_config(path)
     return cfg if isinstance(cfg, dict) else {}
 
 
@@ -106,8 +111,21 @@ def fix_spaced_bold(line):
 
 def fix_pipe(line):
     # A literal | inside a code span inflates the table's column count -
-    # escape it inside the span only.
-    return re.sub(r"`[^`]*\|[^`]*`", lambda m: m.group(0).replace("|", "&#124;"), line)
+    # escape it inside the span only. Span detection reuses the
+    # validator's pairing so a delimiter pipe between two spans stays
+    # untouched.
+    out, pos, hit = [], 0, False
+    for s, e in _validator().code_spans(line):
+        span = line[s:e]
+        if "|" not in span:
+            continue
+        out.append(line[pos:s])
+        out.append(span.replace("|", "&#124;"))
+        pos, hit = e, True
+    if not hit:
+        return line
+    out.append(line[pos:])
+    return "".join(out)
 
 
 LINK_TAIL = re.compile(r"^(?:[\w./-]+\)+[.,;:]?\s*|.*\]\([^)]*)$")
@@ -132,6 +150,11 @@ def apply_repair(lines, number, reason, cfg):
     elif "literal pipe inside code span" in reason:
         lines[idx] = fix_pipe(lines[idx])
     elif "no blank line before" in reason or "no blank line after" in reason:
+        if cfg.get("lazy_continuation") and "list or table" in reason:
+            # The flush-left dialect lets a column-0 line continue a list
+            # item - a blank insert would break the item open. Code-block
+            # and heading blank lines stay repairable.
+            return lines
         policy = cfg.get("list_line_repair", "join")
         if (policy == "join" and "before" in reason and LIST_LEAD.match(lines[idx])
                 and not _link_tail(lines[idx - 1])):

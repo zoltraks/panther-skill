@@ -32,6 +32,8 @@ a crate, a gem, or any library consumed through a package manager or an import.
 - `templates/en/readme-library-template-en.md`
 - `templates/pl/readme-library-template-pl.md`
 - `templates/de/readme-library-template-de.md`
+- `templates/fr/readme-library-template-fr.md`
+- `templates/es/readme-library-template-es.md`
 
 ## Structure
 

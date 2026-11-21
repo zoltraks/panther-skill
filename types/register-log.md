@@ -29,6 +29,8 @@ It is a different document from `types/changelog-file.md`, which records release
 - `templates/en/register-log-template-en.md`
 - `templates/pl/register-log-template-pl.md`
 - `templates/de/register-log-template-de.md`
+- `templates/fr/register-log-template-fr.md`
+- `templates/es/register-log-template-es.md`
 
 ## Kinds
 

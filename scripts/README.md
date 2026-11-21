@@ -21,9 +21,9 @@ They do not modify documents beyond the specific task each tool performs.
 | Section          | Line | What it covers                           |
 |------------------|------|------------------------------------------|
 | Tool Classes     | 28   | Tool groups and when to run them         |
-| Commands         | 101  | Per-tool usage, flags, and output        |
-| Validation Order | 521  | Recommended run sequence                 |
-| Limitations      | 570  | Known parsing limits and validator scope |
+| Commands         | 113  | Per-tool usage, flags, and output        |
+| Validation Order | 546  | Recommended run sequence                 |
+| Limitations      | 595  | Known parsing limits and validator scope |
 
 ## Tool Classes
 
@@ -82,7 +82,19 @@ Untracked scratch under `work/` is gitignored and excluded from validation.
 
 `check-contents.py` verifies that every `## Contents` table row still points at
 a real `## ` section.
+
+Localized contents headings and line-column names are discovered from the language baselines under
+`languages/`, so new languages need no script change.
+
 Run it after any edit that shifts lines in a file carrying a contents table.
+
+`check-references.py` resolves every `dir/file` path named inside rule documents.
+
+Paths under `docs/` or `work/` stay uncheckable produced-document and scratch namespaces.
+
+A missing file under a known skill directory reports as unresolved.
+
+A missing file anywhere else reports `UNKNOWN_FILE`.
 
 `check-update.py` reports the git upstream status of the skill repository for the once-per-session
 Skill Update Check in `SKILL.md`, and always exits `0` with a `STATUS` verdict line.
@@ -199,9 +211,10 @@ of a block except its last, so both edges sit flush - the `justified` layout fro
 `conventions/prose-layout.md`.
 
 A document that reads as unwrapped - over-width lines that open their own prose units with few
-continuation lines - is refused by `--wrap` and `--justify`: wrapping it would convert the layout,
-not fix wrapping. `--check` reports the file as an unwrapped layout and passes it - write mode asks
-for `--convert`, the explicit opt-in for layout conversions.
+continuation lines - is refused by `--wrap` and `--justify`: wrapping it would convert the
+layout, not fix wrapping.
+`--check` reports the file as an unwrapped layout and passes it - write mode asks for `--convert`,
+the explicit opt-in for layout conversions.
 
 `--loose` is the loose-wrap convention: only a multi-line block that contains an over-width line
 rewraps, so single over-width lines (unwrapped sentences) and already-wrapped blocks stay untouched.
@@ -246,6 +259,8 @@ when any exist - that line shape is the contract for wrappers that consume the f
 Advisory `WARN` lines cover deliberate-convention candidates - non-ASCII prose, `text` fence tags,
 blocks that open like mid-sentence continuations,
 and sentences opening with a code span or emphasis marker - and never fail the run.
+A `**Label** - ` paragraph lead counts as an established label-aside form,
+and a heading directly under the H1 title reads as a subtitle rather than an empty heading.
 
 `fix-document.py` applies the safe mechanical repair classes in a fixed-point loop - it runs
 `format-table.py`, parses the `validate-document.py` findings,
@@ -260,7 +275,8 @@ format-table and reflow passes - the surgical form for a single-class correction
 
 `panther.json` gates the subprocess passes - `table_format: "off"` skips `format-table.py`,
 `prose_reflow: "off"` skips `reflow-prose.py`,
-and `table_separator: "spaced"` makes the table pass emit `| --- |` separators.
+`lazy_continuation` skips the blank-line repairs that would break a flush-left dialect's list items
+open, and `table_separator: "spaced"` makes the table pass emit `| --- |` separators.
 
 Pipe escapes run before the table pass, since a literal pipe left in a code span would otherwise
 inflate the table's column count.
@@ -503,7 +519,8 @@ fences in new content, while an existing document may carry the tag as its own c
 
 `validate-document.py` treats CommonMark indented code blocks - four or more leading spaces after a
 blank line or continuing such a block - as opaque to prose checks,
-matching the markdown-dialects convention. Indented list continuations stay checked.
+matching the markdown-dialects convention.
+Indented list continuations stay checked.
 It limits the lone-list-marker check to unordered markers and ordered markers at column 0,
 so a wrapped numeric tail like `  403.` is not misread.
 Semicolons inside table rows do not flag - table cells are not running prose.
@@ -515,8 +532,16 @@ count when more findings exist, so dense failures surface their full scale.
 nearest ancestor that carries one, and applies it as per-repository parametrization.
 The format is draft and uses single-word English keys - `width` supplies a line-width limit when
 `--width` is not passed, and `findings` lists issue substrings suppressed from the `FAIL` report
-with a `note:` count. Unknown keys are ignored, so a draft `panther.json` may carry `status`,
-`conventions`, or other project metadata without affecting checks.
+with a `note:` count.
+`lazy_continuation` declares the flush-left dialect from `conventions/markdown-dialects.md` - a
+column-0 line may continue a list item there,
+so the `no blank line before list or table` and `no blank line after list or table`
+findings switch off.
+`sentence_layout` steers `check-document.py --split`:
+`paragraphs` or `separated` selects `--paragraphs`, `flow`, `flowing`, or `packed` selects `--flow`,
+and any other value keeps the sentence-per-line default check.
+Unknown keys are ignored, so a draft `panther.json` may carry `status`, `conventions`,
+or other project metadata without affecting checks.
 
 ## Validation Order
 
@@ -646,9 +671,9 @@ byte fidelity matters, `replace` for display payloads.
 several table conventions - one pass can leave residual misalignment,
 so rerun the formatter once and re-check before reporting conformance.
 
-`validate-document.py` does not flag an empty heading - a heading directly followed by another
-heading or by end of file - and it does not flag a stranded table fragment such as a prose line
-ending with a padded `|`, so both stay manual audit checks.
+`validate-document.py` warns on an empty heading - a heading whose next same-or-shallower heading
+arrives with no content between, or that ends the document with no content under it - except a
+heading directly under the H1 title, which reads as a subtitle.
 
 `check-consistency.py` resolves `section X.Y` and `chapter N` mentions against numbered headings,
 and record-identifier citations such as `F-68` against identifiers defined as first table cells - a
@@ -666,6 +691,12 @@ Use the prompts in `evals/evals.json` for behavioral regression checks.
 `fix-document.py` reads `panther.json` for repair style: `semicolon_repair` (`aside` default,
 `period`, `comma`) and `list_line_repair` (`join` default - a lone marker-led continuation rejoins
 its previous line - `blank`, `skip`).
+A corpus's declared dialects belong in the same file - `lazy_continuation` stops both the blank-line
+findings and the repairs a flush-left list style would attract,
+and `sentence_layout` (`separated` / `paragraphs`, `flowing` / `flow` / `packed`)
+makes `check-document.py --split` verdicts match the declared sentence layout.
+`split-sentences.py` treats an abbreviation as a boundary suppressor only as a whole token - a word
+merely ending `al`, `ed`, `sec`, or `pp` before `. ` no longer hides a real boundary.
 Its loop ends with `reflow-prose.py --wrap`, which abstains on unwrapped documents.
 `reflow-prose.py` never emits a paragraph continuation that opens with a list or quote marker.
 `safe-replace.py --multiline` lets the pattern span line endings (`\r\n`, `\r`, or `\n`).

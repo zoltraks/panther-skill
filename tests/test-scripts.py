@@ -60,10 +60,22 @@ CASES: list[tuple[str, list[str], tuple[int, ...], str | None,
     ("check-sections.py",
      ["README.md", "--type", "types/readme-skill.md", "--language",
       "languages/pl.md"], (0, 1), None, None),
+    ("check-sections.py",
+     ["README.md", "--type", "types/readme-skill.md", "--language",
+      "languages/fr.md"], (0, 1), None, None),
+    ("check-sections.py",
+     ["README.md", "--type", "types/readme-skill.md", "--language",
+      "languages/es.md"], (0, 1), None, None),
     ("validate-document.py", ["README.md"], (0, 1), None, None),
     ("check-document.py", ["README.md"], (0, 1), None, None),
     ("check-document.py",
      ["README.md", "--type", "readme-skill", "--language", "en", "--polish",
+      "--layout", "wrap"], (0, 1), "check-document:", None),
+    ("check-document.py",
+     ["README.md", "--type", "readme-skill", "--language", "fr",
+      "--layout", "wrap"], (0, 1), "check-document:", None),
+    ("check-document.py",
+     ["README.md", "--type", "readme-skill", "--language", "es",
       "--layout", "wrap"], (0, 1), "check-document:", None),
     ("diff-content.py", ["README.md"], (0, 1), None, None),
     ("diff-identifiers.py", ["README.md"], (0,), None, None),
@@ -77,6 +89,12 @@ CASES: list[tuple[str, list[str], tuple[int, ...], str | None,
     ("check-parity.py",
      ["SKILL.md", "README.md", "--terms",
       "translations/en-pl/en-pl-software.md"], (0, 1), None, None),
+    ("check-parity.py",
+     ["SKILL.md", "README.md", "--terms",
+      "translations/en-fr/en-fr-software.md"], (0, 1), None, None),
+    ("check-parity.py",
+     ["SKILL.md", "README.md", "--terms",
+      "translations/en-es/en-es-software.md"], (0, 1), None, None),
     ("lint-polish.py", ["README.md"], (0, 1), None, None),
     ("lint-polish.py", ["README.md", "--group-by-form"], (0, 1), None, None),
     ("lint-polish.py", ["README.md", "--payload-markdown"], (0, 1), None, None),
@@ -619,7 +637,8 @@ def reference_regressions() -> int:
             failures += 1
         empty_doc = tmp / "empty.md"
         empty_doc.write_text(
-            "# Fixture\n\n## Orphan\n\n## Next\n\nBody text.\n",
+            "# Fixture\n\n## One\n\nBody.\n\n"
+            "## Orphan\n\n## Next\n\nBody text.\n",
             encoding="utf-8")
         result = run_case("validate-document.py", [str(empty_doc)])
         if result is None or "empty heading" not in result.stdout:
@@ -845,6 +864,108 @@ def blockquote_regressions() -> int:
     return failures
 
 
+def corpus_sweep_regressions() -> int:
+    """Exercise the corpus-sweep lesson fixes against synthetic fixtures."""
+    failures = 0
+    label = "corpus-sweep fixtures"
+    with tempfile.TemporaryDirectory() as tmp:
+        tmp = Path(tmp)
+
+        # CS-1: an abbreviation suppresses a boundary only as a whole token -
+        # `deployed.` ends with `ed` but is no abbreviation, `et al.` is one.
+        abbr_doc = tmp / "abbr.md"
+        abbr_doc.write_text(
+            "# T\n\n"
+            "The patch landed and the build deployed. Smoke tests follow.\n\n"
+            "See et al. References carry the full detail.\n",
+            encoding="utf-8")
+        result = run_case("split-sentences.py", [str(abbr_doc), "--check"])
+        if (result is None or result.returncode != 1
+                or result.stdout.count("mid-line sentence boundary") != 1
+                or "deployed" not in result.stdout):
+            print(f"FAIL {label} - abbreviation word-boundary regressed")
+            failures += 1
+
+        # CS-2: lazy_continuation suppresses the blank-line-around-list
+        # findings, and fix-document skips those repairs instead of
+        # breaking the dialect's items open.
+        lazy_dir = tmp / "lazy"
+        lazy_dir.mkdir()
+        lazy_doc = lazy_dir / "lazy.md"
+        lazy_doc.write_text(
+            "# T\n\n"
+            "- First item continues\n"
+            "on a flush-left line.\n\n"
+            "Prose followed by a list.\n"
+            "- Second item\n",
+            encoding="utf-8")
+        result = run_case("validate-document.py", [str(lazy_doc)])
+        if result is None or "no blank line" not in result.stdout:
+            print(f"FAIL {label} - baseline blank-line findings missing")
+            failures += 1
+        (lazy_dir / "panther.json").write_text(
+            '{"lazy_continuation": true}\n', encoding="utf-8")
+        result = run_case("validate-document.py", [str(lazy_doc)])
+        if (result is None
+                or "no blank line before list or table" in result.stdout
+                or "no blank line after list or table" in result.stdout):
+            print(f"FAIL {label} - lazy_continuation suppression ignored")
+            failures += 1
+        result = run_case("fix-document.py", [str(lazy_doc)])
+        text = lazy_doc.read_text(encoding="utf-8")
+        if (result is None
+                or "continues\n\non a flush-left" in text
+                or "Prose followed by a list.\n\n" in text):
+            print(f"FAIL {label} - blank-line repair broke the dialect open")
+            failures += 1
+
+        # CS-3: a ref into a never-existing directory reports UNKNOWN_FILE,
+        # while docs/ example paths stay uncheckable.
+        fake_root = tmp / "fake"
+        (fake_root / "process").mkdir(parents=True)
+        (fake_root / "SKILL.md").write_text("# Fake\n", encoding="utf-8")
+        (fake_root / "README.md").write_text("# Fake\n", encoding="utf-8")
+        (fake_root / "process" / "doc.md").write_text(
+            "# Doc\n\n"
+            "See `references/missing.md` and `docs/guide.md` for details.\n",
+            encoding="utf-8")
+        result = run_case("check-references.py", [str(fake_root)])
+        if (result is None or result.returncode != 1
+                or "UNKNOWN_FILE" not in result.stdout
+                or "references/missing.md" not in result.stdout
+                or "docs/guide.md" in result.stdout):
+            print(f"FAIL {label} - phantom-dir reference not reported")
+            failures += 1
+
+        # CS-4: panther.json sentence_layout steers the --split verdict.
+        layout_dir = tmp / "layout"
+        layout_dir.mkdir()
+        packed = layout_dir / "packed.md"
+        packed.write_text(
+            "# T\n\nAlpha beta gamma. Delta epsilon zeta.\n",
+            encoding="utf-8")
+        result = run_case("check-document.py", [str(packed), "--split"])
+        if (result is None or "FAIL split-sentences" not in result.stdout):
+            print(f"FAIL {label} - packed layout passed default --split")
+            failures += 1
+        (layout_dir / "panther.json").write_text(
+            '{"sentence_layout": "flowing"}\n', encoding="utf-8")
+        result = run_case("check-document.py", [str(packed), "--split"])
+        if (result is None or "FAIL split-sentences" in result.stdout
+                or "split-sentences --flow --check" not in result.stdout):
+            print(f"FAIL {label} - flowing layout not honored")
+            failures += 1
+        (layout_dir / "panther.json").write_text(
+            '{"sentence_layout": "separated"}\n', encoding="utf-8")
+        result = run_case("check-document.py", [str(packed), "--split"])
+        if (result is None or "FAIL split-sentences" not in result.stdout
+                or "split-sentences --paragraphs --check" not in result.stdout):
+            print(f"FAIL {label} - separated layout not honored")
+            failures += 1
+    print(("PASS" if not failures else "FAIL") + f" {label}")
+    return failures
+
+
 def main() -> int:
     failures = 0
     for script, args, exits, prefix, env_extra in CASES:
@@ -874,7 +995,8 @@ def main() -> int:
     failures += reference_regressions()
     failures += reflow_regressions()
     failures += blockquote_regressions()
-    print(f"RESULT {len(CASES) + 7 - failures}/{len(CASES) + 7} tools passed")
+    failures += corpus_sweep_regressions()
+    print(f"RESULT {len(CASES) + 8 - failures}/{len(CASES) + 8} tools passed")
     return 1 if failures else 0
 
 

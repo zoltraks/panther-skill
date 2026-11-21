@@ -37,6 +37,8 @@ For a pure command-line utility, prefer `types/readme-cli.md`.
 - `templates/en/readme-application-template-en.md`
 - `templates/pl/readme-application-template-pl.md`
 - `templates/de/readme-application-template-de.md`
+- `templates/fr/readme-application-template-fr.md`
+- `templates/es/readme-application-template-es.md`
 
 ## Structure
 

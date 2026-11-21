@@ -22,6 +22,8 @@ and architecture documents that define a system's structure, requirements, and c
 - `templates/en/project-document-template-en.md`
 - `templates/pl/project-document-template-pl.md`
 - `templates/de/project-document-template-de.md`
+- `templates/fr/project-document-template-fr.md`
+- `templates/es/project-document-template-es.md`
 
 ## Structure
 

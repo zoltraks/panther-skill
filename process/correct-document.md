@@ -123,8 +123,9 @@ Select the optional gates by target:
 
 Run `scripts/census-document.py` for the structural picture the audit procedure describes.
 
-A German target has no language linter - the `language` and `style` classes run as a manual review
-against `languages/de.md`, and the report states that limitation.
+German, French, and Spanish targets have no language linter - the `language` and `style` classes
+run as a manual review against the matching `languages/<code>.md`,
+and the report states that limitation.
 
 ## Translation-Quality Layer
 
@@ -252,7 +253,7 @@ Structure it as:
    each marked `proposed`, `approved - revised`, or `rejected` with reason.
 5. **Checks** - every check run or skipped and its result.
 6. **Conventions And Limitations** - in-document conventions left untouched and what was not
-   covered, for example the missing German language lint.
+   covered, for example the missing language lint for a target without a linter.
 
 ## Non-Goals
 

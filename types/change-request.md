@@ -28,6 +28,8 @@ belongs in `types/decision-record.md`, and the log of many requests in `types/re
 - `templates/en/change-request-template-en.md`
 - `templates/pl/change-request-template-pl.md`
 - `templates/de/change-request-template-de.md`
+- `templates/fr/change-request-template-fr.md`
+- `templates/es/change-request-template-es.md`
 
 ## Structure
 

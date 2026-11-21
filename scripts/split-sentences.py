@@ -72,8 +72,11 @@ QUOTE = re.compile(r"^(\s*)((?:>\s*)+)(.*)$")
 HEADING = re.compile(r"^\s*#")
 CODE_SPAN = re.compile(r"`+[^`]*`+")
 BOUNDARY = re.compile(r"[.!?][\"')\]]*\s+(?=[A-Z\"'(\[*`0-9])")
+# The lookbehind requires the abbreviation to start a token - a word that
+# merely ends with those letters, such as `deployed.` or `capital.`, is
+# not an abbreviation and must not suppress a real sentence boundary.
 ABBR = re.compile(
-    r"(e\.g|i\.e|etc|vs|cf|approx|No|Nos|Fig|fig|Dr|Mr|Mrs|St"
+    r"(?<![A-Za-z])(e\.g|i\.e|etc|vs|cf|approx|No|Nos|Fig|fig|Dr|Mr|Mrs|St"
     r"|vol|pp|sec|al|ed)\.\s*$"
 )
 TERMINAL = re.compile(r"[.!?:][\"')\]]*$")

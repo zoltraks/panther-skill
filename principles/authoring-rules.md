@@ -109,7 +109,8 @@ fenced code blocks, HTML comments, and tables - or run through a canonical tool 
 respects them, since a flat line scan corrupts structure, not just text.
 
 Extend the canonical formatting tool when it lacks a needed behavior rather than scripting around
-it. A fix inside the tool ships to every document the tool serves,
+it.
+A fix inside the tool ships to every document the tool serves,
 while a one-off script duplicates the logic and drifts.
 
 ## No Production Metadata

@@ -5,9 +5,11 @@ Scope:
   - SKILL.md and README.md are checked strictly: every backticked or linked path
     ending in a document suffix must resolve (bare names in SKILL.md are skipped
     because that file lists template basenames without their directory).
-  - Every other rule document is checked conservatively: only paths under a
-    known skill directory are verified, so filename examples such as
-    `hardware/chip.md` or `CHANGELOG.md` are ignored.
+  - Every other rule document is checked against the filesystem itself:
+    paths under `docs/` or `work/` stay uncheckable produced-document and
+    scratch namespaces, while every other `dir/file` path must resolve -
+    a missing file reports UNKNOWN_FILE, so a reference into a directory
+    that was never created can no longer pass on its first segment alone.
 
 Repository-governance documents under `docs/`, payload files under `templates/`, and
 `work/` scratch material are not rule documents, so they are not scanned.
@@ -30,6 +32,9 @@ KNOWN_DIRS = {
     "principles", "templates", "evals", "translations",
 }
 EXCLUDED_DIRS = ("docs", "templates", "work")
+# Reference targets that name produced-document or scratch layouts, never
+# skill files - paths under them are examples and stay unchecked.
+EXAMPLE_DIRS = ("docs", "work")
 
 
 def candidates(text: str) -> set[str]:
@@ -77,7 +82,7 @@ def check_rule_file(root: Path, source: Path, issues: list[str]) -> None:
         if not value or value.startswith("<"):
             continue
         top = value.lstrip("./").split("/", 1)[0]
-        if "/" not in value or top not in KNOWN_DIRS:
+        if "/" not in value or top in EXAMPLE_DIRS:
             continue
         candidate = (root / value).resolve()
         try:
@@ -86,7 +91,10 @@ def check_rule_file(root: Path, source: Path, issues: list[str]) -> None:
             issues.append(f"{label}: reference escapes skill directory: {raw}")
             continue
         if not candidate.is_file():
-            issues.append(f"{label}: reference does not resolve: {raw}")
+            if top in KNOWN_DIRS:
+                issues.append(f"{label}: reference does not resolve: {raw}")
+            else:
+                issues.append(f"{label}: UNKNOWN_FILE: {raw}")
 
 
 def main() -> int:

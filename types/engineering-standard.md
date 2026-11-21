@@ -30,6 +30,8 @@ pins toolchain versions, and ends with checks an agent can run.
 - `templates/en/engineering-standard-template-en.md`
 - `templates/pl/engineering-standard-template-pl.md`
 - `templates/de/engineering-standard-template-de.md`
+- `templates/fr/engineering-standard-template-fr.md`
+- `templates/es/engineering-standard-template-es.md`
 
 ## Structure
 

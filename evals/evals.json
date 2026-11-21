@@ -2036,6 +2036,80 @@
         "--check lists FIXABLE findings only for the named classes",
         "findings outside the named classes are reported as remaining and the run exits nonzero"
       ]
+    },
+    {
+      "id": 172,
+      "prompt": "Rédige une courte documentation technique pour un mécanisme de mise en cache en français.",
+      "expected_output": "A French technical document with sentence-case headings using the fr.md section names - Objet, Vue d'ensemble, Utilisation - and composed-form accents.",
+      "files": [],
+      "expectations": [
+        "The agent loaded languages/fr.md and types/technical-document.md.",
+        "Headings use sentence case, section names come from the fr.md type table.",
+        "Prose uses one sentence per paragraph, straight ASCII quotes, and no semicolons.",
+        "French diacritics render in composed form and code, paths, and identifiers stay verbatim."
+      ]
+    },
+    {
+      "id": 173,
+      "prompt": "Translate this English agent-instruction guide into French.",
+      "expected_output": "A French translation that applies the en-fr direction contract and the software glossary - AI agent renders agent IA, decision point renders point de décision - with sentence-case headings.",
+      "files": [],
+      "expectations": [
+        "The agent loaded languages/fr.md, translations/en-fr/en-fr-general.md, and translations/en-fr/en-fr-software.md.",
+        "Headings render in French sentence case - no Title Case calque.",
+        "The software glossary's agentic terms were applied and documented calques are avoided.",
+        "Untranslated set stayed verbatim - code, paths, identifiers, TBD and NOT SPECIFIED markers.",
+        "The output file was written as <basename>-fr.md in UTF-8 without BOM."
+      ]
+    },
+    {
+      "id": 174,
+      "prompt": "Escribe una breve documentación técnica para un mecanismo de caché en español.",
+      "expected_output": "A Spanish technical document with sentence-case headings using the es.md section names - Propósito, Visión general, Uso - and composed-form accents.",
+      "files": [],
+      "expectations": [
+        "The agent loaded languages/es.md and types/technical-document.md.",
+        "Headings use sentence case, section names come from the es.md type table.",
+        "Prose uses one sentence per paragraph, straight ASCII quotes, and no semicolons.",
+        "Spanish diacritics render in composed form and code, paths, and identifiers stay verbatim."
+      ]
+    },
+    {
+      "id": 175,
+      "prompt": "Translate this English agent-instruction guide into Spanish.",
+      "expected_output": "A Spanish translation that applies the en-es direction contract and the software glossary - AI agent renders agente de IA, decision point renders punto de decisión - with sentence-case headings.",
+      "files": [],
+      "expectations": [
+        "The agent loaded languages/es.md, translations/en-es/en-es-general.md, and translations/en-es/en-es-software.md.",
+        "Headings render in Spanish sentence case - no Title Case calque.",
+        "The software glossary's agentic terms were applied and documented calques are avoided.",
+        "Untranslated set stayed verbatim - code, paths, identifiers, TBD and NOT SPECIFIED markers.",
+        "The output file was written as <basename>-es.md in UTF-8 without BOM."
+      ]
+    },
+    {
+      "id": 176,
+      "prompt": "Run a formatting sweep across every Markdown document in this documentation repository.",
+      "expected_output": "A corpus sweep that snapshots first, classifies dialect artifacts before fixing, repairs mechanical classes only, and reports attribution from a snapshot compare.",
+      "files": [],
+      "expectations": [
+        "A clean-tree anchor or .tmp. snapshot was recorded before any repair ran.",
+        "The corpus's own style documents were read, and finding classes matching a documented convention were declared as dialect through panther.json rather than fixed.",
+        "Only mechanical finding classes were repaired; structural and judgment findings were reported as a plan, never edited.",
+        "diff-content.py against the snapshot demonstrated formatting-only changes, and the report counts findings per class and names the declared dialects."
+      ]
+    },
+    {
+      "id": 177,
+      "prompt": "Correct the trailing whitespace and misaligned tables in this supplied document whose lists use flush-left lazy continuations.",
+      "expected_output": "An in-place correction that preserves the flush-left dialect - no blank lines inserted inside list items - with the dialect declared through panther.json.",
+      "files": [],
+      "expectations": [
+        "The flush-left lazy-continuation dialect was detected and declared as lazy_continuation in panther.json rather than normalized away.",
+        "No blank line was inserted between a list item and its column-0 continuation line.",
+        "Trailing whitespace and table misalignment were repaired.",
+        "The diff stayed minimal outside the defect classes."
+      ]
     }
   ]
 }

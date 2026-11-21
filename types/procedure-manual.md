@@ -33,6 +33,8 @@ modes, decision gates, role mappings, or embedded templates.
 - `templates/en/procedure-manual-template-en.md`
 - `templates/pl/procedure-manual-template-pl.md`
 - `templates/de/procedure-manual-template-de.md`
+- `templates/fr/procedure-manual-template-fr.md`
+- `templates/es/procedure-manual-template-es.md`
 
 ## Audiences
 

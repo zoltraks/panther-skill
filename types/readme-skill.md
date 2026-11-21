@@ -35,6 +35,8 @@ prefer `types/readme-collection.md` instead.
 - `templates/en/readme-skill-template-en.md`
 - `templates/pl/readme-skill-template-pl.md`
 - `templates/de/readme-skill-template-de.md`
+- `templates/fr/readme-skill-template-fr.md`
+- `templates/es/readme-skill-template-es.md`
 
 ## Structure
 

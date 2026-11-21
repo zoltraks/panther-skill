@@ -33,6 +33,8 @@ for an entry-point document.
 - `templates/en/readme-docs-template-en.md`
 - `templates/pl/readme-docs-template-pl.md`
 - `templates/de/readme-docs-template-de.md`
+- `templates/fr/readme-docs-template-fr.md`
+- `templates/es/readme-docs-template-es.md`
 
 ## Structure
 

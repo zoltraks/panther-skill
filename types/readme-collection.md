@@ -36,6 +36,8 @@ of duplicating them.
 - `templates/en/readme-collection-template-en.md`
 - `templates/pl/readme-collection-template-pl.md`
 - `templates/de/readme-collection-template-de.md`
+- `templates/fr/readme-collection-template-fr.md`
+- `templates/es/readme-collection-template-es.md`
 
 ## Structure
 

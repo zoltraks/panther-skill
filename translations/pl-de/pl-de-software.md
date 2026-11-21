@@ -50,6 +50,7 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | kryteria akceptacji        | Akzeptanzkriterien                        |
 | menu wyboru                | Auswahlmenü                               |
 | okno kontekstu             | Kontextfenster                            |
+| oparty o pliki             | dateibasiert                              |
 | orkiestrator               | Orchestrator                              |
 | podatność                  | Schwachstelle                             |
 | pokrycie testami           | Testabdeckung                             |
@@ -74,6 +75,7 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | token                      | Token                                     |
 | umiejętność agenta         | Agenten-Fähigkeit                         |
 | wdrażać / wdrożenie        | bereitstellen / Bereitstellung            |
+| wersja robocza             | Entwurf                                   |
 | wersjonowanie              | Versionierung                             |
 | wydanie                    | Release                                   |
 | wymaganie                  | Anforderung                               |

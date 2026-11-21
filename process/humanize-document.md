@@ -111,6 +111,9 @@ into disjoint regions handled by parallel scouts (subagents).
   so every sweep count, character inventory,
   and invariant diff re-runs against the merged whole - this step is mandatory, not optional.
 
+A decomposed run loads `process/parallel-execution.md` for the shared delegation contract - roles,
+provenance, and sequential fallback.
+
 ## Mechanical Techniques
 
 - Target packed sentences with `census-document.py` packed outliers,

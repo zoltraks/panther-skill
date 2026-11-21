@@ -17,6 +17,8 @@ biweekly, or monthly cadence.
 - `templates/en/status-report-template-en.md`
 - `templates/pl/status-report-template-pl.md`
 - `templates/de/status-report-template-de.md`
+- `templates/fr/status-report-template-fr.md`
+- `templates/es/status-report-template-es.md`
 
 ## Structure
 

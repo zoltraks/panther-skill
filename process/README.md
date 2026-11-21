@@ -51,6 +51,7 @@ and the answer describes the skill, names its version, and shows the operations 
 | `scope-discovery.md`         | Discover or detect a location's document layout                |
 | `document-audit.md`          | Audit a document against its governing rules                   |
 | `correct-document.md`        | Correct, fix, or proofread a document                          |
+| `corpus-sweep.md`            | Bulk-format sweep across a repository's documents              |
 | `humanize-document.md`       | Humanize or rewrite a document's voice, facts preserved        |
 | `describe-response.md`       | Describe or summarize inline                                   |
 | `derived-documents.md`       | Derive a summary, brief, or supplement from a source           |

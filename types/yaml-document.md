@@ -30,6 +30,8 @@ while this file governs documents that are themselves YAML.
 - `templates/en/yaml-document-template-en.md`
 - `templates/pl/yaml-document-template-pl.md`
 - `templates/de/yaml-document-template-de.md`
+- `templates/fr/yaml-document-template-fr.md`
+- `templates/es/yaml-document-template-es.md`
 
 ## Document Shape
 

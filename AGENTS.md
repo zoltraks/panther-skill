@@ -7,7 +7,7 @@
 > **Key items:** governing documents, boundaries, local workspace, validation, improvement.
 
 This repository is the Panther skill, an Agent Skills package for authoring and editing
-plain-text-readable Markdown documents in English, Polish, or German.
+plain-text-readable Markdown documents in English, Polish, German, French, or Spanish.
 
 `SKILL.md` is the runtime router read by agents that use the skill.
 

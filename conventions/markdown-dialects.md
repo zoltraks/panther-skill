@@ -15,6 +15,24 @@ The core rule: the document's own dialect wins over the default style.
 
 Detect it, preserve it, normalize only on explicit request.
 
+## Contents
+
+| Section                       | Line | What it covers                           |
+|-------------------------------|------|------------------------------------------|
+| Standard ATX                  | 36   | The default dialect                      |
+| Setext Headings               | 48   | Underlined headings                      |
+| Closed ATX                    | 68   | Trailing heading markers                 |
+| Numbered Chapters             | 80   | Chapter-numbered documents               |
+| Pandoc And Export Artifacts   | 115  | Converter-produced shapes                |
+| YAML Frontmatter              | 143  | Metadata blocks                          |
+| Mixed And Unknown Dialects    | 171  | Conflicting signals                      |
+| Embedded Payload Documents    | 180  | ` ``` markdown ` fenced payloads         |
+| Wrapping Conventions          | 221  | The wrap axis                            |
+| Element-Level Conventions     | 246  | Per-element conventions and spacing axis |
+| Flush-Left Lazy Continuations | 270  | Column-0 list continuations              |
+| Blockquote Row Separation     | 299  | `>` separator rows                       |
+| Detection Procedure           | 315  | Dialect census steps                     |
+
 ## Standard ATX
 
 The default dialect for new documents.
@@ -248,6 +266,34 @@ While `flowing` keeps consecutive sentences inside one shared paragraph block.
 
 `split-sentences.py` defaults to sentence-per-line output, `--paragraphs` produces `separated`,
 and `--flow` produces `flowing`.
+
+## Flush-Left Lazy Continuations
+
+Some documents let a list item's continuation sit at column 0 with no blank line - a plain-text line
+directly after `- First item` that reads as that item's tail rather than a new paragraph.
+
+Signals: non-empty flush-left lines directly below a list item or directly above the next item,
+written deliberately and consistently across the document.
+
+CommonMark renders such a line inside the open item,
+so the writer sees one continuous list - the blank-line separation the standard dialect requires
+never existed in the source.
+
+Rule: the dialect is legal - preserve it on edit and never insert blank lines that break items open.
+
+Declare it for the mechanical tools through `panther.json` in the document's
+directory or an ancestor:
+
+```json
+{ "lazy_continuation": true }
+```
+
+`validate-document.py` then suppresses its `no blank line before list or table` and
+`no blank line after list or table` findings for the document,
+and `fix-document.py` skips the matching blank-line repairs instead of breaking items open.
+
+Blank-line findings around headings and code blocks stay in force - only the list and table class
+belongs to the dialect.
 
 ## Blockquote Row Separation
 

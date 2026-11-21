@@ -38,6 +38,8 @@ ask the user or fall back to this general type.
 - `templates/en/readme-general-template-en.md`
 - `templates/pl/readme-general-template-pl.md`
 - `templates/de/readme-general-template-de.md`
+- `templates/fr/readme-general-template-fr.md`
+- `templates/es/readme-general-template-es.md`
 
 The filename is always `README.md`.
 

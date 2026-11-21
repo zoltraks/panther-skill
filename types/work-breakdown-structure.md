@@ -18,6 +18,8 @@ Product breakdown structures follow the same shape.
 - `templates/en/work-breakdown-structure-template-en.md`
 - `templates/pl/work-breakdown-structure-template-pl.md`
 - `templates/de/work-breakdown-structure-template-de.md`
+- `templates/fr/work-breakdown-structure-template-fr.md`
+- `templates/es/work-breakdown-structure-template-es.md`
 
 ## Structure
 

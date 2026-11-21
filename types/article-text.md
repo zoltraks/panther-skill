@@ -23,6 +23,8 @@ Use for articles, tutorials, course material, blog posts, and explanatory essays
 - `templates/en/article-text-template-en.md`
 - `templates/pl/article-text-template-pl.md`
 - `templates/de/article-text-template-de.md`
+- `templates/fr/article-text-template-fr.md`
+- `templates/es/article-text-template-es.md`
 
 ## Structure
 

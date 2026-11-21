@@ -2,22 +2,22 @@
 name: panther-skill
 description: >-
   Document authoring skill. Creates and edits plain-text-readable
-  Markdown in English, Polish, and German - specifications, rules
+  Markdown in English, Polish, German, French, and Spanish - specifications, rules
   documents, agent instructions, articles, notes, READMEs, changelogs,
-  RFCs, decision records, PMBOK artifacts. Discovers layouts, audits,
-  corrects, translates, and describes documents across skill
+  RFCs, decision records, PMBOK artifacts. Discovers layouts in skill
   repositories, docs sites, and multi-project repos, AsciiDoc and
   reStructuredText minimal-edit, YAML documents. Use to write, edit,
-  correct, reformat, translate, audit, or describe a document. Triggers
-  on write or edit this document, translate this file, run panther, use
-  panther, work on panther.
+  correct, reformat, translate, audit, or describe a document - never
+  source-code edits or non-document tasks. Triggers on write or edit
+  this document, translate this file, run panther, use panther, work on
+  panther.
 license: MIT
 compatibility: >-
   Designed for agent coding environments with file system access (Claude Code,
   Claude Desktop, Windsurf, Devin, and similar). Requires the ability to read
   and write text files. No network access required.
 metadata:
-  version: "1.7.1"
+  version: "1.7.2"
   author: Filip Golewski
 allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob Grep
 ---
@@ -55,7 +55,8 @@ You do not normalize a document that has its own conventions.
 | Use improvement mode | Apply improvements surfaced by the work through the owning skill's maintenance procedure. A separate session-review request starts [session review](process/session-review.md). |
 | Use verbose mode     | Follow [timing and reporting](process/operation-timing.md) and expose pending questions through [JSON exchange](process/json-exchange.md).                                      |
 
-Read the selected procedure before acting. At each phase, read every file required for that phase,
+Read the selected procedure before acting.
+At each phase, read every file required for that phase,
 including conditional files once their conditions apply.
 Use a directory index when you need to discover a path.
 Defer later-phase material until that phase begins.
@@ -133,7 +134,7 @@ Use progressive disclosure:
 This skill is self-contained - load a rule file from the listings only when the task needs it.
 
 When asked how this skill works, explain that Panther produces plain-text-readable Markdown in
-English, Polish, or German for single files and organized collections.
+English, Polish, German, French, or Spanish for single files and organized collections.
 
 The per-operation behavior summary lives in `process/README.md`.
 

@@ -15,11 +15,11 @@ Apply it for English to Polish translate tasks, per `process/translate-document.
 
 | Section        | Line | What it covers                                      |
 |----------------|------|-----------------------------------------------------|
-| Domain Signals | 23   | Activation conditions for this glossary             |
-| Terminology    | 35   | Recurring English terms and preferred Polish forms  |
-| Context Forms  | 354  | Context-dependent renderings                        |
-| Calque Traps   | 530  | Forbidden literal renderings and their replacements |
-| Untranslated   | 686  | Loanwords and identifiers kept in English form      |
+| Domain Signals | 24   | Activation conditions for this glossary             |
+| Terminology    | 36   | Recurring English terms and preferred Polish forms  |
+| Context Forms  | 357  | Context-dependent renderings                        |
+| Calque Traps   | 535  | Forbidden literal renderings and their replacements |
+| Untranslated   | 691  | Loanwords and identifiers kept in English form      |
 
 ## Domain Signals
 
@@ -137,6 +137,7 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | document seed                     | szablon wyjściowy dokumentu                                           |
 | document skeleton                 | szkielet dokumentu                                                    |
 | documentation                     | dokumentacja                                                          |
+| draft                             | wersja robocza                                                        |
 | drift                             | narastająca rozbieżność / odchylenie                                  |
 | dynamic testing                   | testowanie dynamiczne                                                 |
 | dynamic verification              | weryfikacja dynamiczna                                                |
@@ -162,6 +163,7 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | fail-fast                         | natychmiastowe przerwanie (fail-fast)                                 |
 | feature                           | funkcja                                                               |
 | feature envy                      | metoda nadmiernie korzystająca z danych innego obiektu (Feature Envy) |
+| file-based                        | oparty o pliki                                                        |
 | final candidate                   | ostateczna wersja zmian                                               |
 | finding                           | ustalenie                                                             |
 | finding register                  | rejestr ustaleń                                                       |
@@ -527,6 +529,8 @@ Do not force one form everywhere:
 - `equivalent` renders `analogiczny` for a thing serving the same role (`analogiczny dokument`,
   `analogiczny mechanizm`) and `odpowiednik` for the noun (`nie istnieje zapisany odpowiednik`)
   - `równoważny` and `równoważność` stay reserved for strict logical or behavioral equivalence.
+- `draft` renders `wersja robocza` - keep `wersja` written out unless the sentence already
+  names it, so `robocza` never stands as a bare adjective.
 
 ## Calque Traps
 

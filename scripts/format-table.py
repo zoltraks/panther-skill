@@ -46,6 +46,41 @@ def parse_row(line):
     return [c.strip() for c in cells]
 
 
+def code_spans(line):
+    spans = []
+    i = 0
+    while i < len(line):
+        if line[i] != "`":
+            i += 1
+            continue
+        j = i
+        while j < len(line) and line[j] == "`":
+            j += 1
+        run = j - i
+        k, close = j, -1
+        while k < len(line):
+            m = line.find("`", k)
+            if m == -1:
+                break
+            n = m
+            while n < len(line) and line[n] == "`":
+                n += 1
+            if n - m == run:
+                close, k = m, n
+                break
+            k = n
+        if close == -1:
+            i = j
+        else:
+            spans.append((i, k))
+            i = k
+    return spans
+
+
+def has_code_pipe(line):
+    return any("|" in line[s:e] for s, e in code_spans(line))
+
+
 def is_sep(cells):
     return len(cells) > 0 and all(set(c) <= set("-:") and "-" in c for c in cells)
 
@@ -60,7 +95,7 @@ def sep_like(cells):
 
 def format_block(block, start, drop_empty, spaced_sep=False):
     warnings = []
-    if any(r"\|" in line or re.search(r"`+[^`\n]*\|[^`\n]*`+", line) for line in block):
+    if any(r"\|" in line or has_code_pipe(line) for line in block):
         return block, [f"line {start + 1}: literal pipe in table - left unchanged"]
     rows = [parse_row(line) for line in block]
     for k, line in enumerate(block):

@@ -49,7 +49,9 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | Codebasis                                 | baza kodu                  |
 | Code-Review                               | przegląd kodu              |
 | Coding-Agent                              | agent kodujący             |
+| dateibasiert                              | oparty o pliki             |
 | Entscheidungspunkt                        | punkt decyzyjny            |
+| Entwurf                                   | wersja robocza             |
 | Fehler                                    | błąd                       |
 | Framework                                 | framework                  |
 | Funktion                                  | funkcja                    |

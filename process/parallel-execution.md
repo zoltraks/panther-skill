@@ -34,7 +34,7 @@ State which roles ran and why in the delivery.
 |-----------------|-----------------------------------------------------------------|
 | `evidence`      | Read-only sweep: seed material, existing documents, conventions |
 | `section-draft` | Draft one named region of a large document to a scratch path    |
-| `checklist`     | Run one checklist family from `references/review-checklist.md`  |
+| `checklist`     | Run one checklist family from `process/document-checklist.md`   |
 
 ## Scout Contract
 

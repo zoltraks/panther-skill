@@ -33,6 +33,8 @@ prefer `types/readme-application.md`.
 - `templates/en/readme-cli-template-en.md`
 - `templates/pl/readme-cli-template-pl.md`
 - `templates/de/readme-cli-template-de.md`
+- `templates/fr/readme-cli-template-fr.md`
+- `templates/es/readme-cli-template-es.md`
 
 ## Structure
 

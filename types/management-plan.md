@@ -25,6 +25,8 @@ A management plan describes how a project domain is governed. That is this type.
 - `templates/en/management-plan-template-en.md`
 - `templates/pl/management-plan-template-pl.md`
 - `templates/de/management-plan-template-de.md`
+- `templates/fr/management-plan-template-fr.md`
+- `templates/es/management-plan-template-es.md`
 
 ## Structure
 

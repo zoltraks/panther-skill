@@ -26,6 +26,8 @@ For formal meeting records with decisions and action items use `types/meeting-mi
 - `templates/en/quick-note-template-en.md`
 - `templates/pl/quick-note-template-pl.md`
 - `templates/de/quick-note-template-de.md`
+- `templates/fr/quick-note-template-fr.md`
+- `templates/es/quick-note-template-es.md`
 
 ## Structure
 

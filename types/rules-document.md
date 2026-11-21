@@ -31,6 +31,8 @@ It follows the `agent-instruction` type instead.
 - `templates/en/rules-document-template-en.md`
 - `templates/pl/rules-document-template-pl.md`
 - `templates/de/rules-document-template-de.md`
+- `templates/fr/rules-document-template-fr.md`
+- `templates/es/rules-document-template-es.md`
 
 ## Structure
 

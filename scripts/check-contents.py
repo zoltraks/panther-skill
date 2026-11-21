@@ -2,10 +2,14 @@
 """Check `## Contents` table line numbers against actual `## ` section positions.
 
 Scope:
-  - Every Markdown file carrying a `## Contents`, `## Spis treści`, or
-    `## Inhaltsverzeichnis` section is
+  - Every Markdown file carrying a `## Contents` section, or its localized
+    equivalent discovered from `languages/*.md`, is
     checked: each row's stated line number must sit within `--tolerance` lines of a
     document-level `## ` heading.
+    Each language baseline declares its own contents heading as the `## ` section
+    following its Purpose section, and the checker learns both the heading names
+    and the localized line-column names from those files, so new languages need
+    no script change.
   - Fenced code blocks are opaque: example tables and headings inside fences, such
     as the ` ```markdown ` sample in `docs/STYLE.md`, are payload, not structure.
   - Matching is positional, not by section name: row labels are abbreviated (for
@@ -25,9 +29,9 @@ from pathlib import Path
 
 FENCE = re.compile(r"^[ ]{0,3}(```+|~~~+)")
 HEADING = re.compile(r"^## ")
-CONTENTS_HEADING = re.compile(r"^## (Contents|Spis treści|Inhaltsverzeichnis)\s*$")
 TABLE_ROW = re.compile(r"^\|")
-LINE_COLUMNS = {"line", "wiersz", "zeile"}
+CONTENTS_HEADINGS = {"Contents"}
+LINE_COLUMNS = {"line"}
 
 EXCLUDED_DIRS = ("docs", "templates", "work")
 
@@ -57,11 +61,47 @@ def cells(row: str) -> list[str]:
     return [cell.strip() for cell in row.split("|")[1:-1]]
 
 
-def contents_tables(lines: list[tuple[int, str]]) -> list[list[tuple[int, str]]]:
+def language_contents_names(root: Path) -> tuple[set[str], set[str]]:
+    """Collect contents-heading and line-column names from `languages/*.md`.
+
+    Every language baseline declares its localized contents section as the
+    `## ` heading directly after its Purpose heading, and the contents table's
+    second column carries the stated line numbers.
+    """
+    headings = set(CONTENTS_HEADINGS)
+    line_columns = set(LINE_COLUMNS)
+    languages_dir = root / "languages"
+    if not languages_dir.is_dir():
+        return headings, line_columns
+    for path in sorted(languages_dir.glob("*.md")):
+        if path.name == "README.md":
+            continue
+        try:
+            text = path.read_text(encoding="utf-8")
+        except UnicodeDecodeError:
+            continue
+        pairs = document_lines(text)
+        h2 = [line for _, line in pairs if HEADING.match(line)]
+        if len(h2) < 2:
+            continue
+        heading = h2[1][3:].strip()
+        headings.add(heading)
+        index = next(i for i, (_, line) in enumerate(pairs) if line == h2[1])
+        cursor = index + 1
+        while cursor < len(pairs) and not pairs[cursor][1].strip():
+            cursor += 1
+        if cursor < len(pairs) and TABLE_ROW.match(pairs[cursor][1]):
+            header = cells(pairs[cursor][1])
+            if len(header) > 1:
+                line_columns.add(header[1].lower())
+    return headings, line_columns
+
+
+def contents_tables(lines: list[tuple[int, str]], headings: set[str]) -> list[list[tuple[int, str]]]:
     """Return the row lists of every table directly under a Contents heading."""
     tables: list[list[tuple[int, str]]] = []
     for index, (_, line) in enumerate(lines):
-        if not CONTENTS_HEADING.match(line):
+        if not HEADING.match(line) or line[3:].strip() not in headings:
             continue
         cursor = index + 1
         while cursor < len(lines) and not lines[cursor][1].strip():
@@ -75,7 +115,8 @@ def contents_tables(lines: list[tuple[int, str]]) -> list[list[tuple[int, str]]]
     return tables
 
 
-def check_file(source: Path, label: str, tolerance: int, issues: list[str]) -> bool:
+def check_file(source: Path, label: str, tolerance: int, issues: list[str],
+               headings: set[str], line_columns: set[str]) -> bool:
     try:
         text = source.read_text(encoding="utf-8")
     except UnicodeDecodeError:
@@ -84,7 +125,7 @@ def check_file(source: Path, label: str, tolerance: int, issues: list[str]) -> b
 
     lines = document_lines(text)
     heading_lines = [number for number, line in lines if HEADING.match(line)]
-    tables = contents_tables(lines)
+    tables = contents_tables(lines, headings)
     if not tables:
         return False
 
@@ -92,7 +133,7 @@ def check_file(source: Path, label: str, tolerance: int, issues: list[str]) -> b
         header = cells(rows[0][1])
         column = 1
         for position, name in enumerate(header):
-            if name.lower() in LINE_COLUMNS:
+            if name.lower() in line_columns:
                 column = position
                 break
         for row_number, row in rows[2:]:
@@ -149,13 +190,16 @@ def main() -> int:
         print(f"FAIL path does not exist: {target}")
         return 1
 
+    headings, line_columns = language_contents_names(
+        Path(__file__).resolve().parent.parent
+    )
     issues: list[str] = []
     checked = 0
     for source in sources:
         relative = source.relative_to(root)
         if relative.parts[0] in EXCLUDED_DIRS or relative.parts[0].startswith("."):
             continue
-        if check_file(source, str(relative), tolerance, issues):
+        if check_file(source, str(relative), tolerance, issues, headings, line_columns):
             checked += 1
 
     if issues:

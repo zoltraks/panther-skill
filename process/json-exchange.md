@@ -195,7 +195,7 @@ Every pending question surface emits with a stable kebab-case `id`:
 |---------------------------|-------------|---------------------------------------------------------------------------------|
 | `parameters-acceptance`   | `choice`    | Accept defaults or configure in Parameter Resolution, document or translate     |
 | `document-type`           | `choice`    | Ambiguous type inference - the menu lists the candidate types                   |
-| `document-language`       | `choice`    | Language resolution when unclear - `en`, `pl`, or `de`                          |
+| `document-language`       | `choice`    | Language resolution when unclear - `en`, `pl`, `de`, `fr`, or `es`              |
 | `document-scope`          | `choice`    | Emitted only when scope detection leaves a genuine choice                       |
 | `filename`                | `text`      | Naming or output-path question - free input                                     |
 | `encoding`                | `choice`    | Encoding confirmation or ambiguity per `conventions/file-encoding.md`           |

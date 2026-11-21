@@ -27,6 +27,8 @@ For contribution sections inside a `README.md`, use the matching `readme-*` type
 - `templates/en/contributing-file-template-en.md`
 - `templates/pl/contributing-file-template-pl.md`
 - `templates/de/contributing-file-template-de.md`
+- `templates/fr/contributing-file-template-fr.md`
+- `templates/es/contributing-file-template-es.md`
 
 ## Structure
 

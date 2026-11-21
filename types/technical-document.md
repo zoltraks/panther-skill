@@ -21,6 +21,8 @@ and reference material.
 - `templates/en/technical-document-template-en.md`
 - `templates/pl/technical-document-template-pl.md`
 - `templates/de/technical-document-template-de.md`
+- `templates/fr/technical-document-template-fr.md`
+- `templates/es/technical-document-template-es.md`
 
 ## Structure
 

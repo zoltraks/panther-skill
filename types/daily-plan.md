@@ -27,6 +27,8 @@ For formal meeting records use `types/meeting-minutes.md`.
 - `templates/en/daily-plan-template-en.md`
 - `templates/pl/daily-plan-template-pl.md`
 - `templates/de/daily-plan-template-de.md`
+- `templates/fr/daily-plan-template-fr.md`
+- `templates/es/daily-plan-template-es.md`
 
 ## Structure
 

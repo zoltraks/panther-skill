@@ -21,6 +21,8 @@ For informal scratch notes use `types/quick-note.md` instead.
 - `templates/en/meeting-minutes-template-en.md`
 - `templates/pl/meeting-minutes-template-pl.md`
 - `templates/de/meeting-minutes-template-de.md`
+- `templates/fr/meeting-minutes-template-fr.md`
+- `templates/es/meeting-minutes-template-es.md`
 
 ## Structure
 

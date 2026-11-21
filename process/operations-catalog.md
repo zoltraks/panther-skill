@@ -79,6 +79,10 @@ request's language changes the cell text.
 | Translate | german to english        | de-en direction rules and glossaries                                            |
 | Translate | polish to german         | pl-de direction rules and glossaries                                            |
 | Translate | german to polish         | de-pl direction rules and glossaries                                            |
+| Translate | english to french        | en-fr direction rules and glossaries                                            |
+| Translate | french to english        | fr-en direction rules and glossaries                                            |
+| Translate | english to spanish       | en-es direction rules and glossaries                                            |
+| Translate | spanish to english       | es-en direction rules and glossaries                                            |
 | Audit     | document audit           | findings with an optional fix plan                                              |
 | Audit     | translation audit        | fidelity verdict against the source                                             |
 | Audit     | polish lint              | calque and prose findings                                                       |

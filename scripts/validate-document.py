@@ -20,6 +20,17 @@ sentence-final punctuation, which is how blank-line-split wrapped sentences
 surface - and a sentence opening with a code span or emphasis marker, which
 the English baseline asks to lead with a word instead.
 
+Two canonical shapes are tolerated inside those classes: a heading directly
+under the H1 title reads as a subtitle and is not an empty heading, and a
+paragraph opening with a `**Label** - ` lead uses an established
+label-aside form rather than a bare emphasis start.
+
+An optional `panther.json` in the document's directory or an ancestor
+parametrizes the run: `width` supplies a line limit, `findings` lists
+issue substrings suppressed from the report, and `lazy_continuation`
+declares the flush-left list dialect, switching the findings for missing
+blank lines around lists and tables off.
+
 Run this file in place from the skill repository -
 `python <skill-root>/scripts/validate-document.py` - and run it on the
 document file. Copy it under a `.tmp.` name into the working
@@ -51,10 +62,55 @@ BQ_FIELD_ROW = re.compile(r"^>\s*\*\*[^*\n]+:\*\*|^>\s*\*\*[^*\n]+\*\*:")
 LONE_ITEM = re.compile(r"^\s*[-*+][ \t]*$")
 LONE_ORDERED = re.compile(r"^\d+[.)][ \t]*$")
 TYPO_QUOTES = "“”‘’‚„«»"
-INLINE_CODE = re.compile(r"`[^`]*`")
 LABEL_LINE = re.compile(r"^\*\*[^*\n]+\*\*:?\s*$")
+LABEL_LEAD = re.compile(r"^\*\*[^*\n]+\*\*\s+-\s")
 DEFINITION_LINE = re.compile(r"^\*\*[^*\n]+\*\*:")
 HRULE = re.compile(r"^\s*([-*_]\s*){3,}$")
+
+
+def code_spans(line):
+    spans = []
+    i = 0
+    while i < len(line):
+        if line[i] != "`":
+            i += 1
+            continue
+        j = i
+        while j < len(line) and line[j] == "`":
+            j += 1
+        run = j - i
+        k, close = j, -1
+        while k < len(line):
+            m = line.find("`", k)
+            if m == -1:
+                break
+            n = m
+            while n < len(line) and line[n] == "`":
+                n += 1
+            if n - m == run:
+                close, k = m, n
+                break
+            k = n
+        if close == -1:
+            i = j
+        else:
+            spans.append((i, k))
+            i = k
+    return spans
+
+
+def code_span_pipe(line):
+    return next(
+        (line[s:e] for s, e in code_spans(line) if "|" in line[s:e]), None)
+
+
+def strip_code(line):
+    out, pos = [], 0
+    for s, e in code_spans(line):
+        out.append(line[pos:s])
+        pos = e
+    out.append(line[pos:])
+    return "".join(out)
 
 
 def sep_like(cells):
@@ -114,8 +170,7 @@ def check_tables(lines, issues):
                 issues.append(
                     f"line {start + offset + 1}: row starts with a double pipe"
                 )
-            piped = next(
-                (s for s in INLINE_CODE.findall(line) if "|" in s), None)
+            piped = code_span_pipe(line)
             if piped is not None:
                 issues.append(
                     f"line {start + offset + 1}: literal pipe inside "
@@ -192,8 +247,11 @@ def load_config(path):
     """Find panther.json in the document's directory or an ancestor.
 
     Returns (config dict, config path or None). Keys are single English
-    words; the format is draft: ``width`` overrides a missing --width and
-    ``findings`` lists issue substrings suppressed from the FAIL report.
+    words; the format is draft: ``width`` overrides a missing --width,
+    ``findings`` lists issue substrings suppressed from the FAIL report,
+    and ``lazy_continuation`` declares the flush-left dialect in which a
+    column-0 line may continue a list item - the findings for missing
+    blank lines around lists and tables switch off.
     """
     directory = Path(path).resolve().parent
     for candidate in (directory, *directory.parents):
@@ -213,6 +271,7 @@ def main(path, width, payload_markdown):
         width = config["width"]
     suppress = config.get("findings")
     suppress = suppress if isinstance(suppress, list) else []
+    lazy = bool(config.get("lazy_continuation"))
     raw = open(path, "rb").read()
     try:
         text = raw.decode("utf-8")
@@ -233,6 +292,7 @@ def main(path, width, payload_markdown):
     in_indented = False
     last_open_heading = -1
     last_open_level = 0
+    prev_open_level = 0
     prev = ""
     prev_text = ""
     for i, line in enumerate(lines):
@@ -292,11 +352,16 @@ def main(path, width, payload_markdown):
         heading = HEADING.match(line)
         if heading:
             level = len(heading.group(1))
-            if last_open_heading >= 0 and level <= last_open_level and all(
-                    lines[j].strip() == ""
-                    for j in range(last_open_heading + 1, i)):
+            if (
+                    last_open_heading >= 0
+                    and level <= last_open_level
+                    and prev_open_level != 1
+                    and all(
+                        lines[j].strip() == ""
+                        for j in range(last_open_heading + 1, i))):
                 warnings.append(
                     f"line {last_open_heading + 1}: empty heading")
+            prev_open_level = last_open_level
             last_open_heading = i
             last_open_level = level
             if not payload:
@@ -309,7 +374,7 @@ def main(path, width, payload_markdown):
                     issues.append(f"line {n}: heading ends with punctuation")
 
         if not payload and not indented_code:
-            prose = INLINE_CODE.sub("", line)
+            prose = strip_code(line)
             if any(q in prose for q in TYPO_QUOTES):
                 issues.append(f"line {n}: typographic quote or apostrophe")
 
@@ -373,6 +438,7 @@ def main(path, width, payload_markdown):
             and prev.strip() != ""
             and not prev_structural
             and not prev_continuation
+            and not lazy
         ):
             issues.append(f"line {n}: no blank line before list or table")
         if (
@@ -381,6 +447,7 @@ def main(path, width, payload_markdown):
             and not payload
             and not continuation
             and line.strip() != ""
+            and not lazy
         ):
             issues.append(f"line {n}: no blank line after list or table")
 
@@ -413,6 +480,7 @@ def main(path, width, payload_markdown):
             if (
                 not HRULE.match(opener)
                 and not LABEL_LINE.match(opener)
+                and not LABEL_LEAD.match(opener)
                 and not DEFINITION_LINE.match(opener)
                 and (
                     opener.startswith("`")
@@ -428,9 +496,12 @@ def main(path, width, payload_markdown):
             prev_text = line
         prev = line
 
-    if last_open_heading >= 0 and all(
-            line.strip() == ""
-            for line in lines[last_open_heading + 1:]):
+    if (
+            last_open_heading >= 0
+            and prev_open_level != 1
+            and all(
+                line.strip() == ""
+                for line in lines[last_open_heading + 1:])):
         warnings.append(f"line {last_open_heading + 1}: empty heading")
 
     if foreign_letters:

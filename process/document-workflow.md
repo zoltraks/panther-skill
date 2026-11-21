@@ -280,7 +280,7 @@ follow `process/scope-discovery.md` - that procedure produces a full report, not
 Load rule files in this order:
 
 1. **`languages/<lang>.md`** - mandatory for every document.
-   `<lang>` is the ISO 639-1 language code (`en`, `pl`, `de`).
+   `<lang>` is the ISO 639-1 language code (`en`, `pl`, `de`, `fr`, `es`).
    Load the file matching the document language, never more than one at once.
 2. **`types/<type>.md`** - load when the document matches a known type.
    The type file adds deltas on top of the language file.

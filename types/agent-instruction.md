@@ -36,6 +36,8 @@ agent but do not fit this type's fixed sections.
 - `templates/en/agent-instruction-template-en.md`
 - `templates/pl/agent-instruction-template-pl.md`
 - `templates/de/agent-instruction-template-de.md`
+- `templates/fr/agent-instruction-template-fr.md`
+- `templates/es/agent-instruction-template-es.md`
 
 ## Audiences
 

@@ -30,6 +30,8 @@ and scope or budget change requests belong in the change log per `types/register
 - `templates/en/decision-record-template-en.md`
 - `templates/pl/decision-record-template-pl.md`
 - `templates/de/decision-record-template-de.md`
+- `templates/fr/decision-record-template-fr.md`
+- `templates/es/decision-record-template-es.md`
 
 ## Structure
 

@@ -10,6 +10,7 @@ from pathlib import Path
 
 
 ALLOWED_FIELDS = {"name", "description", "license", "compatibility", "metadata", "allowed-tools"}
+FENCE_PATTERN = re.compile(r"^[ ]{0,3}(```+|~~~+)")
 REFERENCE_PATTERN = re.compile(r"(?<![A-Za-z0-9:/])([A-Za-z0-9_.-]+/[A-Za-z0-9_./-]+\.(?:md|py|json|txt))(?![A-Za-z0-9])")
 LINK_PATTERN = re.compile(r"\]\(([^)]+)\)")
 
@@ -96,6 +97,39 @@ def referenced_paths(body: str) -> set[str]:
     return references
 
 
+def language_contents_headings(root: Path) -> set[str]:
+    """Localized contents headings declared by `languages/*.md`.
+
+    Every language baseline places its contents section as the `## ` heading
+    directly after its Purpose heading, so a new language registers itself
+    here without a script change.
+    """
+    headings = {"Contents"}
+    languages_dir = root / "languages"
+    if not languages_dir.is_dir():
+        return headings
+    for path in sorted(languages_dir.glob("*.md")):
+        if path.name == "README.md":
+            continue
+        try:
+            text = path.read_text(encoding="utf-8")
+        except UnicodeDecodeError:
+            continue
+        h2: list[str] = []
+        fenced = False
+        for line in text.splitlines():
+            if FENCE_PATTERN.match(line):
+                fenced = not fenced
+                continue
+            if not fenced and line.startswith("## "):
+                h2.append(line[3:].strip())
+                if len(h2) == 2:
+                    break
+        if len(h2) == 2:
+            headings.add(h2[1])
+    return headings
+
+
 def validate_body(root: Path, body: str, issues: list[str]) -> None:
     lines = body.splitlines()
     total_lines = len((root / "SKILL.md").read_text(encoding="utf-8").splitlines())
@@ -126,7 +160,9 @@ def validate_body(root: Path, body: str, issues: list[str]) -> None:
             if "examples" in path.relative_to(root).parts or "templates" in path.relative_to(root).parts:
                 continue
             content = path.read_text(encoding="utf-8")
-            contents_headings = ("## Contents", "## Spis treści", "## Inhaltsverzeichnis")
+            contents_headings = tuple(
+                f"## {heading}" for heading in language_contents_headings(root)
+            )
             if not any(heading in content for heading in contents_headings):
                 issue(f"large document has no Contents section: {path.relative_to(root)}", issues)
 

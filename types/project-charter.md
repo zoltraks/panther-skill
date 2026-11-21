@@ -21,6 +21,8 @@ the charter authorizes the project after it and empowers the project manager.
 - `templates/en/project-charter-template-en.md`
 - `templates/pl/project-charter-template-pl.md`
 - `templates/de/project-charter-template-de.md`
+- `templates/fr/project-charter-template-fr.md`
+- `templates/es/project-charter-template-es.md`
 
 ## Structure
 

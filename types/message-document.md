@@ -27,6 +27,8 @@ For formal project communication with stakeholders use `types/status-report.md`.
 - `templates/en/message-document-template-en.md`
 - `templates/pl/message-document-template-pl.md`
 - `templates/de/message-document-template-de.md`
+- `templates/fr/message-document-template-fr.md`
+- `templates/es/message-document-template-es.md`
 
 ## Structure
 

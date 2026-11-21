@@ -10,7 +10,12 @@ replaces a run of each checker separately:
     format-table.py --check       gates
     align-comments.py --check     gates
     reflow-prose.py --wrap/--unwrap --check   advisory unless --layout picks a side
-    split-sentences.py --check    runs only with --split
+    split-sentences.py --check    runs only with --split, in the mode the
+                                  document's panther.json declares through
+                                  `sentence_layout` - `paragraphs`/`separated`
+                                  selects --paragraphs, `flow`/`flowing`/`packed`
+                                  selects --flow, anything else keeps the
+                                  sentence-per-line default
     lint-polish.py                runs only with --polish
     lint-english.py               runs only with --english
     check-consistency.py          runs only with --consistency
@@ -40,6 +45,7 @@ with an aggregate verdict. Per-file arguments apply to every file.
 from __future__ import annotations
 
 import argparse
+import importlib.util
 import os
 import subprocess
 import sys
@@ -79,6 +85,28 @@ def rule_path(relative: str, skill_root: Path | None) -> Path | None:
         if probe.is_file():
             return probe
     return None
+
+
+def panther_config(target: Path, skill_root: Path | None) -> dict:
+    """Load the document's panther.json through validate-document's loader,
+    keeping the key format single-sourced."""
+    script = resolve("validate-document.py", skill_root)
+    if script is None:
+        return {}
+    spec = importlib.util.spec_from_file_location("vd", script)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    config, _ = module.load_config(str(target))
+    return config if isinstance(config, dict) else {}
+
+
+SENTENCE_LAYOUT_MODES = {
+    "paragraphs": "--paragraphs",
+    "separated": "--paragraphs",
+    "flow": "--flow",
+    "flowing": "--flow",
+    "packed": "--flow",
+}
 
 
 def run(script: Path, args: list[str], cwd: Path) -> tuple[int, str]:
@@ -244,8 +272,15 @@ def check_one(target: Path, args, skill_root) -> int:
         if script is None:
             print("SKIP split-sentences - tool not found")
         else:
-            code, output = run(script, [doc, "--check", *payload], cwd)
-            failures += report("split-sentences --check", code, output, gated=True)
+            layout = panther_config(target, skill_root).get("sentence_layout")
+            mode = SENTENCE_LAYOUT_MODES.get(str(layout))
+            split_args = [doc, "--check", *payload]
+            if mode:
+                split_args.append(mode)
+            code, output = run(script, split_args, cwd)
+            label = "split-sentences --check" if not mode \
+                else f"split-sentences {mode} --check"
+            failures += report(label, code, output, gated=True)
 
     if args.polish:
         script = resolve("lint-polish.py", skill_root)

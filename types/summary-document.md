@@ -24,6 +24,8 @@ It governs derivation, tiers, naming, and freshness.
 - `templates/en/summary-document-template-en.md`
 - `templates/pl/summary-document-template-pl.md`
 - `templates/de/summary-document-template-de.md`
+- `templates/fr/summary-document-template-fr.md`
+- `templates/es/summary-document-template-es.md`
 
 ## Structure
 

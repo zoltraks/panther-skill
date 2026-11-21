@@ -16,3 +16,5 @@ headings, lists, tables, characters, vocabulary, file naming, and the language's
 | `en.md` | English  | The document language is English |
 | `pl.md` | Polish   | The document language is Polish  |
 | `de.md` | German   | The document language is German  |
+| `fr.md` | French   | The document language is French  |
+| `es.md` | Spanish  | The document language is Spanish |

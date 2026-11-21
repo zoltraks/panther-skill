@@ -41,7 +41,8 @@ Classify the failure with a structured tag - "missed-trigger", "contradiction", 
 ### 2. Patch
 
 Produce two or three minimal candidate patches - a routing line, a constraint, an example,
-an option set. Never rewrite the skill wholesale.
+an option set.
+Never rewrite the skill wholesale.
 
 Each candidate records what it changes and the failure tag it addresses.
 
@@ -56,7 +57,8 @@ A patch with no measurable improvement is reported inconclusive, never promoted.
 
 ### 4. Promote
 
-Apply the winning patch. Record the rollback path first - a copy of the file being changed kept in
+Apply the winning patch.
+Record the rollback path first - a copy of the file being changed kept in
 `work/` is the restore point.
 
 Record the change per `docs/VERSIONING.md`:
