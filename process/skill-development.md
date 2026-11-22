@@ -40,12 +40,21 @@ The flag arms improvement mode for the described work:
 improvements the work surfaces are applied to this repository's files through the member's own
 maintenance path, and the flag alone never routes to the session-history gather.
 
+A development request may also name `training` - "work on panther-skill development and
+training".
+The flag arms training mode for the described work:
+adjustments the operations surface are applied on the fly to this repository's files through
+the member's own maintenance path, so the skill performs better, quicker, and with less
+context - the flag alone never routes to the session-history gather.
+
 ## What Does Not Apply
 
 - The mode never edits on assumption - standby ends at a described change, not before.
 - Session review stays a separate operation - development mode delivers a described change,
   while "improve panther-skill" gathers lessons.
 - An `improvement` flag on the request arms the working mode above - it never triggers the
+  session-review gather on its own.
+- A `training` flag on the request arms the working mode above - it never triggers the
   session-review gather on its own.
 - Timing follows `process/operation-timing.md` - the start-up check is the operation the readiness
   report's closing line times.

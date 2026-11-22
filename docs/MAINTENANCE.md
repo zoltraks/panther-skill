@@ -61,13 +61,16 @@ and `translations/` groups direction files one level deep under per-pair directo
 
 ## File Naming
 
-Use lowercase kebab-case for rule files: `project-document.md`, `rules-document.md`.
+Authored filenames are lowercase kebab-case. Conventional uppercase names stay exempt -
+`README.md`, `AGENTS.md`, `LICENSE`, and the governance documents under `docs/` -
+`STYLE.md`, `VERSIONING.md`, `MAINTENANCE.md`, `SECURITY.md`, `CONTRIBUTING.md`, `README.md`.
 
-Match the dominant word-count convention of the target directory.
-
-When most existing filenames use two words,
-a new file uses at least two words even when one word would do: `article-text.md` in
-`types/`, not `article.md`.
+Procedure and rule documents carry at least two words in `<domain>-<role>` or `<verb>-<object>` form,
+keeping three or more words where meaningful - `process/`, `types/`, `scopes/`, `principles/`,
+`conventions/`, and `templates/` rule files follow it: `project-document.md`, `rules-document.md`,
+`article-text.md`.
+A file named for a single unambiguous thing may keep one word - a language baseline
+`languages/<code>.md` named by its ISO 639-1 code, a translation pair file, or a fixture.
 
 Language baselines are named `languages/<code>.md`, where `<code>` is the ISO 639-1 language code.
 
@@ -91,10 +94,6 @@ Tools are named `scripts/<verb>-<object>.py`, for example `detect-encoding.py` o
 
 Document-production tools run in place - `python3 <skill-root>/scripts/<tool>.py <file>` - and are
 copied into working repositories under a `.tmp.` infix only when the skill root cannot be invoked.
-
-Repository files use uppercase conventional names: `README.md`, `AGENTS.md`, `LICENSE`,
-and the governance documents under `docs/` - `STYLE.md`, `VERSIONING.md`, `MAINTENANCE.md`,
-`SECURITY.md`, `CONTRIBUTING.md`, `README.md`.
 
 ## New Rule Files
 

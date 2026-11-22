@@ -1777,19 +1777,19 @@
     {
       "id": 148,
       "prompt": "housekeep panther-skill",
-      "expected_output": "Runs process/housekeeping.md - registration reconciliation, coverage checks, workspace hygiene, validation, proposal report.",
+      "expected_output": "Runs process/skill-housekeeping.md - registration reconciliation, coverage checks, workspace hygiene, validation, proposal report.",
       "files": [],
       "expectations": [
-        "runs process/housekeeping.md and reports findings as a proposal"
+        "runs process/skill-housekeeping.md and reports findings as a proposal"
       ]
     },
     {
       "id": 149,
       "prompt": "work on panther-skill development",
-      "expected_output": "Runs process/development.md - local readiness report, standby for a described change.",
+      "expected_output": "Runs process/skill-development.md - local readiness report, standby for a described change.",
       "files": [],
       "expectations": [
-        "runs process/development.md and stands by for a described change"
+        "runs process/skill-development.md and stands by for a described change"
       ]
     },
     {
@@ -2109,6 +2109,17 @@
         "No blank line was inserted between a list item and its column-0 continuation line.",
         "Trailing whitespace and table misalignment were repaired.",
         "The diff stayed minimal outside the defect classes."
+      ]
+    },
+    {
+      "id": 178,
+      "prompt": "work on panther-skill in training mode",
+      "expected_output": "Training mode is a working mode - adjustments the operations surface are applied on the fly to this repository's files through the member's own maintenance path, so the skill performs better, quicker, and with less context, during the work itself. The session-history gather does not run: it belongs to the named `improve` operation alone.",
+      "files": [],
+      "expectations": [
+        "does not route to process/session-review.md on the training-mode flag alone",
+        "applies on-the-fly adjustments during operations through the member's own maintenance path",
+        "reviews no session history that precedes the mode request"
       ]
     }
   ]

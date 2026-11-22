@@ -9,7 +9,7 @@ compatibility: >-
   Requires local text-file access and Python for encoding detection and document checks.
   Git and network access are used for upstream checks.
 metadata:
-  version: "1.7.3"
+  version: "1.7.4"
   author: Filip Golewski
 ---
 
@@ -42,8 +42,9 @@ You do not normalize a document that has its own conventions.
 | Bare activation                     | Follow [activation](process/skill-activation.md) and wait for a task.                                             |
 | List capabilities                   | Read the [operations catalog](process/operations-catalog.md).                                                     |
 | Perform a task                      | Choose the operation under [Operations](#operations).                                                             |
-| Develop this skill                  | Follow [development](process/development.md) and the [repository instructions](AGENTS.md).                        |
+| Develop this skill                  | Follow [development](process/skill-development.md) and the [repository instructions](AGENTS.md).                  |
 | Improvement mode                    | Apply lessons from the work through this skill's maintenance rules.                                               |
+| Training mode                       | Apply on-the-fly adjustments through this skill's maintenance rules.                                              |
 | Review a session                    | Follow [session review](process/session-review.md).                                                               |
 | Verbose reporting                   | Follow [timing](process/operation-timing.md) and [JSON exchange](process/json-exchange.md) for pending questions. |
 | Update this skill or check upstream | Follow [Skill Update Check](#skill-update-check).                                                                 |

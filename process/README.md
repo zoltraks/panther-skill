@@ -65,6 +65,6 @@ and the answer describes the skill, names its version, and shows the operations 
 | `skill-maintenance.md`       | The request targets this repository's own files                |
 | `session-review.md`          | "Improve the skill from this session" requests                 |
 | `parallel-execution.md`      | Large work surfaces split across delegated scouts              |
-| `housekeeping.md`            | Self-repository upkeep: registration, coverage, validation     |
+| `skill-housekeeping.md`      | Self-repository upkeep: registration, coverage, validation     |
 | `self-healing.md`            | The evidence-gated self-repair loop for this skill             |
-| `development.md`             | Standby-for-specification development mode                     |
+| `skill-development.md`       | Standby-for-specification development mode                     |
