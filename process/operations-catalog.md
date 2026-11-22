@@ -31,67 +31,67 @@ When it follows an activation or another task, the check is not repeated.
 Answer with the operations table below, reproduced inline and re-aligned to source width when the
 request's language changes the cell text.
 
-| Family    | Operation                | What it covers                                                                  |
-|-----------|--------------------------|---------------------------------------------------------------------------------|
-| Create    | technical document       | guides, architecture notes, API docs, reference material                        |
-| Create    | project document         | specifications and solution designs                                             |
-| Create    | rules document           | guidelines, standards, workflow rules                                           |
-| Create    | agent instruction        | documents an AI agent executes                                                  |
-| Create    | engineering standard     | coding standards by stack                                                       |
-| Create    | format specification     | file format and protocol specifications                                         |
-| Create    | article                  | prose, tutorials, course material                                               |
-| Create    | quick note               | notes and drafts                                                                |
-| Create    | message                  | announcements, memos, single-issue messages                                     |
-| Create    | daily plan               | single-day planning documents                                                   |
-| Create    | readme                   | repository READMEs: general, skill, application, library, cli, docs, collection |
-| Create    | changelog                | version-grouped change records                                                  |
-| Create    | contributing guide       | CONTRIBUTING.md contributor guides                                              |
-| Create    | decision record          | architecture decision records with status lifecycle                             |
-| Create    | proposal                 | RFCs and design proposals                                                       |
-| Create    | project charter          | charters and project briefs                                                     |
-| Create    | change request           | formal change requests to a governed baseline                                   |
-| Create    | register or log          | risk, issue, stakeholder, assumption, change, backlog, lessons-learned          |
-| Create    | status report            | periodic status, variance, and quality reports                                  |
-| Create    | meeting minutes          | minutes and agendas                                                             |
-| Create    | management plan          | management and subsidiary plans                                                 |
-| Create    | work breakdown structure | WBS outlines and dictionaries                                                   |
-| Edit      | document edit            | in-place edits honoring the document's own conventions                          |
-| Edit      | section insertion        | sections added at canonical positions per type                                  |
-| Revise    | translation revision     | minimal-diff corrections to an existing translation                             |
-| Correct   | document correction      | in-place formatting, structure, grammar, style, and typo fixes                  |
-| Correct   | fidelity proposals       | translation-fidelity findings proposed for approval, never applied              |
-| Humanize  | voice rewrite            | fact-preserving revision so the document reads human-authored                   |
-| Humanize  | scout decomposition      | parallel region drafts merged serially for large documents                      |
-| Reformat  | table formatting         | source-width table alignment                                                    |
-| Reformat  | comment alignment        | shared `#` comment column per plain-text block                                  |
-| Reformat  | sentence splitting       | one sentence per logical line                                                   |
-| Reformat  | prose reflow             | wrap, unwrap, and justify passes                                                |
-| Reformat  | character normalization  | typographic characters to ASCII                                                 |
-| Reformat  | safe replace             | word-boundary find and replace                                                  |
-| Reformat  | dialect edits            | AsciiDoc and reStructuredText minimal edits                                     |
-| Edit      | yaml documents           | `.yaml`/`.yml` files per `types/yaml-document.md`                               |
-| Translate | english to polish        | en-pl direction rules and glossaries                                            |
-| Translate | polish to english        | pl-en direction rules and glossaries                                            |
-| Translate | english to german        | en-de direction rules and glossaries                                            |
-| Translate | german to english        | de-en direction rules and glossaries                                            |
-| Translate | polish to german         | pl-de direction rules and glossaries                                            |
-| Translate | german to polish         | de-pl direction rules and glossaries                                            |
-| Translate | english to french        | en-fr direction rules and glossaries                                            |
-| Translate | french to english        | fr-en direction rules and glossaries                                            |
-| Translate | english to spanish       | en-es direction rules and glossaries                                            |
-| Translate | spanish to english       | es-en direction rules and glossaries                                            |
-| Audit     | document audit           | findings with an optional fix plan                                              |
-| Audit     | translation audit        | fidelity verdict against the source                                             |
-| Audit     | polish lint              | calque and prose findings                                                       |
-| Describe  | describe                 | consolidated inline descriptions, capped or floored                             |
-| Derive    | summary or brief         | compression-tier documents derived from a source                                |
-| Derive    | supplement               | documents continuing a parent's numbering                                       |
-| Discover  | layout discovery         | document-layout census and scope classification                                 |
-| Maintain  | skill adjustment         | changes to this skill repository                                                |
-| Maintain  | session review           | session lessons harvested into the rule corpus                                  |
-| Enable    | enablement               | bare-activation standby with version and operations table                       |
-| Enable    | self-update check        | explicit upstream check                                                 |
-| Enable    | operations catalog       | this table                                                                      |
+| Operation                | Family    | What it covers                                                                  |
+|--------------------------|-----------|---------------------------------------------------------------------------------|
+| technical document       | Create    | guides, architecture notes, API docs, reference material                        |
+| project document         | Create    | specifications and solution designs                                             |
+| rules document           | Create    | guidelines, standards, workflow rules                                           |
+| agent instruction        | Create    | documents an AI agent executes                                                  |
+| engineering standard     | Create    | coding standards by stack                                                       |
+| format specification     | Create    | file format and protocol specifications                                         |
+| article                  | Create    | prose, tutorials, course material                                               |
+| quick note               | Create    | notes and drafts                                                                |
+| message                  | Create    | announcements, memos, single-issue messages                                     |
+| daily plan               | Create    | single-day planning documents                                                   |
+| readme                   | Create    | repository READMEs: general, skill, application, library, cli, docs, collection |
+| changelog                | Create    | version-grouped change records                                                  |
+| contributing guide       | Create    | CONTRIBUTING.md contributor guides                                              |
+| decision record          | Create    | architecture decision records with status lifecycle                             |
+| proposal                 | Create    | RFCs and design proposals                                                       |
+| project charter          | Create    | charters and project briefs                                                     |
+| change request           | Create    | formal change requests to a governed baseline                                   |
+| register or log          | Create    | risk, issue, stakeholder, assumption, change, backlog, lessons-learned          |
+| status report            | Create    | periodic status, variance, and quality reports                                  |
+| meeting minutes          | Create    | minutes and agendas                                                             |
+| management plan          | Create    | management and subsidiary plans                                                 |
+| work breakdown structure | Create    | WBS outlines and dictionaries                                                   |
+| document edit            | Edit      | in-place edits honoring the document's own conventions                          |
+| section insertion        | Edit      | sections added at canonical positions per type                                  |
+| translation revision     | Revise    | minimal-diff corrections to an existing translation                             |
+| document correction      | Correct   | in-place formatting, structure, grammar, style, and typo fixes                  |
+| fidelity proposals       | Correct   | translation-fidelity findings proposed for approval, never applied              |
+| voice rewrite            | Humanize  | fact-preserving revision so the document reads human-authored                   |
+| scout decomposition      | Humanize  | parallel region drafts merged serially for large documents                      |
+| table formatting         | Reformat  | source-width table alignment                                                    |
+| comment alignment        | Reformat  | shared `#` comment column per plain-text block                                  |
+| sentence splitting       | Reformat  | one sentence per logical line                                                   |
+| prose reflow             | Reformat  | wrap, unwrap, and justify passes                                                |
+| character normalization  | Reformat  | typographic characters to ASCII                                                 |
+| safe replace             | Reformat  | word-boundary find and replace                                                  |
+| dialect edits            | Reformat  | AsciiDoc and reStructuredText minimal edits                                     |
+| yaml documents           | Edit      | `.yaml`/`.yml` files per `types/yaml-document.md`                               |
+| english to polish        | Translate | en-pl direction rules and glossaries                                            |
+| polish to english        | Translate | pl-en direction rules and glossaries                                            |
+| english to german        | Translate | en-de direction rules and glossaries                                            |
+| german to english        | Translate | de-en direction rules and glossaries                                            |
+| polish to german         | Translate | pl-de direction rules and glossaries                                            |
+| german to polish         | Translate | de-pl direction rules and glossaries                                            |
+| english to french        | Translate | en-fr direction rules and glossaries                                            |
+| french to english        | Translate | fr-en direction rules and glossaries                                            |
+| english to spanish       | Translate | en-es direction rules and glossaries                                            |
+| spanish to english       | Translate | es-en direction rules and glossaries                                            |
+| document audit           | Audit     | findings with an optional fix plan                                              |
+| translation audit        | Audit     | fidelity verdict against the source                                             |
+| polish lint              | Audit     | calque and prose findings                                                       |
+| describe                 | Describe  | consolidated inline descriptions, capped or floored                             |
+| summary or brief         | Derive    | compression-tier documents derived from a source                                |
+| supplement               | Derive    | documents continuing a parent's numbering                                       |
+| layout discovery         | Discover  | document-layout census and scope classification                                 |
+| skill adjustment         | Maintain  | changes to this skill repository                                                |
+| session review           | Maintain  | session lessons harvested into the rule corpus                                  |
+| enablement               | Enable    | bare-activation standby with version and operations table                       |
+| self-update check        | Enable    | explicit upstream check                                                         |
+| operations catalog       | Enable    | this table                                                                      |
 
 ## Response
 

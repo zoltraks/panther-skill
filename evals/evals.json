@@ -1024,6 +1024,7 @@
       "files": [],
       "expectations": [
         "The agent loaded process/operations-catalog.md and answered with its canonical operations table inline.",
+        "The table's first column is Operation, with Family second.",
         "The table expands the families into concrete operations - document types, translation directions, reformat passes - not only the family names.",
         "Inline describe responses and file-producing derivation are distinguished, not conflated.",
         "No file was created or modified."
