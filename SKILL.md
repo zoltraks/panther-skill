@@ -1,25 +1,16 @@
 ---
 name: panther-skill
 description: >-
-  Document authoring skill. Creates and edits plain-text-readable
-  Markdown in English, Polish, German, French, and Spanish - specifications, rules
-  documents, agent instructions, articles, notes, READMEs, changelogs,
-  RFCs, decision records, PMBOK artifacts. Discovers layouts in skill
-  repositories, docs sites, and multi-project repos, AsciiDoc and
-  reStructuredText minimal-edit, YAML documents. Use to write, edit,
-  correct, reformat, translate, audit, or describe a document - never
-  source-code edits or non-document tasks. Triggers on write or edit
-  this document, translate this file, run panther, use panther, work on
-  panther.
+  Write, edit, reformat, audit, or translate plain-text-readable Markdown and preserve existing
+  document conventions. Use for README files, agent instructions, notes, or technical prose
+  in English, Polish, German, French, and Spanish. Supports minimal edits in AsciiDoc and reST.
 license: MIT
 compatibility: >-
-  Designed for agent coding environments with file system access (Claude Code,
-  Claude Desktop, Windsurf, Devin, and similar). Requires the ability to read
-  and write text files. No network access required.
+  Requires local text-file access and Python for encoding detection and document checks.
+  Git and network access are used for upstream checks.
 metadata:
-  version: "1.7.2"
+  version: "1.7.3"
   author: Filip Golewski
-allowed-tools: Bash(python:*) Bash(python3:*) Bash(git:*) Read Write Edit Glob Grep
 ---
 
 # Document Authoring Skill
@@ -46,106 +37,37 @@ You do not normalize a document that has its own conventions.
 
 ## Task Entry
 
-| Request              | First step                                                                                                                                                                      |
-|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Bare activation      | Follow [activation](process/skill-activation.md) and wait for a task.                                                                                                           |
-| List capabilities    | Read the [operations catalog](process/operations-catalog.md).                                                                                                                   |
-| Perform a task       | Identify the requested operation and target, then load its procedure and the resources it calls for.                                                                            |
-| Develop this skill   | Follow [development](process/development.md) and use [repository instructions](AGENTS.md) for maintenance.                                                                      |
-| Use improvement mode | Apply improvements surfaced by the work through the owning skill's maintenance procedure. A separate session-review request starts [session review](process/session-review.md). |
-| Use verbose mode     | Follow [timing and reporting](process/operation-timing.md) and expose pending questions through [JSON exchange](process/json-exchange.md).                                      |
+| Request                             | First step                                                                                                        |
+|-------------------------------------|-------------------------------------------------------------------------------------------------------------------|
+| Bare activation                     | Follow [activation](process/skill-activation.md) and wait for a task.                                             |
+| List capabilities                   | Read the [operations catalog](process/operations-catalog.md).                                                     |
+| Perform a task                      | Choose the operation under [Operations](#operations).                                                             |
+| Develop this skill                  | Follow [development](process/development.md) and the [repository instructions](AGENTS.md).                        |
+| Improvement mode                    | Apply lessons from the work through this skill's maintenance rules.                                               |
+| Review a session                    | Follow [session review](process/session-review.md).                                                               |
+| Verbose reporting                   | Follow [timing](process/operation-timing.md) and [JSON exchange](process/json-exchange.md) for pending questions. |
+| Update this skill or check upstream | Follow [Skill Update Check](#skill-update-check).                                                                 |
 
-Read the selected procedure before acting.
-At each phase, read every file required for that phase,
-including conditional files once their conditions apply.
-Use a directory index when you need to discover a path.
-Defer later-phase material until that phase begins.
+Resolve the operation and target first.
+Read the selected procedure and its required resources as each phase begins.
+Consult directory indexes to locate an unspecified resource.
+Use the target repository's instructions for its artifacts.
 
-Use the skill's procedures for its own files and the target repository's instructions for artifacts.
-When a procedure calls for a script, use its documented invocation and check the result.
-Read script source when reviewing, modifying, or diagnosing the script,
-or when its behavior is unclear.
+Run a procedure's documented commands and check the results.
+Read script source when reviewing, modifying, or diagnosing the script.
+Use the host's question mechanism when available and ask directly if the host has none.
 
-## Three Modes
+## Operations
 
-- **Enable mode** - the request activates the skill without naming a task: "use skill",
-  "run panther", "activate the skill", or "work on <project>" with no operation named.
-  Follow `process/skill-activation.md`, which confirms readiness and waits - a generic phrase binds
-  only when the context identifies this skill.
-- **Document mode** - the request targets a document to produce, edit, reformat, translate, audit,
-  or describe. Follow the rest of this router and `process/document-workflow.md`.
-- **Maintenance mode** - the request targets this repository's own files.
-  Follow `process/skill-maintenance.md`, which opens the maintenance menu - document work,
-  skill adjustment, or session review - and reads the governing set before any edit.
+| Request                                                               | Read first                                                                                             |
+|-----------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| Create or edit a document                                             | [Authoring rules](principles/authoring-rules.md) and [document workflow](process/document-workflow.md) |
+| Translate, reformat, correct, audit, or describe an existing document | Select the procedure from the [process index](process/README.md).                                      |
+| Maintain this package                                                 | [Skill maintenance](process/skill-maintenance.md)                                                      |
 
-The update check below runs in every mode.
-
-## Skill Update Check
-
-Before any other step, once per session, run `python <skill-root>/scripts/check-update.py`,
-where `<skill-root>` is the directory holding this `SKILL.md` - never the edited subject.
-
-Use `python3` when `python` is not on PATH.
-
-- `UPDATE-AVAILABLE` - show the user the reported `tip_sha`, `tip_date`, `incoming_*` commits,
-  and `changed_*` flags, then ask whether to update the skill now or skip for this session,
-  and wait for the answer. On approval, run `git -C <skill-root> merge --ff-only <tip_sha>` only
-  when the reported state allows it (`ahead=0`, `dirty=no`),
-  then re-read `SKILL.md` and any loaded rule files. When the merge is blocked or declined,
-  report briefly and continue with the current version, without asking again this session.
-- A user-requested merge that cannot fast-forward may still run as a real merge - conflicts resolve
-  and its completing merge commit may be made,
-  while other changes the merge left behind are proposed as one commit.
-  Pushing runs only on a separately named request.
-- Any other status - proceed silently and do not mention the check.
-
-The check writes no state files and never stashes or discards skill changes,
-and its `git fetch` only updates remote-tracking refs under `.git`, never the working tree.
-
-The merge applies upstream content without cryptographic verification.
-
-Approve only trusted upstreams and review `git log HEAD..@{u}` diffs before approving when unsure,
-since the merge fast-forwards to the reported `tip_sha`, never a later tip.
-
-## Trigger Keywords
-
-The skill activates on the phrases declared per language - the English catalog lives in
-`languages/en.md`, and each `languages/<code>.md` file declares that language's activation phrases
-with a matching request treated as its English equivalent.
-
-Requests may arrive in any supported language.
-
-## How To Use This Skill
-
-Use progressive disclosure:
-
-- Read this router first.
-- Follow `process/skill-activation.md` when the request activates the skill without naming a task.
-- Read `principles/authoring-rules.md` and `process/document-workflow.md` before producing any
-  document. They are mandatory for document production. For catalog and maintenance requests,
-  follow the selected route and its own prerequisites.
-- Load the matching `languages/` file for the document language.
-- Load the matching `types/` file when the document is a known type.
-- Load the matching `scopes/` file when the task runs in an organized project or names a scope.
-- Load `conventions/` files only when required - AsciiDoc and reStructuredText stay minimal.
-- Follow the routed `process/` file the task names - the index is `process/README.md`,
-  and only the file a route names plus the files it names in turn load.
-
-This skill is self-contained - load a rule file from the listings only when the task needs it.
-
-When asked how this skill works, explain that Panther produces plain-text-readable Markdown in
-English, Polish, German, French, or Spanish for single files and organized collections.
-
-The per-operation behavior summary lives in `process/README.md`.
-
-Timing is armed by default on every operation - `no timing` opts out for that request.
-
-## Parameter Configuration
-
-When creating a new standalone document,
-the agent runs the Parameter Resolution step in `process/document-workflow.md`,
-asking whether to accept or configure the core parameters - the parameter surfaces, defaults,
-and question shapes live in `process/parameter-configuration.md`.
+Load the matching language rules and add a type, scope, or convention rule only when applicable.
+For a new standalone document, resolve the parameters in the document workflow using
+[parameter configuration](process/parameter-configuration.md).
 
 ## Resource Map
 
@@ -184,3 +106,24 @@ Never transcode a file unless the request explicitly asks for a target encoding.
 Never modify a file on an unnamed or unconfirmed operation - never overwrite a document wholesale.
 
 Remove every ad-hoc `.tmp.` helper and tool copies under the fallback convention at task end.
+
+## Skill Update Check
+
+Run the check on the first bare `use` of this skill in a session, or on an explicit
+`update` or upstream-check request. Reuse a check already attempted for this exact checkout in
+the session, unless the user explicitly requests another one. Record the attempted checkout and
+result in session state. Catalog queries and ordinary tasks use the installed package.
+
+Use the directory containing this `SKILL.md`. Verify that it is the root of its own Git checkout
+before running `python <skill-root>/scripts/check-update.py` with the available Python 3 launcher.
+If Git, an upstream, or authorized network access is unavailable, use the installed package.
+Report the limitation on an explicit request.
+
+For `UPDATE-AVAILABLE`, report the incoming `tip_sha`, `tip_date`, and working-tree state.
+After the user approves the reported update, run `git -C <skill-root> merge --ff-only <tip_sha>`
+only if `ahead=0` and `dirty=no`, then re-read this entry point and the active procedures.
+If the check or merge cannot run, report it for the requested maintenance operation and use the
+installed files. A separately requested merge or push follows repository rules.
+
+The check may update remote-tracking refs but leaves the working tree intact.
+Review incoming changes if the upstream is uncertain.

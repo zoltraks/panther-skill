@@ -57,7 +57,7 @@ three directions this mode offers:
 
 - **Document work** - use the skill to create or work on a document the user names.
   The request then leaves maintenance mode and follows `process/document-workflow.md`,
-  the session update check already ran.
+  using the installed package.
 - **Adjust the skill** - the user describes a behavior change or new rules.
   Continue under this file: read the governing set in Intake, then apply the change.
 - **Improve the skill from this session** - review the session's conversation, gather the lessons,
@@ -83,8 +83,7 @@ Under JSON exchange the menu emits as the `maintenance-action` `choice` paramete
 
 ## Intake
 
-1. Run the once-per-session Skill Update Check from `SKILL.md` - the same gate
-   applies in every mode.
+1. Use the installed skill.
 2. Read the governing set below in full before planning any edit.
 3. Read in full every additional rule file the change touches or contradicts - the governing set
    defines the process, the corpus defines the content.

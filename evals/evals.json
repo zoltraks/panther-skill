@@ -381,13 +381,13 @@
     },
     {
       "id": 32,
-      "prompt": "Create a README for this repository. The skill directory is a git clone that currently sits two commits behind its upstream branch.",
-      "expected_output": "A self-update check that runs before any document work, asks the user to update or skip for the session, and honors the answer without re-asking.",
+      "prompt": "Check this skill's upstream for available updates.",
+      "expected_output": "An explicit upstream check that applies the reported revision only with user approval.",
       "files": [],
       "expectations": [
-        "The agent runs python <skill-root>/scripts/check-update.py against the skill's own repository before any other step, never against the edited subject.",
+        "The agent runs python <skill-root>/scripts/check-update.py against the skill's own repository, never against the edited subject.",
         "On UPDATE-AVAILABLE the agent asks whether to update the skill now or skip for this session and waits for the answer.",
-        "On approval the agent runs git pull --ff-only only when the reported tree state allows it, then re-reads SKILL.md and loaded rule files.",
+        "On approval the agent runs git merge --ff-only <tip_sha> only when the reported tree state allows it, then re-reads SKILL.md and loaded rule files.",
         "On skip or a blocked pull the agent continues with the current version and does not ask again in the session.",
         "A status other than UPDATE-AVAILABLE produces no user-facing mention of the check.",
         "The check writes no state files and never commits, stashes, or discards changes in the skill repository."
@@ -751,7 +751,7 @@
       "expected_output": "A maintenance-mode edit that reads the governing set first, applies the registration contract, and runs the skill validators.",
       "files": [],
       "expectations": [
-        "The agent ran the once-per-session update check before other steps.",
+        "On bare use the agent checks the skill checkout once or reuses its session result.",
         "The agent read the governing set - SKILL.md, docs/MAINTENANCE.md, docs/STYLE.md, docs/VERSIONING.md, docs/CONTRIBUTING.md, docs/SECURITY.md, README.md, AGENTS.md, scripts/README.md - before planning the edit.",
         "No parameter-resolution questions were asked, and no languages/, types/, or templates/ files were loaded for the skill's own documents.",
         "Every enumeration of the changed component was updated in one pass - SKILL.md registry, README.md tree, and affected contents tables.",
@@ -812,15 +812,15 @@
     {
       "id": 66,
       "prompt": "Use skill.",
-      "expected_output": "An enablement response: the session update check runs, the router stays the only loaded rule material, and the reply confirms enablement with a one-sentence description, the skill version, a compact operations table, and a pointer to the full operations list - then the agent waits for a task.",
+      "expected_output": "An enablement response: the eligible session check runs or its result is reused, and the router stays the only loaded rule material, and the reply confirms enablement with a one-sentence description, the skill version, a compact operations table, and a pointer to the full operations list - then the agent waits for a task.",
       "files": [],
       "expectations": [
-        "The agent ran the once-per-session update check against the skill's own repository before other steps.",
+        "On bare use the agent checks the skill checkout once or reuses its session result.",
         "No document task was classified and no parameter-resolution questions were asked.",
         "No rule files beyond SKILL.md and the activation procedure were loaded, and no file was created or modified.",
         "The reply confirms the skill is enabled for editorial support, describes it in one sentence, names the version from metadata.version, and presents the operation families as a table.",
         "The reply names the request - such as \"list all operations\" - that produces the full operations catalog.",
-        "A following task-bearing request enters document or maintenance mode without repeating the update check."
+        "A following task-bearing request enters document or maintenance mode using the installed skill."
       ]
     },
     {
@@ -1240,10 +1240,10 @@
     {
       "id": 101,
       "prompt": "Use panther and work on the inventory-service repository.",
-      "expected_output": "A minimal standby reply: the update check runs, the skill confirms it is enabled on the named repository in one or two lines, then waits - no mode-selection or parameter question.",
+      "expected_output": "A minimal standby reply: the installed skill confirms it is enabled on the named repository in one or two lines, then waits - no mode-selection or parameter question.",
       "files": [],
       "expectations": [
-        "The agent ran the once-per-session update check against the skill's own repository before other steps.",
+        "On bare use the agent checks the skill checkout once or reuses its session result.",
         "The named target was held as context and no mode-selection question was asked - a named repository without an operation resolves to standby.",
         "No document-mode rule files were loaded beyond the router and the activation procedure, and no files of the named target were read or surveyed to infer the task.",
         "The reply confirms enablement and waits or asks what to do - no capability list and no proposed work items.",
@@ -1498,7 +1498,7 @@
     {
       "id": 122,
       "prompt": "Work on the billing-service repository - use panther for editorial purposes.",
-      "expected_output": "A minimal standby reply: the update check runs, the skill confirms it is enabled on the named repository in one or two lines, then waits or asks what to do - no target survey and no inferred proposals.",
+      "expected_output": "A minimal standby reply: the installed skill confirms it is enabled on the named repository in one or two lines, then waits or asks what to do - no target survey and no inferred proposals.",
       "files": [],
       "expectations": [
         "The purpose qualifier was treated as a mode, not an operation - the request stayed in enable mode.",
@@ -1786,7 +1786,7 @@
     {
       "id": 149,
       "prompt": "work on panther-skill development",
-      "expected_output": "Runs process/development.md - update check, readiness report, standby for a described change.",
+      "expected_output": "Runs process/development.md - local readiness report, standby for a described change.",
       "files": [],
       "expectations": [
         "runs process/development.md and stands by for a described change"

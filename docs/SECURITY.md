@@ -37,7 +37,7 @@ There is no guaranteed response SLA, but security reports take priority over fea
 
 ## Update-Path Trust Boundary
 
-The once-per-session update check in `SKILL.md` offers `git merge --ff-only <tip_sha>` from the
+The explicit upstream check in `SKILL.md` offers `git merge --ff-only <tip_sha>` from the
 configured upstream.
 
 The merge path applies no cryptographic verification of merged content.

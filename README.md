@@ -57,7 +57,7 @@ When you ask for a document, the agent loads the skill and performs the followin
 
 **Checks for updates**
 
-Once per session, the agent runs a git self-update check on the skill's own repository and offers to
+On request, the agent checks the skill's own Git upstream and offers to
 pull incoming commits before starting, when the skill lives in a git clone.
 
 **Resolves parameters**
@@ -194,7 +194,7 @@ explained - and lands the approved changes in the rule corpus.
 **Enables on a bare request**
 
 Separately, when you say "use skill" or "run panther" without naming a task,
-the agent follows `process/skill-activation.md`: it runs the session update check,
+the agent follows `process/skill-activation.md`: it uses the installed package,
 treats the loaded router as the enabled state,
 and answers with a one-sentence description of the skill, the version from `metadata.version`,
 and a compact table of the operation families - with a pointer to "list all operations"
@@ -274,7 +274,7 @@ your-project/
 
 ### Updating
 
-Once per session the skill checks its own git upstream and offers to pull incoming commits.
+On request the skill checks its own Git upstream and offers to merge the reported commit.
 
 To update by hand, pull the clone wherever it was installed:
 
@@ -300,7 +300,7 @@ A bare activation phrase such as "use skill" enables the skill for editorial sup
 starting a task - the answer describes the skill, names its version,
 and shows the operation families table.
 
-The skill performs an update check, resolves parameters, detects conventions and scope,
+The skill resolves parameters, detects conventions and scope,
 selects rule files, drafts the document, validates it mechanically,
 and delivers the file with preserved encoding and line endings.
 
@@ -376,8 +376,8 @@ and inline descriptions follow `process/describe-response.md`.
                       │ Yes
                       ▼
         ┌───────────────────────────┐
-        │   Session Update Check    │
-        │ scripts/check-update.py   │
+        │   Use Installed Skill      │
+        │                           │
         └─────────────┬─────────────┘
                       │
                       ▼
@@ -467,7 +467,7 @@ and inline descriptions follow `process/describe-response.md`.
 flowchart TD
 
     A[User Request<br/>e.g., 'write a README'] --> B{Trigger Phrase Match?}
-    B -->|Yes| C[Session Update Check<br/>scripts/check-update.py]
+    B -->|Yes| C[Use installed skill]
     C --> D[Load Mandatory Files<br/>principles/authoring-rules.md<br/>process/document-workflow.md]
 
     D --> D2[Classify Task<br/>create, edit, reformat,<br/>translate, discover, audit,<br/>describe, correct]

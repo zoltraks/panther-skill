@@ -16,15 +16,15 @@ Follow it whenever the request asks to translate, render, or produce a document 
 
 | Section              | Line | What it covers                                     |
 |----------------------|------|----------------------------------------------------|
-| When This Applies    | 28   | Task classification and neighbor tasks             |
-| Parameter Resolution | 45   | Translate parameters and the acceptance gate       |
-| Detection            | 83   | Language, type, industry, and format-contract scan |
-| Rule Loading         | 126  | Ordered rule and contract-mapping loading          |
-| Translation Pass     | 143  | Terminology lock, chunked rendering, pass rules    |
-| Adapted Translation  | 277  | Adapted-fidelity rules and reporting               |
-| Validation           | 298  | Parity, mechanical checks, and self-review         |
-| Delivery             | 428  | Output conventions and the delivery report         |
-| Non-Goals            | 439  | Out-of-scope behaviors                             |
+| When This Applies    | 29   | Task classification and neighbor tasks             |
+| Parameter Resolution | 46   | Translate parameters and the acceptance gate       |
+| Detection            | 86   | Language, type, industry, and format-contract scan |
+| Rule Loading         | 128  | Ordered rule and contract-mapping loading          |
+| Translation Pass     | 145  | Terminology lock, chunked rendering, pass rules    |
+| Adapted Translation  | 279  | Adapted-fidelity rules and reporting               |
+| Validation           | 300  | Parity, mechanical checks, and self-review         |
+| Delivery             | 436  | Output conventions and the delivery report         |
+| Non-Goals            | 448  | Out-of-scope behaviors                             |
 
 ## When This Applies
 
@@ -47,18 +47,20 @@ A request to correct or fix an existing translation is a Revise task - follow
 
 Resolve these parameters before translating:
 
-| Parameter       | Default                                                          |
-|-----------------|------------------------------------------------------------------|
-| Source language | Detected from the document, ask when ambiguous                   |
-| Target language | Named by the request, ask when absent                            |
-| Industry        | Detected from request, type, or terminology - ask when ambiguous |
-| Output location | Sibling file `<basename>-<code>.md`                              |
-| Fidelity        | faithful - one-to-one structure                                  |
-| Encoding        | UTF-8 without BOM                                                |
-| Line endings    | LF                                                               |
+| Parameter       | Default                                                              |
+|-----------------|----------------------------------------------------------------------|
+| Source language | Detected from the document, ask when ambiguous                       |
+| Target language | Named by the request, ask when absent                                |
+| Industry        | Detected from request, type, or terminology - ask when ambiguous     |
+| Output location | Inline when requested, otherwise sibling file `<basename>-<code>.md` |
+| Fidelity        | faithful - one-to-one structure                                      |
+| Encoding        | UTF-8 without BOM                                                    |
+| Line endings    | LF                                                                   |
 
-Confirm the parameters with the user per `process/document-workflow.md` - ask whether to accept the
-defaults or configure them.
+For a complete inline request, use the supplied parameters and applicable defaults.
+Ask only about a missing fact that materially changes the translation.
+Filename, encoding, and line endings apply to saved deliverables.
+For file delivery, confirm parameters per `process/document-workflow.md`.
 
 Under JSON exchange the gate emits as `parameters-acceptance`,
 and the per-parameter asks emit as `source-language`, `target-language`, `translation-industry`,
@@ -115,8 +117,7 @@ or the document matches a known external format contract.
 Resolve the contract mapping in this order:
 
 1. A path or file the request names.
-2. The producer's own routing - an Agent Skill producer's `SKILL.md` routes to its translation
-   rules, other producers document their rendering contract where the format is defined.
+2. A rendering contract available with the source document or in the target's own rules.
 3. No mapping resolved - proceed with the generic rule set and record the detected contract as
    unresolved for the delivery report.
 
@@ -298,6 +299,12 @@ A silent compression or reordering is a defect, not an adaptation.
 
 ## Validation
 
+For inline output, review structure and meaning against the source and apply the self-review below.
+Run file-based checkers on temporary copies when available and warranted by the document's length
+or complexity. Report checks only when they ran.
+
+For file delivery, follow the full file validation below.
+
 Run `scripts/check-parity.py <source.md> <output.md>` first.
 
 Parity mirroring yields to hard document rules:
@@ -428,7 +435,8 @@ state the skip in the report.
 
 ## Delivery
 
-Write the output file at the resolved location - UTF-8 without BOM, LF line endings.
+Return the translation inline when requested. For file delivery, write to the resolved location
+using UTF-8 without BOM and LF line endings.
 
 Report inline: the source and target language,
 the resolved format-contract mapping or a detected contract left unresolved, the glossaries applied,

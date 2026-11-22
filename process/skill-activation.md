@@ -4,7 +4,7 @@
 
 > **Scope:** Enablement procedure for requests that activate the skill without naming a task
 >
-> **Key items:** bare activation, session update check, enablement response with operations table,
+> **Key items:** bare activation, enablement response with operations table,
 > catalog pointer, mode hand-off
 
 This file defines the intake for a request that names the skill but no work.
@@ -41,9 +41,8 @@ Under JSON exchange the referent ask emits as the `skill-selection` `choice` par
 A bare activation names the skill and nothing else - no document to produce, edit, reformat,
 translate, audit, or describe, and no maintenance request.
 
-An `"update panther-skill"` or context-resolved `"update the skill"` request is not a bare
-activation - it routes to `process/session-review.md`, the self-improvement routine,
-on every request without a separate "improve" keyword.
+A standalone `update` request follows Skill Update Check in `SKILL.md`.
+A request to improve from session lessons follows `process/session-review.md`.
 
 An activation may also name a working target - a repository, directory,
 or document collection - while still naming no operation: "use panther on the docs repository",
@@ -72,7 +71,11 @@ Under JSON exchange a genuine ambiguity emits as the `mode-selection` `choice` p
 
 ## Procedure
 
-1. Run the once-per-session Skill Update Check from `SKILL.md` - the gate applies in every mode.
+On a bare `use`, follow Skill Update Check in `SKILL.md`.
+Reuse this session's result for the checkout when available.
+Continue with the installed package when the check cannot run.
+
+1. Use the installed skill.
 2. Confirm the router state - the loaded `SKILL.md` is the enabled state,
    re-read it when it may have changed during the session.
 3. Answer with the enablement response below, then wait for the next request.
@@ -149,4 +152,4 @@ Enable mode is the standby state.
 It precedes document mode and maintenance mode.
 
 A task-bearing request that follows enters document mode or maintenance mode per the mode rules in
-`SKILL.md`, without repeating the update check this session.
+`SKILL.md`.

@@ -24,9 +24,6 @@ Answer it directly instead of reproducing the table.
 The catalog is a query surface, not a document task - no parameter resolution, scope detection,
 or encoding detection runs.
 
-When the catalog request is the session's first action,
-the once-per-session Skill Update Check from `SKILL.md` runs first.
-
 When it follows an activation or another task, the check is not repeated.
 
 ## The Catalog
@@ -93,7 +90,7 @@ request's language changes the cell text.
 | Maintain  | skill adjustment         | changes to this skill repository                                                |
 | Maintain  | session review           | session lessons harvested into the rule corpus                                  |
 | Enable    | enablement               | bare-activation standby with version and operations table                       |
-| Enable    | self-update check        | once-per-session upstream check                                                 |
+| Enable    | self-update check        | explicit upstream check                                                 |
 | Enable    | operations catalog       | this table                                                                      |
 
 ## Response

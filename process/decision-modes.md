@@ -82,8 +82,7 @@ and never normalize a document that carries its own.
 Every autonomous resolution is reported inline with its surface name and the tier that supplied it,
 the same record an answered question would leave.
 
-The skill update check runs its gate normally - under an autonomous request its reported outcome is
-applied per `SKILL.md` without a question surface.
+An upstream check follows `SKILL.md`. Apply an update only with user approval.
 
 ## Reporting Flags
 

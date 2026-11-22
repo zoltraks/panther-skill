@@ -311,8 +311,6 @@ Every gate still follows `process/document-workflow.md` and the matching procedu
 a confirmation still waits for an answer,
 and returned documents answer the same questions the prompts would have asked.
 
-The once-per-session Skill Update Check is a session gate outside this exchange.
-
 It always asks in text and never emits a parameter.
 
 Maintenance mode emits little routine: `MAINTENANCE.md` and `STYLE.md` already fix its answers,

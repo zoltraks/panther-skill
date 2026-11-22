@@ -37,7 +37,7 @@ On "work on panther-skill" requests it presents the maintenance menu - document 
 skill adjustment, or session review - then reads the governing set and applies
 `docs/MAINTENANCE.md`.
 
-On bare activation it enables for editorial support: the update check runs,
+On bare activation it enables for editorial support from the installed package,
 and the answer describes the skill, names its version, and shows the operations table.
 
 ## Index

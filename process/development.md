@@ -21,11 +21,10 @@ development mode is the named operation, never the default reading.
 
 ## Procedure
 
-1. Run the once-per-session `scripts/check-update.py` per `SKILL.md` - a skill whose check cannot
-   fast-forward is reported, never blocking the rest.
+1. Use the installed checkout.
 2. Report readiness - repository state, version,
    and any uncommitted in-flight work the tree carries.
-3. Wait for the described change.
+3. Proceed with a supplied change or wait for the specification.
 
 ## The Specification
 
