@@ -601,7 +601,7 @@ so table cells must not contain literal pipe characters - `validate-document.py`
 sight so the miscount surfaces instead of passing silently.
 
 `fix-document.py` escapes the literal pipe before its table pass - a standalone `format-table.py`
-run has no such guard and rewrites the row across the pipe,
+run leaves a table that still carries one unchanged, and `--check` reports it as skipped,
 so resolve literal pipes in code spans before running it alone.
 
 `validate-document.py` skips fenced code blocks when checking tables - example tables inside code

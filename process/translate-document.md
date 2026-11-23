@@ -21,10 +21,10 @@ Follow it whenever the request asks to translate, render, or produce a document 
 | Detection            | 86   | Language, type, industry, and format-contract scan |
 | Rule Loading         | 128  | Ordered rule and contract-mapping loading          |
 | Translation Pass     | 145  | Terminology lock, chunked rendering, pass rules    |
-| Adapted Translation  | 279  | Adapted-fidelity rules and reporting               |
-| Validation           | 300  | Parity, mechanical checks, and self-review         |
-| Delivery             | 436  | Output conventions and the delivery report         |
-| Non-Goals            | 448  | Out-of-scope behaviors                             |
+| Adapted Translation  | 284  | Adapted-fidelity rules and reporting               |
+| Validation           | 305  | Parity, mechanical checks, and self-review         |
+| Delivery             | 441  | Output conventions and the delivery report         |
+| Non-Goals            | 453  | Out-of-scope behaviors                             |
 
 ## When This Applies
 
@@ -239,6 +239,11 @@ Never translate code block contents, inline code, file paths, URLs, commands, id
 record and requirement IDs, version markers, proper nouns, frontmatter,
 or the machine markers `TBD` and `NOT SPECIFIED` - the pair file lists the
 complete untranslated set.
+
+Inside a diagram DSL block such as mermaid, translate the reader-facing display text - quoted
+node labels, edge labels, `as` aliases, note text, and subgraph titles - while identifiers,
+keywords, arrow syntax, and machine tokens stay verbatim.
+The fence language tag and the block's structure never change.
 
 Apply the pair file's style-adaptation table to every element - heading case, section-name mapping,
 quote and dash conventions, example headings.

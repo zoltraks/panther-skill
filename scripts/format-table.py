@@ -96,7 +96,7 @@ def sep_like(cells):
 def format_block(block, start, drop_empty, spaced_sep=False):
     warnings = []
     if any(r"\|" in line or has_code_pipe(line) for line in block):
-        return block, [f"line {start + 1}: literal pipe in table - left unchanged"]
+        return block, [f"line {start + 1}: literal pipe in table - left unchanged"], True
     rows = [parse_row(line) for line in block]
     for k, line in enumerate(block):
         if line.startswith("||"):
@@ -165,7 +165,7 @@ def format_block(block, start, drop_empty, spaced_sep=False):
             out.append(
                 "| " + " | ".join(c.ljust(widths[j]) for j, c in enumerate(r)) + " |"
             )
-    return out, warnings
+    return out, warnings, False
 
 
 def in_payload(fences, payload_markdown):
@@ -201,6 +201,7 @@ def main(path, check_only, payload_markdown, drop_empty, excludes=None, spaced_s
     out, i, tables = [], 0, 0
     fences = []
     changed = []
+    skipped_tables = []
     while i < len(lines):
         line = lines[i]
         fence = FENCE.match(line)
@@ -223,13 +224,15 @@ def main(path, check_only, payload_markdown, drop_empty, excludes=None, spaced_s
             while i < len(lines) and lines[i].startswith("|"):
                 block.append(lines[i])
                 i += 1
-            formatted, warnings = format_block(
+            formatted, warnings, skipped = format_block(
                 block, start, drop_empty, spaced_sep
             )
             for message in warnings:
                 print(message)
             if formatted != block:
                 changed.append(start + 1)
+            if skipped:
+                skipped_tables.append(start + 1)
             out.extend(formatted)
             tables += 1
         else:
@@ -239,8 +242,12 @@ def main(path, check_only, payload_markdown, drop_empty, excludes=None, spaced_s
     if check_only:
         for n in changed:
             print(f"line {n}: table would be reformatted")
-        if changed:
-            print(f"{len(changed)} table(s) need formatting")
+        for n in skipped_tables:
+            print(f"line {n}: table skipped - resolve the literal pipe "
+                  "as &#124; before aligning")
+        if changed or skipped_tables:
+            print(f"{len(changed)} table(s) need formatting, "
+                  f"{len(skipped_tables)} skipped")
             return 1
         print(f"PASS {path}: {tables} table(s) already aligned")
         return 0

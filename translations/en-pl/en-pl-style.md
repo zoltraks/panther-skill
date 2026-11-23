@@ -18,22 +18,22 @@ a single sentence is built.
 
 | Section                         | Line | What it covers                           |
 |---------------------------------|------|------------------------------------------|
-| When To Load                    | 37   | Loading order inside translate and audit |
-| Aspect And Voice                | 45   | Resultative versus stative passive       |
-| Actor And Verb Choice           | 65   | Personification and actor verbs          |
-| Fixed Idioms                    | 103  | Idiom-to-phrase mappings                 |
-| Correlative Frames              | 115  | Paired conjunctions                      |
-| Enumeration Punctuation         | 123  | Comma use inside enumerations            |
-| Dash Splices                    | 131  | Clause splices that read as calques      |
-| Hedged Verdicts                 | 152  | Report hedging constructions             |
-| Meaning Over Word Order         | 161  | Meaning priority over surface order      |
-| Metaphors Translate By Function | 186  | Resolving metaphors to their function    |
-| Modality                        | 205  | Obligation, permission, recommendation   |
-| Conditions And Exceptions       | 222  | Conditional and exception markers        |
-| Enumeration Logic               | 231  | Shared-verdict enumeration rules         |
-| Imperative Voice                | 254  | Command mood rendering                   |
-| Verbs Before Nominalizations    | 278  | Verb preference over noun forms          |
-| Example                         | 297  | Correct and incorrect sample             |
+| When To Load                    | 38   | Loading order inside translate and audit |
+| Aspect And Voice                | 46   | Resultative versus stative passive       |
+| Actor And Verb Choice           | 66   | Personification and actor verbs          |
+| Fixed Idioms                    | 104  | Idiom-to-phrase mappings                 |
+| Correlative Frames              | 116  | Paired conjunctions                      |
+| Enumeration Punctuation         | 124  | Comma use inside enumerations            |
+| Dash Splices                    | 132  | Clause splices that read as calques      |
+| Hedged Verdicts                 | 158  | Report hedging constructions             |
+| Meaning Over Word Order         | 167  | Meaning priority over surface order      |
+| Metaphors Translate By Function | 192  | Resolving metaphors to their function    |
+| Modality                        | 211  | Obligation, permission, recommendation   |
+| Conditions And Exceptions       | 228  | Conditional and exception markers        |
+| Enumeration Logic               | 237  | Shared-verdict enumeration rules         |
+| Imperative Voice                | 260  | Command mood rendering                   |
+| Verbs Before Nominalizations    | 284  | Verb preference over noun forms          |
+| Example                         | 303  | Correct and incorrect sample             |
 
 ## When To Load
 
@@ -150,6 +150,10 @@ a cross-reference such as `- zobacz "Rozdział 4"`, and table cells.
 A standalone second clause after ` - ` is never one of those.
 
 When in doubt, read the right half aloud as a sentence and split on the period.
+
+In a structural translation the split adds a target line the source does not have and breaks
+line-count parity. Prefer a single-sentence restructuring with a conjunction (`przy czym`, `a`,
+`natomiast`) when it stays natural, and split only when no one-sentence form preserves the meaning.
 
 ## Hedged Verdicts
 

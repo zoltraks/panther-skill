@@ -205,6 +205,25 @@ def table_defect_case() -> int:
             if result is None or result.returncode or aligned.read_text() != source:
                 print(f"FAIL {label} - literal pipe changed the table")
                 return 1
+        source = "| Kind | Root |\n|---|---|\n| `fs` | jailed `.md` root |\n"
+        aligned.write_text(source, encoding="utf-8")
+        result = run_case("format-table.py", [str(aligned)])
+        if result is None or result.returncode \
+                or "left unchanged" in result.stdout \
+                or aligned.read_text() == source:
+            print(f"FAIL {label} - pipe between two code spans treated as literal")
+            return 1
+        aligned.write_text(source, encoding="utf-8")
+        result = run_case("format-table.py", [str(aligned), "--check"])
+        if result is None or result.returncode != 1 \
+                or "skipped" not in result.stdout or "need formatting" not in result.stdout:
+            print(f"FAIL {label} - misaligned table did not fail --check")
+            return 1
+        aligned.write_text("| A | B |\n|---|---|\n| `a|b` | x |\n", encoding="utf-8")
+        result = run_case("format-table.py", [str(aligned), "--check"])
+        if result is None or result.returncode != 1 or "skipped" not in result.stdout:
+            print(f"FAIL {label} - literal-pipe table must not pass --check")
+            return 1
     print(f"PASS {label}")
     return failures
 
