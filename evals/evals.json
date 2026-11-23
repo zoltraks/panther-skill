@@ -1020,10 +1020,10 @@
     {
       "id": 83,
       "prompt": "What operations can this skill perform?",
-      "expected_output": "The operations catalog: the full operations table from process/operations-catalog.md delivered inline, expanded past the family names into the concrete operations, with no file written.",
+      "expected_output": "The operations catalog: the full operations table from process/operation-catalog.md delivered inline, expanded past the family names into the concrete operations, with no file written.",
       "files": [],
       "expectations": [
-        "The agent loaded process/operations-catalog.md and answered with its canonical operations table inline.",
+        "The agent loaded process/operation-catalog.md and answered with its canonical operations table inline.",
         "The table's first column is Operation, with Family second.",
         "The table expands the families into concrete operations - document types, translation directions, reformat passes - not only the family names.",
         "Inline describe responses and file-producing derivation are distinguished, not conflated.",
@@ -1511,10 +1511,10 @@
     {
       "id": 123,
       "prompt": "List all operations.",
-      "expected_output": "The operations catalog from process/operations-catalog.md delivered inline as a table covering every family expanded into concrete operations, then a line inviting a task request.",
+      "expected_output": "The operations catalog from process/operation-catalog.md delivered inline as a table covering every family expanded into concrete operations, then a line inviting a task request.",
       "files": [],
       "expectations": [
-        "The agent loaded process/operations-catalog.md as the only additional rule file.",
+        "The agent loaded process/operation-catalog.md as the only additional rule file.",
         "The reply reproduces the canonical operations table inline - every family and every concrete operation.",
         "The response is delivered in the language of the request and no file is created or modified.",
         "The reply closes by inviting a task request."

@@ -18,7 +18,7 @@ run on a `housekeep panther-skill` request or as part of a session review's inde
    `translations/`, `principles/`, `process/`, `scripts/`, `tests/`, `docs/`,
    and `evals/` - every shipped resource must be registered in its directory's `README.md` index and
    mirrored in `README.md`.
-3. Check `evals/evals.json` covers every operation in `operations-catalog.md`.
+3. Check `evals/evals.json` covers every operation in `operation-catalog.md`.
 4. Verify `metadata.version` moved for shipped changes since the last commit.
 5. Clean `work/` entries older than the session,
    and confirm no shipped file references `work/` or names another skill package.

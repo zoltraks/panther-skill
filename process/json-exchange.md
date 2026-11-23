@@ -323,5 +323,5 @@ and every automated decision is still recorded as answered through the exchange.
 ## What Does Not Apply
 
 - No parameter document emits while no question surface is pending.
-- The catalog is not a parameter surface - `process/operations-catalog.md` answers inline
+- The catalog is not a parameter surface - `process/operation-catalog.md` answers inline
   and never emits JSON.

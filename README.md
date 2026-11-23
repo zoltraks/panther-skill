@@ -568,7 +568,7 @@ panther-skill/
 │   ├── describe-response.md           # Standalone describe procedure: caps and floors
 │   ├── json-exchange.md               # JSON parameter documents for pending questions
 │   ├── operation-timing.md            # Elapsed-time report for named operations
-│   ├── operations-catalog.md          # Full operations table for "list all operations"
+│   ├── operation-catalog.md          # Full operations table for "list all operations"
 │   ├── parameter-configuration.md     # Creation parameter surfaces, defaults, and question shapes
 │   ├── scope-discovery.md             # Standalone layout-discovery procedure and report format
 │   ├── skill-maintenance.md           # Maintenance-mode procedure for work on the skill itself

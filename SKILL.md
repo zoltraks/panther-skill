@@ -9,7 +9,7 @@ compatibility: >-
   Requires local text-file access and Python for encoding detection and document checks.
   Git and network access are used for upstream checks.
 metadata:
-  version: "1.7.8"
+  version: "1.7.9"
   author: Filip Golewski
 ---
 
@@ -40,7 +40,7 @@ You do not normalize a document that has its own conventions.
 | Request                             | First step                                                                                                        |
 |-------------------------------------|-------------------------------------------------------------------------------------------------------------------|
 | Bare activation                     | Follow [activation](process/skill-activation.md) and wait for a task.                                             |
-| List capabilities                   | Read the [operations catalog](process/operations-catalog.md).                                                     |
+| List capabilities                   | Read the [operations catalog](process/operation-catalog.md).                                                     |
 | Perform a task                      | Choose the operation under [Operations](#operations).                                                             |
 | Develop this skill                  | Follow [development](process/skill-development.md) and the [repository instructions](AGENTS.md).                  |
 | Improvement mode                    | Apply lessons from the work through this skill's maintenance rules.                                               |

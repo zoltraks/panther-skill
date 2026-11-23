@@ -60,7 +60,7 @@ and the answer describes the skill, names its version, and shows the operations 
 | `translation-revision.md`    | Correct an existing translation or apply review findings       |
 | `json-exchange.md`           | JSON parameter requests or diagnostic surfaces                 |
 | `operation-timing.md`        | Timing under the four mode keywords                            |
-| `operations-catalog.md`      | "List all operations" requests                                 |
+| `operation-catalog.md`      | "List all operations" requests                                 |
 | `skill-activation.md`        | Bare activation - the request names the skill but no task      |
 | `skill-maintenance.md`       | The request targets this repository's own files                |
 | `session-review.md`          | "Improve the skill from this session" requests                 |
