@@ -116,13 +116,17 @@ def contents_tables(lines: list[tuple[int, str]], headings: set[str]) -> list[li
 
 
 def check_file(source: Path, label: str, tolerance: int, issues: list[str],
-               headings: set[str], line_columns: set[str]) -> bool:
+               headings: set[str], line_columns: set[str], fix: bool = False) -> bool:
     try:
-        text = source.read_text(encoding="utf-8")
+        raw = source.read_bytes()
+        text = raw.decode("utf-8")
     except UnicodeDecodeError:
         issues.append(f"{label}: file is not UTF-8")
         return False
 
+    raw_lines = text.splitlines()
+    eol = "\r\n" if b"\r\n" in raw else "\n"
+    fixes: list[tuple[int, str]] = []
     lines = document_lines(text)
     heading_lines = [number for number, line in lines if HEADING.match(line)]
     tables = contents_tables(lines, headings)
@@ -155,20 +159,31 @@ def check_file(source: Path, label: str, tolerance: int, issues: list[str],
                 )
                 continue
             nearest = min(heading_lines, key=lambda heading: abs(heading - target))
-            if abs(nearest - target) > tolerance:
+            if fix and nearest != target:
+                parts = row.split("|")
+                parts[column + 1] = f" {nearest} "
+                fixes.append((row_number, "|".join(parts)))
+            elif abs(nearest - target) > tolerance:
                 issues.append(
                     f"{label}:{row_number}: contents entry '{row_cells[0]}' points at line "
                     f"{target}, nearest `## ` section is at line {nearest}"
                 )
+    if fixes:
+        for row_number, new_line in fixes:
+            raw_lines[row_number - 1] = new_line
+        source.write_bytes(eol.join(raw_lines).encode("utf-8") + eol.encode("utf-8"))
     return True
 
 
 def main() -> int:
     paths: list[str] = []
     tolerance = 3
+    fix = False
     iterator = iter(sys.argv[1:])
     for argument in iterator:
-        if argument == "--tolerance":
+        if argument == "--fix":
+            fix = True
+        elif argument == "--tolerance":
             tolerance = int(next(iterator))
         elif argument.startswith("--tolerance="):
             tolerance = int(argument.split("=", 1)[1])
@@ -176,7 +191,7 @@ def main() -> int:
             paths.append(argument)
 
     if len(paths) != 1:
-        print("Usage: python scripts/check-contents.py <file-or-directory> [--tolerance N]")
+        print("Usage: python scripts/check-contents.py <file-or-directory> [--fix] [--tolerance N]")
         return 1
 
     target = Path(paths[0]).resolve()
@@ -199,7 +214,7 @@ def main() -> int:
         relative = source.relative_to(root)
         if relative.parts[0] in EXCLUDED_DIRS or relative.parts[0].startswith("."):
             continue
-        if check_file(source, str(relative), tolerance, issues, headings, line_columns):
+        if check_file(source, str(relative), tolerance, issues, headings, line_columns, fix):
             checked += 1
 
     if issues:

@@ -169,8 +169,7 @@ The following elements are copied verbatim:
   and courts - keep the official name verbatim or render the established Polish equivalent such as
   `Trybunał Konstytucyjny` - a word-for-word expansion of the name is a calque, never an option.
 - Cited section names, field labels, and verdict vocabularies of referenced documents and tools -
-  `Evidence Ledger`, `Finding Disposition`,
-  `Journey Traces` stay verbatim wherever the prose cites them.
+  `Evidence Ledger`, `Finding Disposition` stay verbatim wherever the prose cites them.
 - YAML frontmatter - keys and values stay verbatim as document metadata.
 - Machine markers `TBD` and `NOT SPECIFIED`.
 - Verdict, option, and status labels fixed as contract vocabulary - `CONFORMING`, `GAP`, `DRIFT`,
@@ -271,6 +270,10 @@ A localized marker paired with an example that still greps the English form is a
 Link text stays consistent with the translated heading it points at.
 
 When a heading is retranslated, its anchor link text follows.
+
+Sweep the finished file for leftover source-language words outside code spans, identifiers,
+and verbatim terms - an English function word (`the`, `of`, `to`, `none`, `blocks`)
+surviving in prose or a title is a defect.
 
 ## Limitations
 

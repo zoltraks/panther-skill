@@ -16,18 +16,18 @@ a reformatting, or a translation.
 
 | Section                    | Line | What it covers                                     |
 |----------------------------|------|----------------------------------------------------|
-| Intake                     | 31   | Task classification and mode routing               |
-| Parameter Resolution       | 75   | Defaults, acceptance gate, and parameter questions |
-| Question Surfaces          | 136  | Answer caps, guessed options, Cancel, ordering     |
-| Detection                  | 182  | Encoding, dialect, and convention detection        |
-| Scope Detection            | 236  | Project-layout signals and scope selection         |
-| Rule Selection             | 277  | Layered rule-file loading order                    |
+| Intake                     | 32 | Task classification and mode routing               |
+| Parameter Resolution       | 76 | Defaults, acceptance gate, and parameter questions |
+| Question Surfaces          | 137 | Answer caps, guessed options, Cancel, ordering     |
+| Detection                  | 183 | Encoding, dialect, and convention detection        |
+| Scope Detection            | 237 | Project-layout signals and scope selection         |
+| Rule Selection             | 278 | Layered rule-file loading order                    |
 | Section Plan               | 315  | Type-driven structure, selection, and format       |
 | Plan Confirmation          | 347  | The pre-execution proceed/adjust/cancel gate       |
 | Drafting And Editing       | 365  | Templates, minimal diff, and reformatting tools    |
 | Editing Governed Documents | 404  | Governed-set inventory and rename discipline       |
 | Validation                 | 432  | Mechanical checks before delivery                  |
-| Delivery                   | 464  | Confirmation gates and reporting                   |
+| Delivery                   | 466 | Confirmation gates and reporting                   |
 
 ## Intake
 

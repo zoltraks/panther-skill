@@ -39,10 +39,10 @@ Die unten beschriebenen Regeln gelten auch für dieses Dokument selbst.
 | Dialektmerkmale                  | 674   | Kapitelnummerierung und Pseudo-Überschriften    |
 | Tabellen                         | 694   | Ausrichtung nach dem Quelltext                  |
 | Dateinamen                       | 830   | Benennung neuer Dokumentationsdateien           |
-| Beispiel                         | 842   | Richtiges und falsches Beispiel                 |
-| Dateipflege                      | 876   | Kodierung und Zeilenenden                       |
-| Aktualisierungsfrage             | 887   | Deutsche Formulierung der Aktualisierungsfrage  |
-| Aktivierungsphrasen              | 895   | Deutsche Phrasen und englische Entsprechungen   |
+| Beispiel                         | 845 | Richtiges und falsches Beispiel                 |
+| Dateipflege                      | 879 | Kodierung und Zeilenenden                       |
+| Aktualisierungsfrage             | 890 | Deutsche Formulierung der Aktualisierungsfrage  |
+| Aktivierungsphrasen              | 898 | Deutsche Phrasen und englische Entsprechungen   |
 
 ## Dokumentstruktur
 

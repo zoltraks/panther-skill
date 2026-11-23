@@ -17,9 +17,9 @@ Apply it for Polish to English translate tasks, per `process/translate-document.
 |----------------|------|-----------------------------------------------------|
 | Domain Signals | 24   | Activation conditions for this glossary             |
 | Terminology    | 36   | Recurring Polish terms and preferred English forms  |
-| Context Forms  | 293  | Context-dependent renderings                        |
-| Calque Traps   | 337  | Forbidden literal renderings and their replacements |
-| Untranslated   | 363  | Loanwords and identifiers rendered back to English  |
+| Context Forms  | 294 | Context-dependent renderings                        |
+| Calque Traps   | 336 | Forbidden literal renderings and their replacements |
+| Untranslated   | 362 | Loanwords and identifiers rendered back to English  |
 
 ## Domain Signals
 

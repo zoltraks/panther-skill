@@ -14,14 +14,14 @@ This file defines how Panther exposes its intake questions as JSON and how it co
 
 | Section             | Line | What it covers                                        |
 |---------------------|------|-------------------------------------------------------|
-| When To Emit        | 25   | The JSON-request trigger and pending-only emission    |
-| Diagnostic Output   | 36   | Verbose and diagnostic emission for information only  |
-| Emitted Document    | 67   | Context fields, fixed key order, and parameter shapes |
-| Parameter Catalog   | 187  | Stable parameter ids per pending surface              |
-| Returned Document   | 232  | Answer formats and resolution rules                   |
-| Autonomous Surfaces | 292  | Auto-resolved gates emit as answered informational    |
-| Authority           | 303  | The exchange is presentation, not a change to gate    |
-| What Does Not Apply | 322  | Boundaries of the operation                           |
+| When To Emit        | 26 | The JSON-request trigger and pending-only emission    |
+| Diagnostic Output   | 37 | Verbose and diagnostic emission for information only  |
+| Emitted Document    | 70 | Context fields, fixed key order, and parameter shapes |
+| Parameter Catalog   | 190 | Stable parameter ids per pending surface              |
+| Returned Document   | 235 | Answer formats and resolution rules                   |
+| Autonomous Surfaces | 295 | Auto-resolved gates emit as answered informational    |
+| Authority           | 306 | The exchange is presentation, not a change to gate    |
+| What Does Not Apply | 323 | Boundaries of the operation                           |
 
 ## When To Emit
 

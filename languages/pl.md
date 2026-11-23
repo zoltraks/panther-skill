@@ -36,15 +36,15 @@ Zasady opisane poniżej stosują się również do samego tego dokumentu.
 | Średniki                           | 296    | Zakaz średników i zdań sklejonych przecinkiem |
 | Znaki specjalne                    | 325    | Znaki ramek, emoji i znaki specjalne          |
 | Słownictwo polskie                 | 346    | Preferowane terminy i kalki                   |
-| Nazwy sekcji według typu dokumentu | 517    | Polskie nazwy sekcji i elementy typów         |
-| Cechy dialektów                    | 864    | Numeracja rozdziałów i pseudo-nagłówki        |
-| Tabele                             | 884    | Wyrównanie według źródła                      |
-| Nazwy plików                       | 1015   | Nazywanie nowych plików dokumentacji          |
-| Przykład                           | 1032   | Przykład poprawny i niepoprawny               |
-| Kontrola przed dostarczeniem       | 1066   | Kontrole językowe przed dostarczeniem         |
-| Utrzymanie plików                  | 1078   | Kodowanie i złamania wierszy                  |
-| Pytanie o aktualizację             | 1089   | Polskie brzmienie pytania o aktualizację      |
-| Frazy aktywujące                   | 1092   | Polskie frazy i ich angielskie odpowiedniki   |
+| Nazwy sekcji według typu dokumentu | 524 | Polskie nazwy sekcji i elementy typów         |
+| Cechy dialektów                    | 871 | Numeracja rozdziałów i pseudo-nagłówki        |
+| Tabele                             | 891 | Wyrównanie według źródła                      |
+| Nazwy plików                       | 1022 | Nazywanie nowych plików dokumentacji          |
+| Przykład                           | 1037 | Przykład poprawny i niepoprawny               |
+| Kontrola przed dostarczeniem       | 1071 | Kontrole językowe przed dostarczeniem         |
+| Utrzymanie plików                  | 1083 | Kodowanie i złamania wierszy                  |
+| Pytanie o aktualizację             | 1094 | Polskie brzmienie pytania o aktualizację      |
+| Frazy aktywujące                   | 1094 | Polskie frazy i ich angielskie odpowiedniki   |
 
 ## Struktura dokumentu
 
@@ -418,6 +418,11 @@ niej wzorce zabronione.
 | kontrola wykonawcza                                                                                                                                                              | kontrola dynamiczna                                            |
 | strażnik (guard)                                                                                                                                                                 | mechanizm ochronny                                             |
 | jednorazowa instancja                                                                                                                                                            | tymczasowa instancja                                           |
+| dyspozycja (rozstrzygnięcie ustalenia)                                                                                                                                           | postanowienie                                                  |
+| remediacja                                                                                                                                                                       | naprawa / plan naprawczy                                       |
+| ocena zdrowia                                                                                                                                                                    | ocena stanu                                                    |
+| findingi / findingów                                                                                                                                                             | ustalenia / ustaleń                                            |
+| pewność siebie (o ocenie)                                                                                                                                                        | pewność oceny                                                  |
 | zastany                                                                                                                                                                          | istniejący wcześniej / odziedziczony                           |
 | pre-existing / preexisting                                                                                                                                                       | zastany / istniejący wcześniej                                 |
 | placeholder sekretu                                                                                                                                                              | wartość zastępcza sekretu                                      |

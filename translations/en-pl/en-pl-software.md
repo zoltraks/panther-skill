@@ -17,9 +17,9 @@ Apply it for English to Polish translate tasks, per `process/translate-document.
 |----------------|------|-----------------------------------------------------|
 | Domain Signals | 24   | Activation conditions for this glossary             |
 | Terminology    | 36   | Recurring English terms and preferred Polish forms  |
-| Context Forms  | 357  | Context-dependent renderings                        |
-| Calque Traps   | 535  | Forbidden literal renderings and their replacements |
-| Untranslated   | 691  | Loanwords and identifiers kept in English form      |
+| Context Forms  | 365  | Context-dependent renderings                        |
+| Calque Traps   | 552  | Forbidden literal renderings and their replacements |
+| Untranslated   | 708  | Loanwords and identifiers kept in English form      |
 
 ## Domain Signals
 
@@ -38,6 +38,10 @@ Apply this glossary when:
 The dictionary maps recurring English terms to their preferred Polish forms.
 
 Entries with `/` offer context-dependent forms - pick the form that fits the sentence.
+
+A resolved format contract may pin a register-specific form that diverges from the general
+gloss - record the pinned form beside the general one with its register named, for example
+`postanowienie` in defect registers beside `dyspozycja`.
 
 | English                           | Polish                                                                |
 |-----------------------------------|-----------------------------------------------------------------------|
@@ -182,6 +186,7 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | guardrail                         | zabezpieczenie / guardrail                                            |
 | guideline                         | wytyczna                                                              |
 | guidelines discovery              | odnajdywanie wytycznych                                               |
+| glossary                          | słownik pojęć                                                         |
 | handoff                           | przekazanie                                                           |
 | hotfix                            | poprawka pilna                                                        |
 | human entry point                 | punkt wejścia dla użytkownika                                         |
@@ -192,6 +197,7 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | incremental loop                  | pętla weryfikacji przyrostu                                           |
 | infrastructure                    | infrastruktura                                                        |
 | intake                            | przyjęcie / pobór                                                     |
+| immediate actions                 | działania natychmiastowe                                              |
 | integration baseline              | bazowa wersja integracyjna                                            |
 | invariant                         | niezmiennik                                                           |
 | inventory                         | inwentarz / wykaz                                                     |
@@ -227,6 +233,7 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | open-source grant                 | udzielenie uprawnień na zasadach licencji open source                 |
 | orchestrator                      | orkiestrator                                                          |
 | output fidelity                   | zgodność wyników                                                      |
+| overlay                           | nakładka                                                              |
 | owner                             | właściciel                                                            |
 | parity                            | zgodność / równoważność                                               |
 | payload                           | dane użyteczne / zawartość / dostarczany zestaw                       |
@@ -314,6 +321,7 @@ Entries with `/` offer context-dependent forms - pick the form that fits the sen
 | strengths and weaknesses          | mocne strony i słabości (zalety i wady)                               |
 | subagent                          | subagent / agent podrzędny                                            |
 | supply chain                      | łańcuch dostaw                                                        |
+| table of contents                 | spis treści                                                           |
 | tag                               | tag / znacznik                                                        |
 | task entry                        | punkt wejścia do realizacji zadań                                     |
 | technical debt                    | dług techniczny                                                       |
@@ -391,7 +399,8 @@ Do not force one form everywhere:
 - `note` renders `odnotowuje` in report register and `zauważa` for observations in prose.
 - `finding` renders `ustalenie` for a review's or audit's output and `wykryty problem` for a check's
   result - `the check produced no findings` renders `kontrola nie wykazała problemów` - while
-  `defect` renders `wada` in formal testing and quality text (ISTQB PL) and `usterka` colloquially.
+  `defect` renders `wada` in formal testing and quality text (ISTQB PL) and `usterka` in
+  defect report registers and colloquially.
 - `agreement` renders `uzgodnienie` - `ustalenie` is reserved for the audit `finding` mapping.
 - `process` renders `proces` - `mechanizm` names machinery and never stands in for
   a lifecycle process.
@@ -456,10 +465,18 @@ Do not force one form everywhere:
 - `gate` renders `punkt kontrolny`, `warunek przejścia`,
   or `kontrola blokująca` in formal documents - `bramka` / `bramki` / `bramkę` stay calques,
   and bare `brama` stays a calque.
+- `gate` in a release-readiness table renders `kryterium` when it names a concrete
+  requirement the release must meet and `próg` when it names a threshold whose crossing
+  enables progress - the distinction follows the role, not the source word.
+- `severity` as a finding field label renders `Ważność` in report contexts per
+  `en-pl-project.md` - `waga` / `stopień istotności` serve general severity discussion
+  outside report registers, where `ważność` would read as a validity period.
 - `check` renders `kontrola` for an executed check in an assessment or audit - `sprawdzenie` names
   the act of verifying - and `the check passes` renders `kontrola kończy się pomyślnie`,
   never `kontrola przechodzi` without naming what passes it.
-- `disposition` renders `dyspozycja` for finding disposition in audit and review registers.
+- `disposition` renders `dyspozycja` for finding disposition in audit and review registers,
+  and `postanowienie` in defect registers where the field carries a management decision
+  (`Postanowienie: Zaplanowane`).
 - `severity`, `likelihood`, `confidence`, and `priority` render `waga`, `prawdopodobieństwo`,
   `pewność`, and `priorytet` as concepts - a verbatim field label of the assessed tool (`Severity`,
   `Likelihood`) stays in English.
@@ -697,8 +714,8 @@ Settled loanwords and identifiers stay in English form in Polish output:
 - `hook`, `guard`, `handler`, `scorecard`, `advisory`, `typecheck`, `governance`, `handoff`,
   `follow-up`, `self-check`, `control plane`, `read-only`, `offline`, `upload`, `timeout`, `runner`,
   `blocker`, `checklist`, `lookup`, `wildcard`, `step-up`, `auth`,
-  `agent tooling` - settled loanwords in expert register - they decline normally where Polish
-  grammar requires it (`hooka`, `scorecardy`)
+  `agent tooling`, `runbook`, `prefetch`, `tenant` - settled loanwords in expert register -
+  they decline normally where Polish grammar requires it (`hooka`, `scorecardy`, `tenanta`)
 - Acronyms: `API`, `SDK`, `CLI`, `UI`, `URL`, `HTTP`, `JSON`, `YAML`, `XML`, `SQL`, `REST`, `IDE`,
   `CI/CD`, `ASCII`, `UTF-8`, `CRLF`, `npm`, `git`, `ADR`, `NFR`, `OSS`, `CVE`, `CWE`, `JWT`, `RBAC`,
   `SSH`, `OWASP`, `ASVS`, `DORA`, `SOC 2`, `ISO/IEC`, `MR`, `CVSS`, `ATAM`, `RAG`, `PoC`, `TOTP`,

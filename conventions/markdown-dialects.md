@@ -30,8 +30,8 @@ Detect it, preserve it, normalize only on explicit request.
 | Wrapping Conventions          | 221  | The wrap axis                            |
 | Element-Level Conventions     | 246  | Per-element conventions and spacing axis |
 | Flush-Left Lazy Continuations | 270  | Column-0 list continuations              |
-| Blockquote Row Separation     | 299  | `>` separator rows                       |
-| Detection Procedure           | 315  | Dialect census steps                     |
+| Blockquote Row Separation     | 298 | `>` separator rows                       |
+| Detection Procedure           | 314 | Dialect census steps                     |
 
 ## Standard ATX
 
