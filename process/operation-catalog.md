@@ -90,7 +90,7 @@ request's language changes the cell text.
 | skill adjustment         | Maintain  | changes to this skill repository                                                |
 | session review           | Maintain  | session lessons harvested into the rule corpus                                  |
 | enablement               | Enable    | bare-activation standby with version and operations table                       |
-| self-update check        | Enable    | explicit upstream check                                                         |
+| self-update check        | Enable    | upstream check on working modes or explicit request                             |
 | operations catalog       | Enable    | this table                                                                      |
 
 ## Response

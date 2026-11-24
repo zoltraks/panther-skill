@@ -9,7 +9,7 @@ compatibility: >-
   Requires local text-file access and Python for encoding detection and document checks.
   Git and network access are used for upstream checks.
 metadata:
-  version: "1.7.9"
+  version: "1.8.0"
   author: Filip Golewski
 ---
 
@@ -110,10 +110,12 @@ Remove every ad-hoc `.tmp.` helper and tool copies under the fallback convention
 
 ## Skill Update Check
 
-Run the check on the first bare `use` of this skill in a session, or on an explicit
-`update` or upstream-check request. Reuse a check already attempted for this exact checkout in
-the session, unless the user explicitly requests another one. Record the attempted checkout and
-result in session state. Catalog queries and ordinary tasks use the installed package.
+Run the check once per session when the request names `improvement`, `development`, or
+`training` as a working mode, or makes an explicit `update` or upstream-check request -
+on the bare `use` that carries the mode or on the mode-carrying task.
+Reuse a check already attempted for this exact checkout in the session, unless the user
+explicitly requests another one. Record the attempted checkout and result in session state.
+Catalog queries and requests naming no mode use the installed package.
 
 Use the directory containing this `SKILL.md`. Verify that it is the root of its own Git checkout
 before running `python <skill-root>/scripts/check-update.py` with the available Python 3 launcher.

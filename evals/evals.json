@@ -751,7 +751,7 @@
       "expected_output": "A maintenance-mode edit that reads the governing set first, applies the registration contract, and runs the skill validators.",
       "files": [],
       "expectations": [
-        "On bare use the agent checks the skill checkout once or reuses its session result.",
+        "The agent runs the skill update check once per SKILL.md Skill Update Check before the maintenance work.",
         "The agent read the governing set - SKILL.md, docs/MAINTENANCE.md, docs/STYLE.md, docs/VERSIONING.md, docs/CONTRIBUTING.md, docs/SECURITY.md, README.md, AGENTS.md, scripts/README.md - before planning the edit.",
         "No parameter-resolution questions were asked, and no languages/, types/, or templates/ files were loaded for the skill's own documents.",
         "Every enumeration of the changed component was updated in one pass - SKILL.md registry, README.md tree, and affected contents tables.",
@@ -812,10 +812,10 @@
     {
       "id": 66,
       "prompt": "Use skill.",
-      "expected_output": "An enablement response: the eligible session check runs or its result is reused, and the router stays the only loaded rule material, and the reply confirms enablement with a one-sentence description, the skill version, a compact operations table, and a pointer to the full operations list - then the agent waits for a task.",
+      "expected_output": "An enablement response: the installed package is used without an upstream check, and the router stays the only loaded rule material, and the reply confirms enablement with a one-sentence description, the skill version, a compact operations table, and a pointer to the full operations list - then the agent waits for a task.",
       "files": [],
       "expectations": [
-        "On bare use the agent checks the skill checkout once or reuses its session result.",
+        "On bare use the agent uses the installed package without an upstream check.",
         "No document task was classified and no parameter-resolution questions were asked.",
         "No rule files beyond SKILL.md and the activation procedure were loaded, and no file was created or modified.",
         "The reply confirms the skill is enabled for editorial support, describes it in one sentence, names the version from metadata.version, and presents the operation families as a table.",
@@ -1244,7 +1244,7 @@
       "expected_output": "A minimal standby reply: the installed skill confirms it is enabled on the named repository in one or two lines, then waits - no mode-selection or parameter question.",
       "files": [],
       "expectations": [
-        "On bare use the agent checks the skill checkout once or reuses its session result.",
+        "On bare use the agent uses the installed package without an upstream check.",
         "The named target was held as context and no mode-selection question was asked - a named repository without an operation resolves to standby.",
         "No document-mode rule files were loaded beyond the router and the activation procedure, and no files of the named target were read or surveyed to infer the task.",
         "The reply confirms enablement and waits or asks what to do - no capability list and no proposed work items.",
@@ -1790,7 +1790,8 @@
       "expected_output": "Runs process/skill-development.md - local readiness report, standby for a described change.",
       "files": [],
       "expectations": [
-        "runs process/skill-development.md and stands by for a described change"
+        "runs process/skill-development.md and stands by for a described change",
+        "runs the skill update check once per SKILL.md Skill Update Check"
       ]
     },
     {
@@ -1964,7 +1965,8 @@
       "expectations": [
         "does not route to process/session-review.md on the improvement-mode flag alone",
         "applies improvements during the work through the member's own maintenance path",
-        "reviews no session history that precedes the mode request"
+        "reviews no session history that precedes the mode request",
+        "runs the skill update check once per SKILL.md Skill Update Check"
       ]
     },
     {
@@ -2120,7 +2122,8 @@
       "expectations": [
         "does not route to process/session-review.md on the training-mode flag alone",
         "applies on-the-fly adjustments during operations through the member's own maintenance path",
-        "reviews no session history that precedes the mode request"
+        "reviews no session history that precedes the mode request",
+        "runs the skill update check once per SKILL.md Skill Update Check"
       ]
     }
   ]
