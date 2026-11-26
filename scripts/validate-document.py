@@ -44,7 +44,8 @@ Usage: python validate-document.py <file.md> [--width N] [--payload-markdown]
   --payload-markdown   apply a curated subset of checks inside ```markdown
                        fenced blocks (embedded payload documents): trailing
                        whitespace, consecutive blank lines, lone list
-                       markers, blockquote row separation, and heading checks
+                       markers, blockquote row and separator checks, and
+                       heading checks
 """
 
 import argparse
@@ -59,6 +60,9 @@ BULLET = re.compile(r"^\s*[-*+] ")
 ORDERED = re.compile(r"^\s*\d+\. ")
 BQ_LINK_ROW = re.compile(r"^>\s*(?:!?\[[^\]]*\]\([^)]*\)\s*)+$")
 BQ_FIELD_ROW = re.compile(r"^>\s*\*\*[^*\n]+:\*\*|^>\s*\*\*[^*\n]+\*\*:")
+BQ_SEPARATOR = re.compile(r"^\s*>\s*$")
+BQ_QUOTE_LINE = re.compile(r"^\s*>")
+QFENCE = re.compile(r"^\s*>\s*(`{3,}|~{3,})")
 LONE_ITEM = re.compile(r"^\s*[-*+][ \t]*$")
 LONE_ORDERED = re.compile(r"^\d+[.)][ \t]*$")
 TYPO_QUOTES = "“”‘’‚„«»"
@@ -295,6 +299,7 @@ def main(path, width, payload_markdown):
     prev_open_level = 0
     prev = ""
     prev_text = ""
+    qfence = None
     for i, line in enumerate(lines):
         n = i + 1
         fence = FENCE.match(line)
@@ -451,17 +456,36 @@ def main(path, width, payload_markdown):
         ):
             issues.append(f"line {n}: no blank line after list or table")
 
-        if (BQ_LINK_ROW.match(line)
-                and prev.startswith(">") and prev.lstrip("> ").strip() != ""):
-            issues.append(
-                f"line {n}: blockquote link row merges into the previous "
-                "paragraph - separate it with a `>` blank line")
+        qf = QFENCE.match(line)
+        if qfence is None:
+            if qf:
+                qfence = (len(qf.group(1)), qf.group(1)[0])
+        elif qf and len(qf.group(1)) >= qfence[0] \
+                and qf.group(1)[0] == qfence[1]:
+            qfence = None
 
-        if (BQ_FIELD_ROW.match(line)
-                and prev.startswith(">") and prev.lstrip("> ").strip() != ""):
-            issues.append(
-                f"line {n}: blockquote field row merges into the previous "
-                "paragraph - separate it with a `>` blank line")
+        if qfence is None:
+            if (BQ_SEPARATOR.match(line)
+                    and i > 0 and BQ_QUOTE_LINE.match(lines[i - 1])
+                    and i + 1 < len(lines)
+                    and BQ_QUOTE_LINE.match(lines[i + 1])):
+                issues.append(
+                    f"line {n}: blockquote separator row joins quote "
+                    "paragraphs - split into separate blockquote blocks")
+
+            if (BQ_LINK_ROW.match(line)
+                    and prev.startswith(">")
+                    and prev.lstrip("> ").strip() != ""):
+                issues.append(
+                    f"line {n}: blockquote link row merges into the previous "
+                    "paragraph - split into a separate blockquote block")
+
+            if (BQ_FIELD_ROW.match(line)
+                    and prev.startswith(">")
+                    and prev.lstrip("> ").strip() != ""):
+                issues.append(
+                    f"line {n}: blockquote field row merges into the previous "
+                    "paragraph - split into a separate blockquote block")
 
         if (
             not payload

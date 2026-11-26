@@ -4,7 +4,7 @@
 
 > **Scope:** Catalog of Markdown dialects observed in real documents, detection signals,
 > and the preserve-on-edit rule
->
+
 > **Key items:** ATX, setext headings, numbered chapters, pandoc artifacts, per-document conventions
 
 Documents in the wild do not all look the same.
@@ -30,8 +30,8 @@ Detect it, preserve it, normalize only on explicit request.
 | Wrapping Conventions          | 221  | The wrap axis                            |
 | Element-Level Conventions     | 246  | Per-element conventions and spacing axis |
 | Flush-Left Lazy Continuations | 270  | Column-0 list continuations              |
-| Blockquote Row Separation     | 298 | `>` separator rows                       |
-| Detection Procedure           | 314 | Dialect census steps                     |
+| Blockquote Blocks             | 298  | Separate quote paragraphs                |
+| Detection Procedure           | 322  | Dialect census steps                     |
 
 ## Standard ATX
 
@@ -295,21 +295,29 @@ and `fix-document.py` skips the matching blank-line repairs instead of breaking 
 Blank-line findings around headings and code blocks stay in force - only the list and table class
 belongs to the dialect.
 
-## Blockquote Row Separation
+## Blockquote Blocks
 
 Consecutive `>` lines form one blockquote paragraph - the renderer collapses the line
 boundaries into spaces.
 
+Separate quote paragraphs are separate blockquote blocks - close the quote, leave one blank
+line, and open a new `>` block.
+
+A `>`-only separator row inside a quote is the retired form, flagged by
+`validate-document.py` and replaced by `fix-document.py` with the blank line.
+
 A standalone row inside the quote - a link row, an image row, an address entry,
 a `**Label:**` field row such as `**Key items:**` - that must render on its own line opens a new
-blockquote paragraph, separated from the previous content by a `>` blank line.
+blockquote block the same way, and the validator flags it when it directly follows quote
+content.
+
+A `>`-only row at a quote boundary - one side not a `>` line - stays untouched, since a
+following lazy-continuation line may still belong to the quote.
 
 Hard breaks made of trailing spaces are not the mechanism - trailing whitespace is a defect class of
 its own, and invisible separators break silently under cleanup passes.
 
-`validate-document.py` flags a link, image,
-or `**Label:**` field row that follows a non-empty `>` line,
-and `fix-document.py` repairs it by inserting the `>` separator.
+`fix-document.py` repairs both findings by inserting the blank line that splits the quote.
 
 ## Detection Procedure
 

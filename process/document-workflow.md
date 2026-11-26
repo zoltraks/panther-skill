@@ -3,7 +3,7 @@
 ## Purpose
 
 > **Scope:** The end-to-end workflow for creating and editing documents with this skill
->
+
 > **Key items:** intake, parameter resolution, detection, rule selection, drafting,
 > validation, delivery
 
@@ -484,6 +484,10 @@ A Reformat task runs the scripted sequence, never a hand pass:
 `detect-encoding.py` first, `check-document.py --layout wrap` (or `unwrap`) for the gated check,
 `fix-document.py` for the mechanical repair classes,
 then `reflow-prose.py --wrap` and a judgment pass on what remains.
+
+The `--layout` side and the `--wrap` pass follow the detected or declared convention - wrapping an
+unwrapped document runs only when the request names wrapping or a repository style document
+declares it, per the wrap-as-feature rule in `conventions/prose-layout.md`.
 
 When the judgment pass joins or rewrites a block,
 run `reflow-prose.py --wrap` once more before validation,

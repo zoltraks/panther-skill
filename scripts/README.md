@@ -6,7 +6,7 @@ grep the tool or section you need instead of loading the whole file.
 ## Purpose
 
 > **Scope:** Document-production and skill-maintenance scripts
->
+
 > **Key items:** encoding detection, scope signals, sentence splitting,
 > prose wrapping and unwrapping, table formatting, comment alignment, document validation,
 > content diffing, structural parity, document census, skill validation, reference integrity,
@@ -22,8 +22,8 @@ They do not modify documents beyond the specific task each tool performs.
 |------------------|------|------------------------------------------|
 | Tool Classes     | 28   | Tool groups and when to run them         |
 | Commands         | 113  | Per-tool usage, flags, and output        |
-| Validation Order | 546  | Recommended run sequence                 |
-| Limitations      | 595  | Known parsing limits and validator scope |
+| Validation Order | 547  | Recommended run sequence                 |
+| Limitations      | 596  | Known parsing limits and validator scope |
 
 ## Tool Classes
 
@@ -188,8 +188,8 @@ a list item with its continuations, or a blockquote run - joining only wrapped c
 separate sentences, `**Label:**` field lines, and list items keep their own lines,
 then re-wraps each logical line to the width,
 so re-wrapping already-wrapped text never fragments a paragraph.
-An empty `>` line ends the open quote unit and stays verbatim - it separates two blockquote
-paragraphs and never folds into either side.
+An empty `>` line - the retired separator form - ends the open quote unit and stays verbatim;
+`fix-document.py` splits it into separate blockquote blocks.
 A final line shorter than 20 characters pulls words back from the line before it.
 
 `--check` reports every unit that would rewrap as `block is not wrapped at <width>` and every line
@@ -267,7 +267,8 @@ and a heading directly under the H1 title reads as a subtitle rather than an emp
 rewrites `semicolon in prose` to the aside separator,
 escapes `literal pipe inside code span` to `&#124;`,
 inserts missing blank lines around lists and tables,
-and opens a `>` separator line ahead of a blockquote link or `**Label:**` field row,
+and splits blockquote paragraphs into separate blocks - a real blank line replaces `>`
+separator rows and opens ahead of a blockquote link or `**Label:**` field row,
 repeating until the file is clean or the loop stops changing it.
 
 `--only <text>` repairs just the finding classes whose reason contains the text and skips the
@@ -613,7 +614,7 @@ and reflow findings are reported as remaining and left for a judgment pass.
 Pass `--payload-markdown` to apply a curated subset of checks inside ` ```markdown ` blocks:
 
 trailing whitespace, consecutive blank lines, lone list markers, blockquote row
-separation, and line width.
+and separator checks, and line width.
 
 `diff-content.py` is a heuristic net, not a proof - its merged-line warnings require manual review,
 and a clean report still does not replace reading the diff.

@@ -9,14 +9,14 @@ compatibility: >-
   Requires local text-file access and Python for encoding detection and document checks.
   Git and network access are used for upstream checks.
 metadata:
-  version: "1.8.0"
+  version: "1.8.1"
   author: Filip Golewski
 ---
 
 # Document Authoring Skill
 
 > **Type:** Root router and taxonomy
->
+
 > **Purpose:** Route document creation and editing requests to the smallest useful rule file and
 > enforce plain-text-readable Markdown output.
 

@@ -754,7 +754,7 @@ def reflow_regressions() -> int:
 
 
 def blockquote_regressions() -> int:
-    """Exercise the blockquote row-separation check and its repair."""
+    """Exercise the blockquote block-separation check and its repair."""
     failures = 0
     label = "blockquote fixtures"
     defect = (
@@ -768,9 +768,9 @@ def blockquote_regressions() -> int:
         "# T\n\n"
         "> A descriptive lead paragraph that carries on across a wrapped "
         "continuation line.\n"
-        ">\n"
+        "\n"
         "> [First Link](./first.md)\n"
-        ">\n"
+        "\n"
         "> [Second Link](https://example.com/second)\n"
     )
     with tempfile.TemporaryDirectory() as tmp:
@@ -785,7 +785,7 @@ def blockquote_regressions() -> int:
         result = run_case("fix-document.py", [str(bad)])
         text = bad.read_text(encoding="utf-8")
         if result is None or result.returncode != 0 or text != clean:
-            print(f"FAIL {label} - repair did not insert `>` separators")
+            print(f"FAIL {label} - repair did not split into blocks")
             failures += 1
         result = run_case("validate-document.py", [str(bad)])
         if result is None or result.returncode != 0:
@@ -794,7 +794,7 @@ def blockquote_regressions() -> int:
         result = run_case("reflow-prose.py",
                           [str(bad), "--wrap", "--check"])
         if result is None or result.returncode != 0:
-            print(f"FAIL {label} - reflow must keep the `>` separators")
+            print(f"FAIL {label} - reflow must leave the split blocks alone")
             failures += 1
         fine = tmp / "fine.md"
         fine.write_text(clean, encoding="utf-8")
@@ -824,7 +824,7 @@ def blockquote_regressions() -> int:
             "# T\n\n"
             "> **Scope:** A scope sentence that wraps onto a "
             "continuation line.\n"
-            ">\n"
+            "\n"
             "> **Key items:** one, two\n"
         )
         result = run_case("validate-document.py", [str(fields_bad)])
@@ -835,7 +835,7 @@ def blockquote_regressions() -> int:
         result = run_case("fix-document.py", [str(fields_bad)])
         if (result is None or result.returncode != 0
                 or fields_bad.read_text(encoding="utf-8") != fields_clean):
-            print(f"FAIL {label} - field row repair did not insert `>`")
+            print(f"FAIL {label} - field row repair did not split the quote")
             failures += 1
         result = run_case("validate-document.py", [str(fields_bad)])
         if result is None or result.returncode != 0:
@@ -875,9 +875,41 @@ def blockquote_regressions() -> int:
                           [str(multi), "--only", "field row"])
         text = multi.read_text(encoding="utf-8")
         if (result is None or result.returncode != 1
-                or ">\n> **Key items:**" not in text
+                or "\n\n> **Key items:**" not in text
                 or "** spaced bold **" not in text):
             print(f"FAIL {label} - --only repair leaked outside its class")
+            failures += 1
+        # A `>`-only row between quote lines splits into separate blocks;
+        # boundary rows and quoted-fence content stay untouched.
+        sep_bad = tmp / "sep-bad.md"
+        sep_bad.write_text(
+            "# T\n\n"
+            "> **Scope:** demo scope text\n"
+            ">\n"
+            "> **Key items:** one, two\n"
+            "\n"
+            "> trailing quote\n"
+            ">\n"
+            "plain paragraph after the quote\n"
+            "\n"
+            "> ```\n"
+            ">\n"
+            "> code line\n"
+            "> ```\n",
+            encoding="utf-8")
+        result = run_case("validate-document.py", [str(sep_bad)])
+        if (result is None or result.returncode != 1
+                or result.stdout.count("blockquote separator row") != 1):
+            print(f"FAIL {label} - separator row not reported")
+            failures += 1
+        result = run_case("fix-document.py", [str(sep_bad)])
+        sep_text = sep_bad.read_text(encoding="utf-8")
+        if (result is None or result.returncode != 0
+                or "> **Scope:** demo scope text\n\n> **Key items:**"
+                not in sep_text
+                or ">\nplain paragraph" not in sep_text
+                or "> ```\n>\n> code line" not in sep_text):
+            print(f"FAIL {label} - separator repair did not split the quote")
             failures += 1
     print(("PASS" if not failures else "FAIL") + f" {label}")
     return failures

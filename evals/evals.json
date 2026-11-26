@@ -1984,12 +1984,12 @@
     {
       "id": 167,
       "prompt": "check a document whose blockquote has a description paragraph followed by bare `>` link rows",
-      "expected_output": "validate-document.py flags each link row that follows a non-empty `>` line as `blockquote link row merges into the previous paragraph`, and fix-document.py inserts a `>` blank separator ahead of each row so the links render on their own lines - reflow-prose keeps the separators because an empty `>` line ends the quote unit.",
+      "expected_output": "validate-document.py flags each link row that follows a non-empty `>` line as `blockquote link row merges into the previous paragraph`, and fix-document.py inserts a real blank line ahead of each row so the links open as separate blockquote blocks.",
       "files": [],
       "expectations": [
         "the validator flags a `>` link or image row that directly follows a non-empty `>` line",
-        "the fixer inserts a `>` blank line ahead of each flagged row",
-        "reflow-prose --wrap preserves an empty `>` separator instead of folding it into the quote unit",
+        "the fixer inserts a blank line ahead of each flagged row, splitting the quote into separate blocks",
+        "the `>` marker stays on the link row itself",
         "link rows outside a blockquote are not flagged"
       ]
     },
@@ -2009,12 +2009,12 @@
     {
       "id": 169,
       "prompt": "check a document whose Purpose blockquote carries a `**Scope:**` paragraph directly followed by a `**Key items:**` field row",
-      "expected_output": "validate-document.py flags each `**Label:**` field row that follows a non-empty `>` line as `blockquote field row merges into the previous paragraph`, and fix-document.py inserts a `>` blank separator ahead of the row so the field renders on its own line.",
+      "expected_output": "validate-document.py flags each `**Label:**` field row that follows a non-empty `>` line as `blockquote field row merges into the previous paragraph`, and fix-document.py inserts a real blank line ahead of the row so the field opens as a separate blockquote block.",
       "files": [],
       "expectations": [
         "the validator flags a `>` `**Label:**` field row that directly follows a non-empty `>` line",
-        "the fixer inserts a `>` blank line ahead of the flagged field row",
-        "a field row already separated by a `>` blank line is not flagged",
+        "the fixer inserts a blank line ahead of the flagged field row, splitting the quote into separate blocks",
+        "a field row already opening a separate blockquote block is not flagged",
         "field rows outside a blockquote are not flagged"
       ]
     },
@@ -2024,7 +2024,7 @@
       "expected_output": "validate-document.py --payload-markdown flags the field row inside the example fence as `blockquote field row merges into the previous paragraph`, while the same file passes without the flag - payload checks are opt-in.",
       "files": [],
       "expectations": [
-        "the validator checks blockquote link and field rows inside ```markdown fenced blocks only under --payload-markdown",
+        "the validator checks blockquote link, field, and separator rows inside ```markdown fenced blocks only under --payload-markdown",
         "the default run leaves fenced example payloads unchecked",
         "a deliberately defective teaching example can be exempted through the panther.json findings suppression list"
       ]
@@ -2124,6 +2124,30 @@
         "applies on-the-fly adjustments during operations through the member's own maintenance path",
         "reviews no session history that precedes the mode request",
         "runs the skill update check once per SKILL.md Skill Update Check"
+      ]
+    },
+    {
+      "id": 179,
+      "prompt": "check a document whose Purpose blockquote separates `**Scope:**` and `**Key items:**` with a `>` blank line",
+      "expected_output": "validate-document.py flags the `>`-only separator row as `blockquote separator row joins quote paragraphs`, and fix-document.py replaces it with a real blank line so the fields open as separate blockquote blocks.",
+      "files": [],
+      "expectations": [
+        "the validator flags a `>`-only row between two `>` lines as a blockquote separator row",
+        "the fixer replaces the separator row with an empty line, never inserts another `>` row",
+        "a `>`-only row at a quote boundary with a non-`>` neighbour is not flagged",
+        "separator-looking rows inside quoted fences stay untouched"
+      ]
+    },
+    {
+      "id": 180,
+      "prompt": "reformat this documentation file - it keeps every sentence on one unwrapped logical line",
+      "expected_output": "The agent treats wrapping as a confirmed feature - it does not introduce fixed-width wrapping on the unwrapped document unless the request names wrapping or a repository style document declares the convention, and it asks through the question surfaces when the layout stays open.",
+      "files": [],
+      "expectations": [
+        "no wrapping is applied to the unwrapped document on a generic reformat request",
+        "the wrap decision follows the detected convention or an explicit request or declared style rule",
+        "an ambiguous layout ask goes through the question surfaces of process/document-workflow.md",
+        "reflow-prose.py --wrap abstains on the detected unwrapped layout"
       ]
     }
   ]

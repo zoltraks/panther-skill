@@ -4,7 +4,7 @@
 > rules documents, format specifications, articles, notes, READMEs, and changelogs, in English,
 > Polish, German, French, or Spanish.
 > Structured per the [Agent Skills specification](https://agentskills.io/specification).
->
+
 > [Versioning Policy](./docs/VERSIONING.md)
 
 ## Contents

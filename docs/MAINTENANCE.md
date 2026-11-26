@@ -3,7 +3,7 @@
 ## Purpose
 
 > **Scope:** Rules for extending, restructuring, and maintaining the panther-skill repository itself
->
+
 > **Key items:** directory roles, file naming, registration contract, addition
 > procedures, validation
 

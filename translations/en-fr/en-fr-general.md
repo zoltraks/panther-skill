@@ -3,7 +3,7 @@
 ## Purpose
 
 > **Scope:** Direction contract for rendering a document from English into French
->
+
 > **Key items:** loading order, style adaptation, abbreviation mapping, locale conventions,
 > vocabulary and register, untranslated set, terminology resolution, output conventions
 

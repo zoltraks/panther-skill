@@ -4,7 +4,7 @@
 
 > **Scope:** The bulk-formatting procedure that applies the mechanical battery across a repository
 > or directory of documents
->
+
 > **Key items:** baseline snapshot, battery run, dialect classification before repair,
 > mechanical classes only, attribution by snapshot compare
 
@@ -41,6 +41,10 @@ and `align-comments.py --check` gate a first sweep.
 
 Add `--split`, `--layout`, `--polish`, or `--english` only when the request names those surfaces.
 
+A `--layout wrap` gate on an unwrapped corpus additionally requires the request or a declared
+repository style convention to name wrapping - `conventions/prose-layout.md` treats wrap as a
+confirmed feature, not a sweep default.
+
 ## Classify Dialect Artifacts Before Fixing
 
 Read the corpus's own style documents first - `STYLE.md`, `AGENTS.md`,
@@ -64,7 +68,8 @@ Declare each dialect in a `panther.json` at the corpus root, per `conventions/ma
 Run `scripts/fix-document.py` per flagged file.
 
 It repairs the mechanical finding classes in place - blank lines, semicolons, literal pipes,
-table alignment, merged blockquote rows - and leaves structural and judgment findings untouched.
+table alignment, blockquote paragraph splits - and leaves structural and judgment findings
+untouched.
 
 `--only <text>` scopes a run to one class for a controlled single-class pass across the corpus.
 

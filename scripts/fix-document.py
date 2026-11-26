@@ -18,8 +18,9 @@ tables first, then each `validate-document.py` finding is repaired when it
 belongs to a safe mechanical class - `semicolon in prose` becomes the
 house aside separator ` - ` (a period at line end), `literal pipe inside
 code span` is escaped to `&#124;`, missing blank lines around lists
-and tables are inserted, and a run of consecutive blank lines collapses
-to one. The loop repeats to a fixed point so one repair
+and tables are inserted, blockquote paragraphs split into separate
+blocks at a real blank line, and a run of consecutive blank lines
+collapses to one. The loop repeats to a fixed point so one repair
 cannot shadow another.
 
 Classes outside that set - headings, fences, links, reflow notes - are
@@ -44,7 +45,8 @@ FAIL_RE = re.compile(r"FAIL .+?:line (\d+): (.+)$", re.M)
 MECHANICAL = (
     "semicolon in prose", "spaced bold markers",
     "literal pipe inside code span",
-    "blockquote link row merges", "blockquote field row merges",
+    "blockquote separator row", "blockquote link row merges",
+    "blockquote field row merges",
     "no blank line before",
     "no blank line after",
     "consecutive blank lines",
@@ -171,10 +173,11 @@ def apply_repair(lines, number, reason, cfg):
         if (policy != "skip" and idx > 0 and lines[idx - 1].strip() != ""
                 and not _link_tail(lines[idx - 1])):
             lines.insert(idx, "")
+    elif "blockquote separator row" in reason:
+        lines[idx] = ""
     elif ("blockquote link row merges" in reason
             or "blockquote field row merges" in reason):
-        marker = re.match(r"^>+", lines[idx])
-        lines.insert(idx, marker.group(0) if marker else ">")
+        lines.insert(idx, "")
     elif "consecutive blank lines" in reason:
         # The validator flags the second blank line of a run - deleting it
         # collapses one duplicate per pass and the loop handles longer runs.

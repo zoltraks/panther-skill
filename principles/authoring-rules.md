@@ -3,7 +3,7 @@
 ## Purpose
 
 > **Scope:** Non-negotiable rules applied to every document created or edited with this skill
->
+
 > **Key items:** named-operation authorization, plain-text readability, one-sentence paragraphs,
 > convention preservation, minimal diffs, explicit unknowns
 
@@ -58,6 +58,10 @@ or `justified` - comes from the document itself, never from an assumption.
 
 Detect it before reformatting and never convert between layouts unless the request explicitly
 covers the conversion.
+
+Wrapping is a feature of the document - introduce it only on explicit instruction, a resolved
+parameter, or a declared style convention, and confirm before changing an unwrapped document's
+layout.
 
 See `conventions/prose-layout.md` for the convention definitions and detection signals.
 

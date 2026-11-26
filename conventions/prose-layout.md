@@ -5,7 +5,7 @@
 > **Scope:** The named prose-formatting conventions for Markdown documents.
 > How sentences sit on lines and how blank lines separate them - with detection signals,
 > the no-assumed-default rule, and the intake parameters that resolve the layout of a new document
->
+
 > **Key items:** flowing, separated, bounded, justified conventions, per-element detection,
 > mixed-document handling, layout parameters, tooling map
 
@@ -161,6 +161,20 @@ deliberate coupling, not inconsistency - the block holds one thought.
 Detect them as a convention, report them,
 and split them only on an explicit request - a checker finding there is a convention note,
 never an automatic fix.
+
+## Wrap Is A Feature
+
+Fixed-width wrapping is a feature of the document, never an assumption about it.
+
+A reformat or correction pass does not introduce wrapping on an unwrapped document unless the
+request names wrapping or the repository's style documents declare the convention -
+`STYLE.md`, `GUIDELINES.md`, or an equivalent.
+
+When the request leaves the layout open, ask through the question surfaces in
+`process/document-workflow.md` before changing the wrap axis.
+
+`reflow-prose.py --wrap` abstains on a detected unwrapped layout with a note - the rule binds the
+judgment calls around it, such as hand reflow and `--layout` gate selection.
 
 ## New Documents
 

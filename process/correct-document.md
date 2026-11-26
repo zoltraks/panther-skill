@@ -3,7 +3,7 @@
 ## Purpose
 
 > **Scope:** The standalone procedure for correcting a document in place
->
+
 > **Key items:** target resolution, governing rules, source resolution, correction classes,
 > check pass, translation-quality layer, plan confirmation, correction pass, fidelity
 > proposals, validation, report
@@ -178,6 +178,10 @@ Run the scripted fixes first, in the mutating-pass order of `process/document-wo
 `scripts/normalize-chars.py`, `scripts/split-sentences.py`, `scripts/reflow-prose.py`,
 `scripts/align-comments.py`, and `scripts/format-table.py` last,
 because any later text edit inside a cell re-breaks the source alignment.
+
+The `reflow-prose.py` pass follows the detected convention and never introduces wrapping on an
+unwrapped document unless the request or a declared style rule covers it -
+`conventions/prose-layout.md` owns the wrap-as-feature rule.
 
 A hand edit that removes a plain-text fence tag (` ``` text ` -> ` ``` `)
 runs before `align-comments.py` - the tag shields the block from comment alignment,
