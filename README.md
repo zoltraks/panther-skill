@@ -11,19 +11,20 @@
 
 | Section             | Line | What it covers                             |
 |---------------------|------|--------------------------------------------|
-| Overview            | 28   | What Panther is and what it produces       |
-| What The Skill Does | 54   | Authoring purpose and workflow             |
-| Installation        | 221  | How to add Panther to an agent environment |
-| Usage               | 292  | How agents activate and run the skill      |
-| Example Prompts     | 307  | Phrases the skill activates on             |
-| Workflow Diagrams   | 355  | ASCII and Mermaid diagrams of the pipeline |
-| Core Principles     | 494  | Convention preservation and minimal diffs  |
-| When To Use         | 504  | Supported requests and exclusions          |
-| What's Inside       | 545  | Rule files, templates, tools, and evals    |
-| Specification       | 744  | Agent Skills specification conformance     |
-| Verification        | 761  | Skill-maintenance checks                   |
-| License             | 782  | License for the skill itself               |
-| Credits             | 788  | Methodology and example sources            |
+| Overview            | 29   | What Panther is and what it produces       |
+| What The Skill Does | 55   | Authoring purpose and workflow             |
+| Installation        | 222  | How to add Panther to an agent environment |
+| Usage               | 293  | How agents activate and run the skill      |
+| Working Modes       | 308  | Interaction modes and the timing contract  |
+| Example Prompts     | 331  | Phrases the skill activates on             |
+| Workflow Diagrams   | 393  | ASCII and Mermaid diagrams of the pipeline |
+| Core Principles     | 532  | Convention preservation and minimal diffs  |
+| When To Use         | 542  | Supported requests and exclusions          |
+| What's Inside       | 583  | Rule files, templates, tools, and evals    |
+| Specification       | 782  | Agent Skills specification conformance     |
+| Verification        | 799  | Skill-maintenance checks                   |
+| License             | 820  | License for the skill itself               |
+| Credits             | 826  | Methodology and example sources            |
 
 ## Overview
 
@@ -304,6 +305,29 @@ The skill resolves parameters, detects conventions and scope,
 selects rule files, drafts the document, validates it mechanically,
 and delivers the file with preserved encoding and line endings.
 
+## Working Modes
+
+Every operation runs in interactive mode by default: recommendations are shown and
+material checkpoints ask through the host's question mechanism.
+
+| Mode                  | Request words                                                           | Effect                                                                                |
+|-----------------------|-------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
+| Interactive (default) | -                                                                       | Recommendations shown, material decisions ask                                         |
+| Autonomous            | `autonomous`, `automatic`, `unattended`, `non-interactive`, `automated` | Gates resolve to the recommended answer, recorded in a `Decisions:` list              |
+| Verbose               | `verbose`                                                               | Full option menus and rationale reported, JSON parameter document on pending surfaces |
+| Diagnostic            | `diagnostic`, `timing`                                                  | The verbose parameter surface plus the operations table                               |
+| Informational         | `informational`                                                         | The elapsed-time report alone                                                         |
+| Timing opt-out        | `no timing`                                                             | Disarms the timing report for that request                                            |
+
+Timing is armed by default on every operation, and a `verbose`, `diagnostic`,
+or `timing` request closes with an operations table.
+
+Naming `development`, `improvement`, or `training` on a request runs the skill's upstream
+update check once per session and applies rule adjustments during the work.
+
+Running `improve panther-skill` starts the session review - it gathers the session's
+lessons, reports findings for approval, and lands the approved changes in the rule corpus.
+
 ## Example Prompts
 
 **New project specification**
@@ -351,6 +375,20 @@ and delivers the file with preserved encoding and line endings.
 
 **Bare activation**
 > Use skill.
+
+**Corpus sweep**
+> Sweep this documentation repository and reformat every document to the current style
+> rules.
+
+**Humanize a document**
+> Humanize this generated document - keep the facts, rewrite the voice.
+
+**Derived supplement**
+> Write a supplement to this specification covering the new caching section.
+
+**Re-audited translation**
+> Fix this Polish translation - apply the audit findings and sweep for the same class
+> of issue.
 
 ## Workflow Diagrams
 
