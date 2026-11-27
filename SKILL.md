@@ -9,7 +9,7 @@ compatibility: >-
   Requires local text-file access and Python for encoding detection and document checks.
   Git and network access are used for upstream checks.
 metadata:
-  version: "1.8.1"
+  version: "1.8.2"
   author: Filip Golewski
 ---
 

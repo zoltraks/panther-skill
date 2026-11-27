@@ -21,7 +21,10 @@ code span` is escaped to `&#124;`, missing blank lines around lists
 and tables are inserted, blockquote paragraphs split into separate
 blocks at a real blank line, and a run of consecutive blank lines
 collapses to one. The loop repeats to a fixed point so one repair
-cannot shadow another.
+cannot shadow another. A `reflow-prose.py --wrap` pass follows only
+when mechanical repairs applied - it normalizes the units the repairs
+touched and abstains on unwrapped or one-sentence-per-line documents,
+so repair alone never converts a document's prose layout.
 
 Classes outside that set - headings, fences, links, reflow notes - are
 structural or judgment calls and are reported, never touched. A finding
@@ -249,10 +252,12 @@ def main(path, check_only, max_passes, only=None):
                 capture_output=True,
                 check=False,
             )
-        # reflow normalizes lines the join-back repair lengthened; on an
-        # unwrapped document it abstains with a note, so the call is safe
-        # under either prose layout. `prose_reflow: off` opts out.
-        if not only and cfg.get("prose_reflow", "on") != "off":
+        # reflow normalizes the units a repair touched - it runs only
+        # when mechanical repairs applied this pass, and it abstains with
+        # a note on unwrapped or one-sentence-per-line documents, so the
+        # pass never converts a document's prose layout on its own.
+        # `prose_reflow: off` opts out entirely.
+        if not only and mechanical and cfg.get("prose_reflow", "on") != "off":
             subprocess.run(
                 [sys.executable, REFLOW, path, "--wrap"],
                 capture_output=True,

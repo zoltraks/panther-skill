@@ -399,13 +399,17 @@ def processable(fences, payload_markdown):
 def unwrapped_signature(lines, width, payload_markdown):
     """Detect an unwrapped document layout.
 
-    Returns (prose, cont, over_starts): counts of processable prose lines,
-    continuation lines inside prose units, and over-width lines that open a
-    prose unit - a line that follows a block boundary rather than continuing
-    wrapped text. A bounded document wraps its long blocks into
+    Returns (prose, cont, over_starts, sent): counts of processable prose
+    lines, continuation lines inside prose units, over-width lines that
+    open a prose unit - a line that follows a block boundary rather than
+    continuing wrapped text - and prose lines ending with sentence-final
+    punctuation. A bounded document wraps its long blocks into
     continuations, so almost every long line is one; an unwrapped document
     carries every sentence on its own line, so its lines almost never
-    continue anything.
+    continue anything and most of them end a sentence. Stacked
+    single-sentence lines still count as continuations (they follow an
+    open unit), which is why the sentence-end count is the discriminator
+    for the one-sentence-per-line dialect.
     """
     fences = []
     in_front = lines and lines[0].strip() == "---"
@@ -413,6 +417,7 @@ def unwrapped_signature(lines, width, payload_markdown):
     list_stack = []
     prose = 0
     cont = 0
+    sent = 0
     over_starts = 0
     open_unit = False
     unit_col = 0
@@ -456,6 +461,8 @@ def unwrapped_signature(lines, width, payload_markdown):
         item = ITEM.match(line)
         if item or LONE_ITEM.match(line):
             prose += 1
+            if SENT_END.search(s):
+                sent += 1
             if len(line.rstrip()) > width:
                 over_starts += 1
             open_unit = True
@@ -468,6 +475,8 @@ def unwrapped_signature(lines, width, payload_markdown):
             continue
         if QUOTE.match(line):
             prose += 1
+            if SENT_END.search(s):
+                sent += 1
             if open_unit:
                 cont += 1
             if len(line.rstrip()) > width and not open_unit:
@@ -487,6 +496,8 @@ def unwrapped_signature(lines, width, payload_markdown):
             open_unit = False
             continue
         prose += 1
+        if SENT_END.search(s):
+            sent += 1
         if open_unit:
             cont += 1
             continuation = True
@@ -495,7 +506,7 @@ def unwrapped_signature(lines, width, payload_markdown):
         if len(line.rstrip()) > width and not continuation:
             over_starts += 1
         open_unit = True
-    return prose, cont, over_starts
+    return prose, cont, over_starts, sent
 
 
 def main(path, mode, width, payload_markdown, check_only, convert=False,
@@ -525,13 +536,21 @@ def main(path, mode, width, payload_markdown, check_only, convert=False,
     lines = text.replace("\r\n", "\n").split("\n")
 
     if mode in ("wrap", "justify") and not convert:
-        prose, cont, over = unwrapped_signature(lines, width, payload_markdown)
-        if prose and over >= 1 and cont * 4 < prose:
-            print(f"note: {path} reads as unwrapped - {over} prose line(s) "
-                  f"exceed the {width} width but {cont} of {prose} prose "
-                  f"lines continue a unit, so --{mode} would convert the "
-                  "layout rather than fix wrapping; pass --convert to apply "
-                  "it anyway")
+        prose, cont, over, sent = unwrapped_signature(lines, width,
+                                                    payload_markdown)
+        unwrapped = over >= 1 and cont * 4 < prose
+        sentence_lines = over >= 1 and prose >= 8 and sent * 2 >= prose
+        if prose and (unwrapped or sentence_lines):
+            if sentence_lines:
+                why = (f"{sent} of {prose} prose lines end with "
+                       "sentence-final punctuation - the layout is one "
+                       "sentence per line")
+            else:
+                why = (f"{over} prose line(s) exceed the {width} width "
+                       f"but {cont} of {prose} prose lines continue a unit")
+            print(f"note: {path} reads as unwrapped - {why}, so --{mode} "
+                  "would convert the layout rather than fix wrapping; pass "
+                  "--convert to apply it anyway")
             if check_only:
                 print(f"PASS {path}: unwrapped document layout, wrap check "
                       "not applicable")
