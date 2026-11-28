@@ -318,12 +318,13 @@ material checkpoints ask through the host's question mechanism.
 | Interactive (default) | -                                                                       | Recommendations shown, material decisions ask                                         |
 | Autonomous            | `autonomous`, `automatic`, `unattended`, `non-interactive`, `automated` | Gates resolve to the recommended answer, recorded in a `Decisions:` list              |
 | Verbose               | `verbose`                                                               | Full option menus and rationale reported, JSON parameter document on pending surfaces |
-| Diagnostic            | `diagnostic`, `timing`                                                  | The verbose parameter surface plus the operations table                               |
+| Diagnostic            | `diagnostic`                                                            | The verbose parameter surface plus the operations table                               |
+| Timing                | `timing`, `context usage`                                               | The operations table, no JSON parameter document                                      |
 | Informational         | `informational`                                                         | The elapsed-time report alone                                                         |
 | Timing opt-out        | `no timing`                                                             | Disarms the timing report for that request                                            |
 
-Timing is armed by default on every operation, and a `verbose`, `diagnostic`,
-or `timing` request closes with an operations table.
+Timing is armed by default on every operation, and a `verbose`, `diagnostic`, `timing`,
+or `context usage` request closes with an operations table.
 
 Naming `development`, `improvement`, or `training` on a request runs the skill's upstream
 update check once per session and applies rule adjustments during the work.

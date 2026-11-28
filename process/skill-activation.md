@@ -2,156 +2,65 @@
 
 ## Purpose
 
-> **Scope:** Enablement procedure for requests that activate the skill without naming a task
-
-> **Key items:** bare activation, enablement response with operations table,
-> catalog pointer, mode hand-off
-
-This file defines the intake for a request that names the skill but no work.
-
-Follow it when the request is a bare activation phrase - "use skill", "use panther", "run panther",
-"use this skill", "activate the skill" - or an equivalent declared in the `languages/` files.
+Bare-activation standby procedure: a request that names Panther but no work.
 
 ## When This Applies
 
-Resolve the referent of a generic phrase before treating the request as a Panther activation - "use
-skill", "work with skill", "use this skill", "activate the skill",
-and "work on this skill" name no skill by themselves.
+A phrase naming Panther ("use panther", "work on panther-skill") binds directly.
 
-A phrase that names Panther - "use panther", "run panther",
-"work on panther-skill" - binds directly.
+A generic phrase ("use skill", "use this skill")
+binds only when context identifies Panther as the skill in play - otherwise ask which skill is meant
+through the host's question tool and wait.
 
-A generic phrase binds to this skill only when the context identifies it - the panther-skill
-repository is the working target, the session already treats Panther as the skill in play,
-or no other skill competes for the referent.
+A request that also names a task is a task request and skips this procedure.
 
-When another skill's repository is the working context, or several skills could equally be meant,
-the referent is ambiguous - ask which skill the request means and wait,
-instead of enabling Panther on assumption.
-
-Naming is not required for document work - scope match binds the skill.
-
-A task inside any working target that creates, edits, formats, corrects, audits,
-or translates documents routes to this skill whether or not the request mentions panther,
-and the target's own documented conventions take precedence over these defaults.
-
-Under JSON exchange the referent ask emits as the `skill-selection` `choice` parameter per
-`process/json-exchange.md`.
-
-A bare activation names the skill and nothing else - no document to produce, edit, reformat,
-translate, audit, or describe, and no maintenance request.
-
-A standalone `update` request follows `process/skill-update.md`.
-A request to improve from session lessons follows `process/session-review.md`.
-
-An activation may also name a working target - a repository, directory,
-or document collection - while still naming no operation: "use panther on the docs repository",
-"work on the project".
-
-Naming a target is not a task, so the request stays in enable mode with the target held as context
-for the next request.
-
-A purpose qualifier such as "for editorial purposes" is not a task either.
-
-It names a mode, not an operation, and the request stays in enable mode.
-
-A request that combines activation with a task is a task request - "use panther,
-write a quick note" enters document mode directly and this procedure does not run.
-
-Ambiguity asks are rare - `mode-selection` fires only when the request mixes genuinely conflicting
-signals, such as an activation phrase joined to an operation verb whose object is missing.
-
-A named target without a named operation resolves to standby, never to a mode-selection question.
-
-A target whose own agent-facing rules define bare-request behavior confirms the same
-answer without any scan.
-
-Under JSON exchange a genuine ambiguity emits as the `mode-selection` `choice` parameter per
-`process/json-exchange.md`.
+A named target, purpose qualifier, or mode without an operation stays here as standby,
+never a mode-selection question.
 
 ## Procedure
 
-On a bare `use`, follow `process/skill-update.md` when the request names
-`improvement`, `development`, or `training`, or makes an explicit update request.
+On a bare `use`, follow `process/skill-update.md` when the request names `improvement`,
+`development`, or `training`, or makes an explicit update request.
 A request naming no mode uses the installed package.
 Reuse this session's result for the checkout when available.
 Continue with the installed package when the check cannot run.
 
-1. Use the installed skill.
-2. Confirm the router state - the loaded `SKILL.md` is the enabled state,
-   re-read it when it may have changed during the session.
-3. Answer with the enablement response below, then wait for the next request.
+1. Treat the loaded `SKILL.md` as the enabled state.
+2. Print the enablement response in the request's language.
+3. Ask any pending question through the host's question tool, then wait for the task.
+   A JSON request for that question follows `process/json-exchange.md`.
 
 ## Enablement Response
 
-Open with one sentence confirming the skill is enabled for editorial support.
+One sentence confirms editorial support and names the version from `metadata.version`,
+folding in a named mode ("enabled in timing mode").
 
-Follow with one sentence describing the skill.
+One sentence describes the skill: plain-text-readable Markdown in English, Polish,
+German, French, or Spanish.
 
-It produces plain-text-readable Markdown documents in English, Polish, German, French,
-or Spanish,
-and the answer names the skill version read from `metadata.version` in the loaded `SKILL.md`.
+| Operation | What it covers                                          |
+|-----------|---------------------------------------------------------|
+| Create    | New documents of every supported type                   |
+| Edit      | Convention-preserving edits                             |
+| Reformat  | Table, prose, comment, and character passes             |
+| Translate | Between the five languages, or revise a translation     |
+| Correct   | In-place correction, fidelity proposals, humanizing     |
+| Audit     | Document and translation conformance                    |
+| Describe  | Inline descriptions, summaries, briefs, and supplements |
+| Discover  | Layout census and scope classification                  |
+| Maintain  | Changes and session reviews of this skill               |
 
-Follow with a compact operations table - one row per family,
-columns `Operation` and `What it covers`, aligned by source width:
+Close with a pointer to `process/operation-catalog.md` for the full list and an
+invitation to name the task.
 
-| Operation          | What it covers                                                 |
-|--------------------|----------------------------------------------------------------|
-| Create             | New documents of every supported type                          |
-| Edit               | Convention-preserving edits to existing documents              |
-| Reformat           | Table, prose, comment, and character normalization passes      |
-| Translate          | Documents between English, Polish, German, French, and Spanish |
-| Revise             | Minimal-diff corrections to an existing translation            |
-| Correct            | In-place document correction with fidelity proposals           |
-| Humanize           | Fact-preserving voice rewrite, human-authored read             |
-| Audit              | Document and translation conformance checks                    |
-| Describe           | Consolidated inline descriptions of a subject                  |
-| Derive             | Summaries, briefs, and supplements from a source document      |
-| Discover layout    | Document-layout census and scope classification                |
-| Maintain the skill | Changes and session reviews of this skill repository           |
-
-Close with the catalog pointer - the full operations list answers "list all operations" or an
-equivalent - and a line inviting the task request.
-
-A target-scoped activation answers with a minimal standby instead:
-one or two lines confirming the skill is enabled on the named target,
-then the wait begins - no capability list.
-
-The standby never scans or surveys the target to infer the intended task - guessing intent from the
-repository's state is analysis the request did not ask for.
-
-The reply confirms enablement and waits for the next request, or asks what to do.
-
-A read-only survey with proposed work belongs in the reply only when the request names that
-operation itself - "take a look around" asks for the survey, a purpose qualifier does not.
-
-A diagnostic, timing, or informational flag folds into the opening sentence - "enabled in diagnostic
-mode", "enabled in timing mode", or "enabled in informational mode" - and adds no intake-state
-preamble, since a bare activation has no pending surface to report.
-
-Write the response in the language of the request.
+A target-scoped activation answers with one or two standby lines and no table.
 
 ## What Does Not Apply
 
-- No task classification, parameter resolution, scope detection,
-  or encoding detection runs - the request named no task.
-- No read or scan of the named target runs.
-  A bare activation does not open the target to guess the task.
-- No rule files load beyond the router and this file - progressive disclosure stays lazy,
-  the next request selects its own rule set.
-- A diagnostic, timing, or verbose flag adds `process/json-exchange.md` to the loaded set and
-  nothing else - no scan of the target runs and no document-mode files load,
-  and no parameter document emits while no question surface is pending.
-- An informational flag adds `process/operation-timing.md` to the loaded set and nothing else - the
-  standby reply itself emits no timing line.
-- No file is written. A proposed change waits for a request that names the
-  operation and confirms it.
+- No task classification, parameter resolution, encoding detection, or target scan runs.
+- No rule file loads beyond the router, this file, and an armed mode's own file.
+- No file is written.
 
 ## Relation To The Modes
 
-Enable mode is the standby state.
-
-It precedes document mode and maintenance mode.
-
-A task-bearing request that follows enters document mode or maintenance mode per the mode rules in
-`SKILL.md`.
+Enable mode is the standby state before document mode and maintenance mode.

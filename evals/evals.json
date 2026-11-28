@@ -2170,6 +2170,18 @@
         "runs the check once per session and reuses a recorded result",
         "applies an update only after approval with ahead=0 and dirty=no"
       ]
+    },
+    {
+      "id": 182,
+      "prompt": "use panther with timing",
+      "expected_output": "A bare activation that arms timing mode for the session: the standby reply and every later operation close with the operations table and the timing sentence, and process/json-exchange.md is never loaded.",
+      "files": [],
+      "expectations": [
+        "loads process/operation-timing.md and does not load process/json-exchange.md",
+        "emits no JSON parameter document",
+        "closes with an operations table carrying `Operation`, `Time`, and `Context` columns, then the `<description> operation took <m:ss>` sentence last",
+        "keeps timing mode armed for later requests in the session"
+      ]
     }
   ]
 }

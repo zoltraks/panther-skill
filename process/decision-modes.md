@@ -90,7 +90,8 @@ An upstream check follows `SKILL.md`. Apply an update only with user approval.
 selection or a gate.
 
 `informational` arms the timing report alone,
-while `diagnostic` and `timing` also emit the `process/json-exchange.md` parameter document for
+`timing` and `context usage` add only the operations table,
+and `diagnostic` also emits the `process/json-exchange.md` parameter document for
 every pending surface.
 
 ## Permission Boundary

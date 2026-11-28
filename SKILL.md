@@ -9,7 +9,7 @@ compatibility: >-
   Requires local text-file access and Python for encoding detection and document checks.
   Git and network access are used for upstream checks.
 metadata:
-  version: "1.8.4"
+  version: "1.8.5"
   author: Filip Golewski
 ---
 
@@ -46,7 +46,8 @@ You do not normalize a document that has its own conventions.
 | Improvement mode               | Apply lessons from the work through this skill's maintenance rules.                                               |
 | Training mode                  | Apply on-the-fly adjustments through this skill's maintenance rules.                                              |
 | Review a session               | Follow [session review](process/session-review.md).                                                               |
-| Verbose reporting              | Follow [timing](process/operation-timing.md) and [JSON exchange](process/json-exchange.md) for pending questions. |
+| Timing or context usage        | Follow [timing](process/operation-timing.md) only.                                                                |
+| Verbose or diagnostic          | Follow [timing](process/operation-timing.md) and [JSON exchange](process/json-exchange.md) for pending questions. |
 | Working mode or update request | Run the [update check](process/skill-update.md) once per session.                                                 |
 
 Resolve the operation and target first.
