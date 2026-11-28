@@ -6,6 +6,9 @@
 
 > **Key items:** pair directories, loading order, glossary slugs
 
+Glossary and style files run to tens of kilobytes, so read only the entries and sections
+the passage at hand needs, through each file's Contents table where it carries one.
+
 Load on translate tasks per `process/translate-document.md` and on translation-audit tasks per
 `process/translation-audit.md`: the direction's `<pair>-general.md`,
 then `<pair>-style.md` when it exists, then every matching `<pair>-<category>.md`:

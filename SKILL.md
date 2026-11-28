@@ -9,7 +9,7 @@ compatibility: >-
   Requires local text-file access and Python for encoding detection and document checks.
   Git and network access are used for upstream checks.
 metadata:
-  version: "1.8.3"
+  version: "1.8.4"
   author: Filip Golewski
 ---
 
@@ -37,17 +37,17 @@ You do not normalize a document that has its own conventions.
 
 ## Task Entry
 
-| Request                             | First step                                                                                                        |
-|-------------------------------------|-------------------------------------------------------------------------------------------------------------------|
-| Bare activation                     | Follow [activation](process/skill-activation.md) and wait for a task.                                             |
-| List capabilities                   | Read the [operations catalog](process/operation-catalog.md).                                                     |
-| Perform a task                      | Choose the operation under [Operations](#operations).                                                             |
-| Develop this skill                  | Follow [development](process/skill-development.md) and the [repository instructions](AGENTS.md).                  |
-| Improvement mode                    | Apply lessons from the work through this skill's maintenance rules.                                               |
-| Training mode                       | Apply on-the-fly adjustments through this skill's maintenance rules.                                              |
-| Review a session                    | Follow [session review](process/session-review.md).                                                               |
-| Verbose reporting                   | Follow [timing](process/operation-timing.md) and [JSON exchange](process/json-exchange.md) for pending questions. |
-| Update this skill or check upstream | Follow [Skill Update Check](#skill-update-check).                                                                 |
+| Request                        | First step                                                                                                        |
+|--------------------------------|-------------------------------------------------------------------------------------------------------------------|
+| Bare activation                | Follow [activation](process/skill-activation.md) and wait for a task.                                             |
+| List capabilities              | Read the [operations catalog](process/operation-catalog.md).                                                      |
+| Perform a task                 | Choose the operation under [Operations](#operations).                                                             |
+| Develop this skill             | Follow [development](process/skill-development.md) and the [repository instructions](AGENTS.md).                  |
+| Improvement mode               | Apply lessons from the work through this skill's maintenance rules.                                               |
+| Training mode                  | Apply on-the-fly adjustments through this skill's maintenance rules.                                              |
+| Review a session               | Follow [session review](process/session-review.md).                                                               |
+| Verbose reporting              | Follow [timing](process/operation-timing.md) and [JSON exchange](process/json-exchange.md) for pending questions. |
+| Working mode or update request | Run the [update check](process/skill-update.md) once per session.                                                 |
 
 Resolve the operation and target first.
 Read the selected procedure and its required resources as each phase begins.
@@ -107,26 +107,3 @@ Never transcode a file unless the request explicitly asks for a target encoding.
 Never modify a file on an unnamed or unconfirmed operation - never overwrite a document wholesale.
 
 Remove every ad-hoc `.tmp.` helper and tool copies under the fallback convention at task end.
-
-## Skill Update Check
-
-Run the check once per session when the request names `improvement`, `development`, or
-`training` as a working mode, or makes an explicit `update` or upstream-check request -
-on the bare `use` that carries the mode or on the mode-carrying task.
-Reuse a check already attempted for this exact checkout in the session, unless the user
-explicitly requests another one. Record the attempted checkout and result in session state.
-Catalog queries and requests naming no mode use the installed package.
-
-Use the directory containing this `SKILL.md`. Verify that it is the root of its own Git checkout
-before running `python <skill-root>/scripts/check-update.py` with the available Python 3 launcher.
-If Git, an upstream, or authorized network access is unavailable, use the installed package.
-Report the limitation on an explicit request.
-
-For `UPDATE-AVAILABLE`, report the incoming `tip_sha`, `tip_date`, and working-tree state.
-After the user approves the reported update, run `git -C <skill-root> merge --ff-only <tip_sha>`
-only if `ahead=0` and `dirty=no`, then re-read this entry point and the active procedures.
-If the check or merge cannot run, report it for the requested maintenance operation and use the
-installed files. A separately requested merge or push follows repository rules.
-
-The check may update remote-tracking refs but leaves the working tree intact.
-Review incoming changes if the upstream is uncertain.

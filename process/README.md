@@ -60,7 +60,7 @@ and the answer describes the skill, names its version, and shows the operations 
 | `translation-revision.md`    | Correct an existing translation or apply review findings       |
 | `json-exchange.md`           | JSON parameter requests or diagnostic surfaces                 |
 | `operation-timing.md`        | Timing under the four mode keywords                            |
-| `operation-catalog.md`      | "List all operations" requests                                 |
+| `operation-catalog.md`       | "List all operations" requests                                 |
 | `skill-activation.md`        | Bare activation - the request names the skill but no task      |
 | `skill-maintenance.md`       | The request targets this repository's own files                |
 | `session-review.md`          | "Improve the skill from this session" requests                 |
@@ -68,3 +68,4 @@ and the answer describes the skill, names its version, and shows the operations 
 | `skill-housekeeping.md`      | Self-repository upkeep: registration, coverage, validation     |
 | `self-healing.md`            | The evidence-gated self-repair loop for this skill             |
 | `skill-development.md`       | Standby-for-specification development mode                     |
+| `skill-update.md`            | Once-per-session upstream check and fast-forward update        |

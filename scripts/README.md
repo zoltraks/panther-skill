@@ -97,7 +97,7 @@ A missing file under a known skill directory reports as unresolved.
 A missing file anywhere else reports `UNKNOWN_FILE`.
 
 `check-update.py` reports the git upstream status of the skill repository for the explicit
-Skill Update Check in `SKILL.md`, and always exits `0` with a `STATUS` verdict line.
+the update check in `process/skill-update.md`, and always exits `0` with a `STATUS` verdict line.
 
 Its verdicts after upstream resolution carry `tip_sha` and `tip_date` details identifying the
 incoming tip commit - the pull path applies no cryptographic verification,

@@ -12,23 +12,26 @@
 | Section             | Line | What it covers                             |
 |---------------------|------|--------------------------------------------|
 | Overview            | 29   | What Panther is and what it produces       |
-| What The Skill Does | 55   | Authoring purpose and workflow             |
-| Installation        | 222  | How to add Panther to an agent environment |
-| Usage               | 293  | How agents activate and run the skill      |
-| Working Modes       | 308  | Interaction modes and the timing contract  |
-| Example Prompts     | 331  | Phrases the skill activates on             |
-| Workflow Diagrams   | 393  | ASCII and Mermaid diagrams of the pipeline |
-| Core Principles     | 532  | Convention preservation and minimal diffs  |
-| When To Use         | 542  | Supported requests and exclusions          |
-| What's Inside       | 583  | Rule files, templates, tools, and evals    |
-| Specification       | 782  | Agent Skills specification conformance     |
-| Verification        | 799  | Skill-maintenance checks                   |
-| License             | 820  | License for the skill itself               |
-| Credits             | 826  | Methodology and example sources            |
+| What The Skill Does | 58   | Authoring purpose and workflow             |
+| Installation        | 225  | How to add Panther to an agent environment |
+| Usage               | 296  | How agents activate and run the skill      |
+| Working Modes       | 311  | Interaction modes and the timing contract  |
+| Example Prompts     | 334  | Phrases the skill activates on             |
+| Workflow Diagrams   | 396  | ASCII and Mermaid diagrams of the pipeline |
+| Core Principles     | 535  | Convention preservation and minimal diffs  |
+| When To Use         | 545  | Supported requests and exclusions          |
+| What's Inside       | 586  | Rule files, templates, tools, and evals    |
+| Specification       | 785  | Agent Skills specification conformance     |
+| Verification        | 802  | Skill-maintenance checks                   |
+| License             | 823  | License for the skill itself               |
+| Credits             | 823  | Methodology and example sources            |
 
 ## Overview
 
 Panther is a document authoring process packaged as an agent skill.
+
+This skill is not built for one specific agent, it follows the open Agent Skills format
+and works with Claude, Codex, Antigravity, Devin, and other agents that load skills.
 
 It guides an AI coding agent through creating or editing a Markdown document with consistent,
 plain-text-readable conventions: one sentence per paragraph, source-width-aligned tables,

@@ -751,7 +751,7 @@
       "expected_output": "A maintenance-mode edit that reads the governing set first, applies the registration contract, and runs the skill validators.",
       "files": [],
       "expectations": [
-        "The agent runs the skill update check once per SKILL.md Skill Update Check before the maintenance work.",
+        "The agent runs the skill update check once per process/skill-update.md before the maintenance work.",
         "The agent read the governing set - SKILL.md, docs/MAINTENANCE.md, docs/STYLE.md, docs/VERSIONING.md, docs/CONTRIBUTING.md, docs/SECURITY.md, README.md, AGENTS.md, scripts/README.md - before planning the edit.",
         "No parameter-resolution questions were asked, and no languages/, types/, or templates/ files were loaded for the skill's own documents.",
         "Every enumeration of the changed component was updated in one pass - SKILL.md registry, README.md tree, and affected contents tables.",
@@ -933,6 +933,7 @@
     {
       "id": 76,
       "prompt": "Here is a Polish file that was translated from the English original earlier - fix the passages where the translation is wrong or unnatural.",
+      "expected_output": "The request is classified as translation correction: process/translation-revision.md loads, both the source and the target are read, correction scope is approved before editing, and every correction pairs the target passage with its source passage.",
       "expectations": [
         "The agent loaded SKILL.md, principles/authoring-rules.md, and process/document-workflow.md.",
         "The task was classified as translation correction and process/translation-revision.md was loaded - not the fresh-translation procedure alone.",
@@ -944,6 +945,7 @@
     {
       "id": 77,
       "prompt": "Correct this existing English-to-Polish translation: the user approved fixing terminology, grammar, and fidelity errors only - do not restructure the document.",
+      "expected_output": "An approved-scope correction pass replaces obsolete terminology with the canonical forms and fixes grammar and fidelity while structure, modality, and technical identifiers stay intact, the source is untouched, and a correction report lists each change with locations, old and new rendering, and rationale.",
       "expectations": [
         "Every edit preserves structure, heading count, table shape, and code blocks unless the translation itself corrupted them.",
         "Approved canonical terminology replaces obsolete forms, for example 'agent AI do programowania', 'opiekun projektu', 'osoba współtworząca projekt', 'tryb z udziałem człowieka', 'pętla weryfikacji', 'dokument nadrzędny', 'punkt kontrolny', 'zwiększenie numeru wersji', and 'wskazanie autorstwa'.",
@@ -956,6 +958,7 @@
     {
       "id": 78,
       "prompt": "Translate this English document with embedded examples into Polish - it contains code blocks, a JSON structure with question and description fields, and Markdown payload blocks.",
+      "expected_output": "The Polish translation keeps code, keys, paths, and machine values verbatim, translates reader-facing prose inside the examples, adjusts marker-searching examples to the translated marker, and recomputes section anchors from the translated headings.",
       "expectations": [
         "Code, paths, commands, JSON and YAML keys, field names, and machine values stay unchanged.",
         "Reader-facing prose inside examples is translated - comments where the language file allows, question and description field values, and Markdown payload interiors.",
@@ -966,6 +969,7 @@
     {
       "id": 79,
       "prompt": "The Polish lint reports 'possible comma splice' warnings on this Polish translation - review the flagged lines and fix only the genuine problems.",
+      "expected_output": "The flagged lines are triaged against Polish punctuation rules: mandatory commas after introductory, participial, relative, and concessive clauses stay, and only genuine independent-clause splices or calques are corrected.",
       "expectations": [
         "Commas after introductory 'Gdy'/'Jeśli'/'Po'/'Zanim'/'Ponieważ' clauses were recognized as mandatory Polish punctuation, not errors.",
         "Adverbial participial phrases such as ', wprowadzając' or ', używając' were not rewritten as splices.",
@@ -1720,6 +1724,7 @@
     {
       "id": 142,
       "prompt": "Run scripts/check-titles.py on a document whose requirement tables carry ID rows like `F-01` and `N-01` but no `ID: title` headings.",
+      "expected_output": "scripts/check-titles.py notes that the ID-title pairing convention is not adopted in the document and finishes with zero findings.",
       "files": [],
       "expectations": [
         "The run reports an informational note that the pairing convention is not adopted and finishes with zero findings."
@@ -1728,6 +1733,7 @@
     {
       "id": 143,
       "prompt": "Run scripts/check-titles.py on a document that pairs `### C-01 Synchronization` headings with `| C-01 | Synchronization |` table rows while other ID tables carry no headings.",
+      "expected_output": "scripts/check-titles.py confirms the C-01 heading and row pair case-insensitively and raises no MISSING-HEADING findings for ID families that never adopted headings.",
       "files": [],
       "expectations": [
         "C-01 pairs check OK case-insensitively and rows from unadopted ID families do not flood MISSING-HEADING findings."
@@ -1736,6 +1742,7 @@
     {
       "id": 144,
       "prompt": "Lint an English document containing a definitional list entry `- **Term** - description` with scripts/lint-english.py.",
+      "expected_output": "scripts/lint-english.py treats the definitional list separator as legitimate and raises no spaced-hyphen clause-join warning.",
       "files": [],
       "expectations": [
         "The definitional separator raises no spaced-hyphen clause-join warning."
@@ -1744,6 +1751,7 @@
     {
       "id": 145,
       "prompt": "Audit an English design document that contains an empty heading, a prose line ending with a bare pipe, a 'section 9.9' reference with no matching numbered heading, and a citation of record 'F-99' that no table defines.",
+      "expected_output": "The audit reports the empty heading as a structural finding and the stranded pipe as a table fragment, check-consistency.py marks 'section 9.9' and 'F-99' as UNRESOLVED, and resolvable references raise nothing.",
       "files": [],
       "expectations": [
         "The audit reports the empty heading as a structural finding.",
@@ -1755,6 +1763,7 @@
     {
       "id": 146,
       "prompt": "Humanize the supplied English design document: make it read like a person wrote it over several weeks, while every requirement identifier, default, endpoint, and normative rule stays intact.",
+      "expected_output": "The humanized document drops self-referential sections, keeps every requirement identifier, fact-table row, and normative rule intact, and carries no announcement of the rewrite, invented provenance, or jokes.",
       "files": [],
       "expectations": [
         "Self-referential sections such as a change summary or an embedded self-audit checklist are deleted without placeholders.",
@@ -1767,6 +1776,7 @@
     {
       "id": 147,
       "prompt": "Humanize a large multi-chapter specification using parallel subagents for disjoint regions, then merge and reconcile.",
+      "expected_output": "The specification is split on top-level boundaries for scouts drafting to scratch files, merged serially in document order with verified seams, reconciled by re-running sweep counts and invariant diffs, and summarized in at most ten style-category bullets.",
       "files": [],
       "expectations": [
         "Regions split on top-level boundaries and scouts draft to scratch files rather than editing the live document concurrently.",
@@ -1791,7 +1801,7 @@
       "files": [],
       "expectations": [
         "runs process/skill-development.md and stands by for a described change",
-        "runs the skill update check once per SKILL.md Skill Update Check"
+        "runs the skill update check once per process/skill-update.md"
       ]
     },
     {
@@ -1966,7 +1976,7 @@
         "does not route to process/session-review.md on the improvement-mode flag alone",
         "applies improvements during the work through the member's own maintenance path",
         "reviews no session history that precedes the mode request",
-        "runs the skill update check once per SKILL.md Skill Update Check"
+        "runs the skill update check once per process/skill-update.md"
       ]
     },
     {
@@ -2123,7 +2133,7 @@
         "does not route to process/session-review.md on the training-mode flag alone",
         "applies on-the-fly adjustments during operations through the member's own maintenance path",
         "reviews no session history that precedes the mode request",
-        "runs the skill update check once per SKILL.md Skill Update Check"
+        "runs the skill update check once per process/skill-update.md"
       ]
     },
     {
@@ -2148,6 +2158,17 @@
         "the wrap decision follows the detected convention or an explicit request or declared style rule",
         "an ambiguous layout ask goes through the question surfaces of process/document-workflow.md",
         "reflow-prose.py --wrap abstains on the detected unwrapped layout"
+      ]
+    },
+    {
+      "id": 181,
+      "prompt": "use panther-skill in improvement mode - check whether this skill has an upstream update first",
+      "expected_output": "The request names a working mode, so the agent follows the Task Entry trigger to process/skill-update.md, runs the once-per-session check through scripts/check-update.py, and reports the result before the task.",
+      "files": [],
+      "expectations": [
+        "loads process/skill-update.md for the update check rather than a section of SKILL.md",
+        "runs the check once per session and reuses a recorded result",
+        "applies an update only after approval with ahead=0 and dirty=no"
       ]
     }
   ]

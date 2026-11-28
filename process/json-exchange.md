@@ -17,11 +17,11 @@ This file defines how Panther exposes its intake questions as JSON and how it co
 | When To Emit        | 26 | The JSON-request trigger and pending-only emission    |
 | Diagnostic Output   | 37 | Verbose and diagnostic emission for information only  |
 | Emitted Document    | 70 | Context fields, fixed key order, and parameter shapes |
-| Parameter Catalog   | 190 | Stable parameter ids per pending surface              |
-| Returned Document   | 235 | Answer formats and resolution rules                   |
-| Autonomous Surfaces | 295 | Auto-resolved gates emit as answered informational    |
-| Authority           | 306 | The exchange is presentation, not a change to gate    |
-| What Does Not Apply | 323 | Boundaries of the operation                           |
+| Parameter Catalog   | 196 | Stable parameter ids per pending surface              |
+| Returned Document   | 241 | Answer formats and resolution rules                   |
+| Autonomous Surfaces | 301 | Auto-resolved gates emit as answered informational    |
+| Authority           | 301 | The exchange is presentation, not a change to gate    |
+| What Does Not Apply | 329 | Boundaries of the operation                           |
 
 ## When To Emit
 
@@ -79,7 +79,12 @@ and an `intake` array.
 - `time` - the local time in `hh:mm:ss` followed by the timezone offset,
   for example `13:45:21 GMT+2`.
 
-`task` emits as an empty string when no task is classified yet - enable mode has none.
+`task` is omitted when no task is classified yet - enable mode has none.
+
+A key without a value is omitted - never emitted as an empty string, `null`, or a placeholder
+such as an unread clock, so an unclassified `task` or an unavailable `time` drops out.
+
+The one exception is `answer`, the reply placeholder described below.
 
 Each parameter object keeps a fixed key order: `id`, `question`, `answer`, `description`,
 optional `when`, `type`, `menu`, `open`,
@@ -87,8 +92,9 @@ optional `when`, `type`, `menu`, `open`,
 
 - `id` - a stable kebab-case identifier for the parameter.
 - `question` - the literal question wording presented to the answering side.
-- `answer` - emitted as an empty string, or an empty array for `selection`,
-  to be filled by the answering side.
+- `answer` - the reply placeholder, always present and empty right after `question` - an empty
+  string, or an empty array for `selection` - so the whole document can return with it filled.
+  The answering side may strip the returned document down to `id` and `answer` pairs.
 - `description` - what the parameter controls and the detection evidence behind its default.
 - `when` - an optional condition under which the parameter is asked,
   written as clauses such as `document-type is A` joined by `and` or `or` and grouped with
